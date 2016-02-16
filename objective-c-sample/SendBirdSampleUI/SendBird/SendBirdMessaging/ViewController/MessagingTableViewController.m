@@ -612,6 +612,10 @@
 {
     [self setMessagingChannelTitle:channel];
     
+    if (readStatus == nil) {
+        readStatus = [[NSMutableDictionary alloc] init];
+    }
+    
     NSMutableDictionary *newReadStatus = [[NSMutableDictionary alloc] init];
     for (SendBirdMemberInMessagingChannel *member in [channel members]) {
         NSNumber *currentStatus = [readStatus objectForKey:[member guestId]];
@@ -621,9 +625,6 @@
         [newReadStatus setObject:[NSNumber numberWithLongLong:MAX([currentStatus longLongValue], [channel getLastReadMillis:[member guestId]])] forKey:[member guestId]];
     }
     
-    if (readStatus == nil) {
-        readStatus = [[NSMutableDictionary alloc] init];
-    }
     [readStatus removeAllObjects];
     for (NSString *key in newReadStatus) {
         id value = [newReadStatus objectForKey:key];

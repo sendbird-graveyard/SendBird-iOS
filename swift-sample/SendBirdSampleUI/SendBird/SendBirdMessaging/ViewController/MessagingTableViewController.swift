@@ -601,11 +601,12 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
         
         let newReadStatus: NSMutableDictionary = NSMutableDictionary()
         for member in channel.members {
+            var currentStatus: NSNumber = 0
             if (self.readStatus?.objectForKey(member.guestId)) != nil {
-                var currentStatus: NSNumber = (self.readStatus?.objectForKey(member.guestId)) as! NSNumber
+                currentStatus = (self.readStatus?.objectForKey(member.guestId)) as! NSNumber
                 currentStatus = NSNumber.init(longLong: 0)
-                newReadStatus.setObject(NSNumber.init(longLong: max(currentStatus.longLongValue, channel.getLastReadMillis(member.guestId))), forKey: member.guestId)
             }
+            newReadStatus.setObject(NSNumber.init(longLong: max(currentStatus.longLongValue, channel.getLastReadMillis(member.guestId))), forKey: member.guestId)
         }
 
         self.readStatus?.removeAllObjects()

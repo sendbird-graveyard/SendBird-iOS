@@ -209,6 +209,7 @@ class ChattingTableViewController: UIViewController, ChatMessageInputViewDelegat
         SendBird.setEventHandlerConnectBlock({ (channel) -> Void in
                 self.setIndicatorHidden(true)
                 self.messageInputView!.setInputEnable(true)
+                self.updateChannelTitle()
             }, errorBlock: { (code) -> Void in
                 self.updateChannelTitle()
                 self.setIndicatorHidden(true)
