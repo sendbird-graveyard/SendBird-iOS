@@ -11,3 +11,9 @@ among your users. SendBird Sample UI has three features for the chat and messagi
 
 3. **Group messaging**: Group messaging is a private channel between multiple users. The user who wants to join the Group messaging channel has to be invited by other user who is already joined the Group messaging channel.
 
+
+## Quick Start
+
+1. Download Sample UI project from this repository.
+2. Open the project which you want to run.(We provide Objective-C and Swift project.)
+3. Build and run it.
