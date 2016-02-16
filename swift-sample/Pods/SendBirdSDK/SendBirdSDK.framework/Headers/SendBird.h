@@ -124,6 +124,8 @@ typedef enum {
 
 @property (retain) NSOperationQueue *imageTaskQueue;
 
+@property (retain) NSString *deviceToken;
+
 - (id) initWithAppId:(NSString *)appId;
 
 + (void) initWithAppKey:(NSString *)appKey;
@@ -616,9 +618,13 @@ typedef enum {
  */
 + (SendBirdUserListQuery *) queryUserList;
 
++ (void) registerForRemoteNotifications:(NSData *)devToken;
+
 /**
  *  For UnitTest
  */
 + (void) testUserBlockListResultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+
++ (NSString *) getDeviceToken;
 
 @end
