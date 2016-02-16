@@ -130,13 +130,6 @@ class FileLinkTableViewCell: UITableViewCell {
         let nameRange: NSRange = NSMakeRange(badge, (self.fileLink?.sender.name.characters.count)!)
         let messageRange: NSRange = NSMakeRange((self.fileLink?.sender.name.characters.count)! + badge, fileLinkUrl.characters.count + 2)
         
-        if self.fileLink?.isOpMessage != nil {
-            let textAttachment: NSTextAttachment = NSTextAttachment()
-            textAttachment.image = UIImage.init(named: "_icon_admin")
-            let attrStringWithImage: NSAttributedString = NSAttributedString.init(attachment: textAttachment)
-            attributedMessage.replaceCharactersInRange(NSMakeRange(0, 1), withAttributedString: attrStringWithImage)
-        }
-        
         attributedMessage.beginEditing()
         attributedMessage.setAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(kFileLinkMessageFontSize), NSForegroundColorAttributeName: SendBirdUtils.UIColorFromRGB(0x824096)], range: nameRange)
         attributedMessage.setAttributes([NSFontAttributeName: UIFont.systemFontOfSize(kFileLinkMessageFontSize), NSForegroundColorAttributeName: SendBirdUtils.UIColorFromRGB(0x595959)], range: messageRange)
