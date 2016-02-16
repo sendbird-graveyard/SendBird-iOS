@@ -3,10 +3,7 @@
 ## Introduction
 
 [SendBird](https://sendbird.com) provides the chat API and SDK for your app enabling real-time communication
-among your users.
-
-## Features
-SendBird Sample UI has three features for the chat and messaging.
+among your users. SendBird Sample UI has three features for the chat and messaging.
 
 1. **Open chat**: Open chat is a public chat. There is a channel which can be participated by anyone without an admission. The channel can be created on `SendBird` dashboard or via `server API`.
 
