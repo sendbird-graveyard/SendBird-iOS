@@ -111,7 +111,6 @@ class ChattingTableViewController: UIViewController, ChatMessageInputViewDelegat
         let title: String = "SendBird"
         let message: String = SENDBIRD_SAMPLE_UI_VER
         let closeButtonText: String = "Close"
-
         let alert: UIAlertController = UIAlertController.init(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         let closeAction: UIAlertAction = UIAlertAction.init(title: closeButtonText, style: UIAlertActionStyle.Cancel, handler: nil)
         alert.addAction(closeAction)
@@ -313,10 +312,6 @@ class ChattingTableViewController: UIViewController, ChatMessageInputViewDelegat
         if self.openImagePicker == false {
             SendBird.disconnect()
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     private func initViews() {
@@ -633,6 +628,9 @@ class ChattingTableViewController: UIViewController, ChatMessageInputViewDelegat
     private func clickMessage(sender: SendBirdSender) {
         let openMessaging: String = String.init(format: "Open Messaging with %@", sender.name)
         self.messageSender = sender
+        if self.messageSender?.guestId == SendBird.getUserId() {
+            return
+        }
         let closeButtonText: String = "Close"
         let alert: UIAlertController = UIAlertController.init(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         let openMessagingAction: UIAlertAction = UIAlertAction.init(title: openMessaging, style: UIAlertActionStyle.Default) { (alertAction) -> Void in

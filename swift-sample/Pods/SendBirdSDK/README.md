@@ -175,7 +175,7 @@ YourViewController.m
 
 #### Swift
 
-YourViewController.m
+YourViewController.swift
 
 ```swift
 SendBird.loginWithUserId(USER_ID, andUserName: USER_NAME)
@@ -194,7 +194,7 @@ YourViewController.m
 
 #### Swift
 
-YourViewController.m
+YourViewController.swift
 
 ```swift
 SendBird.joinChannel(CHANNEL_URL)
@@ -213,7 +213,7 @@ YourViewController.m
 
 #### Swift
 
-YourViewController.m
+YourViewController.swift
 
 ```swift
 SendBird.sendMessage(message)
@@ -221,7 +221,7 @@ SendBird.sendMessage(message)
 
 
 ## Sample
-You can download [a sample app](https://github.com/smilefam/sendbird-sample).
+You can download [a sample app](https://github.com/smilefam/SendBird-iOS)
 
 ## Other platforms
 * [Android](https://sendbird.gitbooks.io/sendbird-android-sdk/content/en/index.html)

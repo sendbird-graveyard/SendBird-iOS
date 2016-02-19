@@ -239,7 +239,7 @@ static ImageCache *_sharedInstance = nil;
         return names;
     }
     else {
-        return [NSString stringWithFormat:@"Group %lu", [members count]];
+        return [NSString stringWithFormat:@"Group %lu", (unsigned long)[members count]];
     }
 }
 

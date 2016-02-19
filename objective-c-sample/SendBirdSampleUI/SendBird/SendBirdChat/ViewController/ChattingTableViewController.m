@@ -17,9 +17,12 @@
 #define kStructuredMessageCellIdentifier @"StructuredMessageReuseIdentifier"
 
 #define kActionSheetTagUrl 0
-#define kActionSheetTagImage 1
-#define kActionSheetTagStructuredMessage 2
-#define kActionSheetTagMessage 3
+#define kActionSheetTagMyUrl 1
+#define kActionSheetTagImage 2
+#define kActionSheetTagMyImage 3
+#define kActionSheetTagStructuredMessage 4
+#define kActionSheetTagMessage 5
+
 
 @interface ChattingTableViewController ()<UITableViewDataSource, UITableViewDelegate, ChatMessageInputViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, FileLinkTableViewCellDelegate, UIActionSheetDelegate>
 @end
@@ -105,8 +108,20 @@
 
 - (void) aboutSendBird:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"SendBird" message:SENDBIRD_SAMPLE_UI_VER delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
-    [alert show];
+    NSString *title = @"SendBird";
+    NSString *message = SENDBIRD_SAMPLE_UI_VER;
+    NSString *closeButtonText = @"Close";
+    
+    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:closeButtonText style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:closeAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"SendBird" message:SENDBIRD_SAMPLE_UI_VER delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (void) setViewMode:(int)mode
@@ -193,20 +208,12 @@
     [viewController setUserName:self.userName];
     [viewController setUserId:self.userId];
     [viewController setTargetUserId:targetUserId];
-    
-#if 0
-    [self.navigationController setModalPresentationStyle:UIModalPresentationCurrentContext];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    [navController setModalPresentationStyle:UIModalPresentationCurrentContext];
-    [self.navigationController presentViewController:navController animated:YES completion:nil];
-#else
+
     [self.navigationController pushViewController:viewController animated:NO];
-#endif
 }
 
 - (void) startChatting
 {
-    NSLog(@"startChatting.");
     scrolling = NO;
     pastMessageLoading = YES;
     endDragging = NO;
@@ -335,11 +342,6 @@
     if (!self.openImagePicker) {
         [SendBird disconnect];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void) initViews
@@ -682,65 +684,156 @@
             [self clickImage:[[fileLink fileInfo] url] andUser:[fileLink sender]];
         }
     }
-    else if ([[messageArray objectAtIndex:indexPath.row] isKindOfClass:[SendBirdStructuredMessage class]]) {
-        SendBirdStructuredMessage *message = [messageArray objectAtIndex:indexPath.row];
-        if ([[message structuredMessageUrl] length] > 0) {
-            [self clickStructuredMessage:[message structuredMessageUrl] andUser:[message sender]];
-        }
-    }
+//    else if ([[messageArray objectAtIndex:indexPath.row] isKindOfClass:[SendBirdStructuredMessage class]]) {
+//        SendBirdStructuredMessage *message = [messageArray objectAtIndex:indexPath.row];
+//        if ([[message structuredMessageUrl] length] > 0) {
+//            [self clickStructuredMessage:[message structuredMessageUrl] andUser:[message sender]];
+//        }
+//    }
 }
 
 - (void) clickMessage:(SendBirdSender *)sender
 {
     NSString *openMessaging = [NSString stringWithFormat:@"Open Messaging with %@", [sender name]];
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:openMessaging, nil];
-    
     messageSender = sender;
-    [actionSheet setTag:kActionSheetTagMessage];
-    [actionSheet showInView:self.view];
+    if ([[messageSender guestId] isEqualToString:[SendBird getUserId]]) {
+        return;
+    }
+    NSString *closeButtonText = @"Close";
+    
+    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *openMessagingAction = [UIAlertAction actionWithTitle:openMessaging style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self startMessagingWithUser:[messageSender guestId]];
+        }];
+        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:closeButtonText style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:openMessagingAction];
+        [alert addAction:closeAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        NSString *openMessaging = [NSString stringWithFormat:@"Open Messaging with %@", [sender name]];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"Cancel"
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:openMessaging, nil];
+        
+        [actionSheet setTag:kActionSheetTagMessage];
+        [actionSheet showInView:self.view];
+
+    }
 }
 
 - (void) clickURL:(NSString *)url andUser:(SendBirdSender *)sender
 {
-    NSString *openMessaging = [NSString stringWithFormat:@"Open Messaging with %@", [sender name]];
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:url
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Open Link in Safari", openMessaging, nil];
-
     messageSender = sender;
-    [actionSheet setTag:kActionSheetTagUrl];
-    [actionSheet showInView:self.view];
+    NSString *closeButtonText = @"Close";
+    NSString *openMessaging = [NSString stringWithFormat:@"Open Messaging with %@", [sender name]];
+    
+    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *openLinkAction = [UIAlertAction actionWithTitle:@"Open Link in Safari" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSString *encodedUrl = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:encodedUrl]];
+        }];
+        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:closeButtonText style:UIAlertActionStyleCancel handler:nil];
+        
+        if (![[messageSender guestId] isEqualToString:[SendBird getUserId]]) {
+            UIAlertAction *openMessagingAction = [UIAlertAction actionWithTitle:openMessaging style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self startMessagingWithUser:[messageSender guestId]];
+            }];
+            [alert addAction:openMessagingAction];
+        }
+        
+        [alert addAction:openLinkAction];
+        [alert addAction:closeAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        NSString *openMessaging = [NSString stringWithFormat:@"Open Messaging with %@", [sender name]];
+        
+        if (![[messageSender guestId] isEqualToString:[SendBird getUserId]]) {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:url
+                                                                     delegate:self
+                                                            cancelButtonTitle:@"Cancel"
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:@"Open Link in Safari", openMessaging, nil];
+            [actionSheet setTag:kActionSheetTagUrl];
+            [actionSheet showInView:self.view];
+        }
+        else {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:url
+                                                                     delegate:self
+                                                            cancelButtonTitle:@"Cancel"
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:@"Open Link in Safari", nil];
+            [actionSheet setTag:kActionSheetTagMyUrl];
+            [actionSheet showInView:self.view];
+        }
+    }
 }
 
 - (void) clickImage:(NSString *)url andUser:(SendBirdSender *)sender
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:url
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"See Image in Safari", nil];
     messageSender = sender;
-    [actionSheet setTag:kActionSheetTagImage];
-    [actionSheet showInView:self.view];
+    NSString *closeButtonText = @"Close";
+    NSString *openMessaging = [NSString stringWithFormat:@"Open Messaging with %@", sender.name];
+    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *openLinkAction = [UIAlertAction actionWithTitle:@"See Image in Safari" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSString *encodedUrl = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:encodedUrl]];
+        }];
+        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:closeButtonText style:UIAlertActionStyleCancel handler:nil];
+        
+        if (![[messageSender guestId] isEqualToString:[SendBird getUserId]]) {
+            UIAlertAction *openMessagingAction = [UIAlertAction actionWithTitle:openMessaging style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self startMessagingWithUser:[messageSender guestId]];
+            }];
+            [alert addAction:openMessagingAction];
+        }
+        
+        [alert addAction:openLinkAction];
+        [alert addAction:closeAction];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        if (![[messageSender guestId] isEqualToString:[SendBird getUserId]]) {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:url
+                                                                     delegate:self
+                                                            cancelButtonTitle:@"Cancel"
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:@"See Image in Safari", openMessaging, nil];
+            [actionSheet setTag:kActionSheetTagImage];
+            [actionSheet showInView:self.view];
+        }
+        else {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:url
+                                                                     delegate:self
+                                                            cancelButtonTitle:@"Cancel"
+                                                       destructiveButtonTitle:nil
+                                                            otherButtonTitles:@"See Image in Safari", nil];
+            [actionSheet setTag:kActionSheetTagMyImage];
+            [actionSheet showInView:self.view];
+        }
+
+    }
 }
 
-- (void) clickStructuredMessage:(NSString *)url andUser:(SendBirdSender *)sender
-{
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:url
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Open", nil];
-    messageSender = sender;
-    [actionSheet setTag:kActionSheetTagStructuredMessage];
-    [actionSheet showInView:self.view];
-}
+//- (void) clickStructuredMessage:(NSString *)url andUser:(SendBirdSender *)sender
+//{
+//    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:url
+//                                                             delegate:self
+//                                                    cancelButtonTitle:@"Cancel"
+//                                               destructiveButtonTitle:nil
+//                                                    otherButtonTitles:@"Open", nil];
+//    messageSender = sender;
+//    [actionSheet setTag:kActionSheetTagStructuredMessage];
+//    [actionSheet showInView:self.view];
+//}
 
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -754,7 +847,7 @@
             [self startMessagingWithUser:[messageSender guestId]];
         }
     }
-    else if(actionSheet.tag == kActionSheetTagUrl || actionSheet.tag == kActionSheetTagImage || actionSheet.tag == kActionSheetTagStructuredMessage) {
+    else if (actionSheet.tag == kActionSheetTagUrl) {
         if (buttonIndex == 0) {
             NSString *encodedUrl = [actionSheet.title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:encodedUrl]];
@@ -762,6 +855,28 @@
         else if (buttonIndex == 1) {
             NSLog(@"User ID: %@", [messageSender guestId]);
             [self startMessagingWithUser:[messageSender guestId]];
+        }
+    }
+    else if (actionSheet.tag == kActionSheetTagImage) {
+        if (buttonIndex == 0) {
+            NSString *encodedUrl = [actionSheet.title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:encodedUrl]];
+        }
+        else if (buttonIndex == 1) {
+            NSLog(@"User ID: %@", [messageSender guestId]);
+            [self startMessagingWithUser:[messageSender guestId]];
+        }
+    }
+    else if (actionSheet.tag == kActionSheetTagMyUrl) {
+        if (buttonIndex == 0) {
+            NSString *encodedUrl = [actionSheet.title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:encodedUrl]];
+        }
+    }
+    else if (actionSheet.tag == kActionSheetTagMyImage) {
+        if (buttonIndex == 0) {
+            NSString *encodedUrl = [actionSheet.title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:encodedUrl]];
         }
     }
     messageSender = nil;

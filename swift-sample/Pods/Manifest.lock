@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.0.4)
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
-  - SendBirdSDK (2.0.17)
+  - SendBirdSDK (2.0.20)
 
 DEPENDENCIES:
   - AFNetworking
@@ -22,6 +22,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
-  SendBirdSDK: 4299dfed18b2f2b02246a447032e4cd219d44146
+  SendBirdSDK: 9cd8115b27562109c9041d505e8f126304a3fa7a
 
 COCOAPODS: 0.39.0

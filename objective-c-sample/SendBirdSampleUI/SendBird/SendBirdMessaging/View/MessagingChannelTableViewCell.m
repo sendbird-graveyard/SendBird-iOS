@@ -366,7 +366,7 @@
     if ([[model members] count] > 2) {
         [self.memberCountLabel setHidden:NO];
         [self.memberCountImageView setHidden:NO];
-        NSString *memberCount = [NSString stringWithFormat:@"%lu", [[model members] count]];
+        NSString *memberCount = [NSString stringWithFormat:@"%lu", (unsigned long)[[model members] count]];
         
         [self.memberCountLabel setText:memberCount];
         CGRect memberCountRect;

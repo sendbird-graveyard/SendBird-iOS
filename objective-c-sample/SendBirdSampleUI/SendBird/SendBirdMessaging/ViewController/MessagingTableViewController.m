@@ -116,13 +116,27 @@
 
 - (void) openMenuActionSheet:(id)sender
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Invite Member", nil];
-    [actionSheet setTag:kActionSheetTagLobbyMember];
-    [actionSheet showInView:self.view];
+    NSString *closeButtonText = @"Cancel";
+    NSString *inviteMemberText = @"Invite Member";
+    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *invitememberAction = [UIAlertAction actionWithTitle:inviteMemberText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self openLobbyMemberListForInvite];
+        }];
+        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:closeButtonText style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:invitememberAction];
+        [alert addAction:closeAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                                 delegate:self
+                                                        cancelButtonTitle:closeButtonText
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:inviteMemberText, nil];
+        [actionSheet setTag:kActionSheetTagLobbyMember];
+        [actionSheet showInView:self.view];
+    }
 }
 
 - (void) dismissLobbyMemberListForInvite:(id)sender
@@ -984,11 +998,11 @@
     if (indexPath == nil) {
         NSLog(@"long press on table view but not on a row");
     } else if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"long press on table view at row %ld", indexPath.row);
+        NSLog(@"long press on table view at row %ld", (long)indexPath.row);
         SendBirdMessagingChannel *jmc = [messagingChannels objectAtIndex:indexPath.row];
         [SendBird markAsReadForChannel:[jmc getUrl]];
     } else {
-        NSLog(@"gestureRecognizer.state = %ld", gestureRecognizer.state);
+        NSLog(@"gestureRecognizer.state = %ld", (long)gestureRecognizer.state);
     }
 }
 
@@ -1048,7 +1062,7 @@
     }
     
     if ([[channel members] count] > 2) {
-        [self setTitle:[NSString stringWithFormat:@"Group Chat %lu", [[channel members] count]]];
+        [self setTitle:[NSString stringWithFormat:@"Group Chat %lu", (unsigned long)[[channel members] count]]];
     }
     else {
         if (member != nil) {
@@ -1660,24 +1674,55 @@
 
 - (void) clickURL:(NSURL *)url
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[url absoluteString]
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Open Link in Safari", nil];
-    [actionSheet setTag:kActionSheetTagUrl];
-    [actionSheet showInView:self.view];
+    NSString *closeButtonText = @"Cancel";
+    NSString *openLinkText = @"Open Link in Safari";
+    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *openLinkAction = [UIAlertAction actionWithTitle:openLinkText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSString *encodedUrl = [url.absoluteString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:encodedUrl]];
+        }];
+        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:closeButtonText style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:openLinkAction];
+        [alert addAction:closeAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[url absoluteString]
+                                                                 delegate:self
+                                                        cancelButtonTitle:closeButtonText
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:openLinkText, nil];
+        [actionSheet setTag:kActionSheetTagUrl];
+        [actionSheet showInView:self.view];
+    }
 }
 
 - (void) clickImage:(NSURL *)url
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[url absoluteString]
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"See Image in Safari", nil];
-    [actionSheet setTag:kActionSheetTagImage];
-    [actionSheet showInView:self.view];
+    NSString *closeButtonText = @"Cancel";
+    NSString *seeImageText = @"See Image in Safari";
+    
+    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *seeImageAction = [UIAlertAction actionWithTitle:seeImageText style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSString *encodedUrl = [url.absoluteString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:encodedUrl]];
+        }];
+        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:closeButtonText style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:seeImageAction];
+        [alert addAction:closeAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[url absoluteString]
+                                                                 delegate:self
+                                                        cancelButtonTitle:closeButtonText
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:seeImageText, nil];
+        [actionSheet setTag:kActionSheetTagImage];
+        [actionSheet showInView:self.view];
+    }
 }
 
 - (void) clickStructuredMessage:(NSString *)url
