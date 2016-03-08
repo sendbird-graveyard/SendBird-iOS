@@ -348,6 +348,12 @@
 				TargetAttributes = {
 					5A8D9BE51C5D1C9E004751E5 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 8K8M9F9X95;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					5A8D9BF91C5D1C9E004751E5 = {
 						CreatedOnToolsVersion = 7.2;
@@ -629,11 +635,14 @@
 			baseConfigurationReference = 7C848461548E00D85708A7A9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SendBirdSampleUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.SendBirdSampleUI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -642,11 +651,14 @@
 			baseConfigurationReference = BD65FC73D4F4B8218517C0E9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SendBirdSampleUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.SendBirdSampleUI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -32,8 +32,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let APP_ID: String = "A7A2672C-AD11-11E4-8DAA-0A18B21C2D82"
         SendBird.initAppId(APP_ID)
         
-        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        application.registerUserNotificationSettings(settings)
+        if application.respondsToSelector("registerUserNotificationSettings:") {
+            let settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound, .Badge], categories: nil)
+            application.registerUserNotificationSettings(settings)
+            application.registerForRemoteNotifications()
+        }
+        else {
+            application.registerForRemoteNotificationTypes([.Alert, .Sound, .Badge])
+        }
 
         return true
     }
