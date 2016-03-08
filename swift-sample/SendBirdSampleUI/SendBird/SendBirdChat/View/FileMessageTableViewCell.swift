@@ -98,7 +98,7 @@ class FileMessageTableViewCell: UITableViewCell {
 
     func setModel(model: SendBirdFileLink) {
         let fileSize: UInt = model.fileInfo.size
-        let nickname: NSAttributedString = NSAttributedString.init(string: model.sender.name, attributes: [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle as! AnyObject, ])
+        let nickname: NSAttributedString = NSAttributedString.init(string: model.sender.name, attributes: [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue])
         
         self.nicknameLabel?.attributedText = nickname
         self.filenameLabel?.text = model.fileInfo.name
