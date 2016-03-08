@@ -31,8 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let APP_ID: String = "A7A2672C-AD11-11E4-8DAA-0A18B21C2D82"
         SendBird.initAppId(APP_ID)
+        
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        application.registerUserNotificationSettings(settings)
 
         return true
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData){
+        SendBird.registerForRemoteNotifications(deviceToken)
     }
 
     func applicationWillResignActive(application: UIApplication) {
