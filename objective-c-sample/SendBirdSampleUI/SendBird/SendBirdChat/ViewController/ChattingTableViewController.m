@@ -505,7 +505,9 @@
                 [messageArray addSendBirdMessage:model updateMessageTsBlock:updateMessageTs];
             }
             [self.tableView reloadData];
-            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:([queryResult count] - 1) inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+            if ([queryResult count] > 0) {
+                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:([queryResult count] - 1) inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+            }
         } endBlock:^(NSError *error) {
             
         }];
