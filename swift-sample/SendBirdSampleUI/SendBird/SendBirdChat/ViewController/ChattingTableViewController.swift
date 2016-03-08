@@ -457,6 +457,9 @@ class ChattingTableViewController: UIViewController, ChatMessageInputViewDelegat
                     self.messageArray?.addSendBirdMessage(model as! SendBirdMessageModel, updateMessageTs: self.updateMessageTs)
                 }
                 self.tableView?.reloadData()
+                if queryResult.count == 0 {
+                    return
+                }
                 self.tableView?.scrollToRowAtIndexPath(NSIndexPath.init(forRow: queryResult.count - 1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
                 }, endBlock: { (error) -> Void in
                     
