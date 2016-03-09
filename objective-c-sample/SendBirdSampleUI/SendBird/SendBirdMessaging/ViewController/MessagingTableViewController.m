@@ -1824,9 +1824,26 @@
                 imageToUse = editedImage;
             }
             
-            NSData *imageFileData = UIImagePNGRepresentation(imageToUse);
             imagePath = [info objectForKey:@"UIImagePickerControllerReferenceURL"];
             imageName = [imagePath lastPathComponent];
+            
+            CGFloat newWidth = 0;
+            CGFloat newHeight = 0;
+            if (imageToUse.size.width > imageToUse.size.height) {
+                newWidth = 450;
+                newHeight = newWidth * imageToUse.size.height / imageToUse.size.width;
+            }
+            else {
+                newHeight = 450;
+                newWidth = newHeight * imageToUse.size.width / imageToUse.size.height;
+            }
+            
+            UIGraphicsBeginImageContextWithOptions(CGSizeMake(newWidth, newHeight), NO, 0.0);
+            [imageToUse drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+            UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+
+            NSData *imageFileData = UIImagePNGRepresentation(newImage);
             
             [SendBird uploadFile:imageFileData type:@"image/jpg" hasSizeOfFile:[imageFileData length] withCustomField:@"" uploadBlock:^(SendBirdFileInfo *fileInfo, NSError *error) {
                 self.openImagePicker = NO;

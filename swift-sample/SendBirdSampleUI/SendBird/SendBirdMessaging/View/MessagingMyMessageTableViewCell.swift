@@ -109,19 +109,18 @@ class MessagingMyMessageTableViewCell: UITableViewCell {
         self.message = message
         self.messageLabel?.attributedText = self.buildMessage()
         let ts: Int64 = (self.message?.getMessageTimestamp())! / 1000
-        self.dateTimeLabel?.text = SendBirdUtils.messageDateTime(NSTimeInterval(ts))
+        let datetime: String = SendBirdUtils.messageDateTime(NSTimeInterval(ts))
+        self.dateTimeLabel?.text = datetime
         self.unreadLabel?.hidden = true
         
         var unreadCount: Int = 0
         if self.readStatus != nil {
-            for item in self.readStatus! {
-                if item.key as? String != SendBird.getUserId() {
-                    let readTime: Int64 = (item.value as! NSNumber).longLongValue 
-                    if ts <= readTime {
-                        
-                    }
-                    else {
-                        unreadCount = unreadCount + 1
+            for (k, v) in self.readStatus! {
+                let userID: String = k as! String
+                let readTime: Int64 = (v as! NSNumber).longLongValue / 1000
+                if userID != SendBird.getUserId() {
+                    if (ts > readTime) {
+                        unreadCount = unreadCount + 1;
                     }
                 }
             }
