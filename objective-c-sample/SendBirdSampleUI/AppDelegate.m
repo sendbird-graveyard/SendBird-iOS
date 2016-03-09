@@ -28,18 +28,22 @@
     [self.window makeKeyAndVisible];
     
     NSString *APP_ID = @"A7A2672C-AD11-11E4-8DAA-0A18B21C2D82";
+    
     [SendBird initAppId:APP_ID];
     
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert
-                                                                                         | UIUserNotificationTypeBadge
-                                                                                         | UIUserNotificationTypeSound) categories:nil];
-    [application registerUserNotificationSettings:settings];
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    } else {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    }
     
     return YES;
 }
 
 // Handle remote notification registration.
-- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
     [SendBird registerForRemoteNotifications:devToken];
 }
 
