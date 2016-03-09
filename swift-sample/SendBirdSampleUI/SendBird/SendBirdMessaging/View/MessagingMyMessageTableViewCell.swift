@@ -114,14 +114,17 @@ class MessagingMyMessageTableViewCell: UITableViewCell {
         
         var unreadCount: Int = 0
         if self.readStatus != nil {
-            for item in self.readStatus! {
-                if item.key as? String != SendBird.getUserId() {
-                    let readTime: Int64 = (item.value as! NSNumber).longLongValue 
-                    if ts <= readTime {
-                        
+            for (k, v) in self.readStatus! {
+                NSLog("%@, %@", k as! String, v as! NSNumber)
+                let userID: String = k as! String
+                let readTime: Int64 = (v as! NSNumber).longLongValue / 1000
+                NSLog("%lld, %lld", ts, readTime)
+                if userID != SendBird.getUserId() {
+                    if (ts <= readTime) {
+//                        [self.unreadLabel setHidden:YES];
                     }
                     else {
-                        unreadCount = unreadCount + 1
+                        unreadCount = unreadCount + 1;
                     }
                 }
             }

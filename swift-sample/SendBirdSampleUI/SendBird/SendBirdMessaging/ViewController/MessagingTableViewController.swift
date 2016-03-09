@@ -1516,7 +1516,23 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
                     imageToUse = editedImage
                 }
                 
-                let imageFileData: NSData = UIImagePNGRepresentation(imageToUse!)!
+                var newWidth: CGFloat = 0;
+                var newHeight: CGFloat = 0;
+                if imageToUse?.size.width > imageToUse?.size.height {
+                    newWidth = 450
+                    newHeight = newWidth * (imageToUse?.size.height)! / (imageToUse?.size.width)!
+                }
+                else {
+                    newHeight = 450
+                    newWidth = newHeight * (imageToUse?.size.width)! / (imageToUse?.size.height)!
+                }
+                
+                UIGraphicsBeginImageContextWithOptions(CGSizeMake(newWidth, newHeight), false, 0.0);
+                imageToUse?.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+                let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                
+                let imageFileData: NSData = UIImagePNGRepresentation(newImage)!
                 
                 SendBird.uploadFile(imageFileData, type: "image/jpg", hasSizeOfFile: UInt(imageFileData.length), withCustomField: "", uploadBlock: { (fileInfo, error) -> Void in
                     self.openImagePicker = false
