@@ -1386,7 +1386,7 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
                 let message: SendBirdMessage = self.messageArray![indexPath.row] as! SendBirdMessage
                 let msgString: String = message.message
                 let url: String = SendBirdUtils.getUrlFromstring(msgString)
-                if msgString.characters.count > 0 {
+                if url.characters.count > 0 {
                     self.clickURL(url)
                 }
             }
