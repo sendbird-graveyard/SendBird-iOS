@@ -182,33 +182,10 @@ class SendBirdUtils {
     
     static func messageDateTime(interval: NSTimeInterval) -> String {
         let messageDate = NSDate.init(timeIntervalSince1970: interval)
-        let today = NSDate.init()
         let formatter = NSDateFormatter()
-        let todayCalendar = NSCalendar.currentCalendar()
-        let todayComponents = todayCalendar.components([NSCalendarUnit.Year, NSCalendarUnit.Month], fromDate: today)
-        let messageDateComponents = todayCalendar.components([NSCalendarUnit.Year, NSCalendarUnit.Month], fromDate: messageDate)
-
-        let dayOfNow = todayComponents.day
-        let monthOfNow = todayComponents.month
-        let yearOfNow = todayComponents.year
-        let dayOfMessage = messageDateComponents.day
-        let monthOfMessage = messageDateComponents.month
-        let yearOfMessage = messageDateComponents.year
-        
+       
         formatter.locale = NSLocale.currentLocale()
-        
-        if dayOfNow != dayOfMessage {
-            formatter.dateFormat = "MM/dd/YY, HH:mm"
-        }
-        else {
-            if monthOfNow != monthOfMessage || yearOfNow != yearOfMessage {
-                formatter.dateFormat = "MM/dd/YY, HH:mm"
-            }
-            else {
-                formatter.dateStyle = NSDateFormatterStyle.ShortStyle
-            }
-        }
-        
+        formatter.dateFormat = "MM/dd/YY, HH:mm"
         formatter.timeZone = NSTimeZone.localTimeZone()
         
         return formatter.stringFromDate(messageDate)

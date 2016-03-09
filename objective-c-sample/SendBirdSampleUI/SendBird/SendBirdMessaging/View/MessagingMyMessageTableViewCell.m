@@ -170,10 +170,7 @@
         for (NSString *key in self.readStatus) {
             if (![key isEqualToString:[SendBird getUserId]]) {
                 long long readTime = [[self.readStatus objectForKey:key] longLongValue] / 1000;
-                if (ts <= readTime) {
-                    //                    [self.unreadLabel setHidden:YES];
-                }
-                else {
+                if (ts > readTime) {
                     unreadCount = unreadCount + 1;
                 }
             }
