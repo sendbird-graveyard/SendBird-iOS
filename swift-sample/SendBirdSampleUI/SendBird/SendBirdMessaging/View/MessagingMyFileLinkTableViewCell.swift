@@ -115,9 +115,9 @@ class MessagingMyFileLinkTableViewCell: UITableViewCell {
         var unreadCount: Int = 0
         if self.readStatus != nil {
             for item in self.readStatus! {
-                if item.key as! String == SendBird.getUserId() {
-                    let readTime: Int64 = item.value as! Int64
-                    if ts < readTime {
+                if item.key as? String != SendBird.getUserId() {
+                    let readTime: Int64 = (item.value as! NSNumber).longLongValue 
+                    if ts <= readTime {
                         
                     }
                     else {
