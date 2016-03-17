@@ -31,6 +31,12 @@
 #import "SendBirdBlockedUser.h"
 #import "SendBirdUserListQuery.h"
 #import "SendBirdOnlineMemberCountQuery.h"
+#import "SendBirdChannelMetaDataQuery.h"
+#import "SendBirdChannelMetaCounterQuery.h"
+#import "SendBirdChannelMetaDataQuery.h"
+#import "SendBirdChannelMetaCounterQuery.h"
+#import "SendBirdMemberCountQuery.h"
+#import "SendBirdSystemEvent.h"
 
 #define kSendBirdInitWithIDFA 0
 #define kSendBirdInitWithIDFV 1
@@ -61,6 +67,10 @@ typedef enum {
 @class SendBirdMessagingUnreadCountQuery;
 @class SendBirdUserListQuery;
 @class SendBirdOnlineMemberCountQuery;
+@class SendBirdChannelMetaDataQuery;
+@class SendBirdChannelMetaCounterQuery;
+@class SendBirdMemberCountQuery;
+@class SendBirdSystemEvent;
 
 /**
  *  `SendBird` is the main class of [SendBird](http://sendBird.com). This class offers connection to SendBird platform, login, setting event callback blocks, message transfers, and others. This class will be defined as a Single Instance in an iOS app. The typical usage order is as the following:
@@ -113,10 +123,7 @@ typedef enum {
  */
 @property (retain) NSString *appId;
 
-/**
- *  Displays connection status with the messaging server
- */
-@property BOOL connected;
+@property BOOL connected DEPRECATED_ATTRIBUTE;
 
 @property BOOL mLoginRequired;
 
@@ -319,7 +326,7 @@ typedef enum {
  *  @param messageDelivery          Calls when the current user successfully sends a message. Use this o find out if the message has been successfully delivered when [`sendMessage:`](./SendBird.html#//api/name/sendMessage:), [`sendMessage:withTempId:`](./SendBird.html#//api/name/sendMessage:withTempId:), [`sendMessage:withData:`](./SendBird.html#//api/name/sendMessage:withData:), [`sendMessage:withData:andTempId:`](./SendBird.html#//api/name/sendMessage:withData:andTempId:), [`sendMessage:withData:andTempId:mentionedUserIds:`](./SendBird.html#//api/name/sendMessage:withData:andTempId:mentionedUserIds:), [`sendFile:`](./SendBird.html#//api/name/sendFile:) were used to send messages.
  */
 
-+ (void) setEventHandlerConnectBlock:(void (^)(SendBirdChannel *channel))connect errorBlock:(void (^)(NSInteger code))error channelLeftBlock:(void (^)(SendBirdChannel *channel))channelLeft messageReceivedBlock:(void (^)(SendBirdMessage *message))messageReceived systemMessageReceivedBlock:(void (^)(SendBirdSystemMessage *message))systemMessageReceived broadcastMessageReceivedBlock:(void (^)(SendBirdBroadcastMessage *message))broadcastMessageReceived fileReceivedBlock:(void (^)(SendBirdFileLink *fileLink))fileReceived messagingStartedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingStarted messagingUpdatedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingUpdated messagingEndedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingEnded allMessagingEndedBlock:(void (^)())allMessagingEnded messagingHiddenBlock:(void (^)(SendBirdMessagingChannel *channel))messagingHidden allMessagingHiddenBlock:(void (^)())allMessagingHidden readReceivedBlock:(void (^)(SendBirdReadStatus *status))readReceived typeStartReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeStartReceived typeEndReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeEndReceived allDataReceivedBlock:(void (^)(NSUInteger sendBirdDataType, int count))allDataReceived messageDeliveryBlock:(void (^)(BOOL send, NSString *message, NSString *data, NSString *messageId))messageDelivery;
++ (void) setEventHandlerConnectBlock:(void (^)(SendBirdChannel *channel))connect errorBlock:(void (^)(NSInteger code))error channelLeftBlock:(void (^)(SendBirdChannel *channel))channelLeft messageReceivedBlock:(void (^)(SendBirdMessage *message))messageReceived systemMessageReceivedBlock:(void (^)(SendBirdSystemMessage *message))systemMessageReceived broadcastMessageReceivedBlock:(void (^)(SendBirdBroadcastMessage *message))broadcastMessageReceived fileReceivedBlock:(void (^)(SendBirdFileLink *fileLink))fileReceived messagingStartedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingStarted messagingUpdatedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingUpdated messagingEndedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingEnded allMessagingEndedBlock:(void (^)())allMessagingEnded messagingHiddenBlock:(void (^)(SendBirdMessagingChannel *channel))messagingHidden allMessagingHiddenBlock:(void (^)())allMessagingHidden readReceivedBlock:(void (^)(SendBirdReadStatus *status))readReceived typeStartReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeStartReceived typeEndReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeEndReceived allDataReceivedBlock:(void (^)(NSUInteger sendBirdDataType, int count))allDataReceived messageDeliveryBlock:(void (^)(BOOL send, NSString *message, NSString *data, NSString *messageId))messageDelivery mutedMessagesReceivedBlock:(void (^)(SendBirdMessage *message))mutedMessagesReceivedBlock mutedFileReceivedBlock:(void (^)(SendBirdFileLink *message))mutedFileReceivedBlock;
 
 // TODO:
 //+ (void) setEventHandlerConnectBlock:(void (^)(SendBirdChannel *channel))connect errorBlock:(void (^)(NSInteger code))error channelLeftBlock:(void (^)(SendBirdChannel *channel))channelLeft messageReceivedBlock:(void (^)(SendBirdMessage *message))messageReceived systemMessageReceivedBlock:(void (^)(SendBirdSystemMessage *message))systemMessageReceived broadcastMessageReceivedBlock:(void (^)(SendBirdBroadcastMessage *message))broadcastMessageReceived fileReceivedBlock:(void (^)(SendBirdFileLink *fileLink))fileReceived structuredMessageReceivedBlock:(void (^)(SendBirdStructuredMessage *message))structuredMessageReceived messagingStartedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingStarted messagingUpdatedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingUpdated messagingEndedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingEnded allMessagingEndedBlock:(void (^)())allMessagingEnded messagingHiddenBlock:(void (^)(SendBirdMessagingChannel *channel))messagingHidden allMessagingHiddenBlock:(void (^)())allMessagingHidden readReceivedBlock:(void (^)(SendBirdReadStatus *status))readReceived typeStartReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeStartReceived typeEndReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeEndReceived allDataReceivedBlock:(void (^)(NSUInteger sendBirdDataType, int count))allDataReceived messageDeliveryBlock:(void (^)(BOOL send, NSString *message, NSString *data, NSString *messageId))messageDelivery;
@@ -608,8 +615,10 @@ typedef enum {
  *  Create the instance of [`SendBirdOnlineMemberCountQuery`](./SendBirdOnlineMemberCountQuery.html) to retrieve the users.
  *
  *  @return [`SendBirdOnlineMemberCountQuery`](./SendBirdOnlineMemberCountQuery.html) instance.
+ *
+ *  @deprecated in 2.0.24. Use [`SendBirdMemberCountQuery`](./SendBirdMemberCountQuery.html)
  */
-+ (SendBirdOnlineMemberCountQuery *) queryOnlineMemberCount:(NSString *)channelUrl;
++ (SendBirdOnlineMemberCountQuery *) queryOnlineMemberCount:(NSString *)channelUrl DEPRECATED_ATTRIBUTE;
 
 /**
  *  Create the instance of [`SendBirdUserListQuery`](./SendBirdUserListQuery.html) to retrieve the users.
@@ -626,5 +635,45 @@ typedef enum {
 + (void) testUserBlockListResultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 
 + (NSString *) getDeviceToken;
+
+/**
+ *  Delete message
+ *
+ *  @param msgId    message ID to be deleted
+ *  @param onResult Callback for result
+ */
++ (void) deleteMessage:(long long)msgId resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+
+/**
+ *  Create instance of [`SendBirdChannelMetaDataQuery`](./SendBirdChannelMetaDataQuery.html) to manipulate meta data of channel
+ *
+ *  @param channelUrl Channel URL to manipulate
+ *
+ *  @return [`SendBirdChannelMetaDataQuery`](./SendBirdChannelMetaDataQuery.html) instance.
+ */
++ (SendBirdChannelMetaDataQuery *) queryChannelMetaDataWithChannelUrl:(NSString *)channelUrl;
+
+/**
+ *  Create instance of [`SendBirdChannelMetaCounterQuery`](./SendBirdChannelMetaCounterQuery.html) to manipulate meta counter of channel
+ *
+ *  @param channelUrl Channel URL to manipulate
+ *
+ *  @return [`SendBirdChannelMetaCounterQuery`](./SendBirdChannelMetaCounterQuery.html) instance.
+ */
++ (SendBirdChannelMetaCounterQuery *) queryChannelMetaCounterWithChannelUrl:(NSString *)channelUrl;
+
+/**
+ *  Create the instance of [`SendBirdMemberCountQuery`](./SendBirdMemberCountQuery.html) to retrieve the users.
+ *
+ *  @return [`SendBirdMemberCountQuery`](./SendBirdMemberCountQuery.html) instance.
+ */
++ (SendBirdMemberCountQuery *) queryMemberCount:(NSString *)channelUrl;
+
+/**
+ *  Received system event
+ *
+ *  @param systemEventReceivedBlock Callback for received system event
+ */
++ (void) setSystemEventReceivedBlock:(void (^)(SendBirdSystemEvent *event))systemEventReceivedBlock;
 
 @end

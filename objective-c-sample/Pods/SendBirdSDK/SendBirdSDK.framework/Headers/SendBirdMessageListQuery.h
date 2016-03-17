@@ -48,4 +48,14 @@
  */
 - (void) loadWithMessageTs:(long long)messageTs prevLimit:(int)prevLimit andNextLimit:(int)nextLimit resultBlock:(void (^)(NSMutableArray *queryResult))onResult endBlock:(void (^)(NSError *error))onError;
 
+/**
+ *  Used to retrieve messages based on a two timestamps
+ *
+ *  @param messageStartTs Start timestamp (UTC)
+ *  @param messageEndTs   End timestamp (UTC)
+ *  @param onResult  Callback invoked upon successful retrieval. queryResult is an array of [`SendBirdMessageModel`](./SendBirdMessageModel.html)
+ *  @param onError   Callback invoked upon failure
+ */
+- (void) loadWithMessageStartTs:(long long)messageStartTs messageEndTs:(long long)messageEndTs resultBlock:(void (^)(NSMutableArray *queryResult))onResult endBlock:(void (^)(NSError *error))onError;
+
 @end

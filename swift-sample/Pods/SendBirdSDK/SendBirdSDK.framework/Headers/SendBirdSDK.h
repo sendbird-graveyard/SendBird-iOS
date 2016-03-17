@@ -35,6 +35,10 @@
 #import "SendBirdBlockedUserListQuery.h"
 #import "SendBirdSDKUtils.h"
 #import "SendBirdOnlineMemberCountQuery.h"
+#import "SendBirdChannelMetaDataQuery.h"
+#import "SendBirdChannelMetaCounterQuery.h"
+#import "SendBirdMemberCountQuery.h"
+#import "SendBirdSystemEvent.h"
 
 //! Project version number for SendBirdSDK.
 FOUNDATION_EXPORT double SendBirdSDKVersionNumber;

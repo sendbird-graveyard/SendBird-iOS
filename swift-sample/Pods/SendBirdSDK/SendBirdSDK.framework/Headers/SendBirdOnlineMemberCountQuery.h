@@ -11,6 +11,7 @@
 
 @class SendBirdClient;
 
+__deprecated
 @interface SendBirdOnlineMemberCountQuery : NSObject
 
 - (id) initWithClient:(SendBirdClient *)sendBirdClient channelUrl:(NSString *)url;

@@ -205,6 +205,7 @@ class ChattingTableViewController: UIViewController, ChatMessageInputViewDelegat
         if self.viewMode == kChattingViewMode {
             SendBird.joinChannel(self.channelUrl)
         }
+        
         SendBird.setEventHandlerConnectBlock({ (channel) -> Void in
                 self.setIndicatorHidden(true)
                 self.messageInputView!.setInputEnable(true)
@@ -253,7 +254,7 @@ class ChattingTableViewController: UIViewController, ChatMessageInputViewDelegat
                 
             }, allDataReceivedBlock: { (sendBirdDataType, count) -> Void in
                 self.scrollToBottomWithReloading(true, force: false, animated: false)
-            }) { (send, message, data, messageId) -> Void in
+            }, messageDeliveryBlock: { (send, message, data, messageId) -> Void in
                 if send == false && self.messageInputView?.isInputEnable() == true {
                     self.messageInputView?.messageTextField?.text = message
                     self.messageInputView?.showSendButton()
@@ -262,8 +263,12 @@ class ChattingTableViewController: UIViewController, ChatMessageInputViewDelegat
                     self.messageInputView?.messageTextField?.text = ""
                     self.messageInputView?.hideSendButton()
                 }
+            }, mutedMessagesReceivedBlock: { (message) -> Void in
+            
+            }) { (fileLink) -> Void in
+            
         }
-        
+
         if self.viewMode == kChattingViewMode {
             SendBird.queryMessageListInChannel(SendBird.getChannelUrl()).prevWithMessageTs(Int64.max, andLimit: 50, resultBlock: { (queryResult) -> Void in
                 self.mMaxMessageTs = Int64.min

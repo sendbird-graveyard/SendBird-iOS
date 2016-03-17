@@ -24,6 +24,7 @@
 #import "SendBirdWSClient.h"
 #import "SendBirdMention.h"
 #import "SendBirdStructuredMessage.h"
+#import "SendBirdSystemEvent.h"
 
 //extern void (^onMessageReceived)(SendBirdMessage *message);
 //extern void (^onSystemMessageReceived)(SendBirdSystemMessage *message);
@@ -41,7 +42,7 @@
 @interface SendBirdClient : NSObject
 
 - (id) initWithAppId:(NSString *)appId;
-- (void) setEventHandlerConnectBlock:(void (^)(SendBirdChannel *channel))connect errorBlock:(void (^)(NSInteger code))error channelLeftBlock:(void (^)(SendBirdChannel *channel))channelLeft messageReceivedBlock:(void (^)(SendBirdMessage *message))messageReceived systemMessageReceivedBlock:(void (^)(SendBirdSystemMessage *message))systemMessageReceived broadcastMessageReceivedBlock:(void (^)(SendBirdBroadcastMessage *message))broadcastMessageReceived fileReceivedBlock:(void (^)(SendBirdFileLink *fileLink))fileReceived messagingStartedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingStarted messagingUpdatedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingUpdated messagingEndedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingEnded allMessagingEndedBlock:(void (^)())allMessagingEnded messagingHiddenBlock:(void (^)(SendBirdMessagingChannel *channel))messagingHidden allMessagingHiddenBlock:(void (^)())allMessagingHidden readReceivedBlock:(void (^)(SendBirdReadStatus *status))readReceived typeStartReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeStartReceived typeEndReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeEndReceived allDataReceivedBlock:(void (^)(NSUInteger sendBirdDataType, int count))allDataReceived messageDeliveryBlock:(void (^)(BOOL send, NSString *message, NSString *data, NSString *tempId))messageDelivery;
+- (void) setEventHandlerConnectBlock:(void (^)(SendBirdChannel *channel))connect errorBlock:(void (^)(NSInteger code))error channelLeftBlock:(void (^)(SendBirdChannel *channel))channelLeft messageReceivedBlock:(void (^)(SendBirdMessage *message))messageReceived systemMessageReceivedBlock:(void (^)(SendBirdSystemMessage *message))systemMessageReceived broadcastMessageReceivedBlock:(void (^)(SendBirdBroadcastMessage *message))broadcastMessageReceived fileReceivedBlock:(void (^)(SendBirdFileLink *fileLink))fileReceived messagingStartedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingStarted messagingUpdatedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingUpdated messagingEndedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingEnded allMessagingEndedBlock:(void (^)())allMessagingEnded messagingHiddenBlock:(void (^)(SendBirdMessagingChannel *channel))messagingHidden allMessagingHiddenBlock:(void (^)())allMessagingHidden readReceivedBlock:(void (^)(SendBirdReadStatus *status))readReceived typeStartReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeStartReceived typeEndReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeEndReceived allDataReceivedBlock:(void (^)(NSUInteger sendBirdDataType, int count))allDataReceived messageDeliveryBlock:(void (^)(BOOL send, NSString *message, NSString *data, NSString *tempId))messageDelivery mutedMessagesReceivedBlock:(void (^)(SendBirdMessage *message))mutedMessagesReceivedBlock mutedFileReceivedBlock:(void (^)(SendBirdFileLink *message))mutedFileReceivedBlock;
 
 // TODO
 //- (void) setEventHandlerConnectBlock:(void (^)(SendBirdChannel *channel))connect errorBlock:(void (^)(NSInteger code))error channelLeftBlock:(void (^)(SendBirdChannel *channel))channelLeft messageReceivedBlock:(void (^)(SendBirdMessage *message))messageReceived systemMessageReceivedBlock:(void (^)(SendBirdSystemMessage *message))systemMessageReceived broadcastMessageReceivedBlock:(void (^)(SendBirdBroadcastMessage *message))broadcastMessageReceived fileReceivedBlock:(void (^)(SendBirdFileLink *fileLink))fileReceived structuredMessageReceivedBlock:(void (^)(SendBirdStructuredMessage *message))structuredMessageReceived messagingStartedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingStarted messagingUpdatedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingUpdated messagingEndedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingEnded allMessagingEndedBlock:(void (^)())allMessagingEnded messagingHiddenBlock:(void (^)(SendBirdMessagingChannel *channel))messagingHidden allMessagingHiddenBlock:(void (^)())allMessagingHidden readReceivedBlock:(void (^)(SendBirdReadStatus *status))readReceived typeStartReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeStartReceived typeEndReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeEndReceived allDataReceivedBlock:(void (^)(NSUInteger sendBirdDataType, int count))allDataReceived messageDeliveryBlock:(void (^)(BOOL send, NSString *message, NSString *data, NSString *tempId))messageDelivery;
@@ -66,6 +67,7 @@
 //- (void) getMessagingListWithResultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) getMessagingListV2WithToken:(NSString *)token andPage:(int)page withLimit:(int)limit andShowEmpty:(BOOL)showEmpty resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) messageListInChannelUrl:(NSString *)channelUrl withMessageTs:(long long)messageTs prevLimit:(int)prevLimit andNextLimit:(int)nextLimit include:(BOOL)include resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) messageListWithChannelUrl:(NSString *)channelUrl messageStartTs:(long long)messageStartTs messageEndTs:(long long)messageEndTs resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) leaveChannel:(NSString *)channelUrl;
 - (void) getBlockedUserListResultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) uploadFile:(NSData *)file type:(NSString *)type size:(unsigned long)size customField:(NSString *)customField uploadBlock:(void (^)(SendBirdFileInfo *fileInfo, NSError *error))onUpload;
@@ -105,6 +107,20 @@
 - (void) inviteMessagingWithChannelUrl:(NSString *)channelUrl andGuestIds:(NSArray *)guestIds;
 //- (long long)getMaxMessageTs;
 - (enum WSReadyState) connectState;
-- (void) onlineMemberCount:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) onlineMemberCount:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult DEPRECATED_ATTRIBUTE;
+- (void) memberCount:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) userListWithToken:(NSString *)token page:(long)page withLimit:(long)limit resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) deleteMessage:(long long)msgId resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+
+- (void) setMetaData:(NSDictionary *)metadata toChannel:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) getMetaDataFromChannel:(NSString *)channelUrl withKeys:(NSArray<NSString *> *)keys resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) deleteMetaDataOfChannel:(NSString *)channelUrl withKeys:(NSArray<NSString *> *)keys resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) setMetaCounter:(NSDictionary *)metadata toChannel:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary<NSString *, NSNumber *> *response, NSError *error))onResult;
+- (void) getMetaCounterFromChannel:(NSString *)channelUrl withKeys:(NSArray<NSString *> *)keys resultBlock:(void (^)(NSDictionary<NSString *, NSNumber *> *response, NSError *error))onResult;
+- (void) deleteMetaCounterOfChannel:(NSString *)channelUrl withKeys:(NSArray<NSString *> *)keys resultBlock:(void (^)(NSDictionary<NSString *, NSNumber *> *response, NSError *error))onResult;
+- (void) increaseMetaCounterOfChannel:(NSString *)channelUrl withData:(NSDictionary<NSString *, NSNumber *> *)data resultBlock:(void (^)(NSDictionary<NSString *, NSNumber *> *response, NSError *error))onResult;
+- (void) decreaseMetaCounterOfChannel:(NSString *)channelUrl withData:(NSDictionary<NSString *, NSNumber *> *)data resultBlock:(void (^)(NSDictionary<NSString *, NSNumber *> *response, NSError *error))onResult;
+
+- (void) setSystemEventReceivedBlock:(void (^)(SendBirdSystemEvent *event))systemEventReceivedBlock;
+
 @end

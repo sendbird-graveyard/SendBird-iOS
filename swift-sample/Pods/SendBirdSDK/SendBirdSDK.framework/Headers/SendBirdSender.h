@@ -33,6 +33,11 @@
  */
 @property (retain) NSString *guestId;
 
+/**
+ *  Returns YES if the user is muted, otherwise returns NO
+ */
+@property BOOL isMuted;
+
 - (id) initWithDic:(NSDictionary *)dic;
 
 @end

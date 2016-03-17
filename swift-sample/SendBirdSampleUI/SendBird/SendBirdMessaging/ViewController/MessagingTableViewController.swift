@@ -527,7 +527,7 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
                 if UInt32(sendBirdDataType) == SendBirdDataTypeMessage.rawValue {
                     self.scrollToBottomWithReloading(true, force: false, animated: false)
                 }
-            }) { (send, message, data, messageId) -> Void in
+            }, messageDeliveryBlock:  { (send, message, data, messageId) -> Void in
                 if send == false && self.messageInputView?.isInputEnable() == true {
                     self.messageInputView?.messageTextField?.text = message
                     self.messageInputView?.showSendButton()
@@ -536,7 +536,11 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
                     self.messageInputView?.messageTextField?.text = ""
                     self.messageInputView?.hideSendButton()
                 }
-        }
+            }, mutedMessagesReceivedBlock: { (message) -> Void in
+                    
+            }) { (fileLink) -> Void in
+                    
+            }
         
         if self.viewMode == kMessagingMemberViewMode {
             self.channelMemberListTableView?.hidden = false

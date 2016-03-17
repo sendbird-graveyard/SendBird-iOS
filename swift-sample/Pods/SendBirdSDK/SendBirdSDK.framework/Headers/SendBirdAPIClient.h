@@ -30,6 +30,17 @@
 #define kApiUserBlockList @"/v1/user_block_list"
 #define kApiUserList @"/v1/user_list"
 #define kApiOnlineMemberCount @"/v1/online_member_count"
+#define kApiMessageDelete @"/v1/message_delete"
+#define kApiSetChannelMetaData @"/v1/channel_metadata_set"
+#define kApiGetChannelMetaData @"/v1/channel_metadata_get"
+#define kApiDeleteChannelMetaData @"/v1/channel_metadata_delete"
+#define kApiSetChannelMetaCounter @"/v1/channel_metacounter_set"
+#define kApiGetChannelMetaCounter @"/v1/channel_metacounter_get"
+#define kApiDeleteChannelMetaCounter @"/v1/channel_metacounter_delete"
+#define kApiIncreaseChannelMetaCounter @"/v1/channel_metacounter_increase"
+#define kApiDecreaseChannelMetaCounter @"/v1/channel_metacounter_decrease"
+#define kApiMessageListByTimestamp @"/v1/message_list_by_timestamp"
+#define kApiMemberCount @"/v1/member_count"
 
 @interface SendBirdAPIClient : NSObject
 
@@ -59,10 +70,22 @@
 - (void) loadMoreMessagesInChannel:(long long)channelId andMinMessageTs:(long long)minMessageTs withLimit:(int)limit resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) memberListInChannel:(NSString *)channelUrl withPageNum:(int)page withQuery:(NSString *)query withLimit:(int)limit resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) messageListWithChannelUrl:(NSString *)channelUrl messageTs:(long long)messageTs prevLimit:(int)prevLimit andNextLimit:(int)nextLimit include:(BOOL)include resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) messageListWithChannelUrl:(NSString *)channelUrl messageStartTs:(long long)messageStartTs messageEndTs:(long long)messageEndTs resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) messagingUnreadCountResultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
-- (void) onlineMemberCount:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) onlineMemberCount:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult DEPRECATED_ATTRIBUTE;
+- (void) memberCount:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) userListWithToken:(NSString *)token page:(long)page withLimit:(long)limit resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) cancelAll;
 - (void) getBlockedUserListResultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) deleteMessage:(long long)msgId resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+
+- (void) setMetaData:(NSDictionary *)metadata toChannel:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) getMetaDataFromChannel:(NSString *)channelUrl withKeys:(NSArray<NSString *> *)keys resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) deleteMetaDataOfChannel:(NSString *)channelUrl withKeys:(NSArray<NSString *> *)keys resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) setMetaCounter:(NSDictionary *)metadata toChannel:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) getMetaCounterFromChannel:(NSString *)channelUrl withKeys:(NSArray<NSString *> *)keys resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) deleteMetaCounterOfChannel:(NSString *)channelUrl withKeys:(NSArray<NSString *> *)keys resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) increaseMetaCounterOfChannel:(NSString *)channelUrl withData:(NSDictionary<NSString *, NSNumber *> *)data resultBlock:(void (^)(NSDictionary<NSString *, NSNumber *> *response, NSError *error))onResult;
+- (void) decreaseMetaCounterOfChannel:(NSString *)channelUrl withData:(NSDictionary<NSString *, NSNumber *> *)data resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 
 @end

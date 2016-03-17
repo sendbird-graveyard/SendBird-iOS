@@ -295,6 +295,10 @@
             [[self.messageInputView messageTextField] setText:@""];
             [self.messageInputView hideSendButton];
         }
+    } mutedMessagesReceivedBlock:^(SendBirdMessage *message) {
+        
+    } mutedFileReceivedBlock:^(SendBirdFileLink *message) {
+        
     }];
     
     if (viewMode == kChattingViewMode) {

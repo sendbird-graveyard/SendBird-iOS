@@ -474,13 +474,6 @@
         [self scrollToBottomWithReloading:YES force:NO animated:NO];
         [self setIndicatorHidden:YES];
         [SendBird markAsRead];
-    // TODO
-//    } structuredMessageReceivedBlock:^(SendBirdStructuredMessage *message) {
-//        NSLog(@"structuredMessageReceivedBlock: updateMessageTs=%lld", [message getMessageTimestamp]);
-//        [messageArray addSendBirdMessage:message updateMessageTsBlock:updateMessageTs];
-//        [SendBird markAsRead];
-//        [self scrollToBottomWithReloading:YES force:NO animated:NO];
-//        [self setIndicatorHidden:YES];
     } messagingStartedBlock:^(SendBirdMessagingChannel *channel) {
         self.currentMessagingChannel = channel;
         self.channelUrl = channel.channel.url;
@@ -567,6 +560,10 @@
             [[self.messageInputView messageTextField] setText:@""];
             [self.messageInputView hideSendButton];
         }
+    } mutedMessagesReceivedBlock:^(SendBirdMessage *message) {
+        
+    } mutedFileReceivedBlock:^(SendBirdFileLink *message) {
+        
     }];
     
     if (viewMode == kMessagingMemberViewMode) {

@@ -33,6 +33,21 @@
  */
 @property (retain) NSString *guestId;
 
+/**
+ *  On-line or off-line status of user
+ */
+@property BOOL isOnline;
+
+/**
+ *  The latest time of logging off
+ */
+@property long long lastSeenAt;
+
+/**
+ *  Returns YES if the user is muted, otherwise returns NO
+ */
+@property BOOL isMuted;
+
 @property (retain) NSDictionary *jsonObj;
 
 - (id) initWithDic:(NSDictionary *)dic;

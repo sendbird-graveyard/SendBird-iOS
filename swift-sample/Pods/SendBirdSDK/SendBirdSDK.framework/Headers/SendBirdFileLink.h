@@ -38,6 +38,11 @@
  */
 @property BOOL isBlocked;
 
+/**
+ *  Returns YES if the user is muted, otherwise returns NO
+ */
+@property BOOL isSoftMuted;
+
 - (id) initWithDic:(NSDictionary *)dic inPresent:(BOOL)present;
 
 /**

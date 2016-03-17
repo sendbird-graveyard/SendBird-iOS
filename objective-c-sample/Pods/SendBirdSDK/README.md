@@ -226,6 +226,6 @@ You can download [a sample app](https://github.com/smilefam/SendBird-iOS)
 ## Other platforms
 * [Android](https://sendbird.gitbooks.io/sendbird-android-sdk/content/en/index.html)
 * [Unity SDK](https://sendbird.gitbooks.io/sendbird-unity-sdk/content/en/index.html)
-* [Web(JavaScript)](https://sendbird.gitbooks.io/sendbird-web-sdk/content/en/index.html)
+* [JavaScript](https://sendbird.gitbooks.io/sendbird-javascript-sdk/content/index.html)
 * [Server API](https://sendbird.gitbooks.io/sendbird-server-api/content/en/index.html)
 * [Xamarin](https://sendbird.gitbooks.io/sendbird-xamarin-sdk/content/)
