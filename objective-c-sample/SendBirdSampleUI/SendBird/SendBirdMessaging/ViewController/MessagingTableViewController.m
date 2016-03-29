@@ -501,6 +501,7 @@
                 [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:(pos - 1) inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
             }
             
+            [SendBird markAsReadForChannel:[channel getUrl]];
             [SendBird joinChannel:[channel getUrl]];
             [SendBird connectWithMessageTs:self.mMaxMessageTs];
         } endBlock:^(NSError *error) {

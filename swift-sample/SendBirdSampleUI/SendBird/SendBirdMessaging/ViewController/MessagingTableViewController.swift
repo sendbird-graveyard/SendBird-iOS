@@ -478,6 +478,7 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
                         self.tableView?.scrollToRowAtIndexPath(NSIndexPath.init(forRow: pos - 1, inSection: 0), atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
                     }
                     
+                    SendBird.markAsReadForChannel(channel.getUrl())
                     SendBird.joinChannel(channel.getUrl())
                     SendBird.connectWithMessageTs(self.mMaxMessageTs!)
                     }, endBlock: { (error) -> Void in
