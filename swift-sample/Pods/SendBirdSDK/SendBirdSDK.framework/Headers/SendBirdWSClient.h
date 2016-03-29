@@ -24,6 +24,7 @@ enum WSReadyState {
 - (void) setEventHandlerOpenBlock:(void (^)())open messageBlock:(void (^)(NSString *data))message closeBlock:(void (^)())close errorBlock:(void (^)())error;
 - (void) disconnect;
 - (void) connect;
+- (void) forceDisconnect;
 - (BOOL) sendCommand:(SendBirdCommand *)command;
 - (enum WSReadyState) connectState;
 

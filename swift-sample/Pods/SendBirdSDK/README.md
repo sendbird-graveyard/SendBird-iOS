@@ -113,8 +113,12 @@ YourViewController.m
   // ..        
 } allDataReceivedBlock:^(NSUInteger sendBirdDataType, int count) {
   // ..
-} messageDeliveryBlock:^(BOOL send, NSString *message, NSString *data, NSString *messageId) {
+} messageDeliveryBlock:^(BOOL send, NSString *message, NSString *data, NSString *tempId) {
   // ..
+} mutedMessagesReceivedBlock:^(SendBirdMessage *message) {
+  // ..
+} mutedFileReceivedBlock:^(SendBirdFileLink *message) {
+  // .. 
 }];
 ```
 
@@ -157,8 +161,12 @@ SendBird.setEventHandlerConnectBlock({ (channel) -> Void in
   // ..
 }, allDataReceivedBlock: { (sendBirdDataType, count) -> Void in
   // ..
-}) { (send, message, data, messageId) -> Void in
+}, messageDeliveryBlock:  { (send, message, data, tempId) -> Void in
   // ..
+}, mutedMessagesReceivedBlock: { (message) -> Void in
+  // ..             
+}) { (fileLink) -> Void in
+  // .. 
 }
 ```
 

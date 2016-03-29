@@ -107,6 +107,9 @@ extern NSString *const SRHTTPResponseErrorKey;
 // Send Data (can be nil) in a ping message.
 - (void)sendPing:(NSData *)data;
 
+#pragma mark - SendBird Custom methods
+- (void) forceDisconnect;
+
 @end
 
 #pragma mark - SendBirdSRWebSocketDelegate

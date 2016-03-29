@@ -88,9 +88,9 @@ class ChattingTableViewController: UIViewController, ChatMessageInputViewDelegat
         self.navigationController?.navigationBar.barTintColor = SendBirdUtils.UIColorFromRGB(0x824096)
         self.navigationController?.navigationBar.translucent = false
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_setting"), style: UIBarButtonItemStyle.Plain, target: self, action: "aboutSendBird:")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_setting"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChattingTableViewController.aboutSendBird(_:)))
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_close"), style: UIBarButtonItemStyle.Plain, target:self, action: "dismissModal:")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_close"), style: UIBarButtonItemStyle.Plain, target:self, action: #selector(ChattingTableViewController.dismissModal(_:)))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         
         if viewLoaded {
@@ -104,6 +104,7 @@ class ChattingTableViewController: UIViewController, ChatMessageInputViewDelegat
     }
     
     func dismissModal(sender: AnyObject) {
+        SendBird.disconnect()
         self.navigationController?.popViewControllerAnimated(false)
     }
     
@@ -155,8 +156,8 @@ class ChattingTableViewController: UIViewController, ChatMessageInputViewDelegat
         
         self.navigationItem.titleView = self.titleLabel
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChattingTableViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChattingTableViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         self.openImagePicker = false
         self.initViews()
@@ -214,7 +215,7 @@ class ChattingTableViewController: UIViewController, ChatMessageInputViewDelegat
                 self.updateChannelTitle()
                 self.setIndicatorHidden(true)
             }, channelLeftBlock: { (channel) -> Void in
-                
+                SendBird.disconnect()
             }, messageReceivedBlock: { (message) -> Void in
                 self.updateChannelTitle()
                 self.messageArray?.addSendBirdMessage(message, updateMessageTs: self.updateMessageTs)

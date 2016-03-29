@@ -165,7 +165,7 @@ class SendBirdUtils {
         var url: String? = ""
         
         arrString = bulk.componentsSeparatedByString(" ")
-        for var i = 0; i < arrString?.count; i++ {
+        for i in 0 ..< arrString!.count {
             if (arrString![i].rangeOfString("http://", options: NSStringCompareOptions.CaseInsensitiveSearch)) != nil {
                 url = arrString![i]
                 break;
@@ -241,7 +241,7 @@ class SendBirdUtils {
         }
         else if members.count == 2 {
             var names = String()
-            for var i = 0; i < members.count; i++ {
+            for i in 0 ..< members.count {
                 let member = members[i]
                 if (member.guestId == SendBird.getUserId()) {
                     continue
@@ -263,7 +263,7 @@ class SendBirdUtils {
     static func getMessagingChannelNames(members: Array<SendBirdMemberInMessagingChannel>) -> String {
         if members.count > 1 {
             var names = String()
-            for var i = 0; i < members.count; i++ {
+            for i in 0 ..< members.count {
                 let member: SendBirdMemberInMessagingChannel = members[i]
                 if (member.guestId == SendBird.getUserId()) {
                     continue

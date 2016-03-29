@@ -51,7 +51,7 @@ class ChatMessageInputView: UIView, UITextFieldDelegate {
         self.openChannelListButton = UIButton()
         self.openChannelListButton?.translatesAutoresizingMaskIntoConstraints = false
         self.openChannelListButton?.setImage(UIImage.init(named: "_btn_channel_list"), forState: UIControlState.Normal)
-        self.openChannelListButton?.addTarget(nil, action: "clickChannelListButton", forControlEvents: UIControlEvents.TouchUpInside)
+        self.openChannelListButton?.addTarget(nil, action: #selector (clickChannelListButton), forControlEvents: UIControlEvents.TouchUpInside)
 
         self.messageTextField = UITextField()
         self.messageTextField?.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +68,7 @@ class ChatMessageInputView: UIView, UITextFieldDelegate {
         self.messageTextField?.rightViewMode = UITextFieldViewMode.Always
         self.messageTextField?.layer.borderWidth = 1.0
         self.messageTextField?.layer.borderColor = SendBirdUtils.UIColorFromRGB(0xbbc3c9).CGColor
-        self.messageTextField?.addTarget(self, action: "textFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
+        self.messageTextField?.addTarget(self, action: #selector(ChatMessageInputView.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
         self.messageTextField?.delegate = self
         
         self.fileAttachButton = UIButton()
@@ -77,7 +77,7 @@ class ChatMessageInputView: UIView, UITextFieldDelegate {
         self.fileAttachButton?.setImage(UIImage.init(named: "_sendbird_btn_upload_off"), forState: UIControlState.Normal)
         self.fileAttachButton?.setImage(UIImage.init(named: "_sendbird_btn_upload_on"), forState: UIControlState.Highlighted)
         self.fileAttachButton?.setImage(UIImage.init(named: "_sendbird_btn_upload_on"), forState: UIControlState.Selected)
-        self.fileAttachButton?.addTarget(nil, action: "clickFileAttachButton", forControlEvents: UIControlEvents.TouchUpInside)
+        self.fileAttachButton?.addTarget(nil, action: #selector(ChatMessageInputView.clickFileAttachButton), forControlEvents: UIControlEvents.TouchUpInside)
         self.fileAttachButton?.layer.borderWidth = 1.0
         self.fileAttachButton?.layer.borderColor = SendBirdUtils.UIColorFromRGB(0xbbc3c9).CGColor
         
@@ -89,7 +89,7 @@ class ChatMessageInputView: UIView, UITextFieldDelegate {
         self.sendButton?.setBackgroundImage(UIImage.init(named: "_btn_green"), forState: UIControlState.Highlighted)
         self.sendButton?.setBackgroundImage(UIImage.init(named: "_btn_green"), forState: UIControlState.Selected)
         self.sendButton?.setBackgroundImage(UIImage.init(named: "_btn_white_line"), forState: UIControlState.Disabled)
-        self.sendButton?.addTarget(self, action: "clickSendButton:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.sendButton?.addTarget(self, action: #selector(ChatMessageInputView.clickSendButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.sendButton?.alpha = 0
         self.sendButton?.enabled = false
         
@@ -155,6 +155,10 @@ class ChatMessageInputView: UIView, UITextFieldDelegate {
     
     func clickFileAttachButton() {
         self.delegate?.clickFileAttachButton()
+    }
+    
+    func clickChannelListButton() {
+        self.delegate?.clickChannelListButton()
     }
 
     func hideKeyboard() {

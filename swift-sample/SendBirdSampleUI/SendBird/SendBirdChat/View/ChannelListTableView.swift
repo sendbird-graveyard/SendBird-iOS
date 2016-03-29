@@ -51,7 +51,7 @@ class ChannelListTableView: UIView, UITextFieldDelegate, UITableViewDataSource, 
         self.searchTextField?.rightViewMode = UITextFieldViewMode.Always
         self.searchTextField?.returnKeyType = UIReturnKeyType.Search
         self.searchTextField?.delegate = self
-        self.searchTextField?.addTarget(self, action: "searchTextFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
+        self.searchTextField?.addTarget(self, action: #selector(ChannelListTableView.searchTextFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
         
         let attributedString: NSMutableAttributedString = NSMutableAttributedString.init(string: "  Search")
         let textAttachment: NSTextAttachment = NSTextAttachment()
@@ -67,7 +67,7 @@ class ChannelListTableView: UIView, UITextFieldDelegate, UITableViewDataSource, 
         self.channelTableView?.separatorColor = UIColor.clearColor()
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl?.addTarget(self, action: "reloadChannels", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(ChannelListTableView.reloadChannels), forControlEvents: UIControlEvents.ValueChanged)
         
         self.searchAreaView?.addSubview(self.searchTextField!)
         addSubview(self.searchAreaView!)
@@ -159,6 +159,12 @@ class ChannelListTableView: UIView, UITextFieldDelegate, UITableViewDataSource, 
         })
     }
     
+    func searchTextFieldDidChange(textField: UITextField) {
+        if textField.text?.characters.count == 0 {
+            self.reloadChannels()
+        }
+    }
+    
     // MARK: UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -192,6 +198,12 @@ class ChannelListTableView: UIView, UITextFieldDelegate, UITableViewDataSource, 
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let channel: SendBirdChannel = self.channels![indexPath.row] as! SendBirdChannel
+        
+        let currentChannelUrl = SendBird.getCurrentChannel()?.url
+        if currentChannelUrl != nil && currentChannelUrl!.characters.count > 0 {
+            SendBird.leaveChannel(currentChannelUrl)
+        }
+        
         self.chattingTableViewController!.channelUrl = channel.url
         self.chattingTableViewController!.initChannelTitle()
         self.chattingTableViewController!.setViewMode(kChattingViewMode)

@@ -106,7 +106,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.sendbirdStartOpenChatButton?.setBackgroundImage(SendBirdUtils.imageFromColor(SendBirdUtils.UIColorFromRGB(0xAB47BC)), forState: UIControlState.Normal)
         self.sendbirdStartOpenChatButton?.clipsToBounds = true
         self.sendbirdStartOpenChatButton?.layer.cornerRadius = 4.0
-        self.sendbirdStartOpenChatButton?.addTarget(self, action:"clickSendBirdStartOpenChatButton:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.sendbirdStartOpenChatButton?.addTarget(self, action:#selector(ViewController.clickSendBirdStartOpenChatButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.sendbirdStartOpenChatButton?.setTitle("OpenChat", forState: UIControlState.Normal)
         self.sendbirdStartOpenChatButton?.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         self.sendbirdStartOpenChatButton?.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
@@ -118,7 +118,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.sendbirdStartMessaging?.setBackgroundImage(SendBirdUtils.imageFromColor(SendBirdUtils.UIColorFromRGB(0xAB47BC)), forState: UIControlState.Normal)
         self.sendbirdStartMessaging?.clipsToBounds = true
         self.sendbirdStartMessaging?.layer.cornerRadius = 4.0
-        self.sendbirdStartMessaging?.addTarget(self, action:"clickSendBirdStartMessagingButton:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.sendbirdStartMessaging?.addTarget(self, action:#selector(ViewController.clickSendBirdStartMessagingButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.sendbirdStartMessaging?.setTitle("Messaging", forState: UIControlState.Normal)
         self.sendbirdStartMessaging?.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         self.sendbirdStartMessaging?.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
@@ -130,7 +130,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.sendbirdMemberListButton?.setBackgroundImage(SendBirdUtils.imageFromColor(SendBirdUtils.UIColorFromRGB(0xAB47BC)), forState: UIControlState.Normal)
         self.sendbirdMemberListButton?.clipsToBounds = true
         self.sendbirdMemberListButton?.layer.cornerRadius = 4.0
-        self.sendbirdMemberListButton?.addTarget(self, action:"clickSendBirdMemberListButton:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.sendbirdMemberListButton?.addTarget(self, action:#selector(ViewController.clickSendBirdMemberListButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.sendbirdMemberListButton?.setTitle("Member List", forState: UIControlState.Normal)
         self.sendbirdMemberListButton?.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         self.sendbirdMemberListButton?.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
@@ -143,7 +143,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.sendbirdMessagingChannelListButton?.setBackgroundImage(SendBirdUtils.imageFromColor(SendBirdUtils.UIColorFromRGB(0xAB47BC)), forState: UIControlState.Normal)
         self.sendbirdMessagingChannelListButton?.clipsToBounds = true
         self.sendbirdMessagingChannelListButton?.layer.cornerRadius = 4.0
-        self.sendbirdMessagingChannelListButton?.addTarget(self, action:"clickSendBirdMessagingChannelListButton:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.sendbirdMessagingChannelListButton?.addTarget(self, action:#selector(ViewController.clickSendBirdMessagingChannelListButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.sendbirdMessagingChannelListButton?.setTitle("Messaging Channel List", forState: UIControlState.Normal)
         self.sendbirdMessagingChannelListButton?.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         self.sendbirdMessagingChannelListButton?.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
@@ -156,7 +156,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.sendbirdBackFromMessaging?.setBackgroundImage(SendBirdUtils.imageFromColor(SendBirdUtils.UIColorFromRGB(0x43A047)), forState: UIControlState.Normal)
         self.sendbirdBackFromMessaging?.clipsToBounds = true
         self.sendbirdBackFromMessaging?.layer.cornerRadius = 4.0
-        self.sendbirdBackFromMessaging?.addTarget(self, action:"clickSendBirdBackFromMessaging:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.sendbirdBackFromMessaging?.addTarget(self, action:#selector(ViewController.clickSendBirdBackFromMessaging(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.sendbirdBackFromMessaging?.setTitle("Back", forState: UIControlState.Normal)
         self.sendbirdBackFromMessaging?.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         self.sendbirdBackFromMessaging?.titleLabel?.font = UIFont.boldSystemFontOfSize(16.0)
@@ -229,7 +229,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "startMessagingWithUser:", name: "open_messaging", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.startMessagingWithUser(_:)), name: "open_messaging", object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -250,7 +250,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.startMessagingFromOpenChat = false
     }
     
-    private func startMessagingWithUser(obj: NSNotification) {
+    @objc private func startMessagingWithUser(obj: NSNotification) {
         self.messagingTargetUserId = obj.object as! String
         self.startMessagingFromOpenChat = true
     }

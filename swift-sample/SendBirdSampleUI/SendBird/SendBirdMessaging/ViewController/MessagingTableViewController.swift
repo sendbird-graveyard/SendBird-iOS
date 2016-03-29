@@ -110,9 +110,9 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
         self.navigationController?.navigationBar.barTintColor = SendBirdUtils.UIColorFromRGB(0x533a9c)
         self.navigationController?.navigationBar.translucent = false
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_setting"), style: UIBarButtonItemStyle.Plain, target: self, action: "aboutSendBird:")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_setting"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MessagingTableViewController.aboutSendBird(_:)))
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_close"), style: UIBarButtonItemStyle.Plain, target: self, action: "dismissModal:")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_close"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MessagingTableViewController.dismissModal(_:)))
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         
         self.setNavigationButton()
@@ -186,7 +186,7 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
     
     func inviteMember(sender: AnyObject) {
         var userIds: Array<String> = Array()
-        for var i = 0; i < self.membersInChannel?.count; i++ {
+        for i in 0 ..< self.membersInChannel!.count {
             if self.channelMemberListTableView?.cellForRowAtIndexPath(NSIndexPath.init(forRow: i, inSection: 0))?.selected == true {
                 let member: SendBirdAppUser = self.membersInChannel?.objectAtIndex(i) as! SendBirdAppUser
                 userIds.append(member.guestId)
@@ -256,22 +256,22 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
     func setNavigationButton() {
         if self.viewMode == kMessagingChannelListViewMode {
             self.navigationItem.rightBarButtonItems = Array()
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_close"), style: UIBarButtonItemStyle.Plain, target: self, action: "dismissModal:")
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_close"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MessagingTableViewController.dismissModal(_:)))
             self.navigationItem.leftBarButtonItem!.tintColor = UIColor.whiteColor()
             
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_sendbird_btn_list_edit"), style: UIBarButtonItemStyle.Plain, target: self, action: "editMessagingChannel:")
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_sendbird_btn_list_edit"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MessagingTableViewController.editMessagingChannel(_:)))
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
             self.navigationItem.rightBarButtonItem?.enabled = true
         }
         else if self.viewMode == kMessagingChannelListEditViewMode {
             self.navigationItem.rightBarButtonItems = Array()
-            let leaveButtonItem: UIBarButtonItem = UIBarButtonItem.init(title: "Leave", style: UIBarButtonItemStyle.Plain, target: self, action: "leaveChannel:")
+            let leaveButtonItem: UIBarButtonItem = UIBarButtonItem.init(title: "Leave", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MessagingTableViewController.leaveChannel(_:)))
             leaveButtonItem.tintColor = UIColor.whiteColor()
             
-            let hideButtonItem: UIBarButtonItem = UIBarButtonItem.init(title: "Hide", style: UIBarButtonItemStyle.Plain, target: self, action: "hideChannel:")
+            let hideButtonItem: UIBarButtonItem = UIBarButtonItem.init(title: "Hide", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MessagingTableViewController.hideChannel(_:)))
             hideButtonItem.tintColor = UIColor.whiteColor()
             
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_back"), style: UIBarButtonItemStyle.Plain, target: self, action: "goBack:")
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_back"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MessagingTableViewController.goBack(_:)))
             self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
             
             self.navigationItem.rightBarButtonItems = [leaveButtonItem, hideButtonItem]
@@ -280,19 +280,19 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
         }
         else if self.viewMode == kMessagingViewMode || self.viewMode == kMessagingMemberViewMode {
             self.navigationItem.rightBarButtonItems = Array()
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_setting"), style: UIBarButtonItemStyle.Plain, target: self, action: "openMenuActionSheet:")
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_setting"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MessagingTableViewController.openMenuActionSheet(_:)))
             self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_close"), style: UIBarButtonItemStyle.Plain, target: self, action: "dismissModal:")
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_close"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MessagingTableViewController.dismissModal(_:)))
             self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         }
         else if self.viewMode == kMessagingMemberForGroupChatViewMode {
             self.navigationItem.rightBarButtonItems = Array()
-            let inviteButtonItem: UIBarButtonItem = UIBarButtonItem.init(title: "Confirm", style: UIBarButtonItemStyle.Plain, target: self, action: "inviteMember:")
+            let inviteButtonItem: UIBarButtonItem = UIBarButtonItem.init(title: "Confirm", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MessagingTableViewController.inviteMember(_:)))
             inviteButtonItem.tintColor = UIColor.whiteColor()
             
             self.navigationItem.rightBarButtonItem = inviteButtonItem
             
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_close"), style: UIBarButtonItemStyle.Plain, target: self, action: "dismissLobbyMemberListForInvite:")
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "_btn_close"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MessagingTableViewController.dismissLobbyMemberListForInvite(_:)))
             self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
         }
     }
@@ -324,15 +324,15 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         self.imageCache = NSMutableArray()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MessagingTableViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MessagingTableViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         self.openImagePicker = false
         self.membersInChannel = NSMutableArray()
         self.messagingChannels = NSMutableArray()
         self.initViews()
         
         if self.mTimer == nil {
-            self.mTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerCallback:", userInfo: nil, repeats: true)
+            self.mTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(MessagingTableViewController.timerCallback(_:)), userInfo: nil, repeats: true)
         }
         
         self.startChatting()
@@ -773,7 +773,7 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
         self.messagingChannelListTableView?.registerClass(MessagingChannelTableViewCell.self, forCellReuseIdentifier: kMessagingChannelCellIdentifier)
         self.view.addSubview(self.messagingChannelListTableView!)
         
-        let lpgr: UILongPressGestureRecognizer = UILongPressGestureRecognizer.init(target: self, action: "handleLongPress:")
+        let lpgr: UILongPressGestureRecognizer = UILongPressGestureRecognizer.init(target: self, action: #selector(MessagingTableViewController.handleLongPress(_:)))
         lpgr.minimumPressDuration = 1.2
         lpgr.delegate = self
         self.messagingChannelListTableView?.addGestureRecognizer(lpgr)
@@ -890,7 +890,7 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
             member = channel.members.objectAtIndex(0) as? SendBirdMemberInMessagingChannel
         }
         
-        for var i = 0; i < channel.members.count; i++ {
+        for i in 0 ..< channel.members.count {
             if channel.members.objectAtIndex(i).guestId == SendBird.getUserId() {
                 member = channel.members.objectAtIndex(i) as? SendBirdMemberInMessagingChannel
                 break;
@@ -1376,6 +1376,8 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
             else {
                 tableView.hidden = true
                 self.tableView?.hidden = false
+                self.mMinMessageTs = Int64.max
+                self.mMaxMessageTs = Int64.min
                 let messagingChannel: SendBirdMessagingChannel = self.messagingChannels?.objectAtIndex(indexPath.row) as! SendBirdMessagingChannel
                 let channel: SendBirdChannel = messagingChannel.channel
                 SendBird.joinMessagingWithChannelUrl(channel.url)
@@ -1483,6 +1485,7 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
             self.messagingChannelListTableView?.hidden = false
             self.messageInputView?.setInputEnable(false)
             self.messagingChannelListTableView?.hidden = false
+            SendBird.disconnect()
             self.messagingChannelListQuery = SendBird.queryMessagingChannelList()
             self.messagingChannelListQuery?.setLimit(15)
             self.messagingChannelListQuery?.nextWithResultBlock({ (queryResult) -> Void in

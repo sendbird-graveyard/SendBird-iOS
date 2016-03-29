@@ -103,6 +103,7 @@
 
 - (void) dismissModal:(id)sender
 {
+    [SendBird disconnect];
     [self.navigationController popViewControllerAnimated:NO];
 }
 
@@ -241,7 +242,7 @@
         [self updateChannelTitle];
         [self setIndicatorHidden:YES];
     } channelLeftBlock:^(SendBirdChannel *channel) {
-        
+        [SendBird disconnect];
     } messageReceivedBlock:^(SendBirdMessage *message) {
         [self updateChannelTitle];
         [messageArray addSendBirdMessage:message updateMessageTsBlock:updateMessageTs];
@@ -690,12 +691,6 @@
             [self clickImage:[[fileLink fileInfo] url] andUser:[fileLink sender]];
         }
     }
-//    else if ([[messageArray objectAtIndex:indexPath.row] isKindOfClass:[SendBirdStructuredMessage class]]) {
-//        SendBirdStructuredMessage *message = [messageArray objectAtIndex:indexPath.row];
-//        if ([[message structuredMessageUrl] length] > 0) {
-//            [self clickStructuredMessage:[message structuredMessageUrl] andUser:[message sender]];
-//        }
-//    }
 }
 
 - (void) clickMessage:(SendBirdSender *)sender

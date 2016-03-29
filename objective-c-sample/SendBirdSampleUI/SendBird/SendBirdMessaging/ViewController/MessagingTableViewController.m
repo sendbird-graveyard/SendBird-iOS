@@ -1609,6 +1609,8 @@
         else {
             [tableView setHidden:YES];
             [self.tableView setHidden:NO];
+            self.mMinMessageTs = LLONG_MAX;
+            self.mMaxMessageTs = LLONG_MIN;
             SendBirdMessagingChannel *messagingChannel = [messagingChannels objectAtIndex:indexPath.row];
             SendBirdChannel *channel = [messagingChannel channel];
             [SendBird joinMessagingWithChannelUrl:[channel url]];
@@ -1783,6 +1785,7 @@
         [self.messagingChannelListTableView setHidden:NO];
         [self.messageInputView setInputEnable:NO];
         [self.messagingChannelListTableView setHidden:NO];
+        [SendBird disconnect];
         messagingChannelListQuery = [SendBird queryMessagingChannelList];
         [messagingChannelListQuery setLimit:15];
         [messagingChannelListQuery nextWithResultBlock:^(NSMutableArray *queryResult) {

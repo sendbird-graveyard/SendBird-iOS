@@ -207,10 +207,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SendBirdChannel *channel = [_channels objectAtIndex:indexPath.row];
+    
+    NSString *currentChannelUrl = [[SendBird getCurrentChannel] url];
+    if (currentChannelUrl != nil && [currentChannelUrl length] > 0) {
+        [SendBird leaveChannel:currentChannelUrl];
+    }
+
     [self.chattingTableViewController setChannelUrl:[channel url]];
     [self.chattingTableViewController initChannelTitle];
     [self.chattingTableViewController setViewMode:kChattingViewMode];
-    
+
     [self.chattingTableViewController startChatting];
     [self setHidden:YES];
 }
