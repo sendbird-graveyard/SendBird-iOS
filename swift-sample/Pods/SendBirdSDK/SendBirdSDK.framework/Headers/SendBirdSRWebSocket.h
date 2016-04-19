@@ -31,7 +31,7 @@ typedef enum SendBirdSRStatusCode : NSInteger {
     SendBirdSRStatusCodeProtocolError = 1002,
     SendBirdSRStatusCodeUnhandledType = 1003,
     // 1004 reserved.
-    SendBirdSRStatusNoStatusReceived = 1005,
+    SRStatusNoStatusReceived = 1005,
     SendBirdSRStatusCodeAbnormal = 1006,
     SendBirdSRStatusCodeInvalidUTF8 = 1007,
     SendBirdSRStatusCodePolicyViolated = 1008,
@@ -51,7 +51,7 @@ typedef enum SendBirdSRStatusCode : NSInteger {
 @class SendBirdSRWebSocket;
 
 extern NSString *const SendBirdSRWebSocketErrorDomain;
-extern NSString *const SRHTTPResponseErrorKey;
+extern NSString *const SendBirdSRHTTPResponseErrorKey;
 
 #pragma mark - SendBirdSRWebSocketDelegate
 
@@ -126,6 +126,9 @@ extern NSString *const SRHTTPResponseErrorKey;
 - (void)webSocket:(SendBirdSRWebSocket *)webSocket didFailWithError:(NSError *)error;
 - (void)webSocket:(SendBirdSRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean;
 - (void)webSocket:(SendBirdSRWebSocket *)webSocket didReceivePong:(NSData *)pongPayload;
+
+// Return YES to convert messages sent as Text to an NSString. Return NO to skip NSData -> NSString conversion for Text messages. Defaults to YES.
+- (BOOL)webSocketShouldConvertTextFrameToString:(SendBirdSRWebSocket *)webSocket;
 
 @end
 

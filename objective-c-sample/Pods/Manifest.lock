@@ -1,27 +1,27 @@
 PODS:
-  - AFNetworking (3.0.4):
-    - AFNetworking/NSURLSession (= 3.0.4)
-    - AFNetworking/Reachability (= 3.0.4)
-    - AFNetworking/Security (= 3.0.4)
-    - AFNetworking/Serialization (= 3.0.4)
-    - AFNetworking/UIKit (= 3.0.4)
-  - AFNetworking/NSURLSession (3.0.4):
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.0.4)
-  - AFNetworking/Security (3.0.4)
-  - AFNetworking/Serialization (3.0.4)
-  - AFNetworking/UIKit (3.0.4):
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - SendBirdSDK (2.0.26)
+  - SendBirdSDK (2.1.0)
 
 DEPENDENCIES:
   - AFNetworking
   - SendBirdSDK
 
 SPEC CHECKSUMS:
-  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
-  SendBirdSDK: a9cc717247e33f624f166dbfb1b6d7ae50ec6055
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  SendBirdSDK: 869287e5d0ce71875de7bf0c1c4da5c64135e12d
 
 COCOAPODS: 0.39.0

@@ -93,9 +93,23 @@ typedef enum {
 
 + (BOOL) SENDBIRD_LOG_DEBUG;
 
-+ (NSString *) WS_HOST;
++ (NSString *) WS_HOST DEPRECATED_ATTRIBUTE;
 
-+ (NSString *) API_HOST;
++ (NSString *) API_HOST DEPRECATED_ATTRIBUTE;
+
++ (NSString *) getWSHost;
+
++ (NSString *) getAPIHost;
+
++ (void) setWSHost:(NSString *)newWSHost;
+
++ (void) setAPIHost:(NSString *)newAPIHost;
+
++ (NSTimeInterval) getHostUrlLastUpdatedAt;
+
++ (void) setHostUrlLastUpdatedAt:(NSTimeInterval)updatedAt;
+
++ (void) setRoutingHostUrl:(NSString *)url;
 
 /**
  *  Instance of [`SendBird`](./SendBird.html) class
@@ -324,9 +338,11 @@ typedef enum {
  *  @param typeEndReceived          Calls when typing event ends. Information regarding the user and the timestamp of the event can be found within [`SendBirdTypeStatus`](./SendBirdTypeStatus.html) class.
  *  @param allDataReceived          Calls when any data is received.
  *  @param messageDelivery          Calls when the current user successfully sends a message. Use this o find out if the message has been successfully delivered when [`sendMessage:`](./SendBird.html#//api/name/sendMessage:), [`sendMessage:withTempId:`](./SendBird.html#//api/name/sendMessage:withTempId:), [`sendMessage:withData:`](./SendBird.html#//api/name/sendMessage:withData:), [`sendMessage:withData:andTempId:`](./SendBird.html#//api/name/sendMessage:withData:andTempId:), [`sendMessage:withData:andTempId:mentionedUserIds:`](./SendBird.html#//api/name/sendMessage:withData:andTempId:mentionedUserIds:), [`sendFile:`](./SendBird.html#//api/name/sendFile:) were used to send messages.
+ *  @param mutedMessagesReceivedBlock Calls when muted message is received.
+ *  @param mutedFileReceivedBlock   Calls when mutem file message is received.
  */
 
-+ (void) setEventHandlerConnectBlock:(void (^)(SendBirdChannel *channel))connect errorBlock:(void (^)(NSInteger code))error channelLeftBlock:(void (^)(SendBirdChannel *channel))channelLeft messageReceivedBlock:(void (^)(SendBirdMessage *message))messageReceived systemMessageReceivedBlock:(void (^)(SendBirdSystemMessage *message))systemMessageReceived broadcastMessageReceivedBlock:(void (^)(SendBirdBroadcastMessage *message))broadcastMessageReceived fileReceivedBlock:(void (^)(SendBirdFileLink *fileLink))fileReceived messagingStartedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingStarted messagingUpdatedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingUpdated messagingEndedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingEnded allMessagingEndedBlock:(void (^)())allMessagingEnded messagingHiddenBlock:(void (^)(SendBirdMessagingChannel *channel))messagingHidden allMessagingHiddenBlock:(void (^)())allMessagingHidden readReceivedBlock:(void (^)(SendBirdReadStatus *status))readReceived typeStartReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeStartReceived typeEndReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeEndReceived allDataReceivedBlock:(void (^)(NSUInteger sendBirdDataType, int count))allDataReceived messageDeliveryBlock:(void (^)(BOOL send, NSString *message, NSString *data, NSString *messageId))messageDelivery mutedMessagesReceivedBlock:(void (^)(SendBirdMessage *message))mutedMessagesReceivedBlock mutedFileReceivedBlock:(void (^)(SendBirdFileLink *message))mutedFileReceivedBlock;
++ (void) setEventHandlerConnectBlock:(void (^)(SendBirdChannel *channel))connect errorBlock:(void (^)(NSInteger code))error channelLeftBlock:(void (^)(SendBirdChannel *channel))channelLeft messageReceivedBlock:(void (^)(SendBirdMessage *message))messageReceived systemMessageReceivedBlock:(void (^)(SendBirdSystemMessage *message))systemMessageReceived broadcastMessageReceivedBlock:(void (^)(SendBirdBroadcastMessage *message))broadcastMessageReceived fileReceivedBlock:(void (^)(SendBirdFileLink *fileLink))fileReceived messagingStartedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingStarted messagingUpdatedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingUpdated messagingEndedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingEnded allMessagingEndedBlock:(void (^)())allMessagingEnded messagingHiddenBlock:(void (^)(SendBirdMessagingChannel *channel))messagingHidden allMessagingHiddenBlock:(void (^)())allMessagingHidden readReceivedBlock:(void (^)(SendBirdReadStatus *status))readReceived typeStartReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeStartReceived typeEndReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeEndReceived allDataReceivedBlock:(void (^)(NSUInteger sendBirdDataType, int count))allDataReceived messageDeliveryBlock:(void (^)(BOOL send, NSString *message, NSString *data, NSString *tempId))messageDelivery mutedMessagesReceivedBlock:(void (^)(SendBirdMessage *message))mutedMessagesReceivedBlock mutedFileReceivedBlock:(void (^)(SendBirdFileLink *message))mutedFileReceivedBlock;
 
 // TODO:
 //+ (void) setEventHandlerConnectBlock:(void (^)(SendBirdChannel *channel))connect errorBlock:(void (^)(NSInteger code))error channelLeftBlock:(void (^)(SendBirdChannel *channel))channelLeft messageReceivedBlock:(void (^)(SendBirdMessage *message))messageReceived systemMessageReceivedBlock:(void (^)(SendBirdSystemMessage *message))systemMessageReceived broadcastMessageReceivedBlock:(void (^)(SendBirdBroadcastMessage *message))broadcastMessageReceived fileReceivedBlock:(void (^)(SendBirdFileLink *fileLink))fileReceived structuredMessageReceivedBlock:(void (^)(SendBirdStructuredMessage *message))structuredMessageReceived messagingStartedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingStarted messagingUpdatedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingUpdated messagingEndedBlock:(void (^)(SendBirdMessagingChannel *channel))messagingEnded allMessagingEndedBlock:(void (^)())allMessagingEnded messagingHiddenBlock:(void (^)(SendBirdMessagingChannel *channel))messagingHidden allMessagingHiddenBlock:(void (^)())allMessagingHidden readReceivedBlock:(void (^)(SendBirdReadStatus *status))readReceived typeStartReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeStartReceived typeEndReceivedBlock:(void (^)(SendBirdTypeStatus *status))typeEndReceived allDataReceivedBlock:(void (^)(NSUInteger sendBirdDataType, int count))allDataReceived messageDeliveryBlock:(void (^)(BOOL send, NSString *message, NSString *data, NSString *messageId))messageDelivery;
@@ -675,5 +691,9 @@ typedef enum {
  *  @param systemEventReceivedBlock Callback for received system event
  */
 + (void) setSystemEventReceivedBlock:(void (^)(SendBirdSystemEvent *event))systemEventReceivedBlock;
+
++ (NSString *)getAppID;
+
++ (void)getHostURLWithResultBlock:(void (^)(NSError *error))onResult;
 
 @end

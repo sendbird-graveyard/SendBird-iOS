@@ -40,7 +40,7 @@
 /**
  *  Last message within Messaging/Group messaging channel
  */
-@property (retain) SendBirdMessage *lastMessage;
+@property (retain) SendBirdMessageModel *lastMessage;
 
 /**
  *  Number of new messages created after the current user has joined the Messaging/Group messaging channel. If this value is 0, then it means no new messages were created within the channel after joining.

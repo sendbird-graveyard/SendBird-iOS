@@ -172,7 +172,13 @@ class MessagingChannelTableViewCell: UITableViewCell {
         
         let channelName: String = String.init(format: "%@", SendBirdUtils.getMessagingChannelNames((model?.members)! as NSArray as! [SendBirdMemberInMessagingChannel]))
         self.nicknameLabel?.text = channelName
-        self.lastMessageLabel?.text = model?.lastMessage.message
+        let msgModel = model?.lastMessage
+        if msgModel!.isKindOfClass(SendBirdMessage) {
+            self.lastMessageLabel!.text = (msgModel as! SendBirdMessage).message
+        }
+        else if msgModel!.isKindOfClass(SendBirdFileLink) {
+            self.lastMessageLabel!.text = "(File)"
+        }
         
         if check {
             self.unreadCountLabel?.hidden = true

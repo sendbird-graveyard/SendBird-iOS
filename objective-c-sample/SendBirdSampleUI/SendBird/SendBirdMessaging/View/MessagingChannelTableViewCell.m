@@ -323,7 +323,13 @@
     
     NSString *channelName = [NSString stringWithFormat:@"%@", [SendBirdUtils getMessagingChannelNames:[model members]]];
     [self.nicknameLabel setText:channelName];
-    [self.lastMessageLabel setText:[[model lastMessage] message]];
+    SendBirdMessageModel *msgModel = [model lastMessage];
+    if ([msgModel isKindOfClass:[SendBirdMessage class]]) {
+        [self.lastMessageLabel setText:[((SendBirdMessage *)msgModel) message]];
+    }
+    else if ([msgModel isKindOfClass:[SendBirdFileLink class]]) {
+        [self.lastMessageLabel setText:@"(File)"];
+    }
     
     if (check) {
         [self.unreadCountLabel setHidden:YES];

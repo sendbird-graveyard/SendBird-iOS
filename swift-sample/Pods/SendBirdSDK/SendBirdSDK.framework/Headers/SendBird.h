@@ -93,9 +93,23 @@ typedef enum {
 
 + (BOOL) SENDBIRD_LOG_DEBUG;
 
-+ (NSString *) WS_HOST;
++ (NSString *) WS_HOST DEPRECATED_ATTRIBUTE;
 
-+ (NSString *) API_HOST;
++ (NSString *) API_HOST DEPRECATED_ATTRIBUTE;
+
++ (NSString *) getWSHost;
+
++ (NSString *) getAPIHost;
+
++ (void) setWSHost:(NSString *)newWSHost;
+
++ (void) setAPIHost:(NSString *)newAPIHost;
+
++ (NSTimeInterval) getHostUrlLastUpdatedAt;
+
++ (void) setHostUrlLastUpdatedAt:(NSTimeInterval)updatedAt;
+
++ (void) setRoutingHostUrl:(NSString *)url;
 
 /**
  *  Instance of [`SendBird`](./SendBird.html) class
@@ -677,5 +691,9 @@ typedef enum {
  *  @param systemEventReceivedBlock Callback for received system event
  */
 + (void) setSystemEventReceivedBlock:(void (^)(SendBirdSystemEvent *event))systemEventReceivedBlock;
+
++ (NSString *)getAppID;
+
++ (void)getHostURLWithResultBlock:(void (^)(NSError *error))onResult;
 
 @end
