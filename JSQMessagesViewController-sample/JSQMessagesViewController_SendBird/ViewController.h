@@ -10,6 +10,7 @@
 
 #import "OpenChatListViewController.h"
 #import "MemberListViewController.h"
+#import "MessagingChannelListViewController.h"
 
 @interface ViewController : UIViewController
 

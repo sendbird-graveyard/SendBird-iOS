@@ -80,7 +80,22 @@
 }
 
 - (IBAction)clickMessagingChannelList:(id)sender {
+    NSString *userId = [self.userIdTextField text];
+    NSString *userName = [self.nicknameTextField text];
     
+    if ([userId length] == 0 || [userName length] == 0) {
+        return;
+    }
+    else {
+        [[NSUserDefaults standardUserDefaults] setObject:userId forKey:@"sendbird_user_id"];
+        [[NSUserDefaults standardUserDefaults] setObject:userName forKey:@"sendbird_user_name"];
+        
+        MessagingChannelListViewController *vc = [[MessagingChannelListViewController alloc] init];
+        [vc setUserID:userId userName:userName];
+        [self presentViewController:vc animated:YES completion:^{
+            
+        }];
+    }
 }
 
 - (IBAction)clickBack:(id)sender {

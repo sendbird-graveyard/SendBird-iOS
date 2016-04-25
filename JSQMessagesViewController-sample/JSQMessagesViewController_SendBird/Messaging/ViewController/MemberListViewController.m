@@ -8,6 +8,7 @@
 
 #import "MemberListViewController.h"
 #import "MemberListTableViewCell.h"
+#import "MessagingViewController.h"
 
 @interface MemberListViewController ()
 
@@ -21,6 +22,7 @@
 @property (atomic) NSString *userName;
 
 @property (strong, nonatomic) SendBirdUserListQuery *memberListQuery;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, NSNumber *> *selectedMembers;
 
 @end
 
@@ -34,6 +36,7 @@
     self.hasNext = YES;
     
     self.members = [[NSMutableArray alloc] init];
+    self.selectedMembers = [[NSMutableDictionary alloc] init];
     
     self.memberListTableView.delegate = self;
     self.memberListTableView.dataSource = self;
@@ -78,6 +81,7 @@
         
         for (SendBirdAppUser *item in queryResult) {
             [self.members addObject:item];
+            [self.selectedMembers setObject:@(0) forKey:[item guestId]];
         }
         
         [self.memberListTableView reloadData];
@@ -91,6 +95,28 @@
 - (void)setUserID:(NSString *)aUserID userName:(NSString *)aUserName {
     self.userID = aUserID;
     self.userName = aUserName;
+}
+
+- (IBAction)clickInvite:(id)sender {
+    NSMutableArray<NSString *> *userIds = [[NSMutableArray alloc] init];
+    
+    for (NSString *key in self.selectedMembers) {
+        NSLog(@"Key: %@", key);
+        if ([[self.selectedMembers objectForKey:key] intValue] == 1) {
+            [userIds addObject:key];
+        }
+    }
+
+    if ([userIds count] > 0) {
+        MessagingViewController *vc = [[MessagingViewController alloc] init];
+        [vc setTitle:@"Messaging Channel"];
+        [vc setSenderId:[SendBird getUserId]];
+        [vc setSenderDisplayName:[SendBird getUserName]];
+        [vc inviteUsers:userIds];
+        [self presentViewController:vc animated:YES completion:^{
+            
+        }];
+    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -116,15 +142,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    SendBirdAppUser *user = [self.members objectAtIndex:indexPath.row];
+    UITableViewCell* cellCheck = [tableView cellForRowAtIndexPath:indexPath];
+    
+    if ([[self.selectedMembers objectForKey:[user guestId]] intValue] == 0) {
+        [cellCheck setAccessoryType:UITableViewCellAccessoryCheckmark];
+        [self.selectedMembers setObject:@(1) forKey:[user guestId]];
+    }
+    else {
+        [cellCheck setAccessoryType:UITableViewCellAccessoryNone];
+        [self.selectedMembers setObject:@(0) forKey:[user guestId]];
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-//    OpenChatViewController *vc = [[OpenChatViewController alloc] init];
-//    [vc setTitle:[self.channels objectAtIndex:indexPath.row].name];
-//    [vc setSenderId:[SendBird getUserId]];
-//    [vc setSenderDisplayName:[SendBird getUserName]];
-//    [vc setChannel:[self.channels objectAtIndex:indexPath.row]];
-//    [self presentViewController:vc animated:YES completion:^{
-//        
-//    }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -137,14 +167,26 @@
 {
     SendBirdAppUser *user = [self.members objectAtIndex:indexPath.row];
     MemberListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[MemberListTableViewCell cellReuseIdentifier]];
+    
+    if (cell == nil) {
+        cell = [[MemberListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[MemberListTableViewCell cellReuseIdentifier]];
+    }
+    
     [cell setModel:user];
+    
+    if ([[self.selectedMembers objectForKey:[user guestId]] intValue] == 1) {
+        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    }
+    else {
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+    }
     
     if ([self.members count] > 0) {
         if (indexPath.row == [self.members count] - 1) {
             [self loadMembers];
         }
     }
-    
+
     return cell;
 }
 

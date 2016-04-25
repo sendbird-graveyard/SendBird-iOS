@@ -25,6 +25,11 @@
 		5A7F07D01CCE640900A5E3FA /* MemberListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07CE1CCE640900A5E3FA /* MemberListViewController.xib */; };
 		5A7F07D71CCE678A00A5E3FA /* MemberListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07D51CCE678A00A5E3FA /* MemberListTableViewCell.m */; };
 		5A7F07D81CCE678A00A5E3FA /* MemberListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07D61CCE678A00A5E3FA /* MemberListTableViewCell.xib */; };
+		5A7F07DE1CCE861B00A5E3FA /* MessagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07DD1CCE861B00A5E3FA /* MessagingViewController.m */; };
+		5A7F07E21CCE9B1F00A5E3FA /* MessagingChannelListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07E01CCE9B1F00A5E3FA /* MessagingChannelListTableViewCell.m */; };
+		5A7F07E31CCE9B1F00A5E3FA /* MessagingChannelListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07E11CCE9B1F00A5E3FA /* MessagingChannelListTableViewCell.xib */; };
+		5A7F07E71CCE9EB500A5E3FA /* MessagingChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07E51CCE9EB500A5E3FA /* MessagingChannelListViewController.m */; };
+		5A7F07E81CCE9EB500A5E3FA /* MessagingChannelListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07E61CCE9EB500A5E3FA /* MessagingChannelListViewController.xib */; };
 		C2094A3C03CC39DC712F98F2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DA3F5E590C40BAA870C2B2 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +84,14 @@
 		5A7F07D41CCE678A00A5E3FA /* MemberListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberListTableViewCell.h; sourceTree = "<group>"; };
 		5A7F07D51CCE678A00A5E3FA /* MemberListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberListTableViewCell.m; sourceTree = "<group>"; };
 		5A7F07D61CCE678A00A5E3FA /* MemberListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberListTableViewCell.xib; sourceTree = "<group>"; };
+		5A7F07DC1CCE861B00A5E3FA /* MessagingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagingViewController.h; sourceTree = "<group>"; };
+		5A7F07DD1CCE861B00A5E3FA /* MessagingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagingViewController.m; sourceTree = "<group>"; };
+		5A7F07DF1CCE9B1F00A5E3FA /* MessagingChannelListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagingChannelListTableViewCell.h; sourceTree = "<group>"; };
+		5A7F07E01CCE9B1F00A5E3FA /* MessagingChannelListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagingChannelListTableViewCell.m; sourceTree = "<group>"; };
+		5A7F07E11CCE9B1F00A5E3FA /* MessagingChannelListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessagingChannelListTableViewCell.xib; sourceTree = "<group>"; };
+		5A7F07E41CCE9EB500A5E3FA /* MessagingChannelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagingChannelListViewController.h; sourceTree = "<group>"; };
+		5A7F07E51CCE9EB500A5E3FA /* MessagingChannelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagingChannelListViewController.m; sourceTree = "<group>"; };
+		5A7F07E61CCE9EB500A5E3FA /* MessagingChannelListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessagingChannelListViewController.xib; sourceTree = "<group>"; };
 		D31F1E80E8961F47497566F7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F8CE76BBE891620227A6974E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -240,6 +253,11 @@
 				5A7F07CC1CCE640900A5E3FA /* MemberListViewController.h */,
 				5A7F07CD1CCE640900A5E3FA /* MemberListViewController.m */,
 				5A7F07CE1CCE640900A5E3FA /* MemberListViewController.xib */,
+				5A7F07DC1CCE861B00A5E3FA /* MessagingViewController.h */,
+				5A7F07DD1CCE861B00A5E3FA /* MessagingViewController.m */,
+				5A7F07E41CCE9EB500A5E3FA /* MessagingChannelListViewController.h */,
+				5A7F07E51CCE9EB500A5E3FA /* MessagingChannelListViewController.m */,
+				5A7F07E61CCE9EB500A5E3FA /* MessagingChannelListViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -250,8 +268,11 @@
 				5A7F07D41CCE678A00A5E3FA /* MemberListTableViewCell.h */,
 				5A7F07D51CCE678A00A5E3FA /* MemberListTableViewCell.m */,
 				5A7F07D61CCE678A00A5E3FA /* MemberListTableViewCell.xib */,
+				5A7F07DF1CCE9B1F00A5E3FA /* MessagingChannelListTableViewCell.h */,
+				5A7F07E01CCE9B1F00A5E3FA /* MessagingChannelListTableViewCell.m */,
+				5A7F07E11CCE9B1F00A5E3FA /* MessagingChannelListTableViewCell.xib */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		94CA131B19566C768F5361A4 /* Frameworks */ = {
@@ -372,9 +393,11 @@
 				5A7F07B91CCDEFD600A5E3FA /* OpenChatListViewController.xib in Resources */,
 				5A7F077C1CCB666C00A5E3FA /* LaunchScreen.storyboard in Resources */,
 				5A7F07791CCB666C00A5E3FA /* Assets.xcassets in Resources */,
+				5A7F07E31CCE9B1F00A5E3FA /* MessagingChannelListTableViewCell.xib in Resources */,
 				5A7F07D01CCE640900A5E3FA /* MemberListViewController.xib in Resources */,
 				5A7F07D81CCE678A00A5E3FA /* MemberListTableViewCell.xib in Resources */,
 				5A7F07771CCB666C00A5E3FA /* Main.storyboard in Resources */,
+				5A7F07E81CCE9EB500A5E3FA /* MessagingChannelListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,8 +475,11 @@
 				5A7F07C31CCDFCCB00A5E3FA /* OpenChatListTableViewCell.m in Sources */,
 				5A7F07B71CCDEAFE00A5E3FA /* OpenChatListViewController.m in Sources */,
 				5A7F07D71CCE678A00A5E3FA /* MemberListTableViewCell.m in Sources */,
+				5A7F07DE1CCE861B00A5E3FA /* MessagingViewController.m in Sources */,
 				5A7F07CB1CCE311800A5E3FA /* JSQSBMessage.m in Sources */,
 				5A7F07741CCB666C00A5E3FA /* ViewController.m in Sources */,
+				5A7F07E21CCE9B1F00A5E3FA /* MessagingChannelListTableViewCell.m in Sources */,
+				5A7F07E71CCE9EB500A5E3FA /* MessagingChannelListViewController.m in Sources */,
 				5A7F07711CCB666C00A5E3FA /* AppDelegate.m in Sources */,
 				5A7F076E1CCB666C00A5E3FA /* main.m in Sources */,
 			);
