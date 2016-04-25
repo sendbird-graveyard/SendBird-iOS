@@ -1,0 +1,42 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - JSQMessagesViewController (7.2.0):
+    - AFNetworking (~> 3.1.0)
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
+  - SendBirdSDK (2.1.1)
+
+DEPENDENCIES:
+  - JSQMessagesViewController (from `https://github.com/smilefam/JSQMessagesViewController.git`)
+  - SendBirdSDK
+
+EXTERNAL SOURCES:
+  JSQMessagesViewController:
+    :git: https://github.com/smilefam/JSQMessagesViewController.git
+
+CHECKOUT OPTIONS:
+  JSQMessagesViewController:
+    :commit: a27247af16c462dff9893cc49dbc344e605b6e5d
+    :git: https://github.com/smilefam/JSQMessagesViewController.git
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  JSQMessagesViewController: 8395490ab8f984d4bb8d4dcd7dcdae2308c16f4c
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  SendBirdSDK: 6c6093f34eb145f6d8ae558b204ffa3001cf645c
+
+COCOAPODS: 0.39.0

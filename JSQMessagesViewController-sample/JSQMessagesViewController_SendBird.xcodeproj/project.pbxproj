@@ -1,0 +1,711 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5A7F076E1CCB666C00A5E3FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F076D1CCB666C00A5E3FA /* main.m */; };
+		5A7F07711CCB666C00A5E3FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07701CCB666C00A5E3FA /* AppDelegate.m */; };
+		5A7F07741CCB666C00A5E3FA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07731CCB666C00A5E3FA /* ViewController.m */; };
+		5A7F07771CCB666C00A5E3FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07751CCB666C00A5E3FA /* Main.storyboard */; };
+		5A7F07791CCB666C00A5E3FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07781CCB666C00A5E3FA /* Assets.xcassets */; };
+		5A7F077C1CCB666C00A5E3FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F077A1CCB666C00A5E3FA /* LaunchScreen.storyboard */; };
+		5A7F07871CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07861CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdTests.m */; };
+		5A7F07921CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07911CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdUITests.m */; };
+		5A7F07B71CCDEAFE00A5E3FA /* OpenChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07B61CCDEAFE00A5E3FA /* OpenChatListViewController.m */; };
+		5A7F07B91CCDEFD600A5E3FA /* OpenChatListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07B81CCDEFD600A5E3FA /* OpenChatListViewController.xib */; };
+		5A7F07C31CCDFCCB00A5E3FA /* OpenChatListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07C11CCDFCCB00A5E3FA /* OpenChatListTableViewCell.m */; };
+		5A7F07C41CCDFCCB00A5E3FA /* OpenChatListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07C21CCDFCCB00A5E3FA /* OpenChatListTableViewCell.xib */; };
+		5A7F07C71CCE143D00A5E3FA /* OpenChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07C61CCE143D00A5E3FA /* OpenChatViewController.m */; };
+		5A7F07CB1CCE311800A5E3FA /* JSQSBMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07CA1CCE311800A5E3FA /* JSQSBMessage.m */; };
+		5A7F07CF1CCE640900A5E3FA /* MemberListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07CD1CCE640900A5E3FA /* MemberListViewController.m */; };
+		5A7F07D01CCE640900A5E3FA /* MemberListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07CE1CCE640900A5E3FA /* MemberListViewController.xib */; };
+		5A7F07D71CCE678A00A5E3FA /* MemberListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07D51CCE678A00A5E3FA /* MemberListTableViewCell.m */; };
+		5A7F07D81CCE678A00A5E3FA /* MemberListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07D61CCE678A00A5E3FA /* MemberListTableViewCell.xib */; };
+		C2094A3C03CC39DC712F98F2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DA3F5E590C40BAA870C2B2 /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5A7F07831CCB666C00A5E3FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5A7F07611CCB666C00A5E3FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5A7F07681CCB666C00A5E3FA;
+			remoteInfo = JSQMessagesViewController_SendBird;
+		};
+		5A7F078E1CCB666C00A5E3FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5A7F07611CCB666C00A5E3FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5A7F07681CCB666C00A5E3FA;
+			remoteInfo = JSQMessagesViewController_SendBird;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		02DA3F5E590C40BAA870C2B2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A7F07691CCB666C00A5E3FA /* JSQMessagesViewController_SendBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSQMessagesViewController_SendBird.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A7F076D1CCB666C00A5E3FA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5A7F076F1CCB666C00A5E3FA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5A7F07701CCB666C00A5E3FA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5A7F07721CCB666C00A5E3FA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		5A7F07731CCB666C00A5E3FA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5A7F07761CCB666C00A5E3FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5A7F07781CCB666C00A5E3FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5A7F077B1CCB666C00A5E3FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5A7F077D1CCB666C00A5E3FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5A7F07821CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSQMessagesViewController_SendBirdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A7F07861CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSQMessagesViewController_SendBirdTests.m; sourceTree = "<group>"; };
+		5A7F07881CCB666C00A5E3FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5A7F078D1CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSQMessagesViewController_SendBirdUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A7F07911CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSQMessagesViewController_SendBirdUITests.m; sourceTree = "<group>"; };
+		5A7F07931CCB666C00A5E3FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5A7F07B51CCDEAFE00A5E3FA /* OpenChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenChatListViewController.h; sourceTree = "<group>"; };
+		5A7F07B61CCDEAFE00A5E3FA /* OpenChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenChatListViewController.m; sourceTree = "<group>"; };
+		5A7F07B81CCDEFD600A5E3FA /* OpenChatListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenChatListViewController.xib; sourceTree = "<group>"; };
+		5A7F07C01CCDFCCB00A5E3FA /* OpenChatListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenChatListTableViewCell.h; sourceTree = "<group>"; };
+		5A7F07C11CCDFCCB00A5E3FA /* OpenChatListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenChatListTableViewCell.m; sourceTree = "<group>"; };
+		5A7F07C21CCDFCCB00A5E3FA /* OpenChatListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenChatListTableViewCell.xib; sourceTree = "<group>"; };
+		5A7F07C51CCE143D00A5E3FA /* OpenChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenChatViewController.h; sourceTree = "<group>"; };
+		5A7F07C61CCE143D00A5E3FA /* OpenChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenChatViewController.m; sourceTree = "<group>"; };
+		5A7F07C91CCE311800A5E3FA /* JSQSBMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSBMessage.h; sourceTree = "<group>"; };
+		5A7F07CA1CCE311800A5E3FA /* JSQSBMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSBMessage.m; sourceTree = "<group>"; };
+		5A7F07CC1CCE640900A5E3FA /* MemberListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberListViewController.h; sourceTree = "<group>"; };
+		5A7F07CD1CCE640900A5E3FA /* MemberListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberListViewController.m; sourceTree = "<group>"; };
+		5A7F07CE1CCE640900A5E3FA /* MemberListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberListViewController.xib; sourceTree = "<group>"; };
+		5A7F07D41CCE678A00A5E3FA /* MemberListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberListTableViewCell.h; sourceTree = "<group>"; };
+		5A7F07D51CCE678A00A5E3FA /* MemberListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberListTableViewCell.m; sourceTree = "<group>"; };
+		5A7F07D61CCE678A00A5E3FA /* MemberListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberListTableViewCell.xib; sourceTree = "<group>"; };
+		D31F1E80E8961F47497566F7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F8CE76BBE891620227A6974E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5A7F07661CCB666C00A5E3FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2094A3C03CC39DC712F98F2 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A7F077F1CCB666C00A5E3FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A7F078A1CCB666C00A5E3FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		06D1B02646C0706ADEBB8214 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F8CE76BBE891620227A6974E /* Pods.debug.xcconfig */,
+				D31F1E80E8961F47497566F7 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5A7F07601CCB666C00A5E3FA = {
+			isa = PBXGroup;
+			children = (
+				94CA131B19566C768F5361A4 /* Frameworks */,
+				5A7F076B1CCB666C00A5E3FA /* JSQMessagesViewController_SendBird */,
+				5A7F07851CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdTests */,
+				5A7F07901CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdUITests */,
+				06D1B02646C0706ADEBB8214 /* Pods */,
+				5A7F076A1CCB666C00A5E3FA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5A7F076A1CCB666C00A5E3FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5A7F07691CCB666C00A5E3FA /* JSQMessagesViewController_SendBird.app */,
+				5A7F07821CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdTests.xctest */,
+				5A7F078D1CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5A7F076B1CCB666C00A5E3FA /* JSQMessagesViewController_SendBird */ = {
+			isa = PBXGroup;
+			children = (
+				5A7F07D11CCE641300A5E3FA /* Messaging */,
+				5A7F07C81CCE30F400A5E3FA /* Models */,
+				5A7F07BE1CCDF05900A5E3FA /* OpenChat */,
+				5A7F076C1CCB666C00A5E3FA /* Supporting Files */,
+				5A7F076F1CCB666C00A5E3FA /* AppDelegate.h */,
+				5A7F07701CCB666C00A5E3FA /* AppDelegate.m */,
+				5A7F07781CCB666C00A5E3FA /* Assets.xcassets */,
+				5A7F077D1CCB666C00A5E3FA /* Info.plist */,
+				5A7F077A1CCB666C00A5E3FA /* LaunchScreen.storyboard */,
+				5A7F07751CCB666C00A5E3FA /* Main.storyboard */,
+				5A7F07721CCB666C00A5E3FA /* ViewController.h */,
+				5A7F07731CCB666C00A5E3FA /* ViewController.m */,
+			);
+			path = JSQMessagesViewController_SendBird;
+			sourceTree = "<group>";
+		};
+		5A7F076C1CCB666C00A5E3FA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5A7F076D1CCB666C00A5E3FA /* main.m */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5A7F07851CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdTests */ = {
+			isa = PBXGroup;
+			children = (
+				5A7F07881CCB666C00A5E3FA /* Info.plist */,
+				5A7F07861CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdTests.m */,
+			);
+			path = JSQMessagesViewController_SendBirdTests;
+			sourceTree = "<group>";
+		};
+		5A7F07901CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5A7F07931CCB666C00A5E3FA /* Info.plist */,
+				5A7F07911CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdUITests.m */,
+			);
+			path = JSQMessagesViewController_SendBirdUITests;
+			sourceTree = "<group>";
+		};
+		5A7F07BD1CCDF04600A5E3FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5A7F07C01CCDFCCB00A5E3FA /* OpenChatListTableViewCell.h */,
+				5A7F07C11CCDFCCB00A5E3FA /* OpenChatListTableViewCell.m */,
+				5A7F07C21CCDFCCB00A5E3FA /* OpenChatListTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5A7F07BE1CCDF05900A5E3FA /* OpenChat */ = {
+			isa = PBXGroup;
+			children = (
+				5A7F07BD1CCDF04600A5E3FA /* View */,
+				5A7F07BF1CCDF06800A5E3FA /* ViewController */,
+			);
+			path = OpenChat;
+			sourceTree = "<group>";
+		};
+		5A7F07BF1CCDF06800A5E3FA /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5A7F07B51CCDEAFE00A5E3FA /* OpenChatListViewController.h */,
+				5A7F07B61CCDEAFE00A5E3FA /* OpenChatListViewController.m */,
+				5A7F07B81CCDEFD600A5E3FA /* OpenChatListViewController.xib */,
+				5A7F07C51CCE143D00A5E3FA /* OpenChatViewController.h */,
+				5A7F07C61CCE143D00A5E3FA /* OpenChatViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		5A7F07C81CCE30F400A5E3FA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5A7F07C91CCE311800A5E3FA /* JSQSBMessage.h */,
+				5A7F07CA1CCE311800A5E3FA /* JSQSBMessage.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5A7F07D11CCE641300A5E3FA /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				5A7F07D31CCE676A00A5E3FA /* View */,
+				5A7F07D21CCE641E00A5E3FA /* ViewController */,
+			);
+			path = Messaging;
+			sourceTree = "<group>";
+		};
+		5A7F07D21CCE641E00A5E3FA /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5A7F07CC1CCE640900A5E3FA /* MemberListViewController.h */,
+				5A7F07CD1CCE640900A5E3FA /* MemberListViewController.m */,
+				5A7F07CE1CCE640900A5E3FA /* MemberListViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		5A7F07D31CCE676A00A5E3FA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5A7F07D41CCE678A00A5E3FA /* MemberListTableViewCell.h */,
+				5A7F07D51CCE678A00A5E3FA /* MemberListTableViewCell.m */,
+				5A7F07D61CCE678A00A5E3FA /* MemberListTableViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		94CA131B19566C768F5361A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				02DA3F5E590C40BAA870C2B2 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5A7F07681CCB666C00A5E3FA /* JSQMessagesViewController_SendBird */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A7F07961CCB666C00A5E3FA /* Build configuration list for PBXNativeTarget "JSQMessagesViewController_SendBird" */;
+			buildPhases = (
+				34045B8B7BDB819297A98B8A /* Check Pods Manifest.lock */,
+				5A7F07651CCB666C00A5E3FA /* Sources */,
+				5A7F07661CCB666C00A5E3FA /* Frameworks */,
+				5A7F07671CCB666C00A5E3FA /* Resources */,
+				4C99A637DF3F0447CB7C671E /* Embed Pods Frameworks */,
+				63368833FC15044BC8F4F67D /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JSQMessagesViewController_SendBird;
+			productName = JSQMessagesViewController_SendBird;
+			productReference = 5A7F07691CCB666C00A5E3FA /* JSQMessagesViewController_SendBird.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5A7F07811CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A7F07991CCB666C00A5E3FA /* Build configuration list for PBXNativeTarget "JSQMessagesViewController_SendBirdTests" */;
+			buildPhases = (
+				5A7F077E1CCB666C00A5E3FA /* Sources */,
+				5A7F077F1CCB666C00A5E3FA /* Frameworks */,
+				5A7F07801CCB666C00A5E3FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A7F07841CCB666C00A5E3FA /* PBXTargetDependency */,
+			);
+			name = JSQMessagesViewController_SendBirdTests;
+			productName = JSQMessagesViewController_SendBirdTests;
+			productReference = 5A7F07821CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5A7F078C1CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A7F079C1CCB666C00A5E3FA /* Build configuration list for PBXNativeTarget "JSQMessagesViewController_SendBirdUITests" */;
+			buildPhases = (
+				5A7F07891CCB666C00A5E3FA /* Sources */,
+				5A7F078A1CCB666C00A5E3FA /* Frameworks */,
+				5A7F078B1CCB666C00A5E3FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A7F078F1CCB666C00A5E3FA /* PBXTargetDependency */,
+			);
+			name = JSQMessagesViewController_SendBirdUITests;
+			productName = JSQMessagesViewController_SendBirdUITests;
+			productReference = 5A7F078D1CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5A7F07611CCB666C00A5E3FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = SENDBIRD;
+				TargetAttributes = {
+					5A7F07681CCB666C00A5E3FA = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					5A7F07811CCB666C00A5E3FA = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 5A7F07681CCB666C00A5E3FA;
+					};
+					5A7F078C1CCB666C00A5E3FA = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 5A7F07681CCB666C00A5E3FA;
+					};
+				};
+			};
+			buildConfigurationList = 5A7F07641CCB666C00A5E3FA /* Build configuration list for PBXProject "JSQMessagesViewController_SendBird" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5A7F07601CCB666C00A5E3FA;
+			productRefGroup = 5A7F076A1CCB666C00A5E3FA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5A7F07681CCB666C00A5E3FA /* JSQMessagesViewController_SendBird */,
+				5A7F07811CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdTests */,
+				5A7F078C1CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5A7F07671CCB666C00A5E3FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A7F07C41CCDFCCB00A5E3FA /* OpenChatListTableViewCell.xib in Resources */,
+				5A7F07B91CCDEFD600A5E3FA /* OpenChatListViewController.xib in Resources */,
+				5A7F077C1CCB666C00A5E3FA /* LaunchScreen.storyboard in Resources */,
+				5A7F07791CCB666C00A5E3FA /* Assets.xcassets in Resources */,
+				5A7F07D01CCE640900A5E3FA /* MemberListViewController.xib in Resources */,
+				5A7F07D81CCE678A00A5E3FA /* MemberListTableViewCell.xib in Resources */,
+				5A7F07771CCB666C00A5E3FA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A7F07801CCB666C00A5E3FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A7F078B1CCB666C00A5E3FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		34045B8B7BDB819297A98B8A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4C99A637DF3F0447CB7C671E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63368833FC15044BC8F4F67D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5A7F07651CCB666C00A5E3FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A7F07CF1CCE640900A5E3FA /* MemberListViewController.m in Sources */,
+				5A7F07C71CCE143D00A5E3FA /* OpenChatViewController.m in Sources */,
+				5A7F07C31CCDFCCB00A5E3FA /* OpenChatListTableViewCell.m in Sources */,
+				5A7F07B71CCDEAFE00A5E3FA /* OpenChatListViewController.m in Sources */,
+				5A7F07D71CCE678A00A5E3FA /* MemberListTableViewCell.m in Sources */,
+				5A7F07CB1CCE311800A5E3FA /* JSQSBMessage.m in Sources */,
+				5A7F07741CCB666C00A5E3FA /* ViewController.m in Sources */,
+				5A7F07711CCB666C00A5E3FA /* AppDelegate.m in Sources */,
+				5A7F076E1CCB666C00A5E3FA /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A7F077E1CCB666C00A5E3FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A7F07871CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A7F07891CCB666C00A5E3FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A7F07921CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5A7F07841CCB666C00A5E3FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5A7F07681CCB666C00A5E3FA /* JSQMessagesViewController_SendBird */;
+			targetProxy = 5A7F07831CCB666C00A5E3FA /* PBXContainerItemProxy */;
+		};
+		5A7F078F1CCB666C00A5E3FA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5A7F07681CCB666C00A5E3FA /* JSQMessagesViewController_SendBird */;
+			targetProxy = 5A7F078E1CCB666C00A5E3FA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5A7F07751CCB666C00A5E3FA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5A7F07761CCB666C00A5E3FA /* Base */,
+			);
+			name = Main.storyboard;
+			path = .;
+			sourceTree = "<group>";
+		};
+		5A7F077A1CCB666C00A5E3FA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5A7F077B1CCB666C00A5E3FA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			path = .;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5A7F07941CCB666C00A5E3FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5A7F07951CCB666C00A5E3FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5A7F07971CCB666C00A5E3FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8CE76BBE891620227A6974E /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = JSQMessagesViewController_SendBird/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sendbird.JSQMessagesViewController-SendBird";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5A7F07981CCB666C00A5E3FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D31F1E80E8961F47497566F7 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = JSQMessagesViewController_SendBird/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sendbird.JSQMessagesViewController-SendBird";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5A7F079A1CCB666C00A5E3FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = JSQMessagesViewController_SendBirdTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sendbird.JSQMessagesViewController-SendBirdTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JSQMessagesViewController_SendBird.app/JSQMessagesViewController_SendBird";
+			};
+			name = Debug;
+		};
+		5A7F079B1CCB666C00A5E3FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = JSQMessagesViewController_SendBirdTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sendbird.JSQMessagesViewController-SendBirdTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JSQMessagesViewController_SendBird.app/JSQMessagesViewController_SendBird";
+			};
+			name = Release;
+		};
+		5A7F079D1CCB666C00A5E3FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = JSQMessagesViewController_SendBirdUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sendbird.JSQMessagesViewController-SendBirdUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = JSQMessagesViewController_SendBird;
+			};
+			name = Debug;
+		};
+		5A7F079E1CCB666C00A5E3FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = JSQMessagesViewController_SendBirdUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sendbird.JSQMessagesViewController-SendBirdUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = JSQMessagesViewController_SendBird;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5A7F07641CCB666C00A5E3FA /* Build configuration list for PBXProject "JSQMessagesViewController_SendBird" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A7F07941CCB666C00A5E3FA /* Debug */,
+				5A7F07951CCB666C00A5E3FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A7F07961CCB666C00A5E3FA /* Build configuration list for PBXNativeTarget "JSQMessagesViewController_SendBird" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A7F07971CCB666C00A5E3FA /* Debug */,
+				5A7F07981CCB666C00A5E3FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A7F07991CCB666C00A5E3FA /* Build configuration list for PBXNativeTarget "JSQMessagesViewController_SendBirdTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A7F079A1CCB666C00A5E3FA /* Debug */,
+				5A7F079B1CCB666C00A5E3FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A7F079C1CCB666C00A5E3FA /* Build configuration list for PBXNativeTarget "JSQMessagesViewController_SendBirdUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A7F079D1CCB666C00A5E3FA /* Debug */,
+				5A7F079E1CCB666C00A5E3FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5A7F07611CCB666C00A5E3FA /* Project object */;
+}

@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         let APP_ID: String = "A7A2672C-AD11-11E4-8DAA-0A18B21C2D82"
+//        let APP_ID: String = "9EE8A28C-73D7-4893-BEAC-C0BDCE3EC23D"
         SendBird.initAppId(APP_ID)
         
         if application.respondsToSelector(#selector(UIApplication.registerUserNotificationSettings(_:))) {

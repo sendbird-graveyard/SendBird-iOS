@@ -18,7 +18,11 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - SendBirdSDK
+  - SendBirdSDK (from `/Users/jedkyung/git/sendbird-ios-framework`)
+
+EXTERNAL SOURCES:
+  SendBirdSDK:
+    :path: /Users/jedkyung/git/sendbird-ios-framework
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67

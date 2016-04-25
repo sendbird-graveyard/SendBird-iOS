@@ -1,0 +1,1 @@
+../../../../SendBirdSDK/SendBirdSDK.framework/Headers/SendBirdUser.h

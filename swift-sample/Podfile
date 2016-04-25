@@ -1,4 +1,5 @@
 platform :ios, '8.0'
 use_frameworks!
-pod "SendBirdSDK"
+pod "SendBirdSDK", :path => '/Users/jedkyung/git/sendbird-ios-framework'
+#pod "SendBirdSDK"
 pod "AFNetworking"

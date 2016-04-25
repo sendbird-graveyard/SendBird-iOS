@@ -449,6 +449,7 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
                 self.setIndicatorHidden(true)
             }, fileReceivedBlock: { (fileLink) -> Void in
                 self.messageArray?.addSendBirdMessage(fileLink, updateMessageTs: self.updateMessageTs)
+                NSLog("File type: %@", fileLink.fileInfo.type);
                 self.scrollToBottomWithReloading(true, force: false, animated: false)
                 self.setIndicatorHidden(true)
                 SendBird.markAsRead()
@@ -469,6 +470,9 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
                 self.messageInputView?.setInputEnable(true)
                 SendBird.queryMessageListInChannel(channel.getUrl()).prevWithMessageTs(Int64.max, andLimit: 30, resultBlock: { (queryResult) -> Void in
                     for model in queryResult {
+                        if model.isKindOfClass(SendBirdFileLink) == true {
+                            NSLog("File type: %@",  (model as! SendBirdFileLink).fileInfo.name);
+                        }
                         self.messageArray?.addSendBirdMessage(model as! SendBirdMessageModel, updateMessageTs: self.updateMessageTs)
                     }
                     self.tableView?.reloadData()
@@ -1473,7 +1477,7 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
     func clickFileAttachButton() {
         let mediaUI: UIImagePickerController = UIImagePickerController()
         mediaUI.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        let mediaTypes: NSMutableArray = NSMutableArray.init(array: [kUTTypeImage])
+        let mediaTypes: NSMutableArray = NSMutableArray.init(array: [kUTTypeImage, kUTTypeMovie])
         mediaUI.mediaTypes = mediaTypes as NSArray as! [String]
         mediaUI.delegate = self
         self.openImagePicker = true
@@ -1542,7 +1546,16 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
                 
                 let imageFileData: NSData = UIImagePNGRepresentation(newImage)!
                 
-                SendBird.uploadFile(imageFileData, type: "image/jpg", hasSizeOfFile: UInt(imageFileData.length), withCustomField: "", uploadBlock: { (fileInfo, error) -> Void in
+                SendBird.uploadFile(imageFileData, filename:"uploaded_file.png", type: "image/png", hasSizeOfFile: UInt(imageFileData.length), withCustomField: "", uploadBlock: { (fileInfo, error) -> Void in
+                    self.openImagePicker = false
+                    SendBird.sendFile(fileInfo)
+                    self.setIndicatorHidden(true)
+                })
+            }
+            else if CFStringCompare(mediaType as CFString, kUTTypeMovie, CFStringCompareFlags.CompareCaseInsensitive) == CFComparisonResult.CompareEqualTo {
+                let videoUrl: NSURL = info[UIImagePickerControllerMediaURL] as! NSURL
+                let videoData: NSData = NSData(contentsOfURL: videoUrl)!
+                SendBird.uploadFile(videoData, filename:"uploaded_file.mov", type: "video/mov", hasSizeOfFile: UInt(videoData.length), withCustomField: "", uploadBlock: { (fileInfo, error) -> Void in
                     self.openImagePicker = false
                     SendBird.sendFile(fileInfo)
                     self.setIndicatorHidden(true)
