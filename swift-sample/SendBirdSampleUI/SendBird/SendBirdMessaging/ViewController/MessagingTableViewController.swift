@@ -1054,15 +1054,7 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
     
     // MARK: UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if tableView == self.channelMemberListTableView {
-            return 1
-        }
-        else if tableView == self.messagingChannelListTableView {
-            return 1
-        }
-        else {
-            return 1
-        }
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

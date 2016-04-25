@@ -1217,15 +1217,7 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (tableView == self.channelMemberListTableView) {
-        return 1;
-    }
-    else if (tableView == self.messagingChannelListTableView) {
-        return 1;
-    }
-    else {
-        return 1;
-    }
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
