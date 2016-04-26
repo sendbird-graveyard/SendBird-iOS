@@ -29,6 +29,10 @@
 @property (atomic) int messagingStartType;
 @property (strong, nonatomic) SendBirdMessagingChannel *messagingChannel;
 
+@property (strong) NSMutableDictionary *readStatus;
+@property (strong) NSMutableDictionary *typeStatus;
+@property (strong) NSTimer *timer;
+
 @end
 
 @implementation MessagingViewController
@@ -61,6 +65,10 @@
     self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleLightGrayColor]];
     self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleGreenColor]];
     
+    if (self.timer == nil) {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerCallback:) userInfo:nil repeats:YES];
+    }
+    
     [self startSendBird];
 }
 
@@ -86,14 +94,121 @@
     }];
 }
 
-- (void)startSendBird {
-    [SendBird setEventHandlerConnectBlock:^(SendBirdChannel *channel) {
+- (void) setReadStatus:(NSString *)userId andTimestamp:(long long)ts
+{
+    if (self.readStatus == nil) {
+        self.readStatus = [[NSMutableDictionary alloc] init];
+    }
+    
+    if ([self.readStatus objectForKey:userId] == nil) {
+        [self.readStatus setObject:[NSNumber numberWithLongLong:ts] forKey:userId];
+    }
+    else {
+        long long oldTs = [[self.readStatus objectForKey:userId] longLongValue];
+        if (oldTs < ts) {
+            [self.readStatus setObject:[NSNumber numberWithLongLong:ts] forKey:userId];
+        }
+    }
+}
 
+- (void) setTypeStatus:(NSString *)userId andTimestamp:(long long)ts
+{
+    if ([userId isEqualToString:[SendBird getUserId]]) {
+        return;
+    }
+    
+    if (self.typeStatus == nil) {
+        self.typeStatus = [[NSMutableDictionary alloc] init];
+    }
+    
+    if(ts <= 0) {
+        [self.typeStatus removeObjectForKey:userId];
+    } else {
+        [self.typeStatus setObject:[NSNumber numberWithLongLong:ts] forKey:userId];
+    }
+}
+
+- (void)timerCallback:(NSTimer *)timer
+{
+    if ([self checkTypeStatus]) {
+        [self showTyping];
+    }
+}
+
+- (BOOL) checkTypeStatus
+{
+    if (self.typeStatus != nil) {
+        for (NSString *key in self.typeStatus) {
+            if (![key isEqualToString:[SendBird getUserId]]) {
+                long long lastTypedTimestamp = [[self.typeStatus objectForKey:key] longLongValue] / 1000;
+                long long nowTimestamp = [[NSDate date] timeIntervalSince1970];
+                
+                if (nowTimestamp - lastTypedTimestamp > 10) {
+                    [self.typeStatus removeObjectForKey:key];
+                    return true;
+                }
+            }
+        }
+    }
+    
+    return false;
+}
+
+- (void) updateMessagingChannel:(SendBirdMessagingChannel *)channel
+{
+    if (self.readStatus == nil) {
+        self.readStatus = [[NSMutableDictionary alloc] init];
+    }
+    
+    NSMutableDictionary *newReadStatus = [[NSMutableDictionary alloc] init];
+    for (SendBirdMemberInMessagingChannel *member in [channel members]) {
+        NSNumber *currentStatus = [self.readStatus objectForKey:[member guestId]];
+        if (currentStatus == nil) {
+            currentStatus = [NSNumber numberWithLongLong:0];
+        }
+        [newReadStatus setObject:[NSNumber numberWithLongLong:MAX([currentStatus longLongValue], [channel getLastReadMillis:[member guestId]])] forKey:[member guestId]];
+    }
+    
+    [self.readStatus removeAllObjects];
+    for (NSString *key in newReadStatus) {
+        id value = [newReadStatus objectForKey:key];
+        [self.readStatus setObject:value forKey:key];
+    }
+    [self.collectionView reloadData];
+}
+
+- (void) showTyping
+{
+    if ([self.typeStatus count] == 0) {
+        [self hideTyping];
+    }
+    else {
+        self.showTypingIndicator = YES;
+    }
+}
+
+- (void) hideTyping
+{
+    self.showTypingIndicator = NO;
+}
+
+- (void)startSendBird {
+    [SendBird registerNotificationHandlerMessagingChannelUpdatedBlock:^(SendBirdMessagingChannel *channel) {
+        if ([SendBird getCurrentChannel] != nil && [[SendBird getCurrentChannel] channelId] == [channel getId]) {
+            [self updateMessagingChannel:channel];
+        }
+    }
+    mentionUpdatedBlock:^(SendBirdMention *mention) {
+
+    }];
+    [SendBird setEventHandlerConnectBlock:^(SendBirdChannel *channel) {
+        [SendBird markAsRead];
     } errorBlock:^(NSInteger code) {
         
     } channelLeftBlock:^(SendBirdChannel *channel) {
         
     } messageReceivedBlock:^(SendBirdMessage *message) {
+        [SendBird markAsRead];
         if ([message getMessageTimestamp] > self.lastMessageTimestamp) {
             self.lastMessageTimestamp = [message getMessageTimestamp];
         }
@@ -137,6 +252,7 @@
     } broadcastMessageReceivedBlock:^(SendBirdBroadcastMessage *message) {
         
     } fileReceivedBlock:^(SendBirdFileLink *fileLink) {
+        [SendBird markAsRead];
         if ([fileLink getMessageTimestamp] > self.lastMessageTimestamp) {
             self.lastMessageTimestamp = [fileLink getMessageTimestamp];
         }
@@ -176,6 +292,15 @@
             [self scrollToBottomAnimated:NO];
         });
     } messagingStartedBlock:^(SendBirdMessagingChannel *channel) {
+        if (self.readStatus != nil) {
+            [self.readStatus removeAllObjects];
+        }
+        
+        if (self.typeStatus != nil) {
+            [self.typeStatus removeAllObjects];
+        }
+        
+        [self updateMessagingChannel:channel];
         self.messagingChannel = channel;
         [self loadMessages:LLONG_MAX initial:YES];
     } messagingUpdatedBlock:^(SendBirdMessagingChannel *channel) {
@@ -190,11 +315,14 @@
     } allMessagingHiddenBlock:^{
         
     } readReceivedBlock:^(SendBirdReadStatus *status) {
-        
+        [self setReadStatus:[[status user] guestId] andTimestamp:[status timestamp]];
+        [self.collectionView reloadData];
     } typeStartReceivedBlock:^(SendBirdTypeStatus *status) {
-        
+        [self setTypeStatus:[[status user] guestId] andTimestamp:[status timestamp]];
+        [self showTyping];
     } typeEndReceivedBlock:^(SendBirdTypeStatus *status) {
-        
+        [self setTypeStatus:[[status user] guestId] andTimestamp:0];
+        [self showTyping];
     } allDataReceivedBlock:^(NSUInteger sendBirdDataType, int count) {
         
     } messageDeliveryBlock:^(BOOL send, NSString *message, NSString *data, NSString *tempId) {
@@ -323,6 +451,7 @@
         [self.collectionView reloadData];
         if (initial) {
             [self scrollToBottomAnimated:NO];
+            [SendBird markAsReadForChannel:[self.messagingChannel getUrl]];
             [SendBird joinChannel:[self.messagingChannel getUrl]];
             [SendBird connectWithMessageTs:self.lastMessageTimestamp];
         }
@@ -333,8 +462,6 @@
                                             atScrollPosition:UICollectionViewScrollPositionTop
                                                     animated:NO];
             }
-            
-            
         }
         
         self.isLoading = NO;
@@ -491,7 +618,6 @@
         
         if ([msg.senderId isEqualToString:self.senderId]) {
             cell.textView.textColor = [UIColor blackColor];
-            [cell setUnreadCount:0];
         }
         else {
             cell.textView.textColor = [UIColor whiteColor];
@@ -499,6 +625,21 @@
         
         cell.textView.linkTextAttributes = @{ NSForegroundColorAttributeName : cell.textView.textColor,
                                               NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
+    }
+    
+    if ([msg.senderId isEqualToString:[SendBird getUserId]]) {
+        int unreadCount = 0;
+        if (self.readStatus != nil) {
+            for (NSString *key in self.readStatus) {
+                if (![key isEqualToString:[SendBird getUserId]]) {
+                    long long readTime = [[self.readStatus objectForKey:key] longLongValue];
+                    if ([[msg message] getMessageTimestamp] > readTime) {
+                        unreadCount = unreadCount + 1;
+                    }
+                }
+            }
+        }
+        [cell setUnreadCount:unreadCount];
     }
     
     if (indexPath.row == 0) {
@@ -604,7 +745,6 @@
                 header:(JSQMessagesLoadEarlierHeaderView *)headerView didTapLoadEarlierMessagesButton:(UIButton *)sender
 {
     NSLog(@"Load earlier messages!");
-    //    [self loadMessages:self.firstMessageTimestamp ];
 }
 
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapAvatarImageView:(UIImageView *)avatarImageView atIndexPath:(NSIndexPath *)indexPath

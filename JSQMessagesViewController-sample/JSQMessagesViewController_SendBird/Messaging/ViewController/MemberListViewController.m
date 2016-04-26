@@ -103,7 +103,6 @@
     NSMutableArray<NSString *> *userIds = [[NSMutableArray alloc] init];
     
     for (NSString *key in self.selectedMembers) {
-        NSLog(@"Key: %@", key);
         if ([[self.selectedMembers objectForKey:key] intValue] == 1) {
             [userIds addObject:key];
         }
