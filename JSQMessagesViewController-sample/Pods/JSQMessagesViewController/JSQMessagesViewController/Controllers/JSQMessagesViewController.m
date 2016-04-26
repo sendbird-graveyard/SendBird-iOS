@@ -339,7 +339,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 - (void)finishReceivingMessageAnimated:(BOOL)animated {
 
     self.showTypingIndicator = NO;
-    [self.collectionView clearCurrentTypingUser];
+    [self.collectionView clearAllTypingUser];
 
     [self.collectionView.collectionViewLayout invalidateLayoutWithContext:[JSQMessagesCollectionViewFlowLayoutInvalidationContext context]];
     [self.collectionView reloadData];

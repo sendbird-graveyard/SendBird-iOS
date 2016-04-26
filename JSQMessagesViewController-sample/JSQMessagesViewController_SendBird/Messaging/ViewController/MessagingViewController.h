@@ -16,7 +16,7 @@
 #define MESSAGING_START_WITH_USERIDS 0
 #define MESSAGING_START_WITH_CHANNELURL 1
 
-@interface MessagingViewController : JSQMessagesViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface MessagingViewController : JSQMessagesViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 
 - (void)inviteUsers:(NSArray *)aUserIds;
 - (void)joinMessagingChannel:(NSString *)aChannelUrl;

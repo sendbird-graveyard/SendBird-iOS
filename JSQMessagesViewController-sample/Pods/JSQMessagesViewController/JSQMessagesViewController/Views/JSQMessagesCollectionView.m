@@ -30,7 +30,7 @@
 
 @interface JSQMessagesCollectionView () <JSQMessagesLoadEarlierHeaderViewDelegate>
 
-@property NSMutableArray *typingUser;
+@property NSMutableDictionary *typingUser;
 @property NSString *typingIndicatorText;
 
 - (void)jsq_configureCollectionView;
@@ -81,7 +81,7 @@
 
     _loadEarlierMessagesHeaderTextColor = [UIColor jsq_messageBubbleBlueColor];
     
-    self.typingUser = [[NSMutableArray alloc] init];
+    self.typingUser = [[NSMutableDictionary alloc] init];
     self.typingIndicatorText = @"";
 }
 
@@ -102,31 +102,60 @@
 
 #pragma mark - Typing indicator
 
-- (void)setCurrentTypingUser:(NSString *)username
+- (void)createTypingIndicatorText
 {
-    @synchronized (self.typingUser) {
-        [self.typingUser addObject:username];
-        
-        if ([self.typingUser count] == 1) {
-            self.typingIndicatorText = [NSString stringWithFormat:@"%@ is typing...", [self.typingUser objectAtIndex:0]];
+    if ([self.typingUser count] == 1) {
+        NSString *name = @"";
+        for (NSString *key in self.typingUser) {
+            name = [self.typingUser objectForKey:key];
         }
-        else if ([self.typingUser count] == 2) {
-            self.typingIndicatorText = [NSString stringWithFormat:@"%@ and %@ are typing...", [self.typingUser objectAtIndex:0], [self.typingUser objectAtIndex:1]];
+        self.typingIndicatorText = [NSString stringWithFormat:@"%@ is typing...", name];
+    }
+    else if ([self.typingUser count] == 2) {
+        NSString *name1 = nil;
+        NSString *name2 = nil;
+        int count = 0;
+        for (NSString *key in self.typingUser) {
+            if (count == 0) {
+                name1 = [self.typingUser objectForKey:key];
+            }
+            else if (count == 1) {
+                name2 = [self.typingUser objectForKey:key];
+                break;
+            }
         }
-        else if ([self.typingUser count] > 2) {
-            self.typingIndicatorText = [NSString stringWithFormat:@"%lu people are typing...", [self.typingUser count]];
-        }
-        else {
-            self.typingIndicatorText = @"";
-        }
+        self.typingIndicatorText = [NSString stringWithFormat:@"%@ and %@ are typing...", name1, name2];
+    }
+    else if ([self.typingUser count] > 2) {
+        self.typingIndicatorText = [NSString stringWithFormat:@"%lu people are typing...", [self.typingUser count]];
+    }
+    else {
+        self.typingIndicatorText = @"";
     }
 }
 
-- (void)clearCurrentTypingUser
+- (void)setCurrentTypingUser:(NSString *)username userId:(NSString *)userId
+{
+    @synchronized (self.typingUser) {
+        [self.typingUser setObject:username forKey:userId];
+        
+        [self createTypingIndicatorText];
+    }
+}
+
+- (void)clearCurrentTypingUser:(NSString *)userId
+{
+    @synchronized (self.typingUser) {
+        [self.typingUser removeObjectForKey:userId];
+        [self createTypingIndicatorText];
+    }
+}
+
+- (void)clearAllTypingUser
 {
     @synchronized (self.typingUser) {
         [self.typingUser removeAllObjects];
-        self.typingIndicatorText = @"";
+        [self createTypingIndicatorText];
     }
 }
 

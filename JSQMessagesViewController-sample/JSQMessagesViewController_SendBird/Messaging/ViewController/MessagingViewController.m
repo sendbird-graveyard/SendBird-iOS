@@ -62,6 +62,8 @@
     
     JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     
+    self.inputToolbar.contentView.textView.delegate = self;
+    
     self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleLightGrayColor]];
     self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleGreenColor]];
     
@@ -184,6 +186,8 @@
     }
     else {
         self.showTypingIndicator = YES;
+        [self.collectionView reloadData];
+        [self scrollToBottomAnimated:YES];
     }
 }
 
@@ -319,9 +323,11 @@
         [self.collectionView reloadData];
     } typeStartReceivedBlock:^(SendBirdTypeStatus *status) {
         [self setTypeStatus:[[status user] guestId] andTimestamp:[status timestamp]];
+        [self.collectionView setCurrentTypingUser:[[status user] name] userId:[[status user] guestId]];
         [self showTyping];
     } typeEndReceivedBlock:^(SendBirdTypeStatus *status) {
         [self setTypeStatus:[[status user] guestId] andTimestamp:0];
+        [self.collectionView clearCurrentTypingUser:[[status user] guestId]];
         [self showTyping];
     } allDataReceivedBlock:^(NSUInteger sendBirdDataType, int count) {
         
@@ -868,6 +874,17 @@
     [picker dismissViewControllerAnimated:YES completion:^{
         self.openImagePicker = NO;
     }];
+}
+
+#pragma mark - UITextViewDelegate
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if ([textView.text length] > 0) {
+        [SendBird typeStart];
+    }
+    else {
+        [SendBird typeEnd];
+    }
 }
 
 - (void)inviteUsers:(NSArray *)aUserIds

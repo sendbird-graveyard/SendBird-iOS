@@ -99,7 +99,8 @@
  */
 - (JSQMessagesLoadEarlierHeaderView *)dequeueLoadEarlierMessagesViewHeaderForIndexPath:(NSIndexPath *)indexPath;
 
-- (void)setCurrentTypingUser:(NSString *)username;
-- (void)clearCurrentTypingUser;
+- (void)setCurrentTypingUser:(NSString *)username userId:(NSString *)userId;
+- (void)clearCurrentTypingUser:(NSString *)userId;
+- (void)clearAllTypingUser;
 
 @end
