@@ -16,36 +16,19 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OfL-tX-B6f">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="64" id="w7s-s4-wj5"/>
-                    </constraints>
-                    <items>
-                        <navigationItem title="Messaging Channels" id="LJW-oJ-7XC">
-                            <barButtonItem key="leftBarButtonItem" title="Close" id="5U3-bs-aby" userLabel="Close">
-                                <connections>
-                                    <action selector="clickClose:" destination="-1" id="yBI-mz-a9k"/>
-                                </connections>
-                            </barButtonItem>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hag-Q0-xMP">
-                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="OfL-tX-B6f" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="1ci-xm-v5c"/>
-                <constraint firstItem="OfL-tX-B6f" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3l9-AN-xNJ"/>
-                <constraint firstAttribute="trailing" secondItem="OfL-tX-B6f" secondAttribute="trailing" id="Okk-Ka-BrS"/>
+                <constraint firstItem="hag-Q0-xMP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="54Y-ZA-Yo9"/>
                 <constraint firstItem="hag-Q0-xMP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="P9s-AI-Uuy"/>
-                <constraint firstItem="hag-Q0-xMP" firstAttribute="top" secondItem="OfL-tX-B6f" secondAttribute="bottom" id="Sa1-AJ-Lag"/>
                 <constraint firstAttribute="trailing" secondItem="hag-Q0-xMP" secondAttribute="trailing" id="jxq-mE-fpL"/>
                 <constraint firstAttribute="bottom" secondItem="hag-Q0-xMP" secondAttribute="bottom" id="lil-Rf-qxZ"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <point key="canvasLocation" x="236" y="354"/>
         </view>
     </objects>

@@ -122,9 +122,8 @@
     [vc setSenderId:[SendBird getUserId]];
     [vc setSenderDisplayName:[SendBird getUserName]];
     [vc setChannel:[self.channels objectAtIndex:indexPath.row]];
-    [self presentViewController:vc animated:YES completion:^{
-        
-    }];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nc animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDataSource

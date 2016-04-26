@@ -32,6 +32,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.title = @"Member List";
+    
     self.isLoading = NO;
     self.hasNext = YES;
     
@@ -53,11 +55,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 
-- (IBAction)clickClose:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Invite" style:UIBarButtonItemStylePlain target:self action:@selector(clickInvite:)];
 }
 
 - (void)loadMembers {
@@ -97,7 +99,7 @@
     self.userName = aUserName;
 }
 
-- (IBAction)clickInvite:(id)sender {
+- (void)clickInvite:(id)sender {
     NSMutableArray<NSString *> *userIds = [[NSMutableArray alloc] init];
     
     for (NSString *key in self.selectedMembers) {
@@ -113,9 +115,8 @@
         [vc setSenderId:[SendBird getUserId]];
         [vc setSenderDisplayName:[SendBird getUserName]];
         [vc inviteUsers:userIds];
-        [self presentViewController:vc animated:YES completion:^{
-            
-        }];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:nc animated:YES completion:nil];
     }
 }
 

@@ -10,7 +10,6 @@
 
 @interface OpenChatViewController ()
 
-@property (strong, nonnull) UINavigationBar *navBar;
 @property (strong, nonnull) NSMutableDictionary *avatars;
 @property (strong, nonnull) NSMutableDictionary *users;
 @property (strong, nonatomic) JSQMessagesBubbleImage *outgoingBubbleImageData;
@@ -38,13 +37,6 @@
     
     self.openImagePicker = NO;
     
-    self.navBar = [[UINavigationBar alloc] init];
-    [self.navBar setTranslatesAutoresizingMaskIntoConstraints:NO];
-    self.navBar.topItem.title = self.title;
-    UINavigationItem *titleItem = [[UINavigationItem alloc] init];
-    titleItem.title = self.title;
-    self.navBar.items = @[titleItem];
-    
     self.avatars = [[NSMutableDictionary alloc] init];
     self.users = [[NSMutableDictionary alloc] init];
     self.messages = [[NSMutableArray alloc] init];
@@ -52,44 +44,12 @@
     self.lastMessageTimestamp = LLONG_MIN;
     self.firstMessageTimestamp = LLONG_MAX;
     
-    [self.collectionView setContentInset:UIEdgeInsetsMake(64, 0, self.inputToolbar.preferredDefaultHeight, 0)];
     self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeMake(kJSQMessagesCollectionViewAvatarSizeDefault, kJSQMessagesCollectionViewAvatarSizeDefault);
     self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeMake(kJSQMessagesCollectionViewAvatarSizeDefault, kJSQMessagesCollectionViewAvatarSizeDefault);
     
     self.showLoadEarlierMessagesHeader = NO;
     self.collectionView.collectionViewLayout.springinessEnabled = NO;
     [self.collectionView setBounces:NO];
-
-    [self.view addSubview:self.navBar];
-    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.navBar
-                                                          attribute:NSLayoutAttributeTop
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTop
-                                                         multiplier:1
-                                                           constant:0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.navBar
-                                                          attribute:NSLayoutAttributeLeading
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeLeading
-                                                         multiplier:1
-                                                           constant:0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.navBar
-                                                          attribute:NSLayoutAttributeTrailing
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeTrailing
-                                                         multiplier:1
-                                                           constant:0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.navBar
-                                                          attribute:NSLayoutAttributeHeight
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:nil
-                                                          attribute:NSLayoutAttributeNotAnAttribute
-                                                         multiplier:1
-                                                           constant:64]];
     
     JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     
@@ -103,9 +63,14 @@
 {
     [super viewWillAppear:animated];
     
-    self.navBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop
                                                                                           target:self
                                                                                           action:@selector(closePressed:)];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {

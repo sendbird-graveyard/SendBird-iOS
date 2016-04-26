@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="xTX-SP-eGJ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--JSQ X SendBird-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
@@ -17,24 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JSQMessagesViewController" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9t-Im-a6C">
-                                <rect key="frame" x="69" y="32" width="182" height="17"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8S-LU-bLg">
-                                <rect key="frame" x="156" y="49" width="9" height="17"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SendBird" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EvK-lY-WpY">
-                                <rect key="frame" x="131" y="66" width="59" height="17"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Q1-xe-bev">
                                 <rect key="frame" x="32" y="91" width="256" height="30"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -113,26 +95,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="EvK-lY-WpY" firstAttribute="top" secondItem="P8S-LU-bLg" secondAttribute="bottom" id="6zs-ls-jyd"/>
+                            <constraint firstItem="9Q1-xe-bev" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="27" id="0vS-GS-RhN"/>
                             <constraint firstItem="1MP-gc-yWz" firstAttribute="top" secondItem="9Q1-xe-bev" secondAttribute="bottom" constant="8" id="8nu-0v-zE5"/>
-                            <constraint firstItem="V9t-Im-a6C" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9X3-LK-PAz"/>
                             <constraint firstItem="9Q1-xe-bev" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="32" id="Ba2-LC-2N0"/>
                             <constraint firstAttribute="trailing" secondItem="4eE-WA-j1j" secondAttribute="trailing" id="Dc9-vd-Rgt"/>
                             <constraint firstAttribute="trailing" secondItem="8K4-EQ-xRm" secondAttribute="trailing" id="L7a-9U-Iyb"/>
-                            <constraint firstItem="P8S-LU-bLg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SYc-AK-xAe"/>
                             <constraint firstItem="8K4-EQ-xRm" firstAttribute="top" secondItem="1MP-gc-yWz" secondAttribute="bottom" constant="16" id="TPu-Ri-dSC"/>
-                            <constraint firstItem="EvK-lY-WpY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VH3-AR-nyJ"/>
                             <constraint firstItem="8K4-EQ-xRm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ZzS-qT-It5"/>
-                            <constraint firstItem="9Q1-xe-bev" firstAttribute="top" secondItem="EvK-lY-WpY" secondAttribute="bottom" constant="8" id="hJd-ki-T7p"/>
-                            <constraint firstItem="P8S-LU-bLg" firstAttribute="top" secondItem="V9t-Im-a6C" secondAttribute="bottom" id="ip4-Jc-e8c"/>
                             <constraint firstItem="4eE-WA-j1j" firstAttribute="top" secondItem="1MP-gc-yWz" secondAttribute="bottom" constant="16" id="llm-c3-bRN"/>
                             <constraint firstAttribute="trailing" secondItem="1MP-gc-yWz" secondAttribute="trailing" constant="32" id="p4c-ew-lsk"/>
-                            <constraint firstItem="V9t-Im-a6C" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="32" id="pyp-V4-QA2"/>
                             <constraint firstItem="1MP-gc-yWz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="32" id="uw5-t2-4Mt"/>
                             <constraint firstItem="4eE-WA-j1j" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vyJ-NR-d3l"/>
                             <constraint firstAttribute="trailing" secondItem="9Q1-xe-bev" secondAttribute="trailing" constant="32" id="wIU-80-k3F"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="JSQ X SendBird" id="4j0-m5-8Bt"/>
                     <connections>
                         <outlet property="firstPhaseContentView" destination="8K4-EQ-xRm" id="dPB-L5-pqx"/>
                         <outlet property="nicknameTextField" destination="1MP-gc-yWz" id="zVX-Ch-klW"/>
@@ -142,7 +119,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="168" y="406"/>
+            <point key="canvasLocation" x="513" y="413"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Gww-jA-cIg">
+            <objects>
+                <navigationController id="xTX-SP-eGJ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="z69-w1-YFv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="9F1-C2-ED1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ciK-NR-Klb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="88" y="406"/>
         </scene>
     </scenes>
 </document>

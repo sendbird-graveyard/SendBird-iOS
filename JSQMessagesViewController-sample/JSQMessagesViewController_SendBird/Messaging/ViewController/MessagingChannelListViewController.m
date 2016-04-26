@@ -33,6 +33,8 @@
     self.isLoading = NO;
     self.hasNext = YES;
     
+    self.title = @"Messaging Channel List";
+    
     self.channels = [[NSMutableArray alloc] init];
     
     self.messagingChannelListTableView.delegate = self;
@@ -48,12 +50,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)clickClose:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
 }
 
 - (void)loadChannels {
@@ -75,7 +71,7 @@
             self.hasNext = NO;
         }
         
-        for (SendBirdChannel *item in queryResult) {
+        for (SendBirdMessagingChannel *item in queryResult) {
             [self.channels addObject:item];
         }
         
@@ -121,9 +117,8 @@
     [vc setSenderId:[SendBird getUserId]];
     [vc setSenderDisplayName:[SendBird getUserName]];
     [vc setChannel:[self.channels objectAtIndex:indexPath.row]];
-    [self presentViewController:vc animated:YES completion:^{
-        
-    }];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nc animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDataSource

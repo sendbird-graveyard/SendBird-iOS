@@ -49,9 +49,7 @@
 
         OpenChatListViewController *vc = [[OpenChatListViewController alloc] init];
         [vc setUserID:userId userName:userName];
-        [self presentViewController:vc animated:YES completion:^{
-            
-        }];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -73,9 +71,7 @@
         
         MemberListViewController *vc = [[MemberListViewController alloc] init];
         [vc setUserID:userId userName:userName];
-        [self presentViewController:vc animated:YES completion:^{
-            
-        }];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -92,9 +88,7 @@
         
         MessagingChannelListViewController *vc = [[MessagingChannelListViewController alloc] init];
         [vc setUserID:userId userName:userName];
-        [self presentViewController:vc animated:YES completion:^{
-            
-        }];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

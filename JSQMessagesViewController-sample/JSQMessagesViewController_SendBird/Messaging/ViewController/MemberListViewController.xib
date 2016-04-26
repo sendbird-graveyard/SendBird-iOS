@@ -16,41 +16,19 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p3r-9n-CvL">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="64" id="oQa-N0-MzP"/>
-                    </constraints>
-                    <items>
-                        <navigationItem title="Member List" id="Pc8-Is-Apb">
-                            <barButtonItem key="leftBarButtonItem" title="Close" id="yvb-tb-dE7">
-                                <connections>
-                                    <action selector="clickClose:" destination="-1" id="aNI-rn-F55"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" title="Invite" id="tCH-av-wp2">
-                                <connections>
-                                    <action selector="clickInvite:" destination="-1" id="GYa-do-Y1L"/>
-                                </connections>
-                            </barButtonItem>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pW9-mI-1dK">
-                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="pW9-mI-1dK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4rw-CD-HWm"/>
-                <constraint firstItem="pW9-mI-1dK" firstAttribute="top" secondItem="p3r-9n-CvL" secondAttribute="bottom" id="Wta-Tz-DQv"/>
-                <constraint firstItem="p3r-9n-CvL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bLB-y1-bAQ"/>
-                <constraint firstAttribute="trailing" secondItem="p3r-9n-CvL" secondAttribute="trailing" id="hKm-PM-bFG"/>
+                <constraint firstItem="pW9-mI-1dK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cyA-VQ-6Rd"/>
                 <constraint firstAttribute="trailing" secondItem="pW9-mI-1dK" secondAttribute="trailing" id="hOS-TS-vEh"/>
                 <constraint firstAttribute="bottom" secondItem="pW9-mI-1dK" secondAttribute="bottom" id="j3r-TM-nsl"/>
-                <constraint firstItem="p3r-9n-CvL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qbV-vr-xOc"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <point key="canvasLocation" x="528" y="364"/>
         </view>
     </objects>
