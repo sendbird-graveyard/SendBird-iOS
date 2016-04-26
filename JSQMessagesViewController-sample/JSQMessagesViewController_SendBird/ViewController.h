@@ -2,7 +2,7 @@
 //  ViewController.h
 //  JSQMessagesViewController_SendBird
 //
-//  Created by Jed Kyung on 4/23/16.
+//  Created by Jed Gyeong on 4/23/16.
 //  Copyright © 2016 SENDBIRD. All rights reserved.
 //
 
