@@ -14,18 +14,14 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - SendBirdSDK (2.1.0)
+  - SendBirdSDK (2.2.0)
 
 DEPENDENCIES:
   - AFNetworking
-  - SendBirdSDK (from `/Users/jedkyung/git/sendbird-ios-framework`)
-
-EXTERNAL SOURCES:
-  SendBirdSDK:
-    :path: /Users/jedkyung/git/sendbird-ios-framework
+  - SendBirdSDK
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  SendBirdSDK: 869287e5d0ce71875de7bf0c1c4da5c64135e12d
+  SendBirdSDK: 8de9bb9191fac8c85736e6034752042634be7771
 
 COCOAPODS: 0.39.0

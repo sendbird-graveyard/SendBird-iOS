@@ -879,6 +879,7 @@
 #pragma mark - UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView
 {
+    [self.inputToolbar toggleSendButtonEnabled];
     if ([textView.text length] > 0) {
         [SendBird typeStart];
     }

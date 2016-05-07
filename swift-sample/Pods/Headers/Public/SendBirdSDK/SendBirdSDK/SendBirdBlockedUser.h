@@ -1,1 +1,1 @@
-../../../../../../../sendbird-ios-framework/SendBirdSDK.framework/Headers/SendBirdBlockedUser.h
+../../../../SendBirdSDK/SendBirdSDK.framework/Headers/SendBirdBlockedUser.h

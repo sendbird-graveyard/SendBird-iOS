@@ -41,6 +41,8 @@
 #define kApiDecreaseChannelMetaCounter @"/v1/channel_metacounter_decrease"
 #define kApiMessageListByTimestamp @"/v1/message_list_by_timestamp"
 #define kApiMemberCount @"/v1/member_count"
+#define kApiChannelMultiJoin @"/v1/channel_multi_join"
+#define kApiChannelMultiLeave @"/v1/channel_multi_leave"
 
 @interface SendBirdAPIClient : NSObject
 
@@ -52,7 +54,9 @@
 - (void) guestLoginWithGuestId:(NSString *)guestId andNickname:(NSString *)nickname andUserImageUrl:(NSString *)imageUrl andAccessToken:(NSString *)accessToken andDeviceId:(NSString *)deviceId resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) post:(NSString *)uri form:(NSMutableDictionary *)form resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) joinChannel:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) joinMultipleChannels:(NSSet<NSString *> *)channelUrls resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) leaveChannel:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) leaveMultipleChannels:(NSArray<NSString *> *)channelUrls resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) uploadFile:(NSData *)file resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult DEPRECATED_ATTRIBUTE;
 - (void) uploadFile:(NSData *)file filename:(NSString *)aFilename resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) messagingStartWithGuestIds:(NSArray *)guestIds resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;

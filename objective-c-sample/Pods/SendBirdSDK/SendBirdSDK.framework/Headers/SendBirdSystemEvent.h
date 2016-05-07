@@ -17,7 +17,7 @@ typedef enum {
     SendBirdSystemEventCategoryUserChannelMute = 10201,
 } SendBirdSystemEventCategory;
 
-@interface SendBirdSystemEvent : SendBirdMessageModel
+@interface SendBirdSystemEvent : NSObject
 
 @property NSDictionary *jsonObj;
 
@@ -28,4 +28,5 @@ typedef enum {
 - (long long) getDataAsLongLong:(NSString *)key;
 - (BOOL) getDataAsBoolean:(NSString *)key;
 - (SendBirdSystemEventCategory) getCategory;
+- (long long) getChannelId;
 @end

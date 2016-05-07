@@ -1,1 +1,1 @@
-../../../../../../../sendbird-ios-framework/SendBirdSDK.framework/Headers/SendBirdMessage.h
+../../../../SendBirdSDK/SendBirdSDK.framework/Headers/SendBirdMessage.h

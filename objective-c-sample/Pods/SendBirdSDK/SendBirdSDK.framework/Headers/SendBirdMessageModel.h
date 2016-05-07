@@ -75,6 +75,10 @@
  */
 - (long long) parseMessageTimestamp:(NSDictionary *)dic;
 
+- (long long) parseChannelId:(NSDictionary *)dic;
+
+- (long long) getChannelId;
+
 /**
  *  Parse a message received as JSON String
  *

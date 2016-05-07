@@ -1,1 +1,1 @@
-../../../../../../../sendbird-ios-framework/SendBirdSDK.framework/Headers/SendBirdChannelMetaDataQuery.h
+../../../../SendBirdSDK/SendBirdSDK.framework/Headers/SendBirdChannelMetaDataQuery.h

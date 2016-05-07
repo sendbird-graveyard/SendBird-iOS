@@ -123,6 +123,7 @@
                 name2 = [self.typingUser objectForKey:key];
                 break;
             }
+            count += 1;
         }
         self.typingIndicatorText = [NSString stringWithFormat:@"%@ and %@ are typing...", name1, name2];
     }

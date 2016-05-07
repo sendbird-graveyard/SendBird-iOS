@@ -17,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [SendBird initAppId:@"E9AFEC82-52BB-4423-861B-1C8E287AAC54"];
+    [SendBird initAppId:@"A7A2672C-AD11-11E4-8DAA-0A18B21C2D82"];
     return YES;
 }
 
