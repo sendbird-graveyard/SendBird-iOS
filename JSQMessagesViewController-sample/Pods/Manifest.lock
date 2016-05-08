@@ -18,7 +18,7 @@ PODS:
     - AFNetworking (~> 3.1.0)
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
-  - SendBirdSDK (2.2.0)
+  - SendBirdSDK (2.2.1)
 
 DEPENDENCIES:
   - JSQMessagesViewController (from `https://github.com/smilefam/JSQMessagesViewController.git`)
@@ -37,6 +37,6 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   JSQMessagesViewController: 8395490ab8f984d4bb8d4dcd7dcdae2308c16f4c
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  SendBirdSDK: 8de9bb9191fac8c85736e6034752042634be7771
+  SendBirdSDK: cc866431c344ae1d875e7ebe16d5bf72580c1756
 
 COCOAPODS: 0.39.0
