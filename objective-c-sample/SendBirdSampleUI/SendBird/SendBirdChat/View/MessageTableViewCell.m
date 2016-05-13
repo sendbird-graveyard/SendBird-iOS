@@ -105,10 +105,7 @@
     
     NSString *message = [[NSString stringWithFormat:@"%@: %@", [[self.message sender] name], [self.message message]] stringByReplacingOccurrencesOfString:@" " withString:@"\u00A0"];
     NSString *url = [SendBirdUtils getUrlFromString:[self.message message]];
-    NSRange urlRange;
-    if ([url length] > 0) {
-        urlRange = [message rangeOfString:url];
-    }
+
     message = [message stringByReplacingOccurrencesOfString:@" " withString:@"\u00A0"];
     message = [message stringByReplacingOccurrencesOfString:@"-" withString:@"\u2011"];
     
@@ -133,7 +130,7 @@
     [attributedMessage setAttributes:nameAttribute range:nameRange];
     [attributedMessage setAttributes:messageAttribute range:messageRange];
     if ([url length] > 0) {
-        [attributedMessage setAttributes:urlAttribute range:urlRange];
+        [attributedMessage setAttributes:urlAttribute range:[message rangeOfString:url]];
     }
     [attributedMessage endEditing];
     

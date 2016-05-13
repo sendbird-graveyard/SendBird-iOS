@@ -1,4 +1,23 @@
+# Uncomment this line to define a global platform for your project
 platform :ios, '8.0'
+# Uncomment this line if you're using Swift
 use_frameworks!
+
 pod "SendBirdSDK"
 pod "AFNetworking"
+
+target 'SendBird Sample UI' do
+  pod "SendBirdSDK"
+  pod "AFNetworking"
+end
+
+target 'SendBirdSampleUITests' do
+  pod "SendBirdSDK"
+  pod "AFNetworking"
+end
+
+target 'SendBirdSampleUIUITests' do
+  pod "SendBirdSDK"
+  pod "AFNetworking"
+end
+

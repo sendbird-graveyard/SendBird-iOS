@@ -198,13 +198,15 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
                 SendBird.inviteMessagingWithChannelUrl(self.currentMessagingChannel?.getUrl(), andUserIds: userIds)
             }
             else {
-                for item in (self.currentMessagingChannel?.members)! {
-                    let member: SendBirdMemberInMessagingChannel = item as! SendBirdMemberInMessagingChannel
-                    if member.guestId == self.userId {
-                        continue
-                    }
-                    else {
-                        userIds.append(member.guestId)
+                if (self.currentMessagingChannel != nil) {
+                    for item in (self.currentMessagingChannel?.members)! {
+                        let member: SendBirdMemberInMessagingChannel = item as! SendBirdMemberInMessagingChannel
+                        if member.guestId == self.userId {
+                            continue
+                        }
+                        else {
+                            userIds.append(member.guestId)
+                        }
                     }
                 }
                 SendBird.startMessagingWithUserIds(userIds)

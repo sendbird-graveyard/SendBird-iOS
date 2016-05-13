@@ -239,6 +239,7 @@
         [self setIndicatorHidden:YES];
         [self.messageInputView setInputEnable:YES];
     } errorBlock:^(NSInteger code) {
+        NSLog(@"Error: %d", (int)code);
         [self updateChannelTitle];
         [self setIndicatorHidden:YES];
     } channelLeftBlock:^(SendBirdChannel *channel) {

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define kErrReconnectFailed 8000
 #define kErrNetwork 9000
 #define kErrDataParsing 9010
 

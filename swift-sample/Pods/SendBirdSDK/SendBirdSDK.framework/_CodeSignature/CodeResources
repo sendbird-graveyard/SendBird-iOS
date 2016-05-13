@@ -54,7 +54,7 @@
 		</data>
 		<key>Headers/SendBirdError.h</key>
 		<data>
-		5Vc2D+jpYBVMxBYn3raUje9MlOg=
+		u292JvSkWJn1LebD4VnW2+l+RrU=
 		</data>
 		<key>Headers/SendBirdFileInfo.h</key>
 		<data>
@@ -166,7 +166,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		M2Jz4kABtTiW6zfu2AR7cDJwut8=
+		BP5n/wWq/Kqbm9JwzjJQW1hps0k=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -311,11 +311,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			5Vc2D+jpYBVMxBYn3raUje9MlOg=
+			u292JvSkWJn1LebD4VnW2+l+RrU=
 			</data>
 			<key>hash2</key>
 			<data>
-			n1nN+GCTJ6oLS3MP67Oc2d4YdhCx4T0fq3g7jAIGhuo=
+			8aUbAhmo3VdPmCVk2czlLhqlvNhJZOPL8BOC4Xp93S8=
 			</data>
 		</dict>
 		<key>Headers/SendBirdFileInfo.h</key>
