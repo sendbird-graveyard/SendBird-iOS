@@ -43,9 +43,16 @@
 @property (retain) SendBirdMessageModel *lastMessage;
 
 /**
- *  Number of new messages created after the current user has joined the Messaging/Group messaging channel. If this value is 0, then it means no new messages were created within the channel after joining.
+ *  If this value is 0, then it means no new messages were created within the channel after joining.
+ *
+ *  @deprecated in 2.2.4 Please use hasNewMessageSinceJoined instead.
  */
-@property int messageCountSinceJoined;
+@property int messageCountSinceJoined DEPRECATED_ATTRIBUTE;
+
+/**
+ *  Check if the channel has a new message since the user joined
+ */
+@property BOOL hasNewMessageSinceJoined;
 
 /**
  *  Messaging channel type. 1 on 1 = 5, Group messaging = 6

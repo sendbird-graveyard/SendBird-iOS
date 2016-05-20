@@ -16,7 +16,8 @@
 #define kApiMessagingStart @"/v1/messaging_start"
 #define kApiMessagingEnd @"/v1/messaging_end"
 //#define kApiMessagingList @"/v1/messaging_list"
-#define kApiMessagingListV2 @"/v2/messaging_list"
+//#define kApiMessagingListV2 @"/v2/messaging_list"
+#define kApiMessagingList @"/v3/messaging_list"
 #define kApiLoadMoreMessages @"/v1/load_more_messages"
 #define kApiMemberList @"/v1/member_list"
 #define kApiMessagingJoin @"/v1/messaging_join"
@@ -43,6 +44,8 @@
 #define kApiMemberCount @"/v1/member_count"
 #define kApiChannelMultiJoin @"/v1/channel_multi_join"
 #define kApiChannelMultiLeave @"/v1/channel_multi_leave"
+#define kApiRegisterPushToken @"/v1/register_push_token"
+#define kApiUnregisterPushToken @"/v1/unregister_push_token"
 
 @interface SendBirdAPIClient : NSObject
 
@@ -59,7 +62,7 @@
 - (void) leaveMultipleChannels:(NSArray<NSString *> *)channelUrls resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) uploadFile:(NSData *)file resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult DEPRECATED_ATTRIBUTE;
 - (void) uploadFile:(NSData *)file filename:(NSString *)aFilename resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
-- (void) messagingStartWithGuestIds:(NSArray *)guestIds resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) messagingStartWithGuestIds:(NSArray *)guestIds andIsGroup:(BOOL)isGroup resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) markAsReadForChannelUrl:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) markAllAsReadWithResultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) messagingJoinWithChannelUrl:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
@@ -71,7 +74,7 @@
 - (void) messagingInfoOfChannelId:(long long)channelId resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) messagingInfoMessageOnlyOfChannelId:(long long)channelId resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 //- (void) messagingListResultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
-- (void) messagingListV2WithToken:(NSString *)token andPage:(int)page withLimit:(int)limit andShowEmpty:(BOOL)showEmpty resultBlock:(void (^)(NSDictionary *, NSError *))onResult;
+- (void) messagingListWithToken:(NSString *)token andPage:(int)page withLimit:(int)limit andShowEmpty:(BOOL)showEmpty resultBlock:(void (^)(NSDictionary *, NSError *))onResult;
 - (void) loadMoreMessagesInChannel:(long long)channelId andMinMessageTs:(long long)minMessageTs withLimit:(int)limit resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) memberListInChannel:(NSString *)channelUrl withPageNum:(int)page withQuery:(NSString *)query withLimit:(int)limit resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) messageListWithChannelUrl:(NSString *)channelUrl messageTs:(long long)messageTs prevLimit:(int)prevLimit andNextLimit:(int)nextLimit include:(BOOL)include resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
@@ -92,5 +95,8 @@
 - (void) deleteMetaCounterOfChannel:(NSString *)channelUrl withKeys:(NSArray<NSString *> *)keys resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) increaseMetaCounterOfChannel:(NSString *)channelUrl withData:(NSDictionary<NSString *, NSNumber *> *)data resultBlock:(void (^)(NSDictionary<NSString *, NSNumber *> *response, NSError *error))onResult;
 - (void) decreaseMetaCounterOfChannel:(NSString *)channelUrl withData:(NSDictionary<NSString *, NSNumber *> *)data resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) registerPushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) unregisterCurrentDevicePushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) unregisterAllDevicesPushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
 
 @end

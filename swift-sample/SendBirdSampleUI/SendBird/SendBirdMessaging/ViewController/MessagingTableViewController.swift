@@ -587,7 +587,42 @@ class MessagingTableViewController: UIViewController, UITableViewDataSource, UIT
         else if viewMode == kMessagingViewMode {
             self.startMessagingWithUser(self.targetUserId as! String)
         }
+        
+        var enable: Bool;
+        enable = true;
+        
+        if enable {
+            SendBird.registerPushToken({ (response, error) in
+                
+            })
+        }
+        else {
+            SendBird.unregisterCurrentDevicePushToken({ (response, error) in
+                
+            })
+            
+            SendBird.unregisterAllDevicesPushToken({ (response, error) in
+                
+            })
+        }
     }
+    
+func setPushNotification(enable: Bool) {
+    if enable {
+        SendBird.registerPushToken({ (response, error) in
+            
+        })
+    }
+    else {
+        SendBird.unregisterCurrentDevicePushToken({ (response, error) in
+            
+        })
+        
+        SendBird.unregisterAllDevicesPushToken({ (response, error) in
+            
+        })
+    }
+}
     
     func loadNextUserList() {
         self.userListQuery?.nextWithResultBlock({ (queryResult) -> Void in

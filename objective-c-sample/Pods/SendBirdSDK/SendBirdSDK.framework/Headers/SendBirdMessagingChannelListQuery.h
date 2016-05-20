@@ -28,6 +28,21 @@
 - (void) setLimit:(int) lmt;
 
 /**
+ *  Set NO to include messaging channels don't have new messages since the user joined.
+ *  Default is YES.
+ *
+ *  @param nmsj
+ */
+- (void) setNewMessageSinceJoinedOnly:(BOOL) nmsj;
+
+/**
+ *  Check if the channel has a new message since the user joined
+ *
+ *  @return Returns YES if the channel list only returns channels have new messages since the user joined
+ */
+- (BOOL) isNewMessageSinceJoinedOnly;
+
+/**
  *  Stop retrieving the channel list
  */
 - (void) cancel;

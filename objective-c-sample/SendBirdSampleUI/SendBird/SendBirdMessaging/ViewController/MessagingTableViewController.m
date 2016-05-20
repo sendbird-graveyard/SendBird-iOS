@@ -1773,26 +1773,26 @@
 
 - (void) clickChannelListButton
 {
-    [self clearPreviousChatting];
-    if ([self.messagingChannelListTableView isHidden]) {
-        [self.messagingChannelListTableView setHidden:NO];
-        [self.messageInputView setInputEnable:NO];
-        [self.messagingChannelListTableView setHidden:NO];
-        [SendBird disconnect];
-        messagingChannelListQuery = [SendBird queryMessagingChannelList];
-        [messagingChannelListQuery setLimit:15];
-        [messagingChannelListQuery nextWithResultBlock:^(NSMutableArray *queryResult) {
-            [messagingChannels removeAllObjects];
-            [messagingChannels addObjectsFromArray:queryResult];
-            [self.messagingChannelListTableView reloadData];
-        } endBlock:^(NSInteger code) {
-            
-        }];
-    }
-    else {
-        [self.messagingChannelListTableView setHidden:YES];
-        [self.messageInputView setInputEnable:YES];
-    }
+//    [self clearPreviousChatting];
+//    if ([self.messagingChannelListTableView isHidden]) {
+//        [self.messagingChannelListTableView setHidden:NO];
+//        [self.messageInputView setInputEnable:NO];
+//        [self.messagingChannelListTableView setHidden:NO];
+//        [SendBird disconnect];
+//        messagingChannelListQuery = [SendBird queryMessagingChannelList];
+//        [messagingChannelListQuery setLimit:15];
+//        [messagingChannelListQuery nextWithResultBlock:^(NSMutableArray *queryResult) {
+//            [messagingChannels removeAllObjects];
+//            [messagingChannels addObjectsFromArray:queryResult];
+//            [self.messagingChannelListTableView reloadData];
+//        } endBlock:^(NSInteger code) {
+//            
+//        }];
+//    }
+//    else {
+//        [self.messagingChannelListTableView setHidden:YES];
+//        [self.messageInputView setInputEnable:YES];
+//    }
 }
 
 #pragma mark - UIImagePickerControllerDelegate
