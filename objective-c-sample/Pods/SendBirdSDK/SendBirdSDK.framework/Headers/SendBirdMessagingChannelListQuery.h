@@ -31,7 +31,7 @@
  *  Set NO to include messaging channels don't have new messages since the user joined.
  *  Default is YES.
  *
- *  @param nmsj
+ *  @param nmsj flag to set for getting messaging channels.
  */
 - (void) setNewMessageSinceJoinedOnly:(BOOL) nmsj;
 

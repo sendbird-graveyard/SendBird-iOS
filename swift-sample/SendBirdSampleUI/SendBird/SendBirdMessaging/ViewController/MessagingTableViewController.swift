@@ -1575,7 +1575,7 @@ func setPushNotification(enable: Bool) {
                 
                 let imageFileData: NSData = UIImagePNGRepresentation(newImage)!
                 
-                SendBird.uploadFile(imageFileData, filename:"uploaded_file.png", type: "image/png", hasSizeOfFile: UInt(imageFileData.length), withCustomField: "", uploadBlock: { (fileInfo, error) -> Void in
+                SendBird.uploadFile(imageFileData, filename:"image.png", type: "image/png", hasSizeOfFile: UInt(imageFileData.length), withCustomField: "", uploadBlock: { (fileInfo, error) -> Void in
                     self.openImagePicker = false
                     SendBird.sendFile(fileInfo)
                     self.setIndicatorHidden(true)
@@ -1584,7 +1584,7 @@ func setPushNotification(enable: Bool) {
             else if CFStringCompare(mediaType as CFString, kUTTypeMovie, CFStringCompareFlags.CompareCaseInsensitive) == CFComparisonResult.CompareEqualTo {
                 let videoUrl: NSURL = info[UIImagePickerControllerMediaURL] as! NSURL
                 let videoData: NSData = NSData(contentsOfURL: videoUrl)!
-                SendBird.uploadFile(videoData, filename:"uploaded_file.mov", type: "video/mov", hasSizeOfFile: UInt(videoData.length), withCustomField: "", uploadBlock: { (fileInfo, error) -> Void in
+                SendBird.uploadFile(videoData, filename:"video.mp4", type: "video/mov", hasSizeOfFile: UInt(videoData.length), withCustomField: "", uploadBlock: { (fileInfo, error) -> Void in
                     self.openImagePicker = false
                     SendBird.sendFile(fileInfo)
                     self.setIndicatorHidden(true)

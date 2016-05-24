@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/SendBird.h</key>
 		<data>
-		6HYwQIix72d5QvLwwbPs99OipAM=
+		1wBqMKBvsOpYmwc0xg+A44gd8aQ=
 		</data>
 		<key>Headers/SendBirdAPIClient.h</key>
 		<data>
@@ -102,7 +102,7 @@
 		</data>
 		<key>Headers/SendBirdMessagingChannelListQuery.h</key>
 		<data>
-		qw3xfzl12uU60JfpBUbcKMtTm4A=
+		wxxSvpni1bkKAaX5uc2R8uTCHIM=
 		</data>
 		<key>Headers/SendBirdMessagingChannelUpdate.h</key>
 		<data>
@@ -166,7 +166,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		tWJtBfTztD6xahBlvAD4P3tHshw=
+		vVC5KUTeaKDu7AcQWigDH/hhZDU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -179,11 +179,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			6HYwQIix72d5QvLwwbPs99OipAM=
+			1wBqMKBvsOpYmwc0xg+A44gd8aQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			/CcnB1tfmH01ydGp/LKSxGxfx86epwKuu4TISeUpc+4=
+			6KoGQnluNu07OZOokcGtd+42x0g+NjbEy3jS7mx5stg=
 			</data>
 		</dict>
 		<key>Headers/SendBirdAPIClient.h</key>
@@ -443,11 +443,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			qw3xfzl12uU60JfpBUbcKMtTm4A=
+			wxxSvpni1bkKAaX5uc2R8uTCHIM=
 			</data>
 			<key>hash2</key>
 			<data>
-			Dldtr39AFotKcMlvHe2Nd0RUiL2xWC+8FrAwGk8JSpo=
+			MnlfSC2knKHOgPGH1XlJwNfV4tdHAN8iXDmVnjE1Fl8=
 			</data>
 		</dict>
 		<key>Headers/SendBirdMessagingChannelUpdate.h</key>

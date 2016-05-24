@@ -682,26 +682,31 @@ typedef enum {
  */
 + (SendBirdUserListQuery *) queryUserList;
 
+/**
+ *  Set the current device token to SendBird. Refer to [Push Notification](https://sendbird.gitbooks.io/sendbird-ios-sdk/content/en//push_notifications.html) document.
+ *
+ *  @param devToken Device token for APNS.
+ */
 + (void) registerForRemoteNotifications:(NSData *)devToken;
 
 /**
  *  Register device token to SendBird for APNS. You have to invoke [`registerForRemoteNotifications:`](./SendBird.html#//api/name/registerForRemoteNotifications:) in advanced.
  *
- *  @param onResult
+ *  @param onResult callback for the result
  */
 + (void) registerPushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
 
 /**
  *  Unregister current device token from SendBird.
  *
- *  @param onResult
+ *  @param onResult callback for the result
  */
 + (void) unregisterCurrentDevicePushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
 
 /**
  *  Unregister all devices token for the user from SendBird.
  *
- *  @param onResult
+ *  @param onResult callback for the result
  */
 + (void) unregisterAllDevicesPushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
 

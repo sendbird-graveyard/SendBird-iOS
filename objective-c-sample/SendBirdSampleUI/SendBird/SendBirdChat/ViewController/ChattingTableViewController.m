@@ -965,7 +965,7 @@
             
             NSData *imageFileData = UIImagePNGRepresentation(newImage);
             
-            [SendBird uploadFile:imageFileData type:@"image/jpg" hasSizeOfFile:[imageFileData length] withCustomField:@"" uploadBlock:^(SendBirdFileInfo *fileInfo, NSError *error) {
+            [SendBird uploadFile:imageFileData filename:@"image.png" type:@"image/png" hasSizeOfFile:[imageFileData length] withCustomField:@"" uploadBlock:^(SendBirdFileInfo *fileInfo, NSError *error) {
                 self.openImagePicker = NO;
                 [SendBird sendFile:fileInfo];
                 [self setIndicatorHidden:YES];
@@ -976,7 +976,7 @@
             
             NSData *videoFileData = [NSData dataWithContentsOfURL:videoURL];
             
-            [SendBird uploadFile:videoFileData type:@"video/mov" hasSizeOfFile:[videoFileData length] withCustomField:@"" uploadBlock:^(SendBirdFileInfo *fileInfo, NSError *error) {
+            [SendBird uploadFile:videoFileData filename:@"video.mp4" type:@"video/mp4" hasSizeOfFile:[videoFileData length] withCustomField:@"" uploadBlock:^(SendBirdFileInfo *fileInfo, NSError *error) {
                 self.openImagePicker = NO;
                 [SendBird sendFile:fileInfo];
                 [self setIndicatorHidden:YES];

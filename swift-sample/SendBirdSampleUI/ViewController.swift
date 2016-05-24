@@ -295,8 +295,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func startSendBird(userName: String, chatMode: Int, viewMode: Int) {
-//        let USER_ID: String = SendBird.deviceUniqueID()
-        let USER_ID: String = "041820100"
+        let USER_ID: String = SendBird.deviceUniqueID()
         let USER_NAME: String = userName
         
         self.messagingUserName = USER_NAME
