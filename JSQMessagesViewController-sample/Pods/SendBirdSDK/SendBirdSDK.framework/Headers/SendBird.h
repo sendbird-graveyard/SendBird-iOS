@@ -371,6 +371,14 @@ typedef enum {
 + (void) startMessagingWithUserId:(NSString *)userId;
 
 /**
+ *  Start Messaging with the person using User ID([`guestId`](./SendBirdUser.html#//api/name/guestId))
+ *  This will create Group Messaging Channel not 1 on 1 Messaging Channel
+ *
+ *  @param userId The other person's User ID to start Messaging with
+ */
++ (void) startMessagingAsGroupWithUserId:(NSString *)userId;
+
+/**
  *  Start Group Messaging with people using the array of User IDs([`guestId`](./SendBirdUser.html#//api/name/guestId)) (Messaging/Group Messaging only)
  *
  *  @param userIds NSArray of User IDs containing the list of people to start Group Messaging with
@@ -674,7 +682,33 @@ typedef enum {
  */
 + (SendBirdUserListQuery *) queryUserList;
 
+/**
+ *  Set the current device token to SendBird. Refer to [Push Notification](https://sendbird.gitbooks.io/sendbird-ios-sdk/content/en//push_notifications.html) document.
+ *
+ *  @param devToken Device token for APNS.
+ */
 + (void) registerForRemoteNotifications:(NSData *)devToken;
+
+/**
+ *  Register device token to SendBird for APNS. You have to invoke [`registerForRemoteNotifications:`](./SendBird.html#//api/name/registerForRemoteNotifications:) in advanced.
+ *
+ *  @param onResult callback for the result
+ */
++ (void) registerPushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
+
+/**
+ *  Unregister current device token from SendBird.
+ *
+ *  @param onResult callback for the result
+ */
++ (void) unregisterCurrentDevicePushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
+
+/**
+ *  Unregister all devices token for the user from SendBird.
+ *
+ *  @param onResult callback for the result
+ */
++ (void) unregisterAllDevicesPushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
 
 /**
  *  For UnitTest

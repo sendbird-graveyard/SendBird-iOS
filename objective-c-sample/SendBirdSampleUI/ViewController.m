@@ -496,7 +496,7 @@
 {
     NSString *USER_ID = [SendBirdUtils deviceUniqueID];
     NSString *USER_NAME = userName;
-    
+
     messagingUserName = USER_NAME;
     messagingUserId = USER_ID;
     

@@ -67,7 +67,7 @@
 - (void) markAllAsRead;
 - (void) getChannelListInPage:(int)page withQuery:(NSString *)query withLimit:(int)limit resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 //- (void) getMessagingListWithResultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
-- (void) getMessagingListV2WithToken:(NSString *)token andPage:(int)page withLimit:(int)limit andShowEmpty:(BOOL)showEmpty resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) getMessagingListWithToken:(NSString *)token andPage:(int)page withLimit:(int)limit andShowEmpty:(BOOL)showEmpty resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) messageListInChannelUrl:(NSString *)channelUrl withMessageTs:(long long)messageTs prevLimit:(int)prevLimit andNextLimit:(int)nextLimit include:(BOOL)include resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) messageListWithChannelUrl:(NSString *)channelUrl messageStartTs:(long long)messageStartTs messageEndTs:(long long)messageEndTs resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) leaveChannel:(NSString *)channelUrl;
@@ -88,7 +88,7 @@
 - (void) endAllMessaging;
 - (void) typeStart:(SendBirdTypeStatus *)status;
 - (void) typeEnd:(SendBirdTypeStatus *)status;
-- (void) startMessagingWithGuestIds:(NSArray *)guestIds;
+- (void) startMessagingWithGuestIds:(NSArray *)guestIds andIsGroup:(BOOL)isGroup;
 - (void) endMessagingWithChannelUrl:(NSString *)channelUrl;
 - (void) hideMessagingWithChannelUrl:(NSString *)channelUrl;
 - (void) hideAllMessaging;
@@ -126,5 +126,8 @@
 
 - (void) setSystemEventReceivedBlock:(void (^)(SendBirdSystemEvent *event))systemEventReceivedBlock;
 - (void) setMultiChannelSystemEventReceivedBlock:(void (^)(SendBirdChannel *channel, SendBirdSystemEvent *event))systemEventReceivedBlock;
+- (void) registerPushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) unregisterCurrentDevicePushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) unregisterAllDevicesPushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
 
 @end
