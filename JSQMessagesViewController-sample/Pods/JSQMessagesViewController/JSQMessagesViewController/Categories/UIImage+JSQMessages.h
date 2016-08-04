@@ -76,4 +76,9 @@
  */
 + (UIImage *)jsq_defaultPlayImage;
 
+/**
+ *  @return The default file icon image.
+ */
++ (UIImage *)jsq_defaultFileImage;
+
 @end

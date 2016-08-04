@@ -44,6 +44,8 @@
 #import "NSBundle+JSQMessages.h"
 
 #import "JSQPhotoMediaItem.h"
+#import "JSQVideoMediaItem.h"
+#import "JSQFileMediaItem.h"
 #import "JSQMessagesMediaViewBubbleImageMasker.h"
 
 static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObservingContext;
@@ -467,7 +469,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
     JSQMessagesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.delegate = collectionView;
-
+    
     if (!isMediaMessage) {
         cell.textView.text = [messageItem text];
 
@@ -521,6 +523,14 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
                 
             }];
         }
+        else if ([messageMedia isKindOfClass:[JSQVideoMediaItem class]]) {
+            ((JSQVideoMediaItem *)messageMedia).appliesMediaViewMaskAsOutgoing = isOutgoingMessage;
+            cell.mediaView = [messageMedia mediaView] ?: [messageMedia mediaPlaceholderView];
+        }
+        else if ([messageMedia isKindOfClass:[JSQFileMediaItem class]]) {
+            ((JSQFileMediaItem *)messageMedia).appliesMediaViewMaskAsOutgoing = isOutgoingMessage;
+            cell.mediaView = [messageMedia mediaView] ?: [messageMedia mediaPlaceholderView];
+        }
         else {
             cell.mediaView = [messageMedia mediaView] ?: [messageMedia mediaPlaceholderView];
             NSParameterAssert(cell.mediaView != nil);
@@ -544,7 +554,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
             NSString *avatarHighlightedImageURL = [avatarImageDataSource avatarHighlightedImageURL];
             NSUInteger diameter = [avatarImageDataSource diameter];
             
-            if (avatarImageURL != nil) {
+            if (avatarImageURL != nil && [avatarImageURL length] > 0) {
                 NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:avatarImageURL]];
                 [cell.avatarImageView setImageWithURLRequest:request placeholderImage:[avatarImageDataSource avatarPlaceholderImage] success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
                     [cell.avatarImageView setImage:[JSQMessagesAvatarImageFactory circularAvatarImage:image withDiameter:diameter]];
@@ -589,7 +599,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
                 [dataTask resume];
             }
             else {
-                if (avatarImageURL != nil) {
+                if (avatarImageURL != nil && [avatarImageURL length] > 0) {
                     NSCharacterSet *expectedCharSet = [NSCharacterSet URLQueryAllowedCharacterSet];
                     NSURL *url = [NSURL URLWithString:[avatarImageURL stringByAddingPercentEncodingWithAllowedCharacters:expectedCharSet]];
                     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];

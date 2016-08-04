@@ -6,11 +6,11 @@
 	<dict>
 		<key>Headers/SendBird.h</key>
 		<data>
-		1wBqMKBvsOpYmwc0xg+A44gd8aQ=
+		f6ds9GPCtybgWmBKDUOXFMQ9QvM=
 		</data>
 		<key>Headers/SendBirdAPIClient.h</key>
 		<data>
-		91yizmwixnLTX3M2a2Di1U2xW6g=
+		8w1OjFyHNd8mX9fJU9iRUqZja9k=
 		</data>
 		<key>Headers/SendBirdAppUser.h</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Headers/SendBirdClient.h</key>
 		<data>
-		xbe85/cDoeZHkpqSgK7spSzV1+A=
+		VbXCzSlnwYqp5QF3xEbh8efrAac=
 		</data>
 		<key>Headers/SendBirdCommand.h</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Headers/SendBirdError.h</key>
 		<data>
-		u292JvSkWJn1LebD4VnW2+l+RrU=
+		CfqWFKSY1VAvmZOZLxF2Zbflrv8=
 		</data>
 		<key>Headers/SendBirdFileInfo.h</key>
 		<data>
@@ -166,7 +166,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		Q+WlEPZIOk3HZan9B0e/XYUFb30=
+		VGTr24TtkMO3g/9jF0RNjOV34mg=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -179,22 +179,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			1wBqMKBvsOpYmwc0xg+A44gd8aQ=
+			f6ds9GPCtybgWmBKDUOXFMQ9QvM=
 			</data>
 			<key>hash2</key>
 			<data>
-			6KoGQnluNu07OZOokcGtd+42x0g+NjbEy3jS7mx5stg=
+			C1PsZ0f4/ThtxVf35/3oYPAhuw5vgrK/G4dNtVAc4y8=
 			</data>
 		</dict>
 		<key>Headers/SendBirdAPIClient.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			91yizmwixnLTX3M2a2Di1U2xW6g=
+			8w1OjFyHNd8mX9fJU9iRUqZja9k=
 			</data>
 			<key>hash2</key>
 			<data>
-			SzQsD9nCAGFn+ItsHtyAI1gRohXBpuf/pMU8b/eIlB4=
+			PAUfj7VU2Fi9e323T+NIm1I2jVWqzjNnfRBG2CxardU=
 			</data>
 		</dict>
 		<key>Headers/SendBirdAppUser.h</key>
@@ -289,11 +289,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			xbe85/cDoeZHkpqSgK7spSzV1+A=
+			VbXCzSlnwYqp5QF3xEbh8efrAac=
 			</data>
 			<key>hash2</key>
 			<data>
-			89DcU75JRNsqssG79VXoVaN73ulgzs7VycRlMslSbsA=
+			0x8V911JXM4A/9PPVX59NC7ssHJUIlmao7eAYl7TmJM=
 			</data>
 		</dict>
 		<key>Headers/SendBirdCommand.h</key>
@@ -311,11 +311,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			u292JvSkWJn1LebD4VnW2+l+RrU=
+			CfqWFKSY1VAvmZOZLxF2Zbflrv8=
 			</data>
 			<key>hash2</key>
 			<data>
-			8aUbAhmo3VdPmCVk2czlLhqlvNhJZOPL8BOC4Xp93S8=
+			tXwrsTvhdyClogqyaHpmzNiKUKTQ+LufY2BFkokoz7U=
 			</data>
 		</dict>
 		<key>Headers/SendBirdFileInfo.h</key>

@@ -100,4 +100,9 @@
     return [UIImage jsq_bubbleImageFromBundleWithName:@"play"];
 }
 
++ (UIImage *)jsq_defaultFileImage
+{
+    return [UIImage jsq_bubbleImageFromBundleWithName:@"file"];
+}
+
 @end

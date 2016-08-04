@@ -397,4 +397,8 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     return YES;
 }
 
+- (NSLayoutConstraint *)pointer {
+    return self.messageBubbleTopLabelHeightConstraint;
+}
+
 @end

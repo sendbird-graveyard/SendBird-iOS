@@ -29,7 +29,7 @@
 #define kErrLeaveChannel 16000
 
 /**
- *  This class defines the error codes. For detailed error codes, please refer to [SendBird iOS SDK](https://sendBird.gitbooks.io/ios-sdk/content/en/misc.html).
+ *  This class defines the error codes. For detailed error codes, please refer to [SendBird iOS SDK](https://sendbird.gitbooks.io/sendbird-ios-sdk/content/en/misc.html).
  */
 @interface SendBirdError : NSObject
 

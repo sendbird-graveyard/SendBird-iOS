@@ -207,4 +207,6 @@
 
 - (void)setUnreadCount:(NSUInteger)unreadCount;
 
+- (NSLayoutConstraint *)pointer;
+
 @end

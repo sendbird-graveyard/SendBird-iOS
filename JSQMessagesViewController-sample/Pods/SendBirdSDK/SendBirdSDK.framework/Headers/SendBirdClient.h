@@ -25,6 +25,7 @@
 #import "SendBirdMention.h"
 #import "SendBirdStructuredMessage.h"
 #import "SendBirdSystemEvent.h"
+#import "SendBirdAppUser.h"
 
 //extern void (^onMessageReceived)(SendBirdMessage *message);
 //extern void (^onSystemMessageReceived)(SendBirdSystemMessage *message);
@@ -74,6 +75,7 @@
 - (void) leaveMultipleChannels:(NSArray<NSString *> *)channelUrls;
 - (void) getBlockedUserListResultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) uploadFile:(NSData *)file filename:(NSString *)aFilename type:(NSString *)type size:(unsigned long)size customField:(NSString *)customField uploadBlock:(void (^)(SendBirdFileInfo *fileInfo, NSError *error))onUpload;
+- (void) uploadProfileImage:(NSData *)file uploadBlock:(void (^)(NSString *url, NSError *error))onUpload;
 - (void) cmdFile:(SendBirdFileInfo *)fileInfo toChannel:(SendBirdChannel *)channel;
 //- (void) saveCursor;
 //- (long long) loadCursorWithChannelUrl:(NSString *)channelUrl;
@@ -129,5 +131,6 @@
 - (void) registerPushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) unregisterCurrentDevicePushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) unregisterAllDevicesPushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) checkUserExistenceWithUserList:(NSArray<NSString *> *)userList resultBlock:(void (^)(NSDictionary<NSString *, SendBirdAppUser *> *response, NSError *error))onResult;
 
 @end

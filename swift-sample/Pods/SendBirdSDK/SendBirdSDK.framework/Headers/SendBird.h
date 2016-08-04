@@ -37,6 +37,7 @@
 #import "SendBirdChannelMetaCounterQuery.h"
 #import "SendBirdMemberCountQuery.h"
 #import "SendBirdSystemEvent.h"
+#import "SendBirdAppUser.h"
 
 #define kSendBirdInitWithIDFA 0
 #define kSendBirdInitWithIDFV 1
@@ -287,6 +288,11 @@ typedef enum {
  *  @param accessToken Access token
  */
 + (void) loginWithUserId:(NSString *)userId andUserName:(NSString *)userName andUserImageUrl:(NSString *)imageUrl andAccessToken:(NSString *)accessToken;
+
+/**
+ *  Log out.
+ */
++ (void) logout;
 
 /**
  *  Join a channel. You can make user join an Open Chat anytime, but you need to add a user to Members in case of Messaging Channels or Group Messaging Channels.
@@ -581,6 +587,14 @@ typedef enum {
 + (void) uploadFile:(NSData *)file filename:(NSString *)aFilename type:(NSString *)type hasSizeOfFile:(unsigned long)size withCustomField:(NSString *)customField uploadBlock:(void (^)(SendBirdFileInfo *fileInfo, NSError *error))onUpload;
 
 /**
+ *  Upload a profile image
+ *
+ *  @param file        Profile image file data using NSData class
+ *  @param onUpload    Callback block invoked upon completition of the upload
+ */
++ (void) uploadProfileImage:(NSData *)file uploadBlock:(void (^)(NSString *url, NSError *error))onUpload;
+
+/**
  *  Create an instance of [`SendBirdMessagingChannelListQuery`](./SendBirdMessagingChannelListQuery.html) to get the list of Messaging/Group Messaging channels
  *
  *  @return [`SendBirdMessagingChannelListQuery`](./SendBirdMessagingChannelListQuery.html) instance.
@@ -709,6 +723,14 @@ typedef enum {
  *  @param onResult callback for the result
  */
 + (void) unregisterAllDevicesPushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
+
+/**
+ *  Check if the users exist.
+ *
+ *  @param userList List of user id
+ *  @param onResult callback for the result
+ */
++ (void) checkUserExistenceWithUserList:(NSArray<NSString *> *)userList resultBlock:(void (^)(NSDictionary<NSString *, SendBirdAppUser *>*response, NSError *error))onResult;
 
 /**
  *  For UnitTest
