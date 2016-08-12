@@ -1,0 +1,1 @@
+../../../../SendBirdSDK/SendBirdSDK.framework/Headers/SBDError.h

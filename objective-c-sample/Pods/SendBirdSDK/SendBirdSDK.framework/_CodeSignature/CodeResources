@@ -4,169 +4,85 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Headers/SendBird.h</key>
+		<key>Headers/SBDAdminMessage.h</key>
 		<data>
-		f6ds9GPCtybgWmBKDUOXFMQ9QvM=
+		rRnz/8Ot0eOa5gdXojNYSwSubN8=
 		</data>
-		<key>Headers/SendBirdAPIClient.h</key>
+		<key>Headers/SBDBaseChannel.h</key>
 		<data>
-		8w1OjFyHNd8mX9fJU9iRUqZja9k=
+		2l14FIANQdjmnrbmL0bjmjj9cos=
 		</data>
-		<key>Headers/SendBirdAppUser.h</key>
+		<key>Headers/SBDBaseMessage.h</key>
 		<data>
-		gHZPNBlj4VaIi2xhKBabcjT9loQ=
+		gsxSHWsVymIzCSJoU2Y0pMLMEJY=
 		</data>
-		<key>Headers/SendBirdBlockedUser.h</key>
+		<key>Headers/SBDChannelEvent.h</key>
 		<data>
-		1lxVFgi1jTE6c7DNLUztppYiGCc=
+		ywMwT6AniotvcmICbumATV+qQ3A=
 		</data>
-		<key>Headers/SendBirdBlockedUserListQuery.h</key>
+		<key>Headers/SBDCommand.h</key>
 		<data>
-		znFrkm8j071BQ2jkp087/zRdzNg=
+		ouBzKcDa0Sa1ZwQTyXuWE5RCa4c=
 		</data>
-		<key>Headers/SendBirdBroadcastMessage.h</key>
+		<key>Headers/SBDError.h</key>
 		<data>
-		LPQheOtX6c6kP5JK3G04vPVXgNA=
+		EY5fY73bDuW9r1lyJ6U+nDJ8x1s=
 		</data>
-		<key>Headers/SendBirdChannel.h</key>
+		<key>Headers/SBDFileMessage.h</key>
 		<data>
-		mPcmbNP6SpsLCXekNBeVkySmPx0=
+		sX6eBDmE5VJzpbfMO0RGPWVUwBw=
 		</data>
-		<key>Headers/SendBirdChannelListQuery.h</key>
+		<key>Headers/SBDGroupChannel.h</key>
 		<data>
-		JgqgV/qlyrkqXpnydGOZrq8hHQY=
+		CroSD712AZ+zDZwsNIo1BzUSMZY=
 		</data>
-		<key>Headers/SendBirdChannelMetaCounterQuery.h</key>
+		<key>Headers/SBDGroupChannelListQuery.h</key>
 		<data>
-		EMY7au83h/d8WNrJzdOfmiANs6I=
+		dgLX/FMv/7u3g/4HsT6fXFsOr8Q=
 		</data>
-		<key>Headers/SendBirdChannelMetaDataQuery.h</key>
+		<key>Headers/SBDMain.h</key>
 		<data>
-		5M1axPek3oJsOKW4JmDobk1C6fA=
+		457UgRinIqlyhb20k2fJeQnQ4Xg=
 		</data>
-		<key>Headers/SendBirdClient.h</key>
+		<key>Headers/SBDMessageListQuery.h</key>
 		<data>
-		VbXCzSlnwYqp5QF3xEbh8efrAac=
+		qhl8xZLZ/PZza0mmmUtZt4nkD9k=
 		</data>
-		<key>Headers/SendBirdCommand.h</key>
+		<key>Headers/SBDOpenChannel.h</key>
 		<data>
-		0qncfxxPa4Ach9yPyZazNUtdJnM=
+		Obc5SIRbXM7ub9Ymj4U3vkFvsDQ=
 		</data>
-		<key>Headers/SendBirdError.h</key>
+		<key>Headers/SBDOpenChannelListQuery.h</key>
 		<data>
-		CfqWFKSY1VAvmZOZLxF2Zbflrv8=
+		zXIDyZKt7J7DmRDMLvt8IBJoujE=
 		</data>
-		<key>Headers/SendBirdFileInfo.h</key>
+		<key>Headers/SBDPreviousMessageListQuery.h</key>
 		<data>
-		tHm7DW4nMUMwyXQYnQfveahhlUo=
+		XJRPOxsIAa8IomPe7gtyPiSwJ4s=
 		</data>
-		<key>Headers/SendBirdFileLink.h</key>
+		<key>Headers/SBDTypes.h</key>
 		<data>
-		Q7CN7C65I7M6WqWsNkBwjXCv2T0=
+		9eAfd4hb7Sxoyb1tBE4ajYXH7so=
 		</data>
-		<key>Headers/SendBirdMember.h</key>
+		<key>Headers/SBDUser.h</key>
 		<data>
-		U2qnNfwctp23uTq/Bu7A1Mykz1c=
+		2IHLz0/bUmhdW/KURnYgr1wBHN4=
 		</data>
-		<key>Headers/SendBirdMemberCountQuery.h</key>
+		<key>Headers/SBDUserListQuery.h</key>
 		<data>
-		5qqLol01MdUjtb/ggw1snJkjDUI=
+		TByBnwQFyeGco09725ejDda3h+Y=
 		</data>
-		<key>Headers/SendBirdMemberInMessagingChannel.h</key>
+		<key>Headers/SBDUserMessage.h</key>
 		<data>
-		RxPcUY+ozperzFOc6BTC8sQhC2c=
-		</data>
-		<key>Headers/SendBirdMemberListQuery.h</key>
-		<data>
-		iGjt5T7HSpR5st/5PhVjVj0o1Bo=
-		</data>
-		<key>Headers/SendBirdMention.h</key>
-		<data>
-		P5Gw7GSA4fBbCevsYwCCbG7680c=
-		</data>
-		<key>Headers/SendBirdMessage.h</key>
-		<data>
-		FAU6sq88IDP9GtIH0hD0WcQRn4w=
-		</data>
-		<key>Headers/SendBirdMessageListQuery.h</key>
-		<data>
-		D0IruWTlcyTh2S7CuUm9uyXgQLw=
-		</data>
-		<key>Headers/SendBirdMessageModel.h</key>
-		<data>
-		RC75Cry/AYS0k4dpywpNAbC98KU=
-		</data>
-		<key>Headers/SendBirdMessagingChannel.h</key>
-		<data>
-		xokdge38lC81ct6zjBjf/HQFnMM=
-		</data>
-		<key>Headers/SendBirdMessagingChannelListQuery.h</key>
-		<data>
-		wxxSvpni1bkKAaX5uc2R8uTCHIM=
-		</data>
-		<key>Headers/SendBirdMessagingChannelUpdate.h</key>
-		<data>
-		/22XFm1sH4SaGfCNQ+LAc8Ss4qE=
-		</data>
-		<key>Headers/SendBirdMessagingUnreadCountQuery.h</key>
-		<data>
-		TbnGfnVBUeIFlScYEJ7jSX0Lobk=
-		</data>
-		<key>Headers/SendBirdOnlineMemberCountQuery.h</key>
-		<data>
-		Ray0yRcldX8juOpBfLLh83rN5qo=
-		</data>
-		<key>Headers/SendBirdReadStatus.h</key>
-		<data>
-		+YUS9YydAGdn8rLFlS9E5Xw6+WE=
+		xhzoXwKeIYw1f/euEFCDczhTeIU=
 		</data>
 		<key>Headers/SendBirdSDK.h</key>
 		<data>
-		No30tDNtPc3VObxRJCedwmZeJyY=
-		</data>
-		<key>Headers/SendBirdSDKUtils.h</key>
-		<data>
-		/S1Sv+Om3+dR5UgYCXK6dF6yiEs=
-		</data>
-		<key>Headers/SendBirdSRWebSocket.h</key>
-		<data>
-		otcHvghjOee1Y/KkNVj8es3AXWQ=
-		</data>
-		<key>Headers/SendBirdSender.h</key>
-		<data>
-		yb/ygW3iRgSW+dtiA94AjVk6dd0=
-		</data>
-		<key>Headers/SendBirdStructuredMessage.h</key>
-		<data>
-		LlTcVEm3WmXx9TSTPF2r54C4jzI=
-		</data>
-		<key>Headers/SendBirdSystemEvent.h</key>
-		<data>
-		m42S3Ssd+IZVgp9cjGH22YjNMuo=
-		</data>
-		<key>Headers/SendBirdSystemMessage.h</key>
-		<data>
-		4Nnro/qQLPUvwdFdhWxxuHkGVuY=
-		</data>
-		<key>Headers/SendBirdTypeStatus.h</key>
-		<data>
-		kKB0NGfnBOjBO6GQyKLJZJ0cHSU=
-		</data>
-		<key>Headers/SendBirdUser.h</key>
-		<data>
-		D99G4zJgpCq0zOTWNNRlqBhZHs0=
-		</data>
-		<key>Headers/SendBirdUserListQuery.h</key>
-		<data>
-		WotmsDTNLxtf5syPYP18s22Y6HI=
-		</data>
-		<key>Headers/SendBirdWSClient.h</key>
-		<data>
-		ct3pppTYXK2O8OnLzb7oUhu5rSI=
+		AgnbZ6CHJbuc5DJqmODmdNTdmQQ=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		VGTr24TtkMO3g/9jF0RNjOV34mg=
+		xw8fAWNG2gxgU78xFl1f5+gjVX0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -175,444 +91,213 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/SendBird.h</key>
+		<key>Headers/SBDAdminMessage.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			f6ds9GPCtybgWmBKDUOXFMQ9QvM=
+			rRnz/8Ot0eOa5gdXojNYSwSubN8=
 			</data>
 			<key>hash2</key>
 			<data>
-			C1PsZ0f4/ThtxVf35/3oYPAhuw5vgrK/G4dNtVAc4y8=
+			U6N6FTtBe1e0gdxOMpvozAnv4QIVrt1iglWWzS9C+Zs=
 			</data>
 		</dict>
-		<key>Headers/SendBirdAPIClient.h</key>
+		<key>Headers/SBDBaseChannel.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			8w1OjFyHNd8mX9fJU9iRUqZja9k=
+			2l14FIANQdjmnrbmL0bjmjj9cos=
 			</data>
 			<key>hash2</key>
 			<data>
-			PAUfj7VU2Fi9e323T+NIm1I2jVWqzjNnfRBG2CxardU=
+			bYofj3V21o+pxUr7KtYtqD+RmsrjSv3kzsyjQLk7LUw=
 			</data>
 		</dict>
-		<key>Headers/SendBirdAppUser.h</key>
+		<key>Headers/SBDBaseMessage.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			gHZPNBlj4VaIi2xhKBabcjT9loQ=
+			gsxSHWsVymIzCSJoU2Y0pMLMEJY=
 			</data>
 			<key>hash2</key>
 			<data>
-			jtT9LW9XCkWX2qWaGlT+G1KjoNHzonFOc3K+dx7XyRk=
+			MosXqdlIRe4nWhY8SUguPr1734wE/EKAVEyQbDNruHs=
 			</data>
 		</dict>
-		<key>Headers/SendBirdBlockedUser.h</key>
+		<key>Headers/SBDChannelEvent.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			1lxVFgi1jTE6c7DNLUztppYiGCc=
+			ywMwT6AniotvcmICbumATV+qQ3A=
 			</data>
 			<key>hash2</key>
 			<data>
-			/HNU2TZG/+DrWtefQJFLTS7r7lgZTpljyY6wUfc6s1g=
+			BFnzTuMUDilEIJQoeycHtYoE4oM1zE+T0mDg+iar/lE=
 			</data>
 		</dict>
-		<key>Headers/SendBirdBlockedUserListQuery.h</key>
+		<key>Headers/SBDCommand.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			znFrkm8j071BQ2jkp087/zRdzNg=
+			ouBzKcDa0Sa1ZwQTyXuWE5RCa4c=
 			</data>
 			<key>hash2</key>
 			<data>
-			T4YYR4sIaWljaoFaWYQyRwhNLeo64cozXfbNHM0UuYA=
+			qXkPLmsMFpsQEqnCUM66PcXKo9bwham9TfcKhUGDSSk=
 			</data>
 		</dict>
-		<key>Headers/SendBirdBroadcastMessage.h</key>
+		<key>Headers/SBDError.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			LPQheOtX6c6kP5JK3G04vPVXgNA=
+			EY5fY73bDuW9r1lyJ6U+nDJ8x1s=
 			</data>
 			<key>hash2</key>
 			<data>
-			KUj1Zhjjbuqk/Tvl8dym31bmelIoZ5uAJZ+a7AqCMvI=
+			e4urWRv2smvG+o1lt0KXNFQhtIETDf07GtRVLlggJt0=
 			</data>
 		</dict>
-		<key>Headers/SendBirdChannel.h</key>
+		<key>Headers/SBDFileMessage.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			mPcmbNP6SpsLCXekNBeVkySmPx0=
+			sX6eBDmE5VJzpbfMO0RGPWVUwBw=
 			</data>
 			<key>hash2</key>
 			<data>
-			iE018JNA/v6jU7oSdFg+eRcoUlXr8+qTIdW6B6kNLW4=
+			995I8EFnCIUujJEvn4n2bEHw6mOLbsPlfiPJtcIT42g=
 			</data>
 		</dict>
-		<key>Headers/SendBirdChannelListQuery.h</key>
+		<key>Headers/SBDGroupChannel.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			JgqgV/qlyrkqXpnydGOZrq8hHQY=
+			CroSD712AZ+zDZwsNIo1BzUSMZY=
 			</data>
 			<key>hash2</key>
 			<data>
-			AqhAybgZhlIFMNYH0ixlCsKb6xVOru6Gq0+5iYx5O/E=
+			lysvHkH6sL9uz35qlRhIBgrqzxcoj7JW+o/aA+Vm/z0=
 			</data>
 		</dict>
-		<key>Headers/SendBirdChannelMetaCounterQuery.h</key>
+		<key>Headers/SBDGroupChannelListQuery.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			EMY7au83h/d8WNrJzdOfmiANs6I=
+			dgLX/FMv/7u3g/4HsT6fXFsOr8Q=
 			</data>
 			<key>hash2</key>
 			<data>
-			1DB+K2qtPFsp4sasyiPN0iWGZf8+XOPgvwI83rlvWEA=
+			DW+W7JQX02kOWNYilhY2H1QIhqCQ9s4lqM5ix7xCsX4=
 			</data>
 		</dict>
-		<key>Headers/SendBirdChannelMetaDataQuery.h</key>
+		<key>Headers/SBDMain.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			5M1axPek3oJsOKW4JmDobk1C6fA=
+			457UgRinIqlyhb20k2fJeQnQ4Xg=
 			</data>
 			<key>hash2</key>
 			<data>
-			5mGDQQ2fYgLLq8HQ+b3dbRSErBXecwX5cbqiyTZ88Fc=
+			Ef8//kezmrjyig/Hp1GzbOdEyKqNkmx8QoZGjC1oRZM=
 			</data>
 		</dict>
-		<key>Headers/SendBirdClient.h</key>
+		<key>Headers/SBDMessageListQuery.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			VbXCzSlnwYqp5QF3xEbh8efrAac=
+			qhl8xZLZ/PZza0mmmUtZt4nkD9k=
 			</data>
 			<key>hash2</key>
 			<data>
-			0x8V911JXM4A/9PPVX59NC7ssHJUIlmao7eAYl7TmJM=
+			K88IPgNxkrvobDefIdvqOt3vNRMN6yE2xbevpthzjJc=
 			</data>
 		</dict>
-		<key>Headers/SendBirdCommand.h</key>
+		<key>Headers/SBDOpenChannel.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			0qncfxxPa4Ach9yPyZazNUtdJnM=
+			Obc5SIRbXM7ub9Ymj4U3vkFvsDQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			niIGmLDcYVArkurgNpz2nuE5g8kITX7HBBWK3GcNK+k=
+			XpuR3H/VpW0oe3XcLtuq1COEqNuH5v116W0vSDS11aI=
 			</data>
 		</dict>
-		<key>Headers/SendBirdError.h</key>
+		<key>Headers/SBDOpenChannelListQuery.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			CfqWFKSY1VAvmZOZLxF2Zbflrv8=
+			zXIDyZKt7J7DmRDMLvt8IBJoujE=
 			</data>
 			<key>hash2</key>
 			<data>
-			tXwrsTvhdyClogqyaHpmzNiKUKTQ+LufY2BFkokoz7U=
+			qnWMzXxOHD3XFJ6iT0+R1VPaMfSxtCERqXRAKezDT0c=
 			</data>
 		</dict>
-		<key>Headers/SendBirdFileInfo.h</key>
+		<key>Headers/SBDPreviousMessageListQuery.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			tHm7DW4nMUMwyXQYnQfveahhlUo=
+			XJRPOxsIAa8IomPe7gtyPiSwJ4s=
 			</data>
 			<key>hash2</key>
 			<data>
-			rVOED/lNennj38+1CqmwR2eh6ScIKXuhPxb2EKbxdq0=
+			r9we5c6/Es6GMZ7yv7Oews4xaHQbaKRk83I0zqS20xA=
 			</data>
 		</dict>
-		<key>Headers/SendBirdFileLink.h</key>
+		<key>Headers/SBDTypes.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Q7CN7C65I7M6WqWsNkBwjXCv2T0=
+			9eAfd4hb7Sxoyb1tBE4ajYXH7so=
 			</data>
 			<key>hash2</key>
 			<data>
-			4zeqOil6OZS0CCHyWvHb4ISSZtXafW58ffuDPTuB/bY=
+			aIbBH9rKuUre8bggp+8CWTEGCPiBlJBx762Q+9eLjhg=
 			</data>
 		</dict>
-		<key>Headers/SendBirdMember.h</key>
+		<key>Headers/SBDUser.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			U2qnNfwctp23uTq/Bu7A1Mykz1c=
+			2IHLz0/bUmhdW/KURnYgr1wBHN4=
 			</data>
 			<key>hash2</key>
 			<data>
-			87G+WxQr6hTIitWJErH8xOEiUPcPE+ATK6N+XPyJ0hs=
+			atenijHiW5Lf/J3W1/UhLSz/BJbSPD59EpQ46C5LVjg=
 			</data>
 		</dict>
-		<key>Headers/SendBirdMemberCountQuery.h</key>
+		<key>Headers/SBDUserListQuery.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			5qqLol01MdUjtb/ggw1snJkjDUI=
+			TByBnwQFyeGco09725ejDda3h+Y=
 			</data>
 			<key>hash2</key>
 			<data>
-			8Hn60+7Lwnqc/e8808gRg3k7GjY5jyH/V0xMopHRVGQ=
+			F3+X1dwxvjuZuP28hbHPxa6oMONSKHKsZk/2J41Wtxs=
 			</data>
 		</dict>
-		<key>Headers/SendBirdMemberInMessagingChannel.h</key>
+		<key>Headers/SBDUserMessage.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			RxPcUY+ozperzFOc6BTC8sQhC2c=
+			xhzoXwKeIYw1f/euEFCDczhTeIU=
 			</data>
 			<key>hash2</key>
 			<data>
-			DzT/Nlg6Z6tMMx2F2JcZJBD8bkadUWw4+np6ApQz3q4=
-			</data>
-		</dict>
-		<key>Headers/SendBirdMemberListQuery.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			iGjt5T7HSpR5st/5PhVjVj0o1Bo=
-			</data>
-			<key>hash2</key>
-			<data>
-			ZNcS/rJP0duPBEz1xvWxgGoCh+Ko5XQyleNzr5OSswc=
-			</data>
-		</dict>
-		<key>Headers/SendBirdMention.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			P5Gw7GSA4fBbCevsYwCCbG7680c=
-			</data>
-			<key>hash2</key>
-			<data>
-			hqr+HIrkl52VznJ/ErfvyZ4BMZHxhzeHqSk4IkY99uA=
-			</data>
-		</dict>
-		<key>Headers/SendBirdMessage.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			FAU6sq88IDP9GtIH0hD0WcQRn4w=
-			</data>
-			<key>hash2</key>
-			<data>
-			fuoZ9ifGVQSFcBI2f8lcs/CRNekJOBx+9BYEHVnBkWk=
-			</data>
-		</dict>
-		<key>Headers/SendBirdMessageListQuery.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			D0IruWTlcyTh2S7CuUm9uyXgQLw=
-			</data>
-			<key>hash2</key>
-			<data>
-			LAafvEV6tmphnJsQvrN+/u5RBFKJZlxy3xdN2pP1shQ=
-			</data>
-		</dict>
-		<key>Headers/SendBirdMessageModel.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			RC75Cry/AYS0k4dpywpNAbC98KU=
-			</data>
-			<key>hash2</key>
-			<data>
-			DLjI0DIOfg9JZtfTMqXtQStjSKfJpTaomk4uW9mdbK4=
-			</data>
-		</dict>
-		<key>Headers/SendBirdMessagingChannel.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			xokdge38lC81ct6zjBjf/HQFnMM=
-			</data>
-			<key>hash2</key>
-			<data>
-			quYaCnq5r8Gn8s9mxS10AekpaKiJ8505uZK8lMUQSDU=
-			</data>
-		</dict>
-		<key>Headers/SendBirdMessagingChannelListQuery.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			wxxSvpni1bkKAaX5uc2R8uTCHIM=
-			</data>
-			<key>hash2</key>
-			<data>
-			MnlfSC2knKHOgPGH1XlJwNfV4tdHAN8iXDmVnjE1Fl8=
-			</data>
-		</dict>
-		<key>Headers/SendBirdMessagingChannelUpdate.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			/22XFm1sH4SaGfCNQ+LAc8Ss4qE=
-			</data>
-			<key>hash2</key>
-			<data>
-			nudCxLuoMcCwalSNalkfOEeQ7CRItpcdPZNAsCOBlWc=
-			</data>
-		</dict>
-		<key>Headers/SendBirdMessagingUnreadCountQuery.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			TbnGfnVBUeIFlScYEJ7jSX0Lobk=
-			</data>
-			<key>hash2</key>
-			<data>
-			N5jABLltEZzW6Tg64UuVEnPTmyVSM67MhGxbW158U2A=
-			</data>
-		</dict>
-		<key>Headers/SendBirdOnlineMemberCountQuery.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Ray0yRcldX8juOpBfLLh83rN5qo=
-			</data>
-			<key>hash2</key>
-			<data>
-			lNV8Y2qd639B3FZdyeY66GRx7M/TFtwknGV0jj+K7xo=
-			</data>
-		</dict>
-		<key>Headers/SendBirdReadStatus.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			+YUS9YydAGdn8rLFlS9E5Xw6+WE=
-			</data>
-			<key>hash2</key>
-			<data>
-			LzCstFRJnG6csr1Ts/ooBX5tlUO5QKk8xkaFvyx42Q0=
+			QcOC/veXXgXPr9TZ2gVTJWmyDmQyWBVNhgs/+Mw+EJU=
 			</data>
 		</dict>
 		<key>Headers/SendBirdSDK.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			No30tDNtPc3VObxRJCedwmZeJyY=
+			AgnbZ6CHJbuc5DJqmODmdNTdmQQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			zLqImEWbC5f7+Uzfge+O6usaj6mo2Q9LviK8X/+9NVQ=
-			</data>
-		</dict>
-		<key>Headers/SendBirdSDKUtils.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			/S1Sv+Om3+dR5UgYCXK6dF6yiEs=
-			</data>
-			<key>hash2</key>
-			<data>
-			NNi54mykNKM4mI49yvdPqdF0cf08IiLrM7VoslOAFJg=
-			</data>
-		</dict>
-		<key>Headers/SendBirdSRWebSocket.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			otcHvghjOee1Y/KkNVj8es3AXWQ=
-			</data>
-			<key>hash2</key>
-			<data>
-			SMMBXVWGBGkr92n90EsAOBr439XM/iltd2yKqFythJ8=
-			</data>
-		</dict>
-		<key>Headers/SendBirdSender.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			yb/ygW3iRgSW+dtiA94AjVk6dd0=
-			</data>
-			<key>hash2</key>
-			<data>
-			Ml/oivhC1PVf56enBjPiXCPR2xXceph6FFhmlAgMM20=
-			</data>
-		</dict>
-		<key>Headers/SendBirdStructuredMessage.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			LlTcVEm3WmXx9TSTPF2r54C4jzI=
-			</data>
-			<key>hash2</key>
-			<data>
-			UTgfyYExR5UbPhxL0Szu/+U7BSQZOS/9NAPh/JOKdaE=
-			</data>
-		</dict>
-		<key>Headers/SendBirdSystemEvent.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			m42S3Ssd+IZVgp9cjGH22YjNMuo=
-			</data>
-			<key>hash2</key>
-			<data>
-			6+xDtI544p7MUSepirnAxRjZmpxRXiG2sc77Ha9r2Ac=
-			</data>
-		</dict>
-		<key>Headers/SendBirdSystemMessage.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			4Nnro/qQLPUvwdFdhWxxuHkGVuY=
-			</data>
-			<key>hash2</key>
-			<data>
-			FJGjLpn/tsZzalcQXaxYbTfhUpJn5DwM1pbSrXG8i1E=
-			</data>
-		</dict>
-		<key>Headers/SendBirdTypeStatus.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			kKB0NGfnBOjBO6GQyKLJZJ0cHSU=
-			</data>
-			<key>hash2</key>
-			<data>
-			hsK5ide1dzaz9rfIH0ztpSms0/UmYUWPjOns40mSuB0=
-			</data>
-		</dict>
-		<key>Headers/SendBirdUser.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			D99G4zJgpCq0zOTWNNRlqBhZHs0=
-			</data>
-			<key>hash2</key>
-			<data>
-			vx4L+Oe/H9wIizbqfH2+F3pWyT5Cgh4tzJwEZOuHRSk=
-			</data>
-		</dict>
-		<key>Headers/SendBirdUserListQuery.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			WotmsDTNLxtf5syPYP18s22Y6HI=
-			</data>
-			<key>hash2</key>
-			<data>
-			+iyL9O0i7B7Uik/04892C9JS68wrZGyzeAFbEbtpUjs=
-			</data>
-		</dict>
-		<key>Headers/SendBirdWSClient.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			ct3pppTYXK2O8OnLzb7oUhu5rSI=
-			</data>
-			<key>hash2</key>
-			<data>
-			YEpxw7su/l6inO/n0XQYyDsFPdX7Yi6Sw+lRWSuVHAk=
+			oMX+LgvqJTLDvxyzRHtE4PRsaEtOcv9V4shkHriTg/Y=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
