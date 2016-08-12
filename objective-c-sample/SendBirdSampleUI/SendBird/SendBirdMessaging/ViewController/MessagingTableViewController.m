@@ -27,11 +27,12 @@
 #define kActionSheetTagStructuredMessage 3
 #define kTypingViewHeight 36.0
 
-@interface MessagingTableViewController ()<UITableViewDataSource, UITableViewDelegate, MessageInputViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
+@interface MessagingTableViewController ()<UITableViewDataSource, UITableViewDelegate, MessageInputViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
 @end
 
 @implementation MessagingTableViewController {
     NSLayoutConstraint *bottomMargin;
+    NSLayoutConstraint *messageInputViewHeight;
     NSLayoutConstraint *tableViewBottomMargin;
     NSMutableArray *messageArray;
     
@@ -554,11 +555,11 @@
         }
     } messageDeliveryBlock:^(BOOL send, NSString *message, NSString *data, NSString *messageId) {
         if (send == NO && [self.messageInputView isInputEnable]) {
-            [[self.messageInputView messageTextField] setText:message];
+            [[self.messageInputView messageTextView] setText:message];
             [self.messageInputView showSendButton];
         }
         else {
-            [[self.messageInputView messageTextField] setText:@""];
+            [[self.messageInputView messageTextView] setText:@""];
             [self.messageInputView hideSendButton];
         }
     } mutedMessagesReceivedBlock:^(SendBirdMessage *message) {
@@ -601,6 +602,7 @@
         [SendBird connect];
     }
     else if (viewMode == kMessagingViewMode) {
+        [self.messageInputView hideSendButton];
         [self startMessagingWithUser:self.targetUserId];
     }
 }
@@ -877,12 +879,13 @@
                                                multiplier:1
                                                  constant:0];
     [self.view addConstraint:bottomMargin];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.messageInputView attribute:NSLayoutAttributeHeight
+    messageInputViewHeight = [NSLayoutConstraint constraintWithItem:self.messageInputView attribute:NSLayoutAttributeHeight
                                                           relatedBy:NSLayoutRelationEqual
                                                              toItem:nil
                                                           attribute:NSLayoutAttributeNotAnAttribute
                                                          multiplier:1
-                                                           constant:44]];
+                                                           constant:44];
+    [self.view addConstraint:messageInputViewHeight];
     
     // Typing-now View
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.typingNowView attribute:NSLayoutAttributeBottom
@@ -1865,19 +1868,27 @@
     }];
 }
 
-#pragma mark - UITextFieldDelegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [self scrollToBottomWithReloading:NO force:YES animated:NO];
-    NSString *message = [textField text];
-    if ([message length] > 0) {
-        [SendBird typeEnd];
-        [textField setText:@""];
-        NSString *messageId = [[NSUUID UUID] UUIDString];
-        [SendBird sendMessage:message withTempId:messageId];
+#pragma mark - UITextViewDelegate
+- (void)textViewDidChange:(UITextView *)textView {
+    if (textView.text.length == 0) {
+        [self.messageInputView hideSendButton];
     }
-    
-    return YES;
+    else {
+        [self.messageInputView showSendButton];
+    }
+    [self.messageInputView setHeight:textView.contentSize.height maxHeight:60];
+    if (textView.contentSize.height <= 30) {
+        messageInputViewHeight.constant = 44;
+    }
+    else {
+        if (14 + textView.contentSize.height > 77) {
+            messageInputViewHeight.constant = 77;
+        }
+        else {
+            messageInputViewHeight.constant = 14 + textView.contentSize.height;
+        }
+    }
+    [self.view updateConstraints];
 }
 
 #pragma mark - MessagingFileLinkTableViewCellDelegate

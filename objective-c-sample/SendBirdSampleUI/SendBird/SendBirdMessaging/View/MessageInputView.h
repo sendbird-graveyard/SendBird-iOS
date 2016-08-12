@@ -21,18 +21,19 @@
 @interface MessageInputView : UIView
 
 @property (retain) UIView *topLineView;
-@property (retain) UITextField *messageTextField;
+@property (retain) UITextView *messageTextView;
 @property (retain) UIButton *sendButton;
 @property (retain) UIButton *fileAttachButton;
 @property (retain) UIButton *openChannelListButton;
 
-@property (retain, nonatomic) id<MessageInputViewDelegate, UITextFieldDelegate> delegate;
+@property (retain, nonatomic) id<MessageInputViewDelegate, UITextViewDelegate> delegate;
 
 - (void)hideKeyboard;
 - (void) setInputEnable:(BOOL)enable;
 - (BOOL) isInputEnable;
 - (void)hideSendButton;
 - (void)showSendButton;
+- (void)setHeight:(CGFloat)currentHeight maxHeight:(CGFloat)maxHeight;
 
 @end
 

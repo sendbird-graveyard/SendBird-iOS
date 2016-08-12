@@ -13,6 +13,9 @@
 
 @implementation MessageInputView {
     BOOL inputEnabled;
+    NSLayoutConstraint *textViewHeight;
+    NSLayoutConstraint *sendButtonHeight;
+    NSLayoutConstraint *fileAttachButtonHeight;
 }
 
 @synthesize delegate = _delegate;
@@ -42,22 +45,14 @@
     [self.openChannelListButton addTarget:nil action:@selector(clickChannelListButton) forControlEvents:UIControlEventTouchUpInside];
     
     
-    self.messageTextField = [[UITextField alloc] init];
-    [self.messageTextField setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.messageTextField setReturnKeyType:UIReturnKeyDone];
-    [self.messageTextField setPlaceholder:@"What\'s on your mind?"];
-    [self.messageTextField setTextColor:UIColorFromRGB(0x37434f)];
-    [self.messageTextField setAttributedPlaceholder:[[NSAttributedString alloc] initWithString:@"What\'s on your mind?" attributes:@{NSForegroundColorAttributeName: UIColorFromRGB(0xbbc3c9)}]];
-    [self.messageTextField setFont:[UIFont systemFontOfSize:kMessageFontSize]];
-    UIView *paddingLeftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 8)];
-    UIView *paddingRightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 48, 8)];
-    [self.messageTextField setLeftView:paddingLeftView];
-    [self.messageTextField setRightView:paddingRightView];
-    [self.messageTextField setLeftViewMode:UITextFieldViewModeAlways];
-    [self.messageTextField setRightViewMode:UITextFieldViewModeAlways];
-    [self.messageTextField.layer setBorderWidth:1.0];
-    [self.messageTextField.layer setBorderColor:[UIColorFromRGB(0xbbc3c9) CGColor]];
-    [self.messageTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    self.messageTextView = [[UITextView alloc] init];
+    [self.messageTextView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.messageTextView setTextColor:UIColorFromRGB(0x37434f)];
+    [self.messageTextView setFont:[UIFont systemFontOfSize:kMessageFontSize]];
+    [self.messageTextView setTextContainerInset:UIEdgeInsetsMake(6, 8, 6, 8)];
+    [self.messageTextView.layer setBorderWidth:1.0];
+    [self.messageTextView.layer setBorderColor:[UIColorFromRGB(0xbbc3c9) CGColor]];
+    [self.messageTextView setBackgroundColor:[UIColor whiteColor]];
     
     self.fileAttachButton = [[UIButton alloc] init];
     [self.fileAttachButton setBackgroundColor:[UIColor clearColor]];
@@ -76,16 +71,17 @@
     [self.sendButton setBackgroundImage:[UIImage imageNamed:@"_btn_green"] forState:UIControlStateNormal];
     [self.sendButton setBackgroundImage:[UIImage imageNamed:@"_btn_green"] forState:UIControlStateHighlighted];
     [self.sendButton setBackgroundImage:[UIImage imageNamed:@"_btn_green"] forState:UIControlStateSelected];
-    [self.sendButton setBackgroundImage:[UIImage imageNamed:@"_btn_white_line"] forState:UIControlStateDisabled];
     [self.sendButton addTarget:self action:@selector(clickSendButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.sendButton setAlpha:0];
+    [self.sendButton.layer setBorderWidth:1.0];
+    [self.sendButton.layer setBorderColor:[UIColorFromRGB(0xbbc3c9) CGColor]];
     [self.sendButton setEnabled:NO];
     
+    [self addSubview:self.topLineView];
     [self addSubview:self.openChannelListButton];
-    [self addSubview:self.messageTextField];
+    [self addSubview:self.messageTextView];
     [self addSubview:self.fileAttachButton];
     [self addSubview:self.sendButton];
-    [self addSubview:self.topLineView];
+    
     
     [self applyConstraints];
 }
@@ -145,24 +141,25 @@
     
     // File Attach Button
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.fileAttachButton
-                                                     attribute:NSLayoutAttributeCenterY
+                                                     attribute:NSLayoutAttributeBottom
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:self
-                                                     attribute:NSLayoutAttributeCenterY
-                                                    multiplier:1 constant:0]];
+                                                     attribute:NSLayoutAttributeBottom
+                                                    multiplier:1 constant:-7]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.fileAttachButton
                                                      attribute:NSLayoutAttributeWidth
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:nil
                                                      attribute:NSLayoutAttributeNotAnAttribute
                                                     multiplier:1 constant:28]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.fileAttachButton
-                                                     attribute:NSLayoutAttributeHeight
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:nil
-                                                     attribute:NSLayoutAttributeNotAnAttribute
-                                                    multiplier:1 constant:30]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.messageTextField
+    fileAttachButtonHeight = [NSLayoutConstraint constraintWithItem:self.fileAttachButton
+                                                          attribute:NSLayoutAttributeHeight
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:nil
+                                                          attribute:NSLayoutAttributeNotAnAttribute
+                                                         multiplier:1 constant:30];
+    [self addConstraint:fileAttachButtonHeight];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.messageTextView
                                                      attribute:NSLayoutAttributeLeading
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:self.fileAttachButton
@@ -170,32 +167,33 @@
                                                     multiplier:1 constant:-1]];
     
     // Message TextField
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.messageTextField
-                                                     attribute:NSLayoutAttributeCenterY
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.messageTextView
+                                                     attribute:NSLayoutAttributeBottom
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:self
-                                                     attribute:NSLayoutAttributeCenterY
-                                                    multiplier:1 constant:0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.messageTextField
-                                                     attribute:NSLayoutAttributeHeight
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:nil
-                                                     attribute:NSLayoutAttributeNotAnAttribute
-                                                    multiplier:1 constant:30]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.messageTextField
+                                                     attribute:NSLayoutAttributeBottom
+                                                    multiplier:1 constant:-7]];
+    textViewHeight = [NSLayoutConstraint constraintWithItem:self.messageTextView
+                                                  attribute:NSLayoutAttributeHeight
+                                                  relatedBy:NSLayoutRelationEqual
+                                                     toItem:nil
+                                                  attribute:NSLayoutAttributeNotAnAttribute
+                                                 multiplier:1 constant:30];
+    [self addConstraint:textViewHeight];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.messageTextView
                                                      attribute:NSLayoutAttributeTrailing
                                                      relatedBy:NSLayoutRelationEqual
-                                                        toItem:self
-                                                     attribute:NSLayoutAttributeTrailing
-                                                    multiplier:1 constant:-10]];
+                                                        toItem:self.sendButton
+                                                     attribute:NSLayoutAttributeLeading
+                                                    multiplier:1 constant:1]];
     
     // Send Button
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.sendButton
-                                                     attribute:NSLayoutAttributeCenterY
+                                                     attribute:NSLayoutAttributeBottom
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:self
-                                                     attribute:NSLayoutAttributeCenterY
-                                                    multiplier:1 constant:0]];
+                                                     attribute:NSLayoutAttributeBottom
+                                                    multiplier:1 constant:-7]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.sendButton
                                                      attribute:NSLayoutAttributeTrailing
                                                      relatedBy:NSLayoutRelationEqual
@@ -208,35 +206,52 @@
                                                         toItem:nil
                                                      attribute:NSLayoutAttributeNotAnAttribute
                                                     multiplier:1 constant:40]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.sendButton
-                                                     attribute:NSLayoutAttributeHeight
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:nil
-                                                     attribute:NSLayoutAttributeNotAnAttribute
-                                                    multiplier:1 constant:30]];
+    sendButtonHeight = [NSLayoutConstraint constraintWithItem:self.sendButton
+                                                    attribute:NSLayoutAttributeHeight
+                                                    relatedBy:NSLayoutRelationEqual
+                                                       toItem:nil
+                                                    attribute:NSLayoutAttributeNotAnAttribute
+                                                   multiplier:1 constant:30];
+    [self addConstraint:sendButtonHeight];
 }
 
 - (void)clickSendButton:(id)sender
 {
-    if ([[self.messageTextField text] length] == 0) {
+    if ([[self.messageTextView text] length] == 0) {
         return;
     }
-    [[self delegate] clickSendButton:[self.messageTextField text]];
+    [[self delegate] clickSendButton:[self.messageTextView text]];
     [SendBird typeEnd];
+}
+
+- (void)setHeight:(CGFloat)currentHeight maxHeight:(CGFloat)maxHeight
+{
+    if (currentHeight > 30 && currentHeight < maxHeight) {
+        textViewHeight.constant = currentHeight;
+        fileAttachButtonHeight.constant = currentHeight;
+        sendButtonHeight.constant = currentHeight;
+    }
+    else if (currentHeight > maxHeight) {
+        textViewHeight.constant = maxHeight;
+        fileAttachButtonHeight.constant = maxHeight;
+        sendButtonHeight.constant = maxHeight;
+    }
+    else {
+        textViewHeight.constant = 30;
+        fileAttachButtonHeight.constant = 30;
+        sendButtonHeight.constant = 30;
+    }
+    
+    [self.messageTextView updateConstraints];
 }
 
 - (void)hideSendButton
 {
-    [UILabel beginAnimations:nil context:nil];
-    [UILabel setAnimationDuration:0.3];
-    [self.sendButton setAlpha:0];
-    [UILabel commitAnimations];
     [self.sendButton setEnabled:NO];
 }
 
 - (void)showSendButton
 {
-    [self.sendButton setAlpha:1];
     [self.sendButton setEnabled:YES];
 }
 
@@ -252,41 +267,41 @@
 
 - (void)hideKeyboard
 {
-    [self.messageTextField endEditing:YES];
+    [self.messageTextView endEditing:YES];
 }
 
-- (void) setDelegate:(id<MessageInputViewDelegate, UITextFieldDelegate>)delegate
+- (void) setDelegate:(id<MessageInputViewDelegate, UITextViewDelegate>)delegate
 {
     _delegate = delegate;
-    [self.messageTextField setDelegate:delegate];
+    [self.messageTextView setDelegate:delegate];
 }
 
-- (void) textFieldDidChange:(UITextView *)textView
-{
-    if ([[textView text] length] > 0) {
-        if ([self.sendButton alpha] == 0) {
-            [UILabel beginAnimations:nil context:nil];
-            [UILabel setAnimationDuration:0.3];
-            [self.sendButton setAlpha:1];
-            [UILabel commitAnimations];
-            [self.sendButton setEnabled:YES];
-        }
-        [SendBird typeStart];
-    }
-    else {
-        [UILabel beginAnimations:nil context:nil];
-        [UILabel setAnimationDuration:0.3];
-        [self.sendButton setAlpha:0];
-        [UILabel commitAnimations];
-        [self.sendButton setEnabled:NO];
-        [SendBird typeEnd];
-    }
-}
+//- (void) textFieldDidChange:(UITextView *)textView
+//{
+//    if ([[textView text] length] > 0) {
+//        if ([self.sendButton alpha] == 0) {
+//            [UILabel beginAnimations:nil context:nil];
+//            [UILabel setAnimationDuration:0.3];
+//            [self.sendButton setAlpha:1];
+//            [UILabel commitAnimations];
+//            [self.sendButton setEnabled:YES];
+//        }
+//        [SendBird typeStart];
+//    }
+//    else {
+//        [UILabel beginAnimations:nil context:nil];
+//        [UILabel setAnimationDuration:0.3];
+//        [self.sendButton setAlpha:0];
+//        [UILabel commitAnimations];
+//        [self.sendButton setEnabled:NO];
+//        [SendBird typeEnd];
+//    }
+//}
 
 - (void) setInputEnable:(BOOL)enable
 {
     [self.fileAttachButton setEnabled:enable];
-    [self.messageTextField setEnabled:enable];
+    [self.messageTextView setEditable:enable];
     [self.sendButton setEnabled:enable];
 }
 
