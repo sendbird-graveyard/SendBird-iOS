@@ -42,6 +42,8 @@
  */
 + (UIColor *)jsq_messageBubbleLightGrayColor;
 
++ (UIColor *)jsq_messageNeutralBubbleColor;
+
 #pragma mark - Utilities
 
 /**

@@ -30,6 +30,7 @@
 
 #import "JSQMessagesCollectionViewCellIncoming.h"
 #import "JSQMessagesCollectionViewCellOutgoing.h"
+#import "JSQMessagesCollectionViewCellNeutral.h"
 
 #import "JSQMessagesTypingIndicatorFooterView.h"
 #import "JSQMessagesLoadEarlierHeaderView.h"
@@ -115,6 +116,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
     self.incomingCellIdentifier = [JSQMessagesCollectionViewCellIncoming cellReuseIdentifier];
     self.incomingMediaCellIdentifier = [JSQMessagesCollectionViewCellIncoming mediaCellReuseIdentifier];
+    
+    self.neutralCellIdentifier = [JSQMessagesCollectionViewCellNeutral cellReuseIdentifier];
 
     // NOTE: let this behavior be opt-in for now
     // [JSQMessagesCollectionViewCell registerMenuAction:@selector(delete:)];
@@ -396,7 +399,22 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     NSString *messageSenderId = [messageItem senderId];
     NSParameterAssert(messageSenderId != nil);
     
-    return [messageSenderId isEqualToString:self.senderId];
+    return [messageSenderId length] > 0 && [messageSenderId isEqualToString:self.senderId];
+}
+
+- (BOOL)isIncomingMessage:(id<JSQMessageData>)messageItem
+{
+    NSString *messageSenderId = [messageItem senderId];
+    NSParameterAssert(messageSenderId != nil);
+    
+    return [messageSenderId length] > 0 && ![messageSenderId isEqualToString:self.senderId];
+}
+
+- (BOOL)isNeutralMessage:(id<JSQMessageData>)messageItem {
+    NSString *messageSenderId = [messageItem senderId];
+    NSParameterAssert(messageSenderId != nil);
+
+    return !([messageSenderId length] > 0);
 }
 
 #pragma mark - JSQMessages collection view data source
@@ -456,7 +474,16 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     id<JSQMessageData> messageItem = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
     NSParameterAssert(messageItem != nil);
     
-    BOOL isOutgoingMessage = [self isOutgoingMessage:messageItem];
+    BOOL isOutgoingMessage = NO;
+    BOOL isNeutralMessage = NO;
+    if ([self isNeutralMessage:messageItem]) {
+        isOutgoingMessage = NO;
+        isNeutralMessage = YES;
+    }
+    else {
+        isOutgoingMessage = [self isOutgoingMessage:messageItem];
+    }
+    
     BOOL isMediaMessage = [messageItem isMediaMessage];
 
     NSString *cellIdentifier = nil;
@@ -464,7 +491,12 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
         cellIdentifier = isOutgoingMessage ? self.outgoingMediaCellIdentifier : self.incomingMediaCellIdentifier;
     }
     else {
-        cellIdentifier = isOutgoingMessage ? self.outgoingCellIdentifier : self.incomingCellIdentifier;
+        if (isNeutralMessage) {
+            cellIdentifier = self.neutralCellIdentifier;
+        }
+        else {
+            cellIdentifier = isOutgoingMessage ? self.outgoingCellIdentifier : self.incomingCellIdentifier;
+        }
     }
 
     JSQMessagesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
@@ -538,11 +570,16 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     }
 
     BOOL needsAvatar = YES;
-    if (isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayout.outgoingAvatarViewSize, CGSizeZero)) {
+    if (isNeutralMessage) {
         needsAvatar = NO;
     }
-    else if (!isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayout.incomingAvatarViewSize, CGSizeZero)) {
-        needsAvatar = NO;
+    else {
+        if (isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayout.outgoingAvatarViewSize, CGSizeZero)) {
+            needsAvatar = NO;
+        }
+        else if (!isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayout.incomingAvatarViewSize, CGSizeZero)) {
+            needsAvatar = NO;
+        }
     }
 
     id<JSQMessageAvatarImageDataSource> avatarImageDataSource = nil;
@@ -577,7 +614,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
             if (avatarHighlightedImageURL != nil) {
                 NSCharacterSet *expectedCharSet = [NSCharacterSet URLQueryAllowedCharacterSet];
                 NSURL *url = [NSURL URLWithString:[avatarHighlightedImageURL stringByAddingPercentEncodingWithAllowedCharacters:expectedCharSet]];
-                NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+//                NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+                NSURLSession *session = [NSURLSession sharedSession];
                 NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
                     
@@ -602,7 +640,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
                 if (avatarImageURL != nil && [avatarImageURL length] > 0) {
                     NSCharacterSet *expectedCharSet = [NSCharacterSet URLQueryAllowedCharacterSet];
                     NSURL *url = [NSURL URLWithString:[avatarImageURL stringByAddingPercentEncodingWithAllowedCharacters:expectedCharSet]];
-                    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+//                    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+                    NSURLSession *session = [NSURLSession sharedSession];
                     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                         NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
                         
@@ -633,11 +672,16 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
     CGFloat bubbleTopLabelInset = (avatarImageDataSource != nil) ? 60.0f : 15.0f;
 
-    if (isOutgoingMessage) {
-        cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, bubbleTopLabelInset);
+    if (isNeutralMessage) {
+        cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
     }
     else {
-        cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, bubbleTopLabelInset, 0.0f, 0.0f);
+        if (isOutgoingMessage) {
+            cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, bubbleTopLabelInset);
+        }
+        else {
+            cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, bubbleTopLabelInset, 0.0f, 0.0f);
+        }
     }
 
     cell.textView.dataDetectorTypes = UIDataDetectorTypeAll;

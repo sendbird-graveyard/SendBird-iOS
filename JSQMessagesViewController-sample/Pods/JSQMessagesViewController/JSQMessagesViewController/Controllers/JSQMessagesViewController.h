@@ -147,6 +147,8 @@
  */
 @property (copy, nonatomic) NSString *incomingMediaCellIdentifier;
 
+@property (copy, nonatomic) NSString *neutralCellIdentifier;
+
 /**
  *  Specifies whether or not the view controller should show the typing indicator for an incoming message.
  *
@@ -276,6 +278,10 @@
  * this method to specialize the decision logic.
  */
 - (BOOL)isOutgoingMessage:(id<JSQMessageData>)messageItem;
+
+- (BOOL)isIncomingMessage:(id<JSQMessageData>)messageItem;
+
+- (BOOL)isNeutralMessage:(id<JSQMessageData>)messageItem;
 
 /**
  Call to super required.

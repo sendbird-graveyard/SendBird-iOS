@@ -54,6 +54,11 @@
                            alpha:1.0f];
 }
 
++ (UIColor *)jsq_messageNeutralBubbleColor
+{
+    return [UIColor colorWithRed:78.0f/256.0f green:65.0f/256.0f blue:116.0f/256.0f alpha:1.0f];
+}
+
 #pragma mark - Utilities
 
 - (UIColor *)jsq_colorByDarkeningColorWithValue:(CGFloat)value

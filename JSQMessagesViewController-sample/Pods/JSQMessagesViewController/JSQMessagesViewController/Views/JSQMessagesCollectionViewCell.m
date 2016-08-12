@@ -20,6 +20,7 @@
 
 #import "JSQMessagesCollectionViewCellIncoming.h"
 #import "JSQMessagesCollectionViewCellOutgoing.h"
+#import "JSQMessagesCollectionViewCellNeutral.h"
 #import "JSQMessagesCollectionViewLayoutAttributes.h"
 
 #import "UIView+JSQMessages.h"

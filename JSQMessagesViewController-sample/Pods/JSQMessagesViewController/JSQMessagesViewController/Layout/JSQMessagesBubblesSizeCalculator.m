@@ -114,7 +114,15 @@
         CGFloat horizontalFrameInsets = layout.messageBubbleTextViewFrameInsets.left + layout.messageBubbleTextViewFrameInsets.right;
 
         CGFloat horizontalInsetsTotal = horizontalContainerInsets + horizontalFrameInsets + spacingBetweenAvatarAndBubble;
-        CGFloat maximumTextWidth = [self textBubbleWidthForLayout:layout] - avatarSize.width - layout.messageBubbleLeftRightMargin - horizontalInsetsTotal;
+        
+        CGFloat maximumTextWidth = 0.0f;
+        if ([[messageData senderId] length] == 0) {
+            maximumTextWidth = [self textBubbleWidthForLayout:layout] - horizontalInsetsTotal;
+        }
+        else {
+            maximumTextWidth = [self textBubbleWidthForLayout:layout] - avatarSize.width - layout.messageBubbleLeftRightMargin - horizontalInsetsTotal;
+        }
+        
 
         CGRect stringRect = [[messageData text] boundingRectWithSize:CGSizeMake(maximumTextWidth, CGFLOAT_MAX)
                                                              options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
@@ -146,11 +154,16 @@
 {
     NSString *messageSender = [messageData senderId];
 
-    if ([messageSender isEqualToString:[layout.collectionView.dataSource senderId]]) {
-        return layout.outgoingAvatarViewSize;
+    if ([messageSender length] == 0) {
+        return CGSizeMake(0, 0);
     }
+    else {
+        if ([messageSender isEqualToString:[layout.collectionView.dataSource senderId]]) {
+            return layout.outgoingAvatarViewSize;
+        }
 
-    return layout.incomingAvatarViewSize;
+        return layout.incomingAvatarViewSize;
+    }
 }
 
 - (CGFloat)textBubbleWidthForLayout:(JSQMessagesCollectionViewFlowLayout *)layout

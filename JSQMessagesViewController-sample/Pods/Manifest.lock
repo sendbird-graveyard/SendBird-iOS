@@ -22,7 +22,7 @@ PODS:
 
 DEPENDENCIES:
   - JSQMessagesViewController (from `https://github.com/smilefam/JSQMessagesViewController.git`)
-  - SendBirdSDK
+  - SendBirdSDK (~> 2.2)
 
 EXTERNAL SOURCES:
   JSQMessagesViewController:
@@ -30,7 +30,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   JSQMessagesViewController:
-    :commit: f2143e2df0f5a42783210dc5f6ccfc926cb4a85c
+    :commit: 6e312e8ce353cd860cc1eabba846752f4b142c53
     :git: https://github.com/smilefam/JSQMessagesViewController.git
 
 SPEC CHECKSUMS:
