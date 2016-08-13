@@ -13,4 +13,4 @@ among your users.
 
 ## Access to Version 2
 
-You can check out v2 branch instead of master branch to download version 2 samples.
+You can check out `v2` branch instead of `master` branch to download version 2 samples.
