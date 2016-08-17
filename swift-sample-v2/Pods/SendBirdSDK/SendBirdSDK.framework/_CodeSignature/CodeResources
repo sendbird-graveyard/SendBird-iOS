@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/SendBirdAPIClient.h</key>
 		<data>
-		8w1OjFyHNd8mX9fJU9iRUqZja9k=
+		1ViBNFQy2p/yavDMnWrNukPegzQ=
 		</data>
 		<key>Headers/SendBirdAppUser.h</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Headers/SendBirdClient.h</key>
 		<data>
-		VbXCzSlnwYqp5QF3xEbh8efrAac=
+		48VhFjd2+zinwr13fBfwV3oy3ws=
 		</data>
 		<key>Headers/SendBirdCommand.h</key>
 		<data>
@@ -166,7 +166,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		VGTr24TtkMO3g/9jF0RNjOV34mg=
+		WoUconOy1Q0vEivzz47LvsmdDCc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -190,11 +190,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			8w1OjFyHNd8mX9fJU9iRUqZja9k=
+			1ViBNFQy2p/yavDMnWrNukPegzQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			PAUfj7VU2Fi9e323T+NIm1I2jVWqzjNnfRBG2CxardU=
+			o2O9ejoPeuiXtsf1D5Vc8bifYFa45xtg/7uIuZU+gcU=
 			</data>
 		</dict>
 		<key>Headers/SendBirdAppUser.h</key>
@@ -289,11 +289,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			VbXCzSlnwYqp5QF3xEbh8efrAac=
+			48VhFjd2+zinwr13fBfwV3oy3ws=
 			</data>
 			<key>hash2</key>
 			<data>
-			0x8V911JXM4A/9PPVX59NC7ssHJUIlmao7eAYl7TmJM=
+			YM4mFSZlNNaKKgS9T9LnSQ0akk5JTdk8z4at/aiVnZU=
 			</data>
 		</dict>
 		<key>Headers/SendBirdCommand.h</key>

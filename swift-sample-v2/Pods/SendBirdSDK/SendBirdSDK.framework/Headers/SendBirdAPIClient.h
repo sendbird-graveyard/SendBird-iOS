@@ -85,7 +85,7 @@
 - (void) messagingUnreadCountResultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) onlineMemberCount:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult DEPRECATED_ATTRIBUTE;
 - (void) memberCount:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
-- (void) userListWithToken:(NSString *)token page:(long)page withLimit:(long)limit resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) userListWithToken:(NSString *)token page:(long)page withLimit:(long)limit userIds:(NSArray<NSString *> *)userIds resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) cancelAll;
 - (void) getBlockedUserListResultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) deleteMessage:(long long)msgId resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;

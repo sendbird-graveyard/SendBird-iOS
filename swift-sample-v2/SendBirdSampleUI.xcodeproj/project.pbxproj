@@ -1,2051 +1,856 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>archiveVersion</key>
-	<string>1</string>
-	<key>classes</key>
-	<dict/>
-	<key>objectVersion</key>
-	<string>46</string>
-	<key>objects</key>
-	<dict>
-		<key>14F2F8E0975F4E8D7BDFA07D</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Check Pods Manifest.lock</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
-if [[ $? != 0 ]] ; then
-    cat &lt;&lt; EOM
-error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
-EOM
-    exit 1
-fi
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>162E34177195871F20F08933</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Pods_SendBird_Sample_UI.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>2746E70DA672914D6D0E9ADC</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods-SendBirdSampleUIUITests.debug.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods-SendBirdSampleUIUITests/Pods-SendBirdSampleUIUITests.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>374A5038492D71138538E862</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Copy Pods Resources</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Target Support Files/Pods-SendBird Sample UI/Pods-SendBird Sample UI-resources.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>488734AA33F14B10307E1790</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Pods_SendBirdSampleUIUITests.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>5A0790EE1C5FC2BF00833A70</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5A2005811C61B27B00D057BE</string>
-				<string>5A2005851C61CF8600D057BE</string>
-				<string>5A2005871C61EA6E00D057BE</string>
-				<string>5A2005891C628BC700D057BE</string>
-				<string>5AA5C21F1C62D6E7008C93EE</string>
-				<string>5AA5C2211C631B86008C93EE</string>
-				<string>5AA5C2231C633710008C93EE</string>
-				<string>5AA5C2251C63D442008C93EE</string>
-				<string>5AA5C2271C641B9A008C93EE</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>View</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A0790EF1C5FC2C400833A70</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5A0790F01C5FC2EB00833A70</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>ViewController</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A0790F01C5FC2EB00833A70</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>ChattingTableViewController.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A0790F11C5FC2EB00833A70</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5A0790F01C5FC2EB00833A70</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5A2005811C61B27B00D057BE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>BroadcastMessageTableViewCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A2005821C61B27B00D057BE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5A2005811C61B27B00D057BE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5A2005851C61CF8600D057BE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>ChannelListTableView.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A2005861C61CF8600D057BE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5A2005851C61CF8600D057BE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5A2005871C61EA6E00D057BE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>ChannelTableViewCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A2005881C61EA6E00D057BE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5A2005871C61EA6E00D057BE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5A2005891C628BC700D057BE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>ChatMessageInputView.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A20058A1C628BC700D057BE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5A2005891C628BC700D057BE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5A8D9BDD1C5D1C9E004751E5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>B23C36F4EF358D1CF9E65555</string>
-				<string>8874F2095A43998A04600896</string>
-				<string>5A8D9BE71C5D1C9E004751E5</string>
-				<string>5A8D9BE81C5D1C9E004751E5</string>
-				<string>5A8D9BFD1C5D1C9E004751E5</string>
-				<string>5A8D9C081C5D1C9E004751E5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9BDE1C5D1C9E004751E5</key>
-		<dict>
-			<key>attributes</key>
-			<dict>
-				<key>LastSwiftUpdateCheck</key>
-				<string>0720</string>
-				<key>LastUpgradeCheck</key>
-				<string>0720</string>
-				<key>ORGANIZATIONNAME</key>
-				<string>SENDBIRD.COM</string>
-				<key>TargetAttributes</key>
-				<dict>
-					<key>5A8D9BE51C5D1C9E004751E5</key>
-					<dict>
-						<key>CreatedOnToolsVersion</key>
-						<string>7.2</string>
-						<key>SystemCapabilities</key>
-						<dict>
-							<key>com.apple.Push</key>
-							<dict>
-								<key>enabled</key>
-								<string>1</string>
-							</dict>
-						</dict>
-					</dict>
-					<key>5A8D9BF91C5D1C9E004751E5</key>
-					<dict>
-						<key>CreatedOnToolsVersion</key>
-						<string>7.2</string>
-						<key>TestTargetID</key>
-						<string>5A8D9BE51C5D1C9E004751E5</string>
-					</dict>
-					<key>5A8D9C041C5D1C9E004751E5</key>
-					<dict>
-						<key>CreatedOnToolsVersion</key>
-						<string>7.2</string>
-						<key>TestTargetID</key>
-						<string>5A8D9BE51C5D1C9E004751E5</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>buildConfigurationList</key>
-			<string>5A8D9BE11C5D1C9E004751E5</string>
-			<key>compatibilityVersion</key>
-			<string>Xcode 3.2</string>
-			<key>developmentRegion</key>
-			<string>English</string>
-			<key>hasScannedForEncodings</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXProject</string>
-			<key>knownRegions</key>
-			<array>
-				<string>en</string>
-				<string>Base</string>
-			</array>
-			<key>mainGroup</key>
-			<string>5A8D9BDD1C5D1C9E004751E5</string>
-			<key>productRefGroup</key>
-			<string>5A8D9BE71C5D1C9E004751E5</string>
-			<key>projectDirPath</key>
-			<string></string>
-			<key>projectReferences</key>
-			<array/>
-			<key>projectRoot</key>
-			<string></string>
-			<key>targets</key>
-			<array>
-				<string>5A8D9BE51C5D1C9E004751E5</string>
-				<string>5A8D9BF91C5D1C9E004751E5</string>
-				<string>5A8D9C041C5D1C9E004751E5</string>
-			</array>
-		</dict>
-		<key>5A8D9BE11C5D1C9E004751E5</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>5A8D9C0C1C5D1C9E004751E5</string>
-				<string>5A8D9C0D1C5D1C9E004751E5</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>5A8D9BE21C5D1C9E004751E5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>5AA5C2311C673423008C93EE</string>
-				<string>5AA5C2371C680EFD008C93EE</string>
-				<string>5AA775D01C5DDE7A008CE6B1</string>
-				<string>5AA5C23B1C68266C008C93EE</string>
-				<string>5A8D9BEC1C5D1C9E004751E5</string>
-				<string>5A2005821C61B27B00D057BE</string>
-				<string>5AA5C2391C68251D008C93EE</string>
-				<string>5AA5C22D1C670AEF008C93EE</string>
-				<string>5AA5C2451C6868A7008C93EE</string>
-				<string>5AA5C2221C631B86008C93EE</string>
-				<string>5AA5C2241C633710008C93EE</string>
-				<string>5AA5C23F1C685415008C93EE</string>
-				<string>5AA5C23D1C6834B8008C93EE</string>
-				<string>5AA5C2261C63D442008C93EE</string>
-				<string>5AA5C2331C67CAE9008C93EE</string>
-				<string>5A2005881C61EA6E00D057BE</string>
-				<string>5AA5C2411C685E95008C93EE</string>
-				<string>5A8D9BEA1C5D1C9E004751E5</string>
-				<string>5AA5C2431C6861A1008C93EE</string>
-				<string>5A20058A1C628BC700D057BE</string>
-				<string>5A0790F11C5FC2EB00833A70</string>
-				<string>5AA5C22F1C6720B3008C93EE</string>
-				<string>5A2005861C61CF8600D057BE</string>
-				<string>5AA5C2201C62D6E7008C93EE</string>
-				<string>5AA5C2351C67F200008C93EE</string>
-				<string>5AA5C2281C641B9A008C93EE</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>5A8D9BE31C5D1C9E004751E5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>EA398C6ED048A451C292F821</string>
-				<string>5F2F3A52DA66D4E99BF27584</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>5A8D9BE41C5D1C9E004751E5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>5A8D9BF41C5D1C9E004751E5</string>
-				<string>5A8D9BF11C5D1C9E004751E5</string>
-				<string>5A8D9BEF1C5D1C9E004751E5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>5A8D9BE51C5D1C9E004751E5</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>5A8D9C0E1C5D1C9E004751E5</string>
-			<key>buildPhases</key>
-			<array>
-				<string>61983C136F6FCF584436D5C8</string>
-				<string>5A8D9BE21C5D1C9E004751E5</string>
-				<string>5A8D9BE31C5D1C9E004751E5</string>
-				<string>5A8D9BE41C5D1C9E004751E5</string>
-				<string>F59D0649052A5E2FB38D7DF6</string>
-				<string>374A5038492D71138538E862</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>SendBird Sample UI</string>
-			<key>productName</key>
-			<string>SendBirdSampleUI</string>
-			<key>productReference</key>
-			<string>5A8D9BE61C5D1C9E004751E5</string>
-			<key>productType</key>
-			<string>com.apple.product-type.application</string>
-		</dict>
-		<key>5A8D9BE61C5D1C9E004751E5</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.application</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>SendBird Sample UI.app</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>5A8D9BE71C5D1C9E004751E5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5A8D9BE61C5D1C9E004751E5</string>
-				<string>5A8D9BFA1C5D1C9E004751E5</string>
-				<string>5A8D9C051C5D1C9E004751E5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9BE81C5D1C9E004751E5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5AA775CD1C5D776D008CE6B1</string>
-				<string>5A8D9BE91C5D1C9E004751E5</string>
-				<string>5A8D9BF01C5D1C9E004751E5</string>
-				<string>5A8D9BF51C5D1C9E004751E5</string>
-				<string>5A8D9BF21C5D1C9E004751E5</string>
-				<string>5A8D9BED1C5D1C9E004751E5</string>
-				<string>5A8D9BEB1C5D1C9E004751E5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>SendBirdSampleUI</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9BE91C5D1C9E004751E5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>AppDelegate.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9BEA1C5D1C9E004751E5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5A8D9BE91C5D1C9E004751E5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5A8D9BEB1C5D1C9E004751E5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>ViewController.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9BEC1C5D1C9E004751E5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5A8D9BEB1C5D1C9E004751E5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5A8D9BED1C5D1C9E004751E5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5A8D9BEE1C5D1C9E004751E5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>Main.storyboard</string>
-			<key>path</key>
-			<string>.</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9BEE1C5D1C9E004751E5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file.storyboard</string>
-			<key>name</key>
-			<string>Base</string>
-			<key>path</key>
-			<string>Base.lproj/Main.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9BEF1C5D1C9E004751E5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5A8D9BED1C5D1C9E004751E5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5A8D9BF01C5D1C9E004751E5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>folder.assetcatalog</string>
-			<key>path</key>
-			<string>Assets.xcassets</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9BF11C5D1C9E004751E5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5A8D9BF01C5D1C9E004751E5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5A8D9BF21C5D1C9E004751E5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5A8D9BF31C5D1C9E004751E5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXVariantGroup</string>
-			<key>name</key>
-			<string>LaunchScreen.storyboard</string>
-			<key>path</key>
-			<string>.</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9BF31C5D1C9E004751E5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>file.storyboard</string>
-			<key>name</key>
-			<string>Base</string>
-			<key>path</key>
-			<string>Base.lproj/LaunchScreen.storyboard</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9BF41C5D1C9E004751E5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5A8D9BF21C5D1C9E004751E5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5A8D9BF51C5D1C9E004751E5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9BF61C5D1C9E004751E5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>5A8D9BFF1C5D1C9E004751E5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>5A8D9BF71C5D1C9E004751E5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>768E44D047A4F10A6E9EFC8B</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>5A8D9BF81C5D1C9E004751E5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>5A8D9BF91C5D1C9E004751E5</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>5A8D9C111C5D1C9E004751E5</string>
-			<key>buildPhases</key>
-			<array>
-				<string>14F2F8E0975F4E8D7BDFA07D</string>
-				<string>5A8D9BF61C5D1C9E004751E5</string>
-				<string>5A8D9BF71C5D1C9E004751E5</string>
-				<string>5A8D9BF81C5D1C9E004751E5</string>
-				<string>B237380B489C1BC5CF09A186</string>
-				<string>5F652AF8C5DDC9D9718DE4E2</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>5A8D9BFC1C5D1C9E004751E5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>SendBirdSampleUITests</string>
-			<key>productName</key>
-			<string>SendBirdSampleUITests</string>
-			<key>productReference</key>
-			<string>5A8D9BFA1C5D1C9E004751E5</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle.unit-test</string>
-		</dict>
-		<key>5A8D9BFA1C5D1C9E004751E5</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>SendBirdSampleUITests.xctest</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>5A8D9BFB1C5D1C9E004751E5</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>5A8D9BDE1C5D1C9E004751E5</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>5A8D9BE51C5D1C9E004751E5</string>
-			<key>remoteInfo</key>
-			<string>SendBirdSampleUI</string>
-		</dict>
-		<key>5A8D9BFC1C5D1C9E004751E5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>target</key>
-			<string>5A8D9BE51C5D1C9E004751E5</string>
-			<key>targetProxy</key>
-			<string>5A8D9BFB1C5D1C9E004751E5</string>
-		</dict>
-		<key>5A8D9BFD1C5D1C9E004751E5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5A8D9C001C5D1C9E004751E5</string>
-				<string>5A8D9BFE1C5D1C9E004751E5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>SendBirdSampleUITests</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9BFE1C5D1C9E004751E5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>SendBirdSampleUITests.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9BFF1C5D1C9E004751E5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5A8D9BFE1C5D1C9E004751E5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5A8D9C001C5D1C9E004751E5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9C011C5D1C9E004751E5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>5A8D9C0A1C5D1C9E004751E5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>5A8D9C021C5D1C9E004751E5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>AECC86740D7F21C8CD66FCA7</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>5A8D9C031C5D1C9E004751E5</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>5A8D9C041C5D1C9E004751E5</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>5A8D9C141C5D1C9E004751E5</string>
-			<key>buildPhases</key>
-			<array>
-				<string>DBE80E42E78ED75DEA69CCF3</string>
-				<string>5A8D9C011C5D1C9E004751E5</string>
-				<string>5A8D9C021C5D1C9E004751E5</string>
-				<string>5A8D9C031C5D1C9E004751E5</string>
-				<string>9C4D03D1BB4995DAF43128B3</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>5A8D9C071C5D1C9E004751E5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>SendBirdSampleUIUITests</string>
-			<key>productName</key>
-			<string>SendBirdSampleUIUITests</string>
-			<key>productReference</key>
-			<string>5A8D9C051C5D1C9E004751E5</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle.ui-testing</string>
-		</dict>
-		<key>5A8D9C051C5D1C9E004751E5</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>SendBirdSampleUIUITests.xctest</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>5A8D9C061C5D1C9E004751E5</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>5A8D9BDE1C5D1C9E004751E5</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>5A8D9BE51C5D1C9E004751E5</string>
-			<key>remoteInfo</key>
-			<string>SendBirdSampleUI</string>
-		</dict>
-		<key>5A8D9C071C5D1C9E004751E5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>target</key>
-			<string>5A8D9BE51C5D1C9E004751E5</string>
-			<key>targetProxy</key>
-			<string>5A8D9C061C5D1C9E004751E5</string>
-		</dict>
-		<key>5A8D9C081C5D1C9E004751E5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5A8D9C0B1C5D1C9E004751E5</string>
-				<string>5A8D9C091C5D1C9E004751E5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>SendBirdSampleUIUITests</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9C091C5D1C9E004751E5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>SendBirdSampleUIUITests.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9C0A1C5D1C9E004751E5</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5A8D9C091C5D1C9E004751E5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5A8D9C0B1C5D1C9E004751E5</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5A8D9C0C1C5D1C9E004751E5</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_UNREACHABLE_CODE</key>
-				<string>YES</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>ENABLE_TESTABILITY</key>
-				<string>YES</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_DYNAMIC_NO_PIC</key>
-				<string>NO</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>GCC_OPTIMIZATION_LEVEL</key>
-				<string>0</string>
-				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
-				<array>
-					<string>DEBUG=1</string>
-					<string>$(inherited)</string>
-				</array>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES_AGGRESSIVE</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.2</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>ONLY_ACTIVE_ARCH</key>
-				<string>YES</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SWIFT_OPTIMIZATION_LEVEL</key>
-				<string>-Onone</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>5A8D9C0D1C5D1C9E004751E5</key>
-		<dict>
-			<key>buildSettings</key>
-			<dict>
-				<key>ALWAYS_SEARCH_USER_PATHS</key>
-				<string>NO</string>
-				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
-				<string>gnu++0x</string>
-				<key>CLANG_CXX_LIBRARY</key>
-				<string>libc++</string>
-				<key>CLANG_ENABLE_MODULES</key>
-				<string>YES</string>
-				<key>CLANG_ENABLE_OBJC_ARC</key>
-				<string>YES</string>
-				<key>CLANG_WARN_BOOL_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_EMPTY_BODY</key>
-				<string>YES</string>
-				<key>CLANG_WARN_ENUM_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_INT_CONVERSION</key>
-				<string>YES</string>
-				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
-				<string>YES_ERROR</string>
-				<key>CLANG_WARN_UNREACHABLE_CODE</key>
-				<string>YES</string>
-				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>COPY_PHASE_STRIP</key>
-				<string>NO</string>
-				<key>DEBUG_INFORMATION_FORMAT</key>
-				<string>dwarf-with-dsym</string>
-				<key>ENABLE_NS_ASSERTIONS</key>
-				<string>NO</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_C_LANGUAGE_STANDARD</key>
-				<string>gnu99</string>
-				<key>GCC_NO_COMMON_BLOCKS</key>
-				<string>YES</string>
-				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
-				<string>YES</string>
-				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
-				<string>YES_ERROR</string>
-				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
-				<string>YES_AGGRESSIVE</string>
-				<key>GCC_WARN_UNUSED_FUNCTION</key>
-				<string>YES</string>
-				<key>GCC_WARN_UNUSED_VARIABLE</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.2</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VALIDATE_PRODUCT</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>5A8D9C0E1C5D1C9E004751E5</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>5A8D9C0F1C5D1C9E004751E5</string>
-				<string>5A8D9C101C5D1C9E004751E5</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>5A8D9C0F1C5D1C9E004751E5</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>7C848461548E00D85708A7A9</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
-				<string>AppIcon-1</string>
-				<key>CODE_SIGN_IDENTITY</key>
-				<string>iPhone Developer</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>INFOPLIST_FILE</key>
-				<string>SendBirdSampleUI/Info.plist</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>com.sendbird.sample</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>PROVISIONING_PROFILE</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>5A8D9C101C5D1C9E004751E5</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>BD65FC73D4F4B8218517C0E9</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
-				<string>AppIcon-1</string>
-				<key>CODE_SIGN_IDENTITY</key>
-				<string>iPhone Developer</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>INFOPLIST_FILE</key>
-				<string>SendBirdSampleUI/Info.plist</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>com.sendbird.sample</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>PROVISIONING_PROFILE</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>5A8D9C111C5D1C9E004751E5</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>5A8D9C121C5D1C9E004751E5</string>
-				<string>5A8D9C131C5D1C9E004751E5</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>5A8D9C121C5D1C9E004751E5</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>AFE9314C03221D558CF45EE0</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>BUNDLE_LOADER</key>
-				<string>$(TEST_HOST)</string>
-				<key>INFOPLIST_FILE</key>
-				<string>SendBirdSampleUITests/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>com.sendbird.SendBirdSampleUITests</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>TEST_HOST</key>
-				<string>$(BUILT_PRODUCTS_DIR)/SendBirdSampleUI.app/SendBirdSampleUI</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>5A8D9C131C5D1C9E004751E5</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>5F6FB59FAE3186FC6BD6D821</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>BUNDLE_LOADER</key>
-				<string>$(TEST_HOST)</string>
-				<key>INFOPLIST_FILE</key>
-				<string>SendBirdSampleUITests/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>com.sendbird.SendBirdSampleUITests</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>TEST_HOST</key>
-				<string>$(BUILT_PRODUCTS_DIR)/SendBirdSampleUI.app/SendBirdSampleUI</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>5A8D9C141C5D1C9E004751E5</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>5A8D9C151C5D1C9E004751E5</string>
-				<string>5A8D9C161C5D1C9E004751E5</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
-		<key>5A8D9C151C5D1C9E004751E5</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>2746E70DA672914D6D0E9ADC</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>INFOPLIST_FILE</key>
-				<string>SendBirdSampleUIUITests/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>com.sendbird.SendBirdSampleUIUITests</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>TEST_TARGET_NAME</key>
-				<string>SendBirdSampleUI</string>
-				<key>USES_XCTRUNNER</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
-		<key>5A8D9C161C5D1C9E004751E5</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>9D5B993C9C32A7FAB760D267</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>INFOPLIST_FILE</key>
-				<string>SendBirdSampleUIUITests/Info.plist</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
-				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
-				<string>com.sendbird.SendBirdSampleUIUITests</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>TEST_TARGET_NAME</key>
-				<string>SendBirdSampleUI</string>
-				<key>USES_XCTRUNNER</key>
-				<string>YES</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
-		<key>5AA5C21F1C62D6E7008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>FileLinkTableViewCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C2201C62D6E7008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C21F1C62D6E7008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C2211C631B86008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>FileMessageTableViewCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C2221C631B86008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C2211C631B86008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C2231C633710008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>IndicatorView.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C2241C633710008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C2231C633710008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C2251C63D442008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>MessageTableViewCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C2261C63D442008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C2251C63D442008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C2271C641B9A008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>SystemMessageTableViewCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C2281C641B9A008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C2271C641B9A008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C2291C6708BA008C93EE</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5AA5C22A1C6708D2008C93EE</string>
-				<string>5AA5C22B1C6708D7008C93EE</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>SendBirdMessaging</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C22A1C6708D2008C93EE</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5AA5C22C1C670AEF008C93EE</string>
-				<string>5AA5C22E1C6720B3008C93EE</string>
-				<string>5AA5C2301C673423008C93EE</string>
-				<string>5AA5C2321C67CAE9008C93EE</string>
-				<string>5AA5C2341C67F200008C93EE</string>
-				<string>5AA5C2361C680EFD008C93EE</string>
-				<string>5AA5C2381C68251D008C93EE</string>
-				<string>5AA5C23A1C68266C008C93EE</string>
-				<string>5AA5C23C1C6834B8008C93EE</string>
-				<string>5AA5C23E1C685415008C93EE</string>
-				<string>5AA5C2401C685E95008C93EE</string>
-				<string>5AA5C2421C6861A1008C93EE</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>View</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C22B1C6708D7008C93EE</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5AA5C2441C6868A7008C93EE</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>ViewController</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C22C1C670AEF008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>MemberTableViewCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C22D1C670AEF008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C22C1C670AEF008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C22E1C6720B3008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>MessageInputView.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C22F1C6720B3008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C22E1C6720B3008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C2301C673423008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>MessagingBroadcastMessageTableViewCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C2311C673423008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C2301C673423008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C2321C67CAE9008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>MessagingChannelTableViewCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C2331C67CAE9008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C2321C67CAE9008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C2341C67F200008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>MessagingFileLinkTableViewCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C2351C67F200008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C2341C67F200008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C2361C680EFD008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>MessagingFileMessageTableViewCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C2371C680EFD008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C2361C680EFD008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C2381C68251D008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>MessagingIndicatorView.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C2391C68251D008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C2381C68251D008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C23A1C68266C008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>MessagingMessageTableViewCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C23B1C68266C008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C23A1C68266C008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C23C1C6834B8008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>MessagingMyFileLinkTableViewCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C23D1C6834B8008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C23C1C6834B8008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C23E1C685415008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>MessagingMyMessageTableViewCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C23F1C685415008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C23E1C685415008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C2401C685E95008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>MessagingSystemMessageTableViewCell.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C2411C685E95008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C2401C685E95008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C2421C6861A1008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>TypingNowView.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C2431C6861A1008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C2421C6861A1008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA5C2441C6868A7008C93EE</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>MessagingTableViewController.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA5C2451C6868A7008C93EE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA5C2441C6868A7008C93EE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5AA775CD1C5D776D008CE6B1</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5AA775CE1C5DD77A008CE6B1</string>
-				<string>5AA5C2291C6708BA008C93EE</string>
-				<string>5AA775CF1C5DDE7A008CE6B1</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>SendBird</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA775CE1C5DD77A008CE6B1</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5A0790EE1C5FC2BF00833A70</string>
-				<string>5A0790EF1C5FC2C400833A70</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>path</key>
-			<string>SendBirdChat</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA775CF1C5DDE7A008CE6B1</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.swift</string>
-			<key>path</key>
-			<string>SendBirdCommon.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5AA775D01C5DDE7A008CE6B1</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5AA775CF1C5DDE7A008CE6B1</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5F2F3A52DA66D4E99BF27584</key>
-		<dict>
-			<key>fileRef</key>
-			<string>162E34177195871F20F08933</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5F652AF8C5DDC9D9718DE4E2</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Copy Pods Resources</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Target Support Files/Pods-SendBirdSampleUITests/Pods-SendBirdSampleUITests-resources.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>5F6FB59FAE3186FC6BD6D821</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods-SendBirdSampleUITests.release.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods-SendBirdSampleUITests/Pods-SendBirdSampleUITests.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>61983C136F6FCF584436D5C8</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Check Pods Manifest.lock</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
-if [[ $? != 0 ]] ; then
-    cat &lt;&lt; EOM
-error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
-EOM
-    exit 1
-fi
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>768E44D047A4F10A6E9EFC8B</key>
-		<dict>
-			<key>fileRef</key>
-			<string>D0C63B37BC8320A1C3CDEFE9</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>7C848461548E00D85708A7A9</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods.debug.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods/Pods.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8874F2095A43998A04600896</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>7C848461548E00D85708A7A9</string>
-				<string>BD65FC73D4F4B8218517C0E9</string>
-				<string>AFE9314C03221D558CF45EE0</string>
-				<string>5F6FB59FAE3186FC6BD6D821</string>
-				<string>2746E70DA672914D6D0E9ADC</string>
-				<string>9D5B993C9C32A7FAB760D267</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8D156F7AA676956CBBF9A092</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Pods.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>9C4D03D1BB4995DAF43128B3</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Copy Pods Resources</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Target Support Files/Pods-SendBirdSampleUIUITests/Pods-SendBirdSampleUIUITests-resources.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>9D5B993C9C32A7FAB760D267</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods-SendBirdSampleUIUITests.release.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods-SendBirdSampleUIUITests/Pods-SendBirdSampleUIUITests.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AECC86740D7F21C8CD66FCA7</key>
-		<dict>
-			<key>fileRef</key>
-			<string>488734AA33F14B10307E1790</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>AFE9314C03221D558CF45EE0</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods-SendBirdSampleUITests.debug.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods-SendBirdSampleUITests/Pods-SendBirdSampleUITests.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B237380B489C1BC5CF09A186</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Embed Pods Frameworks</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Target Support Files/Pods-SendBirdSampleUITests/Pods-SendBirdSampleUITests-frameworks.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>B23C36F4EF358D1CF9E65555</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>8D156F7AA676956CBBF9A092</string>
-				<string>162E34177195871F20F08933</string>
-				<string>D0C63B37BC8320A1C3CDEFE9</string>
-				<string>488734AA33F14B10307E1790</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BD65FC73D4F4B8218517C0E9</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>name</key>
-			<string>Pods.release.xcconfig</string>
-			<key>path</key>
-			<string>Pods/Target Support Files/Pods/Pods.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D0C63B37BC8320A1C3CDEFE9</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Pods_SendBirdSampleUITests.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>DBE80E42E78ED75DEA69CCF3</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Check Pods Manifest.lock</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
-if [[ $? != 0 ]] ; then
-    cat &lt;&lt; EOM
-error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
-EOM
-    exit 1
-fi
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-		<key>EA398C6ED048A451C292F821</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8D156F7AA676956CBBF9A092</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>F59D0649052A5E2FB38D7DF6</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>inputPaths</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXShellScriptBuildPhase</string>
-			<key>name</key>
-			<string>Embed Pods Frameworks</string>
-			<key>outputPaths</key>
-			<array/>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-			<key>shellPath</key>
-			<string>/bin/sh</string>
-			<key>shellScript</key>
-			<string>"${SRCROOT}/Pods/Target Support Files/Pods-SendBird Sample UI/Pods-SendBird Sample UI-frameworks.sh"
-</string>
-			<key>showEnvVarsInLog</key>
-			<string>0</string>
-		</dict>
-	</dict>
-	<key>rootObject</key>
-	<string>5A8D9BDE1C5D1C9E004751E5</string>
-</dict>
-</plist>
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		13CDA8DB535F2379F4EB9DCD /* Pods_SendBirdSampleUIUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2920151A88E42104E0F1722 /* Pods_SendBirdSampleUIUITests.framework */; };
+		471C626D456D230184421A67 /* Pods_SendBird_Sample_UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB5E80AF02EE4BCE546DFFE /* Pods_SendBird_Sample_UI.framework */; };
+		5A0790F11C5FC2EB00833A70 /* ChattingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0790F01C5FC2EB00833A70 /* ChattingTableViewController.swift */; };
+		5A2005821C61B27B00D057BE /* BroadcastMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2005811C61B27B00D057BE /* BroadcastMessageTableViewCell.swift */; };
+		5A2005861C61CF8600D057BE /* ChannelListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2005851C61CF8600D057BE /* ChannelListTableView.swift */; };
+		5A2005881C61EA6E00D057BE /* ChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2005871C61EA6E00D057BE /* ChannelTableViewCell.swift */; };
+		5A20058A1C628BC700D057BE /* ChatMessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2005891C628BC700D057BE /* ChatMessageInputView.swift */; };
+		5A8D9BEA1C5D1C9E004751E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D9BE91C5D1C9E004751E5 /* AppDelegate.swift */; };
+		5A8D9BEC1C5D1C9E004751E5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D9BEB1C5D1C9E004751E5 /* ViewController.swift */; };
+		5A8D9BEF1C5D1C9E004751E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A8D9BED1C5D1C9E004751E5 /* Main.storyboard */; };
+		5A8D9BF11C5D1C9E004751E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A8D9BF01C5D1C9E004751E5 /* Assets.xcassets */; };
+		5A8D9BF41C5D1C9E004751E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A8D9BF21C5D1C9E004751E5 /* LaunchScreen.storyboard */; };
+		5A8D9BFF1C5D1C9E004751E5 /* SendBirdSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D9BFE1C5D1C9E004751E5 /* SendBirdSampleUITests.swift */; };
+		5A8D9C0A1C5D1C9E004751E5 /* SendBirdSampleUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8D9C091C5D1C9E004751E5 /* SendBirdSampleUIUITests.swift */; };
+		5AA5C2201C62D6E7008C93EE /* FileLinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C21F1C62D6E7008C93EE /* FileLinkTableViewCell.swift */; };
+		5AA5C2221C631B86008C93EE /* FileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C2211C631B86008C93EE /* FileMessageTableViewCell.swift */; };
+		5AA5C2241C633710008C93EE /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C2231C633710008C93EE /* IndicatorView.swift */; };
+		5AA5C2261C63D442008C93EE /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C2251C63D442008C93EE /* MessageTableViewCell.swift */; };
+		5AA5C2281C641B9A008C93EE /* SystemMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C2271C641B9A008C93EE /* SystemMessageTableViewCell.swift */; };
+		5AA5C22D1C670AEF008C93EE /* MemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C22C1C670AEF008C93EE /* MemberTableViewCell.swift */; };
+		5AA5C22F1C6720B3008C93EE /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C22E1C6720B3008C93EE /* MessageInputView.swift */; };
+		5AA5C2311C673423008C93EE /* MessagingBroadcastMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C2301C673423008C93EE /* MessagingBroadcastMessageTableViewCell.swift */; };
+		5AA5C2331C67CAE9008C93EE /* MessagingChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C2321C67CAE9008C93EE /* MessagingChannelTableViewCell.swift */; };
+		5AA5C2351C67F200008C93EE /* MessagingFileLinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C2341C67F200008C93EE /* MessagingFileLinkTableViewCell.swift */; };
+		5AA5C2371C680EFD008C93EE /* MessagingFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C2361C680EFD008C93EE /* MessagingFileMessageTableViewCell.swift */; };
+		5AA5C2391C68251D008C93EE /* MessagingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C2381C68251D008C93EE /* MessagingIndicatorView.swift */; };
+		5AA5C23B1C68266C008C93EE /* MessagingMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C23A1C68266C008C93EE /* MessagingMessageTableViewCell.swift */; };
+		5AA5C23D1C6834B8008C93EE /* MessagingMyFileLinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C23C1C6834B8008C93EE /* MessagingMyFileLinkTableViewCell.swift */; };
+		5AA5C23F1C685415008C93EE /* MessagingMyMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C23E1C685415008C93EE /* MessagingMyMessageTableViewCell.swift */; };
+		5AA5C2411C685E95008C93EE /* MessagingSystemMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C2401C685E95008C93EE /* MessagingSystemMessageTableViewCell.swift */; };
+		5AA5C2431C6861A1008C93EE /* TypingNowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C2421C6861A1008C93EE /* TypingNowView.swift */; };
+		5AA5C2451C6868A7008C93EE /* MessagingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA5C2441C6868A7008C93EE /* MessagingTableViewController.swift */; };
+		5AA775D01C5DDE7A008CE6B1 /* SendBirdCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA775CF1C5DDE7A008CE6B1 /* SendBirdCommon.swift */; };
+		753D4635B899B376CAC8674A /* Pods_SendBirdSampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 064287E9E0661D5E32A7051B /* Pods_SendBirdSampleUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5A8D9BFB1C5D1C9E004751E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5A8D9BDE1C5D1C9E004751E5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5A8D9BE51C5D1C9E004751E5;
+			remoteInfo = SendBirdSampleUI;
+		};
+		5A8D9C061C5D1C9E004751E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5A8D9BDE1C5D1C9E004751E5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5A8D9BE51C5D1C9E004751E5;
+			remoteInfo = SendBirdSampleUI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		064287E9E0661D5E32A7051B /* Pods_SendBirdSampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SendBirdSampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D20D9E82D79EC08DD0EC181 /* Pods-SendBird Sample UI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird Sample UI.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird Sample UI/Pods-SendBird Sample UI.release.xcconfig"; sourceTree = "<group>"; };
+		1A8C4B15435F3D5B0B471FF8 /* Pods-SendBird Sample UI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird Sample UI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird Sample UI/Pods-SendBird Sample UI.debug.xcconfig"; sourceTree = "<group>"; };
+		29BFEA699115F679A69CBC0D /* Pods-SendBirdSampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBirdSampleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBirdSampleUITests/Pods-SendBirdSampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5A0790F01C5FC2EB00833A70 /* ChattingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChattingTableViewController.swift; sourceTree = "<group>"; };
+		5A2005811C61B27B00D057BE /* BroadcastMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BroadcastMessageTableViewCell.swift; sourceTree = "<group>"; };
+		5A2005851C61CF8600D057BE /* ChannelListTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelListTableView.swift; sourceTree = "<group>"; };
+		5A2005871C61EA6E00D057BE /* ChannelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTableViewCell.swift; sourceTree = "<group>"; };
+		5A2005891C628BC700D057BE /* ChatMessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageInputView.swift; sourceTree = "<group>"; };
+		5A8D9BE61C5D1C9E004751E5 /* SendBird Sample UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SendBird Sample UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A8D9BE91C5D1C9E004751E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5A8D9BEB1C5D1C9E004751E5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5A8D9BEE1C5D1C9E004751E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5A8D9BF01C5D1C9E004751E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5A8D9BF31C5D1C9E004751E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5A8D9BF51C5D1C9E004751E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5A8D9BFA1C5D1C9E004751E5 /* SendBirdSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SendBirdSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A8D9BFE1C5D1C9E004751E5 /* SendBirdSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBirdSampleUITests.swift; sourceTree = "<group>"; };
+		5A8D9C001C5D1C9E004751E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5A8D9C051C5D1C9E004751E5 /* SendBirdSampleUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SendBirdSampleUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A8D9C091C5D1C9E004751E5 /* SendBirdSampleUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBirdSampleUIUITests.swift; sourceTree = "<group>"; };
+		5A8D9C0B1C5D1C9E004751E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5AA5C21F1C62D6E7008C93EE /* FileLinkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileLinkTableViewCell.swift; sourceTree = "<group>"; };
+		5AA5C2211C631B86008C93EE /* FileMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileMessageTableViewCell.swift; sourceTree = "<group>"; };
+		5AA5C2231C633710008C93EE /* IndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
+		5AA5C2251C63D442008C93EE /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		5AA5C2271C641B9A008C93EE /* SystemMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemMessageTableViewCell.swift; sourceTree = "<group>"; };
+		5AA5C22C1C670AEF008C93EE /* MemberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberTableViewCell.swift; sourceTree = "<group>"; };
+		5AA5C22E1C6720B3008C93EE /* MessageInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
+		5AA5C2301C673423008C93EE /* MessagingBroadcastMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagingBroadcastMessageTableViewCell.swift; sourceTree = "<group>"; };
+		5AA5C2321C67CAE9008C93EE /* MessagingChannelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagingChannelTableViewCell.swift; sourceTree = "<group>"; };
+		5AA5C2341C67F200008C93EE /* MessagingFileLinkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagingFileLinkTableViewCell.swift; sourceTree = "<group>"; };
+		5AA5C2361C680EFD008C93EE /* MessagingFileMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagingFileMessageTableViewCell.swift; sourceTree = "<group>"; };
+		5AA5C2381C68251D008C93EE /* MessagingIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagingIndicatorView.swift; sourceTree = "<group>"; };
+		5AA5C23A1C68266C008C93EE /* MessagingMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagingMessageTableViewCell.swift; sourceTree = "<group>"; };
+		5AA5C23C1C6834B8008C93EE /* MessagingMyFileLinkTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagingMyFileLinkTableViewCell.swift; sourceTree = "<group>"; };
+		5AA5C23E1C685415008C93EE /* MessagingMyMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagingMyMessageTableViewCell.swift; sourceTree = "<group>"; };
+		5AA5C2401C685E95008C93EE /* MessagingSystemMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagingSystemMessageTableViewCell.swift; sourceTree = "<group>"; };
+		5AA5C2421C6861A1008C93EE /* TypingNowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypingNowView.swift; sourceTree = "<group>"; };
+		5AA5C2441C6868A7008C93EE /* MessagingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagingTableViewController.swift; sourceTree = "<group>"; };
+		5AA775CF1C5DDE7A008CE6B1 /* SendBirdCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendBirdCommon.swift; sourceTree = "<group>"; };
+		6B6AF684EA1604142E00AF78 /* Pods-SendBirdSampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBirdSampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBirdSampleUITests/Pods-SendBirdSampleUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7949458BEA1616A5BA7837EC /* Pods-SendBirdSampleUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBirdSampleUIUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBirdSampleUIUITests/Pods-SendBirdSampleUIUITests.release.xcconfig"; sourceTree = "<group>"; };
+		8D156F7AA676956CBBF9A092 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACB5E80AF02EE4BCE546DFFE /* Pods_SendBird_Sample_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SendBird_Sample_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2C136076AC7A9376A8188D9 /* Pods-SendBirdSampleUIUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBirdSampleUIUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBirdSampleUIUITests/Pods-SendBirdSampleUIUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F2920151A88E42104E0F1722 /* Pods_SendBirdSampleUIUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SendBirdSampleUIUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5A8D9BE31C5D1C9E004751E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				471C626D456D230184421A67 /* Pods_SendBird_Sample_UI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A8D9BF71C5D1C9E004751E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				753D4635B899B376CAC8674A /* Pods_SendBirdSampleUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A8D9C021C5D1C9E004751E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13CDA8DB535F2379F4EB9DCD /* Pods_SendBirdSampleUIUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5A0790EE1C5FC2BF00833A70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5A2005811C61B27B00D057BE /* BroadcastMessageTableViewCell.swift */,
+				5A2005851C61CF8600D057BE /* ChannelListTableView.swift */,
+				5A2005871C61EA6E00D057BE /* ChannelTableViewCell.swift */,
+				5A2005891C628BC700D057BE /* ChatMessageInputView.swift */,
+				5AA5C21F1C62D6E7008C93EE /* FileLinkTableViewCell.swift */,
+				5AA5C2211C631B86008C93EE /* FileMessageTableViewCell.swift */,
+				5AA5C2231C633710008C93EE /* IndicatorView.swift */,
+				5AA5C2251C63D442008C93EE /* MessageTableViewCell.swift */,
+				5AA5C2271C641B9A008C93EE /* SystemMessageTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5A0790EF1C5FC2C400833A70 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5A0790F01C5FC2EB00833A70 /* ChattingTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		5A8D9BDD1C5D1C9E004751E5 = {
+			isa = PBXGroup;
+			children = (
+				B23C36F4EF358D1CF9E65555 /* Frameworks */,
+				5A8D9BE71C5D1C9E004751E5 /* Products */,
+				5A8D9BE81C5D1C9E004751E5 /* SendBirdSampleUI */,
+				5A8D9BFD1C5D1C9E004751E5 /* SendBirdSampleUITests */,
+				5A8D9C081C5D1C9E004751E5 /* SendBirdSampleUIUITests */,
+				D69289B8812198403192AF63 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		5A8D9BE71C5D1C9E004751E5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5A8D9BE61C5D1C9E004751E5 /* SendBird Sample UI.app */,
+				5A8D9BFA1C5D1C9E004751E5 /* SendBirdSampleUITests.xctest */,
+				5A8D9C051C5D1C9E004751E5 /* SendBirdSampleUIUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5A8D9BE81C5D1C9E004751E5 /* SendBirdSampleUI */ = {
+			isa = PBXGroup;
+			children = (
+				5AA775CD1C5D776D008CE6B1 /* SendBird */,
+				5A8D9BE91C5D1C9E004751E5 /* AppDelegate.swift */,
+				5A8D9BF01C5D1C9E004751E5 /* Assets.xcassets */,
+				5A8D9BF51C5D1C9E004751E5 /* Info.plist */,
+				5A8D9BF21C5D1C9E004751E5 /* LaunchScreen.storyboard */,
+				5A8D9BED1C5D1C9E004751E5 /* Main.storyboard */,
+				5A8D9BEB1C5D1C9E004751E5 /* ViewController.swift */,
+			);
+			path = SendBirdSampleUI;
+			sourceTree = "<group>";
+		};
+		5A8D9BFD1C5D1C9E004751E5 /* SendBirdSampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5A8D9C001C5D1C9E004751E5 /* Info.plist */,
+				5A8D9BFE1C5D1C9E004751E5 /* SendBirdSampleUITests.swift */,
+			);
+			path = SendBirdSampleUITests;
+			sourceTree = "<group>";
+		};
+		5A8D9C081C5D1C9E004751E5 /* SendBirdSampleUIUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5A8D9C0B1C5D1C9E004751E5 /* Info.plist */,
+				5A8D9C091C5D1C9E004751E5 /* SendBirdSampleUIUITests.swift */,
+			);
+			path = SendBirdSampleUIUITests;
+			sourceTree = "<group>";
+		};
+		5AA5C2291C6708BA008C93EE /* SendBirdMessaging */ = {
+			isa = PBXGroup;
+			children = (
+				5AA5C22A1C6708D2008C93EE /* View */,
+				5AA5C22B1C6708D7008C93EE /* ViewController */,
+			);
+			path = SendBirdMessaging;
+			sourceTree = "<group>";
+		};
+		5AA5C22A1C6708D2008C93EE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5AA5C22C1C670AEF008C93EE /* MemberTableViewCell.swift */,
+				5AA5C22E1C6720B3008C93EE /* MessageInputView.swift */,
+				5AA5C2301C673423008C93EE /* MessagingBroadcastMessageTableViewCell.swift */,
+				5AA5C2321C67CAE9008C93EE /* MessagingChannelTableViewCell.swift */,
+				5AA5C2341C67F200008C93EE /* MessagingFileLinkTableViewCell.swift */,
+				5AA5C2361C680EFD008C93EE /* MessagingFileMessageTableViewCell.swift */,
+				5AA5C2381C68251D008C93EE /* MessagingIndicatorView.swift */,
+				5AA5C23A1C68266C008C93EE /* MessagingMessageTableViewCell.swift */,
+				5AA5C23C1C6834B8008C93EE /* MessagingMyFileLinkTableViewCell.swift */,
+				5AA5C23E1C685415008C93EE /* MessagingMyMessageTableViewCell.swift */,
+				5AA5C2401C685E95008C93EE /* MessagingSystemMessageTableViewCell.swift */,
+				5AA5C2421C6861A1008C93EE /* TypingNowView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5AA5C22B1C6708D7008C93EE /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5AA5C2441C6868A7008C93EE /* MessagingTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		5AA775CD1C5D776D008CE6B1 /* SendBird */ = {
+			isa = PBXGroup;
+			children = (
+				5AA775CE1C5DD77A008CE6B1 /* SendBirdChat */,
+				5AA5C2291C6708BA008C93EE /* SendBirdMessaging */,
+				5AA775CF1C5DDE7A008CE6B1 /* SendBirdCommon.swift */,
+			);
+			path = SendBird;
+			sourceTree = "<group>";
+		};
+		5AA775CE1C5DD77A008CE6B1 /* SendBirdChat */ = {
+			isa = PBXGroup;
+			children = (
+				5A0790EE1C5FC2BF00833A70 /* View */,
+				5A0790EF1C5FC2C400833A70 /* ViewController */,
+			);
+			path = SendBirdChat;
+			sourceTree = "<group>";
+		};
+		B23C36F4EF358D1CF9E65555 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8D156F7AA676956CBBF9A092 /* Pods.framework */,
+				ACB5E80AF02EE4BCE546DFFE /* Pods_SendBird_Sample_UI.framework */,
+				064287E9E0661D5E32A7051B /* Pods_SendBirdSampleUITests.framework */,
+				F2920151A88E42104E0F1722 /* Pods_SendBirdSampleUIUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D69289B8812198403192AF63 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1A8C4B15435F3D5B0B471FF8 /* Pods-SendBird Sample UI.debug.xcconfig */,
+				0D20D9E82D79EC08DD0EC181 /* Pods-SendBird Sample UI.release.xcconfig */,
+				29BFEA699115F679A69CBC0D /* Pods-SendBirdSampleUITests.debug.xcconfig */,
+				6B6AF684EA1604142E00AF78 /* Pods-SendBirdSampleUITests.release.xcconfig */,
+				D2C136076AC7A9376A8188D9 /* Pods-SendBirdSampleUIUITests.debug.xcconfig */,
+				7949458BEA1616A5BA7837EC /* Pods-SendBirdSampleUIUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5A8D9BE51C5D1C9E004751E5 /* SendBird Sample UI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A8D9C0E1C5D1C9E004751E5 /* Build configuration list for PBXNativeTarget "SendBird Sample UI" */;
+			buildPhases = (
+				1C54B77D283D3473ABDD8E18 /* [CP] Check Pods Manifest.lock */,
+				5A8D9BE21C5D1C9E004751E5 /* Sources */,
+				5A8D9BE31C5D1C9E004751E5 /* Frameworks */,
+				5A8D9BE41C5D1C9E004751E5 /* Resources */,
+				08223DBC1DA3BD3BCD19D2DC /* [CP] Embed Pods Frameworks */,
+				3CFDD79CE370366356E72F29 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SendBird Sample UI";
+			productName = SendBirdSampleUI;
+			productReference = 5A8D9BE61C5D1C9E004751E5 /* SendBird Sample UI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5A8D9BF91C5D1C9E004751E5 /* SendBirdSampleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A8D9C111C5D1C9E004751E5 /* Build configuration list for PBXNativeTarget "SendBirdSampleUITests" */;
+			buildPhases = (
+				CFE54FB3A31370ED8E089515 /* [CP] Check Pods Manifest.lock */,
+				5A8D9BF61C5D1C9E004751E5 /* Sources */,
+				5A8D9BF71C5D1C9E004751E5 /* Frameworks */,
+				5A8D9BF81C5D1C9E004751E5 /* Resources */,
+				3F1D4B2C40F6D9056B243755 /* [CP] Embed Pods Frameworks */,
+				4B717C724EB105927EAE8679 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A8D9BFC1C5D1C9E004751E5 /* PBXTargetDependency */,
+			);
+			name = SendBirdSampleUITests;
+			productName = SendBirdSampleUITests;
+			productReference = 5A8D9BFA1C5D1C9E004751E5 /* SendBirdSampleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5A8D9C041C5D1C9E004751E5 /* SendBirdSampleUIUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A8D9C141C5D1C9E004751E5 /* Build configuration list for PBXNativeTarget "SendBirdSampleUIUITests" */;
+			buildPhases = (
+				CE916E8197E7223F35C8852F /* [CP] Check Pods Manifest.lock */,
+				5A8D9C011C5D1C9E004751E5 /* Sources */,
+				5A8D9C021C5D1C9E004751E5 /* Frameworks */,
+				5A8D9C031C5D1C9E004751E5 /* Resources */,
+				F4FF2A417B0BAC88410CBC2D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A8D9C071C5D1C9E004751E5 /* PBXTargetDependency */,
+			);
+			name = SendBirdSampleUIUITests;
+			productName = SendBirdSampleUIUITests;
+			productReference = 5A8D9C051C5D1C9E004751E5 /* SendBirdSampleUIUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5A8D9BDE1C5D1C9E004751E5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = SENDBIRD.COM;
+				TargetAttributes = {
+					5A8D9BE51C5D1C9E004751E5 = {
+						CreatedOnToolsVersion = 7.2;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					5A8D9BF91C5D1C9E004751E5 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 5A8D9BE51C5D1C9E004751E5;
+					};
+					5A8D9C041C5D1C9E004751E5 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 5A8D9BE51C5D1C9E004751E5;
+					};
+				};
+			};
+			buildConfigurationList = 5A8D9BE11C5D1C9E004751E5 /* Build configuration list for PBXProject "SendBirdSampleUI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5A8D9BDD1C5D1C9E004751E5;
+			productRefGroup = 5A8D9BE71C5D1C9E004751E5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5A8D9BE51C5D1C9E004751E5 /* SendBird Sample UI */,
+				5A8D9BF91C5D1C9E004751E5 /* SendBirdSampleUITests */,
+				5A8D9C041C5D1C9E004751E5 /* SendBirdSampleUIUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5A8D9BE41C5D1C9E004751E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A8D9BF41C5D1C9E004751E5 /* LaunchScreen.storyboard in Resources */,
+				5A8D9BF11C5D1C9E004751E5 /* Assets.xcassets in Resources */,
+				5A8D9BEF1C5D1C9E004751E5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A8D9BF81C5D1C9E004751E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A8D9C031C5D1C9E004751E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		08223DBC1DA3BD3BCD19D2DC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SendBird Sample UI/Pods-SendBird Sample UI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1C54B77D283D3473ABDD8E18 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3CFDD79CE370366356E72F29 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SendBird Sample UI/Pods-SendBird Sample UI-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3F1D4B2C40F6D9056B243755 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SendBirdSampleUITests/Pods-SendBirdSampleUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4B717C724EB105927EAE8679 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SendBirdSampleUITests/Pods-SendBirdSampleUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE916E8197E7223F35C8852F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CFE54FB3A31370ED8E089515 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F4FF2A417B0BAC88410CBC2D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SendBirdSampleUIUITests/Pods-SendBirdSampleUIUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5A8D9BE21C5D1C9E004751E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5AA5C2311C673423008C93EE /* MessagingBroadcastMessageTableViewCell.swift in Sources */,
+				5AA5C2371C680EFD008C93EE /* MessagingFileMessageTableViewCell.swift in Sources */,
+				5AA775D01C5DDE7A008CE6B1 /* SendBirdCommon.swift in Sources */,
+				5AA5C23B1C68266C008C93EE /* MessagingMessageTableViewCell.swift in Sources */,
+				5A8D9BEC1C5D1C9E004751E5 /* ViewController.swift in Sources */,
+				5A2005821C61B27B00D057BE /* BroadcastMessageTableViewCell.swift in Sources */,
+				5AA5C2391C68251D008C93EE /* MessagingIndicatorView.swift in Sources */,
+				5AA5C22D1C670AEF008C93EE /* MemberTableViewCell.swift in Sources */,
+				5AA5C2451C6868A7008C93EE /* MessagingTableViewController.swift in Sources */,
+				5AA5C2221C631B86008C93EE /* FileMessageTableViewCell.swift in Sources */,
+				5AA5C2241C633710008C93EE /* IndicatorView.swift in Sources */,
+				5AA5C23F1C685415008C93EE /* MessagingMyMessageTableViewCell.swift in Sources */,
+				5AA5C23D1C6834B8008C93EE /* MessagingMyFileLinkTableViewCell.swift in Sources */,
+				5AA5C2261C63D442008C93EE /* MessageTableViewCell.swift in Sources */,
+				5AA5C2331C67CAE9008C93EE /* MessagingChannelTableViewCell.swift in Sources */,
+				5A2005881C61EA6E00D057BE /* ChannelTableViewCell.swift in Sources */,
+				5AA5C2411C685E95008C93EE /* MessagingSystemMessageTableViewCell.swift in Sources */,
+				5A8D9BEA1C5D1C9E004751E5 /* AppDelegate.swift in Sources */,
+				5AA5C2431C6861A1008C93EE /* TypingNowView.swift in Sources */,
+				5A20058A1C628BC700D057BE /* ChatMessageInputView.swift in Sources */,
+				5A0790F11C5FC2EB00833A70 /* ChattingTableViewController.swift in Sources */,
+				5AA5C22F1C6720B3008C93EE /* MessageInputView.swift in Sources */,
+				5A2005861C61CF8600D057BE /* ChannelListTableView.swift in Sources */,
+				5AA5C2201C62D6E7008C93EE /* FileLinkTableViewCell.swift in Sources */,
+				5AA5C2351C67F200008C93EE /* MessagingFileLinkTableViewCell.swift in Sources */,
+				5AA5C2281C641B9A008C93EE /* SystemMessageTableViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A8D9BF61C5D1C9E004751E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A8D9BFF1C5D1C9E004751E5 /* SendBirdSampleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A8D9C011C5D1C9E004751E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A8D9C0A1C5D1C9E004751E5 /* SendBirdSampleUIUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5A8D9BFC1C5D1C9E004751E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5A8D9BE51C5D1C9E004751E5 /* SendBird Sample UI */;
+			targetProxy = 5A8D9BFB1C5D1C9E004751E5 /* PBXContainerItemProxy */;
+		};
+		5A8D9C071C5D1C9E004751E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5A8D9BE51C5D1C9E004751E5 /* SendBird Sample UI */;
+			targetProxy = 5A8D9C061C5D1C9E004751E5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5A8D9BED1C5D1C9E004751E5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5A8D9BEE1C5D1C9E004751E5 /* Base */,
+			);
+			name = Main.storyboard;
+			path = .;
+			sourceTree = "<group>";
+		};
+		5A8D9BF21C5D1C9E004751E5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5A8D9BF31C5D1C9E004751E5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			path = .;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5A8D9C0C1C5D1C9E004751E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5A8D9C0D1C5D1C9E004751E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5A8D9C0F1C5D1C9E004751E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A8C4B15435F3D5B0B471FF8 /* Pods-SendBird Sample UI.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = SendBirdSampleUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.sample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		5A8D9C101C5D1C9E004751E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D20D9E82D79EC08DD0EC181 /* Pods-SendBird Sample UI.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = SendBirdSampleUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.sample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		5A8D9C121C5D1C9E004751E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29BFEA699115F679A69CBC0D /* Pods-SendBirdSampleUITests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SendBirdSampleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.SendBirdSampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SendBirdSampleUI.app/SendBirdSampleUI";
+			};
+			name = Debug;
+		};
+		5A8D9C131C5D1C9E004751E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B6AF684EA1604142E00AF78 /* Pods-SendBirdSampleUITests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SendBirdSampleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.SendBirdSampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SendBirdSampleUI.app/SendBirdSampleUI";
+			};
+			name = Release;
+		};
+		5A8D9C151C5D1C9E004751E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2C136076AC7A9376A8188D9 /* Pods-SendBirdSampleUIUITests.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = SendBirdSampleUIUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.SendBirdSampleUIUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SendBirdSampleUI;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		5A8D9C161C5D1C9E004751E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7949458BEA1616A5BA7837EC /* Pods-SendBirdSampleUIUITests.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = SendBirdSampleUIUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.SendBirdSampleUIUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SendBirdSampleUI;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5A8D9BE11C5D1C9E004751E5 /* Build configuration list for PBXProject "SendBirdSampleUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A8D9C0C1C5D1C9E004751E5 /* Debug */,
+				5A8D9C0D1C5D1C9E004751E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A8D9C0E1C5D1C9E004751E5 /* Build configuration list for PBXNativeTarget "SendBird Sample UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A8D9C0F1C5D1C9E004751E5 /* Debug */,
+				5A8D9C101C5D1C9E004751E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A8D9C111C5D1C9E004751E5 /* Build configuration list for PBXNativeTarget "SendBirdSampleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A8D9C121C5D1C9E004751E5 /* Debug */,
+				5A8D9C131C5D1C9E004751E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5A8D9C141C5D1C9E004751E5 /* Build configuration list for PBXNativeTarget "SendBirdSampleUIUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A8D9C151C5D1C9E004751E5 /* Debug */,
+				5A8D9C161C5D1C9E004751E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5A8D9BDE1C5D1C9E004751E5 /* Project object */;
+}

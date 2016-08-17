@@ -1,3 +1,6 @@
 platform :ios, '7.1'
-pod 'SendBirdSDK', '~> 2.2'
-pod 'AFNetworking'
+
+target 'SendBird Sample UI' do
+  pod 'SendBirdSDK', '~> 2.2'
+  pod 'AFNetworking'
+end
