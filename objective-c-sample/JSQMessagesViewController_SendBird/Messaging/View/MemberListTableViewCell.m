@@ -62,7 +62,8 @@
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setLocale:[NSLocale currentLocale]];
-    [formatter setTimeStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateStyle:NSDateFormatterShortStyle];
     [formatter setTimeZone:[NSTimeZone localTimeZone]];
     
     [self.lastSeenAtLabel setText:[formatter stringFromDate:date]];

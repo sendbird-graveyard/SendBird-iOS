@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A57070ADED857D488CABFAF0212E8C97A2AF0F15",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D7972F9593E7DFEB7935DDF6E99BC8C3E8CC017A" : 0,
+    "A57070ADED857D488CABFAF0212E8C97A2AF0F15" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DF96B82D-32B8-4B3F-A661-ED13727F6AD3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D7972F9593E7DFEB7935DDF6E99BC8C3E8CC017A" : "sendbird-ios-framework\/",
+    "A57070ADED857D488CABFAF0212E8C97A2AF0F15" : "SendBird-iOS\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SendBirdSampleUI",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "objective-c-sample-v2\/SendBirdSampleUI.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/smilefam\/SendBird-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A57070ADED857D488CABFAF0212E8C97A2AF0F15"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/smilefam\/sendbird-ios-framework.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D7972F9593E7DFEB7935DDF6E99BC8C3E8CC017A"
+    }
+  ]
+}
