@@ -20,7 +20,7 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
         super.viewDidLoad()
         
         self.title = "Open Channels"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("createOpenChannel"))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(OpenChannelListViewController.createOpenChannel))
         
         self.channels = NSMutableArray()
         
@@ -28,17 +28,76 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
         self.tableView.dataSource = self
         self.tableView.registerNib(OpenChannelListTableViewCell.nib(), forCellReuseIdentifier: OpenChannelListTableViewCell.cellReuseIdentifier())
         self.refreshControl = UIRefreshControl()
-        self.refreshControl?.addTarget(self, action: Selector("refreshChannelList"), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(OpenChannelListViewController.refreshChannelList), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(self.refreshControl!)
         
         self.channelListQuery = SBDOpenChannel.createOpenChannelListQuery()
         
         self.loadChannels()
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func createOpenChannel() {
+        let alert = UIAlertController(title: "Create Open Channel", message: "Create open channel with name.", preferredStyle: UIAlertControllerStyle.Alert)
+        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel) { (action) in
+            
+        }
+        let createAction = UIAlertAction(title: "Create", style: UIAlertActionStyle.Default) { (action) in
+            let nameTextField = alert.textFields![0]
+            
+            if nameTextField.text?.characters.count > 0 {
+                dispatch_async(dispatch_get_main_queue(), { 
+                    // TODO:
+                })
+                
+                SBDOpenChannel.createChannelWithName(nameTextField.text, coverUrl: nil, data: nil, operatorUsers: [SBDMain.getCurrentUser()!], completionHandler: { (channel, error) in
+                    if error != nil {
+                        print("Error")
+                        
+                        dispatch_async(dispatch_get_main_queue(), { 
+                            // TODO:
+                        })
+                        
+                        return
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue(), { 
+                        self.channels?.removeAllObjects()
+                        self.channelListQuery = SBDOpenChannel.createOpenChannelListQuery()
+                        self.loadChannels()
+                        // TODO:
+                    })
+                })
+            }
+        }
+        
+        alert.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "Enter a channel name."
+        }
+        
+        alert.addAction(closeAction)
+        alert.addAction(createAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func refreshChannelList() {
+        if self.channelListQuery != nil && self.channelListQuery?.isLoading() == true {
+            self.refreshControl?.endRefreshing()
+            return
+        }
+        
+        self.channels?.removeAllObjects()
+        self.channelListQuery = SBDOpenChannel.createOpenChannelListQuery()
+        self.loadChannels()
     }
     
     func loadChannels() {
@@ -100,7 +159,7 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
         vc.title = self.channels?.objectAtIndex(indexPath.row).name
         vc.senderId = SBDMain.getCurrentUser()?.userId
         vc.senderDisplayName = SBDMain.getCurrentUser()?.nickname
-        vc.channel = self.channels?.objectAtIndex(indexPath.row) as! SBDOpenChannel
+        vc.channel = self.channels?.objectAtIndex(indexPath.row) as? SBDOpenChannel
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

@@ -1,1 +1,1 @@
-../../../../SendBirdSDK/SendBirdSDK.framework/Headers/SBDOpenChannelListQuery.h
+../../../../../../../sendbird-ios-framework/SendBirdSDK.framework/Headers/SBDOpenChannelListQuery.h

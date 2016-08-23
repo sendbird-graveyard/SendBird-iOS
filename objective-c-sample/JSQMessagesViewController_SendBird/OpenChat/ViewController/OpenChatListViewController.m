@@ -66,12 +66,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)clickClose:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-}
-
 - (void)createOpenChannel {
     NSLog(@"createOpenChannel");
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Create Open Channel" message:@"Create open channel with name." preferredStyle:UIAlertControllerStyleAlert];

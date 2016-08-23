@@ -39,7 +39,7 @@
 		5A7F07E31CCE9B1F00A5E3FA /* MessagingChannelListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07E11CCE9B1F00A5E3FA /* MessagingChannelListTableViewCell.xib */; };
 		5A7F07E71CCE9EB500A5E3FA /* MessagingChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07E51CCE9EB500A5E3FA /* MessagingChannelListViewController.m */; };
 		5A7F07E81CCE9EB500A5E3FA /* MessagingChannelListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07E61CCE9EB500A5E3FA /* MessagingChannelListViewController.xib */; };
-		C2094A3C03CC39DC712F98F2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DA3F5E590C40BAA870C2B2 /* libPods.a */; };
+		BDF3D4EB51C1251A4988460C /* libPods-JSQMessagesViewController_SendBird.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9477E6660007845AC2341709 /* libPods-JSQMessagesViewController_SendBird.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02DA3F5E590C40BAA870C2B2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		039A9C182C4331E6C5829655 /* Pods-JSQMessagesViewController_SendBird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSQMessagesViewController_SendBird.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSQMessagesViewController_SendBird/Pods-JSQMessagesViewController_SendBird.debug.xcconfig"; sourceTree = "<group>"; };
 		5A0DDF2B1D4A257000EC6F3E /* ParticipantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantListViewController.h; sourceTree = "<group>"; };
 		5A0DDF2C1D4A257000EC6F3E /* ParticipantListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantListViewController.m; sourceTree = "<group>"; };
 		5A0DDF2D1D4A257000EC6F3E /* ParticipantListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParticipantListViewController.xib; sourceTree = "<group>"; };
@@ -116,8 +116,8 @@
 		5A7F07E41CCE9EB500A5E3FA /* MessagingChannelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagingChannelListViewController.h; sourceTree = "<group>"; };
 		5A7F07E51CCE9EB500A5E3FA /* MessagingChannelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagingChannelListViewController.m; sourceTree = "<group>"; };
 		5A7F07E61CCE9EB500A5E3FA /* MessagingChannelListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessagingChannelListViewController.xib; sourceTree = "<group>"; };
-		D31F1E80E8961F47497566F7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		F8CE76BBE891620227A6974E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9477E6660007845AC2341709 /* libPods-JSQMessagesViewController_SendBird.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSQMessagesViewController_SendBird.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5F800E4133C4FD861124F9A /* Pods-JSQMessagesViewController_SendBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSQMessagesViewController_SendBird.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSQMessagesViewController_SendBird/Pods-JSQMessagesViewController_SendBird.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +128,7 @@
 				5A2B385A1D4D8EA3002A2E8B /* AVFoundation.framework in Frameworks */,
 				5A2B38581D4D8D97002A2E8B /* AVKit.framework in Frameworks */,
 				5A5F2A191D3DC27700928248 /* libicucore.A.tbd in Frameworks */,
-				C2094A3C03CC39DC712F98F2 /* libPods.a in Frameworks */,
+				BDF3D4EB51C1251A4988460C /* libPods-JSQMessagesViewController_SendBird.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,15 +149,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		06D1B02646C0706ADEBB8214 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F8CE76BBE891620227A6974E /* Pods.debug.xcconfig */,
-				D31F1E80E8961F47497566F7 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		5A0DDF281D4A217700EC6F3E /* CommonView */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,8 +166,8 @@
 				5A7F076B1CCB666C00A5E3FA /* JSQMessagesViewController_SendBird */,
 				5A7F07851CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdTests */,
 				5A7F07901CCB666C00A5E3FA /* JSQMessagesViewController_SendBirdUITests */,
-				06D1B02646C0706ADEBB8214 /* Pods */,
 				5A7F076A1CCB666C00A5E3FA /* Products */,
+				7A3C5B5ECEDFB04D3DCC3F60 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -319,6 +310,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7A3C5B5ECEDFB04D3DCC3F60 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				039A9C182C4331E6C5829655 /* Pods-JSQMessagesViewController_SendBird.debug.xcconfig */,
+				A5F800E4133C4FD861124F9A /* Pods-JSQMessagesViewController_SendBird.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		94CA131B19566C768F5361A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,7 +328,7 @@
 				5A2B38571D4D8D97002A2E8B /* AVKit.framework */,
 				5A2B384F1D4D8CD4002A2E8B /* MediaPlayer.framework */,
 				5A5F2A181D3DC27700928248 /* libicucore.A.tbd */,
-				02DA3F5E590C40BAA870C2B2 /* libPods.a */,
+				9477E6660007845AC2341709 /* libPods-JSQMessagesViewController_SendBird.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -340,12 +340,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A7F07961CCB666C00A5E3FA /* Build configuration list for PBXNativeTarget "JSQMessagesViewController_SendBird" */;
 			buildPhases = (
-				34045B8B7BDB819297A98B8A /* Check Pods Manifest.lock */,
+				6C0F207DA94EBDC49FDD75D9 /* [CP] Check Pods Manifest.lock */,
 				5A7F07651CCB666C00A5E3FA /* Sources */,
 				5A7F07661CCB666C00A5E3FA /* Frameworks */,
 				5A7F07671CCB666C00A5E3FA /* Resources */,
-				4C99A637DF3F0447CB7C671E /* Embed Pods Frameworks */,
-				63368833FC15044BC8F4F67D /* Copy Pods Resources */,
+				828D83104DF3988B6DC9DFC9 /* [CP] Embed Pods Frameworks */,
+				05C5401FEC547DE43D2A2583 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -471,14 +471,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		34045B8B7BDB819297A98B8A /* Check Pods Manifest.lock */ = {
+		05C5401FEC547DE43D2A2583 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JSQMessagesViewController_SendBird/Pods-JSQMessagesViewController_SendBird-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6C0F207DA94EBDC49FDD75D9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,34 +501,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		4C99A637DF3F0447CB7C671E /* Embed Pods Frameworks */ = {
+		828D83104DF3988B6DC9DFC9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		63368833FC15044BC8F4F67D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JSQMessagesViewController_SendBird/Pods-JSQMessagesViewController_SendBird-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -680,7 +680,7 @@
 		};
 		5A7F07971CCB666C00A5E3FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8CE76BBE891620227A6974E /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 039A9C182C4331E6C5829655 /* Pods-JSQMessagesViewController_SendBird.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -696,7 +696,7 @@
 		};
 		5A7F07981CCB666C00A5E3FA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D31F1E80E8961F47497566F7 /* Pods.release.xcconfig */;
+			baseConfigurationReference = A5F800E4133C4FD861124F9A /* Pods-JSQMessagesViewController_SendBird.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (

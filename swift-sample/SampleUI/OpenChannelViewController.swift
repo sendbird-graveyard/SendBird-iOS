@@ -619,18 +619,362 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     // MARK: UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let mediaType = info[UIImagePickerControllerMediaType]
-        var originalImage: UIImage?
-        var editedImage: UIImage?
-        var imageToUse: UIImage?
-        var imageName: String?
-        var imageType: String?
-        
+
         picker.dismissViewControllerAnimated(true) { 
             if CFStringCompare(mediaType as! CFStringRef, kUTTypeImage, CFStringCompareFlags.CompareDiacriticInsensitive) == CFComparisonResult.CompareEqualTo {
-                editedImage = info[UIImagePickerControllerEditedImage] as UIImage
-                originalImage = info[UIImagePickerControllerOriginalImage] as UIImage
-                let refUrl = info[UIImagePickerControllerReferenceURL] as NSURL
-                imageName = refUrl.las
+                var originalImage: UIImage?
+                var editedImage: UIImage?
+                var imageToUse: UIImage?
+                var imagePath: NSURL?
+                
+                var imageName: NSString?
+                var imageType: String?
+                
+                editedImage = info[UIImagePickerControllerEditedImage] as? UIImage
+                originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+                let refUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
+                imageName = refUrl.lastPathComponent
+                
+                if originalImage != nil {
+                    imageToUse = originalImage
+                }
+                else {
+                    imageToUse = editedImage
+                }
+                
+                imagePath = info["UIImagePickerControllerReferenceURL"] as? NSURL
+                imageName = (imagePath?.lastPathComponent)! as NSString
+                
+                var newWidth: CGFloat = 0.0
+                var newHeight: CGFloat = 0.0
+                if imageToUse!.size.width > imageToUse!.size.height {
+                    newWidth = 450.0
+                    newHeight = newWidth * imageToUse!.size.height / imageToUse!.size.width
+                }
+                else {
+                    newHeight = 450.0
+                    newWidth = newHeight * imageToUse!.size.width / imageToUse!.size.height
+                }
+                
+                UIGraphicsBeginImageContextWithOptions(CGSizeMake(newWidth, newHeight), false, 0.0)
+                imageToUse?.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+                let newImage = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                
+                var imageFileData: NSData?
+                let index = imageName!.rangeOfString(".").location + 1
+                let extentionOfFile = imageName!.substringFromIndex(index)
+                
+                if extentionOfFile.caseInsensitiveCompare("png") == NSComparisonResult.OrderedSame {
+                    imageType = "image/png"
+                    imageFileData = UIImagePNGRepresentation(newImage)
+                }
+                else {
+                    imageType = "image/jpg"
+                    imageFileData = UIImageJPEGRepresentation(newImage, 1.0)
+                }
+                
+                self.channel?.sendFileMessageWithBinaryData(imageFileData!, filename: imageName! as String, type: imageType!, size: UInt((imageFileData?.length)!), data: "", completionHandler: { (fileMessage, error) in
+                    if error != nil {
+                        return;
+                    }
+                    
+                    if fileMessage != nil {
+                        let senderId = fileMessage!.sender?.userId
+                        let senderImage = fileMessage!.sender?.profileUrl
+                        let senderName = fileMessage!.sender?.nickname
+                        let msgDate = NSDate(timeIntervalSince1970: Double((fileMessage?.createdAt)!) / 1000)
+                        let url = fileMessage?.url
+                        
+                        var initialName = ""
+                        if senderName?.characters.count > 1 {
+                            initialName = (senderName! as NSString).substringWithRange(NSMakeRange(0, 2)).uppercaseString
+                        }
+                        else if senderName?.characters.count > 0 {
+                            initialName = (senderName! as NSString).substringWithRange(NSMakeRange(0, 1)).uppercaseString
+                        }
+                        
+                        let placeholderImage = JSQMessagesAvatarImageFactory.circularAvatarPlaceholderImage(initialName, backgroundColor: UIColor.lightGrayColor(), textColor: UIColor.darkGrayColor(), font: UIFont.systemFontOfSize(13.0), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+                        let avatarImage = JSQMessagesAvatarImageFactory.avatarImageWithImageURL(senderImage, highlightedImageURL: nil, placeholderImage: placeholderImage, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+                        
+                        self.avatars?.setObject(avatarImage, forKey: senderId!)
+                        self.users?.setObject(senderName!, forKey: senderId!)
+                        
+                        let photoItem = JSQPhotoMediaItem(imageURL: url)
+                        let jsqsbmsg = JSQSBMessage(senderId: senderId, senderDisplayName: senderName, date: msgDate, media: photoItem)
+                        
+                        self.messages?.addObject(jsqsbmsg)
+                        
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * NSEC_PER_SEC)), dispatch_get_main_queue(), {
+                            dispatch_async(dispatch_get_main_queue(), { 
+                                self.collectionView.reloadData()
+                                self.scrollToBottomAnimated(false)
+                            })
+                        })
+                    }
+                })
+            }
+            else if CFStringCompare(mediaType as! CFStringRef, kUTTypeMovie, CFStringCompareFlags.CompareDiacriticInsensitive) == CFComparisonResult.CompareEqualTo {
+                var videoName: NSString?
+                var videoType: String?
+                let videoURL = info[UIImagePickerControllerMediaURL] as? NSURL
+                let videoFileData = NSData.init(contentsOfURL: videoURL!)
+                videoName = (videoURL?.lastPathComponent)! as NSString
+
+                let index = videoName!.rangeOfString(".").location + 1
+                let extentionOfFile = videoName!.substringFromIndex(index)
+                
+                if extentionOfFile.caseInsensitiveCompare("mov") == NSComparisonResult.OrderedSame {
+                    videoType = "video/quicktime"
+                }
+                else if extentionOfFile.caseInsensitiveCompare("mp4") == NSComparisonResult.OrderedSame {
+                    videoType = "video/mp4"
+                }
+                else {
+                    videoType = "video/mpeg"
+                }
+                
+                self.channel?.sendFileMessageWithBinaryData(videoFileData!, filename: videoName! as String, type: videoType!, size: UInt((videoFileData?.length)!), data: "", completionHandler: { (fileMessage, error) in
+                    if error != nil {
+                        return;
+                    }
+                    
+                    if fileMessage != nil {
+                        let senderId = fileMessage!.sender?.userId
+                        let senderImage = fileMessage!.sender?.profileUrl
+                        let senderName = fileMessage!.sender?.nickname
+                        let msgDate = NSDate(timeIntervalSince1970: Double((fileMessage?.createdAt)!) / 1000)
+                        let url = fileMessage?.url
+                        
+                        var initialName = ""
+                        if senderName?.characters.count > 1 {
+                            initialName = (senderName! as NSString).substringWithRange(NSMakeRange(0, 2)).uppercaseString
+                        }
+                        else if senderName?.characters.count > 0 {
+                            initialName = (senderName! as NSString).substringWithRange(NSMakeRange(0, 1)).uppercaseString
+                        }
+                        
+                        let placeholderImage = JSQMessagesAvatarImageFactory.circularAvatarPlaceholderImage(initialName, backgroundColor: UIColor.lightGrayColor(), textColor: UIColor.darkGrayColor(), font: UIFont.systemFontOfSize(13.0), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+                        let avatarImage = JSQMessagesAvatarImageFactory.avatarImageWithImageURL(senderImage, highlightedImageURL: nil, placeholderImage: placeholderImage, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+                        
+                        self.avatars?.setObject(avatarImage, forKey: senderId!)
+                        self.users?.setObject(senderName!, forKey: senderId!)
+                        
+                        let videoItem = JSQVideoMediaItem(fileURL: NSURL.init(string: url!), isReadyToPlay: true)
+                        let jsqsbmsg = JSQSBMessage(senderId: senderId, senderDisplayName: senderName, date: msgDate, media: videoItem)
+                        
+                        self.messages?.addObject(jsqsbmsg)
+                        
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * NSEC_PER_SEC)), dispatch_get_main_queue(), {
+                            dispatch_async(dispatch_get_main_queue(), {
+                                self.collectionView.reloadData()
+                                self.scrollToBottomAnimated(false)
+                            })
+                        })
+                    }
+                })
+            }
+        }
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismissViewControllerAnimated(true) { 
+            
+        }
+    }
+    
+    // MARK: SBDConnectionDelegate
+    func didStartReconnection() {
+        print("didStartReconnection in OpenChannelViewController")
+        self.lastMessageTimestamp = Int64.min
+        self.firstMessageTimestamp = Int64.max
+        
+        self.messages?.removeAllObjects()
+        self.collectionView.reloadData()
+    }
+    
+    func didSucceedReconnection() {
+        print("didSucceedReconnection delegate in OpenChannelViewController")
+        self.previousMessageQuery = self.channel?.createPreviousMessageListQuery()
+        self.loadMessage(Int64.max, initial: true)
+    }
+    
+    func didFailReconnection() {
+        print("didFailReconnection delegate in OpenChannelViewController")
+    }
+    
+    // MARK: SBDBaseChannelDelegate
+    func channel(sender: SBDBaseChannel, didReceiveMessage message: SBDBaseMessage) {
+        print("channel(sender: SBDBaseChannel, didReceiveMessage message: SBDBaseMessage) in OpenChannelViewController")
+        
+        var jsqsbmsg: JSQSBMessage?
+        
+        if sender.channelUrl == self.channel?.channelUrl {
+            return
+        }
+        
+        if message.isKindOfClass(SBDUserMessage) == true {
+            let userMessage = message as! SBDUserMessage
+            let senderId = userMessage.sender?.userId
+            let senderImage = userMessage.sender?.profileUrl
+            let senderName = userMessage.sender?.nickname
+            let msgDate = NSDate(timeIntervalSince1970: Double(message.createdAt) / 1000)
+            let messageText = userMessage.message
+            
+            var initialName = ""
+            if senderName?.characters.count > 1 {
+                initialName = (senderName! as NSString).substringWithRange(NSMakeRange(0, 2)).uppercaseString
+            }
+            else if senderName?.characters.count > 0 {
+                initialName = (senderName! as NSString).substringWithRange(NSMakeRange(0, 1)).uppercaseString
+            }
+            
+            let placeholderImage = JSQMessagesAvatarImageFactory.circularAvatarPlaceholderImage(initialName, backgroundColor: UIColor.lightGrayColor(), textColor: UIColor.darkGrayColor(), font: UIFont.systemFontOfSize(13.0), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+            let avatarImage = JSQMessagesAvatarImageFactory.avatarImageWithImageURL(senderImage, highlightedImageURL: nil, placeholderImage: placeholderImage, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+            
+            self.avatars?.setObject(avatarImage, forKey: senderId!)
+            self.users?.setObject(senderName!, forKey: senderId!)
+            
+            let jsqsbmsg = JSQSBMessage(senderId: senderId, senderDisplayName: senderName, date: msgDate, text: messageText)
+            jsqsbmsg.message = message
+        }
+        else if message.isKindOfClass(SBDFileMessage) == true {
+            let fileMessage = message as! SBDFileMessage
+            let senderId = fileMessage.sender?.userId
+            let senderImage = fileMessage.sender?.profileUrl
+            let senderName = fileMessage.sender?.nickname
+            let msgDate = NSDate(timeIntervalSince1970: Double(fileMessage.createdAt) / 1000)
+            let url = fileMessage.url
+            let type = fileMessage.type
+            
+            var initialName = ""
+            if senderName?.characters.count > 1 {
+                initialName = (senderName! as NSString).substringWithRange(NSMakeRange(0, 2)).uppercaseString
+            }
+            else if senderName?.characters.count > 0 {
+                initialName = (senderName! as NSString).substringWithRange(NSMakeRange(0, 1)).uppercaseString
+            }
+            
+            let placeholderImage = JSQMessagesAvatarImageFactory.circularAvatarPlaceholderImage(initialName, backgroundColor: UIColor.lightGrayColor(), textColor: UIColor.darkGrayColor(), font: UIFont.systemFontOfSize(13.0), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+            let avatarImage = JSQMessagesAvatarImageFactory.avatarImageWithImageURL(senderImage, highlightedImageURL: nil, placeholderImage: placeholderImage, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+            
+            self.avatars?.setObject(avatarImage, forKey: senderId!)
+            self.users?.setObject(senderName!, forKey: senderId!)
+            
+            if type.hasPrefix("image") == true {
+                let photoItem = JSQPhotoMediaItem.init(imageURL: url)
+                jsqsbmsg = JSQSBMessage(senderId: senderId, senderDisplayName: senderName, date: msgDate, media: photoItem)
+            }
+            else if type.hasPrefix("video") == true {
+                let videoItem = JSQVideoMediaItem.init(fileURL: NSURL.init(string: url), isReadyToPlay: true)
+                jsqsbmsg = JSQSBMessage(senderId: senderId, senderDisplayName: senderName, date: msgDate, media: videoItem)
+            }
+            else {
+                let fileItem = JSQFileMediaItem.init(fileURL: NSURL.init(string: url))
+                jsqsbmsg = JSQSBMessage(senderId: senderId, senderDisplayName: senderName, date: msgDate, media: fileItem)
+            }
+            
+            jsqsbmsg!.message = message
+        }
+        else if message.isKindOfClass(SBDAdminMessage) == true {
+            let adminMessage = message as! SBDAdminMessage
+            let msgDate = NSDate(timeIntervalSince1970: Double(adminMessage.createdAt) / 1000)
+            let messageText = adminMessage.message
+            
+            let jsqsbmsg = JSQSBMessage(senderId: "", senderDisplayName: "", date: msgDate, text: messageText)
+            jsqsbmsg.message = message
+        }
+        
+        if message.createdAt > self.lastMessageTimestamp {
+            self.lastMessageTimestamp = message.createdAt
+        }
+        
+        if message.createdAt < self.firstMessageTimestamp {
+            self.firstMessageTimestamp = message.createdAt
+        }
+        
+        if jsqsbmsg != nil {
+            self.messages?.addObject(jsqsbmsg!)
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * NSEC_PER_SEC)), dispatch_get_main_queue(), {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.collectionView.reloadData()
+                self.scrollToBottomAnimated(false)
+            })
+        })
+    }
+    
+    func channelDidUpdateReadReceipt(sender: SBDGroupChannel) {
+        
+    }
+    
+    func channelDidUpdateTypingStatus(sender: SBDGroupChannel) {
+        
+    }
+    
+    func channel(sender: SBDGroupChannel, userDidJoin user: SBDUser) {
+        
+    }
+    
+    func channel(sender: SBDGroupChannel, userDidLeave user: SBDUser) {
+        
+    }
+    
+    func channel(sender: SBDOpenChannel, userDidEnter user: SBDUser) {
+        
+    }
+    
+    func channel(sender: SBDOpenChannel, userDidExit user: SBDUser) {
+        
+    }
+    
+    func channel(sender: SBDOpenChannel, userWasMuted user: SBDUser) {
+        
+    }
+    
+    func channel(sender: SBDOpenChannel, userWasUnmuted user: SBDUser) {
+        
+    }
+    
+    func channel(sender: SBDOpenChannel, userWasBanned user: SBDUser) {
+        
+    }
+    
+    func channel(sender: SBDOpenChannel, userWasUnbanned user: SBDUser) {
+        
+    }
+    
+    func channelWasFrozen(sender: SBDOpenChannel) {
+        
+    }
+    
+    func channelWasUnfrozen(sender: SBDOpenChannel) {
+        
+    }
+    
+    func channelWasChanged(sender: SBDBaseChannel) {
+        
+    }
+    
+    func channelWasDeleted(channelUrl: String, channelType: SBDChannelType) {
+        
+    }
+    
+    func channel(sender: SBDBaseChannel, messageWasDeleted messageId: Int64) {
+        for item in self.messages! {
+            let msg = item as! JSQSBMessage
+            if msg.message!.messageId == messageId {
+                let row = self.messages?.indexOfObject(msg)
+                let deletedMessageIndexPath = NSIndexPath(forRow: row!, inSection: 0)
+                
+                self.collectionView.dataSource.collectionView(self.collectionView, didDeleteMessageAtIndexPath: deletedMessageIndexPath)
+                dispatch_async(dispatch_get_main_queue(), { 
+                    self.collectionView.deleteItemsAtIndexPaths([deletedMessageIndexPath])
+                    self.collectionView.collectionViewLayout.invalidateLayout()
+                })
+                
+                break
             }
         }
     }

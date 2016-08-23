@@ -1,1 +1,1 @@
-../../../../SendBirdSDK/SendBirdSDK.framework/Headers/SBDMessageListQuery.h
+../../../../../../../sendbird-ios-framework/SendBirdSDK.framework/Headers/SBDMessageListQuery.h
