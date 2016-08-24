@@ -17,6 +17,8 @@
 		5AA771D61D6D995C002DEDB8 /* GroupChannelListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AA771D41D6D995C002DEDB8 /* GroupChannelListViewController.xib */; };
 		5AA771DB1D6D9AAB002DEDB8 /* GroupChannelListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA771D91D6D9AAB002DEDB8 /* GroupChannelListTableViewCell.swift */; };
 		5AA771DC1D6D9AAB002DEDB8 /* GroupChannelListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AA771DA1D6D9AAB002DEDB8 /* GroupChannelListTableViewCell.xib */; };
+		5AA771DF1D6DD319002DEDB8 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA771DD1D6DD319002DEDB8 /* UserListViewController.swift */; };
+		5AA771E01D6DD319002DEDB8 /* UserListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AA771DE1D6DD319002DEDB8 /* UserListViewController.xib */; };
 		5AB8A18D1D66A0F900DE57A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB8A18C1D66A0F900DE57A1 /* AppDelegate.swift */; };
 		5AB8A18F1D66A0F900DE57A1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB8A18E1D66A0F900DE57A1 /* ViewController.swift */; };
 		5AB8A1921D66A0F900DE57A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AB8A1901D66A0F900DE57A1 /* Main.storyboard */; };
@@ -46,6 +48,8 @@
 		5AA771D41D6D995C002DEDB8 /* GroupChannelListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupChannelListViewController.xib; sourceTree = "<group>"; };
 		5AA771D91D6D9AAB002DEDB8 /* GroupChannelListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChannelListTableViewCell.swift; sourceTree = "<group>"; };
 		5AA771DA1D6D9AAB002DEDB8 /* GroupChannelListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupChannelListTableViewCell.xib; sourceTree = "<group>"; };
+		5AA771DD1D6DD319002DEDB8 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		5AA771DE1D6DD319002DEDB8 /* UserListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListViewController.xib; sourceTree = "<group>"; };
 		5AB8A1891D66A0F900DE57A1 /* SampleUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB8A18C1D66A0F900DE57A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AB8A18E1D66A0F900DE57A1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 			children = (
 				5AA771D31D6D995C002DEDB8 /* GroupChannelListViewController.swift */,
 				5AA771D41D6D995C002DEDB8 /* GroupChannelListViewController.xib */,
+				5AA771DD1D6DD319002DEDB8 /* UserListViewController.swift */,
+				5AA771DE1D6DD319002DEDB8 /* UserListViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -274,6 +280,7 @@
 				5AA771CA1D6D6FE9002DEDB8 /* UserListTableViewCell.xib in Resources */,
 				5AA771D61D6D995C002DEDB8 /* GroupChannelListViewController.xib in Resources */,
 				5AB8A1AB1D66D39C00DE57A1 /* OpenChannelListViewController.xib in Resources */,
+				5AA771E01D6DD319002DEDB8 /* UserListViewController.xib in Resources */,
 				5AB8A1971D66A0F900DE57A1 /* LaunchScreen.storyboard in Resources */,
 				5AB8A1941D66A0F900DE57A1 /* Assets.xcassets in Resources */,
 				5AA771DC1D6D9AAB002DEDB8 /* GroupChannelListTableViewCell.xib in Resources */,
@@ -342,6 +349,7 @@
 				5AB8A1AA1D66D39C00DE57A1 /* OpenChannelListViewController.swift in Sources */,
 				5AA771D51D6D995C002DEDB8 /* GroupChannelListViewController.swift in Sources */,
 				5AB8A18D1D66A0F900DE57A1 /* AppDelegate.swift in Sources */,
+				5AA771DF1D6DD319002DEDB8 /* UserListViewController.swift in Sources */,
 				5AB8A1AE1D66DA0900DE57A1 /* OpenChannelListTableViewCell.swift in Sources */,
 				5AA771C91D6D6FE9002DEDB8 /* UserListTableViewCell.swift in Sources */,
 				5ADEF97E1D6712F1004915F3 /* OpenChannelViewController.swift in Sources */,

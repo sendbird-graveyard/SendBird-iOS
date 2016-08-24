@@ -71,6 +71,9 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     
     func createGroupChannel() {
         // TODO:
+        let vc = UserListViewController()
+        vc.invitationMode = 0
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func editGroupChannelList() {
