@@ -22,13 +22,11 @@ PODS:
 
 DEPENDENCIES:
   - JSQMessagesViewController (from `https://github.com/smilefam/JSQMessagesViewController.git`)
-  - SendBirdSDK (from `/Users/jedkyung/git/sendbird-ios-framework`)
+  - SendBirdSDK
 
 EXTERNAL SOURCES:
   JSQMessagesViewController:
     :git: https://github.com/smilefam/JSQMessagesViewController.git
-  SendBirdSDK:
-    :path: /Users/jedkyung/git/sendbird-ios-framework
 
 CHECKOUT OPTIONS:
   JSQMessagesViewController:
@@ -41,6 +39,6 @@ SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   SendBirdSDK: 3b6b1338ad1081649d46191906bf3c546c6c66f9
 
-PODFILE CHECKSUM: ab69ae00bc3624bac97f0394aa3cb71776ad3f92
+PODFILE CHECKSUM: 6c4ddc7eac37223730f0a07dde3b0bfb014ee475
 
 COCOAPODS: 1.0.1

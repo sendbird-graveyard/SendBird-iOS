@@ -13,12 +13,13 @@ import SendBirdSDK
 import AVKit
 import AVFoundation
 
-protocol OpenChannelViewControllerDelegate {
+protocol OpenChannelViewControllerDelegate: class {
     func didCloseOpenChannelViewController(vc: UIViewController)
 }
 
 class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SBDConnectionDelegate, SBDChannelDelegate {
     var channel: SBDOpenChannel?
+    weak var delegate: OpenChannelViewControllerDelegate!
     
     private var avatars: NSMutableDictionary?
     private var users: NSMutableDictionary?
@@ -27,8 +28,8 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     private var neutralBubbleImageData: JSQMessagesBubbleImage?
     private var messages: NSMutableArray?
     
-    private var lastMessageTimestamp: Int64 = 0
-    private var firstMessageTimestamp: Int64 = INT64_MAX
+    private var lastMessageTimestamp: Int64 = Int64.min
+    private var firstMessageTimestamp: Int64 = Int64.max
     
     private var isLoading: Bool = false
     private var hasPrev: Bool = false
@@ -54,11 +55,13 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
         self.users = NSMutableDictionary()
         self.messages = NSMutableArray()
         
-        self.lastMessageTimestamp = 0
-        self.firstMessageTimestamp = INT64_MAX
+        self.lastMessageTimestamp = Int64.min
+        self.firstMessageTimestamp = Int64.max
         
         self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeMake(kJSQMessagesCollectionViewAvatarSizeDefault, kJSQMessagesCollectionViewAvatarSizeDefault)
         self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeMake(kJSQMessagesCollectionViewAvatarSizeDefault, kJSQMessagesCollectionViewAvatarSizeDefault)
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: #selector(OpenChannelViewController.actionPressed(_:)))
         
         self.showLoadEarlierMessagesHeader = false
         self.collectionView.collectionViewLayout.springinessEnabled = false
@@ -82,7 +85,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     }
     
     override func viewWillDisappear(animated: Bool) {
-        if self.navigationController?.viewControllers.indexOf(self) == NSNotFound {
+        if self.navigationController?.viewControllers.indexOf(self) == nil {
             SBDMain.removeChannelDelegateForIdentifier(self.delegateIndetifier!)
             SBDMain.removeConnectionDelegateForIdentifier(self.delegateIndetifier!)
             
@@ -100,21 +103,34 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
         // Dispose of any resources that can be recreated.
     }
 
-    private func actionPressed(sender: UIBarButtonItem) {
+    func actionPressed(sender: UIBarButtonItem) {
         print("actionPressed.")
         let alert = UIAlertController.init(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         let closeAction = UIAlertAction.init(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
         let seeParticipantAction = UIAlertAction.init(title: "See participant list", style: UIAlertActionStyle.Default) { (action) in
-            // TODO:
+            let vc = ParticipantListViewController()
+            vc.currentChannel = self.channel
+            
+            dispatch_async(dispatch_get_main_queue(), { 
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
         }
         let seeBlockedUserListAction = UIAlertAction.init(title: "See blocked user list", style: UIAlertActionStyle.Default) { (action) in
-            // TODO:
+            let vc = BlockedUserListViewController()
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
         }
         let exitAction = UIAlertAction.init(title: "Exit from this channel", style: UIAlertActionStyle.Default) { (action) in
             self.channel?.exitChannelWithCompletionHandler({ (error) in
-                dispatch_async(dispatch_get_main_queue(), { 
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                dispatch_async(dispatch_get_main_queue(), {
+                    if self.delegate != nil {
+                        self.delegate?.didCloseOpenChannelViewController(self)
+                    }
+                    
+                    self.navigationController?.popViewControllerAnimated(true)
                 })
             })
         }
@@ -705,7 +721,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                         
                         self.messages?.addObject(jsqsbmsg)
                         
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * NSEC_PER_SEC)), dispatch_get_main_queue(), {
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * NSEC_PER_USEC)), dispatch_get_main_queue(), {
                             dispatch_async(dispatch_get_main_queue(), { 
                                 self.collectionView.reloadData()
                                 self.scrollToBottomAnimated(false)
@@ -765,7 +781,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                         
                         self.messages?.addObject(jsqsbmsg)
                         
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * NSEC_PER_SEC)), dispatch_get_main_queue(), {
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * NSEC_PER_USEC)), dispatch_get_main_queue(), {
                             dispatch_async(dispatch_get_main_queue(), {
                                 self.collectionView.reloadData()
                                 self.scrollToBottomAnimated(false)
@@ -809,7 +825,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
         
         var jsqsbmsg: JSQSBMessage?
         
-        if sender.channelUrl == self.channel?.channelUrl {
+        if sender.channelUrl != self.channel?.channelUrl {
             return
         }
         
@@ -835,8 +851,8 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
             self.avatars?.setObject(avatarImage, forKey: senderId!)
             self.users?.setObject(senderName!, forKey: senderId!)
             
-            let jsqsbmsg = JSQSBMessage(senderId: senderId, senderDisplayName: senderName, date: msgDate, text: messageText)
-            jsqsbmsg.message = message
+            jsqsbmsg = JSQSBMessage(senderId: senderId, senderDisplayName: senderName, date: msgDate, text: messageText)
+            jsqsbmsg!.message = message
         }
         else if message.isKindOfClass(SBDFileMessage) == true {
             let fileMessage = message as! SBDFileMessage
@@ -897,7 +913,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
             self.messages?.addObject(jsqsbmsg!)
         }
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * NSEC_PER_SEC)), dispatch_get_main_queue(), {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * NSEC_PER_USEC)), dispatch_get_main_queue(), {
             dispatch_async(dispatch_get_main_queue(), {
                 self.collectionView.reloadData()
                 self.scrollToBottomAnimated(false)

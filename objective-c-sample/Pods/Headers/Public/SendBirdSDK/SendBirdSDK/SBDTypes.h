@@ -1,1 +1,1 @@
-../../../../../../../sendbird-ios-framework/SendBirdSDK.framework/Headers/SBDTypes.h
+../../../../SendBirdSDK/SendBirdSDK.framework/Headers/SBDTypes.h

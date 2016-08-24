@@ -113,6 +113,9 @@ class ViewController: UIViewController {
     
     
     @IBAction func clickGroupChannelButton(sender: AnyObject) {
+        let vc = GroupChannelListViewController()
+        vc.setUser((SBDMain.getCurrentUser()?.userId)!, aUserName: (SBDMain.getCurrentUser()?.nickname)!)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

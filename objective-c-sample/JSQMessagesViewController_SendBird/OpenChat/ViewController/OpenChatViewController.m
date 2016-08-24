@@ -119,7 +119,7 @@
     UIAlertAction *exitAction = [UIAlertAction actionWithTitle:@"Exit from this channel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self.channel exitChannelWithCompletionHandler:^(SBDError * _Nullable error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [self.navigationController popViewControllerAnimated:YES];
             });
         }];
     }];

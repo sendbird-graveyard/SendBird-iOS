@@ -360,7 +360,7 @@
     NSLog(@"didCloseMessagingViewController: in MessagingChannelListViewController");
     [self refreshChannelList];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(500 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(500 * NSEC_PER_USEC)), dispatch_get_main_queue(), ^{
         if (groupChannel != nil) {
             MessagingViewController *vc = [[MessagingViewController alloc] init];
             [vc setTitle:@"Messaging"];

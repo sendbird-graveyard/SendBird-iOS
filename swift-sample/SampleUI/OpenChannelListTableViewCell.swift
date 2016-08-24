@@ -32,10 +32,9 @@ class OpenChannelListTableViewCell: UITableViewCell {
     }
     
     static func nib() -> UINib {
-        let nib = UINib.init(nibName: NSStringFromClass(self).componentsSeparatedByString(".").last!, bundle: NSBundle(forClass: self));
-        return nib
+        return UINib.init(nibName: NSStringFromClass(self).componentsSeparatedByString(".").last!, bundle: NSBundle(forClass: self));
     }
-    
+
     static func cellReuseIdentifier() -> String {
         return NSStringFromClass(self).componentsSeparatedByString(".").last!
     }

@@ -403,6 +403,7 @@
 				TargetAttributes = {
 					5A7F07681CCB666C00A5E3FA = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 8K8M9F9X95;
 					};
 					5A7F07811CCB666C00A5E3FA = {
 						CreatedOnToolsVersion = 7.3;
@@ -683,6 +684,8 @@
 			baseConfigurationReference = 039A9C182C4331E6C5829655 /* Pods-JSQMessagesViewController_SendBird.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -691,6 +694,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sendbird.JSQMessagesViewController-SendBird";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -699,6 +703,8 @@
 			baseConfigurationReference = A5F800E4133C4FD861124F9A /* Pods-JSQMessagesViewController_SendBird.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -707,6 +713,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sendbird.JSQMessagesViewController-SendBird";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

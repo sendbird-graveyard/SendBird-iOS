@@ -5,6 +5,6 @@
 
 #pod 'SendBirdSDK', '~> 3.0'
 target 'JSQMessagesViewController_SendBird' do
-  pod 'SendBirdSDK', :path => '/Users/jedkyung/git/sendbird-ios-framework'
+  pod 'SendBirdSDK'
   pod 'JSQMessagesViewController', :git => 'https://github.com/smilefam/JSQMessagesViewController.git'
 end
