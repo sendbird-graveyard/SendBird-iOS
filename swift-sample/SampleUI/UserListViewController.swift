@@ -9,7 +9,12 @@
 import UIKit
 import SendBirdSDK
 
+protocol UserListViewControllerDelegate: class {
+    func didCloseUserListViewController(vc: UIViewController, groupChannel: SBDGroupChannel)
+}
+
 class UserListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    weak var delegate: UserListViewControllerDelegate!
     var invitationMode: Int?
     var channel: SBDGroupChannel?
 
@@ -88,11 +93,11 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func clickCreateChannel(sender: AnyObject) {
-        let userIds = NSMutableArray()
+        var userIds = [String]()
         
         for item in self.selectedUsers! {
             if item.value as! Int == 1 {
-                userIds.addObject(item.key)
+                userIds.append(item.key as! String)
             }
         }
         
@@ -100,10 +105,34 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
             let alert = UIAlertController(title: "Create Group Channel", message: "Create a group channel.", preferredStyle: UIAlertControllerStyle.Alert)
             let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
             let createDistinctChannelAction = UIAlertAction(title: "Create distinct channel", style: UIAlertActionStyle.Default, handler: { (action) in
-                // TODO:
+                SBDGroupChannel.createChannelWithUserIds(userIds, isDistinct: true, completionHandler: { (channel, error) in
+                    if error != nil {
+                        return
+                    }
+                    
+                    if self.delegate != nil {
+                        self.delegate?.didCloseUserListViewController(self, groupChannel: channel!)
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue(), { 
+                        self.navigationController?.popViewControllerAnimated(false)
+                    })
+                })
             })
             let createNonDistinctChannelAction = UIAlertAction(title: "Create non-distinct channel", style: UIAlertActionStyle.Default, handler: { (action) in
-                // TODO:
+                SBDGroupChannel.createChannelWithUserIds(userIds, isDistinct: false, completionHandler: { (channel, error) in
+                    if error != nil {
+                        return
+                    }
+                    
+                    if self.delegate != nil {
+                        self.delegate?.didCloseUserListViewController(self, groupChannel: channel!)
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.navigationController?.popViewControllerAnimated(false)
+                    })
+                })
             })
             
             alert.addAction(closeAction)
@@ -122,16 +151,28 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func clickInvite(sender: AnyObject) {
-        let userIds = NSMutableArray()
+        var userIds = [String]()
         
         for item in self.selectedUsers! {
             if item.value as! Int == 1 {
-                userIds.addObject(item.key)
+                userIds.append(item.key as! String)
             }
         }
         
         if userIds.count > 0 {
-            // TODO:
+            self.channel?.inviteUserIds(userIds, completionHandler: { (error) in
+                if error != nil {
+                    return
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), { 
+                    if self.delegate != nil {
+                        self.delegate?.didCloseUserListViewController(self, groupChannel: self.channel!)
+                    }
+                    
+                    self.navigationController?.popViewControllerAnimated(true)
+                })
+            })
         }
     }
     

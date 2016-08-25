@@ -12,7 +12,6 @@
 @interface MemberListViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray<SBDUser *> *members;
 @property (strong, nonatomic) SBDUserListQuery *query;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
@@ -25,7 +24,6 @@
     
     self.title = @"Members";
     
-    self.members = [[NSMutableArray alloc] init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[MemberListTableViewCell nib] forCellReuseIdentifier:[MemberListTableViewCell cellReuseIdentifier]];

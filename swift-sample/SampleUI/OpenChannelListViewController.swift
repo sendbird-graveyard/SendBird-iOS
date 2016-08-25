@@ -11,6 +11,7 @@ import SendBirdSDK
 
 class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
     var channels: NSMutableArray?
     var channelListQuery: SBDOpenChannelListQuery?
@@ -21,6 +22,9 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
         
         self.title = "Open Channels"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(OpenChannelListViewController.createOpenChannel))
+        
+        self.loadingActivityIndicator.hidesWhenStopped = true;
+        self.loadingActivityIndicator.stopAnimating()
         
         self.channels = NSMutableArray()
         
@@ -54,18 +58,21 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
             let nameTextField = alert.textFields![0]
             
             if nameTextField.text?.characters.count > 0 {
-                dispatch_async(dispatch_get_main_queue(), { 
-                    // TODO:
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.loadingActivityIndicator.hidden = false
+                    self.loadingActivityIndicator.startAnimating()
                 })
                 
                 SBDOpenChannel.createChannelWithName(nameTextField.text, coverUrl: nil, data: nil, operatorUsers: [SBDMain.getCurrentUser()!], completionHandler: { (channel, error) in
                     if error != nil {
-                        print("Error")
-                        
                         dispatch_async(dispatch_get_main_queue(), { 
-                            // TODO:
+                            let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                            alert.addAction(closeAction)
+                            self.presentViewController(alert, animated: true, completion: nil)
+                            
+                            self.loadingActivityIndicator.stopAnimating()
                         })
-                        
                         return
                     }
                     
@@ -73,7 +80,7 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
                         self.channels?.removeAllObjects()
                         self.channelListQuery = SBDOpenChannel.createOpenChannelListQuery()
                         self.loadChannels()
-                        // TODO:
+                        self.loadingActivityIndicator.stopAnimating()
                     })
                 })
             }
@@ -96,6 +103,7 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
         }
         
         self.channels?.removeAllObjects()
+        self.tableView.reloadData()
         self.channelListQuery = SBDOpenChannel.createOpenChannelListQuery()
         self.loadChannels()
     }
@@ -171,9 +179,14 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let channel = self.channels![indexPath.row]
-        print(OpenChannelListTableViewCell.cellReuseIdentifier())
         let cell: OpenChannelListTableViewCell = (tableView.dequeueReusableCellWithIdentifier(OpenChannelListTableViewCell.cellReuseIdentifier()) as? OpenChannelListTableViewCell)!
         cell.setModel(channel as! SBDOpenChannel)
+        
+        if self.channels?.count > 0 {
+            if indexPath.row == self.channels!.count - 1 {
+                self.loadChannels()
+            }
+        }
         
         return cell
     }

@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var openChannelButton: UIButton!
     @IBOutlet weak var groupChannelButton: UIButton!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var versionLabel: UILabel!
     
     var delegateIdentifier: NSString!
     var connected: Bool
@@ -44,10 +46,17 @@ class ViewController: UIViewController {
         
         self.connected = false
         
+        self.activityIndicatorView.hidden = true
         self.openChannelButton.enabled = false
         self.groupChannelButton.enabled = false
         
-        print(self.dynamicType);
+        let path = NSBundle.mainBundle().pathForResource("Info", ofType: "plist")
+        if path != nil {
+            let infoDict = NSDictionary(contentsOfFile: path!)
+            let sampleUIVersion = infoDict!["CFBundleShortVersionString"] as! String
+            let version = String(format: "SDK: v%@   Sample UI for Swift 2.2: v%@", SBDMain.getSDKVersion(), sampleUIVersion)
+            self.versionLabel.text = version
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,10 +66,20 @@ class ViewController: UIViewController {
     
     @IBAction func clickConnectButton(sender: AnyObject) {
         if self.userIdTextField.text?.characters.count == 0 {
+            let vc = UIAlertController(title: "Error", message: "User ID is required.", preferredStyle: UIAlertControllerStyle.Alert)
+            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+            vc.addAction(closeAction)
+            self.presentViewController(vc, animated: true, completion: nil)
+            
             return;
         }
         
         if self.nicknameTextField.text?.characters.count == 0 {
+            let vc = UIAlertController(title: "Error", message: "Nickname is required.", preferredStyle: UIAlertControllerStyle.Alert)
+            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+            vc.addAction(closeAction)
+            self.presentViewController(vc, animated: true, completion: nil)
+            
             return;
         }
         
@@ -70,17 +89,32 @@ class ViewController: UIViewController {
                 dispatch_async(dispatch_get_main_queue(), {
                     self.openChannelButton.enabled = false
                     self.groupChannelButton.enabled = false
+                    self.userIdTextField.enabled = true
                     self.connectButton.setTitle("Connect", forState: UIControlState.Normal)
                 })
             })
         }
         else {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.activityIndicatorView.hidden = false
+                self.activityIndicatorView.startAnimating()
+            })
             self.userIdTextField.enabled = false
             SBDMain.connectWithUserId(self.userIdTextField.text!, completionHandler: { (user, error) in
                 if error == nil {
                     SBDMain.updateCurrentUserInfoWithNickname(self.nicknameTextField.text, profileUrl: nil, completionHandler: { (error) in
                         if error != nil {
-                            print("User info updating error: %@", error)
+                            let vc = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                            vc.addAction(closeAction)
+                            self.presentViewController(vc, animated: true, completion: nil)
+                            
+                            dispatch_async(dispatch_get_main_queue(), {
+                                self.activityIndicatorView.hidden = true
+                                self.activityIndicatorView.stopAnimating()
+                            })
+                            
+                            return
                         }
                         
                         NSUserDefaults.standardUserDefaults().setObject(SBDMain.getCurrentUser()?.userId, forKey: "sendbird_user_id")
@@ -91,14 +125,23 @@ class ViewController: UIViewController {
                             self.openChannelButton.enabled = true
                             self.groupChannelButton.enabled = true
                             self.connectButton.setTitle("Disconnect", forState: UIControlState.Normal)
+                            
+                            self.activityIndicatorView.hidden = true
+                            self.activityIndicatorView.stopAnimating()
                         })
                     })
                 }
                 else {
-                    print("Connection error: %@", error)
-                    
                     dispatch_async(dispatch_get_main_queue(), {
+                        let vc = UIAlertController(title: "Error", message: String(format: "%lld-%@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                        vc.addAction(closeAction)
+                        self.presentViewController(vc, animated: true, completion: nil)
+                        
                         self.userIdTextField.enabled = true
+                        
+                        self.activityIndicatorView.hidden = true
+                        self.activityIndicatorView.stopAnimating()
                     })
                 }
             })

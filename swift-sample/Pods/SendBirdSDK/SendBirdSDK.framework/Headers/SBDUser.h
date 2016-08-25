@@ -13,12 +13,12 @@
 @class SBDBlockedUserListQuery;
 
 /**
- * Represents a user.
+ *  The `SBDUser` class represents a user. The user is identified by the `userId`, so the `userId` has to be unique. The `userId`, `nickname` and `profileUrl` are valid in every `SBDUser` instance, however the `connectionStatus` and `lastSeenAt` is valid in `SBDUser` instance from `SBDUserListQuery`.
  */
 @interface SBDUser : NSObject
 
 /**
- *  User ID.
+ *  User ID. This has to be unique.
  */
 @property (strong, nonatomic, readonly, nonnull) NSString *userId;
 
@@ -33,26 +33,17 @@
 @property (strong, nonatomic, nullable) NSString *profileUrl;
 
 /**
- *  User connection status.
+ *  User connection status. This is defined in `SBDUserConnectionStatus`.
  */
 @property (atomic, readonly) SBDUserConnectionStatus connectionStatus;
 
 /**
- *  <#Description#>
+ *  The lastest time when the user became offline.
  */
 @property (atomic, readonly) long long lastSeenAt;
 
 /**
- *  Device token for APNS. This value is valid in the current user only.
- */
-@property (strong, nonatomic, nullable) NSString *devToken;
-
-/**
- *  Initialize object.
- *
- *  @param dict Dictionary data.
- *
- *  @return SBDUser object.
+ *  Internal use only.
  */
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
 

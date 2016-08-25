@@ -126,10 +126,16 @@ class ParticipantListViewController: UIViewController, UITableViewDelegate, UITa
         let blockUserAction = UIAlertAction(title: "Block user", style: UIAlertActionStyle.Destructive) { (action) in
             SBDMain.blockUser(user, completionHandler: { (blockedUser, error) in
                 if error != nil {
-                    
+                    let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                    alert.addAction(closeAction)
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
                 else {
-                    
+                    let alert = UIAlertController(title: "User Blocked", message: String(format: "%@ is blocked", blockedUser!.nickname!), preferredStyle: UIAlertControllerStyle.Alert)
+                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                    alert.addAction(closeAction)
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
             })
         }

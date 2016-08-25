@@ -8,25 +8,33 @@
 
 #import "SBDUser.h"
 #import "SBDTypes.h"
+#import "SBDInternalTypes.h"
 #import "SBDBaseChannel.h"
 
 /**
- *  An object which retrieves the list of all users, blocked users.
+ *  The `SBDUserListQuery` class is a query class for getting the list of all users, participants, blocked users, muted users and banned users. Each type of the query is created by the class or the instance that is related to it.
+ *
+ *  * The query for the all users is created by [`createAllUserListQuery`](../Classes/SBDMain.html#//api/name/createAllUserListQuery) of `SBDMain` class.
+ *  * The query for the blocked users is created by [`createBlockedUserListQuery`](../Classes/SBDMain.html#//api/name/createBlockedUserListQuery) of `SBDMain` class.
+ *  * The query for the participants in the specified open channel is created by [`createParticipantListQuery`](../Classes/SBDOpenChannel.html#//api/name/createParticipantListQuery) of the `SBDOpenChannel` instance.
+ *  * The query for the muted users is created by [`createMutedUserListQuery`](../Classes/SBDOpenChannel.html#//api/name/createMutedUserListQuery) of the `SBDOpenChannel` instance.
+ *  * The query for the banned users is created by [`createBannedUserListQuery`](../Classes/SBDOpenChannel.html#//api/name/createBannedUserListQuery) of the `SBDOpenChannel` instance.
+ *
  */
 @interface SBDUserListQuery : NSObject
 
 /**
- *  The channel object related to query. 
+ *  The channel instance related to query.
  */
 @property (strong, readonly, nullable) SBDBaseChannel *channel;
 
 /**
- *  Query type.
+ *  Query type. It is defined in `SBDUserListQueryType`.
  */
 @property (atomic, readonly) SBDUserListQueryType queryType;
 
 /**
- *  Set the number of users per page.
+ *  Sets the number of users per page.
  */
 @property (atomic) NSUInteger limit;
 
@@ -36,12 +44,7 @@
 @property (atomic, readonly) BOOL hasNext;
 
 /**
- *  Initialize query object with query type.
- *
- *  @param queryType Query type. It includes all user list of the app(`SBDUserListQueryTypeAllUser`), blocked user list of the current user(`SBDUserListQueryTypeBlockedUsers`), participant list of the open channel(`SBDUserListQueryTypeOpenChannelParticipants`), muted user list of the channel(`SBDUserListQueryTypeOpenChannelMutedUsers`) and banned user list of the channel(`SBDUserListQueryTypeOpenChannelBannedUsers`).
- *  @param channel   The channel object related to query.
- *
- *  @return SBDUserListQuery object.
+ *  Internal use only.
  */
 - (nullable instancetype)initWithQueryType:(SBDUserListQueryType)queryType channel:(SBDBaseChannel * _Nullable)channel;
 
@@ -53,9 +56,9 @@
 - (BOOL)isLoading;
 
 /**
- *  Get the list of users. If this method is repeatedly called, it will retrieve the following pages of the user list.
+ *  Gets the list of users. If this method is repeatedly called, it will retrieve the following pages of the user list.
  *
- *  @param completionHandler The handler block to execute.
+ *  @param completionHandler The handler block to execute. The `users` is the array of `SBDUser` instances.
  */
 - (void)loadNextPageWithCompletionHandler:(nullable void (^)(NSArray<SBDUser *> * _Nullable users, SBDError *_Nullable error))completionHandler;
 

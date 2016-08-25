@@ -11,22 +11,17 @@
 @class SBDOpenChannel;
 
 /**
- *  An object which retrieves the list of open channels.
+ *  The `SBDOpenChannelListQuery` class is a query class for getting the list of open channels. The instance of this class is created by [`createOpenChannelListQuery`](../Classes/SBDOpenChannel.html#//api/name/createOpenChannelListQuery) in `SBDOpenChannel` class.
  */
 @interface SBDOpenChannelListQuery : NSObject
 
 /**
- *  Search Keyword - If the value is nil or the length is 0, this will retrieve all channels
- */
-@property (strong, nonatomic, nullable) NSString *query;
-
-/**
- *  Set the number of channels per page (limit)
+ *  Sets the number of channels per page.
  */
 @property (atomic) NSUInteger limit;
 
 /**
- *  Shows if there is a next page
+ *  Shows if there is a next page.
  */
 @property (atomic, readonly) BOOL hasNext;
 
@@ -38,9 +33,9 @@
 - (BOOL)isLoading;
 
 /**
- *  Get the list of channels. If this method is repeatedly called, it will retrieve the following pages of the channel list.
+ *  Gets the list of channels. If this method is repeatedly called, it will retrieve the following pages of the channel list.
  *
- *  @param completionHandler The handler block to execute.
+ *  @param completionHandler The handler block to execute. The `channels` is the array of `SBDOpenChannel` instances.
  */
 - (void)loadNextPageWithCompletionHandler:(nullable void (^)(NSArray<SBDOpenChannel *> * _Nullable channels, SBDError *_Nullable error))completionHandler;
 

@@ -26,7 +26,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     private var outgoingBubbleImageData: JSQMessagesBubbleImage?
     private var incomingBubbleImageData: JSQMessagesBubbleImage?
     private var neutralBubbleImageData: JSQMessagesBubbleImage?
-    private var messages: NSMutableArray?
+    private var messages: [JSQSBMessage] = []
     
     private var lastMessageTimestamp: Int64 = Int64.min
     private var firstMessageTimestamp: Int64 = Int64.max
@@ -53,7 +53,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
         
         self.avatars = NSMutableDictionary()
         self.users = NSMutableDictionary()
-        self.messages = NSMutableArray()
+//        self.messages = NSMutableArray()
         
         self.lastMessageTimestamp = Int64.min
         self.firstMessageTimestamp = Int64.max
@@ -182,16 +182,6 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                 var msgCount: Int32 = 0
                 
                 for message: SBDBaseMessage in messages! {
-                    if message.isKindOfClass(SBDUserMessage) == true {
-                        print("Message type: MESG, Timestamp: ", message.createdAt)
-                    }
-                    else if message.isKindOfClass(SBDFileMessage) == true {
-                        print("Message type: FILE, Timestamp: ", message.createdAt)
-                    }
-                    else if message.isKindOfClass(SBDAdminMessage) == true {
-                        print("Message type: ADMM, Timestamp: ", message.createdAt)
-                    }
-                    
                     if message.createdAt < self.firstMessageTimestamp {
                         self.firstMessageTimestamp = message.createdAt
                     }
@@ -271,10 +261,10 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                     }
                     
                     if initial == true {
-                        self.messages?.addObject(jsqsbmsg!)
+                        self.messages.append(jsqsbmsg!)
                     }
                     else {
-                        self.messages?.insertObject(jsqsbmsg!, atIndex: 0)
+                        self.messages.insert(jsqsbmsg!, atIndex: 0)
                     }
                 }
                 
@@ -300,15 +290,15 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     
     // MARK: JSQMessages CollectionView DataSource
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
-        return self.messages?.objectAtIndex(indexPath.item) as! JSQMessageData
+        return self.messages[indexPath.item]
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didDeleteMessageAtIndexPath indexPath: NSIndexPath!) {
-        self.messages?.removeObjectAtIndex(indexPath.item)
+        self.messages.removeAtIndex(indexPath.row)
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
-        let message = self.messages?.objectAtIndex(indexPath.item) as! JSQSBMessage
+        let message = self.messages[indexPath.item]
         
         if message.senderId.characters.count == 0 {
             return self.neutralBubbleImageData
@@ -325,14 +315,14 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
-        let message = self.messages?.objectAtIndex(indexPath.item) as! JSQSBMessage
+        let message = self.messages[indexPath.item]
         
         return self.avatars?.objectForKey(message.senderId) as! JSQMessageAvatarImageDataSource
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
         if indexPath.item % 3 == 0 {
-            let message = self.messages?.objectAtIndex(indexPath.item) as! JSQSBMessage
+            let message = self.messages[indexPath.item]
             return JSQMessagesTimestampFormatter.sharedFormatter().attributedTimestampForDate(message.date)
         }
         
@@ -340,14 +330,14 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
-        let message = self.messages?.objectAtIndex(indexPath.item) as! JSQSBMessage
+        let message = self.messages[indexPath.item]
         
         if message.senderId == self.senderId {
             return nil
         }
         
         if indexPath.item - 1 > 0{
-            let previousMessage = self.messages?.objectAtIndex(indexPath.item - 1) as! JSQSBMessage
+            let previousMessage = self.messages[indexPath.item - 1]
             if previousMessage.senderId == message.senderId {
                 return nil
             }
@@ -362,13 +352,13 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     
     // MARK: UICollectionView DataSource
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.messages!.count
+        return self.messages.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
         
-        let msg = self.messages?.objectAtIndex(indexPath.item) as! JSQSBMessage
+        let msg = self.messages[indexPath.item]
         
         if msg.isMediaMessage == false {
             if msg.senderId == self.senderId {
@@ -406,13 +396,13 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        let currentMessage = self.messages?.objectAtIndex(indexPath.item) as! JSQSBMessage
+        let currentMessage = self.messages[indexPath.item]
         if currentMessage.senderId == self.senderId {
             return 0.0
         }
         
         if indexPath.item - 1 > 0 {
-            let previousMessage = self.messages?.objectAtIndex(indexPath.item - 1) as! JSQSBMessage
+            let previousMessage = self.messages[indexPath.item - 1]
             if previousMessage.senderId == currentMessage.senderId {
                 return 0.0
             }
@@ -436,7 +426,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAtIndexPath indexPath: NSIndexPath!) {
         print("Tapped message bubble! ", indexPath.row)
-        let jsqMessage = self.messages?.objectAtIndex(indexPath.row) as! JSQSBMessage
+        let jsqMessage = self.messages[indexPath.item]
         
         let alert = UIAlertController.init(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         let closeAction = UIAlertAction.init(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
@@ -454,13 +444,18 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                         let selectedMessageIndexPath = indexPath
                         self.channel?.deleteMessage(baseMessage!, completionHandler: { (error) in
                             if error != nil {
-                                
+                                let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                                let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                                alert.addAction(closeAction)
+                                self.presentViewController(alert, animated: true, completion: nil)
                             }
                             else {
-                                collectionView.dataSource.collectionView(collectionView, didDeleteMessageAtIndexPath: selectedMessageIndexPath)
-                                dispatch_async(dispatch_get_main_queue(), { 
-                                    collectionView.deleteItemsAtIndexPaths([selectedMessageIndexPath])
-                                    collectionView.collectionViewLayout.invalidateLayout()
+//                                collectionView.dataSource.collectionView(collectionView, didDeleteMessageAtIndexPath: selectedMessageIndexPath)
+                                dispatch_async(dispatch_get_main_queue(), {
+//                                    collectionView.deleteItemsAtIndexPaths([selectedMessageIndexPath])
+//                                    collectionView.collectionViewLayout.invalidateLayout()
+                                    self.messages.removeAtIndex(selectedMessageIndexPath.row)
+                                    collectionView.reloadData()
                                 })
                             }
                         })
@@ -470,10 +465,16 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                     blockUserAction = UIAlertAction.init(title: "Block user", style: UIAlertActionStyle.Destructive, handler: { (action) in
                         SBDMain.blockUser(sender!, completionHandler: { (blocked, error) in
                             if error != nil {
-                                
+                                let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                                let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                                alert.addAction(closeAction)
+                                self.presentViewController(alert, animated: true, completion: nil)
                             }
                             else {
-                                
+                                let alert = UIAlertController(title: "User Blocked", message: String(format: "%@ is blocked", blocked!.nickname!), preferredStyle: UIAlertControllerStyle.Alert)
+                                let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                                alert.addAction(closeAction)
+                                self.presentViewController(alert, animated: true, completion: nil)
                             }
                         })
                     })
@@ -490,13 +491,18 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                         let selectedMessageIndexPath = indexPath
                         self.channel?.deleteMessage(baseMessage!, completionHandler: { (error) in
                             if error != nil {
-                                
+                                let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                                let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                                alert.addAction(closeAction)
+                                self.presentViewController(alert, animated: true, completion: nil)
                             }
                             else {
-                                collectionView.dataSource.collectionView(collectionView, didDeleteMessageAtIndexPath: selectedMessageIndexPath)
-                                dispatch_async(dispatch_get_main_queue(), { 
-                                    collectionView.deleteItemsAtIndexPaths([selectedMessageIndexPath])
-                                    collectionView.collectionViewLayout.invalidateLayout()
+//                                collectionView.dataSource.collectionView(collectionView, didDeleteMessageAtIndexPath: selectedMessageIndexPath)
+                                dispatch_async(dispatch_get_main_queue(), {
+//                                    collectionView.deleteItemsAtIndexPaths([selectedMessageIndexPath])
+//                                    collectionView.collectionViewLayout.invalidateLayout()
+                                    self.messages.removeAtIndex(selectedMessageIndexPath.row)
+                                    collectionView.reloadData()
                                 })
                             }
                         })
@@ -506,10 +512,16 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                     blockUserAction = UIAlertAction.init(title: "Block user", style: UIAlertActionStyle.Destructive, handler: { (action) in
                         SBDMain.blockUser(sender!, completionHandler: { (blockedUser, error) in
                             if error != nil {
-                                
+                                let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                                let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                                alert.addAction(closeAction)
+                                self.presentViewController(alert, animated: true, completion: nil)
                             }
                             else {
-                                
+                                let alert = UIAlertController(title: "User Blocked", message: String(format: "%@ is blocked", blockedUser!.nickname!), preferredStyle: UIAlertControllerStyle.Alert)
+                                let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                                alert.addAction(closeAction)
+                                self.presentViewController(alert, animated: true, completion: nil)
                             }
                         })
                     })
@@ -574,7 +586,10 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
         if text.characters.count > 0 {
             self.channel?.sendUserMessage(text, completionHandler: { (userMessage, error) in
                 if error != nil {
-                    print("Error: ", error)
+                    let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                    alert.addAction(closeAction)
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
                 else {
                     if userMessage?.createdAt > self.lastMessageTimestamp {
@@ -607,7 +622,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                     jsqsbmsg = JSQSBMessage(senderId: senderId, senderDisplayName: senderName, date: msgDate, text: messageText)
                     jsqsbmsg!.message = userMessage
                     
-                    self.messages?.addObject(jsqsbmsg!)
+                    self.messages.append(jsqsbmsg!)
                     
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * NSEC_PER_USEC)), dispatch_get_main_queue(), { 
                         dispatch_async(dispatch_get_main_queue(), { 
@@ -692,6 +707,11 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                 
                 self.channel?.sendFileMessageWithBinaryData(imageFileData!, filename: imageName! as String, type: imageType!, size: UInt((imageFileData?.length)!), data: "", completionHandler: { (fileMessage, error) in
                     if error != nil {
+                        let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                        alert.addAction(closeAction)
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        
                         return;
                     }
                     
@@ -719,7 +739,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                         let photoItem = JSQPhotoMediaItem(imageURL: url)
                         let jsqsbmsg = JSQSBMessage(senderId: senderId, senderDisplayName: senderName, date: msgDate, media: photoItem)
                         
-                        self.messages?.addObject(jsqsbmsg)
+                        self.messages.append(jsqsbmsg)
                         
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * NSEC_PER_USEC)), dispatch_get_main_queue(), {
                             dispatch_async(dispatch_get_main_queue(), { 
@@ -752,6 +772,11 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                 
                 self.channel?.sendFileMessageWithBinaryData(videoFileData!, filename: videoName! as String, type: videoType!, size: UInt((videoFileData?.length)!), data: "", completionHandler: { (fileMessage, error) in
                     if error != nil {
+                        let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                        alert.addAction(closeAction)
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        
                         return;
                     }
                     
@@ -779,7 +804,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                         let videoItem = JSQVideoMediaItem(fileURL: NSURL.init(string: url!), isReadyToPlay: true)
                         let jsqsbmsg = JSQSBMessage(senderId: senderId, senderDisplayName: senderName, date: msgDate, media: videoItem)
                         
-                        self.messages?.addObject(jsqsbmsg)
+                        self.messages.append(jsqsbmsg)
                         
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * NSEC_PER_USEC)), dispatch_get_main_queue(), {
                             dispatch_async(dispatch_get_main_queue(), {
@@ -805,7 +830,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
         self.lastMessageTimestamp = Int64.min
         self.firstMessageTimestamp = Int64.max
         
-        self.messages?.removeAllObjects()
+        self.messages.removeAll()
         self.collectionView.reloadData()
     }
     
@@ -817,6 +842,10 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     
     func didFailReconnection() {
         print("didFailReconnection delegate in OpenChannelViewController")
+        let alert = UIAlertController(title: "Error", message: "Reconnection failed", preferredStyle: UIAlertControllerStyle.Alert)
+        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+        alert.addAction(closeAction)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     // MARK: SBDBaseChannelDelegate
@@ -910,7 +939,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
         }
         
         if jsqsbmsg != nil {
-            self.messages?.addObject(jsqsbmsg!)
+            self.messages.append(jsqsbmsg!)
         }
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * NSEC_PER_USEC)), dispatch_get_main_queue(), {
@@ -978,16 +1007,17 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     }
     
     func channel(sender: SBDBaseChannel, messageWasDeleted messageId: Int64) {
-        for item in self.messages! {
-            let msg = item as! JSQSBMessage
+        for msg in self.messages {
             if msg.message!.messageId == messageId {
-                let row = self.messages?.indexOfObject(msg)
+                let row = self.messages.indexOf(msg)
                 let deletedMessageIndexPath = NSIndexPath(forRow: row!, inSection: 0)
                 
-                self.collectionView.dataSource.collectionView(self.collectionView, didDeleteMessageAtIndexPath: deletedMessageIndexPath)
-                dispatch_async(dispatch_get_main_queue(), { 
-                    self.collectionView.deleteItemsAtIndexPaths([deletedMessageIndexPath])
-                    self.collectionView.collectionViewLayout.invalidateLayout()
+//                self.collectionView.dataSource.collectionView(self.collectionView, didDeleteMessageAtIndexPath: deletedMessageIndexPath)
+                dispatch_async(dispatch_get_main_queue(), {
+//                    self.collectionView.deleteItemsAtIndexPaths([deletedMessageIndexPath])
+//                    self.collectionView.collectionViewLayout.invalidateLayout()
+                    self.messages.removeAtIndex(deletedMessageIndexPath.row)
+                    self.collectionView.reloadData()
                 })
                 
                 break

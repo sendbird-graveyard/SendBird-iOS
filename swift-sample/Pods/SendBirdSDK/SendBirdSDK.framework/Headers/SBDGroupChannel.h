@@ -16,7 +16,17 @@
 @class SBDGroupChannelListQuery;
 
 /**
- * Represents a group channel.
+ *  The `SBDGroupChannel` class represents a group channel which is a private chat. The user who wants to join the group channel has to be invited by another user who is already joined the channel. This class is derived from `SBDBaseChannel`. If the `SBDChannelDelegate` is added, the user will automatically receive all messages from the group channels where the user belongs after connection. The `SBDGroupChannel` provides the features of general messaging apps.
+ *
+ *  * Typing indicator.
+ *  * Read status for each message.
+ *  * Unread message count in the channel.
+ *  * Lastest message in the channel.
+ *
+ *  The `SBDGroupChannel` has a special property, `isDistinct`. The distinct property enabled group channel is always reuesd for same channel <span>members</span>. If a new member gets invited or the member left from the channel, then the distinct property disabled automatically. If you don't set distinct property on the channel, it always create new channel for the same <span>members</span>.
+ *
+ *  For more information, see [Group Channel](https://docs.sendbird.com/ios#group_channel).
+ *
  */
 @interface SBDGroupChannel : SBDBaseChannel
 
@@ -26,7 +36,7 @@
 @property (strong, nonatomic, nullable) SBDBaseMessage *lastMessage;
 
 /**
- *  Represent the channel is distinct or not.
+ *  Represents the channel is distinct or not.
  */
 @property (atomic) BOOL isDistinct;
 
@@ -36,12 +46,12 @@
 @property (atomic) NSUInteger unreadMessageCount;
 
 /**
- *  Channel members.
+ *  Channel <span>members</span>.
  */
 @property (strong, nonatomic, readonly, nullable) NSMutableArray<SBDUser *> *members;
 
 /**
- *  The number of members.
+ *  The number of <span>members</span>.
  */
 @property (atomic, readonly) NSUInteger memberCount;
 
@@ -51,14 +61,14 @@
 @property (atomic) BOOL sendMarkAsReadEnable;
 
 /**
- *  Refresh this instance.
+ *  Refreshes this channel instance.
  *
  *  @param completionHandler The handler block to execute.
  */
 - (void)refreshWithCompletionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
- *  Initialize instance with dictionary of group channel.
+ *  Initializes this channel instance with dictionary of group channel.
  *
  *  @param dict The dictionary of group channel.
  *
@@ -67,35 +77,35 @@
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
 
 /**
- *  Create a query for my group channel list.
+ *  Creates a query for my group channel list.
  *
  *  @return SBDGroupChannelListQuery instance for the current user.
  */
 + (nullable SBDGroupChannelListQuery *)createMyGroupChannelListQuery;
 
 /**
- *  Create a group channel with user objects.
+ *  Creates a group channel with user objects.
  *
- *  @param users             The users to be members of the channel.
+ *  @param users             The users to be <span>members</span> of the channel.
  *  @param isDistinct        If YES, the channel which has the same users is returned.
- *  @param completionHandler The handler block to execute.
+ *  @param completionHandler The handler block to execute. `channel` is the group channel instance which has the `users` as <span>members</span>.
  */
 + (void)createChannelWithUsers:(NSArray<SBDUser *> * _Nonnull)users isDistinct:(BOOL)isDistinct completionHandler:(nonnull void (^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
 
 /**
- *  Create a group channel with user objects.
+ *  Creates a group channel with user IDs.
  *
- *  @param userIds           The user IDs to be members of the channel.
+ *  @param userIds           The user IDs to be <span>members</span> of the channel.
  *  @param isDistinct        If YES, the channel which has the same users is returned.
- *  @param completionHandler The handler block to execute.
+ *  @param completionHandler The handler block to execute. `channel` is the group channel instance which has the `users` as <span>members</span>.
  */
 + (void)createChannelWithUserIds:(NSArray<NSString *> * _Nonnull)userIds isDistinct:(BOOL)isDistinct completionHandler:(nonnull void (^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
 
 /**
- *  Create a group channel with user objects.
+ *  Creates a group channel with user objects.
  *
  *  @param name              The name of group channel.
- *  @param users             The users to be members of the channel.
+ *  @param users             The users to be <span>members</span> of the channel.
  *  @param coverUrl          The cover image url of group channel.
  *  @param data              The custom data of group channel.
  *  @param completionHandler The handler block to execute.
@@ -103,50 +113,50 @@
 + (void)createChannelWithName:(NSString * _Nullable)name users:(NSArray<SBDUser *> * _Nonnull)users coverUrl:(NSString * _Nullable)coverUrl data:(NSString * _Nullable)data completionHandler:(nonnull void (^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
 
 /**
- *  Create a group channel with user IDs.
+ *  Create a group channel with user IDs. The group channel is distinct.
  *
  *  @param name              The name of group channel.
- *  @param userIds           The user IDs to participate the channel.
+ *  @param userIds           The user IDs to be <span>members</span> of the channel.
  *  @param coverUrl          The cover image url of group channel.
  *  @param data              The custom data of group channel.
- *  @param completionHandler The handler block to execute.
+ *  @param completionHandler The handler block to execute. `channel` is the group channel instance which has the `userIds` as members.
  */
 + (void)createChannelWithName:(NSString * _Nullable)name userIds:(NSArray<NSString *> * _Nonnull)userIds coverUrl:(NSString * _Nullable)coverUrl data:(NSString * _Nullable)data completionHandler:(nonnull void (^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
 
 /**
- *  Create a group channel with user objects.
+ *  Creates a group channel with user objects. The group channel is distinct.
  *
  *  @param name              The name of group channel.
  *  @param isDistinct        If YES, the channel which has the same users is returned.
- *  @param users             The users to participate the channel.
+ *  @param users             The users to be <span>members</span> of the channel.
  *  @param coverUrl          The cover image url of group channel.
  *  @param data              The custom data of group channel.
- *  @param completionHandler The handler block to execute.
+ *  @param completionHandler The handler block to execute. `channel` is the group channel instance which has the `users` as members.
  */
 + (void)createChannelWithName:(NSString * _Nullable)name isDistinct:(BOOL)isDistinct users:(NSArray<SBDUser *> * _Nonnull)users coverUrl:(NSString * _Nullable)coverUrl data:(NSString * _Nullable)data completionHandler:(nonnull void (^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
 
 /**
- *  Create a group channel with user IDs.
+ *  Creates a group channel with user IDs.
  *
  *  @param name              The name of group channel.
  *  @param isDistinct        If YES, the channel which has the same users is returned.
  *  @param userIds           The user IDs to participate the channel.
  *  @param coverUrl          The cover image url of group channel.
  *  @param data              The custom data of group channel.
- *  @param completionHandler The handler block to execute.
+ *  @param completionHandler The handler block to execute. `channel` is the group channel instance which has the `userIds` as members.
  */
 + (void)createChannelWithName:(NSString * _Nullable)name isDistinct:(BOOL)isDistinct userIds:(NSArray<NSString *> * _Nonnull)userIds coverUrl:(NSString * _Nullable)coverUrl data:(NSString * _Nullable)data completionHandler:(nonnull void (^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
 
 /**
- *  Get a group channel instance from channel URL asynchronously.
+ *  Gets a group channel instance from channel URL asynchronously.
  *
  *  @param channelUrl        The channel URL.
- *  @param completionHandler The handler block to execute.
+ *  @param completionHandler The handler block to execute. `channel` is the group channel instance which has the `channelUrl`.
  */
 + (void)getChannelWithUrl:(NSString * _Nonnull)channelUrl completionHandler:(nullable void (^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
 
 /**
- *  Invite a user to the group channel.
+ *  Invites a single user to the group channel.
  *
  *  @param user              The user to be invited.
  *  @param completionHandler The handler block to execute.
@@ -154,7 +164,7 @@
 - (void)inviteUser:(SBDUser * _Nonnull)user completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
- *  Invite a user to the group channel.
+ *  Invites a single user to the group channel.
  *
  *  @param userId            The user ID to be invited.
  *  @param completionHandler The handler block to execute.
@@ -162,7 +172,7 @@
 - (void)inviteUserId:(NSString * _Nonnull)userId completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
- *  Invite users to the group channel.
+ *  Invites multiple users to the group channel.
  *
  *  @param users             The user array to be invited.
  *  @param completionHandler The handler block to execute.
@@ -170,7 +180,7 @@
 - (void)inviteUsers:(NSArray<SBDUser *> * _Nonnull)users completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
- *  Invite users to the group channel.
+ *  Invites multiple users to the group channel.
  *
  *  @param userIds           The IDs of users array to be invited.
  *  @param completionHandler The handler block to execute.
@@ -178,27 +188,25 @@
 - (void)inviteUserIds:(NSArray<NSString *> * _Nonnull)userIds completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
- *  Hide the group channel. The channel will be hid from the channel list, but it will be appeared when the other user send a message.
+ *  Hides the group channel. The channel will be hid from the channel list, but it will be appeared again when the other user send a message in the channel.
  *
  *  @param completionHandler The handler block to execute.
  */
 - (void)hideChannelWithCompletionHandler:(nullable void (^)(SBDError *_Nullable error))completionHandler;
 
 /**
- *  Leave the group channel. The channel will be disappeared from the channel list. If join the channel, the invitation is required.
+ *  Leaves the group channel. The channel will be disappeared from the channel list. If join the channel, the invitation is required.
  *
  *  @param completionHandler The handler block to execute.
  */
 - (void)leaveChannelWithCompletionHandler:(nullable void (^)(SBDError *_Nullable error))completionHandler;
 
 /**
- *  Mark as read all group channels of the current user.
+ *  Marks as read all group channels of the current user.
  *
  *  @param completionHandler The handler block to execute.
  */
 + (void)markAsReadAllWithCompletionHandler:(nullable void (^)(SBDError *_Nullable error))completionHandler;
-
-//- (void)markAsReadWithCompletionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
  *  Internal use only.
@@ -206,47 +214,41 @@
 + (void)_markAsRead;
 
 /**
- *  Send mark as read.
+ *  Sends mark as read. The other <span>members</span> in the channel will receive an event. The event will be received in `channelDidUpdateReadReceipt:` of `SBDChannelDelegate`.
  */
 - (void)markAsRead;
 
 /**
- *  Start typing.
+ *  Starts typing. The other <span>members</span> in the channel will receive an event. The event will be received in `channelDidUpdateTypingStatus:` of `SBDChannelDelegate`.
  */
 - (void)startTyping;
 
 /**
- *  End typing.
+ *  Ends typing. The other <span>members</span> in the channel will receive an event. The event will be received in `channelDidUpdateTypingStatus:` of `SBDChannelDelegate`.
  */
 - (void)endTyping;
 
 /**
- *  Clear cached channels.
+ *  Internal use only.
  */
 + (void)clearCache;
 
 /**
- *  Remove cached channel.
- *
- *  @param channelUrl The channel URL.
+ *  Internal use only.
  */
 + (void)removeChannelFromCacheWithChannelUrl:(NSString * _Nonnull)channelUrl;
 
 /**
- *  Get channel object from cache.
- *
- *  @param channelUrl The channel URL.
- *
- *  @return The channel object.
+ *  Internal use only.
  */
 + (SBDGroupChannel * _Nullable)getChannelFromCacheWithChannelUrl:(NSString * _Nonnull)channelUrl;
 
 /**
- *  Returns how many members haven't been read for the given message.
+ *  Returns how many <span>members</span> haven't been read the given message yet.
  *
  *  @param message The message.
  *
- *  @return Number of unread member count. Zero if all members read the message.
+ *  @return Number of unread member count. Zero if all <span>members</span> read the message.
  */
 - (int)getReadReceiptOfMessage:(SBDBaseMessage * _Nonnull)message;
 
@@ -258,44 +260,40 @@
 - (BOOL)isTyping;
 
 /**
- *  Returns the members who are typing now.
+ *  Returns the <span>members</span> who are typing now.
  *
- *  @return The members who are typing now.
+ *  @return The <span>members</span> who are typing now.
  */
 - (nullable NSArray<SBDUser *> *)getTypingMembers;
 
 /**
- *  Update read receipt with user ID.
- *
- *  @param userId    The user ID who read a message.
- *  @param timestamp The timestamp when the user read a message.
+ *  Internal use only.
  */
 - (void)updateReadReceiptWithUserId:(NSString * _Nonnull)userId timestamp:(long long)timestamp;
 
 /**
- *  Update typing status with user.
- *
- *  @param user  The user who is typing.
- *  @param start The timestamp when the typing is started.
+ *  Internal use only.
  */
 - (void)updateTypingStatusWithUser:(SBDUser * _Nonnull)user start:(BOOL)start;
 
 /**
- *  Add a user to member list of the channel.
- *
- *  @param user The user to be added to member list.
+ *  Internal use only.
  */
 - (void)addMember:(SBDUser * _Nonnull)user;
 
 /**
- *  Remove a user from member list of the channel.
- *
- *  @param user The user to be removed from member list.
+ *  Internal use only.
  */
 - (void)removeMember:(SBDUser * _Nonnull)user;
 
+/**
+ *  Internal use only.
+ */
 - (void)typingStatusTimeout;
 
+/**
+ *  Internal use only.
+ */
 + (void)updateTypingStatus;
 
 @end

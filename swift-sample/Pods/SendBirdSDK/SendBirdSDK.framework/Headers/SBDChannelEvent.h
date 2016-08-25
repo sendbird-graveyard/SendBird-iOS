@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "SBDTypes.h"
+#import "SBDInternalTypes.h"
 
 /**
  * SendBird internal use only.

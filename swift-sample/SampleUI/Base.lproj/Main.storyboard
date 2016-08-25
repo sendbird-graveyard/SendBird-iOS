@@ -76,24 +76,39 @@
                                     <action selector="clickGroupChannelButton:" destination="ZRV-ip-d86" eventType="touchUpInside" id="JRk-Bn-HP2"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dR8-Zg-cup">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Njg-ID-RAV" userLabel="Version Label">
+                                <rect key="frame" x="144" y="535" width="33" height="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="e5m-Ia-UGj" firstAttribute="centerX" secondItem="U47-aB-nfW" secondAttribute="centerX" id="4uN-A2-4lQ"/>
                             <constraint firstAttribute="trailing" secondItem="dHl-qc-Z4v" secondAttribute="trailing" constant="32" id="Ahj-kY-fbY"/>
+                            <constraint firstAttribute="bottom" secondItem="Njg-ID-RAV" secondAttribute="bottom" constant="16" id="Cy6-sY-5Qb"/>
                             <constraint firstItem="J89-Hh-793" firstAttribute="top" secondItem="aZF-Ua-CVC" secondAttribute="bottom" constant="4" id="IFE-Fe-BMB"/>
                             <constraint firstItem="J89-Hh-793" firstAttribute="leading" secondItem="U47-aB-nfW" secondAttribute="leading" constant="32" id="IHW-M0-BBW"/>
                             <constraint firstItem="5MA-Ag-0vS" firstAttribute="leading" secondItem="U47-aB-nfW" secondAttribute="leading" constant="32" id="Ibo-vB-7ev"/>
                             <constraint firstItem="80k-S9-45U" firstAttribute="centerX" secondItem="U47-aB-nfW" secondAttribute="centerX" id="KFM-lu-iP5"/>
+                            <constraint firstAttribute="trailing" secondItem="dR8-Zg-cup" secondAttribute="trailing" id="Kd2-zf-m6j"/>
                             <constraint firstAttribute="trailing" secondItem="aZF-Ua-CVC" secondAttribute="trailing" constant="32" id="L0d-ru-j62"/>
                             <constraint firstItem="e5m-Ia-UGj" firstAttribute="top" secondItem="rem-mS-mag" secondAttribute="bottom" constant="32" id="Pc3-v3-PQG"/>
+                            <constraint firstItem="Njg-ID-RAV" firstAttribute="centerX" secondItem="U47-aB-nfW" secondAttribute="centerX" id="Tdg-iB-jeY"/>
                             <constraint firstItem="aZF-Ua-CVC" firstAttribute="leading" secondItem="U47-aB-nfW" secondAttribute="leading" constant="32" id="U24-HT-dYD"/>
                             <constraint firstItem="rem-mS-mag" firstAttribute="centerX" secondItem="U47-aB-nfW" secondAttribute="centerX" id="UJ2-E0-p8g"/>
                             <constraint firstItem="rem-mS-mag" firstAttribute="top" secondItem="dHl-qc-Z4v" secondAttribute="bottom" constant="8" id="WoY-1J-WGQ"/>
                             <constraint firstItem="dHl-qc-Z4v" firstAttribute="top" secondItem="5MA-Ag-0vS" secondAttribute="bottom" constant="4" id="ZZM-dp-nPh"/>
                             <constraint firstAttribute="trailing" secondItem="5MA-Ag-0vS" secondAttribute="trailing" constant="32" id="cau-oe-BQS"/>
                             <constraint firstItem="dHl-qc-Z4v" firstAttribute="leading" secondItem="U47-aB-nfW" secondAttribute="leading" constant="32" id="faX-ET-bje"/>
+                            <constraint firstItem="dR8-Zg-cup" firstAttribute="top" secondItem="U47-aB-nfW" secondAttribute="top" id="g2H-x6-0Hv"/>
                             <constraint firstAttribute="trailing" secondItem="J89-Hh-793" secondAttribute="trailing" constant="32" id="jmR-CK-e5I"/>
+                            <constraint firstItem="dR8-Zg-cup" firstAttribute="leading" secondItem="U47-aB-nfW" secondAttribute="leading" id="m0H-fi-y3X"/>
+                            <constraint firstAttribute="bottom" secondItem="dR8-Zg-cup" secondAttribute="bottom" id="oku-O8-53R"/>
                             <constraint firstItem="aZF-Ua-CVC" firstAttribute="top" secondItem="JGR-R5-gEe" secondAttribute="bottom" constant="27" id="rP3-QO-y73"/>
                             <constraint firstItem="5MA-Ag-0vS" firstAttribute="top" secondItem="J89-Hh-793" secondAttribute="bottom" constant="8" id="wm1-Uo-s4k"/>
                             <constraint firstItem="80k-S9-45U" firstAttribute="top" secondItem="e5m-Ia-UGj" secondAttribute="bottom" constant="8" id="zli-a0-5cb"/>
@@ -101,11 +116,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="SendBird" id="GvL-bz-wef"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="dR8-Zg-cup" id="WvY-5v-77I"/>
                         <outlet property="connectButton" destination="rem-mS-mag" id="Rug-Kw-igD"/>
                         <outlet property="groupChannelButton" destination="80k-S9-45U" id="K1k-bX-FjN"/>
                         <outlet property="nicknameTextField" destination="dHl-qc-Z4v" id="XbB-cC-JiA"/>
                         <outlet property="openChannelButton" destination="e5m-Ia-UGj" id="fTt-0I-Fhz"/>
                         <outlet property="userIdTextField" destination="J89-Hh-793" id="sAv-Y7-hwl"/>
+                        <outlet property="versionLabel" destination="Njg-ID-RAV" id="VFp-1q-ksa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDq-gE-bQv" userLabel="First Responder" sceneMemberID="firstResponder"/>

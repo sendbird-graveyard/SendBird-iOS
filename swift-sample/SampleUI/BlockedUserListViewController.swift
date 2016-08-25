@@ -118,11 +118,19 @@ class BlockedUserListViewController: UIViewController, UITableViewDelegate, UITa
         let unblockUserAction = UIAlertAction(title: "Unblock user", style: UIAlertActionStyle.Destructive) { (action) in
             SBDMain.unblockUser(user, completionHandler: { (error) in
                 if error != nil {
-                    
+                    let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                    alert.addAction(closeAction)
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
                 else {
+                    let alert = UIAlertController(title: "User Unblocked", message: String(format: "%@ is unblocked", user.nickname!), preferredStyle: UIAlertControllerStyle.Alert)
+                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                    alert.addAction(closeAction)
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
                     self.blockedUsers?.removeObject(user)
-                    dispatch_async(dispatch_get_main_queue(), { 
+                    dispatch_async(dispatch_get_main_queue(), {
                         self.tableView.reloadData()
                     })
                 }

@@ -108,9 +108,7 @@
     }
     
     [self.channels removeAllObjects];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.messagingChannelListTableView reloadData];
-    });
+    [self.messagingChannelListTableView reloadData];
     self.myGroupChannelListQuery = [SBDGroupChannel createMyGroupChannelListQuery];
     self.myGroupChannelListQuery.limit = 10;
     [self loadChannels];

@@ -13,6 +13,7 @@
 #import "SBDMain.h"
 
 #import "SBDTypes.h"
+#import "SBDInternalTypes.h"
 #import "SBDError.h"
 
 #import "SBDUser.h"

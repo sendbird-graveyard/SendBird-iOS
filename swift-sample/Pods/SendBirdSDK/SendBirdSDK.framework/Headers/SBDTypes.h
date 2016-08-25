@@ -12,42 +12,18 @@
 #define CHANNEL_TYPE_OPEN @"open"
 #define CHANNEL_TYPE_GROUP @"group"
 
+
+/**
+ *  The order type for `SBDGroupChannelListQuery`.
+ */
 typedef NS_ENUM(NSInteger, SBDGroupChannelListOrder) {
     SBDGroupChannelListOrderChronological = 0,
     SBDGroupChannelListOrderLatestLastMessage = 1,
 };
 
-typedef NS_ENUM(NSInteger, SBDOpenChannelMetaCountersUpdateMode) {
-    SBDOpenChannelUpdateModeSet = 0,
-    SBDOpenChannelUpdateModeIncrease = 1,
-    SBDOpenChannelUpdateModeDecrease = 2,
-};
-
-typedef NS_ENUM(NSInteger, SBDChannelEventCategory) {
-    SBDChannelEventCategoryNone = 0,
-    
-    SBDChannelEventCategoryChannelEnter = 10102,
-    SBDChannelEventCategoryChannelExit = 10103,
-    
-    SBDChannelEventCategoryChannelMute = 10201,
-    SBDChannelEventCategoryChannelUnmute = 10200,
-    
-    SBDChannelEventCategoryChannelBan = 10601,
-    SBDChannelEventCategoryChannelUnban = 10600,
-    
-    SBDChannelEventCategoryChannelFrozen = 10701,
-    SBDChannelEventCategoryChannelUnfrozen = 10700,
-    
-    SBDChannelEventCategoryTypingStart = 10900,
-    SBDChannelEventCategoryTypingEnd = 10901,
-    
-    SBDChannelEventCategoryChannelJoin = 10000,
-    SBDChannelEventCategoryChannelLeave = 10001,
-    
-    SBDChannelEventCategoryChannelPropChanged = 11000,
-    SBDChannelEventCategoryChannelDeleted = 12000,
-};
-
+/**
+ *  Error types.
+ */
 typedef NS_ENUM(NSInteger, SDBErrorCode) {
     // RESTful API Errors
     SBDErrorInvalidParameterValueString = 400100,
@@ -98,32 +74,6 @@ typedef NS_ENUM(NSInteger, SDBErrorCode) {
 };
 
 /**
- *  Log level
- */
-typedef NS_ENUM(NSInteger, SBDLogLevel) {
-    /**
-     *  None
-     */
-    SBDLogLevelNone = 0,
-    /**
-     *  Error
-     */
-    SBDLogLevelError = 1,
-    /**
-     *  Warning
-     */
-    SBDLogLevelWarning = 2,
-    /**
-     *  Information
-     */
-    SBDLogLevelInfo = 3,
-    /**
-     *  Debug
-     */
-    SBDLogLevelDebug = 4
-};
-
-/**
  *  Connection state
  */
 typedef NS_ENUM(NSUInteger, SBDWebSocketConnectionState) {
@@ -145,22 +95,26 @@ typedef NS_ENUM(NSUInteger, SBDWebSocketConnectionState) {
     SBSWebSocketClosed = 3,
 };
 
+/**
+ *  User connection statuses for `SBDUser`.
+ */
 typedef NS_ENUM(NSUInteger, SBDUserConnectionStatus) {
     SBDUserConnectionStatusNonAvailable = 0,
     SBDUserConnectionStatusOnline = 1,
     SBDUserConnectionStatusOffline = 2,
 };
 
-typedef NS_ENUM(NSUInteger, SBDUserListQueryType) {
-    SBDUserListQueryTypeAllUser = 1,
-    SBDUserListQueryTypeBlockedUsers = 2,
-    SBDUserListQueryTypeOpenChannelParticipants = 3,
-    SBDUserListQueryTypeOpenChannelMutedUsers = 4,
-    SBDUserListQueryTypeOpenChannelBannedUsers = 5,
-};
-
+/**
+ *  Channe types.
+ */
 typedef NS_ENUM(NSUInteger, SBDChannelType) {
+    /**
+     *  Open channel.
+     */
     SBDChannelTypeOpen = 0,
+    /**
+     *  Group channel.
+     */
     SBDChannelTypeGroup = 1,
 };
 
