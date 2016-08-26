@@ -17,9 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-//    [SBDMain initWithApplicationId:@"A7A2672C-AD11-11E4-8DAA-0A18B21C2D82"];
-//    [SBDMain initWithApplicationId:@"17692825-976F-46B9-A756-A8712E2EDB19"];
-    [SBDMain initWithApplicationId:@"13116BBD-54E5-4E24-B3EA-59FC17FC871B"];
+    [SBDMain initWithApplicationId:@"A7A2672C-AD11-11E4-8DAA-0A18B21C2D82"];
     
     [SBDMain setLogLevel:SBDLogLevelDebug];
     
