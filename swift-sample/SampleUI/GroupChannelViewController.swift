@@ -498,10 +498,7 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
                                 
                             }
                             else {
-//                                collectionView.dataSource.collectionView(collectionView, didDeleteMessageAtIndexPath: selectedMessageIndexPath)
                                 dispatch_async(dispatch_get_main_queue(), {
-//                                    collectionView.deleteItemsAtIndexPaths([selectedMessageIndexPath])
-//                                    collectionView.collectionViewLayout.invalidateLayout()
                                     self.messages.removeAtIndex(selectedMessageIndexPath.row)
                                     self.collectionView.reloadData()
                                 })
@@ -536,10 +533,7 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
                                 
                             }
                             else {
-//                                collectionView.dataSource.collectionView(collectionView, didDeleteMessageAtIndexPath: selectedMessageIndexPath)
                                 dispatch_async(dispatch_get_main_queue(), {
-//                                    collectionView.deleteItemsAtIndexPaths([selectedMessageIndexPath])
-//                                    collectionView.collectionViewLayout.invalidateLayout()
                                     self.messages.removeAtIndex(selectedMessageIndexPath.row)
                                     self.collectionView.reloadData()
                                 })
@@ -617,6 +611,7 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
         if text.characters.count > 0 {
+            self.channel?.endTyping()
             self.channel?.sendUserMessage(text, completionHandler: { (userMessage, error) in
                 if error != nil {
                     print("Error: ", error)
@@ -863,15 +858,16 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
     // MARK: SBDConnectionDelegate
     func didStartReconnection() {
         print("didStartReconnection in OpenChannelViewController")
+    }
+    
+    func didSucceedReconnection() {
+        print("didSucceedReconnection delegate in OpenChannelViewController")
         self.lastMessageTimestamp = Int64.min
         self.firstMessageTimestamp = Int64.max
         
         self.messages.removeAll()
         self.collectionView.reloadData()
-    }
-    
-    func didSucceedReconnection() {
-        print("didSucceedReconnection delegate in OpenChannelViewController")
+        
         self.previousMessageQuery = self.channel?.createPreviousMessageListQuery()
         self.loadMessages(Int64.max, initial: true)
     }
@@ -980,6 +976,8 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
                 self.scrollToBottomAnimated(false)
             })
         })
+        
+         self.channel?.markAsRead()
     }
     
     func channelDidUpdateReadReceipt(sender: SBDGroupChannel) {
@@ -1056,10 +1054,7 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
                 let row = self.messages.indexOf(msg)
                 let deletedMessageIndexPath = NSIndexPath(forRow: row!, inSection: 0)
                 
-//                self.collectionView.dataSource.collectionView(self.collectionView, didDeleteMessageAtIndexPath: deletedMessageIndexPath)
                 dispatch_async(dispatch_get_main_queue(), {
-//                    self.collectionView.deleteItemsAtIndexPaths([deletedMessageIndexPath])
-//                    self.collectionView.collectionViewLayout.invalidateLayout()
                     self.messages.removeAtIndex(deletedMessageIndexPath.row)
                     self.collectionView.reloadData()
                 })

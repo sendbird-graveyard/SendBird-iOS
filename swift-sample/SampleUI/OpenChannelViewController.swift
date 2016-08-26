@@ -450,10 +450,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                                 self.presentViewController(alert, animated: true, completion: nil)
                             }
                             else {
-//                                collectionView.dataSource.collectionView(collectionView, didDeleteMessageAtIndexPath: selectedMessageIndexPath)
                                 dispatch_async(dispatch_get_main_queue(), {
-//                                    collectionView.deleteItemsAtIndexPaths([selectedMessageIndexPath])
-//                                    collectionView.collectionViewLayout.invalidateLayout()
                                     self.messages.removeAtIndex(selectedMessageIndexPath.row)
                                     collectionView.reloadData()
                                 })
@@ -497,10 +494,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                                 self.presentViewController(alert, animated: true, completion: nil)
                             }
                             else {
-//                                collectionView.dataSource.collectionView(collectionView, didDeleteMessageAtIndexPath: selectedMessageIndexPath)
                                 dispatch_async(dispatch_get_main_queue(), {
-//                                    collectionView.deleteItemsAtIndexPaths([selectedMessageIndexPath])
-//                                    collectionView.collectionViewLayout.invalidateLayout()
                                     self.messages.removeAtIndex(selectedMessageIndexPath.row)
                                     collectionView.reloadData()
                                 })
@@ -827,15 +821,16 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     // MARK: SBDConnectionDelegate
     func didStartReconnection() {
         print("didStartReconnection in OpenChannelViewController")
-        self.lastMessageTimestamp = Int64.min
-        self.firstMessageTimestamp = Int64.max
-        
-        self.messages.removeAll()
-        self.collectionView.reloadData()
     }
     
     func didSucceedReconnection() {
         print("didSucceedReconnection delegate in OpenChannelViewController")
+        self.lastMessageTimestamp = Int64.min
+        self.firstMessageTimestamp = Int64.max
+
+        self.messages.removeAll()
+        self.collectionView.reloadData()
+        
         self.previousMessageQuery = self.channel?.createPreviousMessageListQuery()
         self.loadMessage(Int64.max, initial: true)
     }
@@ -1012,10 +1007,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                 let row = self.messages.indexOf(msg)
                 let deletedMessageIndexPath = NSIndexPath(forRow: row!, inSection: 0)
                 
-//                self.collectionView.dataSource.collectionView(self.collectionView, didDeleteMessageAtIndexPath: deletedMessageIndexPath)
                 dispatch_async(dispatch_get_main_queue(), {
-//                    self.collectionView.deleteItemsAtIndexPaths([deletedMessageIndexPath])
-//                    self.collectionView.collectionViewLayout.invalidateLayout()
                     self.messages.removeAtIndex(deletedMessageIndexPath.row)
                     self.collectionView.reloadData()
                 })

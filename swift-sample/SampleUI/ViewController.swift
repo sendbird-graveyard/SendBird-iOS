@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         if path != nil {
             let infoDict = NSDictionary(contentsOfFile: path!)
             let sampleUIVersion = infoDict!["CFBundleShortVersionString"] as! String
-            let version = String(format: "SDK: v%@   Sample UI for Swift 2.2: v%@", SBDMain.getSDKVersion(), sampleUIVersion)
+            let version = String(format: "SDK v%@\nSample UI for Swift 2.2 v%@", SBDMain.getSDKVersion(), sampleUIVersion)
             self.versionLabel.text = version
         }
     }
