@@ -41,6 +41,7 @@ class OpenChannelListTableViewCell: UITableViewCell {
     
     func setModel(aChannel: SBDOpenChannel) {
         self.channel = aChannel
+        
         self.coverImageView.af_setImageWithURL(NSURL.init(string: self.channel!.coverUrl!)!)
         self.channelNameLabel.text = self.channel!.name
     }

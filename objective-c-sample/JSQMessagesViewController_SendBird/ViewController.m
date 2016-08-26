@@ -8,21 +8,17 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()<SBDConnectionDelegate, SBDChannelDelegate>
+@interface ViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *userIdTextField;
 @property (weak, nonatomic) IBOutlet UITextField *nicknameTextField;
-@property (weak, nonatomic) IBOutlet UIView *firstPhaseContentView;
-@property (weak, nonatomic) IBOutlet UIView *secondPhaseContentView;
-
-@property (weak, nonatomic) IBOutlet UIButton *openChatButton;
-@property (weak, nonatomic) IBOutlet UIButton *messagingButton;
-@property (weak, nonatomic) IBOutlet UIButton *loginButton;
-@property (weak, nonatomic) IBOutlet UIButton *updateNicknameButton;
+@property (weak, nonatomic) IBOutlet UIButton *connectButton;
+@property (weak, nonatomic) IBOutlet UIButton *openChannelButton;
+@property (weak, nonatomic) IBOutlet UIButton *groupChannelButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
-@property (strong, nonnull) NSString *delegateIndetifier;
-
-@property (atomic) BOOL loggedIn;
+@property (atomic) BOOL connected;
 
 @end
 
@@ -31,70 +27,91 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.delegateIndetifier = self.description;
-    [SBDMain addConnectionDelegate:self identifier:self.delegateIndetifier];
-    [SBDMain addChannelDelegate:self identifier:self.delegateIndetifier];
-    
-    self.loggedIn = NO;
-    
-    [self.activityIndicatorView setHidden:YES];
-    [self.firstPhaseContentView setHidden:NO];
-    [self.secondPhaseContentView setHidden:YES];
-    
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"sendbird_user_id"];
     NSString *userName = [[NSUserDefaults standardUserDefaults] objectForKey:@"sendbird_user_name"];
     
-    [self.openChatButton setEnabled:NO];
-    [self.messagingButton setEnabled:NO];
-    [self.updateNicknameButton setEnabled:NO];
-    
     [self.userIdTextField setText:userId];
     [self.nicknameTextField setText:userName];
+    
+    self.connected = NO;
+    
+    [self.activityIndicatorView setHidden:YES];
+    [self.openChannelButton setEnabled:NO];
+    [self.groupChannelButton setEnabled:NO];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
+    if (path != nil) {
+        NSDictionary *infoDict = [NSDictionary dictionaryWithContentsOfFile:path];
+        NSString *sampleUIVersion = infoDict[@"CFBundleShortVersionString"];
+        NSString *version = [NSString stringWithFormat:@"SDK v%@\nSample UI for Objective-C v%@", [SBDMain getSDKVersion], sampleUIVersion];
+        self.versionLabel.text = version;
+    }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)clickLogin:(id)sender {
-    if (self.loggedIn) {
-        [self.activityIndicatorView setHidden:NO];
-        [self.activityIndicatorView startAnimating];
-        [self.userIdTextField setEnabled:YES];
+- (IBAction)clickConnectButton:(id)sender {
+    if (self.userIdTextField.text.length == 0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"User ID is required." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:closeAction];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:alert animated:YES completion:nil];
+        });
+        
+        return;
+    }
+    
+    if (self.nicknameTextField.text.length == 0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Nickname is required." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:closeAction];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:alert animated:YES completion:nil];
+        });
+        
+        return;
+    }
+    
+    if (self.connected) {
         [SBDMain disconnectWithCompletionHandler:^{
+            self.connected = NO;
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.loggedIn = NO;
-                [self.openChatButton setEnabled:NO];
-                [self.messagingButton setEnabled:NO];
-                [self.updateNicknameButton setEnabled:NO];
-                [self.loginButton setTitle:@"Connect" forState:UIControlStateNormal];
-                
-                [self.activityIndicatorView stopAnimating];
-                [self.activityIndicatorView setHidden:YES];
+                self.openChannelButton.enabled = NO;
+                self.groupChannelButton.enabled = NO;
+                self.userIdTextField.enabled = YES;
+                [self.connectButton setTitle:@"Connect" forState:UIControlStateNormal];
             });
         }];
     }
     else {
-        [self.activityIndicatorView setHidden:NO];
-        [self.activityIndicatorView startAnimating];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.activityIndicatorView.hidden = NO;
+            [self.activityIndicatorView startAnimating];
+        });
         [self.userIdTextField setEnabled:NO];
-        [SBDMain connectWithUserId:[self.userIdTextField text] accessToken:@"" completionHandler:^(SBDUser * _Nullable user, SBDError * _Nullable error) {
+        [SBDMain connectWithUserId:[self.userIdTextField text] completionHandler:^(SBDUser * _Nullable user, SBDError * _Nullable error) {
             if (error == nil) {
                 [SBDMain updateCurrentUserInfoWithNickname:[self.nicknameTextField text] profileUrl:nil completionHandler:^(SBDError * _Nullable error) {
                     if (error != nil) {
-                        NSLog(@"User Info Updating Error: %@", error);
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:[NSString stringWithFormat:@"%ld: %@", error.code, error.domain] preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
+                        [alert addAction:closeAction];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self presentViewController:alert animated:YES completion:nil];
+                            [self.activityIndicatorView setHidden:YES];
+                            [self.activityIndicatorView stopAnimating];
+                        });
+                        
+                        return;
                     }
                     
                     [[NSUserDefaults standardUserDefaults] setObject:[SBDMain getCurrentUser].userId forKey:@"sendbird_user_id"];
                     [[NSUserDefaults standardUserDefaults] setObject:[SBDMain getCurrentUser].nickname forKey:@"sendbird_user_name"];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        self.loggedIn = YES;
-                        [self.openChatButton setEnabled:YES];
-                        [self.messagingButton setEnabled:YES];
-                        [self.updateNicknameButton setEnabled:YES];
-                        [self.loginButton setTitle:@"Disconnect" forState:UIControlStateNormal];
+                        self.connected = YES;
+                        [self.openChannelButton setEnabled:YES];
+                        [self.groupChannelButton setEnabled:YES];
+                        [self.connectButton setTitle:@"Disconnect" forState:UIControlStateNormal];
                         
                         [self.activityIndicatorView stopAnimating];
                         [self.activityIndicatorView setHidden:YES];
@@ -102,133 +119,31 @@
                 }];
             }
             else {
-                NSLog(@"Connection Error: %@", error);
-                
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:[NSString stringWithFormat:@"%ld: %@", error.code, error.domain] preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
+                [alert addAction:closeAction];
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    [self presentViewController:alert animated:YES completion:nil];
+                    
                     [self.userIdTextField setEnabled:YES];
-                    [self.activityIndicatorView stopAnimating];
+                    
                     [self.activityIndicatorView setHidden:YES];
+                    [self.activityIndicatorView stopAnimating];
                 });
             }
         }];
     }
 }
 
-- (IBAction)clickUpdateNickname:(id)sender {
-    [self.activityIndicatorView startAnimating];
-    [self.activityIndicatorView setHidden:NO];
-    [SBDMain updateCurrentUserInfoWithNickname:[self.nicknameTextField text] profileUrl:nil completionHandler:^(SBDError * _Nullable error) {
-        [self.activityIndicatorView stopAnimating];
-        [self.activityIndicatorView setHidden:YES];
-        
-        if (error != nil) {
-            NSLog(@"Updating Nickname Error: %@", error);
-            return;
-        }
-        
-        [[NSUserDefaults standardUserDefaults] setObject:[self.nicknameTextField text] forKey:@"sendbird_user_name"];
-    }];
+- (IBAction)clickOpenChannelButon:(id)sender {
+    OpenChannelListViewController *vc = [[OpenChannelListViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (IBAction)clickOpenChat:(id)sender {
-    NSString *userId = [self.userIdTextField text];
-    NSString *userName = [self.nicknameTextField text];
-    
-    if ([userId length] == 0 || [userName length] == 0) {
-        return;
-    }
-    else {
-        [[NSUserDefaults standardUserDefaults] setObject:userId forKey:@"sendbird_user_id"];
-        [[NSUserDefaults standardUserDefaults] setObject:userName forKey:@"sendbird_user_name"];
-
-        OpenChatListViewController *vc = [[OpenChatListViewController alloc] init];
-//        [vc setUserID:userId userName:userName];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-}
-
-- (IBAction)clickMessaging:(id)sender { 
-    NSString *userId = [self.userIdTextField text];
-    NSString *userName = [self.nicknameTextField text];
-    
-    if ([userId length] == 0 || [userName length] == 0) {
-        return;
-    }
-    else {
-        [[NSUserDefaults standardUserDefaults] setObject:userId forKey:@"sendbird_user_id"];
-        [[NSUserDefaults standardUserDefaults] setObject:userName forKey:@"sendbird_user_name"];
-        
-        MessagingChannelListViewController *vc = [[MessagingChannelListViewController alloc] init];
-        [vc setUserID:userId userName:userName];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-}
-
-- (IBAction)clickMemberList:(id)sender {
-    NSString *userId = [self.userIdTextField text];
-    NSString *userName = [self.nicknameTextField text];
-    
-    if ([userId length] == 0 || [userName length] == 0) {
-        return;
-    }
-    else {
-        [[NSUserDefaults standardUserDefaults] setObject:userId forKey:@"sendbird_user_id"];
-        [[NSUserDefaults standardUserDefaults] setObject:userName forKey:@"sendbird_user_name"];
-        
-        UserListViewController *vc = [[UserListViewController alloc] init];
-//        [vc setUserID:userId userName:userName];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-}
-
-- (IBAction)clickMessagingChannelList:(id)sender {
-//    NSString *userId = [self.userIdTextField text];
-//    NSString *userName = [self.nicknameTextField text];
-//    
-//    if ([userId length] == 0 || [userName length] == 0) {
-//        return;
-//    }
-//    else {
-//        [[NSUserDefaults standardUserDefaults] setObject:userId forKey:@"sendbird_user_id"];
-//        [[NSUserDefaults standardUserDefaults] setObject:userName forKey:@"sendbird_user_name"];
-//        
-//        MessagingChannelListViewController *vc = [[MessagingChannelListViewController alloc] init];
-//        [vc setUserID:userId userName:userName];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
-}
-
-- (IBAction)clickBack:(id)sender {
-    [self.firstPhaseContentView setHidden:NO];
-    [self.secondPhaseContentView setHidden:YES];
-}
-
-
-#pragma mark - SBDConnectionDelegate
-- (void)didStartReconnection {
-    NSLog(@"didStartReconnection delegate in ViewController");
-}
-
-
-- (void)didSucceedReconnection {
-    NSLog(@"didSucceedReconnection delegate in ViewController");
-}
-
-- (void)didFailReconnection {
-    NSLog(@"didFailReconnection delegate in ViewController");
-}
-
-#pragma mark - SBDChannelDelegate
-- (void)didReceiveMessage:(SBDBaseChannel * _Nonnull)channel message:(SBDBaseMessage * _Nonnull)message {
-    NSLog(@"didReceiveMessage:message: delegate in ViewController");
-}
-
-- (void)didUpdateReadReceipt:(SBDGroupChannel * _Nullable)channel {
-    NSLog(@"didUpdateReadReceipt: delegate in ViewController");
-}
-
-- (void)didUpdateTypingStatus:(SBDGroupChannel * _Nullable)channel {
-    NSLog(@"didUpdateTypingStatus: delegate in ViewController");
+- (IBAction)clickGroupChannelButton:(id)sender {
+    GroupChannelListViewController *vc = [[GroupChannelListViewController alloc] init];
+    [vc setUserID:[SBDMain getCurrentUser].userId userName:[SBDMain getCurrentUser].nickname];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

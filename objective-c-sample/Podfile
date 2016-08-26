@@ -4,7 +4,7 @@
 # use_frameworks!
 
 #pod 'SendBirdSDK', '~> 3.0'
-target 'JSQMessagesViewController_SendBird' do
+target 'SampleUI' do
   pod 'SendBirdSDK'
   pod 'JSQMessagesViewController', :git => 'https://github.com/smilefam/JSQMessagesViewController.git'
 end

@@ -14,9 +14,12 @@
 #import "SBDGroupChannelListQuery.h"
 #import "SBDTypes.h"
 #import "SBDUserListQuery.h"
+#import "SBDInternalTypes.h"
 
 /**
- *  Delegates for connection. This delegates include three cases, reconnection start, reconnection succession, and reconnection failure.
+ *  An object that adopts the `SBDConnectionDelegate` protocol is responsible for managing the connection statuses. This delegate includes three statuses: reconnection start, reconnection succession, and reconnection failure. The `SBDConnectionDelegate` can be added by [`addConnectionDelegate:identifier:`](../Classes/SBDMain.html#//api/name/addConnectionDelegate:identifier:) in `SBDMain`. Every `SBDConnectionDelegate` method which is added is going to manage the statues.
+ *
+ *  @warning If the object that adopts the `SBDConnectionDelegate` protocol is invalid, the delegate has to be removed by the identifier via [`removeConnectionDelegateForIdentifier:`](../Classes/SBDMain.html#//api/name/removeConnectionDelegateForIdentifier:) in `SBDMain`. If you miss this, it will cause the crash.
  */
 @protocol SBDConnectionDelegate <NSObject>
 
@@ -40,177 +43,168 @@
 @end
 
 /**
- *  SBDMain is the core class for SendBird. This class is singletone instance which is initialized by Application ID. 
+ *  The `SBDMain` is the core class for SendBird. This class is singletone instance which is initialized by Application ID.
+ *  This class provides the methods for overall. The methods include `SBDChannelDelegate` registration for receiving events are related to channels, `SBDConnectionDelegate` for managing the connection status, updating the current user's information, registration for APNS push notification and blocking other users.
  */
 @interface SBDMain : NSObject
 
 /**
- *  Log level.
+ *  Shows the current log level.
  */
 @property (atomic) SBDLogLevel logLevel;
 
 /**
- *  Connection delegates.
+ *  Manages registered `SBDConnectionDelegate`.
  */
 @property (nonatomic, strong, readonly, nullable) NSMutableDictionary<NSString *, NSValue *> *connectionDelegatesDictionary;
 
 /**
- *  Channel delegates.
+ *  Manages registered `SBDChannelDelegate`.
  */
 @property (nonatomic, strong, readonly, nullable) NSMutableDictionary<NSString *, NSValue *> *channelDelegatesDictionary;
 
-/**
- *  Initialize object.
- *
- *  @return SBDMain object.
- */
 - (nullable instancetype)init;
 
 /**
- *  Get the SDK version.
+ *  Retrieves the SDK version.
  *
  *  @return The SDK version.
  */
 + (nonnull NSString *)getSDKVersion;
 
 /**
- *  Get log level.
+ *  Retrieves the log level.
  *
  *  @return Log level.
  */
 + (SBDLogLevel)getLogLevel;
 
 /**
- *  Get the Application ID.
+ *  Gets the Application ID which was used for initialization.
  *
  *  @return The Application ID.
  */
 + (nullable NSString *)getApplicationId;
 
 /**
- *  Set log level.
+ *  Sets the log level. The log level is defined by `SBDLogLevel`.
  *
  *  @param logLevel Log level.
  */
 + (void)setLogLevel:(SBDLogLevel)logLevel;
 
 /**
- *  Get debug mode.
+ *  Gets the current debug mode.
  *
  *  @return If YES, this instance is debug mode.
  */
 + (BOOL)getDebugMode;
 
 /**
- *  Get a singleton instance of SBDMain.
+ *  Gets a singleton instance of `SBDMain`.
  *
- *  @return a singleton instance for SBDMain
+ *  @return a singleton instance for `SBDMain`.
  */
 + (nonnull SBDMain *)sharedInstance;
 
 /**
- *  Get initializing state.
+ *  Gets initializing state.
  *
- *  @return If YES, instance is initialized.
+ *  @return If YES, `SBDMain` instance is initialized.
  */
 + (BOOL)isInitialized;
 
 /**
- *  Initialize SBDMain singleton instance with SendBird Application ID.
+ *  Initializes `SBDMain` singleton instance with SendBird Application ID. The Application ID is on SendBird dashboard. This method has to be run first in order to user SendBird.
  *
  *  @param applicationId The Applicatin ID of SendBird. It can be founded on SendBird Dashboard.
  */
 + (void)initWithApplicationId:(NSString * _Nonnull)applicationId;
 
 /**
- *  Print log by level.
- *
- *  @param logLevel  Log level.
- *  @param format Formatted log message.
- *  @param ... A comma-separated list of arguments to substitute into format.
+ *  SendBird internal use only.
  */
 + (void)logWithLevel:(SBDLogLevel)logLevel format:(NSString * _Nonnull)format, ...;
 
 /**
- *  Perform a connection to SendBird with the user ID.
+ *  Performs a connection to SendBird with the user ID.
  *
  *  @param userId            The user ID.
- *  @param completionHandler The handler block to execute.
+ *  @param completionHandler The handler block to execute. `user` is the object to represent the current user.
  */
 + (void)connectWithUserId:(NSString * _Nonnull)userId completionHandler:(nullable void (^)(SBDUser * _Nullable user, SBDError * _Nullable error))completionHandler;
 
 /**
- *  Perform a connection to SendBird with the user ID and the access token.
+ *  Performs a connection to SendBird with the user ID and the access token.
  *
  *  @param userId            The user ID.
- *  @param accessToken       The access token. If the user doesn't access token, set nil. 
- *  @param completionHandler The handler block to execute.
+ *  @param accessToken       The access token. If the user doesn't have access token, set nil.
+ *  @param completionHandler The handler block to execute. `user` is the object to represent the current user.
  */
 + (void)connectWithUserId:(NSString * _Nonnull)userId accessToken:(NSString * _Nullable)accessToken completionHandler:(nullable void (^)(SBDUser * _Nullable user, SBDError * _Nullable error))completionHandler;
 
 /**
- *  Get the current user object.
+ *  Gets the current user object. The object is valid when the connection succeeded.
  *
  *  @return The current user object.
  */
 + (nullable SBDUser *)getCurrentUser;
 
 /**
- *  Clear the current user object. Internal only.
- *  TODO: Remove this method.
+ *  SendBird internal use only.
  */
 + (void)clearCurrentUser;
 
 /**
- *  Disconnect.
+ *  Disconnects from SendBird. If this method is invoked, the current user will be invalidated.
  *
  *  @param completionHandler The handler block to execute.
  */
 + (void)disconnectWithCompletionHandler:(nullable void (^)())completionHandler;
 
 /**
- *  Add delegate for connection management. This method has to be invoked by SBDMain instance.
+ *  Adds the `SBDConnectionDelegate`.
  *
- *  @param delegate   SBDConnectionDelegate delegate.
- *  @param identifier The identifier for delegate.
+ *  @param delegate   `SBDConnectionDelegate` delegate.
+ *  @param identifier The identifier for the delegate.
  */
 + (void)addConnectionDelegate:(id<SBDConnectionDelegate> _Nonnull)delegate identifier:(NSString * _Nonnull)identifier;
 
 /**
- *  Remove delegate by identifier. This method has to be invoked by SBDMain instance.
+ *  Removes the `SBDConnectionDelegate` by identifier.
  *
- *  @param identifier The identifier for delegate.
+ *  @param identifier The identifier for the delegate to be removed.
  */
 + (void)removeConnectionDelegateForIdentifier:(NSString * _Nonnull)identifier;
 
 /**
- *  Add delegate for channel. This method has to be invoked by SBDMain instance.
+ *  Adds the `SBDChannelDelegate`.
  *
- *  @param delegate   SBDChannelDelegate delegate.
+ *  @param delegate   `SBDChannelDelegate` delegate.
  *  @param identifier The identifier for delegate.
  */
 + (void)addChannelDelegate:(id<SBDChannelDelegate> _Nonnull)delegate identifier:(NSString * _Nonnull)identifier;
 
 /**
- *  Remove delegate by identifier. This method has to be invoked by SBDMain instance.
+ *  Removes the `SBDChannelDelegate` by identifier.
  *
- *  @param identifier The identifier for delegate.
+ *  @param identifier The identifier for the delegate to be removed.
  */
 + (void)removeChannelDelegateForIdentifier:(NSString * _Nonnull)identifier;
 
 /**
- *  Get delegate by indentifer. This method has to be invoked by SBDMain instance.
+ *  Gets the delegate for channel by indentifer.
  *
  *  @param identifier The identifier for delegate.
  *
- *  @return SBDChannelDelegate delegate.
+ *  @return `SBDChannelDelegate` delegate.
  */
 + (nullable id<SBDChannelDelegate>)channelDelegateForIdentifier:(NSString * _Nonnull)identifier;
 
 /**
- *  Get the WebSocket server connection state.
+ *  Gets the WebSocket server connection state.
  *
- *  @return SBDWebSocketConnectionState
+ *  @return `SBDWebSocketConnectionState`
  *
  *  - `SBDWebSocketConnecting` - Connecting to the chat server
  *  - `SBDWebSocketOpen` - Connected to the chat server
@@ -220,30 +214,27 @@
 + (SBDWebSocketConnectionState)getConnectState;
 
 /**
- *  SendBird internal use only.
- *
- *  @param command SBDCommand object.
- *  @param completionHandler The handler block to execute.
+ *  Internal use only.
  */
 - (void)_sendCommand:(SBDCommand * _Nonnull)command completionHandler:(nullable void (^)(SBDCommand * _Nullable command, SBDError * _Nullable error))completionHandler;
 
 /**
- *  Create SBDUserListQuery instance for getting user list of this application.
+ *  Creates `SBDUserListQuery` instance for getting a list of all users of this application.
  *
- *  @return SBDUserListQuery instance.
+ *  @return `SBDUserListQuery` instance.
  */
 + (nullable SBDUserListQuery *)createAllUserListQuery;
 
 /**
- *  Create a query object for blocked user list.
+ *  Creates `SBDUserListQuery` instance for getting a list of blocked users by the current user.
  *
- *  @return SBDBlockedUserListQuery object.
+ *  @return `SBDUserListQuery` instance.
  */
 + (nullable SBDUserListQuery *)createBlockedUserListQuery;
 
 #pragma mark - For Current User
 /**
- *  Update user information.
+ *  Updates the current user's information.
  *
  *  @param nickname          New nickname.
  *  @param profileUrl        New profile image url.
@@ -252,7 +243,7 @@
 + (void)updateCurrentUserInfoWithNickname:(NSString * _Nullable)nickname profileUrl:(NSString * _Nullable)profileUrl completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
- *  Update user information.
+ *  Updates the current user's information.
  *
  *  @param nickname          New nickname.
  *  @param profileImage      New profile image data.
@@ -261,17 +252,17 @@
 + (void)updateCurrentUserInfoWithNickname:(NSString * _Nullable)nickname profileImage:(NSData * _Nullable)profileImage completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
- *  Update user information.
+ *  Updates the current user's information.
  *
  *  @param nickname          New nickname.
  *  @param profileImage      New profile image data.
- *  @param progressHandler   The handler block to monitor progression.
+ *  @param progressHandler   The handler block to monitor progression. `bytesSent` is the number of bytes sent since the last time this method was called. `totalBytesSent` is the total number of bytes sent so far. `totalBytesExpectedToSend` is the expected length of the body data. These parameters are the same to the declaration of [`URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:`](https://developer.apple.com/reference/foundation/nsurlsessiontaskdelegate/1408299-urlsession?language=objc).
  *  @param completionHandler The handler block to execute.
  */
 + (void)updateCurrentUserInfoWithNickname:(NSString * _Nullable)nickname profileImage:(NSData * _Nullable)profileImage progressHandler:(nullable void (^)(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend))progressHandler completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
- *  Register the current device token to SendBird.
+ *  Registers the current device token to SendBird.
  *
  *  @param devToken          Device token for APNS.
  *  @param completionHandler The handler block to execute.
@@ -279,7 +270,7 @@
 + (void)registerPushToken:(NSData * _Nonnull)devToken completionHandler:(nullable void (^)(NSDictionary * _Nullable response, SBDError * _Nullable error))completionHandler;
 
 /**
- *  Unregister the current device token from SendBird.
+ *  Unregisters the current device token from SendBird.
  *
  *  @param devToken          Device token for APNS.
  *  @param completionHandler The handler block to execute.
@@ -287,7 +278,7 @@
 + (void)unregisterPushToken:(NSData * _Nonnull)devToken completionHandler:(nullable void (^)(NSDictionary * _Nullable response, SBDError * _Nullable error))completionHandler;
 
 /**
- *  Unregister the all device tokens for the current user from SendBird.
+ *  Unregisters all device tokens for the current user from SendBird.
  *
  *  @param completionHandler The handler block to execute.
  */
@@ -297,7 +288,7 @@
  *  Blocks the specified user.
  *
  *  @param userId            The user ID to be blocked.
- *  @param completionHandler The handler block to execute.
+ *  @param completionHandler The handler block to execute. `blockedUser` is the blocked user by the current user.
  */
 + (void)blockUserId:(NSString * _Nonnull)userId completionHandler:(nullable void (^)(SBDUser * _Nullable blockedUser, SBDError * _Nullable error))completionHandler;
 
@@ -305,7 +296,7 @@
  *  Blocks the specified user.
  *
  *  @param user              The user to be blocked.
- *  @param completionHandler The handler block to execute.
+ *  @param completionHandler The handler block to execute. `blockedUser` is the blocked user by the current user.
  */
 + (void)blockUser:(SBDUser * _Nonnull)user completionHandler:(nullable void (^)(SBDUser * _Nullable blockedUser, SBDError * _Nullable error))completionHandler;
 

@@ -11,7 +11,7 @@ import SendBirdSDK
 
 class BlockedUserListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet private weak var tableView: UITableView!
-    private var blockedUsers: NSMutableArray?
+    private var blockedUsers: [SBDUser] = []
     private var query: SBDUserListQuery?
     private var refreshControl: UIRefreshControl?
 
@@ -20,7 +20,6 @@ class BlockedUserListViewController: UIViewController, UITableViewDelegate, UITa
 
         self.title = "Blocked Users"
         
-        self.blockedUsers = NSMutableArray()
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.registerNib(UserListTableViewCell.nib(), forCellReuseIdentifier: UserListTableViewCell.cellReuseIdentifier())
@@ -34,18 +33,13 @@ class BlockedUserListViewController: UIViewController, UITableViewDelegate, UITa
         self.loadBlockedUsers()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func refreshBlockedUsers() {
         if self.query != nil && self.query?.isLoading() == true {
             self.refreshControl?.endRefreshing()
             return
         }
         
-        self.blockedUsers?.removeAllObjects()
+        self.blockedUsers.removeAll()
         self.query = SBDMain.createBlockedUserListQuery()
         self.loadBlockedUsers()
     }
@@ -77,7 +71,7 @@ class BlockedUserListViewController: UIViewController, UITableViewDelegate, UITa
             }
             
             for user: SBDUser in users! {
-                self.blockedUsers?.addObject(user)
+                self.blockedUsers.append(user)
             }
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -107,7 +101,8 @@ class BlockedUserListViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let user = self.blockedUsers![indexPath.row] as! SBDUser
+        let user = self.blockedUsers[indexPath.row]
+        let userIndex = indexPath.row
         
         if user.userId == SBDMain.getCurrentUser()!.userId {
             return
@@ -121,15 +116,19 @@ class BlockedUserListViewController: UIViewController, UITableViewDelegate, UITa
                     let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
                     let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
                     alert.addAction(closeAction)
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    })
                 }
                 else {
                     let alert = UIAlertController(title: "User Unblocked", message: String(format: "%@ is unblocked", user.nickname!), preferredStyle: UIAlertControllerStyle.Alert)
                     let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
                     alert.addAction(closeAction)
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    })
                     
-                    self.blockedUsers?.removeObject(user)
+                    self.blockedUsers.removeAtIndex(userIndex)
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableView.reloadData()
                     })
@@ -140,23 +139,25 @@ class BlockedUserListViewController: UIViewController, UITableViewDelegate, UITa
         alert.addAction(closeAction)
         alert.addAction(unblockUserAction)
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        dispatch_async(dispatch_get_main_queue(), {
+            self.presentViewController(alert, animated: true, completion: nil)
+        })
     }
     
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.blockedUsers!.count
+        return self.blockedUsers.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let user = self.blockedUsers?.objectAtIndex(indexPath.row) as! SBDUser
+        let user = self.blockedUsers[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(UserListTableViewCell.cellReuseIdentifier()) as! UserListTableViewCell
         
         cell.setModel(user)
         cell.setOnlineStatusVisiblility(false)
         
-        if self.blockedUsers!.count > 0 {
-            if indexPath.row == self.blockedUsers!.count - 1 {
+        if self.blockedUsers.count > 0 {
+            if indexPath.row == self.blockedUsers.count - 1 {
                 self.loadBlockedUsers()
             }
         }

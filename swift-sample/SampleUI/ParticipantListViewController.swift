@@ -13,7 +13,7 @@ class ParticipantListViewController: UIViewController, UITableViewDelegate, UITa
     var currentChannel: SBDOpenChannel?
 
     @IBOutlet private weak var tableView: UITableView!
-    private var participants: NSMutableArray?
+    private var participants: [SBDUser] = []
     private var query: SBDUserListQuery?
     private var refreshControl: UIRefreshControl?
     
@@ -22,7 +22,6 @@ class ParticipantListViewController: UIViewController, UITableViewDelegate, UITa
 
         self.title = "Participants"
         
-        self.participants = NSMutableArray()
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.registerNib(UserListTableViewCell.nib(), forCellReuseIdentifier: UserListTableViewCell.cellReuseIdentifier())
@@ -36,18 +35,13 @@ class ParticipantListViewController: UIViewController, UITableViewDelegate, UITa
         self.loadParticipants()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func refreshParticipantList() {
         if self.query != nil && self.query?.isLoading() == true {
             self.refreshControl?.endRefreshing()
             return
         }
         
-        self.participants?.removeAllObjects()
+        self.participants.removeAll()
         self.query = self.currentChannel?.createParticipantListQuery()
         self.loadParticipants()
     }
@@ -78,8 +72,8 @@ class ParticipantListViewController: UIViewController, UITableViewDelegate, UITa
                 return
             }
 
-            for user: SBDUser in participants! {
-                self.participants?.addObject(user)
+            for user in participants! {
+                self.participants.append(user)
             }
             
             dispatch_async(dispatch_get_main_queue(), { 
@@ -115,7 +109,7 @@ class ParticipantListViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let user = self.participants![indexPath.row] as! SBDUser
+        let user = self.participants[indexPath.row]
         
         if user.userId == SBDMain.getCurrentUser()!.userId {
             return
@@ -129,13 +123,17 @@ class ParticipantListViewController: UIViewController, UITableViewDelegate, UITa
                     let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
                     let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
                     alert.addAction(closeAction)
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    dispatch_async(dispatch_get_main_queue(), { 
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    })
                 }
                 else {
                     let alert = UIAlertController(title: "User Blocked", message: String(format: "%@ is blocked", blockedUser!.nickname!), preferredStyle: UIAlertControllerStyle.Alert)
                     let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
                     alert.addAction(closeAction)
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    })
                 }
             })
         }
@@ -143,23 +141,25 @@ class ParticipantListViewController: UIViewController, UITableViewDelegate, UITa
         alert.addAction(closeAction)
         alert.addAction(blockUserAction)
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        dispatch_async(dispatch_get_main_queue(), {
+            self.presentViewController(alert, animated: true, completion: nil)
+        })
     }
     
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.participants!.count
+        return self.participants.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let user = self.participants?.objectAtIndex(indexPath.row) as! SBDUser
+        let user = self.participants[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(UserListTableViewCell.cellReuseIdentifier()) as! UserListTableViewCell
         
         cell.setModel(user)
         cell.setOnlineStatusVisiblility(false)
         
-        if self.participants!.count > 0 {
-            if indexPath.row == self.participants!.count - 1 {
+        if self.participants.count > 0 {
+            if indexPath.row == self.participants.count - 1 {
                 self.loadParticipants()
             }
         }

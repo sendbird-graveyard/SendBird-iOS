@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ParticipantListViewController" customModule="SampleUI" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="CE4-Pi-hGn" id="She-XK-Sb2"/>
+                <outlet property="tableView" destination="CE4-Pi-hGn" id="rGa-vZ-UlQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

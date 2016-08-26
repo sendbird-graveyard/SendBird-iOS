@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:JSQMessagesViewController_SendBird.xcodeproj">
+      location = "group:/Users/jedkyung/git/SendBird-iOS/objective-c-sample/SampleUI.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

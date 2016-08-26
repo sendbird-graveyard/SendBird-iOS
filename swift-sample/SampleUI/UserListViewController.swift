@@ -19,7 +19,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     var channel: SBDGroupChannel?
 
     @IBOutlet private weak var tableView: UITableView!
-    private var users: NSMutableArray?
+    private var users: [SBDUser] = []
     private var userId: String?
     private var userName: String?
     
@@ -31,7 +31,6 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
 
         self.title = "User List"
         
-        self.users = NSMutableArray()
         self.selectedUsers = NSMutableDictionary()
         
         self.tableView.delegate = self
@@ -82,7 +81,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
                 if user.userId == SBDMain.getCurrentUser()!.userId {
                     continue
                 }
-                self.users?.addObject(user)
+                self.users.append(user)
                 self.selectedUsers![user.userId] = Int(0)
             }
             
@@ -107,6 +106,13 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
             let createDistinctChannelAction = UIAlertAction(title: "Create distinct channel", style: UIAlertActionStyle.Default, handler: { (action) in
                 SBDGroupChannel.createChannelWithUserIds(userIds, isDistinct: true, completionHandler: { (channel, error) in
                     if error != nil {
+                        let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                        alert.addAction(closeAction)
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.presentViewController(alert, animated: true, completion: nil)
+                        })
+                        
                         return
                     }
                     
@@ -122,6 +128,13 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
             let createNonDistinctChannelAction = UIAlertAction(title: "Create non-distinct channel", style: UIAlertActionStyle.Default, handler: { (action) in
                 SBDGroupChannel.createChannelWithUserIds(userIds, isDistinct: false, completionHandler: { (channel, error) in
                     if error != nil {
+                        let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                        alert.addAction(closeAction)
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.presentViewController(alert, animated: true, completion: nil)
+                        })
+                        
                         return
                     }
                     
@@ -162,6 +175,13 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         if userIds.count > 0 {
             self.channel?.inviteUserIds(userIds, completionHandler: { (error) in
                 if error != nil {
+                    let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                    alert.addAction(closeAction)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    })
+                    
                     return
                 }
                 
@@ -194,7 +214,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let user = self.users?.objectAtIndex(indexPath.row) as! SBDUser
+        let user = self.users[indexPath.row]
         let cellCheck = tableView.cellForRowAtIndexPath(indexPath)
         
         if self.selectedUsers?.objectForKey(user.userId)?.intValue == 0 {
@@ -211,11 +231,11 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.users!.count
+        return self.users.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let user = self.users?.objectAtIndex(indexPath.row) as! SBDUser
+        let user = self.users[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(UserListTableViewCell.cellReuseIdentifier()) as! UserListTableViewCell
         
         cell.setModel(user)
@@ -228,8 +248,8 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
             cell.accessoryType = UITableViewCellAccessoryType.None
         }
         
-        if self.users?.count > 0 {
-            if indexPath.row == (self.users?.count)! - 1 {
+        if self.users.count > 0 {
+            if indexPath.row == self.users.count - 1 {
                 self.loadUsers()
             }
         }

@@ -44,14 +44,14 @@ class GroupChannelListTableViewCell: UITableViewCell {
         var representativeUser: SBDUser?
         
         var channelTitle: String?
-        let channelTitleNameArray = NSMutableArray()
+        var channelTitleNameArray: [String] = []
         for item in self.channel!.members! {
             let user = item as! SBDUser
             if user.userId == SBDMain.getCurrentUser()!.userId {
                 continue
             }
             else {
-                channelTitleNameArray.addObject(user.nickname!)
+                channelTitleNameArray.append(user.nickname!)
                 representativeUser = user
             }
         }
@@ -63,7 +63,7 @@ class GroupChannelListTableViewCell: UITableViewCell {
             self.coverImageView.af_setImageWithURL(NSURL.init(string: (self.channel?.coverUrl)!)!)
         }
         
-        channelTitle = channelTitleNameArray.componentsJoinedByString(",")
+        channelTitle = channelTitleNameArray.joinWithSeparator(",")
         
         self.channelTitleLabel.text = channelTitle
         let date: NSDate?

@@ -18,7 +18,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var versionLabel: UILabel!
     
-    var delegateIdentifier: NSString!
     var connected: Bool
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,8 +34,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.delegateIdentifier = self.description;
         
         let userId = NSUserDefaults.standardUserDefaults().objectForKey("sendbird_user_id") as? String
         let nickname = NSUserDefaults.standardUserDefaults().objectForKey("sendbird_nickname") as? String
@@ -58,27 +55,26 @@ class ViewController: UIViewController {
             self.versionLabel.text = version
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func clickConnectButton(sender: AnyObject) {
         if self.userIdTextField.text?.characters.count == 0 {
-            let vc = UIAlertController(title: "Error", message: "User ID is required.", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Error", message: "User ID is required.", preferredStyle: UIAlertControllerStyle.Alert)
             let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
-            vc.addAction(closeAction)
-            self.presentViewController(vc, animated: true, completion: nil)
+            alert.addAction(closeAction)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.presentViewController(alert, animated: true, completion: nil)
+            })
             
             return;
         }
         
         if self.nicknameTextField.text?.characters.count == 0 {
-            let vc = UIAlertController(title: "Error", message: "Nickname is required.", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Error", message: "Nickname is required.", preferredStyle: UIAlertControllerStyle.Alert)
             let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
-            vc.addAction(closeAction)
-            self.presentViewController(vc, animated: true, completion: nil)
+            alert.addAction(closeAction)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.presentViewController(alert, animated: true, completion: nil)
+            })
             
             return;
         }
@@ -104,12 +100,11 @@ class ViewController: UIViewController {
                 if error == nil {
                     SBDMain.updateCurrentUserInfoWithNickname(self.nicknameTextField.text, profileUrl: nil, completionHandler: { (error) in
                         if error != nil {
-                            let vc = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                            let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
                             let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
-                            vc.addAction(closeAction)
-                            self.presentViewController(vc, animated: true, completion: nil)
-                            
+                            alert.addAction(closeAction)
                             dispatch_async(dispatch_get_main_queue(), {
+                                self.presentViewController(alert, animated: true, completion: nil)
                                 self.activityIndicatorView.hidden = true
                                 self.activityIndicatorView.stopAnimating()
                             })
@@ -132,11 +127,11 @@ class ViewController: UIViewController {
                     })
                 }
                 else {
+                    let alert = UIAlertController(title: "Error", message: String(format: "%lld-%@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                    alert.addAction(closeAction)
                     dispatch_async(dispatch_get_main_queue(), {
-                        let vc = UIAlertController(title: "Error", message: String(format: "%lld-%@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
-                        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
-                        vc.addAction(closeAction)
-                        self.presentViewController(vc, animated: true, completion: nil)
+                        self.presentViewController(alert, animated: true, completion: nil)
                         
                         self.userIdTextField.enabled = true
                         
@@ -148,12 +143,10 @@ class ViewController: UIViewController {
         }
     }
     
-    
     @IBAction func clickOpenChannelButon(sender: AnyObject) {
         let vc = OpenChannelListViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
     
     @IBAction func clickGroupChannelButton(sender: AnyObject) {
         let vc = GroupChannelListViewController()

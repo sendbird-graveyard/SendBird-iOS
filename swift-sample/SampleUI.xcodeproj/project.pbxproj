@@ -103,11 +103,11 @@
 			children = (
 				5AA771D31D6D995C002DEDB8 /* GroupChannelListViewController.swift */,
 				5AA771D41D6D995C002DEDB8 /* GroupChannelListViewController.xib */,
-				5AA771DD1D6DD319002DEDB8 /* UserListViewController.swift */,
-				5AA771DE1D6DD319002DEDB8 /* UserListViewController.xib */,
 				5AA771E11D6E7899002DEDB8 /* GroupChannelViewController.swift */,
 				5AA771E51D6ECDE6002DEDB8 /* MemberListViewController.swift */,
 				5AA771E61D6ECDE6002DEDB8 /* MemberListViewController.xib */,
+				5AA771DD1D6DD319002DEDB8 /* UserListViewController.swift */,
+				5AA771DE1D6DD319002DEDB8 /* UserListViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -203,13 +203,13 @@
 		5AB8A1A71D66D36F00DE57A1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				5AA771CF1D6D90BA002DEDB8 /* BlockedUserListViewController.swift */,
+				5AA771D01D6D90BA002DEDB8 /* BlockedUserListViewController.xib */,
 				5AB8A1A81D66D39C00DE57A1 /* OpenChannelListViewController.swift */,
 				5AB8A1A91D66D39C00DE57A1 /* OpenChannelListViewController.xib */,
 				5ADEF97D1D6712F1004915F3 /* OpenChannelViewController.swift */,
 				5AA771C31D6D6E6D002DEDB8 /* ParticipantListViewController.swift */,
 				5AA771C41D6D6E6D002DEDB8 /* ParticipantListViewController.xib */,
-				5AA771CF1D6D90BA002DEDB8 /* BlockedUserListViewController.swift */,
-				5AA771D01D6D90BA002DEDB8 /* BlockedUserListViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";

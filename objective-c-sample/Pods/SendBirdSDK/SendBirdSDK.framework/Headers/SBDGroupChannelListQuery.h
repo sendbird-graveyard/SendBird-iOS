@@ -14,12 +14,12 @@
 @class SBDUser;
 
 /**
- *  An object which retrieves the list of group channels.
+ *  The `SBDGroupChannelListQuery` class is a query class for getting the list of group channels. The instance of this class is created by [`createMyGroupChannelListQuery`](../Classes/SBDGroupChannel.html#//api/name/createMyGroupChannelListQuery) in `SBDGroupChannel` class.
  */
 @interface SBDGroupChannelListQuery : NSObject
 
 /**
- *  Set the number of channels per page (limit)
+ *  Sets the number of channels per page.
  */
 @property (atomic) NSUInteger limit;
 
@@ -29,12 +29,12 @@
 @property (atomic) BOOL includeEmptyChannel;
 
 /**
- *  If the value is YES, the channel object of the list includes member lists.
+ *  If the value is YES, the channel object of the list includes members list.
  */
 @property (atomic) BOOL includeMemberList;
 
 /**
- *  Set the order of the list.
+ *  Sets the order of the list. The order is defined in `SBDGroupChannelListOrder`.
  */
 @property (atomic) SBDGroupChannelListOrder order;
 
@@ -50,26 +50,17 @@
  */
 - (BOOL)isLoading;
 
-/**
- *  Initialize object.
- *
- *  @return SBDGroupChannelListQuery object.
- */
 - (nullable instancetype)init;
 
 /**
- *  Initialize object with user.
- *
- *  @param user The user who is a member of channels.
- *
- *  @return SBDGroupChannelListQuery object.
+ *  Internal use only.
  */
 - (nullable instancetype)initWithUser:(SBDUser * _Nonnull)user;
 
 /**
  *  Get the list of channels. If this method is repeatedly called, it will retrieve the following pages of the channel list.
  *
- *  @param completionHandler The handler block to execute.
+ *  @param completionHandler The handler block to execute. The `channels` is the array of `SBDGroupChannel` instances.
  */
 - (void)loadNextPageWithCompletionHandler:(nullable void (^)(NSArray<SBDGroupChannel *> * _Nullable channels, SBDError *_Nullable error))completionHandler;
 

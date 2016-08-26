@@ -7,11 +7,12 @@
 //
 
 import UIKit
-import JSQMessagesViewController
-import MobileCoreServices
-import SendBirdSDK
 import AVKit
 import AVFoundation
+import MobileCoreServices
+
+import JSQMessagesViewController
+import SendBirdSDK
 
 protocol OpenChannelViewControllerDelegate: class {
     func didCloseOpenChannelViewController(vc: UIViewController)
@@ -31,7 +32,6 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     private var lastMessageTimestamp: Int64 = Int64.min
     private var firstMessageTimestamp: Int64 = Int64.max
     
-    private var isLoading: Bool = false
     private var hasPrev: Bool = false
     
     private var previousMessageQuery: SBDPreviousMessageListQuery?
@@ -48,12 +48,10 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.isLoading = false
         self.hasPrev = true
         
         self.avatars = NSMutableDictionary()
         self.users = NSMutableDictionary()
-//        self.messages = NSMutableArray()
         
         self.lastMessageTimestamp = Int64.min
         self.firstMessageTimestamp = Int64.max
@@ -88,8 +86,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
         if self.navigationController?.viewControllers.indexOf(self) == nil {
             SBDMain.removeChannelDelegateForIdentifier(self.delegateIndetifier!)
             SBDMain.removeConnectionDelegateForIdentifier(self.delegateIndetifier!)
-            
-            // TODO:
+
             self.channel?.exitChannelWithCompletionHandler({ (error) in
                 
             })
@@ -98,13 +95,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
         super.viewWillDisappear(animated)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     func actionPressed(sender: UIBarButtonItem) {
-        print("actionPressed.")
         let alert = UIAlertController.init(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         let closeAction = UIAlertAction.init(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
@@ -144,18 +135,20 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
             self.presentViewController(alert, animated: true, completion: nil)
         })
     }
-    
-    private func invitePressed(sender: UIBarButtonItem) {
-        print("invitePressed")
-        
-        // TODO:
-    }
 
     private func startSendBird() {
         if self.channel != nil {
             self.previousMessageQuery = self.channel?.createPreviousMessageListQuery()
             self.channel?.enterChannelWithCompletionHandler({ (error) in
-                if (error == nil) {
+                if (error != nil) {
+                    let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                    alert.addAction(closeAction)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    })
+                }
+                else {
                     self.loadMessage(Int64.max, initial: true)
                 }
             })
@@ -357,7 +350,6 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as! JSQMessagesCollectionViewCell
-        
         let msg = self.messages[indexPath.item]
         
         if msg.isMediaMessage == false {
@@ -425,7 +417,6 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAtIndexPath indexPath: NSIndexPath!) {
-        print("Tapped message bubble! ", indexPath.row)
         let jsqMessage = self.messages[indexPath.item]
         
         let alert = UIAlertController.init(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -447,7 +438,9 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                                 let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
                                 let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
                                 alert.addAction(closeAction)
-                                self.presentViewController(alert, animated: true, completion: nil)
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    self.presentViewController(alert, animated: true, completion: nil)
+                                })
                             }
                             else {
                                 dispatch_async(dispatch_get_main_queue(), {
@@ -465,13 +458,17 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                                 let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
                                 let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
                                 alert.addAction(closeAction)
-                                self.presentViewController(alert, animated: true, completion: nil)
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    self.presentViewController(alert, animated: true, completion: nil)
+                                })
                             }
                             else {
                                 let alert = UIAlertController(title: "User Blocked", message: String(format: "%@ is blocked", blocked!.nickname!), preferredStyle: UIAlertControllerStyle.Alert)
                                 let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
                                 alert.addAction(closeAction)
-                                self.presentViewController(alert, animated: true, completion: nil)
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    self.presentViewController(alert, animated: true, completion: nil)
+                                })
                             }
                         })
                     })
@@ -491,7 +488,9 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                                 let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
                                 let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
                                 alert.addAction(closeAction)
-                                self.presentViewController(alert, animated: true, completion: nil)
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    self.presentViewController(alert, animated: true, completion: nil)
+                                })
                             }
                             else {
                                 dispatch_async(dispatch_get_main_queue(), {
@@ -509,13 +508,17 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                                 let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
                                 let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
                                 alert.addAction(closeAction)
-                                self.presentViewController(alert, animated: true, completion: nil)
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    self.presentViewController(alert, animated: true, completion: nil)
+                                })
                             }
                             else {
                                 let alert = UIAlertController(title: "User Blocked", message: String(format: "%@ is blocked", blockedUser!.nickname!), preferredStyle: UIAlertControllerStyle.Alert)
                                 let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
                                 alert.addAction(closeAction)
-                                self.presentViewController(alert, animated: true, completion: nil)
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    self.presentViewController(alert, animated: true, completion: nil)
+                                })
                             }
                         })
                     })
@@ -568,7 +571,9 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                 alert.addAction(deleteMessageAction!)
             }
             
-            self.presentViewController(alert, animated: true, completion: nil)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.presentViewController(alert, animated: true, completion: nil)
+            })
         }
     }
     
@@ -602,7 +607,15 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                     let msgDate = NSDate.init(timeIntervalSince1970: Double((userMessage!.createdAt / 1000)))
                     let messageText = userMessage?.message
                     
-                    let placeholderImage = JSQMessagesAvatarImageFactory.circularAvatarPlaceholderImage("TC", backgroundColor: UIColor.lightGrayColor(), textColor: UIColor.darkGrayColor(), font: UIFont.systemFontOfSize(13.0), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+                    var initialName = ""
+                    if senderName?.characters.count > 1 {
+                        initialName = (senderName! as NSString).substringWithRange(NSMakeRange(0, 2)).uppercaseString
+                    }
+                    else if senderName?.characters.count > 0 {
+                        initialName = (senderName! as NSString).substringWithRange(NSMakeRange(0, 1)).uppercaseString
+                    }
+                    
+                    let placeholderImage = JSQMessagesAvatarImageFactory.circularAvatarPlaceholderImage(initialName, backgroundColor: UIColor.lightGrayColor(), textColor: UIColor.darkGrayColor(), font: UIFont.systemFontOfSize(13.0), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
                     let avatarImage = JSQMessagesAvatarImageFactory.avatarImageWithImageURL(senderImage, highlightedImageURL: senderImage, placeholderImage: placeholderImage, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
                     
                     self.avatars?.setObject(avatarImage, forKey: senderId!)
@@ -704,7 +717,9 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                         let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
                         let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
                         alert.addAction(closeAction)
-                        self.presentViewController(alert, animated: true, completion: nil)
+                        dispatch_async(dispatch_get_main_queue(), { 
+                            self.presentViewController(alert, animated: true, completion: nil)
+                        })
                         
                         return;
                     }
@@ -769,7 +784,9 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                         let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
                         let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
                         alert.addAction(closeAction)
-                        self.presentViewController(alert, animated: true, completion: nil)
+                        dispatch_async(dispatch_get_main_queue(), { 
+                            self.presentViewController(alert, animated: true, completion: nil)
+                        })
                         
                         return;
                     }
@@ -829,7 +846,9 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
         self.firstMessageTimestamp = Int64.max
 
         self.messages.removeAll()
-        self.collectionView.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.collectionView.reloadData()
+        }
         
         self.previousMessageQuery = self.channel?.createPreviousMessageListQuery()
         self.loadMessage(Int64.max, initial: true)

@@ -13,7 +13,7 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
-    var channels: NSMutableArray?
+    var channels: [SBDOpenChannel] = []
     var channelListQuery: SBDOpenChannelListQuery?
     var refreshControl: UIRefreshControl?
 
@@ -26,11 +26,10 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
         self.loadingActivityIndicator.hidesWhenStopped = true;
         self.loadingActivityIndicator.stopAnimating()
         
-        self.channels = NSMutableArray()
-        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.registerNib(OpenChannelListTableViewCell.nib(), forCellReuseIdentifier: OpenChannelListTableViewCell.cellReuseIdentifier())
+        
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: #selector(OpenChannelListViewController.refreshChannelList), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(self.refreshControl!)
@@ -39,16 +38,7 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
         
         self.loadChannels()
     }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func createOpenChannel() {
         let alert = UIAlertController(title: "Create Open Channel", message: "Create open channel with name.", preferredStyle: UIAlertControllerStyle.Alert)
         let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel) { (action) in
@@ -65,19 +55,19 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
                 
                 SBDOpenChannel.createChannelWithName(nameTextField.text, coverUrl: nil, data: nil, operatorUsers: [SBDMain.getCurrentUser()!], completionHandler: { (channel, error) in
                     if error != nil {
-                        dispatch_async(dispatch_get_main_queue(), { 
-                            let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
-                            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
-                            alert.addAction(closeAction)
+                        let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                        alert.addAction(closeAction)
+                        dispatch_async(dispatch_get_main_queue(), {
                             self.presentViewController(alert, animated: true, completion: nil)
-                            
                             self.loadingActivityIndicator.stopAnimating()
                         })
+
                         return
                     }
                     
-                    dispatch_async(dispatch_get_main_queue(), { 
-                        self.channels?.removeAllObjects()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.channels.removeAll()
                         self.channelListQuery = SBDOpenChannel.createOpenChannelListQuery()
                         self.loadChannels()
                         self.loadingActivityIndicator.stopAnimating()
@@ -93,7 +83,9 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
         alert.addAction(closeAction)
         alert.addAction(createAction)
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        dispatch_async(dispatch_get_main_queue(), {
+            self.presentViewController(alert, animated: true, completion: nil)
+        })
     }
     
     func refreshChannelList() {
@@ -102,7 +94,7 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
             return
         }
         
-        self.channels?.removeAllObjects()
+        self.channels.removeAll()
         self.tableView.reloadData()
         self.channelListQuery = SBDOpenChannel.createOpenChannelListQuery()
         self.loadChannels()
@@ -132,7 +124,7 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
             }
             
             for channel in channels! {
-                self.channels?.addObject(channel)
+                self.channels.append(channel)
             }
             
             dispatch_async(dispatch_get_main_queue(), { 
@@ -164,26 +156,26 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let vc = OpenChannelViewController()
-        vc.title = self.channels?.objectAtIndex(indexPath.row).name
+        vc.title = self.channels[indexPath.row].name
         vc.senderId = SBDMain.getCurrentUser()?.userId
         vc.senderDisplayName = SBDMain.getCurrentUser()?.nickname
-        vc.channel = self.channels?.objectAtIndex(indexPath.row) as? SBDOpenChannel
+        vc.channel = self.channels[indexPath.row]
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.channels!.count
+        return self.channels.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let channel = self.channels![indexPath.row]
+        let channel = self.channels[indexPath.row]
         let cell: OpenChannelListTableViewCell = (tableView.dequeueReusableCellWithIdentifier(OpenChannelListTableViewCell.cellReuseIdentifier()) as? OpenChannelListTableViewCell)!
-        cell.setModel(channel as! SBDOpenChannel)
+        cell.setModel(channel)
         
-        if self.channels?.count > 0 {
-            if indexPath.row == self.channels!.count - 1 {
+        if self.channels.count > 0 {
+            if indexPath.row == self.channels.count - 1 {
                 self.loadChannels()
             }
         }

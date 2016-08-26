@@ -30,13 +30,12 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
     private var lastMessageTimestamp: Int64 = Int64.min
     private var firstMessageTimestamp: Int64 = Int64.max
     
-    private var isLoading: Bool = false
     private var hasPrev: Bool = false
     
     private var previousMessageQuery: SBDPreviousMessageListQuery?
     private var delegateIndetifier: String?
     
-    private var userIds: [String]?
+    private var userIds: [String] = []
     private var groupChannelUrl: String?
     private var groupChannelStartType: Int?
     private var channel: SBDGroupChannel?
@@ -55,7 +54,6 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
         
         self.title = String(format: "Group Channel(%d)", Int((self.channel?.memberCount)!))
         
-        self.isLoading = false
         self.hasPrev = true
         
         self.avatars = NSMutableDictionary()
@@ -108,11 +106,6 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
         super.viewWillDisappear(animated)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func closePressed(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -136,22 +129,22 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
         }
         let leaveAction = UIAlertAction(title: "Leave this channel", style: UIAlertActionStyle.Default) { (action) in
             self.channel?.leaveChannelWithCompletionHandler({ (error) in
-                dispatch_async(dispatch_get_main_queue(), { 
-                    if self.delegate != nil {
-                        self.delegate?.didCloseGroupChannelViewController(self)
-                    }
-                    
+                if self.delegate != nil {
+                    self.delegate?.didCloseGroupChannelViewController(self)
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), {
                     self.navigationController?.popViewControllerAnimated(true)
                 })
             })
         }
         let hideAction = UIAlertAction(title: "Hide this channel", style: UIAlertActionStyle.Default) { (action) in
             self.channel?.hideChannelWithCompletionHandler({ (error) in
+                if self.delegate != nil {
+                    self.delegate?.didCloseGroupChannelViewController(self)
+                }
+                
                 dispatch_async(dispatch_get_main_queue(), {
-                    if self.delegate != nil {
-                        self.delegate?.didCloseGroupChannelViewController(self)
-                    }
-                    
                     self.navigationController?.popViewControllerAnimated(true)
                 })
             })
@@ -495,7 +488,12 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
                         let selectedMessageIndexPath = indexPath
                         self.channel?.deleteMessage(baseMessage!, completionHandler: { (error) in
                             if error != nil {
-                                
+                                let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                                let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                                alert.addAction(closeAction)
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    self.presentViewController(alert, animated: true, completion: nil)
+                                })
                             }
                             else {
                                 dispatch_async(dispatch_get_main_queue(), {
@@ -508,12 +506,22 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
                 }
                 else {
                     blockUserAction = UIAlertAction.init(title: "Block user", style: UIAlertActionStyle.Destructive, handler: { (action) in
-                        SBDMain.blockUser(sender!, completionHandler: { (blocked, error) in
+                        SBDMain.blockUser(sender!, completionHandler: { (blockedUser, error) in
                             if error != nil {
-                                
+                                let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                                let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                                alert.addAction(closeAction)
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    self.presentViewController(alert, animated: true, completion: nil)
+                                })
                             }
                             else {
-                                
+                                let alert = UIAlertController(title: "User Blocked", message: String(format: "%@ is blocked", blockedUser!.nickname!), preferredStyle: UIAlertControllerStyle.Alert)
+                                let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                                alert.addAction(closeAction)
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    self.presentViewController(alert, animated: true, completion: nil)
+                                })
                             }
                         })
                     })
@@ -530,7 +538,12 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
                         let selectedMessageIndexPath = indexPath
                         self.channel?.deleteMessage(baseMessage!, completionHandler: { (error) in
                             if error != nil {
-                                
+                                let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                                let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                                alert.addAction(closeAction)
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    self.presentViewController(alert, animated: true, completion: nil)
+                                })
                             }
                             else {
                                 dispatch_async(dispatch_get_main_queue(), {
@@ -545,10 +558,20 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
                     blockUserAction = UIAlertAction.init(title: "Block user", style: UIAlertActionStyle.Destructive, handler: { (action) in
                         SBDMain.blockUser(sender!, completionHandler: { (blockedUser, error) in
                             if error != nil {
-                                
+                                let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
+                                let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                                alert.addAction(closeAction)
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    self.presentViewController(alert, animated: true, completion: nil)
+                                })
                             }
                             else {
-                                
+                                let alert = UIAlertController(title: "User Blocked", message: String(format: "%@ is blocked", blockedUser!.nickname!), preferredStyle: UIAlertControllerStyle.Alert)
+                                let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                                alert.addAction(closeAction)
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    self.presentViewController(alert, animated: true, completion: nil)
+                                })
                             }
                         })
                     })
@@ -866,7 +889,9 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
         self.firstMessageTimestamp = Int64.max
         
         self.messages.removeAll()
-        self.collectionView.reloadData()
+        dispatch_async(dispatch_get_main_queue()) { 
+            self.collectionView.reloadData()
+        }
         
         self.previousMessageQuery = self.channel?.createPreviousMessageListQuery()
         self.loadMessages(Int64.max, initial: true)
@@ -981,7 +1006,9 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
     }
     
     func channelDidUpdateReadReceipt(sender: SBDGroupChannel) {
-        self.collectionView.reloadData()
+        dispatch_async(dispatch_get_main_queue()) { 
+            self.collectionView.reloadData()
+        }
     }
     
     func channelDidUpdateTypingStatus(sender: SBDGroupChannel) {

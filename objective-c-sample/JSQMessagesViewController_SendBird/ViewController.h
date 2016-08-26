@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <SendBirdSDK/SendBirdSDK.h>
 
-#import "OpenChatListViewController.h"
+#import "OpenChannelListViewController.h"
 #import "UserListViewController.h"
-#import "MessagingChannelListViewController.h"
+#import "GroupChannelListViewController.h"
 
 @interface ViewController : UIViewController
 
