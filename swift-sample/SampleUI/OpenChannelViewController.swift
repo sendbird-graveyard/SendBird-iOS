@@ -747,6 +747,7 @@ class OpenChannelViewController: JSQMessagesViewController, UIImagePickerControl
                         
                         let photoItem = JSQPhotoMediaItem(imageURL: url)
                         let jsqsbmsg = JSQSBMessage(senderId: senderId, senderDisplayName: senderName, date: msgDate, media: photoItem)
+                        jsqsbmsg.message = fileMessage
                         
                         self.messages.append(jsqsbmsg)
                         
