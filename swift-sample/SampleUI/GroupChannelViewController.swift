@@ -746,11 +746,11 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
                 
                 if extentionOfFile.caseInsensitiveCompare("png") == NSComparisonResult.OrderedSame {
                     imageType = "image/png"
-                    imageFileData = UIImagePNGRepresentation(newImage)
+                    imageFileData = UIImagePNGRepresentation(newImage!)
                 }
                 else {
                     imageType = "image/jpg"
-                    imageFileData = UIImageJPEGRepresentation(newImage, 1.0)
+                    imageFileData = UIImageJPEGRepresentation(newImage!, 1.0)
                 }
                 
                 self.channel?.sendFileMessageWithBinaryData(imageFileData!, filename: imageName! as String, type: imageType!, size: UInt((imageFileData?.length)!), data: "", completionHandler: { (fileMessage, error) in
@@ -781,6 +781,7 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
                         
                         let photoItem = JSQPhotoMediaItem(imageURL: url)
                         let jsqsbmsg = JSQSBMessage(senderId: senderId, senderDisplayName: senderName, date: msgDate, media: photoItem)
+                        jsqsbmsg.message = fileMessage
                         
                         self.messages.append(jsqsbmsg)
                         

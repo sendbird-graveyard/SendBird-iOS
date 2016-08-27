@@ -24,15 +24,28 @@ PODS:
   - SendBirdSDK (3.0.2)
 
 DEPENDENCIES:
-  - AlamofireImage (~> 2.0)
+  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift2.3`)
+  - AlamofireImage (from `https://github.com/Alamofire/AlamofireImage.git`, branch `swift2.3`)
   - JSQMessagesViewController (from `https://github.com/smilefam/JSQMessagesViewController.git`)
   - SendBirdSDK
 
 EXTERNAL SOURCES:
+  Alamofire:
+    :branch: swift2.3
+    :git: https://github.com/Alamofire/Alamofire.git
+  AlamofireImage:
+    :branch: swift2.3
+    :git: https://github.com/Alamofire/AlamofireImage.git
   JSQMessagesViewController:
     :git: https://github.com/smilefam/JSQMessagesViewController.git
 
 CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 1ac83593aaea0bb31c5d22c86d5a2cf90498ee71
+    :git: https://github.com/Alamofire/Alamofire.git
+  AlamofireImage:
+    :commit: 84c710f25d8a9782376c8ce4960e0e1b36736609
+    :git: https://github.com/Alamofire/AlamofireImage.git
   JSQMessagesViewController:
     :commit: 6e312e8ce353cd860cc1eabba846752f4b142c53
     :git: https://github.com/smilefam/JSQMessagesViewController.git
@@ -45,6 +58,6 @@ SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   SendBirdSDK: 70fb8d4cc74d29bef9493aee26eeec5648a8467a
 
-PODFILE CHECKSUM: dd3dd3e636197d32ef7d841213ec3581a87417a2
+PODFILE CHECKSUM: 5310e5977dffc4362b3716364bf3a7218980c1db
 
 COCOAPODS: 1.0.1
