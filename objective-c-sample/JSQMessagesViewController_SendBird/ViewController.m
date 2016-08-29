@@ -43,7 +43,7 @@
     if (path != nil) {
         NSDictionary *infoDict = [NSDictionary dictionaryWithContentsOfFile:path];
         NSString *sampleUIVersion = infoDict[@"CFBundleShortVersionString"];
-        NSString *version = [NSString stringWithFormat:@"SDK v%@\nSample UI for Objective-C v%@", [SBDMain getSDKVersion], sampleUIVersion];
+        NSString *version = [NSString stringWithFormat:@"SDK v%@\nSample UI v%@ for Objective-C", [SBDMain getSDKVersion], sampleUIVersion];
         self.versionLabel.text = version;
     }
 }
