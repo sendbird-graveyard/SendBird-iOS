@@ -188,7 +188,7 @@
     }
 }
 
-- (void) updateGroupChannel:(SBDGroupChannel *)channel
+- (void)updateGroupChannel:(SBDGroupChannel *)channel
 {
     [self.collectionView reloadData];
 }
@@ -205,7 +205,7 @@
         return;
     }
     
-    if (!self.hasPrev) {
+    if (!self.hasPrev && !initial) {
         return;
     }
     
