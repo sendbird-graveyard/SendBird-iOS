@@ -543,7 +543,7 @@
 				);
 				INFOPLIST_FILE = JSQMessagesViewController_SendBird/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sendbird.JSQMessagesViewController-SendBird";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.SampleUIObjC;
 				PRODUCT_NAME = SampleUI;
 				PROVISIONING_PROFILE = "";
 			};
@@ -562,7 +562,7 @@
 				);
 				INFOPLIST_FILE = JSQMessagesViewController_SendBird/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sendbird.JSQMessagesViewController-SendBird";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.SampleUIObjC;
 				PRODUCT_NAME = SampleUI;
 				PROVISIONING_PROFILE = "";
 			};

@@ -98,11 +98,11 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         self.channels.removeAll()
         dispatch_async(dispatch_get_main_queue(), {
             self.tableView.reloadData()
+            
+            self.myGroupChannelListQuery = SBDGroupChannel.createMyGroupChannelListQuery()
+            self.myGroupChannelListQuery!.limit = 10
+            self.loadChannels()
         })
-
-        self.myGroupChannelListQuery = SBDGroupChannel.createMyGroupChannelListQuery()
-        self.myGroupChannelListQuery!.limit = 10
-        self.loadChannels()
     }
     
     private func loadChannels() {
