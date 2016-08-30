@@ -37,11 +37,14 @@
 		5A7F07E31CCE9B1F00A5E3FA /* GroupChannelListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07E11CCE9B1F00A5E3FA /* GroupChannelListTableViewCell.xib */; };
 		5A7F07E71CCE9EB500A5E3FA /* GroupChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07E51CCE9EB500A5E3FA /* GroupChannelListViewController.m */; };
 		5A7F07E81CCE9EB500A5E3FA /* GroupChannelListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07E61CCE9EB500A5E3FA /* GroupChannelListViewController.xib */; };
+		944C83A6E79B088017EAA395 /* libPods-SampleUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D4E77013897BC11B06E16CF /* libPods-SampleUI.a */; };
 		BDF3D4EB51C1251A4988460C /* libPods-JSQMessagesViewController_SendBird.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9477E6660007845AC2341709 /* libPods-JSQMessagesViewController_SendBird.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		039A9C182C4331E6C5829655 /* Pods-JSQMessagesViewController_SendBird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSQMessagesViewController_SendBird.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSQMessagesViewController_SendBird/Pods-JSQMessagesViewController_SendBird.debug.xcconfig"; sourceTree = "<group>"; };
+		1D4E77013897BC11B06E16CF /* libPods-SampleUI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SampleUI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21CB9013B888C637AE43B483 /* Pods-SampleUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleUI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SampleUI/Pods-SampleUI.debug.xcconfig"; sourceTree = "<group>"; };
 		5A0DDF2B1D4A257000EC6F3E /* ParticipantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantListViewController.h; sourceTree = "<group>"; };
 		5A0DDF2C1D4A257000EC6F3E /* ParticipantListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantListViewController.m; sourceTree = "<group>"; };
 		5A0DDF2D1D4A257000EC6F3E /* ParticipantListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParticipantListViewController.xib; sourceTree = "<group>"; };
@@ -91,6 +94,7 @@
 		5A7F07E41CCE9EB500A5E3FA /* GroupChannelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChannelListViewController.h; sourceTree = "<group>"; };
 		5A7F07E51CCE9EB500A5E3FA /* GroupChannelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChannelListViewController.m; sourceTree = "<group>"; };
 		5A7F07E61CCE9EB500A5E3FA /* GroupChannelListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupChannelListViewController.xib; sourceTree = "<group>"; };
+		812607EA97C520A3A7773E52 /* Pods-SampleUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-SampleUI/Pods-SampleUI.release.xcconfig"; sourceTree = "<group>"; };
 		9477E6660007845AC2341709 /* libPods-JSQMessagesViewController_SendBird.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSQMessagesViewController_SendBird.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F800E4133C4FD861124F9A /* Pods-JSQMessagesViewController_SendBird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSQMessagesViewController_SendBird.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSQMessagesViewController_SendBird/Pods-JSQMessagesViewController_SendBird.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +108,7 @@
 				5A2B38581D4D8D97002A2E8B /* AVKit.framework in Frameworks */,
 				5A5F2A191D3DC27700928248 /* libicucore.A.tbd in Frameworks */,
 				BDF3D4EB51C1251A4988460C /* libPods-JSQMessagesViewController_SendBird.a in Frameworks */,
+				944C83A6E79B088017EAA395 /* libPods-SampleUI.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +260,8 @@
 			children = (
 				039A9C182C4331E6C5829655 /* Pods-JSQMessagesViewController_SendBird.debug.xcconfig */,
 				A5F800E4133C4FD861124F9A /* Pods-JSQMessagesViewController_SendBird.release.xcconfig */,
+				21CB9013B888C637AE43B483 /* Pods-SampleUI.debug.xcconfig */,
+				812607EA97C520A3A7773E52 /* Pods-SampleUI.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -269,6 +276,7 @@
 				5A2B384F1D4D8CD4002A2E8B /* MediaPlayer.framework */,
 				5A5F2A181D3DC27700928248 /* libicucore.A.tbd */,
 				9477E6660007845AC2341709 /* libPods-JSQMessagesViewController_SendBird.a */,
+				1D4E77013897BC11B06E16CF /* libPods-SampleUI.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -364,7 +372,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JSQMessagesViewController_SendBird/Pods-JSQMessagesViewController_SendBird-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SampleUI/Pods-SampleUI-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6C0F207DA94EBDC49FDD75D9 /* [CP] Check Pods Manifest.lock */ = {
@@ -394,7 +402,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JSQMessagesViewController_SendBird/Pods-JSQMessagesViewController_SendBird-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SampleUI/Pods-SampleUI-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -532,7 +540,7 @@
 		};
 		5A7F07971CCB666C00A5E3FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 039A9C182C4331E6C5829655 /* Pods-JSQMessagesViewController_SendBird.debug.xcconfig */;
+			baseConfigurationReference = 21CB9013B888C637AE43B483 /* Pods-SampleUI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -551,7 +559,7 @@
 		};
 		5A7F07981CCB666C00A5E3FA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5F800E4133C4FD861124F9A /* Pods-JSQMessagesViewController_SendBird.release.xcconfig */;
+			baseConfigurationReference = 812607EA97C520A3A7773E52 /* Pods-SampleUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
