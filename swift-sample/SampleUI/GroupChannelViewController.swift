@@ -204,7 +204,7 @@ class GroupChannelViewController: JSQMessagesViewController, UIImagePickerContro
             return;
         }
         
-        if self.hasPrev == false {
+        if self.hasPrev == false && initial == false {
             return;
         }
         
