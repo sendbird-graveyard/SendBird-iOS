@@ -23,6 +23,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var sendbirdMessagingChannelListButton: UIButton?
     var sendbirdUserNicknameLabel: UILabel?
     var sendbirdUserNicknameTextField: UITextField?
+    var versionLabel: UILabel?
     
     private var messagingUserName: NSString?
     private var messagingUserId: NSString?
@@ -163,6 +164,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.sendbirdBackFromMessaging?.hidden = true
         self.view.addSubview(sendbirdBackFromMessaging!)
         
+        self.versionLabel = UILabel()
+        self.versionLabel?.translatesAutoresizingMaskIntoConstraints = false
+        self.versionLabel?.text = String(format: "SDK v%@", SendBird.VERSION())
+        self.versionLabel?.font = UIFont(name: "Helvetica Neue", size: 16)
+        self.versionLabel?.textColor = UIColor.whiteColor()
+        self.versionLabel?.textAlignment = NSTextAlignment.Center
+        self.view.addSubview(self.versionLabel!)
+        
         self.setConstraints()
     }
     
@@ -224,6 +233,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.view.addConstraint(NSLayoutConstraint.init(item: self.sendbirdBackFromMessaging!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.sendbirdMessagingChannelListButton, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 12))
         self.view.addConstraint(NSLayoutConstraint.init(item: self.sendbirdBackFromMessaging!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 220))
         self.view.addConstraint(NSLayoutConstraint.init(item: self.sendbirdBackFromMessaging!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 36))
+        
+        self.view.addConstraint(NSLayoutConstraint.init(item: self.versionLabel!, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint.init(item: self.versionLabel!, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint.init(item: self.view, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.versionLabel!, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 8))
     }
 
     override func viewWillAppear(animated: Bool) {

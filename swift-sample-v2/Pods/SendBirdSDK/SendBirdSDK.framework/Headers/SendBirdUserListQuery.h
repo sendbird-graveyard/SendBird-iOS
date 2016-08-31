@@ -28,6 +28,13 @@
 - (void) setLimit:(int) lmt;
 
 /**
+ *  Set the user ID list for filtering.
+ *
+ *  @param ids Array of user Ids.
+ */
+- (void) setUserIds:(NSArray<NSString *> *)ids;
+
+/**
  *  Stop retrieving the user list
  */
 - (void) cancel;

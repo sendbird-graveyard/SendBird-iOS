@@ -28,6 +28,8 @@
 @property UILabel *sendbirdUserNicknameLabel;
 @property UITextField *sendbirdUserNicknameTextField;
 
+@property UILabel *versionLabel;
+
 - (UIImage *) imageFromColor:(UIColor *)color;
 
 @end

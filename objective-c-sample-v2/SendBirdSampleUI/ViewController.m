@@ -170,6 +170,14 @@
     [self.sendbirdBackFromMessaging.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
     [self.sendbirdBackFromMessaging setHidden:YES];
     [self.view addSubview:self.sendbirdBackFromMessaging];
+    
+    self.versionLabel = [[UILabel alloc] init];
+    [self.versionLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.versionLabel setText:[NSString stringWithFormat:@"SDK v%@", [SendBird VERSION]]];
+    [self.versionLabel setFont:[UIFont fontWithName:@"Helvetica Neue" size:16]];
+    [self.versionLabel setTextColor:[UIColor whiteColor]];
+    [self.versionLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.view addSubview:self.versionLabel];
 
     // Background Image
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.backgroundImageView
@@ -419,6 +427,25 @@
                                                              toItem:nil
                                                           attribute:NSLayoutAttributeNotAnAttribute
                                                          multiplier:1 constant:36]];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.versionLabel
+                                                          attribute:NSLayoutAttributeLeading
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeLeading
+                                                         multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.versionLabel
+                                                          attribute:NSLayoutAttributeTrailing
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeTrailing
+                                                         multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view
+                                                          attribute:NSLayoutAttributeBottom
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.versionLabel
+                                                          attribute:NSLayoutAttributeBottom
+                                                         multiplier:1 constant:8]];
 }
 
 - (void)viewWillAppear:(BOOL)animated

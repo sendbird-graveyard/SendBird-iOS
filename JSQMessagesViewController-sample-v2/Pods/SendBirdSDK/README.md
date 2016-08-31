@@ -38,14 +38,14 @@ AppDelegate.m
 #import <SendBirdSDK/SendBirdSDK.h>
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // ..
+        // ..
 
-    NSString *APP_ID = @“<YOUR_APP_ID>”;
-    [SendBird initAppId:APP_ID];
+            NSString *APP_ID = @“<YOUR_APP_ID>”;
+                [SendBird initAppId:APP_ID];
 
-    // ..
+                    // ..
 
-    return YES;
+                        return YES;
 }
 ```
 
@@ -57,18 +57,18 @@ AppDelegate.swift
 import SendBirdSDK
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    // ..
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // ..
-        let APP_ID: String = “<YOUR_APP_ID>”
-        SendBird.initAppId(APP_ID)
         // ..
 
-        return true
-    }
+            func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+                        // ..
+                                let APP_ID: String = “<YOUR_APP_ID>”
+                                        SendBird.initAppId(APP_ID)
+                                                // ..
 
-    // ..
+                                                        return true
+                                                            }
+
+                                                                // ..
 }
 ```
 
@@ -80,45 +80,45 @@ YourViewController.m
 
 ```objectivec
 [SendBird setEventHandlerConnectBlock:^(SendBirdChannel *channel) {
-  // ..
+      // ..
 } errorBlock:^(NSInteger code) {
-  // ..
+      // ..
 } channelLeftBlock:^(SendBirdChannel *channel) {
-  // ..
+      // ..
 } messageReceivedBlock:^(SendBirdMessage *message) {
-  // ..
+      // ..
 } systemMessageReceivedBlock:^(SendBirdSystemMessage *message) {
-  // ..
+      // ..
 } broadcastMessageReceivedBlock:^(SendBirdBroadcastMessage *message) {
-  // ..
+      // ..
 } fileReceivedBlock:^(SendBirdFileLink *fileLink) {
-  // ..
+      // ..
 } messagingStartedBlock:^(SendBirdMessagingChannel *channel) {
-  // ..
+      // ..
 } messagingUpdatedBlock:^(SendBirdMessagingChannel *channel) {
-  // ..
+      // ..
 } messagingEndedBlock:^(SendBirdMessagingChannel *channel) {
-  // ..
+      // ..
 } allMessagingEndedBlock:^ {
-  // ..
+      // ..
 } messagingHiddenBlock:^(SendBirdMessagingChannel *channel) {
-  // ..
+      // ..
 } allMessagingHiddenBlock:^ {
-  // ..        
+      // ..        
 } readReceivedBlock:^(SendBirdReadStatus *status) {
-  // ..        
+      // ..        
 } typeStartReceivedBlock:^(SendBirdTypeStatus *status) {
-  // ..        
+      // ..        
 } typeEndReceivedBlock:^(SendBirdTypeStatus *status) {
-  // ..        
+      // ..        
 } allDataReceivedBlock:^(NSUInteger sendBirdDataType, int count) {
-  // ..
+      // ..
 } messageDeliveryBlock:^(BOOL send, NSString *message, NSString *data, NSString *tempId) {
-  // ..
+      // ..
 } mutedMessagesReceivedBlock:^(SendBirdMessage *message) {
-  // ..
+      // ..
 } mutedFileReceivedBlock:^(SendBirdFileLink *message) {
-  // .. 
+      // .. 
 }];
 ```
 

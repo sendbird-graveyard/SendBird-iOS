@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="xTX-SP-eGJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="xTX-SP-eGJ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -92,18 +92,27 @@
                                     <constraint firstItem="cQA-xK-bb0" firstAttribute="top" secondItem="4eE-WA-j1j" secondAttribute="top" id="xqb-rQ-e4P"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICn-ss-BXy">
+                                <rect key="frame" x="0.0" y="541" width="320" height="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9Q1-xe-bev" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="27" id="0vS-GS-RhN"/>
                             <constraint firstItem="1MP-gc-yWz" firstAttribute="top" secondItem="9Q1-xe-bev" secondAttribute="bottom" constant="8" id="8nu-0v-zE5"/>
                             <constraint firstItem="9Q1-xe-bev" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="32" id="Ba2-LC-2N0"/>
+                            <constraint firstAttribute="trailing" secondItem="ICn-ss-BXy" secondAttribute="trailing" id="Crc-B9-V1P"/>
                             <constraint firstAttribute="trailing" secondItem="4eE-WA-j1j" secondAttribute="trailing" id="Dc9-vd-Rgt"/>
                             <constraint firstAttribute="trailing" secondItem="8K4-EQ-xRm" secondAttribute="trailing" id="L7a-9U-Iyb"/>
                             <constraint firstItem="8K4-EQ-xRm" firstAttribute="top" secondItem="1MP-gc-yWz" secondAttribute="bottom" constant="16" id="TPu-Ri-dSC"/>
                             <constraint firstItem="8K4-EQ-xRm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ZzS-qT-It5"/>
+                            <constraint firstAttribute="bottom" secondItem="ICn-ss-BXy" secondAttribute="bottom" constant="8" id="lZb-LO-jS3"/>
                             <constraint firstItem="4eE-WA-j1j" firstAttribute="top" secondItem="1MP-gc-yWz" secondAttribute="bottom" constant="16" id="llm-c3-bRN"/>
                             <constraint firstAttribute="trailing" secondItem="1MP-gc-yWz" secondAttribute="trailing" constant="32" id="p4c-ew-lsk"/>
+                            <constraint firstItem="ICn-ss-BXy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uhj-0q-0Cn"/>
                             <constraint firstItem="1MP-gc-yWz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="32" id="uw5-t2-4Mt"/>
                             <constraint firstItem="4eE-WA-j1j" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vyJ-NR-d3l"/>
                             <constraint firstAttribute="trailing" secondItem="9Q1-xe-bev" secondAttribute="trailing" constant="32" id="wIU-80-k3F"/>
@@ -115,6 +124,7 @@
                         <outlet property="nicknameTextField" destination="1MP-gc-yWz" id="zVX-Ch-klW"/>
                         <outlet property="secondPhaseContentView" destination="4eE-WA-j1j" id="ArA-Nz-dUk"/>
                         <outlet property="userIdTextField" destination="9Q1-xe-bev" id="A3U-Cc-DOJ"/>
+                        <outlet property="versionLabel" destination="ICn-ss-BXy" id="3Ze-eR-CrT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

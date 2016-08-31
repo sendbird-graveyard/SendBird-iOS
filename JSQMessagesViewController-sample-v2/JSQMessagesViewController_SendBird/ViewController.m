@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *nicknameTextField;
 @property (weak, nonatomic) IBOutlet UIView *firstPhaseContentView;
 @property (weak, nonatomic) IBOutlet UIView *secondPhaseContentView;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @end
 
@@ -29,6 +30,7 @@
     
     [self.userIdTextField setText:userId];
     [self.nicknameTextField setText:userName];
+    [self.versionLabel setText:[NSString stringWithFormat:@"SDK v%@", [SendBird VERSION]]];
 }
 
 - (void)didReceiveMemoryWarning {

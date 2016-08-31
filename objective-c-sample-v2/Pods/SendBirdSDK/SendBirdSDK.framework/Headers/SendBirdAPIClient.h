@@ -48,6 +48,10 @@
 #define kApiUnregisterPushToken @"/v1/unregister_push_token"
 #define kApiCheckUserExistence @"/v1/user_list/exist"
 #define kApiUploadProfile @"/v1/upload_profile"
+#define kApiSetDoNotDisturb @"/v1/set_do_not_disturb"
+#define kApiGetDoNotDisturb @"/v1/get_do_not_disturb"
+#define kApiSetPushPreference @"/v1/set_push_preference"
+#define kApiGetPushPreference @"/v1/get_push_preference"
 
 @interface SendBirdAPIClient : NSObject
 
@@ -102,5 +106,9 @@
 - (void) unregisterCurrentDevicePushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) unregisterAllDevicesPushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) checkUserExistenceWithUserList:(NSArray<NSString *> *)userList resultBlock:(void (^)(NSDictionary<NSString *, NSDictionary *> *response, NSError *error))onResult;
+- (void) setDoNotDisturbEnable:(BOOL)enable startHour:(int)startHour startMin:(int)startMin endHour:(int)endHour endMin:(int)endMin timezone:(NSString *)timezone resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) getDoNotDisturbWithResultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) setPushPreferenceWithChannelUrl:(NSString *)channelUrl value:(BOOL)value resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) getPushPreferenceWithChannelUrl:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 
 @end

@@ -114,7 +114,7 @@
 - (enum WSReadyState) connectState;
 - (void) onlineMemberCount:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult DEPRECATED_ATTRIBUTE;
 - (void) memberCount:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
-- (void) userListWithToken:(NSString *)token page:(long)page withLimit:(long)limit resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
+- (void) userListWithToken:(NSString *)token page:(long)page withLimit:(long)limit userIds:(NSArray<NSString *> *)userIds resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) deleteMessage:(long long)msgId resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
 
 - (void) setMetaData:(NSDictionary *)metadata toChannel:(NSString *)channelUrl resultBlock:(void (^)(NSDictionary *response, NSError *error))onResult;
@@ -132,5 +132,9 @@
 - (void) unregisterCurrentDevicePushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) unregisterAllDevicesPushToken:(void (^)(NSDictionary *response, NSError *error))onResult;
 - (void) checkUserExistenceWithUserList:(NSArray<NSString *> *)userList resultBlock:(void (^)(NSDictionary<NSString *, SendBirdAppUser *> *response, NSError *error))onResult;
+- (void) setDoNotDisturbEnable:(BOOL)enable startHour:(int)startHour startMin:(int)startMin endHour:(int)endHour endMin:(int)endMin timezone:(NSString *)timezone resultBlock:(void (^)(NSError *error))onResult;
+- (void) getDoNotDisturbWithResultBlock:(void (^)(BOOL isDoNotDisturbOn, int startHour, int startMin, int endHour, int endMin, NSString *timezone, NSError *error))onResult;
+- (void) setPushPreferenceWithChannelUrl:(NSString *)channelUrl value:(BOOL)value resultBlock:(void (^)(NSError *error))onResult;
+- (void) getPushPreferenceWithChannelUrl:(NSString *)channelUrl resultBlock:(void (^)(BOOL isPushOn, NSError *error))onResult;
 
 @end

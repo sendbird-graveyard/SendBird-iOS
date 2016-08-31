@@ -781,6 +781,14 @@ typedef enum {
 
 + (void) setMultiChannelSystemEventReceivedBlock:(void (^)(SendBirdChannel *channel, SendBirdSystemEvent *event))systemEventReceivedBlock;
 
++ (void) setDoNotDisturbEnable:(BOOL)enable startHour:(int)startHour startMin:(int)startMin endHour:(int)endHour endMin:(int)endMin timezone:(NSString *)timezone resultBlock:(void (^)(NSError *error))onResult;
+
++ (void) getDoNotDisturbWithResultBlock:(void (^)(BOOL isDoNotDisturbOn, int startHour, int startMin, int endHour, int endMin, NSString *timezone, NSError *error))onResult;
+
++ (void) setPushPreferenceWithChannelUrl:(NSString *)channelUrl pushOn:(BOOL)pushOn resultBlock:(void (^)(NSError *error))onResult;
+
++ (void) getPushPreferenceWithChannelUrl:(NSString *)channelUrl resultBlock:(void (^)(BOOL isPushOn, NSError *error))onResult;
+
 + (NSString *)getAppID;
 
 + (void)getHostURLWithResultBlock:(void (^)(NSError *error))onResult;
