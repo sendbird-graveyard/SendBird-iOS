@@ -325,17 +325,19 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.collectionView reloadData];
                 
-                if (initial) {
-                    [self scrollToBottomAnimated:NO];
-                }
-                else {
-                    unsigned long totalMsgCount = [self.collectionView numberOfItemsInSection:0];
-                    if (msgCount - 1 > 0 && totalMsgCount > 0) {
-                        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:(msgCount - 1) inSection:0]
-                                                    atScrollPosition:UICollectionViewScrollPositionTop
-                                                            animated:NO];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(500 * NSEC_PER_USEC)), dispatch_get_main_queue(), ^{
+                    if (initial) {
+                        [self scrollToBottomAnimated:NO];
                     }
-                }
+                    else {
+                        unsigned long totalMsgCount = [self.collectionView numberOfItemsInSection:0];
+                        if (msgCount - 1 > 0 && totalMsgCount > 0) {
+                            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:(msgCount - 1) inSection:0]
+                                                        atScrollPosition:UICollectionViewScrollPositionTop
+                                                                animated:NO];
+                        }
+                    }
+                });
             });
         }
         else {

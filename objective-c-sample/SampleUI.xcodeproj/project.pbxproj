@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		541B6291057EB8E4DE744D2A /* libPods-SampleUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D4E77013897BC11B06E16CF /* libPods-SampleUI.a */; };
 		5A0DDF2E1D4A257000EC6F3E /* ParticipantListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A0DDF2C1D4A257000EC6F3E /* ParticipantListViewController.m */; };
 		5A0DDF2F1D4A257000EC6F3E /* ParticipantListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A0DDF2D1D4A257000EC6F3E /* ParticipantListViewController.xib */; };
 		5A2B38581D4D8D97002A2E8B /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A2B38571D4D8D97002A2E8B /* AVKit.framework */; };
@@ -37,8 +38,6 @@
 		5A7F07E31CCE9B1F00A5E3FA /* GroupChannelListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07E11CCE9B1F00A5E3FA /* GroupChannelListTableViewCell.xib */; };
 		5A7F07E71CCE9EB500A5E3FA /* GroupChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7F07E51CCE9EB500A5E3FA /* GroupChannelListViewController.m */; };
 		5A7F07E81CCE9EB500A5E3FA /* GroupChannelListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A7F07E61CCE9EB500A5E3FA /* GroupChannelListViewController.xib */; };
-		944C83A6E79B088017EAA395 /* libPods-SampleUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D4E77013897BC11B06E16CF /* libPods-SampleUI.a */; };
-		BDF3D4EB51C1251A4988460C /* libPods-JSQMessagesViewController_SendBird.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9477E6660007845AC2341709 /* libPods-JSQMessagesViewController_SendBird.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,8 +106,7 @@
 				5A2B385A1D4D8EA3002A2E8B /* AVFoundation.framework in Frameworks */,
 				5A2B38581D4D8D97002A2E8B /* AVKit.framework in Frameworks */,
 				5A5F2A191D3DC27700928248 /* libicucore.A.tbd in Frameworks */,
-				BDF3D4EB51C1251A4988460C /* libPods-JSQMessagesViewController_SendBird.a in Frameworks */,
-				944C83A6E79B088017EAA395 /* libPods-SampleUI.a in Frameworks */,
+				541B6291057EB8E4DE744D2A /* libPods-SampleUI.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

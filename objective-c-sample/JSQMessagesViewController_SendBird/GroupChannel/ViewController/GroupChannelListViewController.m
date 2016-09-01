@@ -23,6 +23,7 @@
 @property (strong, nonatomic, nonnull) UIBarButtonItem *editChannelListButtomItem;
 @property (strong, nonatomic, nonnull) UIBarButtonItem *doneChannelListButtomItem;
 @property (strong, nonatomic, nonnull) UIBarButtonItem *createChannelButtomItem;
+@property (atomic) BOOL reloadList;
 
 @end
 
@@ -34,6 +35,7 @@
 
     self.title = @"Group Channel List";
     self.editMode = NO;
+    self.reloadList = NO;
     
     self.channels = [[NSMutableArray alloc] init];
     
@@ -70,6 +72,15 @@
     }
     
     [super viewWillDisappear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (self.reloadList) {
+        [self refreshChannelList];
+        self.reloadList = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -347,14 +358,14 @@
 #pragma mark - MessagingViewControllerDelegate
 - (void)didCloseMessagingViewController:(GroupChannelViewController * _Nonnull)vc {
     NSLog(@"didCloseMessagingViewController: in GroupChannelListViewController");
-    
-    [self refreshChannelList];
+    self.reloadList = YES;
+//    [self refreshChannelList];
 }
 
 #pragma mark - UserListViewControllerDelegate
 - (void)didCloseUserListViewController:(UserListViewController * _Nonnull)vc groupChannel:(SBDGroupChannel * _Nullable)groupChannel {
     NSLog(@"didCloseMessagingViewController: in GroupChannelListViewController");
-    [self refreshChannelList];
+//    [self refreshChannelList];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(500 * NSEC_PER_USEC)), dispatch_get_main_queue(), ^{
         if (groupChannel != nil) {

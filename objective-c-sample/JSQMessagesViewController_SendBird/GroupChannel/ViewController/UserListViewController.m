@@ -72,6 +72,7 @@
     
     [self.userListQuery loadNextPageWithCompletionHandler:^(NSArray<SBDUser *> * _Nullable users, SBDError * _Nullable error) {
         if (error != nil) {
+            NSLog(@"User List Loading Error: %@", error);
             return;
         }
         
