@@ -21,6 +21,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     private var editChannelListButtomItem: UIBarButtonItem?
     private var doneChannelListButtomItem: UIBarButtonItem?
     private var createChannelButtomItem: UIBarButtonItem?
+    private var reloadList: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,15 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         }
         
         super.viewWillDisappear(animated)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if self.reloadList == true {
+            self.refreshChannelList()
+            self.reloadList = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -361,13 +371,15 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     
     // MARK: GroupChannelViewControllerDelegate
     func didCloseGroupChannelViewController(vc: UIViewController) {
-        self.refreshChannelList()
+//        self.refreshChannelList()
+        self.reloadList = true
     }
     
     // MARK: UserListViewControllerDelegate
     func didCloseUserListViewController(vc: UIViewController, groupChannel: SBDGroupChannel) {
         print("didCloseUserListViewController(vc:, groupChannel:)")
-        self.refreshChannelList()
+//        self.refreshChannelList()
+        self.reloadList = true
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * NSEC_PER_USEC)), dispatch_get_main_queue()) {
             let gvc = GroupChannelViewController()

@@ -21,7 +21,7 @@ PODS:
     - AFNetworking (~> 3.1.0)
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
-  - SendBirdSDK (3.0.3)
+  - SendBirdSDK (3.0.7)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift2.3`)
@@ -41,7 +41,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: 1ac83593aaea0bb31c5d22c86d5a2cf90498ee71
+    :commit: 383efdfa68fff8ebb52748c9b22034b326d70459
     :git: https://github.com/Alamofire/Alamofire.git
   AlamofireImage:
     :commit: 84c710f25d8a9782376c8ce4960e0e1b36736609
@@ -56,7 +56,7 @@ SPEC CHECKSUMS:
   AlamofireImage: 3ccf3347d9ea24580dc11fb892770a0be6a29826
   JSQMessagesViewController: 8395490ab8f984d4bb8d4dcd7dcdae2308c16f4c
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  SendBirdSDK: 9ec3c3f01306deaf3013f1090410079983bc5c65
+  SendBirdSDK: c2cfca054fd242b602c861eab84a1caa27975e46
 
 PODFILE CHECKSUM: 5310e5977dffc4362b3716364bf3a7218980c1db
 

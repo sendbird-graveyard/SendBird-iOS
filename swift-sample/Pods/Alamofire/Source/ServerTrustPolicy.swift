@@ -255,7 +255,7 @@ public enum ServerTrustPolicy {
         var result = SecTrustResultType(rawValue: SecTrustResultType.Invalid.rawValue)
         let status = SecTrustEvaluate(trust, &result!)
     #else
-        var result = SecTrustResultType(SecTrustResultType.Invalid)
+        var result = SecTrustResultType(kSecTrustResultInvalid)
         let status = SecTrustEvaluate(trust, &result)
     #endif
 
@@ -264,8 +264,8 @@ public enum ServerTrustPolicy {
             let unspecified = SecTrustResultType(rawValue: SecTrustResultType.Unspecified.rawValue)
             let proceed = SecTrustResultType(rawValue: SecTrustResultType.Proceed.rawValue)
         #else
-            let unspecified = SecTrustResultType(SecTrustResultType.Unspecified)
-            let proceed = SecTrustResultType(SecTrustResultType.Proceed)
+            let unspecified = SecTrustResultType(kSecTrustResultUnspecified)
+            let proceed = SecTrustResultType(kSecTrustResultProceed)
         #endif
 
 
