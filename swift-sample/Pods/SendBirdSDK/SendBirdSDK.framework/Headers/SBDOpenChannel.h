@@ -21,7 +21,7 @@
 /**
  *  The number of participants in this channel.
  */
-@property (nonatomic, readonly) NSInteger participantCount;
+@property (nonatomic) NSInteger participantCount;
 
 /**
  *  The operators of this channel.

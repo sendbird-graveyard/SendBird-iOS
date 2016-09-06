@@ -253,6 +253,64 @@
 - (int)getReadReceiptOfMessage:(SBDBaseMessage * _Nonnull)message;
 
 /**
+ *  Returns the timestamp of the last seen at the channel by user.
+ *
+ *  @param user The user
+ *
+ *  @return the timestamp of the last seen at.
+ */
+- (long long)getLastSeenAtByUser:(SBDUser * _Nonnull)user;
+
+/**
+ *  Returns the timestamp of the last seen at the channel by user Id.
+ *
+ *  @param userId The user Id.
+ *
+ *  @return the timestamp of the last seen at.
+ */
+- (long long)getLastSeenAtByUserId:(NSString * _Nonnull)userId;
+
+/**
+ *  Returns the <span>members</span> who read the message.
+ *
+ *  @param message The message.
+ *
+ *  @return Members who read the message.
+ */
+- (nullable NSArray<SBDUser *> *)getReadMembersWithMessage:(SBDBaseMessage * _Nonnull)message;
+
+/**
+ *  Returns the <span>members</span> who didn't read the message.
+ *
+ *  @param message The message.
+ *
+ *  @return Members who don't read the message.
+ */
+- (nullable NSArray<SBDUser *> *)getUnreadMemebersWithMessage:(SBDBaseMessage * _Nonnull)message;
+
+/**
+ *  Returns the read status.
+ *
+ *  @return The read status. If there's no data, it will be nil.
+ *
+ *  ***The returned dictionary's structure***
+ *
+ *  <pre>
+ *  {
+ *  &nbsp;&nbsp;USER_ID: 
+ *  &nbsp;&nbsp;&nbsp;&nbsp;{
+ *  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"user": <span>SBDUser</span> object,
+ *  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"last_seen_at": <span>NSNumber</span> object,
+ *  &nbsp;&nbsp;&nbsp;&nbsp;},
+ *  &nbsp;&nbsp;...
+ *  }
+ *  </pre>
+ *
+ *  `USER_ID` is the user ID as a key. Each `USER_ID` has a `NSDictionary` which includes `SBDUser` object and `NSNUmber` object. The "user" is a key of `SBDUser` object and the "last_seen_at" is a key of `NSNumber` object. The `NSNumber` object has a 64-bit integer value for the timestamp in millisecond.
+ */
+- (nullable NSDictionary<NSString *, NSDictionary<NSString *, NSObject *> *> *)getReadStatus;
+
+/**
  *  If other users are typing in the channel, YES is returned.
  *
  *  @return Returns YES when other users are typing in this channel.
@@ -295,5 +353,27 @@
  *  Internal use only.
  */
 + (void)updateTypingStatus;
+
+/**
+ *  Sets push notification on or off on the channel.
+ *
+ *  @param pushOn            Sets push on/off.
+ *  @param completionHandler The handler block to execute.
+ */
+- (void)setPushPreferenceWithPushOn:(BOOL)pushOn completionHandler:(nullable void (^)(SBDError *_Nullable error))completionHandler;
+
+/**
+ *  Gets push notification on off on the channel.
+ *
+ *  @param completionHandler The handler block of execute. The `pushOn` means that the push notification of the channel is on or off.
+ */
+- (void)getPushPreferenceWithCompletionHandler:(nullable void (^)(BOOL pushOn, SBDError *_Nullable error))completionHandler;
+
+/**
+ *  Gets the total unread message count of all group channels.
+ *
+ *  @param completionHandler The handler block to execute. The `unreadCount` is the total count of unread messages in all of group channel which the current is a member.
+ */
++ (void)getTotalUnreadMessageCountWithCompletionHandler:(nullable void (^)(NSUInteger unreadCount, SBDError * _Nullable error))completionHandler;
 
 @end

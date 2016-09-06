@@ -105,7 +105,7 @@ typedef NS_ENUM(NSUInteger, SBDUserConnectionStatus) {
 };
 
 /**
- *  Channe types.
+ *  Channel types.
  */
 typedef NS_ENUM(NSUInteger, SBDChannelType) {
     /**
@@ -116,6 +116,24 @@ typedef NS_ENUM(NSUInteger, SBDChannelType) {
      *  Group channel.
      */
     SBDChannelTypeGroup = 1,
+};
+
+/**
+ *  Push token registration statuses
+ */
+typedef NS_ENUM(NSUInteger, SBDPushTokenRegistrationStatus) {
+    /**
+     *  Registration succeeded.
+     */
+    SBDPushTokenRegistrationStatusSuccess = 0,
+    /**
+     *  Registration is pending.
+     */
+    SBDPushTokenRegistrationStatusPending = 1,
+    /**
+     *  Registartion is failed.
+     */
+    SBDPushTokenRegistrationStatusError = 2,
 };
 
 #endif /* SBDTypes_h */

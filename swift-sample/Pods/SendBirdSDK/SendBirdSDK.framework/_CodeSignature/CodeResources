@@ -18,7 +18,7 @@
 		</data>
 		<key>Headers/SBDChannelEvent.h</key>
 		<data>
-		gpnqaXEm1k4NJkDmu2GE83b4utI=
+		rSxDNvTfMNUBCY/9zkqzfqB+66s=
 		</data>
 		<key>Headers/SBDCommand.h</key>
 		<data>
@@ -30,43 +30,43 @@
 		</data>
 		<key>Headers/SBDFileMessage.h</key>
 		<data>
-		0SW82dcgtzi0vrVJUOWQtXL2Jb0=
+		uZG5uY65+sosvVINfCO8He8Uxkw=
 		</data>
 		<key>Headers/SBDGroupChannel.h</key>
 		<data>
-		rQYTZC26nVLBDYqnT96J+TEPWV4=
+		4HITRAjd2OhycGND+vOKrCsUKsI=
 		</data>
 		<key>Headers/SBDGroupChannelListQuery.h</key>
 		<data>
-		YavgihPzXEhfgGKvAg2c1huFP48=
+		TUiDGPZKBLENKgoBEFCdzVcGZqE=
 		</data>
 		<key>Headers/SBDInternalTypes.h</key>
 		<data>
-		ckQsadQayVF4LimMxu9yRKwtEPI=
+		DLrxlbWo+Q6wYeDEIo4XEkH+KQw=
 		</data>
 		<key>Headers/SBDMain.h</key>
 		<data>
-		u7xmDrg1HiOVBT+hEuIA4GfQcq8=
+		Y68Rl0exq4duUC+jFpSc/n2Vu1g=
 		</data>
 		<key>Headers/SBDMessageListQuery.h</key>
 		<data>
-		03CzHLS+pMJj6HYHI9eE1cI7MtQ=
+		wsWTQQiZ3/ASmExiqfABSPJPvIA=
 		</data>
 		<key>Headers/SBDOpenChannel.h</key>
 		<data>
-		pOB8FV8Ygd0UhEWzBnJEEsakaR4=
+		2BQGtxwdFfyxeTH5wVS0Kqy8pzE=
 		</data>
 		<key>Headers/SBDOpenChannelListQuery.h</key>
 		<data>
-		geQei7wfocpDg/G/l3DHHsI6YMk=
+		9omMbft03Zp9VScVMou6TqLHrnA=
 		</data>
 		<key>Headers/SBDPreviousMessageListQuery.h</key>
 		<data>
-		NA0tV3qka3EZ8oE+UBSl+CqRiWU=
+		dWgrtG4I8rHzYz0VyXFd0F0wjlE=
 		</data>
 		<key>Headers/SBDTypes.h</key>
 		<data>
-		3pR1876LpXpmAx5x5gigapSU1Jo=
+		OhzPX8vqxsS3U0PwAeglvhoGNe4=
 		</data>
 		<key>Headers/SBDUser.h</key>
 		<data>
@@ -74,7 +74,7 @@
 		</data>
 		<key>Headers/SBDUserListQuery.h</key>
 		<data>
-		ReBPhuCRHyVVPHE1qbpZu9U3DBI=
+		Davl1cgvStwaXEHdbrxYL6Qel0U=
 		</data>
 		<key>Headers/SBDUserMessage.h</key>
 		<data>
@@ -86,7 +86,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		SyT4e2qBoEg+3WLHzFPXXDYfuPQ=
+		XfiiWCfKwz+++626857M2tLjszc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -132,11 +132,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			gpnqaXEm1k4NJkDmu2GE83b4utI=
+			rSxDNvTfMNUBCY/9zkqzfqB+66s=
 			</data>
 			<key>hash2</key>
 			<data>
-			T3CRz9a+ggcmqH5wqSv75I8Q/e4xcVyJ4KzqNSq5cBg=
+			zzgw6su3/V6HwrxasCeEBS1WxTwYoGJzABXTPnGcQng=
 			</data>
 		</dict>
 		<key>Headers/SBDCommand.h</key>
@@ -165,110 +165,110 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0SW82dcgtzi0vrVJUOWQtXL2Jb0=
+			uZG5uY65+sosvVINfCO8He8Uxkw=
 			</data>
 			<key>hash2</key>
 			<data>
-			ucFa33zre43eTwBzqbyj6KKbtjLE+UAk6SaTPlf3XYQ=
+			hwisF0rZeO8E5g1JBm+CbZwqTu+k+48opAYbgSzv4Tg=
 			</data>
 		</dict>
 		<key>Headers/SBDGroupChannel.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			rQYTZC26nVLBDYqnT96J+TEPWV4=
+			4HITRAjd2OhycGND+vOKrCsUKsI=
 			</data>
 			<key>hash2</key>
 			<data>
-			NeKzV5u+MgYtfYndoyKrhF/uSwho/Bl42ei2DW/MQdo=
+			Kqu86Obc2R4GyP8GOUEjdN9E4/e+grWH2lp0wDyV/xc=
 			</data>
 		</dict>
 		<key>Headers/SBDGroupChannelListQuery.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			YavgihPzXEhfgGKvAg2c1huFP48=
+			TUiDGPZKBLENKgoBEFCdzVcGZqE=
 			</data>
 			<key>hash2</key>
 			<data>
-			wUXxDJBPLF2IniTLUbrU+Le1zd6nW6sgJEvrHvdejNg=
+			m8ovtQ7Zr7KKNJ6Hjryy08LH6v+B1g+ZAvlZUX90v6U=
 			</data>
 		</dict>
 		<key>Headers/SBDInternalTypes.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ckQsadQayVF4LimMxu9yRKwtEPI=
+			DLrxlbWo+Q6wYeDEIo4XEkH+KQw=
 			</data>
 			<key>hash2</key>
 			<data>
-			8GRCZ+5TjQq3kUFf1J7Qg9LShIGlx2hwYeQywI/3HHQ=
+			irD5de9f1bChyqYzh/cWPfkNJkujHtaJRUVSc+3Ponc=
 			</data>
 		</dict>
 		<key>Headers/SBDMain.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			u7xmDrg1HiOVBT+hEuIA4GfQcq8=
+			Y68Rl0exq4duUC+jFpSc/n2Vu1g=
 			</data>
 			<key>hash2</key>
 			<data>
-			9MG5rbej+7l5Oh57LcTgsPZsTJrYFTCW/IFNqdpabms=
+			wsdW+9ijjS+SXSEzCVtSacRFrMJ7+FLy57W1P8xyx8A=
 			</data>
 		</dict>
 		<key>Headers/SBDMessageListQuery.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			03CzHLS+pMJj6HYHI9eE1cI7MtQ=
+			wsWTQQiZ3/ASmExiqfABSPJPvIA=
 			</data>
 			<key>hash2</key>
 			<data>
-			jZI5s80IlF0MKGACdFO2dEB452a268zII5H4vCpDYRM=
+			csaejI6+4EfFuAyFG1hHSmGU89v2iN7VDhf75wLVd/4=
 			</data>
 		</dict>
 		<key>Headers/SBDOpenChannel.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			pOB8FV8Ygd0UhEWzBnJEEsakaR4=
+			2BQGtxwdFfyxeTH5wVS0Kqy8pzE=
 			</data>
 			<key>hash2</key>
 			<data>
-			CZ+/IfsjhzUmk0CFQJ53bfRpMyYopM2iiLJedrGyJqU=
+			C7HdEFq6jT8nuG6jf3ROhw5SSax29hAS/T4S2yZ4NqU=
 			</data>
 		</dict>
 		<key>Headers/SBDOpenChannelListQuery.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			geQei7wfocpDg/G/l3DHHsI6YMk=
+			9omMbft03Zp9VScVMou6TqLHrnA=
 			</data>
 			<key>hash2</key>
 			<data>
-			d0HuNKC0B7k/eUmhzjBN0r9Pzp6q6h9Yvy2D+MlhhlA=
+			x/XXjt44BmXuliQbCUYQvNJW2c5Frzr4wqR8npc6Das=
 			</data>
 		</dict>
 		<key>Headers/SBDPreviousMessageListQuery.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			NA0tV3qka3EZ8oE+UBSl+CqRiWU=
+			dWgrtG4I8rHzYz0VyXFd0F0wjlE=
 			</data>
 			<key>hash2</key>
 			<data>
-			Fv0NGll8zmX9B1neWICKgBPHOw0335LkPlGSBjeQOgs=
+			PClV6Ir8j73uSevhRSJ63W5MAUwacwrz5FOO2o872uM=
 			</data>
 		</dict>
 		<key>Headers/SBDTypes.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			3pR1876LpXpmAx5x5gigapSU1Jo=
+			OhzPX8vqxsS3U0PwAeglvhoGNe4=
 			</data>
 			<key>hash2</key>
 			<data>
-			4LM3jxlDxtb1/FevlF83laWDZQjt8z8LuSfa/VaWr7Y=
+			dcLbHyl3kb4kq0ylzH5/mZSCnhzYl1FAD6N4HrZR9s8=
 			</data>
 		</dict>
 		<key>Headers/SBDUser.h</key>
@@ -286,11 +286,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ReBPhuCRHyVVPHE1qbpZu9U3DBI=
+			Davl1cgvStwaXEHdbrxYL6Qel0U=
 			</data>
 			<key>hash2</key>
 			<data>
-			tGMj0sRKgd3SveQaL1Yw9yD3/HQO5QgZm5Wsbw9LGek=
+			/T3HNFEwjnMkNOhAgNk0C/Nq5iMYwrlp7GTIDH5/hxk=
 			</data>
 		</dict>
 		<key>Headers/SBDUserMessage.h</key>

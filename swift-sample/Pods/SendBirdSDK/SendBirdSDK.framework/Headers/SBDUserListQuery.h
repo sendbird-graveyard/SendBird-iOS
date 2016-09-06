@@ -49,6 +49,11 @@
 - (nullable instancetype)initWithQueryType:(SBDUserListQueryType)queryType channel:(SBDBaseChannel * _Nullable)channel;
 
 /**
+ *  Internal use only.
+ */
+- (nullable instancetype)initWithUserIds:(NSArray<NSString *> * _Nonnull)userIds;
+
+/**
  *  Shows if the query is loading.
  *
  *  @return Returns YES if the query is loading, otherwise returns NO.

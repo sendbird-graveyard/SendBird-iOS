@@ -2,7 +2,7 @@
 //  SBDMessageListQuery.h
 //  SendBirdSDK
 //
-//  Created by Jed Kyung on 7/13/16.
+//  Created by Jed Gyeong on 7/13/16.
 //  Copyright © 2016 SENDBIRD.COM. All rights reserved.
 //
 

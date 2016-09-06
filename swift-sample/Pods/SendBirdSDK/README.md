@@ -11,14 +11,14 @@ Add below into your Podfile on Xcode.
 ```
 target YOUR_PROJECT_TARGET do
   pod 'SendBirdSDK'
-  end
-  ```
+end
+```
 
-  Install SendBird Framework through CocoaPods.
+Install SendBird Framework through CocoaPods.
 
-  ```
-  pod install
-  ```
+```
+pod install
+```
 
-  Now you can see installed SendBird framework by inspecting YOUR_PROJECT.xcworkspace.
+Now you can see installed SendBird framework by inspecting YOUR_PROJECT.xcworkspace.
 

@@ -15,7 +15,7 @@
 @interface SBDPreviousMessageListQuery : NSObject
 
 /**
- *  Initialize object.
+ *  Initializes object.
  *
  *  @param channel SBDBaseChannel object.
  *
@@ -31,7 +31,7 @@
 - (BOOL)isLoading;
 
 /**
- *  Load previous message with limit.
+ *  Loads previous message with limit.
  *
  *  @param limit             The number of messages per page.
  *  @param reverse           If yes, the latest message is the index 0.
