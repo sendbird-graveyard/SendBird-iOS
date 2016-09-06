@@ -2,7 +2,7 @@
 //  SBDInternalTypes.h
 //  SendBirdSDK
 //
-//  Created by Jed Kyung on 8/18/16.
+//  Created by Jed Gyeong on 8/18/16.
 //  Copyright © 2016 SENDBIRD.COM. All rights reserved.
 //
 
@@ -46,6 +46,7 @@ typedef NS_ENUM(NSUInteger, SBDUserListQueryType) {
     SBDUserListQueryTypeOpenChannelParticipants = 3,
     SBDUserListQueryTypeOpenChannelMutedUsers = 4,
     SBDUserListQueryTypeOpenChannelBannedUsers = 5,
+    SBDUserListQueryTypeFilteredUsers = 6,
 };
 
 typedef NS_ENUM(NSInteger, SBDLogLevel) {

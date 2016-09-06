@@ -226,6 +226,15 @@
 + (nullable SBDUserListQuery *)createAllUserListQuery;
 
 /**
+ *  Creates `SBDUserListQuery` instance for gettting a list of users of this application with user IDs.
+ *
+ *  @param userIds The user IDs to get user objects.
+ *
+ *  @return `SBDUserListQuery` instance.
+ */
++ (nullable SBDUserListQuery *)createUserListQueryWithUserIds:(NSArray<NSString *> * _Nonnull)userIds;
+
+/**
  *  Creates `SBDUserListQuery` instance for getting a list of blocked users by the current user.
  *
  *  @return `SBDUserListQuery` instance.
@@ -262,12 +271,29 @@
 + (void)updateCurrentUserInfoWithNickname:(NSString * _Nullable)nickname profileImage:(NSData * _Nullable)profileImage progressHandler:(nullable void (^)(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend))progressHandler completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
+ *  Gets the pending push token.
+ *
+ *  @return Returns the pending push token. 
+ */
++ (nullable NSData *)getPendingPushToken;
+
+/**
+ *  Registers the current device token to SendBird.
+ *
+ *  @param devToken          Device token for APNS.
+ *  @param completionHandler The handler block to execute. `status` is the status for push token registration. It is defined in `SBDPushTokenRegistrationStatus`. `SBDPushTokenRegistrationStatusSuccess` represents the `devToken` is registered. `SBDPushTokenRegistrationStatusPending` represents the `devToken` is not registered because the connection is not established, so this method has to be invoked with `getPendingPushToken` method after the connection. The `devToken` is retrived by `getPendingPushToken`. `SBDPushTokenRegistrationStatusError` represents the push token registration is failed. 
+ */
++ (void)registerDevicePushToken:(NSData * _Nonnull)devToken completionHandler:(nullable void (^)(SBDPushTokenRegistrationStatus status, SBDError * _Nullable error))completionHandler;
+
+/**
  *  Registers the current device token to SendBird.
  *
  *  @param devToken          Device token for APNS.
  *  @param completionHandler The handler block to execute.
+ *
+ *  @deprecated in 3.0.9
  */
-+ (void)registerPushToken:(NSData * _Nonnull)devToken completionHandler:(nullable void (^)(NSDictionary * _Nullable response, SBDError * _Nullable error))completionHandler;
++ (void)registerPushToken:(NSData * _Nonnull)devToken completionHandler:(nullable void (^)(NSDictionary * _Nullable response, SBDError * _Nullable error))completionHandler DEPRECATED_ATTRIBUTE;
 
 /**
  *  Unregisters the current device token from SendBird.
@@ -315,5 +341,25 @@
  *  @param completionHandler The handler block to execute.
  */
 + (void)unblockUser:(SBDUser * _Nonnull)user completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Sets Do-not-disturb.
+ *
+ *  @param enable            Enables or not.
+ *  @param startHour         Start hour.
+ *  @param startMin          Start minute.
+ *  @param endHour           End hour.
+ *  @param endMin            End minute.
+ *  @param timezone          Sets timezone.
+ *  @param completionHandler The handler block to execute.
+ */
++ (void)setDoNotDisturbWithEnable:(BOOL)enable startHour:(int)startHour startMin:(int)startMin endHour:(int)endHour endMin:(int)endMin timezone:(NSString * _Nonnull)timezone completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Gets Do-not-disturb.
+ *
+ *  @param completionHandler The handler block to execute.
+ */
++ (void)getDoNotDisturbWithCompletionHandler:(nullable void (^)(BOOL isDoNotDisturbOn, int startHour, int startMin, int endHour, int endMin, NSString * _Nonnull timezone, SBDError * _Nullable error))completionHandler;
 
 @end
