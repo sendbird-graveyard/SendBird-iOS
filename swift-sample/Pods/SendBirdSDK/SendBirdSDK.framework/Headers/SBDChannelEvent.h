@@ -31,6 +31,8 @@
  */
 @property (atomic, readonly) SBDChannelEventCategory channelEventCategory;
 
+@property (atomic) NSInteger participantCount;
+
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
 
 /**

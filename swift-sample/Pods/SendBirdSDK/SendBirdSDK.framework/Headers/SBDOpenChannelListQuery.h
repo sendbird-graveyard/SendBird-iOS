@@ -26,6 +26,16 @@
 @property (atomic, readonly) BOOL hasNext;
 
 /**
+ *  Sets the keyword to search channel url.
+ */
+@property (strong, nonatomic, nullable) NSString *urlKeyword;
+
+/**
+ *  Sets the keyword to search channel name.
+ */
+@property (strong, nonatomic, nullable) NSString *nameKeyword;
+
+/**
  *  Shows if the query is loading.
  *
  *  @return Returns YES if the query is loading, otherwise returns NO.
