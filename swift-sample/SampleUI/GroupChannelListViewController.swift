@@ -248,7 +248,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func didSucceedReconnection() {
-
+        self.refreshChannelList()
     }
     
     func didFailReconnection() {
