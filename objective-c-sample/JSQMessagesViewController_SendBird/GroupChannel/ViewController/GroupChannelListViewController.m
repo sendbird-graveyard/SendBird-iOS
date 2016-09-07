@@ -260,6 +260,7 @@
 
 - (void)didSucceedReconnection {
     NSLog(@"didSucceedReconnection in GroupChannelListViewController");
+    [self refreshChannelList];
 }
 
 - (void)didFailReconnection {
