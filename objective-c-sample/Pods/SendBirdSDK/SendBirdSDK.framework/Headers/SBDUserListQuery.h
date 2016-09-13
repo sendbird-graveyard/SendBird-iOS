@@ -16,7 +16,7 @@
  *
  *  * The query for the all users is created by [`createAllUserListQuery`](../Classes/SBDMain.html#//api/name/createAllUserListQuery) of `SBDMain` class.
  *  * The query for the blocked users is created by [`createBlockedUserListQuery`](../Classes/SBDMain.html#//api/name/createBlockedUserListQuery) of `SBDMain` class.
- *  * The query for the participants in the specified open channel is created by [`createParticipantListQuery`](../Classes/SBDOpenChannel.html#//api/name/createParticipantListQuery) of the `SBDOpenChannel` instance.
+ *  * The query for the participants in the specified open <span>channel</span> is created by [`createParticipantListQuery`](../Classes/SBDOpenChannel.html#//api/name/createParticipantListQuery) of the `SBDOpenChannel` instance.
  *  * The query for the muted users is created by [`createMutedUserListQuery`](../Classes/SBDOpenChannel.html#//api/name/createMutedUserListQuery) of the `SBDOpenChannel` instance.
  *  * The query for the banned users is created by [`createBannedUserListQuery`](../Classes/SBDOpenChannel.html#//api/name/createBannedUserListQuery) of the `SBDOpenChannel` instance.
  *

@@ -217,7 +217,7 @@
  *
  *  @return Returns the temporary user message with a request ID. It doesn't have a message ID.
  */
-- (nonnull SBDUserMessage *)sendUserMessage:(NSString * _Nonnull)message completionHandler:(nullable void (^)(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error))completionHandler;
+- (nonnull SBDUserMessage *)sendUserMessage:(NSString * _Nullable)message completionHandler:(nullable void (^)(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Sends a user message with <span>data</span>.
@@ -228,7 +228,7 @@
  *
  *  @return Returns the temporary user message with a request ID. It doesn't have a message ID.
  */
-- (nonnull SBDUserMessage *)sendUserMessage:(NSString * _Nonnull)message data:(NSString * _Nullable)data completionHandler:(nullable void (^)(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error))completionHandler;
+- (nonnull SBDUserMessage *)sendUserMessage:(NSString * _Nullable)message data:(NSString * _Nullable)data completionHandler:(nullable void (^)(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Sends a file message with binary <span>data</span>. The binary <span>data</span> is uploaded to SendBird file storage and a URL of the file will be generated.

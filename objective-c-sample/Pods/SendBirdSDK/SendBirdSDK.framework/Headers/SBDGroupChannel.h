@@ -119,7 +119,7 @@
  *  @param userIds           The user IDs to be <span>members</span> of the channel.
  *  @param coverUrl          The cover image url of group channel.
  *  @param data              The custom data of group channel.
- *  @param completionHandler The handler block to execute. `channel` is the group channel instance which has the `userIds` as members.
+ *  @param completionHandler The handler block to execute. `channel` is the group channel instance which has the `userIds` as <span>members</span>.
  */
 + (void)createChannelWithName:(NSString * _Nullable)name userIds:(NSArray<NSString *> * _Nonnull)userIds coverUrl:(NSString * _Nullable)coverUrl data:(NSString * _Nullable)data completionHandler:(nonnull void (^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
 
@@ -131,7 +131,7 @@
  *  @param users             The users to be <span>members</span> of the channel.
  *  @param coverUrl          The cover image url of group channel.
  *  @param data              The custom data of group channel.
- *  @param completionHandler The handler block to execute. `channel` is the group channel instance which has the `users` as members.
+ *  @param completionHandler The handler block to execute. `channel` is the group channel instance which has the `users` as <span>members</span>.
  */
 + (void)createChannelWithName:(NSString * _Nullable)name isDistinct:(BOOL)isDistinct users:(NSArray<SBDUser *> * _Nonnull)users coverUrl:(NSString * _Nullable)coverUrl data:(NSString * _Nullable)data completionHandler:(nonnull void (^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
 
@@ -143,7 +143,7 @@
  *  @param userIds           The user IDs to participate the channel.
  *  @param coverUrl          The cover image url of group channel.
  *  @param data              The custom data of group channel.
- *  @param completionHandler The handler block to execute. `channel` is the group channel instance which has the `userIds` as members.
+ *  @param completionHandler The handler block to execute. `channel` is the group channel instance which has the `userIds` as <span>members</span>.
  */
 + (void)createChannelWithName:(NSString * _Nullable)name isDistinct:(BOOL)isDistinct userIds:(NSArray<NSString *> * _Nonnull)userIds coverUrl:(NSString * _Nullable)coverUrl data:(NSString * _Nullable)data completionHandler:(nonnull void (^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
 

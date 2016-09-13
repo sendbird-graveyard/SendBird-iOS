@@ -66,6 +66,6 @@
  *  @param endTimestamp      The end timestamp for the range.
  *  @param completionHandler The handler block to execute. The `messages` is the array of `SBDBaseMessage` instances.
  */
-- (void)loadMessagesWithStartTimestamp:(long long)startTimestamp endTimestamp:(long long)endTimestamp completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
+//- (void)loadMessagesWithStartTimestamp:(long long)startTimestamp endTimestamp:(long long)endTimestamp completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
 
 @end
