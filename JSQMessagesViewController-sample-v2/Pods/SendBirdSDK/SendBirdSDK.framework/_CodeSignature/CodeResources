@@ -128,10 +128,6 @@
 		<data>
 		/S1Sv+Om3+dR5UgYCXK6dF6yiEs=
 		</data>
-		<key>Headers/SendBirdSRWebSocket.h</key>
-		<data>
-		otcHvghjOee1Y/KkNVj8es3AXWQ=
-		</data>
 		<key>Headers/SendBirdSender.h</key>
 		<data>
 		yb/ygW3iRgSW+dtiA94AjVk6dd0=
@@ -162,15 +158,99 @@
 		</data>
 		<key>Headers/SendBirdWSClient.h</key>
 		<data>
-		ct3pppTYXK2O8OnLzb7oUhu5rSI=
+		U6NbXhJX/5m09aJ2GmZZtxhdXm4=
+		</data>
+		<key>Headers/SendBird_SRWebSocket.h</key>
+		<data>
+		PjEjXZ7QCrcXTDLGhV+VuovJM0A=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		5fgD+oavYdbPnw5TrJ11y3TgCh8=
+		PyboK0nRlztbm1xXCsFs93pW05g=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		7BuBbn0nsqUqXR7Ey4OuAm33ky0=
+		</data>
+		<key>PrivateHeaders/NSRunLoop+SendBird_SRWebSocket.h</key>
+		<data>
+		QwBWTkSgIzvvFtuTdBnLfkveFqM=
+		</data>
+		<key>PrivateHeaders/NSRunLoop+SendBird_SRWebSocketPrivate.h</key>
+		<data>
+		h2kMxw43/cc5ctcoUh8TRVwlWYg=
+		</data>
+		<key>PrivateHeaders/NSURLRequest+SendBird_SRWebSocket.h</key>
+		<data>
+		DteAZjbhYauIuicwt7d23BXHqno=
+		</data>
+		<key>PrivateHeaders/NSURLRequest+SendBird_SRWebSocketPrivate.h</key>
+		<data>
+		phrz26rDLN+NxK3opvDV+DE/ZIg=
+		</data>
+		<key>PrivateHeaders/SendBird_SRConstants.h</key>
+		<data>
+		E4og2NoViFufgDbrccebnnq73To=
+		</data>
+		<key>PrivateHeaders/SendBird_SRDelegateController.h</key>
+		<data>
+		sTR52KVk8vbh5phtVBHBcgtwPxs=
+		</data>
+		<key>PrivateHeaders/SendBird_SRError.h</key>
+		<data>
+		uD+zib6pMXR7yZDuVCld1wsExPk=
+		</data>
+		<key>PrivateHeaders/SendBird_SRHTTPConnectMessage.h</key>
+		<data>
+		6pIpivXOdub8Ha7mKwFmA3Oyl2U=
+		</data>
+		<key>PrivateHeaders/SendBird_SRHash.h</key>
+		<data>
+		Rwh7QX9BUE29kspvWq7vIjgAgsg=
+		</data>
+		<key>PrivateHeaders/SendBird_SRIOConsumer.h</key>
+		<data>
+		IZfk8jlheaTkdBYw0u/LmUB/kRE=
+		</data>
+		<key>PrivateHeaders/SendBird_SRIOConsumerPool.h</key>
+		<data>
+		KhEQGouJWURrPfVPX7YQy7vhD8U=
+		</data>
+		<key>PrivateHeaders/SendBird_SRLog.h</key>
+		<data>
+		/k3MAqJ4H63X6e6INczpuWpKDvI=
+		</data>
+		<key>PrivateHeaders/SendBird_SRMutex.h</key>
+		<data>
+		0q0tcL0jf9CUGRuhwlUGHuvD8CU=
+		</data>
+		<key>PrivateHeaders/SendBird_SRPinningSecurityPolicy.h</key>
+		<data>
+		KV5hmXshdmZhHngYJdIlbxkNmrQ=
+		</data>
+		<key>PrivateHeaders/SendBird_SRProxyConnect.h</key>
+		<data>
+		dpsz53NUOjQoeS4AY/EwX9dpOe4=
+		</data>
+		<key>PrivateHeaders/SendBird_SRRandom.h</key>
+		<data>
+		h5Gt2cvsQDAEkVJ0SYeNSK7K0T0=
+		</data>
+		<key>PrivateHeaders/SendBird_SRRunLoopThread.h</key>
+		<data>
+		BvaAIiNwztyx5Mw9TanMM2AM8p4=
+		</data>
+		<key>PrivateHeaders/SendBird_SRSIMDHelpers.h</key>
+		<data>
+		APuYUGMPfGvwUetTePlp1Lynqr0=
+		</data>
+		<key>PrivateHeaders/SendBird_SRSecurityPolicy.h</key>
+		<data>
+		jkpRuWfAPG+KdsJ8xKYovOmY+b0=
+		</data>
+		<key>PrivateHeaders/SendBird_SRURLUtilities.h</key>
+		<data>
+		dq8jcYjz+Tt8GPwHbjgd6VcskhU=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -516,17 +596,6 @@
 			NNi54mykNKM4mI49yvdPqdF0cf08IiLrM7VoslOAFJg=
 			</data>
 		</dict>
-		<key>Headers/SendBirdSRWebSocket.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			otcHvghjOee1Y/KkNVj8es3AXWQ=
-			</data>
-			<key>hash2</key>
-			<data>
-			SMMBXVWGBGkr92n90EsAOBr439XM/iltd2yKqFythJ8=
-			</data>
-		</dict>
 		<key>Headers/SendBirdSender.h</key>
 		<dict>
 			<key>hash</key>
@@ -608,11 +677,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			ct3pppTYXK2O8OnLzb7oUhu5rSI=
+			U6NbXhJX/5m09aJ2GmZZtxhdXm4=
 			</data>
 			<key>hash2</key>
 			<data>
-			YEpxw7su/l6inO/n0XQYyDsFPdX7Yi6Sw+lRWSuVHAk=
+			kzhAQ9kjpiIdAx8TGDl2bd4rVoBtx5Ig9yxJBa4N70I=
+			</data>
+		</dict>
+		<key>Headers/SendBird_SRWebSocket.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			PjEjXZ7QCrcXTDLGhV+VuovJM0A=
+			</data>
+			<key>hash2</key>
+			<data>
+			NoQWkn+GZOtP8eQ7opgowstJUTW7aejLdNev4DEzAZU=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -624,6 +704,226 @@
 			<key>hash2</key>
 			<data>
 			6pP9pgqDYFvYzWCY1n6/gJXzZB+Id24FDpQETw3N2m8=
+			</data>
+		</dict>
+		<key>PrivateHeaders/NSRunLoop+SendBird_SRWebSocket.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			QwBWTkSgIzvvFtuTdBnLfkveFqM=
+			</data>
+			<key>hash2</key>
+			<data>
+			laQH/AvL6ZWIT1zQ3yyWlvQ95g4Iv3JKD0VQELHYI5Q=
+			</data>
+		</dict>
+		<key>PrivateHeaders/NSRunLoop+SendBird_SRWebSocketPrivate.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			h2kMxw43/cc5ctcoUh8TRVwlWYg=
+			</data>
+			<key>hash2</key>
+			<data>
+			91BgyGRxtF4s2yQqUzsfzwNWmkC6pI8c0wiEfhS3GS0=
+			</data>
+		</dict>
+		<key>PrivateHeaders/NSURLRequest+SendBird_SRWebSocket.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			DteAZjbhYauIuicwt7d23BXHqno=
+			</data>
+			<key>hash2</key>
+			<data>
+			M1Un10z3CN44pbPexLqFjOLDvM71aojM15KtUVZHjQw=
+			</data>
+		</dict>
+		<key>PrivateHeaders/NSURLRequest+SendBird_SRWebSocketPrivate.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			phrz26rDLN+NxK3opvDV+DE/ZIg=
+			</data>
+			<key>hash2</key>
+			<data>
+			8493BVMQ/cJssrv9WEv5iZf7Vt3eIeDFbYDcVcr4d4M=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRConstants.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			E4og2NoViFufgDbrccebnnq73To=
+			</data>
+			<key>hash2</key>
+			<data>
+			C9DrrC/lsm/9L/ngEWxQD5s7wQu4MGGv/9DLWrHpiQc=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRDelegateController.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			sTR52KVk8vbh5phtVBHBcgtwPxs=
+			</data>
+			<key>hash2</key>
+			<data>
+			PXQPPTRVmTZPXeQHCzMKBTuQxyeJKFC8RhgQd46EGEc=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRError.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			uD+zib6pMXR7yZDuVCld1wsExPk=
+			</data>
+			<key>hash2</key>
+			<data>
+			DQxz6QFi+QmbO8irh7oDIwez5b41xlGUR+kUHgO1M/w=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRHTTPConnectMessage.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			6pIpivXOdub8Ha7mKwFmA3Oyl2U=
+			</data>
+			<key>hash2</key>
+			<data>
+			bDUYKjz8QAW28yCsRR3QWlcRjejafZ13BGyHznzfyTc=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRHash.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Rwh7QX9BUE29kspvWq7vIjgAgsg=
+			</data>
+			<key>hash2</key>
+			<data>
+			Rr/m7/FGxNgYrdqPsY8hNq73bbgGs9iKwSQxFsbQDBU=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRIOConsumer.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			IZfk8jlheaTkdBYw0u/LmUB/kRE=
+			</data>
+			<key>hash2</key>
+			<data>
+			MbiVJ0hqfTFA456SRmQd/4/pIYsiOCyqb14Gx4SOulA=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRIOConsumerPool.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			KhEQGouJWURrPfVPX7YQy7vhD8U=
+			</data>
+			<key>hash2</key>
+			<data>
+			KGXWOG39SAeTuqgZINJEF5JqhQ0eQAi6jpnkFqTYLlY=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRLog.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			/k3MAqJ4H63X6e6INczpuWpKDvI=
+			</data>
+			<key>hash2</key>
+			<data>
+			TZs1MUv7IqwZoxtsjyPJV9FEuqPhwKaAX7OoOn3sUR0=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRMutex.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			0q0tcL0jf9CUGRuhwlUGHuvD8CU=
+			</data>
+			<key>hash2</key>
+			<data>
+			aPCOMw4TEUHTMJqJnGO1exoWuc7KKUtlA9YH2EoGTTo=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRPinningSecurityPolicy.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			KV5hmXshdmZhHngYJdIlbxkNmrQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			S0v5qoXzAvqoOJG5unpZpkBJSWy3EHd1MN7WFGC7Z0E=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRProxyConnect.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			dpsz53NUOjQoeS4AY/EwX9dpOe4=
+			</data>
+			<key>hash2</key>
+			<data>
+			jVKn+W+HlqsBKTF3Y30z89F7HM2+mWq6ONhcVG7AzuM=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRRandom.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			h5Gt2cvsQDAEkVJ0SYeNSK7K0T0=
+			</data>
+			<key>hash2</key>
+			<data>
+			MPxn0m7ZaDY/7/uI6O0ZrFzv5h3fkfiGgk4ZdjBwTAg=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRRunLoopThread.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			BvaAIiNwztyx5Mw9TanMM2AM8p4=
+			</data>
+			<key>hash2</key>
+			<data>
+			629p+m7hg0VLVSpxayu8z1SzjaIo5kmahB8ihFBZnF4=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRSIMDHelpers.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			APuYUGMPfGvwUetTePlp1Lynqr0=
+			</data>
+			<key>hash2</key>
+			<data>
+			IR/EmB6J+BzUid2STzyr7yjwkHTyqEtzgJVDUsCwOyE=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRSecurityPolicy.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			jkpRuWfAPG+KdsJ8xKYovOmY+b0=
+			</data>
+			<key>hash2</key>
+			<data>
+			m4lOmMj+OteauXj6g8+pdkKT+x6/5S3PSS+Z3WDnhJA=
+			</data>
+		</dict>
+		<key>PrivateHeaders/SendBird_SRURLUtilities.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			dq8jcYjz+Tt8GPwHbjgd6VcskhU=
+			</data>
+			<key>hash2</key>
+			<data>
+			Ld0+xbEXjC1mzrAQB0TreHbBXmfB7gKPSr6CNJP5hrg=
 			</data>
 		</dict>
 	</dict>

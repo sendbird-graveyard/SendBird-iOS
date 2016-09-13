@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SendBirdSRWebSocket.h"
+#import "SendBird_SRWebSocket.h"
 #import "SendBirdCommand.h"
 #import "SendBird.h"
 
@@ -18,7 +18,7 @@ enum WSReadyState {
     WS_CLOSED       = 3,
 };
 
-@interface SendBirdWSClient : NSObject<SendBirdSRWebSocketDelegate>
+@interface SendBirdWSClient : NSObject<SendBird_SRWebSocketDelegate>
 
 - (id) initWithHost:(NSString *)host;
 - (void) setEventHandlerOpenBlock:(void (^)())open messageBlock:(void (^)(NSString *data))message closeBlock:(void (^)())close errorBlock:(void (^)())error;
