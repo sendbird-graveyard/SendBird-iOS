@@ -12,33 +12,33 @@ import SendBirdSDK
 class GroupChannelListTableViewCell: UITableViewCell {
     var channel: SBDGroupChannel?
     
-    @IBOutlet private weak var coverImageView: UIImageView!
-    @IBOutlet private weak var channelTitleLabel: UILabel!
-    @IBOutlet private weak var lastMessageLabel: UILabel!
-    @IBOutlet private weak var lastMessageDateLabel: UILabel!
-    @IBOutlet private weak var unreadMessageCountLabel: UILabel!
-    @IBOutlet private weak var memberCountLabel: UILabel!
+    @IBOutlet fileprivate weak var coverImageView: UIImageView!
+    @IBOutlet fileprivate weak var channelTitleLabel: UILabel!
+    @IBOutlet fileprivate weak var lastMessageLabel: UILabel!
+    @IBOutlet fileprivate weak var lastMessageDateLabel: UILabel!
+    @IBOutlet fileprivate weak var unreadMessageCountLabel: UILabel!
+    @IBOutlet fileprivate weak var memberCountLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
     static func nib() -> UINib {
-        return UINib.init(nibName: NSStringFromClass(self).componentsSeparatedByString(".").last!, bundle: NSBundle(forClass: self));
+        return UINib.init(nibName: NSStringFromClass(self).components(separatedBy: ".").last!, bundle: Bundle(for: self));
     }
     
     static func cellReuseIdentifier() -> String {
-        return NSStringFromClass(self).componentsSeparatedByString(".").last!
+        return NSStringFromClass(self).components(separatedBy: ".").last!
     }
     
-    func setModel(aChannel: SBDGroupChannel) {
+    func setModel(_ aChannel: SBDGroupChannel) {
         self.channel = aChannel
         
         var representativeUser: SBDUser?
@@ -57,49 +57,49 @@ class GroupChannelListTableViewCell: UITableViewCell {
         }
         
         if representativeUser != nil {
-            self.coverImageView.af_setImageWithURL(NSURL.init(string: (representativeUser?.profileUrl)!)!)
+            self.coverImageView.af_setImage(withURL: URL.init(string: (representativeUser?.profileUrl)!)!)
         }
         else {
-            self.coverImageView.af_setImageWithURL(NSURL.init(string: (self.channel?.coverUrl)!)!)
+            self.coverImageView.af_setImage(withURL: URL.init(string: (self.channel?.coverUrl)!)!)
         }
         
-        channelTitle = channelTitleNameArray.joinWithSeparator(",")
+        channelTitle = channelTitleNameArray.joined(separator: ",")
         
         self.channelTitleLabel.text = channelTitle
-        let date: NSDate?
-        if self.channel?.lastMessage?.isKindOfClass(SBDUserMessage) == true {
+        let date: Date?
+        if self.channel?.lastMessage?.isKind(of: SBDUserMessage.self) == true {
             self.lastMessageLabel.text = (self.channel?.lastMessage as! SBDUserMessage).message
-            date = NSDate(timeIntervalSince1970: Double((self.channel?.lastMessage!.createdAt)!) / 1000)
+            date = Date(timeIntervalSince1970: Double((self.channel?.lastMessage!.createdAt)!) / 1000)
         }
-        else if self.channel?.lastMessage?.isKindOfClass(SBDUserMessage) == true {
+        else if self.channel?.lastMessage?.isKind(of: SBDUserMessage.self) == true {
             self.lastMessageLabel.text = "(File)"
-            date = NSDate(timeIntervalSince1970: Double((self.channel?.lastMessage!.createdAt)!) / 1000)
+            date = Date(timeIntervalSince1970: Double((self.channel?.lastMessage!.createdAt)!) / 1000)
         }
         else {
             self.lastMessageLabel.text = ""
-            date = NSDate(timeIntervalSince1970: Double((self.channel?.createdAt)!) / 1000)
+            date = Date(timeIntervalSince1970: Double((self.channel?.createdAt)!) / 1000)
         }
         
-        let formatter = NSDateFormatter()
-        formatter.locale = NSLocale.currentLocale()
-        formatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        formatter.dateStyle = NSDateFormatterStyle.ShortStyle
-        formatter.timeZone = NSTimeZone.localTimeZone()
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.timeStyle = DateFormatter.Style.short
+        formatter.dateStyle = DateFormatter.Style.short
+        formatter.timeZone = TimeZone.autoupdatingCurrent
         
-        self.lastMessageDateLabel.text = formatter.stringFromDate(date!)
+        self.lastMessageDateLabel.text = formatter.string(from: date!)
         
         if self.channel?.unreadMessageCount == 0 {
-            self.unreadMessageCountLabel.hidden = true
+            self.unreadMessageCountLabel.isHidden = true
         }
         else {
-            self.unreadMessageCountLabel.hidden = false
+            self.unreadMessageCountLabel.isHidden = false
             self.unreadMessageCountLabel.text = String(format: "%lu", (self.channel?.unreadMessageCount)!)
         }
         
         self.memberCountLabel.text = String(format: "%lu", self.channel!.memberCount)
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         self.coverImageView.layer.cornerRadius = 18
         self.coverImageView.clipsToBounds = true
     }

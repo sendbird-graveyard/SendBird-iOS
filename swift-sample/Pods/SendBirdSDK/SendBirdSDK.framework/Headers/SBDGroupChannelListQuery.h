@@ -58,7 +58,7 @@
 - (nullable instancetype)initWithUser:(SBDUser * _Nonnull)user;
 
 /**
- *  Get the list of channels. If this method is repeatedly called, it will retrieve the following pages of the channel list.
+ *  Gets the list of channels. If this method is repeatedly called, it will retrieve the following pages of the channel list.
  *
  *  @param completionHandler The handler block to execute. The `channels` is the array of `SBDGroupChannel` instances.
  */

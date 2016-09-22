@@ -10,7 +10,7 @@ import UIKit
 import SendBirdSDK
 
 protocol UserListViewControllerDelegate: class {
-    func didCloseUserListViewController(vc: UIViewController, groupChannel: SBDGroupChannel)
+    func didCloseUserListViewController(_ vc: UIViewController, groupChannel: SBDGroupChannel)
 }
 
 class UserListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -18,13 +18,13 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     var invitationMode: Int?
     var channel: SBDGroupChannel?
 
-    @IBOutlet private weak var tableView: UITableView!
-    private var users: [SBDUser] = []
-    private var userId: String?
-    private var userName: String?
+    @IBOutlet fileprivate weak var tableView: UITableView!
+    fileprivate var users: [SBDUser] = []
+    fileprivate var userId: String?
+    fileprivate var userName: String?
     
-    private var userListQuery: SBDUserListQuery?
-    private var selectedUsers: NSMutableDictionary?
+    fileprivate var userListQuery: SBDUserListQuery?
+    fileprivate var selectedUsers: NSMutableDictionary?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.registerNib(UserListTableViewCell.nib(), forCellReuseIdentifier: UserListTableViewCell.cellReuseIdentifier())
+        self.tableView.register(UserListTableViewCell.nib(), forCellReuseIdentifier: UserListTableViewCell.cellReuseIdentifier())
         
         self.userListQuery = SBDMain.createAllUserListQuery()
         self.loadUsers()
@@ -47,18 +47,18 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if self.invitationMode == 0 {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create Channel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(UserListViewController.clickCreateChannel(_:)))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create Channel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(UserListViewController.clickCreateChannel(_:)))
         }
         else {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Invite", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(UserListViewController.clickInvite(_:)))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Invite", style: UIBarButtonItemStyle.plain, target: self, action: #selector(UserListViewController.clickInvite(_:)))
         }
     }
     
-    private func loadUsers() {
+    fileprivate func loadUsers() {
         if self.userListQuery?.isLoading() == true {
             return
         }
@@ -67,7 +67,7 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
             return
         }
         
-        self.userListQuery?.loadNextPageWithCompletionHandler({ (users, error) in
+        self.userListQuery?.loadNextPage(completionHandler: { (users, error) in
             if error != nil {
                 return
             }
@@ -85,13 +85,13 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
                 self.selectedUsers![user.userId] = Int(0)
             }
             
-            dispatch_async(dispatch_get_main_queue(), { 
+            DispatchQueue.main.async(execute: { 
                 self.tableView.reloadData()
             })
         })
     }
     
-    func clickCreateChannel(sender: AnyObject) {
+    func clickCreateChannel(_ sender: AnyObject) {
         var userIds = [String]()
         
         for item in self.selectedUsers! {
@@ -101,16 +101,16 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         if userIds.count > 0 {
-            let alert = UIAlertController(title: "Create Group Channel", message: "Create a group channel.", preferredStyle: UIAlertControllerStyle.Alert)
-            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
-            let createDistinctChannelAction = UIAlertAction(title: "Create distinct channel", style: UIAlertActionStyle.Default, handler: { (action) in
-                SBDGroupChannel.createChannelWithUserIds(userIds, isDistinct: true, completionHandler: { (channel, error) in
+            let alert = UIAlertController(title: "Create Group Channel", message: "Create a group channel.", preferredStyle: UIAlertControllerStyle.alert)
+            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
+            let createDistinctChannelAction = UIAlertAction(title: "Create distinct channel", style: UIAlertActionStyle.default, handler: { (action) in
+                SBDGroupChannel.createChannel(withUserIds: userIds, isDistinct: true, completionHandler: { (channel, error) in
                     if error != nil {
-                        let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
-                        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                        let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.alert)
+                        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
                         alert.addAction(closeAction)
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.presentViewController(alert, animated: true, completion: nil)
+                        DispatchQueue.main.async(execute: {
+                            self.present(alert, animated: true, completion: nil)
                         })
                         
                         return
@@ -120,19 +120,19 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
                         self.delegate?.didCloseUserListViewController(self, groupChannel: channel!)
                     }
                     
-                    dispatch_async(dispatch_get_main_queue(), { 
-                        self.navigationController?.popViewControllerAnimated(false)
+                    DispatchQueue.main.async(execute: { 
+                        self.navigationController!.popViewController(animated: false)
                     })
                 })
             })
-            let createNonDistinctChannelAction = UIAlertAction(title: "Create non-distinct channel", style: UIAlertActionStyle.Default, handler: { (action) in
-                SBDGroupChannel.createChannelWithUserIds(userIds, isDistinct: false, completionHandler: { (channel, error) in
+            let createNonDistinctChannelAction = UIAlertAction(title: "Create non-distinct channel", style: UIAlertActionStyle.default, handler: { (action) in
+                SBDGroupChannel.createChannel(withUserIds: userIds, isDistinct: false, completionHandler: { (channel, error) in
                     if error != nil {
-                        let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
-                        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                        let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.alert)
+                        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
                         alert.addAction(closeAction)
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.presentViewController(alert, animated: true, completion: nil)
+                        DispatchQueue.main.async(execute: {
+                            self.present(alert, animated: true, completion: nil)
                         })
                         
                         return
@@ -142,8 +142,8 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
                         self.delegate?.didCloseUserListViewController(self, groupChannel: channel!)
                     }
                     
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.navigationController?.popViewControllerAnimated(false)
+                    DispatchQueue.main.async(execute: {
+                        self.navigationController!.popViewController(animated: false)
                     })
                 })
             })
@@ -152,18 +152,18 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
             alert.addAction(createDistinctChannelAction)
             alert.addAction(createNonDistinctChannelAction)
             
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
         else {
-            let alert = UIAlertController(title: "Select Users", message: "You have to select users to include", preferredStyle: UIAlertControllerStyle.Alert)
-            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+            let alert = UIAlertController(title: "Select Users", message: "You have to select users to include", preferredStyle: UIAlertControllerStyle.alert)
+            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
             
             alert.addAction(closeAction)
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
-    func clickInvite(sender: AnyObject) {
+    func clickInvite(_ sender: AnyObject) {
         var userIds = [String]()
         
         for item in self.selectedUsers! {
@@ -175,81 +175,81 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         if userIds.count > 0 {
             self.channel?.inviteUserIds(userIds, completionHandler: { (error) in
                 if error != nil {
-                    let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
-                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                    let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.alert)
+                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
                     alert.addAction(closeAction)
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.presentViewController(alert, animated: true, completion: nil)
+                    DispatchQueue.main.async(execute: {
+                        self.present(alert, animated: true, completion: nil)
                     })
                     
                     return
                 }
                 
-                dispatch_async(dispatch_get_main_queue(), { 
+                DispatchQueue.main.async(execute: { 
                     if self.delegate != nil {
                         self.delegate?.didCloseUserListViewController(self, groupChannel: self.channel!)
                     }
                     
-                    self.navigationController?.popViewControllerAnimated(true)
+                    self.navigationController!.popViewController(animated: true)
                 })
             })
         }
     }
     
     // MARK: UITableViewDelegate
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let user = self.users[indexPath.row]
-        let cellCheck = tableView.cellForRowAtIndexPath(indexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = self.users[(indexPath as NSIndexPath).row]
+        let cellCheck = tableView.cellForRow(at: indexPath)
         
-        if self.selectedUsers?.objectForKey(user.userId)?.intValue == 0 {
-            cellCheck?.accessoryType = UITableViewCellAccessoryType.Checkmark
-            self.selectedUsers?.setObject(Int(1), forKey: user.userId)
+        if (self.selectedUsers?.object(forKey: user.userId) as AnyObject).int32Value == 0 {
+            cellCheck?.accessoryType = UITableViewCellAccessoryType.checkmark
+            self.selectedUsers?.setObject(Int(1), forKey: user.userId as NSCopying)
         }
         else {
-            cellCheck?.accessoryType = UITableViewCellAccessoryType.None
-            self.selectedUsers?.setObject(Int(0), forKey: user.userId)
+            cellCheck?.accessoryType = UITableViewCellAccessoryType.none
+            self.selectedUsers?.setObject(Int(0), forKey: user.userId as NSCopying)
         }
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     // MARK: UITableViewDataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.users.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let user = self.users[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier(UserListTableViewCell.cellReuseIdentifier()) as! UserListTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let user = self.users[(indexPath as NSIndexPath).row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: UserListTableViewCell.cellReuseIdentifier()) as! UserListTableViewCell
         
         cell.setModel(user)
         cell.setOnlineStatusVisiblility(true)
         
-        if self.selectedUsers?.objectForKey(user.userId)?.intValue == 1 {
-            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        if (self.selectedUsers?.object(forKey: user.userId) as AnyObject).int32Value == 1 {
+            cell.accessoryType = UITableViewCellAccessoryType.checkmark
         }
         else {
-            cell.accessoryType = UITableViewCellAccessoryType.None
+            cell.accessoryType = UITableViewCellAccessoryType.none
         }
         
         if self.users.count > 0 {
-            if indexPath.row == self.users.count - 1 {
+            if (indexPath as NSIndexPath).row == self.users.count - 1 {
                 self.loadUsers()
             }
         }

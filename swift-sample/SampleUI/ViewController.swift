@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.connected = false
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -35,19 +35,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let userId = NSUserDefaults.standardUserDefaults().objectForKey("sendbird_user_id") as? String
-        let nickname = NSUserDefaults.standardUserDefaults().objectForKey("sendbird_nickname") as? String
+        let userId = UserDefaults.standard.object(forKey: "sendbird_user_id") as? String
+        let nickname = UserDefaults.standard.object(forKey: "sendbird_nickname") as? String
         
         self.userIdTextField.text = userId
         self.nicknameTextField.text = nickname
         
         self.connected = false
         
-        self.activityIndicatorView.hidden = true
-        self.openChannelButton.enabled = false
-        self.groupChannelButton.enabled = false
+        self.activityIndicatorView.isHidden = true
+        self.openChannelButton.isEnabled = false
+        self.groupChannelButton.isEnabled = false
         
-        let path = NSBundle.mainBundle().pathForResource("Info", ofType: "plist")
+        let path = Bundle.main.path(forResource: "Info", ofType: "plist")
         if path != nil {
             let infoDict = NSDictionary(contentsOfFile: path!)
             let sampleUIVersion = infoDict!["CFBundleShortVersionString"] as! String
@@ -56,86 +56,86 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func clickConnectButton(sender: AnyObject) {
+    @IBAction func clickConnectButton(_ sender: AnyObject) {
         if self.userIdTextField.text?.characters.count == 0 {
-            let alert = UIAlertController(title: "Error", message: "User ID is required.", preferredStyle: UIAlertControllerStyle.Alert)
-            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+            let alert = UIAlertController(title: "Error", message: "User ID is required.", preferredStyle: UIAlertControllerStyle.alert)
+            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
             alert.addAction(closeAction)
-            dispatch_async(dispatch_get_main_queue(), {
-                self.presentViewController(alert, animated: true, completion: nil)
+            DispatchQueue.main.async(execute: {
+                self.present(alert, animated: true, completion: nil)
             })
             
             return;
         }
         
         if self.nicknameTextField.text?.characters.count == 0 {
-            let alert = UIAlertController(title: "Error", message: "Nickname is required.", preferredStyle: UIAlertControllerStyle.Alert)
-            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+            let alert = UIAlertController(title: "Error", message: "Nickname is required.", preferredStyle: UIAlertControllerStyle.alert)
+            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
             alert.addAction(closeAction)
-            dispatch_async(dispatch_get_main_queue(), {
-                self.presentViewController(alert, animated: true, completion: nil)
+            DispatchQueue.main.async(execute: {
+                self.present(alert, animated: true, completion: nil)
             })
             
             return;
         }
         
         if self.connected {
-            SBDMain.disconnectWithCompletionHandler({
+            SBDMain.disconnect(completionHandler: {
                 self.connected = false
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.openChannelButton.enabled = false
-                    self.groupChannelButton.enabled = false
-                    self.userIdTextField.enabled = true
-                    self.connectButton.setTitle("Connect", forState: UIControlState.Normal)
+                DispatchQueue.main.async(execute: {
+                    self.openChannelButton.isEnabled = false
+                    self.groupChannelButton.isEnabled = false
+                    self.userIdTextField.isEnabled = true
+                    self.connectButton.setTitle("Connect", for: UIControlState())
                 })
             })
         }
         else {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.activityIndicatorView.hidden = false
+            DispatchQueue.main.async(execute: {
+                self.activityIndicatorView.isHidden = false
                 self.activityIndicatorView.startAnimating()
             })
-            self.userIdTextField.enabled = false
-            SBDMain.connectWithUserId(self.userIdTextField.text!, completionHandler: { (user, error) in
+            self.userIdTextField.isEnabled = false
+            SBDMain.connect(withUserId: self.userIdTextField.text!, completionHandler: { (user, error) in
                 if error == nil {
-                    SBDMain.updateCurrentUserInfoWithNickname(self.nicknameTextField.text, profileUrl: nil, completionHandler: { (error) in
+                    SBDMain.updateCurrentUserInfo(withNickname: self.nicknameTextField.text, profileUrl: nil, completionHandler: { (error) in
                         if error != nil {
-                            let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
-                            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                            let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.alert)
+                            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
                             alert.addAction(closeAction)
-                            dispatch_async(dispatch_get_main_queue(), {
-                                self.presentViewController(alert, animated: true, completion: nil)
-                                self.activityIndicatorView.hidden = true
+                            DispatchQueue.main.async(execute: {
+                                self.present(alert, animated: true, completion: nil)
+                                self.activityIndicatorView.isHidden = true
                                 self.activityIndicatorView.stopAnimating()
                             })
                             
                             return
                         }
                         
-                        NSUserDefaults.standardUserDefaults().setObject(SBDMain.getCurrentUser()?.userId, forKey: "sendbird_user_id")
-                        NSUserDefaults.standardUserDefaults().setObject(SBDMain.getCurrentUser()?.nickname, forKey: "sendbird_nickname")
+                        UserDefaults.standard.set(SBDMain.getCurrentUser()?.userId, forKey: "sendbird_user_id")
+                        UserDefaults.standard.set(SBDMain.getCurrentUser()?.nickname, forKey: "sendbird_nickname")
                         
-                        dispatch_async(dispatch_get_main_queue(), { 
+                        DispatchQueue.main.async(execute: { 
                             self.connected = true
-                            self.openChannelButton.enabled = true
-                            self.groupChannelButton.enabled = true
-                            self.connectButton.setTitle("Disconnect", forState: UIControlState.Normal)
+                            self.openChannelButton.isEnabled = true
+                            self.groupChannelButton.isEnabled = true
+                            self.connectButton.setTitle("Disconnect", for: UIControlState())
                             
-                            self.activityIndicatorView.hidden = true
+                            self.activityIndicatorView.isHidden = true
                             self.activityIndicatorView.stopAnimating()
                         })
                     })
                 }
                 else {
-                    let alert = UIAlertController(title: "Error", message: String(format: "%lld-%@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
-                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                    let alert = UIAlertController(title: "Error", message: String(format: "%lld-%@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.alert)
+                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
                     alert.addAction(closeAction)
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.presentViewController(alert, animated: true, completion: nil)
+                    DispatchQueue.main.async(execute: {
+                        self.present(alert, animated: true, completion: nil)
                         
-                        self.userIdTextField.enabled = true
+                        self.userIdTextField.isEnabled = true
                         
-                        self.activityIndicatorView.hidden = true
+                        self.activityIndicatorView.isHidden = true
                         self.activityIndicatorView.stopAnimating()
                     })
                 }
@@ -143,12 +143,12 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func clickOpenChannelButon(sender: AnyObject) {
+    @IBAction func clickOpenChannelButon(_ sender: AnyObject) {
         let vc = OpenChannelListViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func clickGroupChannelButton(sender: AnyObject) {
+    @IBAction func clickGroupChannelButton(_ sender: AnyObject) {
         let vc = GroupChannelListViewController()
         vc.setUser((SBDMain.getCurrentUser()?.userId)!, aUserName: (SBDMain.getCurrentUser()?.nickname)!)
         self.navigationController?.pushViewController(vc, animated: true)

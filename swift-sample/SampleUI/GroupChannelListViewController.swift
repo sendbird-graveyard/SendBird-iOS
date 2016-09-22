@@ -10,17 +10,17 @@ import UIKit
 import SendBirdSDK
 
 class GroupChannelListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SBDConnectionDelegate, SBDChannelDelegate, UserListViewControllerDelegate, GroupChannelViewControllerDelegate {
-    @IBOutlet private weak var tableView: UITableView!
-    private var channels: [SBDGroupChannel] = []
-    private var userID: String?
-    private var userName: String?
-    private var myGroupChannelListQuery: SBDGroupChannelListQuery?
-    private var delegateIndetifier: String?
-    private var refreshControl: UIRefreshControl?
-    private var editMode: Bool?
-    private var editChannelListButtomItem: UIBarButtonItem?
-    private var doneChannelListButtomItem: UIBarButtonItem?
-    private var createChannelButtomItem: UIBarButtonItem?
+    @IBOutlet fileprivate weak var tableView: UITableView!
+    fileprivate var channels: [SBDGroupChannel] = []
+    fileprivate var userID: String?
+    fileprivate var userName: String?
+    fileprivate var myGroupChannelListQuery: SBDGroupChannelListQuery?
+    fileprivate var delegateIndetifier: String?
+    fileprivate var refreshControl: UIRefreshControl?
+    fileprivate var editMode: Bool?
+    fileprivate var editChannelListButtomItem: UIBarButtonItem?
+    fileprivate var doneChannelListButtomItem: UIBarButtonItem?
+    fileprivate var createChannelButtomItem: UIBarButtonItem?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +30,10 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.registerNib(GroupChannelListTableViewCell.nib(), forCellReuseIdentifier: GroupChannelListTableViewCell.cellReuseIdentifier())
+        self.tableView.register(GroupChannelListTableViewCell.nib(), forCellReuseIdentifier: GroupChannelListTableViewCell.cellReuseIdentifier())
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl?.addTarget(self, action: #selector(GroupChannelListViewController.refreshChannelList), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(GroupChannelListViewController.refreshChannelList), for: UIControlEvents.valueChanged)
         self.tableView.addSubview(self.refreshControl!)
         
         self.myGroupChannelListQuery = SBDGroupChannel.createMyGroupChannelListQuery()
@@ -41,22 +41,22 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         
         self.delegateIndetifier = self.description
         
-        self.editChannelListButtomItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: #selector(GroupChannelListViewController.editGroupChannelList))
-        self.doneChannelListButtomItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: #selector(GroupChannelListViewController.editGroupChannelList))
-        self.createChannelButtomItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(GroupChannelListViewController.createGroupChannel))
+        self.editChannelListButtomItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: #selector(GroupChannelListViewController.editGroupChannelList))
+        self.doneChannelListButtomItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(GroupChannelListViewController.editGroupChannelList))
+        self.createChannelButtomItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(GroupChannelListViewController.createGroupChannel))
         
         self.navigationItem.rightBarButtonItems = [self.createChannelButtomItem!, self.editChannelListButtomItem!]
         
-        SBDMain.addChannelDelegate(self, identifier: self.delegateIndetifier!)
-        SBDMain.addConnectionDelegate(self, identifier: self.delegateIndetifier!)
+        SBDMain.add(self as SBDConnectionDelegate, identifier: self.delegateIndetifier!)
+        SBDMain.add(self as SBDChannelDelegate, identifier: self.delegateIndetifier!)
         
         self.loadChannels()
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        if self.navigationController?.viewControllers.indexOf(self) == nil {
-            SBDMain.removeChannelDelegateForIdentifier(self.delegateIndetifier!)
-            SBDMain.removeConnectionDelegateForIdentifier(self.delegateIndetifier!)
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.navigationController?.viewControllers.index(of: self) == nil {
+            SBDMain.removeChannelDelegate(forIdentifier: self.delegateIndetifier!)
+            SBDMain.removeConnectionDelegate(forIdentifier: self.delegateIndetifier!)
         }
         
         super.viewWillDisappear(animated)
@@ -78,13 +78,13 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         if self.editMode == true {
             self.title = "Group Channels"
             self.editMode = false
-            self.createChannelButtomItem?.enabled = true
+            self.createChannelButtomItem?.isEnabled = true
             self.navigationItem.rightBarButtonItems = [self.createChannelButtomItem!, self.editChannelListButtomItem!]
         }
         else {
             self.title = "Edit Group Channels"
             self.editMode = true
-            self.createChannelButtomItem?.enabled = false
+            self.createChannelButtomItem?.isEnabled = false
             self.navigationItem.rightBarButtonItems = [self.createChannelButtomItem!, self.doneChannelListButtomItem!]
         }
     }
@@ -96,7 +96,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         }
         
         self.channels.removeAll()
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             self.tableView.reloadData()
         })
 
@@ -105,7 +105,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         self.loadChannels()
     }
     
-    private func loadChannels() {
+    fileprivate func loadChannels() {
         if self.myGroupChannelListQuery?.isLoading() == true {
             return
         }
@@ -114,9 +114,9 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             return
         }
         
-        self.myGroupChannelListQuery?.loadNextPageWithCompletionHandler({ (channels, error) in
+        self.myGroupChannelListQuery?.loadNextPage(completionHandler: { (channels, error) in
             if error != nil {
-                if self.refreshControl?.refreshing == true {
+                if self.refreshControl?.isRefreshing == true {
                     self.refreshControl?.endRefreshing()
                 }
                 
@@ -132,59 +132,59 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
                 self.channels.append(channel)
             }
 
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
                 
-                if self.refreshControl?.refreshing == true {
+                if self.refreshControl?.isRefreshing == true {
                     self.refreshControl?.endRefreshing()
                 }
             })
         })
     }
     
-    func setUser(aUserId: String, aUserName: String) {
+    func setUser(_ aUserId: String, aUserName: String) {
         self.userID = aUserId
         self.userName = aUserName
     }
     
     // MARK: UITableViewDelegate
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let channel = self.channels[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let channel = self.channels[(indexPath as NSIndexPath).row]
         
         if self.editMode == true {
-            let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
-            let leaveChannelAction = UIAlertAction(title: "Leave channel", style: UIAlertActionStyle.Default, handler: { (action) in
-                channel.leaveChannelWithCompletionHandler({ (error) in
-                    dispatch_async(dispatch_get_main_queue(), {
-                        if let index = self.channels.indexOf(channel) {
-                            self.channels.removeAtIndex(index)
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
+            let leaveChannelAction = UIAlertAction(title: "Leave channel", style: UIAlertActionStyle.default, handler: { (action) in
+                channel.leave(completionHandler: { (error) in
+                    DispatchQueue.main.async(execute: {
+                        if let index = self.channels.index(of: channel) {
+                            self.channels.remove(at: index)
                         }
                         self.tableView.reloadData()
                     })
                 })
             })
-            let hideChannelAction = UIAlertAction(title: "Hide channel", style: UIAlertActionStyle.Default, handler: { (action) in
-                channel.hideChannelWithCompletionHandler({ (error) in
-                    dispatch_async(dispatch_get_main_queue(), {
-                        if let index = self.channels.indexOf(channel) {
-                            self.channels.removeAtIndex(index)
+            let hideChannelAction = UIAlertAction(title: "Hide channel", style: UIAlertActionStyle.default, handler: { (action) in
+                channel.hide(completionHandler: { (error) in
+                    DispatchQueue.main.async(execute: {
+                        if let index = self.channels.index(of: channel) {
+                            self.channels.remove(at: index)
                         }
                         self.tableView.reloadData()
                     })
@@ -195,17 +195,17 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             alert.addAction(leaveChannelAction)
             alert.addAction(hideChannelAction)
             
-            dispatch_async(dispatch_get_main_queue(), { 
-                self.presentViewController(alert, animated: true, completion: nil)
+            DispatchQueue.main.async(execute: { 
+                self.present(alert, animated: true, completion: nil)
             })
         }
         else {
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            tableView.deselectRow(at: indexPath, animated: false)
             let vc = GroupChannelViewController()
             vc.title = "Group Channel"
             vc.senderId = SBDMain.getCurrentUser()?.userId
             vc.senderDisplayName = SBDMain.getCurrentUser()?.nickname
-            vc.setGroupChannel(self.channels[indexPath.row])
+            vc.setGroupChannel(self.channels[(indexPath as NSIndexPath).row])
             vc.delegate = self
             
             self.navigationController?.pushViewController(vc, animated: true)
@@ -213,18 +213,18 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     // MARK: UITableViewDataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.channels.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let channel = self.channels[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier(GroupChannelListTableViewCell.cellReuseIdentifier()) as! GroupChannelListTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let channel = self.channels[(indexPath as NSIndexPath).row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: GroupChannelListTableViewCell.cellReuseIdentifier()) as! GroupChannelListTableViewCell
         
         cell.setModel(channel)
         
         if self.channels.count > 0 {
-            if indexPath.row == self.channels.count - 1 {
+            if (indexPath as NSIndexPath).row == self.channels.count - 1 {
                 self.loadChannels()
             }
         }
@@ -246,10 +246,10 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     // MARK: SBDBaseChannelDelegate
-    func channel(sender: SBDBaseChannel, didReceiveMessage message: SBDBaseMessage) {
+    func channel(_ sender: SBDBaseChannel, didReceive message: SBDBaseMessage) {
         print("channel(sender: didReceiveMessage user:)")
         
-        if sender.isKindOfClass(SBDGroupChannel) == true {
+        if sender.isKind(of: SBDGroupChannel.self) == true {
             var isNewChannel = true
             (sender as! SBDGroupChannel).lastMessage = message
             for channelInList in self.channels {
@@ -259,28 +259,28 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             }
             
             if isNewChannel == false {
-                if let index = self.channels.indexOf((sender as! SBDGroupChannel)) {
-                    self.channels.removeAtIndex(index)
+                if let index = self.channels.index(of: (sender as! SBDGroupChannel)) {
+                    self.channels.remove(at: index)
                 }
             }
             
-            self.channels.insert((sender as! SBDGroupChannel), atIndex: 0)
+            self.channels.insert((sender as! SBDGroupChannel), at: 0)
             
-            dispatch_async(dispatch_get_main_queue(), { 
+            DispatchQueue.main.async(execute: { 
                 self.tableView.reloadData()
             })
         }
     }
     
-    func channelDidUpdateReadReceipt(sender: SBDGroupChannel) {
+    func channelDidUpdateReadReceipt(_ sender: SBDGroupChannel) {
         
     }
     
-    func channelDidUpdateTypingStatus(sender: SBDGroupChannel) {
+    func channelDidUpdateTypingStatus(_ sender: SBDGroupChannel) {
         
     }
     
-    func channel(sender: SBDGroupChannel, userDidJoin user: SBDUser) {
+    func channel(_ sender: SBDGroupChannel, userDidJoin user: SBDUser) {
         print("channel(sender: userDidJoin user:)")
         var isNewChannel = true
         for channel in self.channels {
@@ -291,50 +291,50 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         }
         
         if isNewChannel == true {
-            self.channels.insert(sender as SBDGroupChannel, atIndex: 0)
-            dispatch_async(dispatch_get_main_queue(), { 
+            self.channels.insert(sender as SBDGroupChannel, at: 0)
+            DispatchQueue.main.async(execute: { 
                 self.tableView.reloadData()
             })
         }
     }
     
-    func channel(sender: SBDGroupChannel, userDidLeave user: SBDUser) {
+    func channel(_ sender: SBDGroupChannel, userDidLeave user: SBDUser) {
         
     }
     
-    func channel(sender: SBDOpenChannel, userDidEnter user: SBDUser) {
+    func channel(_ sender: SBDOpenChannel, userDidEnter user: SBDUser) {
         
     }
     
-    func channel(sender: SBDOpenChannel, userDidExit user: SBDUser) {
+    func channel(_ sender: SBDOpenChannel, userDidExit user: SBDUser) {
         
     }
     
-    func channel(sender: SBDOpenChannel, userWasMuted user: SBDUser) {
+    func channel(_ sender: SBDOpenChannel, userWasMuted user: SBDUser) {
         
     }
     
-    func channel(sender: SBDOpenChannel, userWasUnmuted user: SBDUser) {
+    func channel(_ sender: SBDOpenChannel, userWasUnmuted user: SBDUser) {
         
     }
     
-    func channel(sender: SBDOpenChannel, userWasBanned user: SBDUser) {
+    func channel(_ sender: SBDOpenChannel, userWasBanned user: SBDUser) {
         
     }
     
-    func channel(sender: SBDOpenChannel, userWasUnbanned user: SBDUser) {
+    func channel(_ sender: SBDOpenChannel, userWasUnbanned user: SBDUser) {
         
     }
     
-    func channelWasFrozen(sender: SBDOpenChannel) {
+    func channelWasFrozen(_ sender: SBDOpenChannel) {
         
     }
     
-    func channelWasUnfrozen(sender: SBDOpenChannel) {
+    func channelWasUnfrozen(_ sender: SBDOpenChannel) {
         
     }
     
-    func channelWasChanged(sender: SBDBaseChannel) {
+    func channelWasChanged(_ sender: SBDBaseChannel) {
         print("channelWasChanged(sender:)")
         var channelExist = false
         for channel in self.channels {
@@ -345,32 +345,32 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         }
         
         if channelExist == true {
-            dispatch_async(dispatch_get_main_queue(), { 
+            DispatchQueue.main.async(execute: { 
                 self.tableView.reloadData()
             })
         }
     }
     
-    func channelWasDeleted(channelUrl: String, channelType: SBDChannelType) {
+    func channelWasDeleted(_ channelUrl: String, channelType: SBDChannelType) {
         print("channelWasDeleted(channelUrl:, channelType:)")
         self.refreshChannelList()
     }
     
-    func channel(sender: SBDBaseChannel, messageWasDeleted messageId: Int64) {
+    func channel(_ sender: SBDBaseChannel, messageWasDeleted messageId: Int64) {
         print("channel(sender:, messageWasDeleted messageId:)")
     }
     
     // MARK: GroupChannelViewControllerDelegate
-    func didCloseGroupChannelViewController(vc: UIViewController) {
+    func didCloseGroupChannelViewController(_ vc: UIViewController) {
         self.refreshChannelList()
     }
     
     // MARK: UserListViewControllerDelegate
-    func didCloseUserListViewController(vc: UIViewController, groupChannel: SBDGroupChannel) {
+    func didCloseUserListViewController(_ vc: UIViewController, groupChannel: SBDGroupChannel) {
         print("didCloseUserListViewController(vc:, groupChannel:)")
         self.refreshChannelList()
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * NSEC_PER_USEC)), dispatch_get_main_queue()) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(500 * NSEC_PER_USEC)) / Double(NSEC_PER_SEC)) {
             let gvc = GroupChannelViewController()
             gvc.title = "Group Channel"
             gvc.senderId = SBDMain.getCurrentUser()?.userId
