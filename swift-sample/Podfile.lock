@@ -14,17 +14,17 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - Alamofire (3.5.0)
-  - AlamofireImage (2.5.0):
-    - Alamofire (~> 3.5)
+  - Alamofire (4.0.0)
+  - AlamofireImage (3.0.0):
+    - Alamofire (~> 4.0)
   - JSQMessagesViewController (7.2.0):
     - AFNetworking (~> 3.1.0)
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
-  - SendBirdSDK (3.0.11)
+  - SendBirdSDK (3.0.10)
 
 DEPENDENCIES:
-  - AlamofireImage (~> 2.0)
+  - AlamofireImage (~> 3.0)
   - JSQMessagesViewController (from `https://github.com/smilefam/JSQMessagesViewController.git`)
   - SendBirdSDK
 
@@ -39,12 +39,12 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
-  AlamofireImage: 2d34936e5201270bb17a316a786e90e83b4a249d
+  Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
+  AlamofireImage: 6594aa1139a67dcd36cde6da79ea4e5b318e60fb
   JSQMessagesViewController: 8395490ab8f984d4bb8d4dcd7dcdae2308c16f4c
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  SendBirdSDK: bf1f1288d64166c46f840ca227a485b8f606f336
+  SendBirdSDK: 83f20acb02f662004db5c8729346daa7e089f4d8
 
-PODFILE CHECKSUM: dd3dd3e636197d32ef7d841213ec3581a87417a2
+PODFILE CHECKSUM: a65363625f92cf527662046f8e91176116677af0
 
 COCOAPODS: 1.1.0.rc.2

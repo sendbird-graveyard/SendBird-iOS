@@ -25,28 +25,27 @@ class OpenChannelListTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
     static func nib() -> UINib {
-        return UINib.init(nibName: NSStringFromClass(self).componentsSeparatedByString(".").last!, bundle: NSBundle(forClass: self));
+        return UINib.init(nibName: NSStringFromClass(self).components(separatedBy: ".").last!, bundle: Bundle(for: self));
     }
 
     static func cellReuseIdentifier() -> String {
-        return NSStringFromClass(self).componentsSeparatedByString(".").last!
+        return NSStringFromClass(self).components(separatedBy: ".").last!
     }
     
-    func setModel(aChannel: SBDOpenChannel) {
+    func setModel(_ aChannel: SBDOpenChannel) {
         self.channel = aChannel
-        
-        self.coverImageView.af_setImageWithURL(NSURL.init(string: self.channel!.coverUrl!)!)
+        self.coverImageView.af_setImage(withURL: URL.init(string: self.channel!.coverUrl!)!)
         self.channelNameLabel.text = self.channel!.name
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         self.coverImageView.layer.cornerRadius = 16
         self.coverImageView.clipsToBounds = true
     }

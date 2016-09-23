@@ -13,8 +13,8 @@ class MemberListViewController: UIViewController, UITableViewDelegate, UITableVi
     var channel: SBDGroupChannel?
     
     @IBOutlet weak var tableView: UITableView!
-    private var query: SBDUserListQuery?
-    private var refreshControl: UIRefreshControl?
+    fileprivate var query: SBDUserListQuery?
+    fileprivate var refreshControl: UIRefreshControl?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +23,10 @@ class MemberListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.registerNib(UserListTableViewCell.nib(), forCellReuseIdentifier: UserListTableViewCell.cellReuseIdentifier())
+        self.tableView.register(UserListTableViewCell.nib(), forCellReuseIdentifier: UserListTableViewCell.cellReuseIdentifier())
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl?.addTarget(self, action: #selector(MemberListViewController.refreshMembers), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(MemberListViewController.refreshMembers), for: UIControlEvents.valueChanged)
         self.tableView.addSubview(self.refreshControl!)
         
         self.refreshMembers()
@@ -39,8 +39,8 @@ class MemberListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func refreshMembers() {
         self.refreshControl?.beginRefreshing()
-        self.channel?.refreshWithCompletionHandler({ (error) in
-            dispatch_async(dispatch_get_main_queue(), {
+        self.channel?.refresh(completionHandler: { (error) in
+            DispatchQueue.main.async(execute: {
                 self.refreshControl?.endRefreshing()
                 self.tableView.reloadData()
             })
@@ -48,47 +48,47 @@ class MemberListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // MARK: UITableViewDelegate
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let user = self.channel!.members![indexPath.row] as! SBDUser
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = self.channel!.members![(indexPath as NSIndexPath).row] as! SBDUser
         
         if user.userId == SBDMain.getCurrentUser()!.userId {
             return
         }
         
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
-        let blockUserAction = UIAlertAction(title: "Block user", style: UIAlertActionStyle.Destructive) { (action) in
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
+        let blockUserAction = UIAlertAction(title: "Block user", style: UIAlertActionStyle.destructive) { (action) in
             SBDMain.blockUser(user, completionHandler: { (blockedUser, error) in
                 if error != nil {
-                    let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
-                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                    let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.alert)
+                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
                     alert.addAction(closeAction)
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.presentViewController(alert, animated: true, completion: nil)
+                    DispatchQueue.main.async(execute: {
+                        self.present(alert, animated: true, completion: nil)
                     })
                 }
                 else {
-                    let alert = UIAlertController(title: "User Blocked", message: String(format: "%@ is blocked", blockedUser!.nickname!), preferredStyle: UIAlertControllerStyle.Alert)
-                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                    let alert = UIAlertController(title: "User Blocked", message: String(format: "%@ is blocked", blockedUser!.nickname!), preferredStyle: UIAlertControllerStyle.alert)
+                    let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
                     alert.addAction(closeAction)
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.presentViewController(alert, animated: true, completion: nil)
+                    DispatchQueue.main.async(execute: {
+                        self.present(alert, animated: true, completion: nil)
                     })
                 }
             })
@@ -97,17 +97,17 @@ class MemberListViewController: UIViewController, UITableViewDelegate, UITableVi
         alert.addAction(closeAction)
         alert.addAction(blockUserAction)
         
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: UITableViewDataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.channel!.members!.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let user = self.channel!.members![indexPath.row] as! SBDUser
-        let cell = tableView.dequeueReusableCellWithIdentifier(UserListTableViewCell.cellReuseIdentifier()) as! UserListTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let user = self.channel!.members![(indexPath as NSIndexPath).row] as! SBDUser
+        let cell = tableView.dequeueReusableCell(withIdentifier: UserListTableViewCell.cellReuseIdentifier()) as! UserListTableViewCell
         
         cell.setModel(user)
         cell.setOnlineStatusVisiblility(true)

@@ -8,6 +8,26 @@
 
 import UIKit
 import SendBirdSDK
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
@@ -21,17 +41,17 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
         super.viewDidLoad()
         
         self.title = "Open Channels"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: #selector(OpenChannelListViewController.createOpenChannel))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(OpenChannelListViewController.createOpenChannel))
         
         self.loadingActivityIndicator.hidesWhenStopped = true;
         self.loadingActivityIndicator.stopAnimating()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.registerNib(OpenChannelListTableViewCell.nib(), forCellReuseIdentifier: OpenChannelListTableViewCell.cellReuseIdentifier())
+        self.tableView.register(OpenChannelListTableViewCell.nib(), forCellReuseIdentifier: OpenChannelListTableViewCell.cellReuseIdentifier())
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl?.addTarget(self, action: #selector(OpenChannelListViewController.refreshChannelList), forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(OpenChannelListViewController.refreshChannelList), for: UIControlEvents.valueChanged)
         self.tableView.addSubview(self.refreshControl!)
         
         self.channelListQuery = SBDOpenChannel.createOpenChannelListQuery()
@@ -40,33 +60,33 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
     }
 
     func createOpenChannel() {
-        let alert = UIAlertController(title: "Create Open Channel", message: "Create open channel with name.", preferredStyle: UIAlertControllerStyle.Alert)
-        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel) { (action) in
+        let alert = UIAlertController(title: "Create Open Channel", message: "Create open channel with name.", preferredStyle: UIAlertControllerStyle.alert)
+        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel) { (action) in
             
         }
-        let createAction = UIAlertAction(title: "Create", style: UIAlertActionStyle.Default) { (action) in
+        let createAction = UIAlertAction(title: "Create", style: UIAlertActionStyle.default) { (action) in
             let nameTextField = alert.textFields![0]
             
             if nameTextField.text?.characters.count > 0 {
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.loadingActivityIndicator.hidden = false
+                DispatchQueue.main.async(execute: {
+                    self.loadingActivityIndicator.isHidden = false
                     self.loadingActivityIndicator.startAnimating()
                 })
                 
-                SBDOpenChannel.createChannelWithName(nameTextField.text, coverUrl: nil, data: nil, operatorUsers: [SBDMain.getCurrentUser()!], completionHandler: { (channel, error) in
+                SBDOpenChannel.createChannel(withName: nameTextField.text, coverUrl: nil, data: nil, operatorUsers: [SBDMain.getCurrentUser()!], completionHandler: { (channel, error) in
                     if error != nil {
-                        let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.Alert)
-                        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: nil)
+                        let alert = UIAlertController(title: "Error", message: String(format: "%lld: %@", error!.code, (error?.domain)!), preferredStyle: UIAlertControllerStyle.alert)
+                        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
                         alert.addAction(closeAction)
-                        dispatch_async(dispatch_get_main_queue(), {
-                            self.presentViewController(alert, animated: true, completion: nil)
+                        DispatchQueue.main.async(execute: {
+                            self.present(alert, animated: true, completion: nil)
                             self.loadingActivityIndicator.stopAnimating()
                         })
 
                         return
                     }
                     
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         self.channels.removeAll()
                         self.channelListQuery = SBDOpenChannel.createOpenChannelListQuery()
                         self.loadChannels()
@@ -76,15 +96,15 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
             }
         }
         
-        alert.addTextFieldWithConfigurationHandler { (textField) in
+        alert.addTextField { (textField) in
             textField.placeholder = "Enter a channel name."
         }
         
         alert.addAction(closeAction)
         alert.addAction(createAction)
         
-        dispatch_async(dispatch_get_main_queue(), {
-            self.presentViewController(alert, animated: true, completion: nil)
+        DispatchQueue.main.async(execute: {
+            self.present(alert, animated: true, completion: nil)
         })
     }
     
@@ -109,10 +129,10 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
             return
         }
         
-        self.channelListQuery?.loadNextPageWithCompletionHandler({ (channels, error) in
+        self.channelListQuery?.loadNextPage(completionHandler: { (channels, error) in
             if error != nil {
                 print("Channel list loading error: %@", error)
-                if self.refreshControl?.refreshing == true {
+                if self.refreshControl?.isRefreshing == true {
                     self.refreshControl?.endRefreshing()
                 }
                 
@@ -127,9 +147,9 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
                 self.channels.append(channel)
             }
             
-            dispatch_async(dispatch_get_main_queue(), { 
+            DispatchQueue.main.async(execute: { 
                 self.tableView.reloadData()
-                if self.refreshControl?.refreshing == true {
+                if self.refreshControl?.isRefreshing == true {
                     self.refreshControl?.endRefreshing()
                 }
             })
@@ -137,45 +157,45 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     // MARK: UITableViewDelegate
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 48
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
         let vc = OpenChannelViewController()
-        vc.title = self.channels[indexPath.row].name
+        vc.title = self.channels[(indexPath as NSIndexPath).row].name
         vc.senderId = SBDMain.getCurrentUser()?.userId
         vc.senderDisplayName = SBDMain.getCurrentUser()?.nickname
-        vc.channel = self.channels[indexPath.row]
+        vc.channel = self.channels[(indexPath as NSIndexPath).row]
         
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: UITableViewDataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.channels.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let channel = self.channels[indexPath.row]
-        let cell: OpenChannelListTableViewCell = (tableView.dequeueReusableCellWithIdentifier(OpenChannelListTableViewCell.cellReuseIdentifier()) as? OpenChannelListTableViewCell)!
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let channel = self.channels[(indexPath as NSIndexPath).row]
+        let cell: OpenChannelListTableViewCell = (tableView.dequeueReusableCell(withIdentifier: OpenChannelListTableViewCell.cellReuseIdentifier()) as? OpenChannelListTableViewCell)!
         cell.setModel(channel)
         
         if self.channels.count > 0 {
-            if indexPath.row == self.channels.count - 1 {
+            if (indexPath as NSIndexPath).row == self.channels.count - 1 {
                 self.loadChannels()
             }
         }
