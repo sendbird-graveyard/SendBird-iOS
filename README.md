@@ -11,9 +11,11 @@ among your users.
 2. Open the project.
 3. Build and run it.
 
-## Support Swift 2.3 and Swift 3
+## Swift support
 
-The sample which supports Swift 2.3 and Swift 3 can be downloaded from `swift-2.3` and `swift-3` branches.
+1. Swift 2.2 -> `master` branch
+2. Swift 2.3 -> `swift-2.3` branch
+3. Swift 3.0 -> `swift-3` branch
 
 ## Access to Version 2
 
