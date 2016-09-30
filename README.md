@@ -13,9 +13,8 @@ among your users.
 
 ## Swift support
 
-1. Swift 2.2 -> `master` branch
-2. Swift 2.3 -> `swift-2.3` branch
-3. Swift 3.0 -> `swift-3` branch
+* Swift 2.3 -> `swift-2.3-sample` directory in `master` branch
+* Swift 3 -> `swift-3-sample` directory in `master` branch
 
 ## Access to Version 2
 
