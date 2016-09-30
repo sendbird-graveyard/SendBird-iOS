@@ -809,7 +809,7 @@
                 imageType = @"image/jpg";
                 imageFileData = UIImageJPEGRepresentation(newImage, 1.0);
             }
-            
+            NSLog(@"[812] Thread: %d", [NSThread isMainThread]);
             [strongSelf.channel sendFileMessageWithBinaryData:imageFileData filename:imageName type:imageType size:imageFileData.length data:@"" completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
                 if (error != nil) {
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:[NSString stringWithFormat:@"%ld: %@", error.code, error.domain] preferredStyle:UIAlertControllerStyleAlert];
@@ -854,9 +854,11 @@
                     JSQSBMessage *jsqsbmsg = [[JSQSBMessage alloc] initWithSenderId:senderId senderDisplayName:senderName date:msgDate media:photoItem];
                     
                     [strongSelf.messages addObject:jsqsbmsg];
-                    
+                    NSLog(@"[857] Thread: %d", [NSThread isMainThread]);
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(500 * NSEC_PER_USEC)), dispatch_get_main_queue(), ^{
+                        NSLog(@"[859] Thread: %d", [NSThread isMainThread]);
                         dispatch_async(dispatch_get_main_queue(), ^{
+                            NSLog(@"[861] Thread: %d", [NSThread isMainThread]);
                             [strongSelf.collectionView reloadData];
                             [strongSelf scrollToBottomAnimated:NO];
                         });
@@ -925,7 +927,7 @@
                     JSQSBMessage *jsqsbmsg = [[JSQSBMessage alloc] initWithSenderId:senderId senderDisplayName:senderName date:msgDate media:videoItem];
                     
                     [strongSelf.messages addObject:jsqsbmsg];
-                    
+
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(500 * NSEC_PER_USEC)), dispatch_get_main_queue(), ^{
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [strongSelf.collectionView reloadData];

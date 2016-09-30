@@ -105,7 +105,7 @@ OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			<key>FooterText</key>
 			<string>#SendBird SDK LICENSE
 
-This is an agreement between You ("You") and Smile Family, Inc., the developer of SendBird, located at 44 Tehama Street, San Francisco, CA 94105, ("SendBird") regarding Your use of the SendBird SDK and any associated documentation or other materials made available by SendBird (collectively the "SDK"). This agreement applies to any updates or supplements for the SDK, unless other terms accompany those items. If so, those other terms apply.
+This is an agreement between You ("You") and SendBird DBA (Smile Family, Inc.), the developer of SendBird, located at 541 Jefferson Ave. Suite 100 Redwood City, CA 94063, ("SendBird") regarding Your use of the SendBird SDK and any associated documentation or other materials made available by SendBird (collectively the "SDK"). This agreement applies to any updates or supplements for the SDK, unless other terms accompany those items. If so, those other terms apply.
 
 By installing, accessing or otherwise using the SDK, You accept the terms of this agreement. If You do not agree to the terms of this agreement, do not install, access or use the SDK.
 
@@ -115,7 +115,7 @@ If You comply with this agreement, You have the rights below.
 
 (2) SCOPE OF LICENSE. The SDK is licensed, not sold. This agreement only gives You some rights to use the SDK. SendBird specifically does not grant any express or implied rights under its patents with respect to your Authorized Applications. In doing so, You must comply with any technical limitations in the SDK that only allow You to use it in certain ways. You may not: (a) reverse engineer, decompile, distribute or disassemble the SDK, except and only to the extent that applicable law expressly permits; or (b) make more copies of the SDK than specified in this agreement, except and only to the extent applicable law expressly permits; or (c) publish the SDK for others to copy; or (d) rent, lease or lend the SDK.
 
-(3) USE OF THE SERVICES. Your use of the Services, and the use of the Services by anyone hosting or using your Authorized Application, is governed by the then-current Terms of Services (&#8220;TOS&#8221;) which can be found at: http://sendbird.com/web/terms.
+(3) USE OF THE SERVICES. Your use of the Services, and the use of the Services by anyone hosting or using your Authorized Application, is governed by the then-current Terms of Services (&#8220;TOS&#8221;) which can be found at: https://sendbird.com/terms.
 
 (4) EXPORT RESTRICTIONS. THE SDK IS SUBJECT TO UNITED STATES EXPORT LAWS AND REGULATIONS. YOU MUST COMPLY WITH ALL DOMESTIC AND INTERNATIONAL EXPORT LAWS AND REGULATIONS THAT APPLY TO THE SDK.
 
