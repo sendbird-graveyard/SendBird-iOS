@@ -31,7 +31,7 @@
 /**
  *  Sender of the <span>message</span>. This is represented by `SBDUser` class.
  */
-@property (strong, nonatomic, readonly, nullable) SBDUser *sender;
+@property (strong, nonatomic, nullable) SBDUser *sender;
 
 /**
  *  Request ID for checking ACK.

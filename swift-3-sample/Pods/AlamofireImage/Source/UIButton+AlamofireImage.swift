@@ -24,6 +24,9 @@
 
 import Alamofire
 import Foundation
+
+#if os(iOS) || os(tvOS)
+
 import UIKit
 
 extension UIButton {
@@ -112,6 +115,8 @@ extension UIButton {
     /// - parameter placeholderImage: The image to be set initially until the image request finished. If `nil`, the
     ///                               image will not change its image until the image request finishes. Defaults
     ///                               to `nil`.
+    /// - parameter filter:           The image filter applied to the image after the image request is finished.
+    ///                               Defaults to `nil`.
     /// - parameter progress:         The closure to be executed periodically during the lifecycle of the request.
     ///                               Defaults to `nil`.
     /// - parameter progressQueue:    The dispatch queue to call the progress closure on. Defaults to the main queue.
@@ -122,7 +127,8 @@ extension UIButton {
     public func af_setImage(
         for state: UIControlState,
         url: URL,
-        placeHolderImage: UIImage? = nil,
+        placeholderImage: UIImage? = nil,
+        filter: ImageFilter? = nil,
         progress: ImageDownloader.ProgressHandler? = nil,
         progressQueue: DispatchQueue = DispatchQueue.main,
         completion: ((DataResponse<UIImage>) -> Void)? = nil)
@@ -130,7 +136,8 @@ extension UIButton {
         af_setImage(
             for: state,
             urlRequest: urlRequest(with: url),
-            placeholderImage: placeHolderImage,
+            placeholderImage: placeholderImage,
+            filter: filter,
             progress: progress,
             progressQueue: progressQueue,
             completion: completion
@@ -147,6 +154,8 @@ extension UIButton {
     /// - parameter placeholderImage: The image to be set initially until the image request finished. If `nil`, the
     ///                               image will not change its image until the image request finishes. Defaults
     ///                               to `nil`.
+    /// - parameter filter:           The image filter applied to the image after the image request is finished.
+    ///                               Defaults to `nil`.
     /// - parameter progress:         The closure to be executed periodically during the lifecycle of the request.
     ///                               Defaults to `nil`.
     /// - parameter progressQueue:    The dispatch queue to call the progress closure on. Defaults to the main queue.
@@ -158,6 +167,7 @@ extension UIButton {
         for state: UIControlState,
         urlRequest: URLRequestConvertible,
         placeholderImage: UIImage? = nil,
+        filter: ImageFilter? = nil,
         progress: ImageDownloader.ProgressHandler? = nil,
         progressQueue: DispatchQueue = DispatchQueue.main,
         completion: ((DataResponse<UIImage>) -> Void)? = nil)
@@ -172,7 +182,7 @@ extension UIButton {
         // Use the image from the image cache if it exists
         if
             let request = urlRequest.urlRequest,
-            let image = imageCache?.image(for: request, withIdentifier: nil)
+            let image = imageCache?.image(for: request, withIdentifier: filter?.identifier)
         {
             let response = DataResponse<UIImage>(
                 request: urlRequest.urlRequest,
@@ -197,7 +207,7 @@ extension UIButton {
         let requestReceipt = imageDownloader.download(
             urlRequest,
             receiptID: downloadID,
-            filter: nil,
+            filter: filter,
             progress: progress,
             progressQueue: progressQueue,
             completion: { [weak self] response in
@@ -245,6 +255,8 @@ extension UIButton {
     /// - parameter placeholderImage: The image to be set initially until the image request finished. If `nil`, the
     ///                               background image will not change its image until the image request finishes.
     ///                               Defaults to `nil`.
+    /// - parameter filter:           The image filter applied to the image after the image request is finished.
+    ///                               Defaults to `nil`.
     /// - parameter progress:         The closure to be executed periodically during the lifecycle of the request.
     ///                               Defaults to `nil`.
     /// - parameter progressQueue:    The dispatch queue to call the progress closure on. Defaults to the main queue.
@@ -255,7 +267,8 @@ extension UIButton {
     public func af_setBackgroundImage(
         for state: UIControlState,
         url: URL,
-        placeHolderImage: UIImage? = nil,
+        placeholderImage: UIImage? = nil,
+        filter: ImageFilter? = nil,
         progress: ImageDownloader.ProgressHandler? = nil,
         progressQueue: DispatchQueue = DispatchQueue.main,
         completion: ((DataResponse<UIImage>) -> Void)? = nil)
@@ -263,8 +276,12 @@ extension UIButton {
         af_setBackgroundImage(
             for: state,
             urlRequest: urlRequest(with: url),
-            placeholderImage: placeHolderImage,
-            completion: completion)
+            placeholderImage: placeholderImage,
+            filter: filter,
+            progress: progress,
+            progressQueue: progressQueue,
+            completion: completion
+        )
     }
 
     /// Asynchronously downloads an image from the specified URL request and sets it once the request is finished.
@@ -277,6 +294,8 @@ extension UIButton {
     /// - parameter placeholderImage: The image to be set initially until the image request finished. If `nil`, the
     ///                               background image will not change its image until the image request finishes.
     ///                               Defaults to `nil`.
+    /// - parameter filter:           The image filter applied to the image after the image request is finished.
+    ///                               Defaults to `nil`.
     /// - parameter progress:         The closure to be executed periodically during the lifecycle of the request.
     ///                               Defaults to `nil`.
     /// - parameter progressQueue:    The dispatch queue to call the progress closure on. Defaults to the main queue.
@@ -288,6 +307,7 @@ extension UIButton {
         for state: UIControlState,
         urlRequest: URLRequestConvertible,
         placeholderImage: UIImage? = nil,
+        filter: ImageFilter? = nil,
         progress: ImageDownloader.ProgressHandler? = nil,
         progressQueue: DispatchQueue = DispatchQueue.main,
         completion: ((DataResponse<UIImage>) -> Void)? = nil)
@@ -302,7 +322,7 @@ extension UIButton {
         // Use the image from the image cache if it exists
         if
             let request = urlRequest.urlRequest,
-            let image = imageCache?.image(for: request, withIdentifier: nil)
+            let image = imageCache?.image(for: request, withIdentifier: filter?.identifier)
         {
             let response = DataResponse<UIImage>(
                 request: urlRequest.urlRequest,
@@ -435,3 +455,5 @@ extension UIButton {
         return urlRequest
     }
 }
+
+#endif
