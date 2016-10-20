@@ -1,0 +1,9 @@
+
+/* Class = "UIButton"; normalTitle = "Distinct"; ObjectID = "dN4-4h-87Q"; */
+"dN4-4h-87Q.normalTitle" = "기존 채널 활용";
+
+/* Class = "UIButton"; normalTitle = "Non-Distinct"; ObjectID = "sQ2-0L-IX8"; */
+"sQ2-0L-IX8.normalTitle" = "새로운 채널 생성";
+
+/* Class = "UINavigationItem"; title = "Channel Option"; ObjectID = "tXa-dA-abb"; */
+"tXa-dA-abb.title" = "채널 옵션";

@@ -1,0 +1,9 @@
+
+/* Class = "UITextField"; placeholder = "Channel Name"; ObjectID = "C2H-VI-ctA"; */
+"C2H-VI-ctA.placeholder" = "채널 이름";
+
+/* Class = "UINavigationItem"; title = "Create Open Channel"; ObjectID = "DcE-bQ-qxa"; */
+"DcE-bQ-qxa.title" = "오픈 채널 생성";
+
+/* Class = "UILabel"; text = "Channel Name"; ObjectID = "aGV-lS-x26"; */
+"aGV-lS-x26.text" = "채널 이름";

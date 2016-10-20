@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "Someone is typing..."; ObjectID = "3eZ-2g-Kxz"; */
+"3eZ-2g-Kxz.text" = "Someone is typing...";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "739-8j-LpV"; */
+"739-8j-LpV.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Your message"; ObjectID = "KKN-hB-YYf"; */
+"KKN-hB-YYf.text" = "메시지를 입력하세요.";
+
+/* Class = "UIButton"; normalTitle = "SEND"; ObjectID = "aUi-Lc-77V"; */
+"aUi-Lc-77V.normalTitle" = "전송";

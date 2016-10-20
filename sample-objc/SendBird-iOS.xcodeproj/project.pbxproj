@@ -1,0 +1,924 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5AB0CC2A1D8F840400F05EC1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB0CC291D8F840400F05EC1 /* main.m */; };
+		5AB0CC2D1D8F840400F05EC1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB0CC2C1D8F840400F05EC1 /* AppDelegate.m */; };
+		5AB0CC301D8F840400F05EC1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB0CC2F1D8F840400F05EC1 /* ViewController.m */; };
+		5AB0CC331D8F840400F05EC1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AB0CC311D8F840400F05EC1 /* Main.storyboard */; };
+		5AB0CC351D8F840400F05EC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AB0CC341D8F840400F05EC1 /* Assets.xcassets */; };
+		5AB0CC381D8F840400F05EC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AB0CC361D8F840400F05EC1 /* LaunchScreen.storyboard */; };
+		5AC3A06C1D9781A300244336 /* IncomingFileMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3A06A1D9781A300244336 /* IncomingFileMessageTableViewCell.m */; };
+		5AC3A06D1D9781A300244336 /* IncomingFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AC3A06B1D9781A300244336 /* IncomingFileMessageTableViewCell.xib */; };
+		5AC3A0711D97975B00244336 /* OutgoingImageFileMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3A06F1D97975B00244336 /* OutgoingImageFileMessageTableViewCell.m */; };
+		5AC3A0721D97975B00244336 /* OutgoingImageFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AC3A0701D97975B00244336 /* OutgoingImageFileMessageTableViewCell.xib */; };
+		5AC3A0761D97A85000244336 /* OutgoingFileMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3A0741D97A85000244336 /* OutgoingFileMessageTableViewCell.m */; };
+		5AC3A0771D97A85000244336 /* OutgoingFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AC3A0751D97A85000244336 /* OutgoingFileMessageTableViewCell.xib */; };
+		5AC3A07B1D97B66E00244336 /* IncomingImageFileMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3A0791D97B66E00244336 /* IncomingImageFileMessageTableViewCell.m */; };
+		5AC3A07C1D97B66E00244336 /* IncomingImageFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AC3A07A1D97B66E00244336 /* IncomingImageFileMessageTableViewCell.xib */; };
+		5AC3A0801D97BEF100244336 /* CreateGroupChannelSelectOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3A07E1D97BEF100244336 /* CreateGroupChannelSelectOptionViewController.m */; };
+		5AC3A0851D99DA3800244336 /* GroupChannelChattingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3A0831D99DA3800244336 /* GroupChannelChattingViewController.m */; };
+		5AC3A0861D99DA3800244336 /* GroupChannelChattingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AC3A0841D99DA3800244336 /* GroupChannelChattingViewController.xib */; };
+		5AD94BE21DB4A8C900A6CD66 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD94BE11DB4A8C900A6CD66 /* Constants.m */; };
+		5AD94BEB1DB5BCEE00A6CD66 /* NSBundle+SendBird.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD94BEA1DB5BCEE00A6CD66 /* NSBundle+SendBird.m */; };
+		5AD94BEC1DB5BDB300A6CD66 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD94BEE1DB5BDB300A6CD66 /* MenuViewController.xib */; };
+		5AD94BF91DB5C4ED00A6CD66 /* SendBird-iOS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5AD94BF81DB5C4ED00A6CD66 /* SendBird-iOS.bundle */; };
+		5AD94BFA1DB5D38600A6CD66 /* GroupChannelListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD94BFC1DB5D38600A6CD66 /* GroupChannelListViewController.xib */; };
+		5AD94BFF1DB5D51400A6CD66 /* MemberListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD94C011DB5D51400A6CD66 /* MemberListViewController.xib */; };
+		5AD94C041DB5D54500A6CD66 /* CreateGroupChannelSelectOptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD94C061DB5D54500A6CD66 /* CreateGroupChannelSelectOptionViewController.xib */; };
+		5AD94C091DB5D57D00A6CD66 /* CreateGroupChannelUserListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD94C0B1DB5D57D00A6CD66 /* CreateGroupChannelUserListViewController.xib */; };
+		5AD94C0E1DB5E97100A6CD66 /* BlockedUserListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD94C101DB5E97100A6CD66 /* BlockedUserListViewController.xib */; };
+		5AD94C131DB5EB2A00A6CD66 /* CreateOpenChannelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD94C151DB5EB2A00A6CD66 /* CreateOpenChannelViewController.xib */; };
+		5AD94C181DB5F2FE00A6CD66 /* ParticipantListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD94C1A1DB5F2FE00A6CD66 /* ParticipantListViewController.xib */; };
+		5AD94C1D1DB5F3A000A6CD66 /* OpenChannelListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD94C1F1DB5F3A000A6CD66 /* OpenChannelListViewController.xib */; };
+		5AD94C221DB5F5A900A6CD66 /* ChattingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD94C241DB5F5A900A6CD66 /* ChattingView.xib */; };
+		5ADA68D01D92032600EFDF2B /* SelectedUserListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA68CE1D92032600EFDF2B /* SelectedUserListCollectionViewCell.m */; };
+		5ADA68D11D92032600EFDF2B /* SelectedUserListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADA68CF1D92032600EFDF2B /* SelectedUserListCollectionViewCell.xib */; };
+		5ADA68D51D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA68D31D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.m */; };
+		5ADA68D61D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADA68D41D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.xib */; };
+		5ADA68DC1D92573C00EFDF2B /* IncomingUserMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA68DA1D92573C00EFDF2B /* IncomingUserMessageTableViewCell.m */; };
+		5ADA68DD1D92573C00EFDF2B /* IncomingUserMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADA68DB1D92573C00EFDF2B /* IncomingUserMessageTableViewCell.xib */; };
+		5ADA68E01D92576A00EFDF2B /* ChattingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA68DF1D92576A00EFDF2B /* ChattingView.m */; };
+		5ADA68E61D925BE300EFDF2B /* OpenChannelChattingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA68E41D925BE300EFDF2B /* OpenChannelChattingViewController.m */; };
+		5ADA68E71D925BE300EFDF2B /* OpenChannelChattingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADA68E51D925BE300EFDF2B /* OpenChannelChattingViewController.xib */; };
+		5ADA68EB1D9284BD00EFDF2B /* ReusableViewFromXib.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA68EA1D9284BD00EFDF2B /* ReusableViewFromXib.m */; };
+		5ADA68EF1D928E0F00EFDF2B /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA68EE1D928E0F00EFDF2B /* Utils.m */; };
+		5ADA69111D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA690F1D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.m */; };
+		5ADA69121D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADA69101D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.xib */; };
+		5ADA69161D93CFAE00EFDF2B /* NeutralMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ADA69141D93CFAE00EFDF2B /* NeutralMessageTableViewCell.m */; };
+		5ADA69171D93CFAE00EFDF2B /* NeutralMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ADA69151D93CFAE00EFDF2B /* NeutralMessageTableViewCell.xib */; };
+		5AF199121DA3A1FB00BF2DE0 /* MemberListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF199101DA3A1FB00BF2DE0 /* MemberListTableViewCell.m */; };
+		5AF199131DA3A1FB00BF2DE0 /* MemberListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF199111DA3A1FB00BF2DE0 /* MemberListTableViewCell.xib */; };
+		5AF199171DA3A50000BF2DE0 /* MemberListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF199151DA3A50000BF2DE0 /* MemberListViewController.m */; };
+		5AF1991C1DA3B2B200BF2DE0 /* ParticipantListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF1991A1DA3B2B200BF2DE0 /* ParticipantListViewController.m */; };
+		5AF199211DA3B4E900BF2DE0 /* ParticipantListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF1991F1DA3B4E900BF2DE0 /* ParticipantListTableViewCell.m */; };
+		5AF199221DA3B4E900BF2DE0 /* ParticipantListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF199201DA3B4E900BF2DE0 /* ParticipantListTableViewCell.xib */; };
+		5AF199261DA3CCE000BF2DE0 /* BlockedUserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF199241DA3CCE000BF2DE0 /* BlockedUserListTableViewCell.m */; };
+		5AF199271DA3CCE000BF2DE0 /* BlockedUserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF199251DA3CCE000BF2DE0 /* BlockedUserListTableViewCell.xib */; };
+		5AF1992B1DA3CE4500BF2DE0 /* BlockedUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF199291DA3CE4500BF2DE0 /* BlockedUserListViewController.m */; };
+		5AF8AC591D8FE121000F0578 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC571D8FE121000F0578 /* MenuViewController.m */; };
+		5AF8AC5F1D90D4E2000F0578 /* OpenChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC5D1D90D4E2000F0578 /* OpenChannelListViewController.m */; };
+		5AF8AC651D90D95E000F0578 /* OpenChannelListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC631D90D95E000F0578 /* OpenChannelListTableViewCell.m */; };
+		5AF8AC661D90D95E000F0578 /* OpenChannelListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF8AC641D90D95E000F0578 /* OpenChannelListTableViewCell.xib */; };
+		5AF8AC6A1D911045000F0578 /* CreateOpenChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC681D911045000F0578 /* CreateOpenChannelViewController.m */; };
+		5AF8AC711D911B85000F0578 /* GroupChannelListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC6F1D911B85000F0578 /* GroupChannelListTableViewCell.m */; };
+		5AF8AC721D911B85000F0578 /* GroupChannelListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF8AC701D911B85000F0578 /* GroupChannelListTableViewCell.xib */; };
+		5AF8AC761D9131BD000F0578 /* GroupChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC741D9131BD000F0578 /* GroupChannelListViewController.m */; };
+		5AF8AC7B1D913D91000F0578 /* GroupChannelListEditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC791D913D91000F0578 /* GroupChannelListEditableTableViewCell.m */; };
+		5AF8AC7C1D913D91000F0578 /* GroupChannelListEditableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF8AC7A1D913D91000F0578 /* GroupChannelListEditableTableViewCell.xib */; };
+		5AF8AC891D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC871D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m */; };
+		A70556D294A247DB1E790AF6 /* libPods-SendBird-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F7440614FBAB0CE15886868 /* libPods-SendBird-iOS.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5AF8AC851D915D27000F0578 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		095040316A653E09BB5B08B5 /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		0F7440614FBAB0CE15886868 /* libPods-SendBird-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SendBird-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1364F5B22175AB53DD65C48E /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		3F68010AC569401C3F0FAD95 /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		5AB0CC251D8F840400F05EC1 /* SendBird-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SendBird-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AB0CC291D8F840400F05EC1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5AB0CC2B1D8F840400F05EC1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5AB0CC2C1D8F840400F05EC1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5AB0CC2E1D8F840400F05EC1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		5AB0CC2F1D8F840400F05EC1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5AB0CC321D8F840400F05EC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5AB0CC341D8F840400F05EC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5AB0CC371D8F840400F05EC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5AB0CC391D8F840400F05EC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5AC3A0691D9781A300244336 /* IncomingFileMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomingFileMessageTableViewCell.h; sourceTree = "<group>"; };
+		5AC3A06A1D9781A300244336 /* IncomingFileMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomingFileMessageTableViewCell.m; sourceTree = "<group>"; };
+		5AC3A06B1D9781A300244336 /* IncomingFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		5AC3A06E1D97975B00244336 /* OutgoingImageFileMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingImageFileMessageTableViewCell.h; sourceTree = "<group>"; };
+		5AC3A06F1D97975B00244336 /* OutgoingImageFileMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutgoingImageFileMessageTableViewCell.m; sourceTree = "<group>"; };
+		5AC3A0701D97975B00244336 /* OutgoingImageFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingImageFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		5AC3A0731D97A85000244336 /* OutgoingFileMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingFileMessageTableViewCell.h; sourceTree = "<group>"; };
+		5AC3A0741D97A85000244336 /* OutgoingFileMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutgoingFileMessageTableViewCell.m; sourceTree = "<group>"; };
+		5AC3A0751D97A85000244336 /* OutgoingFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		5AC3A0781D97B66E00244336 /* IncomingImageFileMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomingImageFileMessageTableViewCell.h; sourceTree = "<group>"; };
+		5AC3A0791D97B66E00244336 /* IncomingImageFileMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomingImageFileMessageTableViewCell.m; sourceTree = "<group>"; };
+		5AC3A07A1D97B66E00244336 /* IncomingImageFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingImageFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		5AC3A07D1D97BEF100244336 /* CreateGroupChannelSelectOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupChannelSelectOptionViewController.h; sourceTree = "<group>"; };
+		5AC3A07E1D97BEF100244336 /* CreateGroupChannelSelectOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupChannelSelectOptionViewController.m; sourceTree = "<group>"; };
+		5AC3A0821D99DA3800244336 /* GroupChannelChattingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChannelChattingViewController.h; sourceTree = "<group>"; };
+		5AC3A0831D99DA3800244336 /* GroupChannelChattingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChannelChattingViewController.m; sourceTree = "<group>"; };
+		5AC3A0841D99DA3800244336 /* GroupChannelChattingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupChannelChattingViewController.xib; sourceTree = "<group>"; };
+		5AC3A0871D9B688600244336 /* SendBird-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SendBird-iOS.entitlements"; sourceTree = "<group>"; };
+		5AD94BE01DB4A8C800A6CD66 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		5AD94BE11DB4A8C900A6CD66 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		5AD94BE91DB5BCEE00A6CD66 /* NSBundle+SendBird.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+SendBird.h"; sourceTree = "<group>"; };
+		5AD94BEA1DB5BCEE00A6CD66 /* NSBundle+SendBird.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+SendBird.m"; sourceTree = "<group>"; };
+		5AD94BED1DB5BDB300A6CD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MenuViewController.xib; sourceTree = "<group>"; };
+		5AD94BF31DB5C04A00A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ko; path = ko.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5AD94BF41DB5C08700A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		5AD94BF51DB5C09C00A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MenuViewController.strings; sourceTree = "<group>"; };
+		5AD94BF81DB5C4ED00A6CD66 /* SendBird-iOS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "SendBird-iOS.bundle"; sourceTree = "<group>"; };
+		5AD94BFD1DB5D38F00A6CD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GroupChannelListViewController.xib; sourceTree = "<group>"; };
+		5AD94BFE1DB5D39600A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/GroupChannelListViewController.strings; sourceTree = "<group>"; };
+		5AD94C021DB5D51800A6CD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MemberListViewController.xib; sourceTree = "<group>"; };
+		5AD94C031DB5D51C00A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MemberListViewController.strings; sourceTree = "<group>"; };
+		5AD94C051DB5D54500A6CD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CreateGroupChannelSelectOptionViewController.xib; sourceTree = "<group>"; };
+		5AD94C081DB5D54A00A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CreateGroupChannelSelectOptionViewController.strings; sourceTree = "<group>"; };
+		5AD94C0A1DB5D57D00A6CD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CreateGroupChannelUserListViewController.xib; sourceTree = "<group>"; };
+		5AD94C0D1DB5D58000A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CreateGroupChannelUserListViewController.strings; sourceTree = "<group>"; };
+		5AD94C0F1DB5E97100A6CD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BlockedUserListViewController.xib; sourceTree = "<group>"; };
+		5AD94C121DB5E97300A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/BlockedUserListViewController.strings; sourceTree = "<group>"; };
+		5AD94C141DB5EB2A00A6CD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CreateOpenChannelViewController.xib; sourceTree = "<group>"; };
+		5AD94C171DB5EB2D00A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CreateOpenChannelViewController.strings; sourceTree = "<group>"; };
+		5AD94C191DB5F2FE00A6CD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ParticipantListViewController.xib; sourceTree = "<group>"; };
+		5AD94C1C1DB5F30000A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ParticipantListViewController.strings; sourceTree = "<group>"; };
+		5AD94C1E1DB5F3A000A6CD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OpenChannelListViewController.xib; sourceTree = "<group>"; };
+		5AD94C211DB5F3A200A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/OpenChannelListViewController.strings; sourceTree = "<group>"; };
+		5AD94C231DB5F5A900A6CD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ChattingView.xib; sourceTree = "<group>"; };
+		5AD94C261DB5F5AB00A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ChattingView.strings; sourceTree = "<group>"; };
+		5ADA68CD1D92032600EFDF2B /* SelectedUserListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedUserListCollectionViewCell.h; sourceTree = "<group>"; };
+		5ADA68CE1D92032600EFDF2B /* SelectedUserListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedUserListCollectionViewCell.m; sourceTree = "<group>"; };
+		5ADA68CF1D92032600EFDF2B /* SelectedUserListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectedUserListCollectionViewCell.xib; sourceTree = "<group>"; };
+		5ADA68D21D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupChannelUserListTableViewCell.h; sourceTree = "<group>"; };
+		5ADA68D31D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupChannelUserListTableViewCell.m; sourceTree = "<group>"; };
+		5ADA68D41D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGroupChannelUserListTableViewCell.xib; sourceTree = "<group>"; };
+		5ADA68D91D92573C00EFDF2B /* IncomingUserMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomingUserMessageTableViewCell.h; sourceTree = "<group>"; };
+		5ADA68DA1D92573C00EFDF2B /* IncomingUserMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomingUserMessageTableViewCell.m; sourceTree = "<group>"; };
+		5ADA68DB1D92573C00EFDF2B /* IncomingUserMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingUserMessageTableViewCell.xib; sourceTree = "<group>"; };
+		5ADA68DE1D92576A00EFDF2B /* ChattingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChattingView.h; sourceTree = "<group>"; };
+		5ADA68DF1D92576A00EFDF2B /* ChattingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChattingView.m; sourceTree = "<group>"; };
+		5ADA68E31D925BE300EFDF2B /* OpenChannelChattingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenChannelChattingViewController.h; sourceTree = "<group>"; };
+		5ADA68E41D925BE300EFDF2B /* OpenChannelChattingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenChannelChattingViewController.m; sourceTree = "<group>"; };
+		5ADA68E51D925BE300EFDF2B /* OpenChannelChattingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenChannelChattingViewController.xib; sourceTree = "<group>"; };
+		5ADA68E91D9284BC00EFDF2B /* ReusableViewFromXib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReusableViewFromXib.h; sourceTree = "<group>"; };
+		5ADA68EA1D9284BD00EFDF2B /* ReusableViewFromXib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReusableViewFromXib.m; sourceTree = "<group>"; };
+		5ADA68ED1D928E0F00EFDF2B /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		5ADA68EE1D928E0F00EFDF2B /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		5ADA690E1D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingUserMessageTableViewCell.h; sourceTree = "<group>"; };
+		5ADA690F1D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutgoingUserMessageTableViewCell.m; sourceTree = "<group>"; };
+		5ADA69101D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingUserMessageTableViewCell.xib; sourceTree = "<group>"; };
+		5ADA69131D93CFAE00EFDF2B /* NeutralMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeutralMessageTableViewCell.h; sourceTree = "<group>"; };
+		5ADA69141D93CFAE00EFDF2B /* NeutralMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NeutralMessageTableViewCell.m; sourceTree = "<group>"; };
+		5ADA69151D93CFAE00EFDF2B /* NeutralMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NeutralMessageTableViewCell.xib; sourceTree = "<group>"; };
+		5AF1990F1DA3A1FB00BF2DE0 /* MemberListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberListTableViewCell.h; sourceTree = "<group>"; };
+		5AF199101DA3A1FB00BF2DE0 /* MemberListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberListTableViewCell.m; sourceTree = "<group>"; };
+		5AF199111DA3A1FB00BF2DE0 /* MemberListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberListTableViewCell.xib; sourceTree = "<group>"; };
+		5AF199141DA3A50000BF2DE0 /* MemberListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberListViewController.h; sourceTree = "<group>"; };
+		5AF199151DA3A50000BF2DE0 /* MemberListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberListViewController.m; sourceTree = "<group>"; };
+		5AF199191DA3B2B200BF2DE0 /* ParticipantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantListViewController.h; sourceTree = "<group>"; };
+		5AF1991A1DA3B2B200BF2DE0 /* ParticipantListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantListViewController.m; sourceTree = "<group>"; };
+		5AF1991E1DA3B4E900BF2DE0 /* ParticipantListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantListTableViewCell.h; sourceTree = "<group>"; };
+		5AF1991F1DA3B4E900BF2DE0 /* ParticipantListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantListTableViewCell.m; sourceTree = "<group>"; };
+		5AF199201DA3B4E900BF2DE0 /* ParticipantListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParticipantListTableViewCell.xib; sourceTree = "<group>"; };
+		5AF199231DA3CCE000BF2DE0 /* BlockedUserListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockedUserListTableViewCell.h; sourceTree = "<group>"; };
+		5AF199241DA3CCE000BF2DE0 /* BlockedUserListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockedUserListTableViewCell.m; sourceTree = "<group>"; };
+		5AF199251DA3CCE000BF2DE0 /* BlockedUserListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlockedUserListTableViewCell.xib; sourceTree = "<group>"; };
+		5AF199281DA3CE4500BF2DE0 /* BlockedUserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockedUserListViewController.h; sourceTree = "<group>"; };
+		5AF199291DA3CE4500BF2DE0 /* BlockedUserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockedUserListViewController.m; sourceTree = "<group>"; };
+		5AF1992D1DA3D7F000BF2DE0 /* MessageDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDelegate.h; sourceTree = "<group>"; };
+		5AF8AC561D8FE121000F0578 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		5AF8AC571D8FE121000F0578 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		5AF8AC5C1D90D4E2000F0578 /* OpenChannelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenChannelListViewController.h; sourceTree = "<group>"; };
+		5AF8AC5D1D90D4E2000F0578 /* OpenChannelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenChannelListViewController.m; sourceTree = "<group>"; };
+		5AF8AC621D90D95E000F0578 /* OpenChannelListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenChannelListTableViewCell.h; sourceTree = "<group>"; };
+		5AF8AC631D90D95E000F0578 /* OpenChannelListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenChannelListTableViewCell.m; sourceTree = "<group>"; };
+		5AF8AC641D90D95E000F0578 /* OpenChannelListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenChannelListTableViewCell.xib; sourceTree = "<group>"; };
+		5AF8AC671D911045000F0578 /* CreateOpenChannelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateOpenChannelViewController.h; sourceTree = "<group>"; };
+		5AF8AC681D911045000F0578 /* CreateOpenChannelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateOpenChannelViewController.m; sourceTree = "<group>"; };
+		5AF8AC6E1D911B85000F0578 /* GroupChannelListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChannelListTableViewCell.h; sourceTree = "<group>"; };
+		5AF8AC6F1D911B85000F0578 /* GroupChannelListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChannelListTableViewCell.m; sourceTree = "<group>"; };
+		5AF8AC701D911B85000F0578 /* GroupChannelListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupChannelListTableViewCell.xib; sourceTree = "<group>"; };
+		5AF8AC731D9131BD000F0578 /* GroupChannelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChannelListViewController.h; sourceTree = "<group>"; };
+		5AF8AC741D9131BD000F0578 /* GroupChannelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChannelListViewController.m; sourceTree = "<group>"; };
+		5AF8AC781D913D91000F0578 /* GroupChannelListEditableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChannelListEditableTableViewCell.h; sourceTree = "<group>"; };
+		5AF8AC791D913D91000F0578 /* GroupChannelListEditableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChannelListEditableTableViewCell.m; sourceTree = "<group>"; };
+		5AF8AC7A1D913D91000F0578 /* GroupChannelListEditableTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupChannelListEditableTableViewCell.xib; sourceTree = "<group>"; };
+		5AF8AC861D91FF9E000F0578 /* CreateGroupChannelUserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupChannelUserListViewController.h; sourceTree = "<group>"; };
+		5AF8AC871D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupChannelUserListViewController.m; sourceTree = "<group>"; };
+		E2FFAC00B5E8A9493084E70F /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5AB0CC221D8F840400F05EC1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A70556D294A247DB1E790AF6 /* libPods-SendBird-iOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5AB0CC1C1D8F840400F05EC1 = {
+			isa = PBXGroup;
+			children = (
+				5AD94BF81DB5C4ED00A6CD66 /* SendBird-iOS.bundle */,
+				5AB0CC261D8F840400F05EC1 /* Products */,
+				5AB0CC271D8F840400F05EC1 /* SendBird-iOS */,
+				7FBC9D59107481A6793B2D20 /* Frameworks */,
+				637A1CAA6BE9D31152E759CB /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		5AB0CC261D8F840400F05EC1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5AB0CC251D8F840400F05EC1 /* SendBird-iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5AB0CC271D8F840400F05EC1 /* SendBird-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				5AC3A0871D9B688600244336 /* SendBird-iOS.entitlements */,
+				5ADA68D71D9256FB00EFDF2B /* Chatting */,
+				5ADA68EC1D928DFD00EFDF2B /* Common */,
+				5AF8AC6C1D911ACC000F0578 /* GroupChannel */,
+				5AF8AC551D8FE104000F0578 /* Menu */,
+				5AF8AC5B1D90D493000F0578 /* OpenChannel */,
+				5ADA68E81D92849900EFDF2B /* ReusableViewFromXib */,
+				5AB0CC281D8F840400F05EC1 /* Supporting Files */,
+				5AB0CC2B1D8F840400F05EC1 /* AppDelegate.h */,
+				5AB0CC341D8F840400F05EC1 /* Assets.xcassets */,
+				5AB0CC2C1D8F840400F05EC1 /* AppDelegate.m */,
+				5AB0CC391D8F840400F05EC1 /* Info.plist */,
+				5AB0CC361D8F840400F05EC1 /* LaunchScreen.storyboard */,
+				5AB0CC311D8F840400F05EC1 /* Main.storyboard */,
+				5AB0CC2E1D8F840400F05EC1 /* ViewController.h */,
+				5AB0CC2F1D8F840400F05EC1 /* ViewController.m */,
+				BD86F1E9FEE8C96BFBA0FF0C /* Pods */,
+			);
+			path = "SendBird-iOS";
+			sourceTree = "<group>";
+		};
+		5AB0CC281D8F840400F05EC1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5AB0CC291D8F840400F05EC1 /* main.m */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5ADA68D71D9256FB00EFDF2B /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				5ADA68D81D92571500EFDF2B /* ViewCell */,
+				5ADA68DE1D92576A00EFDF2B /* ChattingView.h */,
+				5ADA68DF1D92576A00EFDF2B /* ChattingView.m */,
+				5AD94C241DB5F5A900A6CD66 /* ChattingView.xib */,
+			);
+			path = Chatting;
+			sourceTree = "<group>";
+		};
+		5ADA68D81D92571500EFDF2B /* ViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				5AC3A0691D9781A300244336 /* IncomingFileMessageTableViewCell.h */,
+				5AC3A06A1D9781A300244336 /* IncomingFileMessageTableViewCell.m */,
+				5AC3A06B1D9781A300244336 /* IncomingFileMessageTableViewCell.xib */,
+				5AC3A0781D97B66E00244336 /* IncomingImageFileMessageTableViewCell.h */,
+				5AC3A0791D97B66E00244336 /* IncomingImageFileMessageTableViewCell.m */,
+				5AC3A07A1D97B66E00244336 /* IncomingImageFileMessageTableViewCell.xib */,
+				5ADA68D91D92573C00EFDF2B /* IncomingUserMessageTableViewCell.h */,
+				5ADA68DA1D92573C00EFDF2B /* IncomingUserMessageTableViewCell.m */,
+				5ADA68DB1D92573C00EFDF2B /* IncomingUserMessageTableViewCell.xib */,
+				5ADA69131D93CFAE00EFDF2B /* NeutralMessageTableViewCell.h */,
+				5ADA69141D93CFAE00EFDF2B /* NeutralMessageTableViewCell.m */,
+				5ADA69151D93CFAE00EFDF2B /* NeutralMessageTableViewCell.xib */,
+				5AC3A0731D97A85000244336 /* OutgoingFileMessageTableViewCell.h */,
+				5AC3A0741D97A85000244336 /* OutgoingFileMessageTableViewCell.m */,
+				5AC3A0751D97A85000244336 /* OutgoingFileMessageTableViewCell.xib */,
+				5AC3A06E1D97975B00244336 /* OutgoingImageFileMessageTableViewCell.h */,
+				5AC3A06F1D97975B00244336 /* OutgoingImageFileMessageTableViewCell.m */,
+				5AC3A0701D97975B00244336 /* OutgoingImageFileMessageTableViewCell.xib */,
+				5ADA690E1D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.h */,
+				5ADA690F1D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.m */,
+				5ADA69101D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.xib */,
+				5AF1992D1DA3D7F000BF2DE0 /* MessageDelegate.h */,
+			);
+			path = ViewCell;
+			sourceTree = "<group>";
+		};
+		5ADA68E81D92849900EFDF2B /* ReusableViewFromXib */ = {
+			isa = PBXGroup;
+			children = (
+				5ADA68E91D9284BC00EFDF2B /* ReusableViewFromXib.h */,
+				5ADA68EA1D9284BD00EFDF2B /* ReusableViewFromXib.m */,
+			);
+			path = ReusableViewFromXib;
+			sourceTree = "<group>";
+		};
+		5ADA68EC1D928DFD00EFDF2B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5ADA68ED1D928E0F00EFDF2B /* Utils.h */,
+				5ADA68EE1D928E0F00EFDF2B /* Utils.m */,
+				5AD94BE01DB4A8C800A6CD66 /* Constants.h */,
+				5AD94BE11DB4A8C900A6CD66 /* Constants.m */,
+				5AD94BE91DB5BCEE00A6CD66 /* NSBundle+SendBird.h */,
+				5AD94BEA1DB5BCEE00A6CD66 /* NSBundle+SendBird.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		5AF8AC551D8FE104000F0578 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				5AF8AC561D8FE121000F0578 /* MenuViewController.h */,
+				5AF8AC571D8FE121000F0578 /* MenuViewController.m */,
+				5AD94BEE1DB5BDB300A6CD66 /* MenuViewController.xib */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		5AF8AC5B1D90D493000F0578 /* OpenChannel */ = {
+			isa = PBXGroup;
+			children = (
+				5AF8AC611D90D4F3000F0578 /* ViewCell */,
+				5AF8AC671D911045000F0578 /* CreateOpenChannelViewController.h */,
+				5AF8AC681D911045000F0578 /* CreateOpenChannelViewController.m */,
+				5AD94C151DB5EB2A00A6CD66 /* CreateOpenChannelViewController.xib */,
+				5ADA68E31D925BE300EFDF2B /* OpenChannelChattingViewController.h */,
+				5ADA68E41D925BE300EFDF2B /* OpenChannelChattingViewController.m */,
+				5ADA68E51D925BE300EFDF2B /* OpenChannelChattingViewController.xib */,
+				5AF8AC5C1D90D4E2000F0578 /* OpenChannelListViewController.h */,
+				5AF8AC5D1D90D4E2000F0578 /* OpenChannelListViewController.m */,
+				5AD94C1F1DB5F3A000A6CD66 /* OpenChannelListViewController.xib */,
+				5AF199191DA3B2B200BF2DE0 /* ParticipantListViewController.h */,
+				5AF1991A1DA3B2B200BF2DE0 /* ParticipantListViewController.m */,
+				5AD94C1A1DB5F2FE00A6CD66 /* ParticipantListViewController.xib */,
+				5AF199281DA3CE4500BF2DE0 /* BlockedUserListViewController.h */,
+				5AF199291DA3CE4500BF2DE0 /* BlockedUserListViewController.m */,
+				5AD94C101DB5E97100A6CD66 /* BlockedUserListViewController.xib */,
+			);
+			path = OpenChannel;
+			sourceTree = "<group>";
+		};
+		5AF8AC611D90D4F3000F0578 /* ViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				5AF8AC621D90D95E000F0578 /* OpenChannelListTableViewCell.h */,
+				5AF8AC631D90D95E000F0578 /* OpenChannelListTableViewCell.m */,
+				5AF8AC641D90D95E000F0578 /* OpenChannelListTableViewCell.xib */,
+				5AF1991E1DA3B4E900BF2DE0 /* ParticipantListTableViewCell.h */,
+				5AF1991F1DA3B4E900BF2DE0 /* ParticipantListTableViewCell.m */,
+				5AF199201DA3B4E900BF2DE0 /* ParticipantListTableViewCell.xib */,
+				5AF199231DA3CCE000BF2DE0 /* BlockedUserListTableViewCell.h */,
+				5AF199241DA3CCE000BF2DE0 /* BlockedUserListTableViewCell.m */,
+				5AF199251DA3CCE000BF2DE0 /* BlockedUserListTableViewCell.xib */,
+			);
+			path = ViewCell;
+			sourceTree = "<group>";
+		};
+		5AF8AC6C1D911ACC000F0578 /* GroupChannel */ = {
+			isa = PBXGroup;
+			children = (
+				5AF8AC6D1D911AD6000F0578 /* ViewCell */,
+				5AC3A07D1D97BEF100244336 /* CreateGroupChannelSelectOptionViewController.h */,
+				5AC3A07E1D97BEF100244336 /* CreateGroupChannelSelectOptionViewController.m */,
+				5AD94C061DB5D54500A6CD66 /* CreateGroupChannelSelectOptionViewController.xib */,
+				5AF8AC861D91FF9E000F0578 /* CreateGroupChannelUserListViewController.h */,
+				5AF8AC871D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m */,
+				5AD94C0B1DB5D57D00A6CD66 /* CreateGroupChannelUserListViewController.xib */,
+				5AF8AC731D9131BD000F0578 /* GroupChannelListViewController.h */,
+				5AF8AC741D9131BD000F0578 /* GroupChannelListViewController.m */,
+				5AD94BFC1DB5D38600A6CD66 /* GroupChannelListViewController.xib */,
+				5AC3A0821D99DA3800244336 /* GroupChannelChattingViewController.h */,
+				5AC3A0831D99DA3800244336 /* GroupChannelChattingViewController.m */,
+				5AC3A0841D99DA3800244336 /* GroupChannelChattingViewController.xib */,
+				5AF199141DA3A50000BF2DE0 /* MemberListViewController.h */,
+				5AF199151DA3A50000BF2DE0 /* MemberListViewController.m */,
+				5AD94C011DB5D51400A6CD66 /* MemberListViewController.xib */,
+			);
+			path = GroupChannel;
+			sourceTree = "<group>";
+		};
+		5AF8AC6D1D911AD6000F0578 /* ViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				5ADA68D21D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.h */,
+				5ADA68D31D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.m */,
+				5ADA68D41D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.xib */,
+				5AF8AC781D913D91000F0578 /* GroupChannelListEditableTableViewCell.h */,
+				5AF8AC791D913D91000F0578 /* GroupChannelListEditableTableViewCell.m */,
+				5AF8AC7A1D913D91000F0578 /* GroupChannelListEditableTableViewCell.xib */,
+				5AF8AC6E1D911B85000F0578 /* GroupChannelListTableViewCell.h */,
+				5AF8AC6F1D911B85000F0578 /* GroupChannelListTableViewCell.m */,
+				5AF8AC701D911B85000F0578 /* GroupChannelListTableViewCell.xib */,
+				5ADA68CD1D92032600EFDF2B /* SelectedUserListCollectionViewCell.h */,
+				5ADA68CE1D92032600EFDF2B /* SelectedUserListCollectionViewCell.m */,
+				5ADA68CF1D92032600EFDF2B /* SelectedUserListCollectionViewCell.xib */,
+				5AF1990F1DA3A1FB00BF2DE0 /* MemberListTableViewCell.h */,
+				5AF199101DA3A1FB00BF2DE0 /* MemberListTableViewCell.m */,
+				5AF199111DA3A1FB00BF2DE0 /* MemberListTableViewCell.xib */,
+			);
+			path = ViewCell;
+			sourceTree = "<group>";
+		};
+		637A1CAA6BE9D31152E759CB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E2FFAC00B5E8A9493084E70F /* Pods-SendBird-iOS.debug.xcconfig */,
+				3F68010AC569401C3F0FAD95 /* Pods-SendBird-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7FBC9D59107481A6793B2D20 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0F7440614FBAB0CE15886868 /* libPods-SendBird-iOS.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BD86F1E9FEE8C96BFBA0FF0C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				095040316A653E09BB5B08B5 /* Pods-SendBird-iOS.debug.xcconfig */,
+				1364F5B22175AB53DD65C48E /* Pods-SendBird-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			path = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5AB0CC241D8F840400F05EC1 /* SendBird-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5AB0CC3C1D8F840400F05EC1 /* Build configuration list for PBXNativeTarget "SendBird-iOS" */;
+			buildPhases = (
+				241921FF02E731D044D1CA23 /* [CP] Check Pods Manifest.lock */,
+				5AB0CC211D8F840400F05EC1 /* Sources */,
+				5AB0CC221D8F840400F05EC1 /* Frameworks */,
+				5AB0CC231D8F840400F05EC1 /* Resources */,
+				5AF8AC851D915D27000F0578 /* Embed Frameworks */,
+				26A6A5098B7990B4608FCC56 /* [CP] Embed Pods Frameworks */,
+				79297A287FD0878099942094 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SendBird-iOS";
+			productName = "SendBird-iOS";
+			productReference = 5AB0CC251D8F840400F05EC1 /* SendBird-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5AB0CC1D1D8F840400F05EC1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = SendBird;
+				TargetAttributes = {
+					5AB0CC241D8F840400F05EC1 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 8K8M9F9X95;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 5AB0CC201D8F840400F05EC1 /* Build configuration list for PBXProject "SendBird-iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ko,
+			);
+			mainGroup = 5AB0CC1C1D8F840400F05EC1;
+			productRefGroup = 5AB0CC261D8F840400F05EC1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5AB0CC241D8F840400F05EC1 /* SendBird-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5AB0CC231D8F840400F05EC1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5AC3A06D1D9781A300244336 /* IncomingFileMessageTableViewCell.xib in Resources */,
+				5AB0CC381D8F840400F05EC1 /* LaunchScreen.storyboard in Resources */,
+				5AF199221DA3B4E900BF2DE0 /* ParticipantListTableViewCell.xib in Resources */,
+				5AD94C041DB5D54500A6CD66 /* CreateGroupChannelSelectOptionViewController.xib in Resources */,
+				5ADA69171D93CFAE00EFDF2B /* NeutralMessageTableViewCell.xib in Resources */,
+				5AD94C131DB5EB2A00A6CD66 /* CreateOpenChannelViewController.xib in Resources */,
+				5ADA68E71D925BE300EFDF2B /* OpenChannelChattingViewController.xib in Resources */,
+				5AD94C1D1DB5F3A000A6CD66 /* OpenChannelListViewController.xib in Resources */,
+				5AD94C0E1DB5E97100A6CD66 /* BlockedUserListViewController.xib in Resources */,
+				5ADA68DD1D92573C00EFDF2B /* IncomingUserMessageTableViewCell.xib in Resources */,
+				5AD94BFA1DB5D38600A6CD66 /* GroupChannelListViewController.xib in Resources */,
+				5AB0CC351D8F840400F05EC1 /* Assets.xcassets in Resources */,
+				5AC3A07C1D97B66E00244336 /* IncomingImageFileMessageTableViewCell.xib in Resources */,
+				5AC3A0771D97A85000244336 /* OutgoingFileMessageTableViewCell.xib in Resources */,
+				5AC3A0721D97975B00244336 /* OutgoingImageFileMessageTableViewCell.xib in Resources */,
+				5AD94C091DB5D57D00A6CD66 /* CreateGroupChannelUserListViewController.xib in Resources */,
+				5AD94BFF1DB5D51400A6CD66 /* MemberListViewController.xib in Resources */,
+				5ADA68D11D92032600EFDF2B /* SelectedUserListCollectionViewCell.xib in Resources */,
+				5AF8AC7C1D913D91000F0578 /* GroupChannelListEditableTableViewCell.xib in Resources */,
+				5AB0CC331D8F840400F05EC1 /* Main.storyboard in Resources */,
+				5ADA68D61D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.xib in Resources */,
+				5ADA69121D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.xib in Resources */,
+				5AF8AC721D911B85000F0578 /* GroupChannelListTableViewCell.xib in Resources */,
+				5AF199131DA3A1FB00BF2DE0 /* MemberListTableViewCell.xib in Resources */,
+				5AD94BF91DB5C4ED00A6CD66 /* SendBird-iOS.bundle in Resources */,
+				5AD94C181DB5F2FE00A6CD66 /* ParticipantListViewController.xib in Resources */,
+				5AD94C221DB5F5A900A6CD66 /* ChattingView.xib in Resources */,
+				5AF199271DA3CCE000BF2DE0 /* BlockedUserListTableViewCell.xib in Resources */,
+				5AF8AC661D90D95E000F0578 /* OpenChannelListTableViewCell.xib in Resources */,
+				5AC3A0861D99DA3800244336 /* GroupChannelChattingViewController.xib in Resources */,
+				5AD94BEC1DB5BDB300A6CD66 /* MenuViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		241921FF02E731D044D1CA23 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		26A6A5098B7990B4608FCC56 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79297A287FD0878099942094 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5AB0CC211D8F840400F05EC1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5AF199261DA3CCE000BF2DE0 /* BlockedUserListTableViewCell.m in Sources */,
+				5AB0CC301D8F840400F05EC1 /* ViewController.m in Sources */,
+				5AF8AC7B1D913D91000F0578 /* GroupChannelListEditableTableViewCell.m in Sources */,
+				5AF8AC651D90D95E000F0578 /* OpenChannelListTableViewCell.m in Sources */,
+				5AF8AC761D9131BD000F0578 /* GroupChannelListViewController.m in Sources */,
+				5AF199121DA3A1FB00BF2DE0 /* MemberListTableViewCell.m in Sources */,
+				5AF8AC6A1D911045000F0578 /* CreateOpenChannelViewController.m in Sources */,
+				5AD94BEB1DB5BCEE00A6CD66 /* NSBundle+SendBird.m in Sources */,
+				5AB0CC2D1D8F840400F05EC1 /* AppDelegate.m in Sources */,
+				5ADA68D51D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.m in Sources */,
+				5ADA68DC1D92573C00EFDF2B /* IncomingUserMessageTableViewCell.m in Sources */,
+				5ADA68D01D92032600EFDF2B /* SelectedUserListCollectionViewCell.m in Sources */,
+				5AD94BE21DB4A8C900A6CD66 /* Constants.m in Sources */,
+				5AC3A0801D97BEF100244336 /* CreateGroupChannelSelectOptionViewController.m in Sources */,
+				5AC3A07B1D97B66E00244336 /* IncomingImageFileMessageTableViewCell.m in Sources */,
+				5AF199171DA3A50000BF2DE0 /* MemberListViewController.m in Sources */,
+				5AC3A06C1D9781A300244336 /* IncomingFileMessageTableViewCell.m in Sources */,
+				5AC3A0851D99DA3800244336 /* GroupChannelChattingViewController.m in Sources */,
+				5ADA68EF1D928E0F00EFDF2B /* Utils.m in Sources */,
+				5ADA68EB1D9284BD00EFDF2B /* ReusableViewFromXib.m in Sources */,
+				5AF199211DA3B4E900BF2DE0 /* ParticipantListTableViewCell.m in Sources */,
+				5AF8AC891D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m in Sources */,
+				5ADA68E61D925BE300EFDF2B /* OpenChannelChattingViewController.m in Sources */,
+				5AF1991C1DA3B2B200BF2DE0 /* ParticipantListViewController.m in Sources */,
+				5AB0CC2A1D8F840400F05EC1 /* main.m in Sources */,
+				5ADA68E01D92576A00EFDF2B /* ChattingView.m in Sources */,
+				5AF8AC591D8FE121000F0578 /* MenuViewController.m in Sources */,
+				5AC3A0711D97975B00244336 /* OutgoingImageFileMessageTableViewCell.m in Sources */,
+				5AC3A0761D97A85000244336 /* OutgoingFileMessageTableViewCell.m in Sources */,
+				5AF1992B1DA3CE4500BF2DE0 /* BlockedUserListViewController.m in Sources */,
+				5ADA69111D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.m in Sources */,
+				5AF8AC5F1D90D4E2000F0578 /* OpenChannelListViewController.m in Sources */,
+				5AF8AC711D911B85000F0578 /* GroupChannelListTableViewCell.m in Sources */,
+				5ADA69161D93CFAE00EFDF2B /* NeutralMessageTableViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5AB0CC311D8F840400F05EC1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5AB0CC321D8F840400F05EC1 /* Base */,
+				5AD94BF41DB5C08700A6CD66 /* ko */,
+			);
+			name = Main.storyboard;
+			path = .;
+			sourceTree = "<group>";
+		};
+		5AB0CC361D8F840400F05EC1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5AB0CC371D8F840400F05EC1 /* Base */,
+				5AD94BF31DB5C04A00A6CD66 /* ko */,
+			);
+			name = LaunchScreen.storyboard;
+			path = .;
+			sourceTree = "<group>";
+		};
+		5AD94BEE1DB5BDB300A6CD66 /* MenuViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5AD94BED1DB5BDB300A6CD66 /* Base */,
+				5AD94BF51DB5C09C00A6CD66 /* ko */,
+			);
+			name = MenuViewController.xib;
+			sourceTree = "<group>";
+		};
+		5AD94BFC1DB5D38600A6CD66 /* GroupChannelListViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5AD94BFD1DB5D38F00A6CD66 /* Base */,
+				5AD94BFE1DB5D39600A6CD66 /* ko */,
+			);
+			name = GroupChannelListViewController.xib;
+			sourceTree = "<group>";
+		};
+		5AD94C011DB5D51400A6CD66 /* MemberListViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5AD94C021DB5D51800A6CD66 /* Base */,
+				5AD94C031DB5D51C00A6CD66 /* ko */,
+			);
+			name = MemberListViewController.xib;
+			sourceTree = "<group>";
+		};
+		5AD94C061DB5D54500A6CD66 /* CreateGroupChannelSelectOptionViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5AD94C051DB5D54500A6CD66 /* Base */,
+				5AD94C081DB5D54A00A6CD66 /* ko */,
+			);
+			name = CreateGroupChannelSelectOptionViewController.xib;
+			sourceTree = "<group>";
+		};
+		5AD94C0B1DB5D57D00A6CD66 /* CreateGroupChannelUserListViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5AD94C0A1DB5D57D00A6CD66 /* Base */,
+				5AD94C0D1DB5D58000A6CD66 /* ko */,
+			);
+			name = CreateGroupChannelUserListViewController.xib;
+			sourceTree = "<group>";
+		};
+		5AD94C101DB5E97100A6CD66 /* BlockedUserListViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5AD94C0F1DB5E97100A6CD66 /* Base */,
+				5AD94C121DB5E97300A6CD66 /* ko */,
+			);
+			name = BlockedUserListViewController.xib;
+			sourceTree = "<group>";
+		};
+		5AD94C151DB5EB2A00A6CD66 /* CreateOpenChannelViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5AD94C141DB5EB2A00A6CD66 /* Base */,
+				5AD94C171DB5EB2D00A6CD66 /* ko */,
+			);
+			name = CreateOpenChannelViewController.xib;
+			sourceTree = "<group>";
+		};
+		5AD94C1A1DB5F2FE00A6CD66 /* ParticipantListViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5AD94C191DB5F2FE00A6CD66 /* Base */,
+				5AD94C1C1DB5F30000A6CD66 /* ko */,
+			);
+			name = ParticipantListViewController.xib;
+			sourceTree = "<group>";
+		};
+		5AD94C1F1DB5F3A000A6CD66 /* OpenChannelListViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5AD94C1E1DB5F3A000A6CD66 /* Base */,
+				5AD94C211DB5F3A200A6CD66 /* ko */,
+			);
+			name = OpenChannelListViewController.xib;
+			sourceTree = "<group>";
+		};
+		5AD94C241DB5F5A900A6CD66 /* ChattingView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5AD94C231DB5F5A900A6CD66 /* Base */,
+				5AD94C261DB5F5AB00A6CD66 /* ko */,
+			);
+			name = ChattingView.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5AB0CC3A1D8F840400F05EC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "SendBird-iOS";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5AB0CC3B1D8F840400F05EC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "SendBird-iOS";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5AB0CC3D1D8F840400F05EC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 095040316A653E09BB5B08B5 /* Pods-SendBird-iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "SendBird-iOS/SendBird-iOS.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8K8M9F9X95;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "SendBird-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.sample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5AB0CC3E1D8F840400F05EC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1364F5B22175AB53DD65C48E /* Pods-SendBird-iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "SendBird-iOS/SendBird-iOS.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8K8M9F9X95;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "SendBird-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.sample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5AB0CC201D8F840400F05EC1 /* Build configuration list for PBXProject "SendBird-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5AB0CC3A1D8F840400F05EC1 /* Debug */,
+				5AB0CC3B1D8F840400F05EC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5AB0CC3C1D8F840400F05EC1 /* Build configuration list for PBXNativeTarget "SendBird-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5AB0CC3D1D8F840400F05EC1 /* Debug */,
+				5AB0CC3E1D8F840400F05EC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5AB0CC1D1D8F840400F05EC1 /* Project object */;
+}

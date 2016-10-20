@@ -1,4 +1,6 @@
 # [SendBird](https://sendbird.com) iOS Sample UI
+[![Platform](https://img.shields.io/badge/platform-iOS-orange.svg)](https://cocoapods.org/pods/SendBirdSDK)
+[![Languages](https://img.shields.io/badge/language-Objective--C%20%7C%20Swift-orange.svg)](
 
 ## Introduction
 
@@ -11,10 +13,9 @@ among your users.
 2. Open the project.
 3. Build and run it.
 
-## Swift support
+## Swift 2.3 support
 
-* Swift 2.3 -> `swift-2.3-sample` directory in `master` branch
-* Swift 3 -> `swift-3-sample` directory in `master` branch
+* Swift 2.3 -> `swift-2.3-sample` directory in `v3-old` branch
 
 ## Access to Version 2
 

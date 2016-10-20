@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateOpenChannelViewController">
+            <connections>
+                <outlet property="channelNameLabel" destination="aGV-lS-x26" id="FRS-XG-bhe"/>
+                <outlet property="channelNameLabelBottomMargin" destination="l4r-un-fH1" id="2pJ-j1-nsd"/>
+                <outlet property="lineView" destination="J3V-vq-dbZ" id="Tf8-Nk-XWM"/>
+                <outlet property="navItem" destination="DcE-bQ-qxa" id="k5o-lo-GGO"/>
+                <outlet property="openChannelNameTextField" destination="C2H-VI-ctA" id="TRt-mc-a9z"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vJ-Hc-bCK">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="tV8-Fd-RsP"/>
+                    </constraints>
+                    <color key="tintColor" red="0.50196078430000002" green="0.35294117650000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="barTintColor" red="0.94117647058823528" green="0.94901960784313721" blue="0.96862745098039216" alpha="0.90436422413793105" colorSpace="calibratedRGB"/>
+                    <items>
+                        <navigationItem title="Create Open Channel" id="DcE-bQ-qxa"/>
+                    </items>
+                </navigationBar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGV-lS-x26" userLabel="Channel Name Label">
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Channel Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C2H-VI-ctA" userLabel="Open Channel Name Text Field">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="NfC-br-sFF"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3V-vq-dbZ" userLabel="Line View">
+                    <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="lK2-G2-5ZI"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="J3V-vq-dbZ" firstAttribute="leading" secondItem="C2H-VI-ctA" secondAttribute="leading" id="6jL-9a-56s"/>
+                <constraint firstAttribute="trailing" secondItem="C2H-VI-ctA" secondAttribute="trailing" constant="30" id="Bfl-26-d44"/>
+                <constraint firstItem="C2H-VI-ctA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="GYM-Rr-lCr"/>
+                <constraint firstItem="J3V-vq-dbZ" firstAttribute="bottom" secondItem="C2H-VI-ctA" secondAttribute="bottom" id="Wen-HT-N5d"/>
+                <constraint firstItem="2vJ-Hc-bCK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ZkK-jI-H3S"/>
+                <constraint firstItem="C2H-VI-ctA" firstAttribute="leading" secondItem="aGV-lS-x26" secondAttribute="leading" id="bCS-bl-km8"/>
+                <constraint firstItem="2vJ-Hc-bCK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dVm-o8-q76"/>
+                <constraint firstItem="C2H-VI-ctA" firstAttribute="top" secondItem="aGV-lS-x26" secondAttribute="bottom" constant="-12" id="l4r-un-fH1"/>
+                <constraint firstItem="C2H-VI-ctA" firstAttribute="top" secondItem="2vJ-Hc-bCK" secondAttribute="bottom" constant="73" id="rnh-1m-EfW"/>
+                <constraint firstItem="J3V-vq-dbZ" firstAttribute="trailing" secondItem="C2H-VI-ctA" secondAttribute="trailing" id="swJ-Ib-drx"/>
+                <constraint firstAttribute="trailing" secondItem="2vJ-Hc-bCK" secondAttribute="trailing" id="y3K-lu-Mgh"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

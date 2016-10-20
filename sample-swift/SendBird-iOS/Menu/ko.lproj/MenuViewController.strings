@@ -1,0 +1,12 @@
+
+/* Class = "UINavigationItem"; title = "SendBird"; ObjectID = "F4x-NV-Ady"; */
+"F4x-NV-Ady.title" = "SendBird";
+
+/* Class = "UILabel"; text = "Disconnect"; ObjectID = "NFn-xB-5w1"; */
+"NFn-xB-5w1.text" = "연결 종료";
+
+/* Class = "UILabel"; text = "Open Channel"; ObjectID = "Xd5-5M-qb3"; */
+"Xd5-5M-qb3.text" = "오픈 채널";
+
+/* Class = "UILabel"; text = "Group Channel"; ObjectID = "msC-qx-don"; */
+"msC-qx-don.text" = "그룹 채널";

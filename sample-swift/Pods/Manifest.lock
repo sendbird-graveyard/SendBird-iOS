@@ -1,0 +1,21 @@
+PODS:
+  - Alamofire (4.0.1)
+  - AlamofireImage (3.1.0):
+    - Alamofire (~> 4.0)
+  - MGSwipeTableCell (1.5.6)
+  - SendBirdSDK (3.0.14)
+
+DEPENDENCIES:
+  - AlamofireImage
+  - MGSwipeTableCell
+  - SendBirdSDK (~> 3.0)
+
+SPEC CHECKSUMS:
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
+  MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
+  SendBirdSDK: 921c2afb4ea13066a5147d198475d124d57973f9
+
+PODFILE CHECKSUM: e67b73b2e4396b5801a5f1c1307bacc8c67e6a59
+
+COCOAPODS: 1.1.0.rc.2

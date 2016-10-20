@@ -1,6 +1,0 @@
-framework module Pods_SampleUI {
-  umbrella header "Pods-SampleUI-umbrella.h"
-
-  export *
-  module * { export * }
-}

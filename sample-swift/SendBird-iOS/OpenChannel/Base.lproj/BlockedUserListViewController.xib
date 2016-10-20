@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BannedUserListViewController">
+            <connections>
+                <outlet property="navItem" destination="7tJ-8z-xF2" id="xhy-Hs-9GG"/>
+                <outlet property="tableView" destination="H9S-Tz-Gfo" id="Cqj-y3-Bq1"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HJF-su-O9Q">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="Nwj-md-awZ"/>
+                    </constraints>
+                    <items>
+                        <navigationItem title="Blocked User List" id="7tJ-8z-xF2"/>
+                    </items>
+                </navigationBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H9S-Tz-Gfo">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <inset key="separatorInset" minX="68" minY="0.0" maxX="0.0" maxY="0.0"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="HJF-su-O9Q" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3Oo-2w-pyV"/>
+                <constraint firstItem="H9S-Tz-Gfo" firstAttribute="top" secondItem="HJF-su-O9Q" secondAttribute="bottom" id="PRM-yO-YVc"/>
+                <constraint firstItem="H9S-Tz-Gfo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SXr-J9-2y3"/>
+                <constraint firstItem="HJF-su-O9Q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="avn-no-RpD"/>
+                <constraint firstAttribute="trailing" secondItem="H9S-Tz-Gfo" secondAttribute="trailing" id="bYR-9c-tof"/>
+                <constraint firstAttribute="trailing" secondItem="HJF-su-O9Q" secondAttribute="trailing" id="bqp-CI-ZvO"/>
+                <constraint firstAttribute="bottom" secondItem="H9S-Tz-Gfo" secondAttribute="bottom" id="k4J-HG-FoQ"/>
+            </constraints>
+            <point key="canvasLocation" x="63.5" y="59.5"/>
+        </view>
+    </objects>
+</document>

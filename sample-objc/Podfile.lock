@@ -1,0 +1,32 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - MGSwipeTableCell (1.5.6)
+  - SendBirdSDK (3.0.14)
+
+DEPENDENCIES:
+  - AFNetworking
+  - MGSwipeTableCell
+  - SendBirdSDK (~> 3.0)
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
+  SendBirdSDK: 921c2afb4ea13066a5147d198475d124d57973f9
+
+PODFILE CHECKSUM: 32ef896ba2bc235646ee5aead575f0a9f0aa0d42
+
+COCOAPODS: 1.1.0.rc.2
