@@ -1,6 +1,6 @@
 # [SendBird](https://sendbird.com) iOS Sample UI
-[![Platform](https://img.shields.io/badge/platform-iOS-orange.svg)](https://cocoapods.org/pods/SendBirdSDK)
-[![Languages](https://img.shields.io/badge/language-Objective--C%20%7C%20Swift-orange.svg)](
+![Platform](https://img.shields.io/badge/platform-iOS-orange.svg)
+![Languages](https://img.shields.io/badge/language-Objective--C%20%7C%20Swift-orange.svg)
 
 ## Introduction
 
