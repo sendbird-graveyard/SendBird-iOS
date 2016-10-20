@@ -300,6 +300,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                     DispatchQueue.main.async {
                         self.chattingView.chattingTableView.reloadData()
                     }
+                    break
                 }
             }
         }
@@ -474,9 +475,11 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
             alert.addAction(deleteMessageAction!)
         }
         
-        DispatchQueue.main.async {
-            self.refreshInViewDidAppear = false
-            self.present(alert, animated: true, completion: nil)
+        if openFileAction != nil || openURLsAction.count > 0 || deleteMessageAction != nil {
+            DispatchQueue.main.async {
+                self.refreshInViewDidAppear = false
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
     

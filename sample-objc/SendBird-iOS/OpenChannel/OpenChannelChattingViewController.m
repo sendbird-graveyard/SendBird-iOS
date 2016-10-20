@@ -345,6 +345,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.chattingView.chattingTableView reloadData];
                 });
+                break;
             }
         }
     }
@@ -522,11 +523,13 @@
         if (deleteMessageAction != nil) {
             [alert addAction:deleteMessageAction];
         }
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.refreshInViewDidAppear = NO;
-            [self presentViewController:alert animated:YES completion:nil];
-        });
+        
+        if (openFileAction != nil || openURLsAction.count > 0 || deleteMessageAction != nil) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.refreshInViewDidAppear = NO;
+                [self presentViewController:alert animated:YES completion:nil];
+            });
+        }
     }
 }
 
