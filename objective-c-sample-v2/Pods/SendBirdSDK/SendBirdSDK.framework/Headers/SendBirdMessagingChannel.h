@@ -158,4 +158,11 @@
  */
 - (long long) getCreatedAt;
 
+/**
+ *  Return the data of this channel.
+ *
+ *  @return The data of this channel.
+ */
+- (NSString *)getData;
+
 @end

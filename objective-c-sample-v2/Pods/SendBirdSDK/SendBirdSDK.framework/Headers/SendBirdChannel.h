@@ -40,6 +40,12 @@
 @property (retain) NSString *coverUrl;
 
 /**
+ *  Custom data of this channel
+ */
+
+@property (retain) NSString *data;
+
+/**
  *  Channel creation timestamp (UTC)
  */
 @property long long createdAt;

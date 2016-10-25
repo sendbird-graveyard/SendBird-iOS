@@ -34,6 +34,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>AFNetworking</string>
 			<key>Type</key>
@@ -77,6 +79,8 @@ a. anything related to the SDK, services, or content (including code) on third p
 
 b. claims for breach of contract, breach of warranty, guarantee or condition, strict liability, negligence, or other tort to the extent permitted by applicable law.
 </string>
+			<key>License</key>
+			<string>Commercial</string>
 			<key>Title</key>
 			<string>SendBirdSDK</string>
 			<key>Type</key>
