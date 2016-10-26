@@ -14,7 +14,7 @@ class Constants: NSObject {
     }
     
     static func navigationBarTitleFont() -> UIFont {
-        return UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+        return UIFont(name: "HelveticaNeue", size: 16.0)!
     }
     
     static func textFieldLineColorNormal() -> UIColor {
@@ -26,7 +26,7 @@ class Constants: NSObject {
     }
     
     static func nicknameFontInMessage() -> UIFont {
-        return UIFont(name: "HelveticaNeue", size: 16.0)!
+        return UIFont(name: "HelveticaNeue", size: 12.0)!
     }
     
     static func nicknameColorInMessageNo0() -> UIColor {
@@ -50,11 +50,11 @@ class Constants: NSObject {
     }
     
     static func messageDateFont() -> UIFont {
-        return UIFont(name: "HelveticaNeue", size: 12.0)!
+        return UIFont(name: "HelveticaNeue", size: 10.0)!
     }
     
     static func messageDateColor() -> UIColor {
-        return UIColor(red: 142.0/255.0, green: 142.0/255.0, blue: 142.0/255.0, alpha: 1)
+        return UIColor(red: 191.0/255.0, green: 191.0/255.0, blue: 191.0/255.0, alpha: 1)
     }
     
     static func incomingFileImagePlaceholderColor() -> UIColor {
@@ -114,7 +114,7 @@ class Constants: NSObject {
     }
     
     static func navigationBarButtonItemFont() -> UIFont {
-        return UIFont(name: "HelveticaNeue", size: 18.0)!
+        return UIFont(name: "HelveticaNeue", size: 16.0)!
     }
     
     static func memberOnlineTextColor() -> UIColor {
@@ -123,5 +123,9 @@ class Constants: NSObject {
     
     static func memberOfflineDateTextColor() -> UIColor {
         return UIColor(red: 142.0/255.0, green: 142.0/255.0, blue: 142.0/255.0, alpha: 1)
+    }
+    
+    static func connectButtonColor() -> UIColor {
+        return UIColor(red: 123.0/255.0, green: 95.0/255.0, blue: 217.0/255.0, alpha: 1)
     }
 }

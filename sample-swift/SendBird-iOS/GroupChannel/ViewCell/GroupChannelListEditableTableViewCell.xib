@@ -38,7 +38,7 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_profile" translatesAutoresizingMaskIntoConstraints="NO" id="npV-Ae-hGB" userLabel="Cover Image View 2-1">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="4xQ-kq-yzI"/>
+                                            <constraint firstAttribute="width" constant="25" id="4xQ-kq-yzI"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -46,7 +46,7 @@
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_profile" translatesAutoresizingMaskIntoConstraints="NO" id="FRG-Ie-xmR" userLabel="Cover Image View 2-2">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="BU8-xS-e0V"/>
+                                            <constraint firstAttribute="width" constant="25" id="BU8-xS-e0V"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -67,7 +67,7 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_profile" translatesAutoresizingMaskIntoConstraints="NO" id="gjI-Cf-Kwp" userLabel="Cover Image View 3-1">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="ms4-dr-h7f"/>
+                                            <constraint firstAttribute="height" constant="25" id="ms4-dr-h7f"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -75,8 +75,8 @@
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_profile" translatesAutoresizingMaskIntoConstraints="NO" id="zSa-Ob-gNH" userLabel="Cover Image View 3-2">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="2ll-SM-V9V"/>
-                                            <constraint firstAttribute="height" constant="30" id="XaR-vy-Kol"/>
+                                            <constraint firstAttribute="width" constant="25" id="2ll-SM-V9V"/>
+                                            <constraint firstAttribute="height" constant="25" id="XaR-vy-Kol"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -84,8 +84,8 @@
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_profile" translatesAutoresizingMaskIntoConstraints="NO" id="IBw-VZ-VLs" userLabel="Cover Image View 3-3">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="O0P-dT-hO4"/>
-                                            <constraint firstAttribute="width" constant="30" id="Phn-bb-mm9"/>
+                                            <constraint firstAttribute="height" constant="25" id="O0P-dT-hO4"/>
+                                            <constraint firstAttribute="width" constant="25" id="Phn-bb-mm9"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -107,8 +107,8 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_profile" translatesAutoresizingMaskIntoConstraints="NO" id="CCU-HV-fc2" userLabel="Cover Image View 4-1">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="DXn-w9-cjc"/>
-                                            <constraint firstAttribute="height" constant="30" id="heb-OF-m3X"/>
+                                            <constraint firstAttribute="width" constant="25" id="DXn-w9-cjc"/>
+                                            <constraint firstAttribute="height" constant="25" id="heb-OF-m3X"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -116,8 +116,8 @@
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_profile" translatesAutoresizingMaskIntoConstraints="NO" id="cBw-1A-hPw" userLabel="Cover Image View 4-2">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="SPn-fp-gTy"/>
-                                            <constraint firstAttribute="width" constant="30" id="c2h-bE-5DX"/>
+                                            <constraint firstAttribute="height" constant="25" id="SPn-fp-gTy"/>
+                                            <constraint firstAttribute="width" constant="25" id="c2h-bE-5DX"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -125,8 +125,8 @@
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_profile" translatesAutoresizingMaskIntoConstraints="NO" id="QAz-A5-ryX" userLabel="Cover Image View 4-3">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Onu-2j-4T7"/>
-                                            <constraint firstAttribute="width" constant="30" id="kFs-6y-UaG"/>
+                                            <constraint firstAttribute="height" constant="25" id="Onu-2j-4T7"/>
+                                            <constraint firstAttribute="width" constant="25" id="kFs-6y-UaG"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -134,8 +134,8 @@
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_profile" translatesAutoresizingMaskIntoConstraints="NO" id="LYC-dO-gdK" userLabel="Cover Image View 4-4">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="30X-p4-XgX"/>
-                                            <constraint firstAttribute="width" constant="30" id="9bu-fI-asT"/>
+                                            <constraint firstAttribute="height" constant="25" id="30X-p4-XgX"/>
+                                            <constraint firstAttribute="width" constant="25" id="9bu-fI-asT"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -160,8 +160,8 @@
                             <constraint firstItem="PTu-kM-4M7" firstAttribute="leading" secondItem="60q-Zz-Ys3" secondAttribute="leading" id="0WL-Uv-f4G"/>
                             <constraint firstAttribute="trailing" secondItem="dqx-2Y-B4g" secondAttribute="trailing" id="7iP-9h-2eq"/>
                             <constraint firstItem="sKG-E1-ryE" firstAttribute="leading" secondItem="60q-Zz-Ys3" secondAttribute="leading" id="Ad7-SG-hk8"/>
-                            <constraint firstAttribute="height" constant="60" id="CM5-ky-zxp"/>
-                            <constraint firstAttribute="width" constant="60" id="DZR-1M-56W"/>
+                            <constraint firstAttribute="height" constant="50" id="CM5-ky-zxp"/>
+                            <constraint firstAttribute="width" constant="50" id="DZR-1M-56W"/>
                             <constraint firstAttribute="bottom" secondItem="sKG-E1-ryE" secondAttribute="bottom" id="Dqa-Bn-Xc9"/>
                             <constraint firstAttribute="trailing" secondItem="7pf-uj-qOG" secondAttribute="trailing" id="FoU-3M-ZHR"/>
                             <constraint firstAttribute="trailing" secondItem="sKG-E1-ryE" secondAttribute="trailing" id="HXo-2x-2iS"/>
@@ -178,7 +178,7 @@
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="30"/>
+                                <integer key="value" value="25"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
@@ -196,14 +196,14 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="84" id="z8l-0D-KFu"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                         <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_count_user" translatesAutoresizingMaskIntoConstraints="NO" id="8MK-x9-jCH" userLabel="Member Count Image View">
                         <constraints>
-                            <constraint firstAttribute="height" constant="18" id="Q8k-ay-fBC"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="18" id="gff-BZ-iz3"/>
+                            <constraint firstAttribute="height" constant="16" id="Q8k-ay-fBC"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="gff-BZ-iz3"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paD-Mf-Rfo" userLabel="Member Count Label">
@@ -218,7 +218,7 @@
                     <constraint firstItem="8MK-x9-jCH" firstAttribute="centerY" secondItem="ri9-8z-w36" secondAttribute="centerY" id="Eqw-Rg-kxj"/>
                     <constraint firstItem="8MK-x9-jCH" firstAttribute="trailing" secondItem="paD-Mf-Rfo" secondAttribute="trailing" id="G1y-u5-bhX"/>
                     <constraint firstItem="paD-Mf-Rfo" firstAttribute="centerY" secondItem="8MK-x9-jCH" secondAttribute="centerY" id="Jdp-I0-pTZ"/>
-                    <constraint firstItem="tyJ-ro-p6F" firstAttribute="top" secondItem="ri9-8z-w36" secondAttribute="bottom" constant="11" id="Mqb-0a-Z9d"/>
+                    <constraint firstItem="tyJ-ro-p6F" firstAttribute="top" secondItem="ri9-8z-w36" secondAttribute="bottom" constant="5" id="Mqb-0a-Z9d"/>
                     <constraint firstItem="60q-Zz-Ys3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="NAa-tr-i6L"/>
                     <constraint firstItem="0Z0-un-Vh8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="RmV-cQ-dYZ"/>
                     <constraint firstAttribute="trailing" secondItem="tyJ-ro-p6F" secondAttribute="trailing" constant="14" id="X96-Yx-w2Y"/>

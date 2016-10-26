@@ -200,7 +200,7 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
         
         DispatchQueue.main.async {
             if self.selectedUsers.count > 0 {
-                self.selectedUserListHeight.constant = 90
+                self.selectedUserListHeight.constant = 70
                 self.selectedUserListCollectionView.isHidden = false
             }
             else {

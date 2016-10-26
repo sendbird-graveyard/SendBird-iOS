@@ -13,6 +13,7 @@ import SendBirdSDK
 class GroupChannelListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSwipeTableCellDelegate, CreateGroupChannelUserListViewControllerDelegate, SBDChannelDelegate, SBDConnectionDelegate {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noChannelLabel: UILabel!
     
     private var refreshControl: UIRefreshControl?
     private var channels: [SBDGroupChannel] = []
@@ -35,7 +36,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         self.tableView.addSubview(self.refreshControl!)
         
         self.setDefaultNavigationItems()
-        
+        self.noChannelLabel.isHidden = true
         self.refreshChannelList()
         
         SBDMain.add(self as SBDChannelDelegate, identifier: self.description)
@@ -99,6 +100,15 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             }
             
             DispatchQueue.main.async {
+                if self.channels.count == 0 {
+                    self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+                    self.noChannelLabel.isHidden = false
+                }
+                else {
+                    self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+                    self.noChannelLabel.isHidden = true
+                }
+                
                 self.refreshControl?.endRefreshing()
                 self.tableView.reloadData()
             }

@@ -76,6 +76,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A74B8EF1DC0D11D00EBA0F5 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/GroupChannelListViewController.strings; sourceTree = "<group>"; };
 		5ABA0B7D1DA6010A000C82DC /* SendBird-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SendBird-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABA0B801DA6010A000C82DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5ABA0B821DA6010A000C82DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,7 +106,6 @@
 		5AC2B6E11DB6110100BA4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CreateGroupChannelUserListViewController.xib; sourceTree = "<group>"; };
 		5AC2B6E41DB6110500BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CreateGroupChannelUserListViewController.strings; sourceTree = "<group>"; };
 		5AC2B6E61DB6168100BA4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GroupChannelListViewController.xib; sourceTree = "<group>"; };
-		5AC2B6E91DB6168300BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/GroupChannelListViewController.strings; sourceTree = "<group>"; };
 		5AC2B6EB1DB61C1500BA4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MemberListViewController.xib; sourceTree = "<group>"; };
 		5AC2B6EE1DB61C1D00BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MemberListViewController.strings; sourceTree = "<group>"; };
 		5AC2B6F01DB61C3300BA4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MenuViewController.xib; sourceTree = "<group>"; };
@@ -577,7 +577,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5AC2B6E61DB6168100BA4BC7 /* Base */,
-				5AC2B6E91DB6168300BA4BC7 /* ko */,
+				5A74B8EF1DC0D11D00EBA0F5 /* ko */,
 			);
 			name = GroupChannelListViewController.xib;
 			sourceTree = "<group>";

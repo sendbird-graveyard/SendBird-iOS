@@ -64,6 +64,8 @@ class ViewController: UITableViewController, UITextFieldDelegate {
         self.userIdTextField.text = userId
         self.nicknameTextField.text = userNickname
         
+        self.connectButton.setBackgroundImage(Utils.imageFromColor(color: Constants.connectButtonColor()), for: UIControlState.normal)
+        
         self.indicatorView.hidesWhenStopped = true
         
         self.userIdTextField.addTarget(self, action: #selector(userIdTextFieldDidChange(sender:)), for: UIControlEvents.editingChanged)

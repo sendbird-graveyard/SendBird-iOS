@@ -16,18 +16,35 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yru-DR-yL3" userLabel="Date Container View">
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FVw-ZL-90k" userLabel="Left Line View">
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="aOS-1A-BC7"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 Sep, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzq-eO-w3c" userLabel="Date Label">
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YrV-lr-nQ2" userLabel="Left Line View">
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="nmG-mB-bkz"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20390625000000001" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="FVw-ZL-90k" firstAttribute="leading" secondItem="Yru-DR-yL3" secondAttribute="leading" id="0o8-zn-Gh7"/>
+                            <constraint firstAttribute="trailing" secondItem="YrV-lr-nQ2" secondAttribute="trailing" id="3vd-IZ-d77"/>
+                            <constraint firstItem="Qzq-eO-w3c" firstAttribute="leading" secondItem="FVw-ZL-90k" secondAttribute="trailing" constant="4" id="9Gp-6M-vnP"/>
                             <constraint firstItem="Qzq-eO-w3c" firstAttribute="centerY" secondItem="Yru-DR-yL3" secondAttribute="centerY" id="Cd9-Nu-IJi"/>
-                            <constraint firstAttribute="trailing" secondItem="Qzq-eO-w3c" secondAttribute="trailing" constant="14" id="fGY-dj-jYb"/>
+                            <constraint firstItem="Qzq-eO-w3c" firstAttribute="centerX" secondItem="Yru-DR-yL3" secondAttribute="centerX" id="IwH-QN-YCk"/>
+                            <constraint firstItem="YrV-lr-nQ2" firstAttribute="centerY" secondItem="Yru-DR-yL3" secondAttribute="centerY" id="Skv-G3-O03"/>
                             <constraint firstAttribute="height" constant="24" id="icc-pj-Zu6" userLabel="Date Container Height"/>
-                            <constraint firstItem="Qzq-eO-w3c" firstAttribute="leading" secondItem="Yru-DR-yL3" secondAttribute="leading" constant="14" id="mgm-mA-kxT"/>
+                            <constraint firstItem="FVw-ZL-90k" firstAttribute="centerY" secondItem="Yru-DR-yL3" secondAttribute="centerY" id="jtz-6R-QaR"/>
+                            <constraint firstItem="YrV-lr-nQ2" firstAttribute="leading" secondItem="Qzq-eO-w3c" secondAttribute="trailing" constant="4" id="qEQ-Dq-06v"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -93,11 +110,13 @@
                     <constraint firstItem="Yru-DR-yL3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6Cs-hc-obg"/>
                     <constraint firstItem="h0m-HV-6Ai" firstAttribute="trailing" secondItem="vJi-U7-1O8" secondAttribute="trailing" id="6n0-lN-9jj"/>
                     <constraint firstItem="h0m-HV-6Ai" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="36" id="Ice-W6-rC4"/>
+                    <constraint firstItem="Yru-DR-yL3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="RLZ-KW-mZB"/>
                     <constraint firstAttribute="trailing" secondItem="218-qq-guS" secondAttribute="trailing" constant="14" id="Rp1-Yy-Lyo"/>
                     <constraint firstItem="218-qq-guS" firstAttribute="bottom" secondItem="h0m-HV-6Ai" secondAttribute="bottom" id="Vuz-Nv-WbA"/>
                     <constraint firstItem="h0m-HV-6Ai" firstAttribute="top" secondItem="vJi-U7-1O8" secondAttribute="bottom" id="Xql-l8-kFY"/>
                     <constraint firstItem="yt9-AQ-OB3" firstAttribute="leading" secondItem="Ud2-qG-Ln4" secondAttribute="trailing" id="j2s-m2-GeI"/>
                     <constraint firstItem="Yru-DR-yL3" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="m1q-Wo-T5h"/>
+                    <constraint firstAttribute="trailing" secondItem="Yru-DR-yL3" secondAttribute="trailing" id="vrG-hN-mFd"/>
                     <constraint firstItem="218-qq-guS" firstAttribute="top" secondItem="Yru-DR-yL3" secondAttribute="bottom" constant="10" id="wL6-3A-yvO"/>
                     <constraint firstItem="yt9-AQ-OB3" firstAttribute="bottom" secondItem="Ud2-qG-Ln4" secondAttribute="bottom" id="zDe-Ul-HOa"/>
                 </constraints>

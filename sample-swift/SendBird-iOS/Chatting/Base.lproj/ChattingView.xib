@@ -68,8 +68,8 @@
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_add_chat" translatesAutoresizingMaskIntoConstraints="NO" id="9lv-Yc-Cue" userLabel="File Attach Button Image View">
                             <constraints>
-                                <constraint firstAttribute="width" constant="12.5" id="Dls-4k-gPK"/>
-                                <constraint firstAttribute="height" constant="12.5" id="b41-oA-f4E"/>
+                                <constraint firstAttribute="width" constant="15" id="Dls-4k-gPK"/>
+                                <constraint firstAttribute="height" constant="15" id="b41-oA-f4E"/>
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUi-Lc-77V">
@@ -134,6 +134,6 @@
     </objects>
     <resources>
         <image name="01" width="27" height="26"/>
-        <image name="btn_add_chat" width="12" height="12"/>
+        <image name="btn_add_chat" width="15" height="15"/>
     </resources>
 </document>

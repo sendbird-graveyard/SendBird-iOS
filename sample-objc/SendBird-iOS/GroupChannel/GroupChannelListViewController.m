@@ -16,6 +16,7 @@
 #import "Constants.h"
 
 @interface GroupChannelListViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *noChannelLabel;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -49,7 +50,7 @@
     [self setDefaultNavigationItems];
     
     self.typingAnimationChannelList = [[NSMutableArray alloc] init];
-    
+    self.noChannelLabel.hidden = YES;
     [self refreshChannelList];
     
     [SBDMain addChannelDelegate:self identifier:self.description];
@@ -119,6 +120,15 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.channels.count == 0) {
+                self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+                self.noChannelLabel.hidden = NO;
+            }
+            else {
+                self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+                self.noChannelLabel.hidden = YES;
+            }
+            
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
         });

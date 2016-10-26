@@ -30,7 +30,7 @@
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="paV-Vs-BRz" userLabel="Selected User List Collection View">
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="90" id="Syl-SL-y1x"/>
+                        <constraint firstAttribute="height" constant="70" id="Syl-SL-y1x"/>
                     </constraints>
                     <inset key="scrollIndicatorInsets" minX="14" minY="0.0" maxX="14" maxY="0.0"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="14" minimumInteritemSpacing="0.0" id="WLC-Ce-bsp">
@@ -43,7 +43,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKE-aK-fSz" userLabel="Title Container View">
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ms6-xK-eci" userLabel="Title Label">
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                             <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -52,7 +52,7 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Ms6-xK-eci" secondAttribute="trailing" constant="14" id="36d-tT-hUl"/>
                         <constraint firstItem="Ms6-xK-eci" firstAttribute="leading" secondItem="QKE-aK-fSz" secondAttribute="leading" constant="14" id="YMt-x6-bDf"/>
-                        <constraint firstAttribute="height" constant="32" id="bf0-un-f4A"/>
+                        <constraint firstAttribute="height" constant="26" id="bf0-un-f4A"/>
                         <constraint firstItem="Ms6-xK-eci" firstAttribute="centerY" secondItem="QKE-aK-fSz" secondAttribute="centerY" id="ubI-Vz-Txl"/>
                     </constraints>
                 </view>
