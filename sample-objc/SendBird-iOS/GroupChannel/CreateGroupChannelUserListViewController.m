@@ -212,7 +212,7 @@
 
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.selectedUsers.count > 0) {
-            self.selectedUserListHeight.constant = 90;
+            self.selectedUserListHeight.constant = 70;
             self.selectedUserListCollectionView.hidden = NO;
         }
         else {

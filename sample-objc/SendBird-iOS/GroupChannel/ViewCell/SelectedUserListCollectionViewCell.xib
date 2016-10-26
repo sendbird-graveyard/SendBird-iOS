@@ -45,13 +45,13 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwK-vf-4Kd" userLabel="Nickname Label">
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="wwK-vf-4Kd" firstAttribute="top" secondItem="Ope-eO-6Yc" secondAttribute="bottom" constant="10" id="4V5-D3-LEe"/>
+                <constraint firstItem="wwK-vf-4Kd" firstAttribute="top" secondItem="Ope-eO-6Yc" secondAttribute="bottom" constant="8" id="4V5-D3-LEe"/>
                 <constraint firstItem="Ope-eO-6Yc" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="GVe-pL-kUC"/>
                 <constraint firstItem="Ope-eO-6Yc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="14" id="OHR-cs-hbW"/>
                 <constraint firstItem="wwK-vf-4Kd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="PRx-ZS-rER"/>
