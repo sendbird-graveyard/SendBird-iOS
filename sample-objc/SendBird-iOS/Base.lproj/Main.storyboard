@@ -28,8 +28,8 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_sb_sign" translatesAutoresizingMaskIntoConstraints="NO" id="gH0-Ip-x05">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="139.5" id="Szw-RM-K4C"/>
-                                                        <constraint firstAttribute="height" constant="211.5" id="eeg-zj-zb7"/>
+                                                        <constraint firstAttribute="width" constant="140" id="Szw-RM-K4C"/>
+                                                        <constraint firstAttribute="height" constant="212" id="eeg-zj-zb7"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -39,11 +39,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="132" id="Er5-GB-ljL" userLabel="User ID Table View Cell">
-                                        <rect key="frame" x="0.0" y="291" width="375" height="132"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="112" id="Er5-GB-ljL" userLabel="User ID Table View Cell">
+                                        <rect key="frame" x="0.0" y="291" width="375" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Er5-GB-ljL" id="Pfw-Pr-Ez3">
-                                            <frame key="frameInset" width="375" height="132"/>
+                                            <frame key="frameInset" width="375" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANI-Ky-Vh6" userLabel="User ID Label">
@@ -83,7 +83,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="72" id="ciY-74-ObY" userLabel="Nickname Table View Cell">
-                                        <rect key="frame" x="0.0" y="423" width="375" height="72"/>
+                                        <rect key="frame" x="0.0" y="403" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ciY-74-ObY" id="Asu-IF-W9M">
                                             <frame key="frameInset" width="375" height="72"/>
@@ -125,11 +125,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="94" id="NtX-Ud-y3u" userLabel="Connect Button Table View Cell">
-                                        <rect key="frame" x="0.0" y="495" width="375" height="94"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="74" id="NtX-Ud-y3u" userLabel="Connect Button Table View Cell">
+                                        <rect key="frame" x="0.0" y="475" width="375" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NtX-Ud-y3u" id="l6j-hq-BNr">
-                                            <frame key="frameInset" width="375" height="94"/>
+                                            <frame key="frameInset" width="375" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HxM-yW-grV">
@@ -137,7 +137,7 @@
                                                         <constraint firstAttribute="height" constant="54" id="lrJ-yF-hUf"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
-                                                    <state key="normal" title="CONNECT" backgroundImage="btn_purple">
+                                                    <state key="normal" title="CONNECT">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -159,7 +159,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="fNk-hD-WnZ" userLabel="Version Table View Cell">
-                                        <rect key="frame" x="0.0" y="589" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="549" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fNk-hD-WnZ" id="GOv-yV-HtH">
                                             <frame key="frameInset" width="375" height="70"/>
@@ -206,7 +206,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="btn_purple" width="42" height="42"/>
         <image name="logo_sb_sign" width="139" height="211"/>
     </resources>
 </document>

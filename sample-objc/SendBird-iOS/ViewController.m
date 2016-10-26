@@ -12,6 +12,7 @@
 #import "MenuViewController.h"
 #import "Constants.h"
 #import "NSBundle+SendBird.h"
+#import "Utils.h"
 
 @interface ViewController ()
 
@@ -71,6 +72,8 @@
     
     self.userIdTextField.text = userId;
     self.nicknameTextField.text = userNickname;
+    
+    [self.connectButton setBackgroundImage:[Utils imageFromColor:[Constants connectButtonColor]] forState:UIControlStateNormal];
     
     [self.indicatorView setHidesWhenStopped:YES];
 

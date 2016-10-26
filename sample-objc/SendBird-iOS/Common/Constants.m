@@ -15,7 +15,7 @@
 }
 
 + (UIFont *)navigationBarTitleFont {
-    return [UIFont fontWithName:@"HelveticaNeue-Medium" size:18.0];
+    return [UIFont fontWithName:@"HelveticaNeue" size:16.0];
 }
 
 + (UIColor *)textFieldLineColorNormal {
@@ -27,7 +27,7 @@
 }
 
 + (UIFont *)nicknameFontInMessage {
-    return [UIFont fontWithName:@"HelveticaNeue" size:16.0];
+    return [UIFont fontWithName:@"HelveticaNeue" size:12.0];
 }
 
 + (UIColor *)nicknameColorInMessageNo0 {
@@ -51,11 +51,11 @@
 }
 
 + (UIFont *)messageDateFont {
-    return [UIFont fontWithName:@"HelveticaNeue" size:12.0];
+    return [UIFont fontWithName:@"HelveticaNeue" size:10.0];
 }
 
 + (UIColor *)messageDateColor {
-    return [UIColor colorWithRed:(CGFloat)(142.0/255.0) green:(CGFloat)(142.0/255.0) blue:(CGFloat)(142.0/255.0) alpha:1];
+    return [UIColor colorWithRed:(CGFloat)(191.0/255.0) green:(CGFloat)(191.0/255.0) blue:(CGFloat)(191.0/255.0) alpha:1];
 }
 
 + (UIColor *)incomingFileImagePlaceholderColor {
@@ -115,7 +115,7 @@
 }
 
 + (UIFont *)navigationBarButtonItemFont {
-    return [UIFont fontWithName:@"HelveticaNeue" size:18.0];
+    return [UIFont fontWithName:@"HelveticaNeue" size:16.0];
 }
 
 + (UIColor *)memberOnlineTextColor {
@@ -124,6 +124,10 @@
 
 + (UIColor *)memberOfflineDateTextColor {
     return [UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1];
+}
+
++ (UIColor *)connectButtonColor {
+    return [UIColor colorWithRed:123.0/255.0 green:95.0/255.0 blue:217.0/255.0 alpha:1];
 }
 
 @end

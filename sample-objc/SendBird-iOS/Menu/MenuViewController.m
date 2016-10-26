@@ -11,16 +11,17 @@
 #import "MenuViewController.h"
 #import "OpenChannelListViewController.h"
 #import "GroupChannelListViewController.h"
+#import "NSBundle+SendBird.h"
+#import "Constants.h"
 
 @interface MenuViewController ()
 
+@property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
 @property (weak, nonatomic) IBOutlet UIView *openChannelView;
 @property (weak, nonatomic) IBOutlet UIView *groupChannelView;
-@property (weak, nonatomic) IBOutlet UIView *disconnectView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *openChannelCheckImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *groupChannelCheckImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *disconnectCheckImageView;
 
 @end
 
@@ -32,7 +33,12 @@
     
     self.openChannelCheckImageView.hidden = YES;
     self.groupChannelCheckImageView.hidden = YES;
-    self.disconnectCheckImageView.hidden = YES;
+    
+    UIBarButtonItem *negativeRightSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    negativeRightSpacer.width = -2;
+    UIBarButtonItem *rightDisconnectItem = [[UIBarButtonItem alloc] initWithTitle:[NSBundle sbLocalizedStringForKey:@"DisconnectButton"] style:UIBarButtonItemStylePlain target:self action:@selector(disconnect)];
+    [rightDisconnectItem setTitleTextAttributes:@{NSFontAttributeName: [Constants navigationBarButtonItemFont]} forState:UIControlStateNormal];
+    self.navItem.rightBarButtonItems = @[negativeRightSpacer, rightDisconnectItem];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,21 +49,17 @@
 - (IBAction)pressOpenChannelButton:(id)sender {
     self.openChannelView.backgroundColor = [UIColor colorWithRed:(CGFloat)(248.0/255.0) green:(CGFloat)(248.0/255.0) blue:(CGFloat)(248.0/255.0) alpha:1];
     self.groupChannelView.backgroundColor = [UIColor whiteColor];
-    self.disconnectView.backgroundColor = [UIColor whiteColor];
     
     self.openChannelCheckImageView.hidden = NO;
     self.groupChannelCheckImageView.hidden = YES;
-    self.disconnectCheckImageView.hidden = YES;
 }
 
 - (IBAction)clickOpenChannelButton:(id)sender {
     self.openChannelView.backgroundColor = [UIColor colorWithRed:(CGFloat)(248.0/255.0) green:(CGFloat)(248.0/255.0) blue:(CGFloat)(248.0/255.0) alpha:1];
     self.groupChannelView.backgroundColor = [UIColor whiteColor];
-    self.disconnectView.backgroundColor = [UIColor whiteColor];
     
     self.openChannelCheckImageView.hidden = NO;
     self.groupChannelCheckImageView.hidden = YES;
-    self.disconnectCheckImageView.hidden = YES;
     
     OpenChannelListViewController *vc = [[OpenChannelListViewController alloc] init];
     [self presentViewController:vc animated:NO completion:^{
@@ -68,21 +70,17 @@
 - (IBAction)pressGroupChannelButton:(id)sender {
     self.openChannelView.backgroundColor = [UIColor whiteColor];
     self.groupChannelView.backgroundColor = [UIColor colorWithRed:(CGFloat)(248.0/255.0) green:(CGFloat)(248.0/255.0) blue:(CGFloat)(248.0/255.0) alpha:1];
-    self.disconnectView.backgroundColor = [UIColor whiteColor];
     
     self.openChannelCheckImageView.hidden = YES;
     self.groupChannelCheckImageView.hidden = NO;
-    self.disconnectCheckImageView.hidden = YES;
 }
 
 - (IBAction)clickGroupChannelButton:(id)sender {
     self.openChannelView.backgroundColor = [UIColor whiteColor];
     self.groupChannelView.backgroundColor = [UIColor colorWithRed:(CGFloat)(248.0/255.0) green:(CGFloat)(248.0/255.0) blue:(CGFloat)(248.0/255.0) alpha:1];
-    self.disconnectView.backgroundColor = [UIColor whiteColor];
     
     self.openChannelCheckImageView.hidden = YES;
     self.groupChannelCheckImageView.hidden = NO;
-    self.disconnectCheckImageView.hidden = YES;
     
     GroupChannelListViewController *vc = [[GroupChannelListViewController alloc] init];
     [self presentViewController:vc animated:NO completion:^{
@@ -90,25 +88,7 @@
     }];
 }
 
-- (IBAction)pressDisconnectButton:(id)sender {
-    self.openChannelView.backgroundColor = [UIColor whiteColor];
-    self.groupChannelView.backgroundColor = [UIColor whiteColor];
-    self.disconnectView.backgroundColor = [UIColor colorWithRed:(CGFloat)(248.0/255.0) green:(CGFloat)(248.0/255.0) blue:(CGFloat)(248.0/255.0) alpha:1];
-    
-    self.openChannelCheckImageView.hidden = YES;
-    self.groupChannelCheckImageView.hidden = YES;
-    self.disconnectCheckImageView.hidden = NO;
-}
-
-- (IBAction)clickDisconnectButton:(id)sender {
-    self.openChannelView.backgroundColor = [UIColor whiteColor];
-    self.groupChannelView.backgroundColor = [UIColor whiteColor];
-    self.disconnectView.backgroundColor = [UIColor colorWithRed:(CGFloat)(248.0/255.0) green:(CGFloat)(248.0/255.0) blue:(CGFloat)(248.0/255.0) alpha:1];
-    
-    self.openChannelCheckImageView.hidden = YES;
-    self.groupChannelCheckImageView.hidden = YES;
-    self.disconnectCheckImageView.hidden = NO;
-    
+- (void)disconnect {
     [SBDMain unregisterAllPushTokenWithCompletionHandler:^(NSDictionary * _Nullable response, SBDError * _Nullable error) {
         if (error != nil) {
             NSLog(@"Unregister all push tokens. Error: %@", error);
@@ -121,8 +101,6 @@
             });
         }];
     }];
-    
-    
 }
 
 @end

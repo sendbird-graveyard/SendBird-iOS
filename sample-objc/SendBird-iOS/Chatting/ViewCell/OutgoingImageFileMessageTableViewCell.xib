@@ -17,18 +17,35 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xlr-w5-VqB" userLabel="Date Container View">
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e0P-gB-aWb" userLabel="Left Line View">
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="pbj-0y-Ix1"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 Sep, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLK-1G-zlT" userLabel="Date Label">
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y4A-R5-q3W" userLabel="Right Line View">
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="qmi-Zo-hfp"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20390625000000001" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="5ck-Y5-V2N" userLabel="Date Container Height"/>
-                            <constraint firstItem="jLK-1G-zlT" firstAttribute="leading" secondItem="xlr-w5-VqB" secondAttribute="leading" constant="14" id="ejJ-Ri-IWr"/>
-                            <constraint firstAttribute="trailing" secondItem="jLK-1G-zlT" secondAttribute="trailing" constant="14" id="hFr-8h-okZ"/>
+                            <constraint firstItem="jLK-1G-zlT" firstAttribute="centerX" secondItem="xlr-w5-VqB" secondAttribute="centerX" id="6fp-LG-U0g"/>
+                            <constraint firstItem="e0P-gB-aWb" firstAttribute="centerY" secondItem="xlr-w5-VqB" secondAttribute="centerY" id="88L-wL-cGi"/>
+                            <constraint firstItem="e0P-gB-aWb" firstAttribute="leading" secondItem="xlr-w5-VqB" secondAttribute="leading" id="8FD-9A-Zf1"/>
+                            <constraint firstItem="Y4A-R5-q3W" firstAttribute="leading" secondItem="jLK-1G-zlT" secondAttribute="trailing" constant="4" id="Oqq-e1-NTj"/>
+                            <constraint firstItem="Y4A-R5-q3W" firstAttribute="centerY" secondItem="xlr-w5-VqB" secondAttribute="centerY" id="dEE-Rt-Fqu"/>
+                            <constraint firstAttribute="trailing" secondItem="Y4A-R5-q3W" secondAttribute="trailing" id="dXv-Kg-Tcg"/>
                             <constraint firstItem="jLK-1G-zlT" firstAttribute="centerY" secondItem="xlr-w5-VqB" secondAttribute="centerY" id="m2o-Ma-Zm3"/>
+                            <constraint firstItem="jLK-1G-zlT" firstAttribute="leading" secondItem="e0P-gB-aWb" secondAttribute="trailing" constant="4" id="rgT-4S-wn9"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -90,8 +107,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="IIa-5w-dje" firstAttribute="bottom" secondItem="2ua-Pb-z1N" secondAttribute="bottom" id="00Y-dA-khp"/>
+                    <constraint firstItem="xlr-w5-VqB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5V6-wG-hXZ"/>
                     <constraint firstItem="cFs-UU-SjC" firstAttribute="bottom" secondItem="vVE-It-kJl" secondAttribute="bottom" id="5fy-BD-Vb6"/>
                     <constraint firstItem="IIa-5w-dje" firstAttribute="leading" secondItem="2ua-Pb-z1N" secondAttribute="trailing" id="7Qf-Hc-dOx"/>
+                    <constraint firstAttribute="trailing" secondItem="xlr-w5-VqB" secondAttribute="trailing" id="ITf-h4-vG7"/>
                     <constraint firstItem="hbf-MR-kCw" firstAttribute="trailing" secondItem="cFs-UU-SjC" secondAttribute="trailing" id="Kt1-fA-XzF"/>
                     <constraint firstItem="vVE-It-kJl" firstAttribute="leading" secondItem="cFs-UU-SjC" secondAttribute="trailing" constant="8" id="PDP-GY-U66"/>
                     <constraint firstItem="2ua-Pb-z1N" firstAttribute="bottom" secondItem="IIa-5w-dje" secondAttribute="bottom" id="TNq-7n-vLS"/>

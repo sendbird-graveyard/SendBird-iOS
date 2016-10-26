@@ -17,18 +17,35 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLh-45-YaR" userLabel="Date Container View">
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AKs-yf-1qO" userLabel="Left Line View">
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="VEy-9x-j3b"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 Sep, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjL-Q7-Mhr" userLabel="Date Label">
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNb-3I-Qkm" userLabel="Right Line View">
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="WUi-RV-dZw"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20390625000000001" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="CjL-Q7-Mhr" firstAttribute="centerX" secondItem="OLh-45-YaR" secondAttribute="centerX" id="0Ly-x7-5eB"/>
                             <constraint firstAttribute="height" constant="24" id="2Iz-VC-Ptw" userLabel="Date Container Height"/>
+                            <constraint firstItem="AKs-yf-1qO" firstAttribute="centerY" secondItem="OLh-45-YaR" secondAttribute="centerY" id="2jJ-3u-eDk"/>
+                            <constraint firstItem="AKs-yf-1qO" firstAttribute="leading" secondItem="OLh-45-YaR" secondAttribute="leading" id="LPw-HE-nc1"/>
                             <constraint firstItem="CjL-Q7-Mhr" firstAttribute="centerY" secondItem="OLh-45-YaR" secondAttribute="centerY" id="UkX-PI-QN8"/>
-                            <constraint firstAttribute="trailing" secondItem="CjL-Q7-Mhr" secondAttribute="trailing" constant="14" id="pet-cH-Dpf"/>
-                            <constraint firstItem="CjL-Q7-Mhr" firstAttribute="leading" secondItem="OLh-45-YaR" secondAttribute="leading" constant="14" id="veY-sG-S0V"/>
+                            <constraint firstAttribute="trailing" secondItem="JNb-3I-Qkm" secondAttribute="trailing" id="ZRJ-ZX-vN6"/>
+                            <constraint firstItem="JNb-3I-Qkm" firstAttribute="leading" secondItem="CjL-Q7-Mhr" secondAttribute="trailing" constant="4" id="hgu-pA-1Hd"/>
+                            <constraint firstItem="JNb-3I-Qkm" firstAttribute="centerY" secondItem="OLh-45-YaR" secondAttribute="centerY" id="xiD-qF-3HW"/>
+                            <constraint firstItem="CjL-Q7-Mhr" firstAttribute="leading" secondItem="AKs-yf-1qO" secondAttribute="trailing" constant="4" id="z3L-sy-dJ0"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -83,11 +100,12 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="MLi-lv-uxK" firstAttribute="top" secondItem="OLh-45-YaR" secondAttribute="bottom" constant="10" id="DLA-O8-0cs"/>
-                    <constraint firstItem="OLh-45-YaR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Dzz-kG-tL1"/>
+                    <constraint firstItem="OLh-45-YaR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="HGu-9n-K2Y"/>
                     <constraint firstItem="eTF-bN-Vyw" firstAttribute="leading" secondItem="gOY-YY-Jbr" secondAttribute="trailing" constant="8" id="Uhg-Gz-1DF"/>
                     <constraint firstItem="gOY-YY-Jbr" firstAttribute="top" secondItem="OLh-45-YaR" secondAttribute="bottom" constant="10" id="cdE-Kc-eh5"/>
                     <constraint firstItem="MLi-lv-uxK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="dzb-1A-egn"/>
                     <constraint firstItem="OLh-45-YaR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hWI-bm-MT4"/>
+                    <constraint firstAttribute="trailing" secondItem="OLh-45-YaR" secondAttribute="trailing" id="iE1-Q4-eTk"/>
                     <constraint firstItem="eTF-bN-Vyw" firstAttribute="bottom" secondItem="gOY-YY-Jbr" secondAttribute="bottom" id="oUG-kT-Fwl"/>
                     <constraint firstItem="gOY-YY-Jbr" firstAttribute="leading" secondItem="MLi-lv-uxK" secondAttribute="trailing" constant="8" id="zSV-2g-KjN"/>
                 </constraints>

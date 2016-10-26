@@ -17,18 +17,35 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Wc-XM-Jf9" userLabel="Date Container View">
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i7G-dH-n3w" userLabel="Left Line View">
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="tgT-qb-MOW"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 Sep, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIx-7U-Q8F" userLabel="Date Label">
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2E2-1z-re0" userLabel="Right Line View">
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="tZ2-CI-KCD"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20390625000000001" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2E2-1z-re0" firstAttribute="leading" secondItem="RIx-7U-Q8F" secondAttribute="trailing" constant="4" id="8O0-cF-elP"/>
+                            <constraint firstItem="RIx-7U-Q8F" firstAttribute="centerX" secondItem="5Wc-XM-Jf9" secondAttribute="centerX" id="Ld0-mk-OSv"/>
+                            <constraint firstItem="2E2-1z-re0" firstAttribute="centerY" secondItem="5Wc-XM-Jf9" secondAttribute="centerY" id="V3Q-g4-rni"/>
+                            <constraint firstItem="i7G-dH-n3w" firstAttribute="leading" secondItem="5Wc-XM-Jf9" secondAttribute="leading" id="VeT-8l-672"/>
                             <constraint firstAttribute="height" constant="24" id="WYN-zi-TpL" userLabel="Date Container Height"/>
                             <constraint firstItem="RIx-7U-Q8F" firstAttribute="centerY" secondItem="5Wc-XM-Jf9" secondAttribute="centerY" id="YkJ-oz-1Os"/>
-                            <constraint firstItem="RIx-7U-Q8F" firstAttribute="leading" secondItem="5Wc-XM-Jf9" secondAttribute="leading" constant="14" id="n23-CA-78e"/>
-                            <constraint firstAttribute="trailing" secondItem="RIx-7U-Q8F" secondAttribute="trailing" constant="14" id="noz-KB-7Yj"/>
+                            <constraint firstItem="RIx-7U-Q8F" firstAttribute="leading" secondItem="i7G-dH-n3w" secondAttribute="trailing" constant="4" id="fXE-WU-jBA"/>
+                            <constraint firstAttribute="trailing" secondItem="2E2-1z-re0" secondAttribute="trailing" id="nWP-0r-jve"/>
+                            <constraint firstItem="i7G-dH-n3w" firstAttribute="centerY" secondItem="5Wc-XM-Jf9" secondAttribute="centerY" id="qa5-ws-SfM"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -128,6 +145,8 @@
                     <constraint firstItem="5WE-Kr-9kf" firstAttribute="top" secondItem="rza-Ci-52U" secondAttribute="bottom" id="28b-4k-Z1H"/>
                     <constraint firstItem="5Wc-XM-Jf9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="2s3-ZA-J5n"/>
                     <constraint firstItem="6jH-nP-1ga" firstAttribute="top" secondItem="5Wc-XM-Jf9" secondAttribute="bottom" constant="10" id="6AZ-UT-CrS"/>
+                    <constraint firstAttribute="trailing" secondItem="5Wc-XM-Jf9" secondAttribute="trailing" id="7c5-AX-faT"/>
+                    <constraint firstItem="5Wc-XM-Jf9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9ou-1q-gTx"/>
                     <constraint firstItem="5WE-Kr-9kf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="36" id="FcR-j9-GqJ"/>
                     <constraint firstItem="ti8-DM-lyD" firstAttribute="bottom" secondItem="IMm-Qf-Lha" secondAttribute="bottom" id="Gbj-Bx-YUk"/>
                     <constraint firstItem="6jH-nP-1ga" firstAttribute="leading" secondItem="ti8-DM-lyD" secondAttribute="trailing" id="Lbs-wy-8i5"/>

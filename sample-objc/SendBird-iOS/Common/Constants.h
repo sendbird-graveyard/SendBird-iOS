@@ -40,5 +40,6 @@
 + (UIFont *)navigationBarButtonItemFont;
 + (UIColor *)memberOnlineTextColor;
 + (UIColor *)memberOfflineDateTextColor;
++ (UIColor *)connectButtonColor;
 
 @end
