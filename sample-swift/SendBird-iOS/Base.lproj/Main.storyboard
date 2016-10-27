@@ -161,14 +161,17 @@
                                             <frame key="frameInset" width="375" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sample UI v1.0.2 / SDK v3.0.9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJr-Sk-AIi" userLabel="Version Label">
-                                                    <frame key="frameInset" minY="28" width="375" height="14"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample UI v1.0.2 / SDK v3.0.9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJr-Sk-AIi" userLabel="Version Label">
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                     <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hJr-Sk-AIi" firstAttribute="centerY" secondItem="aMq-t7-rSE" secondAttribute="centerY" id="5Ty-2g-Trf"/>
+                                                <constraint firstItem="hJr-Sk-AIi" firstAttribute="leading" secondItem="aMq-t7-rSE" secondAttribute="leading" id="fF6-Sd-iBp"/>
+                                                <constraint firstAttribute="trailing" secondItem="hJr-Sk-AIi" secondAttribute="trailing" id="tuB-Qg-ioe"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
