@@ -17,6 +17,38 @@
             endingLineNumber = "92"
             landmarkName = "-clickConnectButton:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ViewController clickConnectButton:]"
+                  moduleName = "SendBird-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jedkyung/git/SendBird-iOS/sample-objc/SendBird-iOS/ViewController.m"
+                  timestampString = "499233277.604544"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "854">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__37-[ViewController clickConnectButton:]_block_invoke"
+                  moduleName = "SendBird-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jedkyung/git/SendBird-iOS/sample-objc/SendBird-iOS/ViewController.m"
+                  timestampString = "499233277.606219"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "46">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -32,6 +64,22 @@
             startingLineNumber = "452"
             endingLineNumber = "452"
             landmarkName = "+connectWebSocketServerReconnect:userId:accessToken:sessionKey:completionHandler:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SendBird-iOS/Common/Utils.m"
+            timestampString = "499233277.070662"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "+imageFromColor:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
