@@ -15,7 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - MGSwipeTableCell (1.5.6)
-  - SendBirdSDK (3.0.14)
+  - SendBirdSDK (3.0.15)
 
 DEPENDENCIES:
   - AFNetworking
@@ -25,7 +25,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
-  SendBirdSDK: 921c2afb4ea13066a5147d198475d124d57973f9
+  SendBirdSDK: 89beb6b1b42bce680ddfbde977d25f18bac45028
 
 PODFILE CHECKSUM: 32ef896ba2bc235646ee5aead575f0a9f0aa0d42
 

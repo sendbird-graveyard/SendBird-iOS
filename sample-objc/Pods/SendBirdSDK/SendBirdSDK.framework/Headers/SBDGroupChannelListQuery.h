@@ -58,6 +58,21 @@
 - (nullable instancetype)initWithUser:(SBDUser * _Nonnull)user;
 
 /**
+ *  Sets the filter with nicknames. The group channels which have the members that contains nicknames are returned by `loadNextPageWithCompletionHandler:`(LIKE search).
+ *
+ *  @param nicknames Nicknames to search.
+ */
+- (void)setNicknamesContainsFilter:(NSArray<NSString *> * _Nullable)nicknames;
+
+/**
+ *  Sets the filter with user IDs. The group channels which have the members that have user IDs are returned by `loadNextPageWithCompletionHandler:`.
+ *
+ *  @param userIds    User IDs to search.
+ *  @param exactMatch If YES, the group channels which have the `userIds` only are returned. If NO, the group channels which contain the `userIds` are returned. 
+ */
+- (void)setUserIdsFilter:(NSArray<NSString *> * _Nonnull)userIds exactMatch:(BOOL)exactMatch;
+
+/**
  *  Gets the list of channels. If this method is repeatedly called, it will retrieve the following pages of the channel list.
  *
  *  @param completionHandler The handler block to execute. The `channels` is the array of `SBDGroupChannel` instances.

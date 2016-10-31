@@ -32,7 +32,7 @@
                                                            }];
     [[UINavigationBar appearance] setTintColor:[Constants navigationBarTitleColor]];
     
-    [SBDMain initWithApplicationId:@"2270A67A-E59D-4F0A-9135-5A8ADB9AD0C6"];
+    [SBDMain initWithApplicationId:@"A7A2672C-AD11-11E4-8DAA-0A18B21C2D82"];
     [SBDMain setLogLevel:SBDLogLevelDebug];
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];

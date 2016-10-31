@@ -38,6 +38,11 @@
  */
 @property (strong, nonatomic, readonly, nullable) NSString *requestId;
 
+/**
+ *  Custom message type.
+ */
+@property (strong, nonatomic, readonly, nullable) NSString *customType;
+
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
 
 @end

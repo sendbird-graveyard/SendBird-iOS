@@ -52,22 +52,28 @@
  */
 @property (strong, nonatomic, readonly, nullable) NSString *requestId;
 
+/**
+ *  Custom message type.
+ */
+@property (strong, nonatomic, readonly, nullable) NSString *customType;
+
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
 
 /**
  *  Builds file message with the information which is releated to file.
  *
- *  @param url       The file URL.
- *  @param name      The <span>name</span> of file.
- *  @param size      The <span>size</span> of file.
- *  @param type      The <span>type</span> of file.
- *  @param data      The custom <span>data</span> for file.
- *  @param requestId Request ID for ACK.
- *  @param sender    Sender of the message.
- *  @param channel   The channel which the file message is sent.
+ *  @param url        The file URL.
+ *  @param name       The <span>name</span> of file.
+ *  @param size       The <span>size</span> of file.
+ *  @param type       The <span>type</span> of file.
+ *  @param data       The custom <span>data</span> for file.
+ *  @param requestId  Request ID for ACK.
+ *  @param sender     Sender of the message.
+ *  @param channel    The channel which the file message is sent.
+ *  @param customType Custom message type.
  *
  *  @return File message object with request ID.
  */
-+ (nullable NSMutableDictionary<NSString *, NSObject *> *)buildWithFileUrl:(NSString * _Nonnull)url name:(NSString * _Nullable)name size:(NSUInteger)size type:(NSString * _Nonnull)type data:(NSString * _Nullable)data requestId:(NSString * _Nullable)requestId sender:(SBDUser * _Nonnull)sender channel:(SBDBaseChannel * _Nonnull)channel;
++ (nullable NSMutableDictionary<NSString *, NSObject *> *)buildWithFileUrl:(NSString * _Nonnull)url name:(NSString * _Nullable)name size:(NSUInteger)size type:(NSString * _Nonnull)type data:(NSString * _Nullable)data requestId:(NSString * _Nullable)requestId sender:(SBDUser * _Nonnull)sender channel:(SBDBaseChannel * _Nonnull)channel customType:(NSString * _Nullable)customType;
 
 @end
