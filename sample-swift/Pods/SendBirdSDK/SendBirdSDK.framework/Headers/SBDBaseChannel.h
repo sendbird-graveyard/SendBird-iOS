@@ -220,6 +220,17 @@
 - (nonnull SBDUserMessage *)sendUserMessage:(NSString * _Nullable)message completionHandler:(nullable void (^)(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error))completionHandler;
 
 /**
+ *  Sends a user message without <span>data</span>. The message will be translated into the target languages.
+ *
+ *  @param message           The message text.
+ *  @param targetLanguages   The target languages that the message will be translated into.
+ *  @param completionHandler The handler block to execute. `userMessage` is a user message which is returned from the SendBird server. The message has a message ID.
+ *
+ *  @return Returns the temporary user message with a request ID. It doesn't have a message ID.
+ */
+- (nonnull SBDUserMessage *)sendUserMessage:(NSString * _Nullable)message targetLanguages:(NSArray<NSString *> * _Nullable)targetLanguages completionHandler:(nullable void (^)(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error))completionHandler;
+
+/**
  *  Sends a user message with <span>data</span>.
  *
  *  @param message        The message text.
@@ -229,6 +240,18 @@
  *  @return Returns the temporary user message with a request ID. It doesn't have a message ID.
  */
 - (nonnull SBDUserMessage *)sendUserMessage:(NSString * _Nullable)message data:(NSString * _Nullable)data completionHandler:(nullable void (^)(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Sends a user message with <span>data</span>. The message will be translated into the target languages.
+ *
+ *  @param message        The message text.
+ *  @param data           The message <span>data</span>.
+ *  @param targetLanguages   The target languages that the message will be translated into.
+ *  @param completionHandler The handler block to execute. `userMessage` is a user message which is returned from the SendBird server. The message has a message ID.
+ *
+ *  @return Returns the temporary user message with a request ID. It doesn't have a message ID.
+ */
+- (nonnull SBDUserMessage *)sendUserMessage:(NSString * _Nullable)message data:(NSString * _Nullable)data targetLanguages:(NSArray<NSString *> * _Nullable)targetLanguages completionHandler:(nullable void (^)(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Sends a user message with <span>data</span> and <span>custom message type</span>.
@@ -241,6 +264,19 @@
  *  @return Returns the temporary user message with a request ID. It doesn't have a message ID.
  */
 - (nonnull SBDUserMessage *)sendUserMessage:(NSString * _Nullable)message data:(NSString * _Nullable)data customType:(NSString * _Nullable)customType completionHandler:(nullable void (^)(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Sends a user message with <span>data</span> and <span>custom message type</span>. The message will be translated into the target languages.
+ *
+ *  @param message        The message text.
+ *  @param data           The message <span>data</span>.
+ *  @param customType     Custom message type.
+ *  @param targetLanguages   The target languages that the message will be translated into.
+ *  @param completionHandler The handler block to execute. `userMessage` is a user message which is returned from the SendBird server. The message has a message ID.
+ *
+ *  @return Returns the temporary user message with a request ID. It doesn't have a message ID.
+ */
+- (nonnull SBDUserMessage *)sendUserMessage:(NSString * _Nullable)message data:(NSString * _Nullable)data customType:(NSString * _Nullable)customType targetLanguages:(NSArray<NSString *> * _Nullable)targetLanguages completionHandler:(nullable void (^)(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Sends a file message with binary <span>data</span>. The binary <span>data</span> is uploaded to SendBird file storage and a URL of the file will be generated.

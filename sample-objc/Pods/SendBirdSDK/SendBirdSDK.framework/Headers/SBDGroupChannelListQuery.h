@@ -58,11 +58,11 @@
 - (nullable instancetype)initWithUser:(SBDUser * _Nonnull)user;
 
 /**
- *  Sets the filter with nicknames. The group channels which have the members that contains nicknames are returned by `loadNextPageWithCompletionHandler:`(LIKE search).
+ *  Sets the filter with nickname. The group channels which have the member that has nickname are returned by `loadNextPageWithCompletionHandler:`(LIKE search).
  *
- *  @param nicknames Nicknames to search.
+ *  @param nickname Nickname to search.
  */
-- (void)setNicknamesContainsFilter:(NSArray<NSString *> * _Nullable)nicknames;
+- (void)setNicknameContainsFilter:(NSString * _Nullable)nickname;
 
 /**
  *  Sets the filter with user IDs. The group channels which have the members that have user IDs are returned by `loadNextPageWithCompletionHandler:`.

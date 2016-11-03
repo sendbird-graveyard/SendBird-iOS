@@ -43,6 +43,11 @@
  */
 @property (strong, nonatomic, readonly, nullable) NSString *customType;
 
+/**
+ *  Translated <span>message</span> text.
+ */
+@property (strong, nonatomic, readonly, nullable) NSDictionary *translations;
+
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
 
 @end
