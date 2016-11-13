@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -103,10 +103,6 @@
                 <outlet property="iconImageViewBottomMargin" destination="xJT-kU-YUi" id="1Fn-ja-8kM"/>
                 <outlet property="iconImageViewHeight" destination="5gZ-55-dOM" id="q9C-iB-pZA"/>
                 <outlet property="messageContainerViewBottomPadding" destination="xnv-sE-N0K" id="vgk-n9-hld"/>
-                <outlet property="messageContainerViewLeftMargin" destination="4ol-al-E25" id="ahG-mC-FaN"/>
-                <outlet property="messageContainerViewLeftPadding" destination="92k-RQ-g7L" id="JSA-5b-3UT"/>
-                <outlet property="messageContainerViewRightMargin" destination="81O-Dq-YqY" id="Irp-yj-Aey"/>
-                <outlet property="messageContainerViewRightPadding" destination="4QL-EF-da0" id="m06-Bd-0Zp"/>
                 <outlet property="messageContainerViewTopPadding" destination="Tdw-c2-zIh" id="ykC-B1-6n0"/>
                 <outlet property="messageLabel" destination="tQF-su-9mm" id="nMq-0v-8ay"/>
             </connections>
