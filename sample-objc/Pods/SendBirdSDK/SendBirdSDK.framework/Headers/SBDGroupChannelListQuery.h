@@ -44,6 +44,11 @@
 @property (atomic, readonly) BOOL hasNext;
 
 /**
+ *  Sets query type for `includeMemberList`.
+ */
+@property (atomic) SBDGroupChannelListQueryType queryType;
+
+/**
  *  Shows if the query is loading.
  *
  *  @return Returns YES if the query is loading, otherwise returns NO.
@@ -69,8 +74,25 @@
  *
  *  @param userIds    User IDs to search.
  *  @param exactMatch If YES, the group channels which have the `userIds` only are returned. If NO, the group channels which contain the `userIds` are returned. 
+ *
+ *  @deprecated in 3.0.19
  */
-- (void)setUserIdsFilter:(NSArray<NSString *> * _Nonnull)userIds exactMatch:(BOOL)exactMatch;
+- (void)setUserIdsFilter:(NSArray<NSString *> * _Nonnull)userIds exactMatch:(BOOL)exactMatch DEPRECATED_ATTRIBUTE;
+
+/**
+ *  Sets the filter with user IDs. The group channels which have the members that contain user IDs are returned by `loadNextPageWithCompletionHandler:`.
+ *
+ *  @param userIds    User IDs to search.
+ *  @param queryType Logical condition applied to filter. If you pass `SBDGroupChannelListQueryTypeAnd` to `queryType` and A, B to `userIds`, the channels whose members containing A and B will be returned. If `SBDGroupChannelListQueryTypeOr` is set, the members of the queried channels will be A or B.
+ */
+- (void)setUserIdsIncludeFilter:(NSArray<NSString *>* _Nonnull)userIds queryType:(SBDGroupChannelListQueryType)queryType;
+
+/**
+ *  Sets the filter with user IDs. The group channels which have the members that have user IDs are returned by `loadNextPageWithCompletionHandler:`. The channels have the `userIds` members only.
+ *
+ *  @param userIds    User IDs to search.
+ */
+- (void)setUserIdsExactFilter:(NSArray<NSString *>* _Nonnull)userIds;
 
 /**
  *  Gets the list of channels. If this method is repeatedly called, it will retrieve the following pages of the channel list.

@@ -207,6 +207,11 @@
  */
 @property (strong, nonatomic, nullable) NSString *data;
 
+/**
+ *  The custom type of the channel.
+ */
+@property (strong, nonatomic, nullable) NSString *customType;
+
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
 
 /**

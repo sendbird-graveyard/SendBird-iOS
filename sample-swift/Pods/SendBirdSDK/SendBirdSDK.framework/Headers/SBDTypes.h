@@ -136,4 +136,12 @@ typedef NS_ENUM(NSUInteger, SBDPushTokenRegistrationStatus) {
     SBDPushTokenRegistrationStatusError = 2,
 };
 
+/**
+ *  The query type for `SBDGroupChannelListQuery`.
+ */
+typedef NS_ENUM(NSInteger, SBDGroupChannelListQueryType) {
+    SBDGroupChannelListQueryTypeAnd = 0,
+    SBDGroupChannelListQueryTypeOr = 1,
+};
+
 #endif /* SBDTypes_h */

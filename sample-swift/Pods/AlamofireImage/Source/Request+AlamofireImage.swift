@@ -134,7 +134,7 @@ extension DataRequest {
         )
     }
 
-    /// Sets a closure to be called periodically during the lifecycle of the request as data is read from the server 
+    /// Sets a closure to be called periodically during the lifecycle of the request as data is read from the server
     /// and converted into images.
     ///
     /// - parameter imageScale:           The scale factor used when interpreting the image data to construct
@@ -290,9 +290,15 @@ extension DataRequest {
 
 #endif
 
-    // MARK: - Private - Shared Helper Methods
+    // MARK: - Content Type Validation
 
-    private class func validateContentType(for request: URLRequest?, response: HTTPURLResponse?) throws {
+    /// Returns whether the content type of the response matches one of the acceptable content types.
+    ///
+    /// - parameter request: The request.
+    /// - parameter response: The server response.
+    ///
+    /// - throws: An `AFError` response validation failure when an error is encountered.
+    public class func validateContentType(for request: URLRequest?, response: HTTPURLResponse?) throws {
         if let url = request?.url, url.isFileURL { return }
 
         guard let mimeType = response?.mimeType else {
