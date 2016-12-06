@@ -90,7 +90,7 @@ class MenuViewController: UIViewController {
     func disconnect() {
         SBDMain.unregisterAllPushToken { (response, error) in
             if error != nil {
-                print("Unregister all push tokens. Error: ", error)
+                print("Unregister all push tokens. Error: %@", error!)
             }
             
             SBDMain.disconnect(completionHandler: {

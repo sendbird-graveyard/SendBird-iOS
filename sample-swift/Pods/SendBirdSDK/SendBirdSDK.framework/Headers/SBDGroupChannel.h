@@ -61,6 +61,11 @@
 @property (atomic) BOOL sendMarkAsReadEnable;
 
 /**
+ *  Represents push notification is on or off. If true, push notification is on.
+ */
+@property (atomic, readonly) BOOL isPushEnabled;
+
+/**
  *  Refreshes this channel instance.
  *
  *  @param completionHandler The handler block to execute.
@@ -520,8 +525,10 @@
  *  Gets push notification on off on the channel.
  *
  *  @param completionHandler The handler block of execute. The `pushOn` means that the push notification of the channel is on or off.
+ *
+ *  @deprecated in 3.0.21. Use `isPushEnabled` property instead.
  */
-- (void)getPushPreferenceWithCompletionHandler:(nullable void (^)(BOOL pushOn, SBDError *_Nullable error))completionHandler;
+- (void)getPushPreferenceWithCompletionHandler:(nullable void (^)(BOOL pushOn, SBDError *_Nullable error))completionHandler DEPRECATED_ATTRIBUTE;
 
 /**
  *  Gets the total unread message count of all group channels.
