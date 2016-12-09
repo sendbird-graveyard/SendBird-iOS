@@ -17,6 +17,8 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var openChannelCheckImageView: UIImageView!
     @IBOutlet weak var groupChannelCheckImageView: UIImageView!
 
+    var groupChannelListViewController: GroupChannelListViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -80,14 +82,22 @@ class MenuViewController: UIViewController {
         
         self.openChannelCheckImageView.isHidden = true
         self.groupChannelCheckImageView.isHidden = false
+
+        if self.groupChannelListViewController == nil {
+            self.groupChannelListViewController = GroupChannelListViewController()
+            self.groupChannelListViewController?.addDelegates()
+        }
         
-        let vc = GroupChannelListViewController()
-        self.present(vc, animated: false) {
-            vc.view.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: self.view.frame.size.height)
+        self.present(self.groupChannelListViewController!, animated: false) {
+            self.groupChannelListViewController?.view.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: self.view.frame.size.height)
         }
     }
 
     func disconnect() {
+        if self.groupChannelListViewController != nil {
+            self.groupChannelListViewController?.removeDelegates()
+        }
+        
         SBDMain.unregisterAllPushToken { (response, error) in
             if error != nil {
                 print("Unregister all push tokens. Error: %@", error!)
