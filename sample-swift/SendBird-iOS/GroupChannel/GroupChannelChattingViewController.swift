@@ -73,7 +73,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
 
     @objc private func keyboardDidShow(notification: Notification) {
         let keyboardInfo = notification.userInfo
-        let keyboardFrameBegin = keyboardInfo?[UIKeyboardFrameBeginUserInfoKey]
+        let keyboardFrameBegin = keyboardInfo?[UIKeyboardFrameEndUserInfoKey]
         let keyboardFrameBeginRect = (keyboardFrameBegin as! NSValue).cgRectValue
         DispatchQueue.main.async {
             self.bottomMargin.constant = keyboardFrameBeginRect.size.height
@@ -320,6 +320,11 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     }
     
     func hideKeyboardWhenFastScrolling(view: UIView) {
+        DispatchQueue.main.async {
+            self.bottomMargin.constant = 0
+            self.view.layoutIfNeeded()
+            self.chattingView.scrollToBottom()
+        }
         self.view.endEditing(true)
     }
     
