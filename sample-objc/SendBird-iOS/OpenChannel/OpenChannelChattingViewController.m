@@ -14,6 +14,7 @@
 #import "ParticipantListViewController.h"
 #import "BlockedUserListViewController.h"
 #import "NSBundle+SendBird.h"
+#import "GroupChannelChattingViewController.h"
 
 @interface OpenChannelChattingViewController ()
 
@@ -376,6 +377,50 @@
 #pragma mark - MessageDelegate
 - (void)clickProfileImage:(UITableViewCell *)viewCell user:(SBDUser *)user {
     UIAlertController *vc = [UIAlertController alertControllerWithTitle:user.nickname message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *startDistinctGroupChannel = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"OpenDistinctGroupChannel"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [SBDGroupChannel createChannelWithUsers:@[user] isDistinct:YES completionHandler:^(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error) {
+            if (error != nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+                    [vc addAction:closeAction];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self presentViewController:vc animated:YES completion:nil];
+                    });
+                });
+                
+                return;
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                GroupChannelChattingViewController *vc = [[GroupChannelChattingViewController alloc] init];
+                vc.channel = channel;
+                [self presentViewController:vc animated:NO completion:nil];
+            });
+        }];
+    }];
+    UIAlertAction *startNonDistinctGroupChannel = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"OpenNonDistinctGroupChannel"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [SBDGroupChannel createChannelWithUsers:@[user] isDistinct:NO completionHandler:^(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error) {
+            if (error != nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+                    [vc addAction:closeAction];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self presentViewController:vc animated:YES completion:nil];
+                    });
+                });
+                
+                return;
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                GroupChannelChattingViewController *vc = [[GroupChannelChattingViewController alloc] init];
+                vc.channel = channel;
+                [self presentViewController:vc animated:NO completion:nil];
+            });
+        }];
+    }];
     UIAlertAction *blockUserAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"BlockUserButton"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [SBDMain blockUser:user completionHandler:^(SBDUser * _Nullable blockedUser, SBDError * _Nullable error) {
             if (error != nil) {
@@ -403,6 +448,8 @@
         
     }];
     UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+    [vc addAction:startDistinctGroupChannel];
+    [vc addAction:startNonDistinctGroupChannel];
     [vc addAction:blockUserAction];
     [vc addAction:closeAction];
     
