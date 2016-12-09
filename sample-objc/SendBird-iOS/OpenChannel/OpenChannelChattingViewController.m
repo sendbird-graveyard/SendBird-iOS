@@ -91,7 +91,7 @@
 
 - (void)keyboardDidShow:(NSNotification *)notification {
     NSDictionary* keyboardInfo = [notification userInfo];
-    NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
+    NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
     dispatch_async(dispatch_get_main_queue(), ^{
         self.bottomMargin.constant = keyboardFrameBeginRect.size.height;
@@ -365,6 +365,11 @@
 }
 
 - (void)hideKeyboardWhenFastScrolling:(UIView *)view {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.bottomMargin.constant = 0;
+        [self.view layoutIfNeeded];
+        [self.chattingView scrollToBottom];
+    });
     [self.view endEditing:YES];
 }
 
