@@ -14,4 +14,7 @@
 
 @interface GroupChannelListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, MGSwipeTableCellDelegate, CreateGroupChannelUserListViewControllerDelegate, SBDChannelDelegate, SBDConnectionDelegate>
 
+- (void)addDelegates;
+- (void)removeDelegates;
+
 @end

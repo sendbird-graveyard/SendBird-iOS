@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *openChannelCheckImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *groupChannelCheckImageView;
 
+@property (strong, nonatomic) GroupChannelListViewController *groupChannelListViewController;
+
 @end
 
 @implementation MenuViewController
@@ -82,13 +84,21 @@
     self.openChannelCheckImageView.hidden = YES;
     self.groupChannelCheckImageView.hidden = NO;
     
-    GroupChannelListViewController *vc = [[GroupChannelListViewController alloc] init];
-    [self presentViewController:vc animated:NO completion:^{
-        vc.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+    if (self.groupChannelListViewController == nil) {
+        self.groupChannelListViewController = [[GroupChannelListViewController alloc] init];
+        [self.groupChannelListViewController addDelegates];
+    }
+    
+    [self presentViewController:self.groupChannelListViewController animated:NO completion:^{
+        self.groupChannelListViewController.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
     }];
 }
 
 - (void)disconnect {
+    if (self.groupChannelListViewController != nil) {
+        [self.groupChannelListViewController removeDelegates];
+    }
+    
     [SBDMain unregisterAllPushTokenWithCompletionHandler:^(NSDictionary * _Nullable response, SBDError * _Nullable error) {
         if (error != nil) {
             NSLog(@"Unregister all push tokens. Error: %@", error);

@@ -52,9 +52,16 @@
     self.typingAnimationChannelList = [[NSMutableArray alloc] init];
     self.noChannelLabel.hidden = YES;
     [self refreshChannelList];
-    
+}
+
+- (void)addDelegates {
     [SBDMain addChannelDelegate:self identifier:self.description];
     [SBDMain addConnectionDelegate:self identifier:self.description];
+}
+
+- (void)removeDelegates {
+    [SBDMain removeChannelDelegateForIdentifier:self.description];
+    [SBDMain removeConnectionDelegateForIdentifier:self.description];
 }
 
 - (void)setDefaultNavigationItems {
@@ -172,9 +179,6 @@
 }
 
 - (void)back {
-    [SBDMain removeChannelDelegateForIdentifier:self.description];
-    [SBDMain removeConnectionDelegateForIdentifier:self.description];
-    
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 

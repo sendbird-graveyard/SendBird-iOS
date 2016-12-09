@@ -32,6 +32,8 @@
                                                            }];
     [[UINavigationBar appearance] setTintColor:[Constants navigationBarTitleColor]];
     
+    application.applicationIconBadgeNumber = 0;
+    
     [SBDMain initWithApplicationId:@"A7A2672C-AD11-11E4-8DAA-0A18B21C2D82"];
     [SBDMain setLogLevel:SBDLogLevelDebug];
     
