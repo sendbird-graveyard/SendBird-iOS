@@ -42,3 +42,6 @@
 "ParticipantPlural" = "%ld명 참여";
 
 "MemberListTitle" = "멤버 목록(%d)";
+
+"OpenDistinctGroupChannel" = "기존 그룹 채널 열기";
+"OpenNonDistinctGroupChannel" = "새로운 그룹 채널 열기";

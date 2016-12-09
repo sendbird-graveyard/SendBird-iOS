@@ -307,6 +307,50 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
     // MARK: MessageDelegate
     func clickProfileImage(viewCell: UITableViewCell, user: SBDUser) {
         let alert = UIAlertController(title: user.nickname, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let startDistinctGroupChannel = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "OpenDistinctGroupChannel"), style: UIAlertActionStyle.default) { (action) in
+            SBDGroupChannel.createChannel(with: [user], isDistinct: true, completionHandler: { (channel, error) in
+                if error != nil {
+                    DispatchQueue.main.async {
+                        let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
+                        let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
+                        vc.addAction(closeAction)
+                        DispatchQueue.main.async {
+                            self.present(vc, animated: true, completion: nil)
+                        }
+                    }
+                    
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    let vc = GroupChannelChattingViewController()
+                    vc.groupChannel = channel
+                    self.present(vc, animated: false, completion: nil)
+                }
+            })
+        }
+        let startNonDistinctGroupChannel = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "OpenNonDistinctGroupChannel"), style: UIAlertActionStyle.default) { (action) in
+            SBDGroupChannel.createChannel(with: [user], isDistinct: false, completionHandler: { (channel, error) in
+                if error != nil {
+                    DispatchQueue.main.async {
+                        let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
+                        let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
+                        vc.addAction(closeAction)
+                        DispatchQueue.main.async {
+                            self.present(vc, animated: true, completion: nil)
+                        }
+                    }
+                    
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    let vc = GroupChannelChattingViewController()
+                    vc.groupChannel = channel
+                    self.present(vc, animated: false, completion: nil)
+                }
+            })
+        }
         let blockUserAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "BlockUserButton"), style: UIAlertActionStyle.default) { (action) in
             SBDMain.blockUser(user, completionHandler: { (blockedUser, error) in
                 if error != nil {
@@ -333,6 +377,8 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
             })
         }
         let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
+        alert.addAction(startDistinctGroupChannel)
+        alert.addAction(startNonDistinctGroupChannel)
         alert.addAction(blockUserAction)
         alert.addAction(closeAction)
         
