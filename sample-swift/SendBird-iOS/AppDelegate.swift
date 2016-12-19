@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        SBDMain.registerDevicePushToken(deviceToken) { (status, error) in
+        SBDMain.registerDevicePushToken(deviceToken, unique: true) { (status, error) in
             if error == nil {
                 if status == SBDPushTokenRegistrationStatus.pending {
                     

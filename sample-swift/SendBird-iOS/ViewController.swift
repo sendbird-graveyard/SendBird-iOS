@@ -100,7 +100,7 @@ class ViewController: UITableViewController, UITextFieldDelegate {
                 }
                 
                 if SBDMain.getPendingPushToken() != nil {
-                    SBDMain.registerDevicePushToken(SBDMain.getPendingPushToken()!, completionHandler: { (status, error) in
+                    SBDMain.registerDevicePushToken(SBDMain.getPendingPushToken()!, unique: true, completionHandler: { (status, error) in
                         if error == nil {
                             if status == SBDPushTokenRegistrationStatus.pending {
                                 print("Push registeration is pending.")

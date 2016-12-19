@@ -79,7 +79,7 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSLog(@"Device token: %@", deviceToken.description);
-    [SBDMain registerDevicePushToken:deviceToken completionHandler:^(SBDPushTokenRegistrationStatus status, SBDError * _Nullable error) {
+    [SBDMain registerDevicePushToken:deviceToken unique:YES completionHandler:^(SBDPushTokenRegistrationStatus status, SBDError * _Nullable error) {
         if (error == nil) {
             if (status == SBDPushTokenRegistrationStatusPending) {
                 NSLog(@"Push registration is pending.");

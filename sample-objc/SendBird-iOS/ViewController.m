@@ -108,7 +108,7 @@
                 return;
             }
             
-            [SBDMain registerDevicePushToken:[SBDMain getPendingPushToken] completionHandler:^(SBDPushTokenRegistrationStatus status, SBDError * _Nullable error) {
+            [SBDMain registerDevicePushToken:[SBDMain getPendingPushToken] unique:YES completionHandler:^(SBDPushTokenRegistrationStatus status, SBDError * _Nullable error) {
                 if (error == nil) {
                     if (status == SBDPushTokenRegistrationStatusPending) {
                         NSLog(@"Push registration is pending.");
