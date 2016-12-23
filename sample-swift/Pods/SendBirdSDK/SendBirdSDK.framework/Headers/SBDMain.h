@@ -373,4 +373,21 @@
  */
 + (void)getDoNotDisturbWithCompletionHandler:(nullable void (^)(BOOL isDoNotDisturbOn, int startHour, int startMin, int endHour, int endMin, NSString * _Nonnull timezone, SBDError * _Nullable error))completionHandler;
 
+
+/**
+ Sets a push template of the current user.
+
+ @param name The name of push template. It can be `SBD_PUSH_TEMPLATE_DEFAULT` or `SBD_PUSH_TEMPLATE_ALTERNATIVE`.
+ @param completionHandler The handler block to execute.
+ */
++ (void)setPushTemplateWithName:(NSString * _Nonnull)name completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+
+/**
+ Gets a push template of the current user.
+
+ @param completionHandler The handler block to execute. The `name` is the current user's push template.
+ */
++ (void)getPushTemplateWithCompletionHandler:(nullable void (^)(NSString * _Nullable name, SBDError * _Nullable error))completionHandler;
+
 @end

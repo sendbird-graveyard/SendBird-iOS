@@ -12,6 +12,8 @@
 #define CHANNEL_TYPE_OPEN @"open"
 #define CHANNEL_TYPE_GROUP @"group"
 
+#define SBD_PUSH_TEMPLATE_DEFAULT @"default"
+#define SBD_PUSH_TEMPLATE_ALTERNATIVE @"alternative"
 
 /**
  *  The order type for `SBDGroupChannelListQuery`.
