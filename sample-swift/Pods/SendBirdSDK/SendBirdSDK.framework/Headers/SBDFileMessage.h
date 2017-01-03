@@ -10,6 +10,47 @@
 #import "SBDBaseMessage.h"
 #import "SBDBaseChannel.h"
 
+
+/**
+ The `SBDThumbnail` class represents the thumbnail in the file message.
+ */
+@interface SBDThumbnail : NSObject
+
+
+/**
+ The url of the thumbnail.
+ */
+@property (strong, nonatomic, readonly, nonnull) NSString *url;
+
+
+/**
+ The maximum size of the thumbnail.
+ */
+@property (nonatomic, readonly) CGSize maxSize;
+
+
+/**
+ Initializes the object for sending file message.
+
+ @param maxWidth The maximum width of the thumbnail.
+ @param maxHeight the maximum height of the thumbnail.
+ @return The `SBDThumbnail` object.
+ */
+- (nullable instancetype)initWithMaxWidth:(CGFloat)maxWidth maxHeight:(CGFloat)maxHeight;
+
+
+/**
+ Initializes the object for the file message which is received.
+
+ @param width The width of the thumbnail.
+ @param height The height of the thumbnail.
+ @param url The url of the thumbnail.
+ @return The `SBDThumbnail` object.
+ */
+- (nullable instancetype)initWithWidth:(CGFloat)width height:(CGFloat)height url:(NSString * _Nonnull)url;
+
+@end
+
 @class SBDBaseChannel;
 
 /**
@@ -56,6 +97,12 @@
  *  Custom message type.
  */
 @property (strong, nonatomic, readonly, nullable) NSString *customType;
+
+
+/**
+ Image thumbnails.
+ */
+@property (strong, nonatomic, readonly, nullable) NSArray<SBDThumbnail *> *thumbnails;
 
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
 
