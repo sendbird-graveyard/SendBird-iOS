@@ -10,12 +10,38 @@
 #import "SBDBaseMessage.h"
 #import "SBDBaseChannel.h"
 
+@interface SBDThumbnailSize : NSObject
+
+/**
+ The max size of the thumbnail.
+ */
+@property (nonatomic, readonly) CGSize maxSize;
+
+/**
+ Makes `SBDThumbnailSize` object with `CGSize`.
+
+ @param size The max size of the thumbnail.
+ @return `SBDThumbnailSize` object.
+ */
++ (nullable instancetype)makeWithMaxCGSize:(CGSize)size;
+
+
+/**
+ Makes `SBDThumbnailSize` object with width and height.
+
+ @param width The max width of the thumbnail.
+ @param height The max height of the thumbnail.
+ @return `SBDThumbnailSize` object.
+ */
++ (nullable instancetype)makeWithMaxWidth:(CGFloat)width maxHeight:(CGFloat)height;
+
+@end
+
 
 /**
  The `SBDThumbnail` class represents the thumbnail in the file message.
  */
 @interface SBDThumbnail : NSObject
-
 
 /**
  The url of the thumbnail.
@@ -27,27 +53,6 @@
  The maximum size of the thumbnail.
  */
 @property (nonatomic, readonly) CGSize maxSize;
-
-
-/**
- Initializes the object for sending file message.
-
- @param maxWidth The maximum width of the thumbnail.
- @param maxHeight the maximum height of the thumbnail.
- @return The `SBDThumbnail` object.
- */
-- (nullable instancetype)initWithMaxWidth:(CGFloat)maxWidth maxHeight:(CGFloat)maxHeight;
-
-
-/**
- Initializes the object for the file message which is received.
-
- @param width The width of the thumbnail.
- @param height The height of the thumbnail.
- @param url The url of the thumbnail.
- @return The `SBDThumbnail` object.
- */
-- (nullable instancetype)initWithWidth:(CGFloat)width height:(CGFloat)height url:(NSString * _Nonnull)url;
 
 @end
 

@@ -16,6 +16,7 @@
 #import "SBDError.h"
 
 @class SBDPreviousMessageListQuery;
+@class SBDThumbnailSize;
 @class SBDThumbnail;
 @class SBDFileMessage;
 @class SBDUserMessage;
@@ -380,7 +381,7 @@
  *  @param filename          File<span>name</span>.
  *  @param type              The mime type of file.
  *  @param size              File size.
- *  @param thumbnailSizes    Thumbnail sizes. This parameter works for image file only.
+ *  @param thumbnailSizes    Thumbnail sizes. This parameter is the array of `SBDThumbnailSize` object and works for image file only.
  *  @param data              Custom <span>data</span>.
  *  @param customType        Custom message type.
  *  @param progressHandler   The handler block to monitor progression.  `bytesSent` is the number of bytes sent since the last time this method was called. `totalBytesSent` is the total number of bytes sent so far. `totalBytesExpectedToSend` is the expected length of the body <span>data</span>. These parameters are the same to the declaration of [`URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:`](https://developer.apple.com/reference/foundation/nsurlsessiontaskdelegate/1408299-urlsession?language=objc).
@@ -388,7 +389,7 @@
  *
  *  @return Returns the temporary file message with a request ID. It doesn't have a message ID and an URL.
  */
-- (nonnull SBDFileMessage *)sendFileMessageWithBinaryData:(NSData * _Nonnull)file filename:(NSString * _Nonnull)filename type:(NSString * _Nonnull)type size:(NSUInteger)size thumbnailSizes:(NSArray<SBDThumbnail *> * _Nullable)thumbnailSizes data:(NSString * _Nullable)data customType:(NSString * _Nullable)customType progressHandler:(nullable void (^)(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend))progressHandler completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error))completionHandler;
+- (nonnull SBDFileMessage *)sendFileMessageWithBinaryData:(NSData * _Nonnull)file filename:(NSString * _Nonnull)filename type:(NSString * _Nonnull)type size:(NSUInteger)size thumbnailSizes:(NSArray<SBDThumbnailSize *> * _Nullable)thumbnailSizes data:(NSString * _Nullable)data customType:(NSString * _Nullable)customType progressHandler:(nullable void (^)(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend))progressHandler completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error))completionHandler;
 
 #pragma mark - Load message list
 /**
