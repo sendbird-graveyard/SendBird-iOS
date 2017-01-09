@@ -391,6 +391,21 @@
  */
 - (nonnull SBDFileMessage *)sendFileMessageWithBinaryData:(NSData * _Nonnull)file filename:(NSString * _Nonnull)filename type:(NSString * _Nonnull)type size:(NSUInteger)size thumbnailSizes:(NSArray<SBDThumbnailSize *> * _Nullable)thumbnailSizes data:(NSString * _Nullable)data customType:(NSString * _Nullable)customType progressHandler:(nullable void (^)(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend))progressHandler completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error))completionHandler;
 
+/**
+ *  Sends a file message with binary <span>data</span>. The binary <span>data</span> is uploaded to SendBird file storage and a URL of the file will be generated. The uploading progress callback can be implemented.
+ *
+ *  @param filepath          File path to be sent.
+ *  @param type              The mime type of file.
+ *  @param thumbnailSizes    Thumbnail sizes. This parameter is the array of `SBDThumbnailSize` object and works for image file only.
+ *  @param data              Custom <span>data</span>.
+ *  @param customType        Custom message type.
+ *  @param progressHandler   The handler block to monitor progression.  `bytesSent` is the number of bytes sent since the last time this method was called. `totalBytesSent` is the total number of bytes sent so far. `totalBytesExpectedToSend` is the expected length of the body <span>data</span>. These parameters are the same to the declaration of [`URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:`](https://developer.apple.com/reference/foundation/nsurlsessiontaskdelegate/1408299-urlsession?language=objc).
+ *  @param completionHandler The handler block to execute. `fileMessage` is a user message which is returned from the SendBird server. The message has a message ID and an URL.
+ *
+ *  @return Returns the temporary file message with a request ID. It doesn't have a message ID and an URL.
+ */
+- (nonnull SBDFileMessage *)sendFileMessageWithFilePath:(NSString * _Nonnull)filepath type:(NSString * _Nonnull)type thumbnailSizes:(NSArray<SBDThumbnailSize *> * _Nullable)thumbnailSizes data:(NSString * _Nullable)data customType:(NSString * _Nullable)customType progressHandler:(nullable void (^)(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend))progressHandler completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error))completionHandler;
+
 #pragma mark - Load message list
 /**
  *  Creates `SBDPreviousMessageListQuery` instance for getting the previous messages list of the channel.
@@ -403,8 +418,10 @@
  *  Creates `SBDMessageListQuery` instance for getting the previous messages list of the channel.
  *
  *  @return Returns the message list of the channel.
+ *
+ *  @deprecated in 3.0.28.
  */
-- (nullable SBDMessageListQuery *)createMessageListQuery;
+- (nullable SBDMessageListQuery *)createMessageListQuery DEPRECATED_ATTRIBUTE;
 
 #pragma mark - Meta Counters
 /**
@@ -537,5 +554,70 @@
  *  @return If YES, this channel is an open channel.
  */
 - (BOOL)isOpenChannel;
+
+#pragma mark - Get messages by timestamp.
+/**
+ *  Gets the next messages by the timestamp with a limit and ordering.
+ *
+ *  @param timestamp         The standard timestamp to load messages.
+ *  @param limit             The limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param reverse           If yes, the latest message is the index 0.
+ *  @param completionHandler The handler block to execute. The `messages` is the array of `SBDBaseMessage` instances.
+ */
+- (void)getNextMessagesByTimestamp:(long long)timestamp limit:(NSInteger)limit reverse:(BOOL)reverse completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Gets the previous messages by the timestamp with a limit and ordering.
+ *
+ *  @param timestamp         The standard timestamp to load messages.
+ *  @param limit             The limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param reverse           If yes, the latest message is the index 0.
+ *  @param completionHandler The handler block to execute. The `messages` is the array of `SBDBaseMessage` instances.
+ */
+- (void)getPreviousMessagesByTimestamp:(long long)timestamp limit:(NSInteger)limit reverse:(BOOL)reverse completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Gets the previous and next message by the timestamp with a limit and ordering.
+ *
+ *  @param timestamp         The standard timestamp to load messages.
+ *  @param prevLimit         The previous limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param nextLimit         The next limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param reverse           If yes, the latest message is the index 0.
+ *  @param completionHandler The handler block to execute. The `messages` is the array of `SBDBaseMessage` instances.
+ */
+- (void)getPreviousAndNextMessagesByTimestamp:(long long)timestamp prevLimit:(NSInteger)prevLimit nextLimit:(NSInteger)nextLimit reverse:(BOOL)reverse completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
+
+#pragma mark - Get messages by message ID.
+/**
+ *  Gets the next messages by the message ID with a limit and ordering.
+ *
+ *  @param messageId         The standard message ID to load messages.
+ *  @param limit             The limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param reverse           If yes, the latest message is the index 0.
+ *  @param completionHandler The handler block to execute. The `messages` is the array of `SBDBaseMessage` instances.
+ */
+- (void)getNextMessagesByMessageId:(long long)messageId limit:(NSInteger)limit reverse:(BOOL)reverse completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Gets the previous messages by the message ID with a limit and ordering.
+ *
+ *  @param messageId         The standard message ID to load messages.
+ *  @param limit             The limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param reverse           If yes, the latest message is the index 0.
+ *  @param completionHandler The handler block to execute. The `messages` is the array of `SBDBaseMessage` instances.
+ */
+- (void)getPreviousMessagesByMessageId:(long long)messageId limit:(NSInteger)limit reverse:(BOOL)reverse completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Gets the previous and next message by the message ID with a limit and ordering.
+ *
+ *  @param messageId         The standard message ID to load messages.
+ *  @param prevLimit         The previous limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param nextLimit         The next limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param reverse           If yes, the latest message is the index 0.
+ *  @param completionHandler The handler block to execute. The `messages` is the array of `SBDBaseMessage` instances.
+ */
+- (void)getPreviousAndNextMessagesByMessageId:(long long)messageId prevLimit:(NSInteger)prevLimit nextLimit:(NSInteger)nextLimit reverse:(BOOL)reverse completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
+
 
 @end
