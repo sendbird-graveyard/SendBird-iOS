@@ -326,8 +326,24 @@
  *  @param completionHandler The handler block to execute. `fileMessage` is a user message which is returned from the SendBird server. The message has a message ID.
  *
  *  @return Returns the temporary file message with a request ID. It doesn't have a message ID.
+ *
+ *  @deprecated in 3.0.29.
  */
-- (nonnull SBDFileMessage *)sendFileMessageWithUrl:(NSString * _Nonnull)url size:(NSUInteger)size type:(NSString * _Nonnull)type data:(NSString * _Nullable)data completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error))completionHandler;
+- (nonnull SBDFileMessage *)sendFileMessageWithUrl:(NSString * _Nonnull)url size:(NSUInteger)size type:(NSString * _Nonnull)type data:(NSString * _Nullable)data completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error))completionHandler DEPRECATED_ATTRIBUTE;
+
+/**
+ *  Sends a file message with file URL.
+ *
+ *  @param url               File URL.
+ *  @param filename          File<span>name</span>.
+ *  @param type              The type of file.
+ *  @param size              File size.
+ *  @param data              Custom <span>data</span>.
+ *  @param completionHandler The handler block to execute. `fileMessage` is a user message which is returned from the SendBird server. The message has a message ID.
+ *
+ *  @return Returns the temporary file message with a request ID. It doesn't have a message ID.
+ */
+- (nonnull SBDFileMessage *)sendFileMessageWithUrl:(NSString * _Nonnull)url filename:(NSString * _Nullable)filename size:(NSUInteger)size type:(NSString * _Nonnull)type data:(NSString * _Nullable)data completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Sends a file message with file URL and <span>custom message type</span>.
@@ -340,8 +356,25 @@
  *  @param completionHandler The handler block to execute. `fileMessage` is a user message which is returned from the SendBird server. The message has a message ID.
  *
  *  @return Returns the temporary file message with a request ID. It doesn't have a message ID.
+ *
+ *  @deprecated in 3.0.29.
  */
-- (nonnull SBDFileMessage *)sendFileMessageWithUrl:(NSString * _Nonnull)url size:(NSUInteger)size type:(NSString * _Nonnull)type data:(NSString * _Nullable)data customType:(NSString * _Nullable)customType completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error))completionHandler;
+- (nonnull SBDFileMessage *)sendFileMessageWithUrl:(NSString * _Nonnull)url size:(NSUInteger)size type:(NSString * _Nonnull)type data:(NSString * _Nullable)data customType:(NSString * _Nullable)customType completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error))completionHandler DEPRECATED_ATTRIBUTE;
+
+/**
+ *  Sends a file message with file URL and <span>custom message type</span>.
+ *
+ *  @param url               File URL.
+ *  @param filename          File<span>name</span>.
+ *  @param type              The type of file.
+ *  @param size              File size.
+ *  @param data              Custom <span>data</span>.
+ *  @param customType        Custom message type.
+ *  @param completionHandler The handler block to execute. `fileMessage` is a user message which is returned from the SendBird server. The message has a message ID.
+ *
+ *  @return Returns the temporary file message with a request ID. It doesn't have a message ID.
+ */
+- (nonnull SBDFileMessage *)sendFileMessageWithUrl:(NSString * _Nonnull)url filename:(NSString * _Nullable)filename size:(NSUInteger)size type:(NSString * _Nonnull)type data:(NSString * _Nullable)data customType:(NSString * _Nullable)customType completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Sends a file message with binary <span>data</span>. The binary <span>data</span> is uploaded to SendBird file storage and a URL of the file will be generated. The uploading progress callback can be implemented.

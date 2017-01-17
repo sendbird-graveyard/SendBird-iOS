@@ -1,9 +1,9 @@
 PODS:
-  - Alamofire (4.2.0)
+  - Alamofire (4.3.0)
   - AlamofireImage (3.2.0):
     - Alamofire (~> 4.1)
   - MGSwipeTableCell (1.5.6)
-  - SendBirdSDK (3.0.28)
+  - SendBirdSDK (3.0.29)
 
 DEPENDENCIES:
   - AlamofireImage
@@ -11,10 +11,10 @@ DEPENDENCIES:
   - SendBirdSDK (~> 3.0)
 
 SPEC CHECKSUMS:
-  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
-  SendBirdSDK: ea3ee1a1219da90a8f54894a54224b615855fdb8
+  SendBirdSDK: 3ae9a10e081119cffebc03909486cc68360d56fb
 
 PODFILE CHECKSUM: e67b73b2e4396b5801a5f1c1307bacc8c67e6a59
 
