@@ -577,6 +577,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             if sender?.userId == SBDMain.getCurrentUser()?.userId {
                 // Outgoing
                 cell = tableView.dequeueReusableCell(withIdentifier: OutgoingUserMessageTableViewCell.cellReuseIdentifier())
+                cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
                 if indexPath.row > 0 {
                     (cell as! OutgoingUserMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
                 }
@@ -596,6 +597,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             else {
                 // Incoming
                 cell = tableView.dequeueReusableCell(withIdentifier: IncomingUserMessageTableViewCell.cellReuseIdentifier())
+                cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
                 if indexPath.row > 0 {
                     (cell as! IncomingUserMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
                 }
@@ -614,6 +616,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                 // Outgoing
                 if fileMessage.type.hasPrefix("video") {
                     cell = tableView.dequeueReusableCell(withIdentifier: OutgoingFileMessageTableViewCell.cellReuseIdentifier())
+                    cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
                     if indexPath.row > 0 {
                         (cell as! OutgoingFileMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
                     }
@@ -632,6 +635,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                 }
                 else if fileMessage.type.hasPrefix("audio") {
                     cell = tableView.dequeueReusableCell(withIdentifier: OutgoingFileMessageTableViewCell.cellReuseIdentifier())
+                    cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
                     if indexPath.row > 0 {
                         (cell as! OutgoingFileMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
                     }
@@ -650,6 +654,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                 }
                 else if fileMessage.type.hasPrefix("image") {
                     cell = tableView.dequeueReusableCell(withIdentifier: OutgoingImageFileMessageTableViewCell.cellReuseIdentifier())
+                    cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
                     if indexPath.row > 0 {
                         (cell as! OutgoingImageFileMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
                     }
@@ -671,6 +676,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                 // Incoming
                 if fileMessage.type.hasPrefix("video") {
                     cell = tableView.dequeueReusableCell(withIdentifier: IncomingFileMessageTableViewCell.cellReuseIdentifier())
+                    cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
                     if indexPath.row > 0 {
                         (cell as! IncomingFileMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
                     }
@@ -682,6 +688,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                 }
                 else if fileMessage.type.hasPrefix("audio") {
                     cell = tableView.dequeueReusableCell(withIdentifier: IncomingFileMessageTableViewCell.cellReuseIdentifier())
+                    cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
                     if indexPath.row > 0 {
                         (cell as! IncomingFileMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
                     }
@@ -693,6 +700,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                 }
                 else if fileMessage.type.hasPrefix("image") {
                     cell = tableView.dequeueReusableCell(withIdentifier: IncomingImageFileMessageTableViewCell.cellReuseIdentifier())
+                    cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
                     if indexPath.row > 0 {
                         (cell as! IncomingImageFileMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
                     }
@@ -704,6 +712,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                 }
                 else {
                     cell = tableView.dequeueReusableCell(withIdentifier: IncomingFileMessageTableViewCell.cellReuseIdentifier())
+                    cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
                     if indexPath.row > 0 {
                         (cell as! IncomingFileMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
                     }
@@ -719,7 +728,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             let adminMessage = msg as! SBDAdminMessage
             
             cell = tableView.dequeueReusableCell(withIdentifier: NeutralMessageTableViewCell.cellReuseIdentifier())
-            
+            cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
             if indexPath.row > 0 {
                 (cell as! NeutralMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
             }

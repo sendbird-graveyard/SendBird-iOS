@@ -582,6 +582,7 @@
         if ([sender.userId isEqualToString:[SBDMain getCurrentUser].userId]) {
             // Outgoing
             cell = [tableView dequeueReusableCellWithIdentifier:[OutgoingUserMessageTableViewCell cellReuseIdentifier]];
+            cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
             if (indexPath.row > 0) {
                 [(OutgoingUserMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
             }
@@ -601,6 +602,7 @@
         else {
             // Incoming
             cell = [tableView dequeueReusableCellWithIdentifier:[IncomingUserMessageTableViewCell cellReuseIdentifier]];
+            cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
             if (indexPath.row > 0) {
                 [(IncomingUserMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
             }
@@ -619,6 +621,7 @@
             // Outgoing
             if ([fileMessage.type hasPrefix:@"video"]) {
                 cell = [tableView dequeueReusableCellWithIdentifier:[OutgoingFileMessageTableViewCell cellReuseIdentifier]];
+                cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
                 if (indexPath.row > 0) {
                     [(OutgoingFileMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
                 }
@@ -637,6 +640,7 @@
             }
             else if ([fileMessage.type hasPrefix:@"audio"]) {
                 cell = [tableView dequeueReusableCellWithIdentifier:[OutgoingFileMessageTableViewCell cellReuseIdentifier]];
+                cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
                 if (indexPath.row > 0) {
                     [(OutgoingFileMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
                 }
@@ -655,6 +659,7 @@
             }
             else if ([fileMessage.type hasPrefix:@"image"]) {
                 cell = [tableView dequeueReusableCellWithIdentifier:[OutgoingImageFileMessageTableViewCell cellReuseIdentifier]];
+                cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
                 if (indexPath.row > 0) {
                     [(OutgoingImageFileMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
                 }
@@ -673,6 +678,7 @@
             }
             else {
                 cell = [tableView dequeueReusableCellWithIdentifier:[OutgoingFileMessageTableViewCell cellReuseIdentifier]];
+                cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
                 if (indexPath.row > 0) {
                     [(OutgoingFileMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
                 }
@@ -694,6 +700,7 @@
             // Incoming
             if ([fileMessage.type hasPrefix:@"video"]) {
                 cell = [tableView dequeueReusableCellWithIdentifier:[IncomingFileMessageTableViewCell cellReuseIdentifier]];
+                cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
                 if (indexPath.row > 0) {
                     [(IncomingFileMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
                 }
@@ -705,6 +712,7 @@
             }
             else if ([fileMessage.type hasPrefix:@"audio"]) {
                 cell = [tableView dequeueReusableCellWithIdentifier:[IncomingFileMessageTableViewCell cellReuseIdentifier]];
+                cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
                 if (indexPath.row > 0) {
                     [(IncomingFileMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
                 }
@@ -716,6 +724,7 @@
             }
             else if ([fileMessage.type hasPrefix:@"image"]) {
                 cell = [tableView dequeueReusableCellWithIdentifier:[IncomingImageFileMessageTableViewCell cellReuseIdentifier]];
+                cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
                 if (indexPath.row > 0) {
                     [(IncomingImageFileMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
                 }
@@ -727,6 +736,7 @@
             }
             else {
                 cell = [tableView dequeueReusableCellWithIdentifier:[IncomingFileMessageTableViewCell cellReuseIdentifier]];
+                cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
                 if (indexPath.row > 0) {
                     [(IncomingFileMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
                 }
@@ -742,7 +752,7 @@
         SBDAdminMessage *adminMessage = (SBDAdminMessage *)msg;
         
         cell = [tableView dequeueReusableCellWithIdentifier:[NeutralMessageTableViewCell cellReuseIdentifier]];
-        
+        cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
         if (indexPath.row > 0) {
             [(NeutralMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
         }
