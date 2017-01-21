@@ -140,12 +140,12 @@ class ViewController: UITableViewController, UITextFieldDelegate {
                     
                     UserDefaults.standard.set(SBDMain.getCurrentUser()?.userId, forKey: "sendbird_user_id")
                     UserDefaults.standard.set(SBDMain.getCurrentUser()?.nickname, forKey: "sendbird_user_nickname")
-                    
-                    DispatchQueue.main.async {
-                        let vc = MenuViewController()
-                        self.present(vc, animated: false, completion: nil)
-                    }
                 })
+                
+                DispatchQueue.main.async {
+                    let vc = MenuViewController()
+                    self.present(vc, animated: false, completion: nil)
+                }
             })
         }
     }

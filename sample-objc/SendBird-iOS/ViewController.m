@@ -89,6 +89,7 @@
         [self.nicknameTextField setEnabled:NO];
         
         [self.indicatorView startAnimating];
+
         [SBDMain connectWithUserId:trimmedUserId completionHandler:^(SBDUser * _Nullable user, SBDError * _Nullable error) {
             if (error != nil) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -147,12 +148,12 @@
                 
                 [[NSUserDefaults standardUserDefaults] setObject:[SBDMain getCurrentUser].userId forKey:@"sendbird_user_id"];
                 [[NSUserDefaults standardUserDefaults] setObject:[SBDMain getCurrentUser].nickname forKey:@"sendbird_user_nickname"];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    MenuViewController *vc = [[MenuViewController alloc] init];
-                    [self presentViewController:vc animated:NO completion:nil];
-                });
             }];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                MenuViewController *vc = [[MenuViewController alloc] init];
+                [self presentViewController:vc animated:NO completion:nil];
+            });
         }];
     }
 }
