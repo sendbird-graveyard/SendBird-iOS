@@ -92,9 +92,6 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     }
     
     @objc private func close() {
-        SBDMain.removeChannelDelegate(forIdentifier: self.delegateIdentifier)
-        SBDMain.removeConnectionDelegate(forIdentifier: self.delegateIdentifier)
-        
         self.dismiss(animated: false) { 
             
         }

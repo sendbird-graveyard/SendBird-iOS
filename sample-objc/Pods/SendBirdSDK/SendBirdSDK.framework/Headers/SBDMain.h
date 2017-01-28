@@ -56,12 +56,12 @@
 /**
  *  Manages registered `SBDConnectionDelegate`.
  */
-@property (nonatomic, strong, readonly, nullable) NSMutableDictionary<NSString *, NSValue *> *connectionDelegatesDictionary;
+@property (nonatomic, strong, readonly, nullable) NSMapTable<NSString *, id<SBDConnectionDelegate>> *connectionDelegatesDictionary;
 
 /**
  *  Manages registered `SBDChannelDelegate`.
  */
-@property (nonatomic, strong, readonly, nullable) NSMutableDictionary<NSString *, NSValue *> *channelDelegatesDictionary;
+@property (nonatomic, strong, readonly, nullable) NSMapTable<NSString *, id<SBDChannelDelegate>> *channelDelegatesDictionary;
 
 - (nullable instancetype)init;
 

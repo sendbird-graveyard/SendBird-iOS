@@ -44,12 +44,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         SBDMain.add(self as SBDChannelDelegate, identifier: self.description)
         SBDMain.add(self as SBDConnectionDelegate, identifier: self.description)
     }
-    
-    func removeDelegates() {
-        SBDMain.removeChannelDelegate(forIdentifier: self.description)
-        SBDMain.removeConnectionDelegate(forIdentifier: self.description)
-    }
-    
+
     private func setDefaultNavigationItems() {
         let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeLeftSpacer.width = -2

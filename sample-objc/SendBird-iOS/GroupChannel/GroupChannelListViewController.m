@@ -59,11 +59,6 @@
     [SBDMain addConnectionDelegate:self identifier:self.description];
 }
 
-- (void)removeDelegates {
-    [SBDMain removeChannelDelegateForIdentifier:self.description];
-    [SBDMain removeConnectionDelegateForIdentifier:self.description];
-}
-
 - (void)setDefaultNavigationItems {
     UIBarButtonItem *negativeLeftSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeLeftSpacer.width = -2;

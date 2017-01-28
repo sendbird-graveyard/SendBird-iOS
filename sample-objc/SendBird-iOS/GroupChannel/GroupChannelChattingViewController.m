@@ -110,9 +110,6 @@
 }
 
 - (void)close {
-    [SBDMain removeChannelDelegateForIdentifier:self.delegateIdentifier];
-    [SBDMain removeConnectionDelegateForIdentifier:self.delegateIdentifier];
-    
     [self dismissViewControllerAnimated:NO completion:^{
         
     }];

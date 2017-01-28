@@ -94,10 +94,6 @@ class MenuViewController: UIViewController {
     }
 
     func disconnect() {
-        if self.groupChannelListViewController != nil {
-            self.groupChannelListViewController?.removeDelegates()
-        }
-        
         SBDMain.unregisterAllPushToken { (response, error) in
             if error != nil {
                 print("Unregister all push tokens. Error: %@", error!)

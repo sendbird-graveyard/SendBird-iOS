@@ -95,10 +95,6 @@
 }
 
 - (void)disconnect {
-    if (self.groupChannelListViewController != nil) {
-        [self.groupChannelListViewController removeDelegates];
-    }
-    
     [SBDMain unregisterAllPushTokenWithCompletionHandler:^(NSDictionary * _Nullable response, SBDError * _Nullable error) {
         if (error != nil) {
             NSLog(@"Unregister all push tokens. Error: %@", error);
