@@ -178,6 +178,20 @@
 + (void)removeConnectionDelegateForIdentifier:(NSString * _Nonnull)identifier;
 
 /**
+ *  Gets the delegate for connection by indentifer.
+ *
+ *  @param identifier The identifier for delegate.
+ *
+ *  @return `SBDConnectionDelegate` delegate.
+ */
++ (nullable id<SBDConnectionDelegate>)connectionDelegateForIdentifier:(NSString * _Nonnull)identifier;
+
+/**
+ Removes all connection delegates;
+ */
++ (void)removeAllConnectionDelegates;
+
+/**
  *  Adds the `SBDChannelDelegate`.
  *
  *  @param delegate   `SBDChannelDelegate` delegate.
@@ -200,6 +214,11 @@
  *  @return `SBDChannelDelegate` delegate.
  */
 + (nullable id<SBDChannelDelegate>)channelDelegateForIdentifier:(NSString * _Nonnull)identifier;
+
+/**
+ Removes all channel delegates;
+ */
++ (void)removeAllChannelDelegates;
 
 /**
  *  Gets the WebSocket server connection state.
@@ -399,5 +418,21 @@
  @param completionHandler The handler block to execute. The `name` is the current user's push template.
  */
 + (void)getPushTemplateWithCompletionHandler:(nullable void (^)(NSString * _Nullable name, SBDError * _Nullable error))completionHandler;
+
+
+/**
+ Starts reconnection explictly. The `SBDConnectionDelegate` delegates will be invoked by the reconnection process.
+
+ @return Returns YES if there is the data to be used for reconnection.
+ */
++ (BOOL)reconnect;
+
+/**
+ Gets mime type of file.
+
+ @param file File to get mime type.
+ @return Returns mime type of the file.
+ */
++ (nullable NSString *)getMimeType:(NSData * _Nullable)file;
 
 @end

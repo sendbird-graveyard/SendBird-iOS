@@ -56,5 +56,6 @@
 + (nullable SBDCommand *)buildPing;
 + (nullable SBDCommand *)buildStartTyping:(SBDGroupChannel * _Nonnull)channel startAt:(long long)startAt;
 + (nullable SBDCommand *)buildEndTyping:(SBDGroupChannel * _Nonnull)channel endAt:(long long)endAt;
++ (SBDCommand * _Nullable)buildReadOfChannel:(SBDGroupChannel * _Nonnull)channel;
 
 @end

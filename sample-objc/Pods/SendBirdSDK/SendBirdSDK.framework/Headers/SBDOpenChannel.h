@@ -36,6 +36,11 @@
 /**
  *  Internal use only.
  */
++ (void)clearEnteredChannels;
+
+/**
+ *  Internal use only.
+ */
 + (void)removeChannelFromCacheWithChannelUrl:(NSString * _Nonnull)channelUrl;
 
 /**
