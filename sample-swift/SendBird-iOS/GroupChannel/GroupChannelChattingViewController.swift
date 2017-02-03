@@ -257,15 +257,17 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     }
     
     func channelDidUpdateTypingStatus(_ sender: SBDGroupChannel) {
-        if sender.getTypingMembers()?.count == 0 {
-            self.chattingView.endTypingIndicator()
-        }
-        else {
-            if sender.getTypingMembers()?.count == 1 {
-                self.chattingView.startTypingIndicator(text: String(format: Bundle.sbLocalizedStringForKey(key: "TypingMessageSingular"), (sender.getTypingMembers()?[0].nickname)!))
+        if sender == self.groupChannel {
+            if sender.getTypingMembers()?.count == 0 {
+                self.chattingView.endTypingIndicator()
             }
             else {
-                self.chattingView.startTypingIndicator(text: Bundle.sbLocalizedStringForKey(key: "TypingMessagePlural"))
+                if sender.getTypingMembers()?.count == 1 {
+                    self.chattingView.startTypingIndicator(text: String(format: Bundle.sbLocalizedStringForKey(key: "TypingMessageSingular"), (sender.getTypingMembers()?[0].nickname)!))
+                }
+                else {
+                    self.chattingView.startTypingIndicator(text: Bundle.sbLocalizedStringForKey(key: "TypingMessagePlural"))
+                }
             }
         }
     }

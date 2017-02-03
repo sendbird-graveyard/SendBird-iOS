@@ -282,15 +282,17 @@
 }
 
 - (void)channelDidUpdateTypingStatus:(SBDGroupChannel * _Nonnull)sender {
-    if (sender.getTypingMembers.count == 0) {
-        [self.chattingView endTypingIndicator];
-    }
-    else {
-        if (sender.getTypingMembers.count == 1) {
-            [self.chattingView startTypingIndicator:[NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"TypingMessageSingular"], sender.getTypingMembers[0].nickname]];
+    if (sender == self.channel) {
+        if (sender.getTypingMembers.count == 0) {
+            [self.chattingView endTypingIndicator];
         }
         else {
-            [self.chattingView startTypingIndicator:[NSBundle sbLocalizedStringForKey:@"TypingMessagePlural"]];
+            if (sender.getTypingMembers.count == 1) {
+                [self.chattingView startTypingIndicator:[NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"TypingMessageSingular"], sender.getTypingMembers[0].nickname]];
+            }
+            else {
+                [self.chattingView startTypingIndicator:[NSBundle sbLocalizedStringForKey:@"TypingMessagePlural"]];
+            }
         }
     }
 }
