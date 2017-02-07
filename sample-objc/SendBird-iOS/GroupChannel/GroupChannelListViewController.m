@@ -294,7 +294,7 @@
                 return;
             }
             
-            [self.channels removeObjectAtIndex:row];
+            [self.channels removeObject:selectedChannel];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });
@@ -314,7 +314,7 @@
                 return;
             }
             
-            [self.channels removeObjectAtIndex:row];
+            [self.channels removeObject:selectedChannel];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });
@@ -381,11 +381,21 @@
 }
 
 - (void)channel:(SBDGroupChannel * _Nonnull)sender userDidJoin:(SBDUser * _Nonnull)user {
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([self.channels indexOfObject:sender] == NSNotFound) {
+            [self.channels addObject:sender];
+        }
+        [self.tableView reloadData];
+    });
 }
 
 - (void)channel:(SBDGroupChannel * _Nonnull)sender userDidLeave:(SBDUser * _Nonnull)user {
-    
+    if ([user.userId isEqualToString:[SBDMain getCurrentUser].userId]) {
+        [self.channels removeObject:sender];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }
 }
 
 - (void)channel:(SBDOpenChannel * _Nonnull)sender userDidEnter:(SBDUser * _Nonnull)user {

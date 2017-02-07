@@ -46,7 +46,15 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
     func setModel(aMessage: SBDFileMessage) {
         self.message = aMessage
 
-        self.fileImageView.af_setImage(withURL: URL(string: self.message.url)!, placeholderImage: Utils.imageFromColor(color: Constants.outgoingFileImagePlaceholderColor()))
+        /***********************************/
+        /* Thumbnail is a premium feature. */
+        /***********************************/
+        if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
+            self.fileImageView.af_setImage(withURL: URL(string: (self.message.thumbnails?[0].url)!)!, placeholderImage: Utils.imageFromColor(color: Constants.outgoingFileImagePlaceholderColor()))
+        }
+        else {
+            self.fileImageView.af_setImage(withURL: URL(string: self.message.url)!, placeholderImage: Utils.imageFromColor(color: Constants.outgoingFileImagePlaceholderColor()))
+        }
         
         let messageContainerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(clickFileMessage))
         self.fileImageView.isUserInteractionEnabled = true

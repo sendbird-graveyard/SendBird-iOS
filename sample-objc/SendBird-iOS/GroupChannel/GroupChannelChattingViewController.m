@@ -584,11 +584,11 @@
             CGFloat newWidth = 0;
             CGFloat newHeight = 0;
             if (imageToUse.size.width > imageToUse.size.height) {
-                newWidth = 450;
+                newWidth = 640;
                 newHeight = newWidth * imageToUse.size.height / imageToUse.size.width;
             }
             else {
-                newHeight = 450;
+                newHeight = 640;
                 newWidth = newHeight * imageToUse.size.width / imageToUse.size.height;
             }
             
@@ -610,7 +610,11 @@
                 imageFileData = UIImageJPEGRepresentation(newImage, 1.0);
             }
             
-            [strongSelf.channel sendFileMessageWithBinaryData:imageFileData filename:imageName type:imageType size:imageFileData.length data:@"" completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
+            /***********************************/
+            /* Thumbnail is a premium feature. */
+            /***********************************/
+            SBDThumbnailSize *thumbnailSize = [SBDThumbnailSize makeWithMaxWidth:320.0 maxHeight:320.0];
+            [strongSelf.channel sendFileMessageWithBinaryData:imageFileData filename:imageName type:imageType size:imageFileData.length thumbnailSizes:@[thumbnailSize] data:@"" customType:@"" progressHandler:nil completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
                 if (error != nil) {
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];

@@ -261,7 +261,9 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
                     return
                 }
                 
-                self.channels.remove(at: row!)
+                if let index = self.channels.index(of: selectedChannel) {
+                    self.channels.remove(at: index)
+                }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -281,7 +283,9 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
                     return
                 }
                 
-                self.channels.remove(at: row!)
+                if let index = self.channels.index(of: selectedChannel) {
+                    self.channels.remove(at: index)
+                }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -346,11 +350,23 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func channel(_ sender: SBDGroupChannel, userDidJoin user: SBDUser) {
-        
+        DispatchQueue.main.async {
+            if self.channels.index(of: sender) == nil {
+                self.channels.append(sender)
+            }
+            self.tableView.reloadData()
+        }
     }
     
     func channel(_ sender: SBDGroupChannel, userDidLeave user: SBDUser) {
-        
+        if user.userId == SBDMain.getCurrentUser()?.userId {
+            if let index = self.channels.index(of: sender) {
+                self.channels.remove(at: index)
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func channel(_ sender: SBDOpenChannel, userDidEnter user: SBDUser) {

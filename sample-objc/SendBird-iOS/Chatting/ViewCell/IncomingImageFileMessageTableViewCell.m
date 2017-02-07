@@ -66,8 +66,16 @@
     UITapGestureRecognizer *messageContainerTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickFileMessage)];
     self.fileImageView.userInteractionEnabled = YES;
     [self.fileImageView addGestureRecognizer:messageContainerTapRecognizer];
-    
-    [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.url] placeholderImage:[Utils imageFromColor:[Constants incomingFileImagePlaceholderColor]]];
+
+    /***********************************/
+    /* Thumbnail is a premium feature. */
+    /***********************************/
+    if (self.message.thumbnails != nil && self.message.thumbnails.count > 0) {
+        [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.thumbnails[0].url] placeholderImage:[Utils imageFromColor:[Constants incomingFileImagePlaceholderColor]]];
+    }
+    else {
+        [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.url] placeholderImage:[Utils imageFromColor:[Constants incomingFileImagePlaceholderColor]]];
+    }
 
     // Message Date
     NSDictionary *messageDateAttribute = @{

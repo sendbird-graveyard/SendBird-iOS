@@ -52,7 +52,15 @@
 - (void)setModel:(SBDFileMessage *)aMessage {
     self.message = aMessage;
     
-    [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.url] placeholderImage:[Utils imageFromColor:[Constants outgoingFileImagePlaceholderColor]]];
+    /***********************************/
+    /* Thumbnail is a premium feature. */
+    /***********************************/
+    if (self.message.thumbnails != nil && self.message.thumbnails.count > 0) {
+        [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.thumbnails[0].url] placeholderImage:[Utils imageFromColor:[Constants outgoingFileImagePlaceholderColor]]];
+    }
+    else {
+        [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.url] placeholderImage:[Utils imageFromColor:[Constants outgoingFileImagePlaceholderColor]]];
+    }
     
     UITapGestureRecognizer *messageContainerTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickFileMessage)];
     self.fileImageView.userInteractionEnabled = YES;

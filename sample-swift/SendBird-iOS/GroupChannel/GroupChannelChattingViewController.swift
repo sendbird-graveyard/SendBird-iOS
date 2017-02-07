@@ -538,7 +538,11 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                     imageFileData = UIImageJPEGRepresentation(newImage!, 1.0) as NSData?
                 }
                 
-                self.groupChannel.sendFileMessage(withBinaryData: imageFileData as! Data, filename: imageName as! String, type: imageType as! String, size: UInt((imageFileData?.length)!), data: "", completionHandler: { (fileMessage, error) in
+                /***********************************/
+                /* Thumbnail is a premium feature. */
+                /***********************************/
+                let thumbnailSize = SBDThumbnailSize.make(withMaxWidth: 320.0, maxHeight: 320.0)
+                self.groupChannel.sendFileMessage(withBinaryData: imageFileData as! Data, filename: imageName as! String, type: imageType as! String, size: UInt((imageFileData?.length)!), thumbnailSizes: [thumbnailSize!], data: "", customType: "", progressHandler: nil, completionHandler: { (fileMessage, error) in
                     if error != nil {
                         let alert = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
                         let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
