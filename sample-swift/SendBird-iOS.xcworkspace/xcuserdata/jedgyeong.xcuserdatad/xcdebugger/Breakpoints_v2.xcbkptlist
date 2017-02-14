@@ -41,125 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SendBird-iOS/Chatting/ViewCell/OutgoingImageFileMessageTableViewCell.swift"
-            timestampString = "508191951.767925"
+            filePath = "SendBird-iOS/GroupChannel/GroupChannelChattingViewController.swift"
+            timestampString = "508728192.699784"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "setModel(aMessage:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SendBird_iOS.OutgoingImageFileMessageTableViewCell.setModel (aMessage : __ObjC.SBDFileMessage) -&gt; ()"
-                  moduleName = "SendBird-iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-swift/SendBird-iOS/Chatting/ViewCell/OutgoingImageFileMessageTableViewCell.swift"
-                  timestampString = "508193990.429711"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53"
-                  offsetFromSymbolStart = "928">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SendBird_iOS.OutgoingImageFileMessageTableViewCell.setModel (aMessage : __ObjC.SBDFileMessage) -&gt; ()"
-                  moduleName = "SendBird-iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-swift/SendBird-iOS/Chatting/ViewCell/OutgoingImageFileMessageTableViewCell.swift"
-                  timestampString = "508193990.431608"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53"
-                  offsetFromSymbolStart = "21468">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SendBird-iOS/Chatting/ViewCell/OutgoingImageFileMessageTableViewCell.swift"
-            timestampString = "508191951.767925"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "setModel(aMessage:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SendBird-iOS/Chatting/ViewCell/IncomingImageFileMessageTableViewCell.swift"
-            timestampString = "508191951.767925"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "setModel(aMessage:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SendBird_iOS.IncomingImageFileMessageTableViewCell.setModel (aMessage : __ObjC.SBDFileMessage) -&gt; ()"
-                  moduleName = "SendBird-iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-swift/SendBird-iOS/Chatting/ViewCell/IncomingImageFileMessageTableViewCell.swift"
-                  timestampString = "508193990.439499"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "3144">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SendBird_iOS.IncomingImageFileMessageTableViewCell.setModel (aMessage : __ObjC.SBDFileMessage) -&gt; ()"
-                  moduleName = "SendBird-iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-swift/SendBird-iOS/Chatting/ViewCell/IncomingImageFileMessageTableViewCell.swift"
-                  timestampString = "508193990.441389"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "21868">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SendBird-iOS/Chatting/ViewCell/IncomingImageFileMessageTableViewCell.swift"
-            timestampString = "508191951.767925"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "setModel(aMessage:)"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
+            landmarkName = "loadMoreMessage(view:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
