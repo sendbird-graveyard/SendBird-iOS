@@ -431,7 +431,17 @@
 }
 
 - (void)channelWasChanged:(SBDBaseChannel * _Nonnull)sender {
-    
+    if ([sender isKindOfClass:[SBDGroupChannel class]]) {
+        SBDGroupChannel *messageReceivedChannel = (SBDGroupChannel *)sender;
+        if ([self.channels indexOfObject:messageReceivedChannel] != NSNotFound) {
+            [self.channels removeObject:messageReceivedChannel];
+        }
+        [self.channels insertObject:messageReceivedChannel atIndex:0];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }
 }
 
 - (void)channelWasDeleted:(NSString * _Nonnull)channelUrl channelType:(SBDChannelType)channelType {

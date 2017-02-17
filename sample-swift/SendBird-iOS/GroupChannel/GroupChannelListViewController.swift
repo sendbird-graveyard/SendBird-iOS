@@ -402,7 +402,17 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func channelWasChanged(_ sender: SBDBaseChannel) {
-        
+        if sender is SBDGroupChannel {
+            let messageReceivedChannel = sender as! SBDGroupChannel
+            if self.channels.index(of: messageReceivedChannel) != nil {
+                self.channels.remove(at: self.channels.index(of: messageReceivedChannel)!)
+            }
+            self.channels.insert(messageReceivedChannel, at: 0)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func channelWasDeleted(_ channelUrl: String, channelType: SBDChannelType) {

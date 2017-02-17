@@ -133,7 +133,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             return
         }
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 100000000)) {
             self.chattingTableView.scrollToRow(at: IndexPath.init(row: self.messages.count - 1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
         }
     }
@@ -147,7 +147,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             return
         }
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 100000000)) {
             self.chattingTableView.scrollToRow(at: IndexPath.init(row: position, section: 0), at: UITableViewScrollPosition.top, animated: false)
         }
     }
@@ -171,9 +171,8 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             self.typingIndicatorImageView.animationDuration = 1.5
             DispatchQueue.main.async {
                 self.typingIndicatorImageView.startAnimating()
+                self.scrollToBottom()
             }
-            
-            self.scrollToBottom()
         }
     }
     

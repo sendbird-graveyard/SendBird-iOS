@@ -142,7 +142,7 @@
         return;
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(100 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
         [self.chattingTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.messages.count - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
     });
 }
@@ -152,7 +152,7 @@
         return;
     }
 
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(100 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
         [self.chattingTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:position inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     });
 }
@@ -176,9 +176,8 @@
         self.typingIndicatorImageView.animationDuration = 1.5;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.typingIndicatorImageView startAnimating];
+            [self scrollToBottom];
         });
-        
-        [self scrollToBottom];
     }
 }
 
