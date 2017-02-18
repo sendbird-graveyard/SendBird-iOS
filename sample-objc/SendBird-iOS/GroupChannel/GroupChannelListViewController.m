@@ -225,6 +225,10 @@
 
         [self presentViewController:vc animated:NO completion:nil];
     }
+    else {
+        MGSwipeTableCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [cell showSwipe:MGSwipeDirectionRightToLeft animated:YES];
+    }
 }
 
 #pragma mark - UITableViewDataSource

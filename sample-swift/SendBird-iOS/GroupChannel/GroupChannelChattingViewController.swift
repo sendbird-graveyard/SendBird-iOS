@@ -79,7 +79,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
             self.bottomMargin.constant = keyboardFrameBeginRect.size.height
             self.view.layoutIfNeeded()
             self.chattingView.stopMeasuringVelocity = true
-            self.chattingView.scrollToBottom()
+            self.chattingView.scrollToBottom(animated: true, force: false)
         }
     }
     
@@ -87,7 +87,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         DispatchQueue.main.async {
             self.bottomMargin.constant = 0
             self.view.layoutIfNeeded()
-            self.chattingView.scrollToBottom()
+            self.chattingView.scrollToBottom(animated: true, force: false)
         }
     }
     
@@ -124,17 +124,22 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     
     private func loadPreviousMessage(initial: Bool) {
         if initial == true {
+            self.chattingView.chattingTableView.isHidden = true
             self.messageQuery = self.groupChannel.createPreviousMessageListQuery()
             self.hasNext = true
             self.chattingView.messages.removeAll()
-            self.chattingView.chattingTableView.reloadData()
+            DispatchQueue.main.async {
+                self.chattingView.chattingTableView.reloadData()
+            }
         }
         
         if self.hasNext == false {
+            self.chattingView.chattingTableView.isHidden = false;
             return
         }
         
         if self.isLoading == true {
+            self.chattingView.chattingTableView.isHidden = false;
             return
         }
         
@@ -149,7 +154,9 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                     self.present(vc, animated: true, completion: nil)
                 }
                 
+                self.chattingView.chattingTableView.isHidden = false
                 self.isLoading = false
+                
                 return
             }
             
@@ -170,26 +177,31 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                 }
             }
             
-            DispatchQueue.main.async {
-                if initial == true {
-                    self.chattingView.chattingTableView.isHidden = true
-                    self.chattingView.initialLoading = true
+            if initial == true {
+                self.chattingView.initialLoading = true
+                
+                DispatchQueue.main.async {
                     self.chattingView.chattingTableView.reloadData()
-                    self.chattingView.scrollToBottom()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 250000000), execute: {
+                    DispatchQueue.main.async {
+                        self.chattingView.scrollToBottom(animated: false, force: true)
                         self.chattingView.chattingTableView.isHidden = false
-                        self.chattingView.initialLoading = false
-                        self.isLoading = false
-                    })
-                }
-                else {
-                    self.chattingView.chattingTableView.reloadData()
-                    if (messages?.count)! > 0 {
-                        self.chattingView.scrollToPosition(position: (messages?.count)! - 1)
                     }
-                    self.isLoading = false
                 }
+                
+                self.chattingView.initialLoading = false
+                self.isLoading = false
+            }
+            else {
+                if (messages?.count)! > 0 {
+                    DispatchQueue.main.async {
+                        self.chattingView.chattingTableView.reloadData()
+                        DispatchQueue.main.async {
+                            self.chattingView.scrollToPosition(position: (messages?.count)! - 1)
+                            self.chattingView.chattingTableView.isHidden = false
+                        }
+                    }
+                }
+                self.isLoading = false
             }
         }
     }
@@ -202,12 +214,15 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
             self.groupChannel.sendUserMessage(message, completionHandler: { (userMessage, error) in
                 if error != nil {
                     self.chattingView.resendableMessages[(userMessage?.requestId)!] = userMessage
+                    
+                    return
                 }
                 
                 self.chattingView.messages.append(userMessage!)
+                
+                self.chattingView.chattingTableView.reloadData()
                 DispatchQueue.main.async {
-                    self.chattingView.chattingTableView.reloadData()
-                    self.chattingView.scrollToBottom()
+                    self.chattingView.scrollToBottom(animated: true, force: true)
                 }
             })
         }
@@ -240,10 +255,11 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     func channel(_ sender: SBDBaseChannel, didReceive message: SBDBaseMessage) {
         if sender == self.groupChannel {
             self.groupChannel.markAsRead()
+            
             self.chattingView.messages.append(message)
+            self.chattingView.chattingTableView.reloadData()
             DispatchQueue.main.async {
-                self.chattingView.chattingTableView.reloadData()
-                self.chattingView.scrollToBottom()
+                self.chattingView.scrollToBottom(animated: true, force: false)
             }
         }
     }
@@ -322,7 +338,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         DispatchQueue.main.async {
             self.bottomMargin.constant = 0
             self.view.layoutIfNeeded()
-            self.chattingView.scrollToBottom()
+            self.chattingView.scrollToBottom(animated: true, force: false)
         }
         self.view.endEditing(true)
     }
@@ -557,10 +573,12 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                     if fileMessage != nil {
                         self.chattingView.messages.append(fileMessage!)
                         
-                        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 500000000), execute: {
+                        DispatchQueue.main.async {
                             self.chattingView.chattingTableView.reloadData()
-                            self.chattingView.scrollToBottom()
-                        })
+                            DispatchQueue.main.async {
+                                self.chattingView.scrollToBottom(animated: true, force : false)
+                            }
+                        }
                     }
                 })
             }
@@ -596,10 +614,12 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                     if fileMessage != nil {
                         self.chattingView.messages.append(fileMessage!)
                         
-                        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 500000000), execute: {
+                        DispatchQueue.main.async {
                             self.chattingView.chattingTableView.reloadData()
-                            self.chattingView.scrollToBottom()
-                        })
+                            DispatchQueue.main.async {
+                                self.chattingView.scrollToBottom(animated: true, force : false)
+                            }
+                        }
                     }
                 })
             }

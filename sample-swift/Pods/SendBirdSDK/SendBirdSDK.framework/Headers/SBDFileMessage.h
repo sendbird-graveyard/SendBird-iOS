@@ -35,6 +35,7 @@
  */
 + (nullable instancetype)makeWithMaxWidth:(CGFloat)width maxHeight:(CGFloat)height;
 
+
 @end
 
 
@@ -46,13 +47,22 @@
 /**
  The url of the thumbnail.
  */
-@property (strong, nonatomic, readonly, nonnull) NSString *url;
+@property (strong, nonatomic, readonly, nonnull, getter = url) NSString *url;
 
 
 /**
  The maximum size of the thumbnail.
  */
 @property (nonatomic, readonly) CGSize maxSize;
+
+
+/**
+ Returns url
+ 
+ @return Image url.
+ */
+- (nonnull NSString *)url;
+
 
 @end
 
@@ -71,7 +81,7 @@
 /**
  *  The file URL.
  */
-@property (strong, nonatomic, readonly, nonnull) NSString *url;
+@property (strong, nonatomic, readonly, nonnull, getter = url) NSString *url;
 
 /**
  *  The name of file.
@@ -127,5 +137,12 @@
  *  @return File message object with request ID.
  */
 + (nullable NSMutableDictionary<NSString *, NSObject *> *)buildWithFileUrl:(NSString * _Nonnull)url name:(NSString * _Nullable)name size:(NSUInteger)size type:(NSString * _Nonnull)type data:(NSString * _Nullable)data requestId:(NSString * _Nullable)requestId sender:(SBDUser * _Nonnull)sender channel:(SBDBaseChannel * _Nonnull)channel customType:(NSString * _Nullable)customType;
+
+/**
+ Returns url
+ 
+ @return Image url.
+ */
+- (nonnull NSString *)url;
 
 @end

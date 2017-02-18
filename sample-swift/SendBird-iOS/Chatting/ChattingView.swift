@@ -124,18 +124,16 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
         self.addSubview(self.incomingImageFileMessageSizingTableViewCell!)
     }
     
-    func scrollToBottom() {
+    func scrollToBottom(animated: Bool, force: Bool) {
         if self.messages.count == 0 {
             return
         }
         
-        if self.scrollLock == true {
+        if self.scrollLock == true && force == false {
             return
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 100000000)) {
-            self.chattingTableView.scrollToRow(at: IndexPath.init(row: self.messages.count - 1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
-        }
+        self.chattingTableView.scrollToRow(at: IndexPath.init(row: self.messages.count - 1, section: 0), at: UITableViewScrollPosition.bottom, animated: animated)
     }
     
     func scrollToPosition(position: Int) {
@@ -143,13 +141,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             return
         }
         
-        if self.scrollLock == true {
-            return
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 100000000)) {
-            self.chattingTableView.scrollToRow(at: IndexPath.init(row: position, section: 0), at: UITableViewScrollPosition.top, animated: false)
-        }
+        self.chattingTableView.scrollToRow(at: IndexPath.init(row: position, section: 0), at: UITableViewScrollPosition.top, animated: false)
     }
     
     func startTypingIndicator(text: String) {
@@ -169,9 +161,9 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             }
             self.typingIndicatorImageView.animationImages = typingImages
             self.typingIndicatorImageView.animationDuration = 1.5
+            
             DispatchQueue.main.async {
                 self.typingIndicatorImageView.startAnimating()
-                self.scrollToBottom()
             }
         }
     }

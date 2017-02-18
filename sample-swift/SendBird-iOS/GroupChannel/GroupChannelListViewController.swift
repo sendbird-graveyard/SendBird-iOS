@@ -197,6 +197,10 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             vc.groupChannel = self.channels[indexPath.row]
             self.present(vc, animated: false, completion: nil)
         }
+        else {
+            let cell = tableView.cellForRow(at: indexPath) as! MGSwipeTableCell
+            cell.showSwipe(MGSwipeDirection.rightToLeft, animated: true)
+        }
     }
 
     // MARK: UITableViewDataSource

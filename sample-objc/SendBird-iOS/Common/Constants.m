@@ -99,11 +99,11 @@
 }
 
 + (UIFont *)leaveButtonFont {
-    return [UIFont fontWithName:@"HelveticaNeue" size:18.0];
+    return [UIFont fontWithName:@"HelveticaNeue" size:16.0];
 }
 
 + (UIFont *)hideButtonFont {
-    return [UIFont fontWithName:@"HelveticaNeue" size:18.0];
+    return [UIFont fontWithName:@"HelveticaNeue" size:16.0];
 }
 
 + (UIFont *)distinctButtonSelected {

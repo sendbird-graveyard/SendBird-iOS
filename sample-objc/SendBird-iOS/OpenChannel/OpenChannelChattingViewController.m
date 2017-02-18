@@ -98,7 +98,7 @@
         self.bottomMargin.constant = keyboardFrameBeginRect.size.height;
         [self.view layoutIfNeeded];
         self.chattingView.stopMeasuringVelocity = YES;
-        [self.chattingView scrollToBottom];
+        [self.chattingView scrollToBottomAnimated:YES force:NO];
     });
 }
 
@@ -106,13 +106,11 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.bottomMargin.constant = 0;
         [self.view layoutIfNeeded];
-        [self.chattingView scrollToBottom];
+        [self.chattingView scrollToBottomAnimated:YES force:NO];
     });
 }
 
 - (void)close {
-    [SBDMain removeChannelDelegateForIdentifier:self.delegateIdentifier];
-    [SBDMain removeConnectionDelegateForIdentifier:self.delegateIdentifier];
     [self.channel exitChannelWithCompletionHandler:^(SBDError * _Nullable error) {
         [self dismissViewControllerAnimated:NO completion:^{
             
@@ -148,17 +146,22 @@
 
 - (void)loadPreviousMessage:(BOOL)initial {
     if (initial) {
+        self.chattingView.chattingTableView.hidden = YES;
         self.messageQuery = [self.channel createPreviousMessageListQuery];
         self.hasNext = YES;
         [self.chattingView.messages removeAllObjects];
-        [self.chattingView.chattingTableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.chattingView.chattingTableView reloadData];
+        });
     }
     
     if (self.hasNext == NO) {
+        self.chattingView.chattingTableView.hidden = NO;
         return;
     }
     
     if (self.isLoading) {
+        self.chattingView.chattingTableView.hidden = NO;
         return;
     }
     
@@ -173,6 +176,7 @@
                 [self presentViewController:vc animated:YES completion:nil];
             });
             
+            self.chattingView.chattingTableView.hidden = NO;
             self.isLoading = NO;
             
             return;
@@ -193,27 +197,31 @@
             }
         }
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (initial) {
-                self.chattingView.chattingTableView.hidden = YES;
-                self.chattingView.initialLoading = YES;
+        if (initial) {
+            self.chattingView.initialLoading = YES;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self.chattingView.chattingTableView reloadData];
-                [self.chattingView scrollToBottom];
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(250 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.chattingView scrollToBottomAnimated:NO force:YES];
                     self.chattingView.chattingTableView.hidden = NO;
-                    self.chattingView.initialLoading = NO;
-                    self.isLoading = NO;
+                });
+            });
+            
+            self.chattingView.initialLoading = NO;
+            self.isLoading = NO;
+        }
+        else {
+            if (messages.count > 0) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.chattingView.chattingTableView reloadData];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.chattingView scrollToPosition:messages.count - 1];
+                    });
                 });
             }
-            else {
-                [self.chattingView.chattingTableView reloadData];
-                if (messages.count > 0) {
-                    [self.chattingView scrollToPosition:messages.count - 1];
-                }
-                self.isLoading = NO;
-            }
-        });
+            self.isLoading = NO;
+        }
     }];
 }
 
@@ -224,12 +232,15 @@
         [self.channel sendUserMessage:message completionHandler:^(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error) {            
             if (error != nil) {
                 self.chattingView.resendableMessages[userMessage.requestId] = userMessage;
+                
+                return;
             }
             
             [self.chattingView.messages addObject:userMessage];
+
+            [self.chattingView.chattingTableView reloadData];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.chattingView.chattingTableView reloadData];
-                [self.chattingView scrollToBottom];
+                [self.chattingView scrollToBottomAnimated:YES force:YES];
             });
         }];
     }
@@ -264,9 +275,9 @@
 - (void)channel:(SBDBaseChannel * _Nonnull)sender didReceiveMessage:(SBDBaseMessage * _Nonnull)message {
     if (sender == self.channel) {
         [self.chattingView.messages addObject:message];
+        [self.chattingView.chattingTableView reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.chattingView.chattingTableView reloadData];
-            [self.chattingView scrollToBottom];
+            [self.chattingView scrollToBottomAnimated:YES force:NO];
         });
     }
 }
@@ -369,7 +380,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.bottomMargin.constant = 0;
         [self.view layoutIfNeeded];
-        [self.chattingView scrollToBottom];
+        [self.chattingView scrollToBottomAnimated:YES force:NO];
     });
     [self.view endEditing:YES];
 }
@@ -516,7 +527,9 @@
                             });
                         }
                         else {
-                            [self.chattingView.chattingTableView reloadData];
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [self.chattingView.chattingTableView reloadData];
+                            });
                         }
                     }];
                 }];
@@ -661,11 +674,10 @@
                 
                 if (fileMessage != nil) {
                     [strongSelf.chattingView.messages addObject:fileMessage];
-                    
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(500 * NSEC_PER_USEC)), dispatch_get_main_queue(), ^{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [strongSelf.chattingView.chattingTableView reloadData];
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [strongSelf.chattingView.chattingTableView reloadData];
-                            [strongSelf.chattingView scrollToBottom];
+                            [strongSelf.chattingView scrollToBottomAnimated:YES force:NO];
                         });
                     });
                 }
@@ -703,10 +715,10 @@
                 if (fileMessage != nil) {
                     [strongSelf.chattingView.messages addObject:fileMessage];
                     
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(500 * NSEC_PER_USEC)), dispatch_get_main_queue(), ^{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [strongSelf.chattingView.chattingTableView reloadData];
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [strongSelf.chattingView.chattingTableView reloadData];
-                            [strongSelf.chattingView scrollToBottom];
+                            [strongSelf.chattingView scrollToBottomAnimated:YES force:NO];
                         });
                     });
                 }

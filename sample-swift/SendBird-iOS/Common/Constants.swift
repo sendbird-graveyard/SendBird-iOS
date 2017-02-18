@@ -98,11 +98,11 @@ class Constants: NSObject {
     }
     
     static func leaveButtonFont() -> UIFont {
-        return UIFont(name: "HelveticaNeue", size: 18.0)!
+        return UIFont(name: "HelveticaNeue", size: 16.0)!
     }
     
     static func hideButtonFont() -> UIFont {
-        return UIFont(name: "HelveticaNeue", size: 18.0)!
+        return UIFont(name: "HelveticaNeue", size: 16.0)!
     }
     
     static func distinctButtonSelected() -> UIFont {

@@ -79,7 +79,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
             self.bottomMargin.constant = keyboardFrameBeginRect.size.height
             self.view.layoutIfNeeded()
             self.chattingView.stopMeasuringVelocity = true
-            self.chattingView.scrollToBottom()
+            self.chattingView.scrollToBottom(animated: true, force: false)
         }
     }
     
@@ -87,14 +87,11 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
         DispatchQueue.main.async {
             self.bottomMargin.constant = 0
             self.view.layoutIfNeeded()
-            self.chattingView.scrollToBottom()
+            self.chattingView.scrollToBottom(animated: true, force: false)
         }
     }
     
     @objc private func close() {
-        SBDMain.removeChannelDelegate(forIdentifier: self.delegateIdentifier)
-        SBDMain.removeConnectionDelegate(forIdentifier: self.delegateIdentifier)
-        
         self.openChannel.exitChannel { (error) in
             self.dismiss(animated: false) {
                 
@@ -129,17 +126,22 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
     
     private func loadPreviousMessage(initial: Bool) {
         if initial == true {
+            self.chattingView.chattingTableView.isHidden = true
             self.messageQuery = self.openChannel.createPreviousMessageListQuery()
             self.hasNext = true
             self.chattingView.messages.removeAll()
-            self.chattingView.chattingTableView.reloadData()
+            DispatchQueue.main.async {
+                self.chattingView.chattingTableView.reloadData()
+            }
         }
         
         if self.hasNext == false {
+            self.chattingView.chattingTableView.isHidden = false
             return
         }
         
         if self.isLoading == true {
+            self.chattingView.chattingTableView.isHidden = false
             return
         }
         
@@ -154,7 +156,9 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                     self.present(vc, animated: true, completion: nil)
                 }
                 
+                self.chattingView.chattingTableView.isHidden = false
                 self.isLoading = false
+                
                 return
             }
             
@@ -173,26 +177,30 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                 }
             }
             
-            DispatchQueue.main.async {
-                if initial == true {
-                    self.chattingView.chattingTableView.isHidden = true
-                    self.chattingView.initialLoading = true
+            if initial == true {
+                self.chattingView.initialLoading = true
+                
+                DispatchQueue.main.async {
                     self.chattingView.chattingTableView.reloadData()
-                    self.chattingView.scrollToBottom()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 250000000), execute: {
+                    DispatchQueue.main.async {
+                        self.chattingView.scrollToBottom(animated: false, force: true)
                         self.chattingView.chattingTableView.isHidden = false
-                        self.chattingView.initialLoading = false
-                        self.isLoading = false
-                    })
-                }
-                else {
-                    self.chattingView.chattingTableView.reloadData()
-                    if (messages?.count)! > 0 {
-                        self.chattingView.scrollToPosition(position: (messages?.count)! - 1)
                     }
-                    self.isLoading = false
                 }
+                
+                self.chattingView.initialLoading = false
+                self.isLoading = false
+            }
+            else {
+                if (messages?.count)! > 0 {
+                    DispatchQueue.main.async {
+                        self.chattingView.chattingTableView.reloadData()
+                        DispatchQueue.main.async {
+                            self.chattingView.scrollToPosition(position: (messages?.count)! - 1)
+                        }
+                    }
+                }
+                self.isLoading = false
             }
         }
     }
@@ -204,12 +212,15 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
             self.openChannel.sendUserMessage(message, completionHandler: { (userMessage, error) in
                 if error != nil {
                     self.chattingView.resendableMessages[(userMessage?.requestId)!] = userMessage
+                    
+                    return
                 }
                 
                 self.chattingView.messages.append(userMessage!)
+                
+                self.chattingView.chattingTableView.reloadData()
                 DispatchQueue.main.async {
-                    self.chattingView.chattingTableView.reloadData()
-                    self.chattingView.scrollToBottom()
+                    self.chattingView.scrollToBottom(animated: true, force: true)
                 }
             })
         }
@@ -242,9 +253,9 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
     func channel(_ sender: SBDBaseChannel, didReceive message: SBDBaseMessage) {
         if sender == self.openChannel {
             self.chattingView.messages.append(message)
+            self.chattingView.chattingTableView.reloadData()
             DispatchQueue.main.async {
-                self.chattingView.chattingTableView.reloadData()
-                self.chattingView.scrollToBottom()
+                self.chattingView.scrollToBottom(animated: true, force: false)
             }
         }
     }
@@ -299,7 +310,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
         DispatchQueue.main.async {
             self.bottomMargin.constant = 0
             self.view.layoutIfNeeded()
-            self.chattingView.scrollToBottom()
+            self.chattingView.scrollToBottom(animated: true, force: false)
         }
         self.view.endEditing(true)
     }
@@ -579,11 +590,12 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                     
                     if fileMessage != nil {
                         self.chattingView.messages.append(fileMessage!)
-                        
-                        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 500000000), execute: {
+                        DispatchQueue.main.async {
                             self.chattingView.chattingTableView.reloadData()
-                            self.chattingView.scrollToBottom()
-                        })
+                            DispatchQueue.main.async {
+                                self.chattingView.scrollToBottom(animated: true, force: false)
+                            }
+                        }
                     }
                 })
             }
@@ -619,10 +631,12 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                     if fileMessage != nil {
                         self.chattingView.messages.append(fileMessage!)
                         
-                        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: 500000000), execute: {
+                        DispatchQueue.main.async {
                             self.chattingView.chattingTableView.reloadData()
-                            self.chattingView.scrollToBottom()
-                        })
+                            DispatchQueue.main.async {
+                                self.chattingView.scrollToBottom(animated: true, force: false)
+                            }
+                        }
                     }
                 })
             }

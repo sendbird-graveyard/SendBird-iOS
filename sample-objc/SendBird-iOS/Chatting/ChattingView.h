@@ -36,7 +36,7 @@
 @property (weak, nonatomic) id<ChattingViewDelegate, MessageDelegate> delegate;
 
 - (void)initChattingView;
-- (void)scrollToBottom;
+- (void)scrollToBottomAnimated:(BOOL)animated force:(BOOL)force;
 - (void)scrollToPosition:(NSInteger)position;
 - (void)startTypingIndicator:(NSString *)text;
 - (void)endTypingIndicator;

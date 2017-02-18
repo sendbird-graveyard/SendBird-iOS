@@ -133,18 +133,16 @@
     [self addSubview:self.incomingImageFileMessageSizingTableViewCell];
 }
 
-- (void)scrollToBottom {
+- (void)scrollToBottomAnimated:(BOOL)animated force:(BOOL)force {
     if (self.messages.count == 0) {
         return;
     }
     
-    if (self.scrollLock) {
+    if (self.scrollLock && force == NO) {
         return;
     }
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(100 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
-        [self.chattingTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.messages.count - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-    });
+
+    [self.chattingTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.messages.count - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:animated];
 }
 
 - (void)scrollToPosition:(NSInteger)position {
@@ -152,9 +150,7 @@
         return;
     }
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(100 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
-        [self.chattingTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:position inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    });
+    [self.chattingTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:position inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 - (void)startTypingIndicator:(NSString *)text {
@@ -176,7 +172,6 @@
         self.typingIndicatorImageView.animationDuration = 1.5;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.typingIndicatorImageView startAnimating];
-            [self scrollToBottom];
         });
     }
 }
@@ -235,10 +230,8 @@
                 CGFloat scrollSpeed = fabs(scrollSpeedNotAbs);
                 if (scrollSpeed > 0.5) {
                     self.isScrollingFast = YES;
-                    NSLog(@"Fast");
                 } else {
                     self.isScrollingFast = NO;
-                    NSLog(@"Slow");
                 }
                 
                 self.lastOffset = currentOffset;

@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.applicationIconBadgeNumber = 0
         
-        SBDMain.initWithApplicationId("A7A2672C-AD11-11E4-8DAA-0A18B21C2D82")
+        SBDMain.initWithApplicationId("9DA1B1F4-0BE6-4DA8-82C5-2E81DAB56F23")
         SBDMain.setLogLevel(SBDLogLevel.debug)
         
         let audioSession = AVAudioSession.sharedInstance()
