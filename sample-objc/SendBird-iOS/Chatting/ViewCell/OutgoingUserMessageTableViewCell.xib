@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="184"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="183"/>
+                <frame key="frameInset" width="320" height="184"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yru-DR-yL3" userLabel="Date Container View">
@@ -131,15 +131,9 @@
                 <outlet property="dateSeperatorLabel" destination="Qzq-eO-w3c" id="ubX-f3-ICw"/>
                 <outlet property="deleteMessageButton" destination="Ud2-qG-Ln4" id="Eos-IF-6Jt"/>
                 <outlet property="messageContainerBottomPadding" destination="kwH-qB-1dY" id="RAg-hp-wVz"/>
-                <outlet property="messageContainerLeftMargin" destination="0kG-ca-LB9" id="G8D-aw-hDi"/>
-                <outlet property="messageContainerLeftPadding" destination="lCv-uc-7wR" id="xe6-VI-UVf"/>
-                <outlet property="messageContainerRightMargin" destination="Rp1-Yy-Lyo" id="bXj-ls-kWq"/>
-                <outlet property="messageContainerRightPadding" destination="Y0s-df-fjC" id="bTx-xe-K0G"/>
                 <outlet property="messageContainerTopPadding" destination="z6V-No-CHd" id="GAI-ke-j0i"/>
                 <outlet property="messageContainerView" destination="218-qq-guS" id="eeO-Iw-U9P"/>
                 <outlet property="messageDateLabel" destination="h0m-HV-6Ai" id="bJf-Sq-mM4"/>
-                <outlet property="messageDateLabelLeftMargin" destination="Ice-W6-rC4" id="bLH-31-Iy1"/>
-                <outlet property="messageDateLabelWidth" destination="A2u-lR-kJa" id="qSR-oI-c3e"/>
                 <outlet property="messageLabel" destination="MEf-kT-Jbd" id="G01-oc-PsZ"/>
                 <outlet property="resendMessageButton" destination="yt9-AQ-OB3" id="uQw-5c-K6G"/>
                 <outlet property="unreadCountLabel" destination="vJi-U7-1O8" id="WhK-iy-b52"/>

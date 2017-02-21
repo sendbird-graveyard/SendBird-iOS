@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -117,19 +117,12 @@
                 <outlet property="dateSeperatorContainerView" destination="etk-pH-YdC" id="BCQ-UP-c9L"/>
                 <outlet property="dateSeperatorLabel" destination="te8-sc-Jve" id="iss-MS-aSt"/>
                 <outlet property="messageContainerBottomPadding" destination="Sjy-yz-TB8" id="sJR-rh-nWQ"/>
-                <outlet property="messageContainerLeftMargin" destination="aU7-lV-qKd" id="Vjy-a2-VH3"/>
-                <outlet property="messageContainerLeftPadding" destination="QOW-3C-7S8" id="xTV-fd-pyd"/>
-                <outlet property="messageContainerRightPadding" destination="TGP-2O-NAk" id="emQ-BQ-1ty"/>
                 <outlet property="messageContainerTopPadding" destination="dXr-Br-Rbw" id="BK8-vm-6Gy"/>
                 <outlet property="messageContainerView" destination="uXW-rK-eho" id="ppY-cP-Pzq"/>
                 <outlet property="messageDateLabel" destination="da1-hz-pe6" id="cxy-tm-dl2"/>
-                <outlet property="messageDateLabelLeftMargin" destination="Q8J-hr-Apx" id="Bav-Op-dlD"/>
-                <outlet property="messageDateLabelRightMargin" destination="WA7-oh-scj" id="805-fY-Dfl"/>
                 <outlet property="messageDateLabelWidth" destination="HP9-vC-J3e" id="gbM-uE-89t"/>
                 <outlet property="messageLabel" destination="sh6-y1-hH1" id="yHc-m5-hkR"/>
-                <outlet property="profileImageLeftMargin" destination="niF-WR-zOW" id="LpS-Ur-XJ4"/>
                 <outlet property="profileImageView" destination="rQm-22-hdZ" id="vOg-Yh-EXR"/>
-                <outlet property="profileImageWidth" destination="Yac-Eq-V6D" id="Q0y-xD-xgj"/>
             </connections>
             <point key="canvasLocation" x="25" y="152.5"/>
         </tableViewCell>

@@ -28,26 +28,9 @@
 // Top Margin of Date Container
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerViewTopMargin;
 
-// Left Margin of Profile Image
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *profileImageLeftMargin;
-
-// Left Margin of Message Container
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerLeftMargin;
-
-// Profile Image Width
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *profileImageWidth;
-
 // Message Container Padding
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerLeftPadding;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerBottomPadding;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerRightPadding;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerTopPadding;
-
-// Left Margin of Message Date
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageDateLabelLeftMargin;
-
-// Right Margin of Message Date
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageDateLabelRightMargin;
 
 // Bottom Margin of Date Container
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerBottomMargin;
@@ -265,14 +248,8 @@
 }
 
 - (CGFloat)getHeightOfViewCell {
-    NSAttributedString *fullMessage = [self buildMessage];
     
-    CGRect fullMessageRect;
-    
-    CGFloat messageLabelMaxWidth = self.frame.size.width - (self.profileImageLeftMargin.constant + self.profileImageWidth.constant + self.messageContainerLeftMargin.constant + self.messageContainerLeftPadding.constant + self.messageContainerRightPadding.constant + self.messageDateLabelLeftMargin.constant + self.messageDateLabelWidth.constant + self.messageDateLabelRightMargin.constant);
-    fullMessageRect = [fullMessage boundingRectWithSize:CGSizeMake(messageLabelMaxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-    
-    CGFloat cellHeight = self.dateContainerViewTopMargin.constant + self.dateLabelContainerHeight.constant + self.dateContainerBottomMargin.constant + self.messageContainerTopPadding.constant + fullMessageRect.size.height + self.messageContainerBottomPadding.constant;
+    CGFloat cellHeight = self.dateContainerViewTopMargin.constant + self.dateLabelContainerHeight.constant + self.dateContainerBottomMargin.constant + self.messageContainerTopPadding.constant + self.messageLabel.bounds.size.height + self.messageContainerBottomPadding.constant;
     
     return cellHeight;
 }

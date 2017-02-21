@@ -28,14 +28,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerTopPadding;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerBottomPadding;
 
-// For Message Label Width
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerRightMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerRightPadding;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerLeftPadding;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerLeftMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageDateLabelLeftMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageDateLabelWidth;
-
 @property (strong, nonatomic) SBDUserMessage *message;
 @property (strong, nonatomic) SBDBaseMessage *prevMessage;
 
@@ -198,14 +190,8 @@
 }
 
 - (CGFloat)getHeightOfViewCell {
-    NSAttributedString *fullMessage = [self buildMessage];
-    CGRect fullMessageRect;
     
-    CGFloat messageLabelMaxWidth = self.frame.size.width - (self.messageContainerRightMargin.constant + self.messageContainerRightPadding.constant + self.messageContainerLeftPadding.constant + self.messageContainerLeftMargin.constant + self.messageDateLabelLeftMargin.constant + self.messageDateLabelWidth.constant);
-
-    fullMessageRect = [fullMessage boundingRectWithSize:CGSizeMake(messageLabelMaxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-    
-    CGFloat cellHeight = self.dateContainerTopMargin.constant + self.dateContainerHeight.constant + self.dateContainerBottomMargin.constant + self.messageContainerTopPadding.constant + fullMessageRect.size.height + self.messageContainerBottomPadding.constant;
+    CGFloat cellHeight = self.dateContainerTopMargin.constant + self.dateContainerHeight.constant + self.dateContainerBottomMargin.constant + self.messageContainerTopPadding.constant + self.messageLabel.bounds.size.height + self.messageContainerBottomPadding.constant;
     
     return cellHeight;
 }

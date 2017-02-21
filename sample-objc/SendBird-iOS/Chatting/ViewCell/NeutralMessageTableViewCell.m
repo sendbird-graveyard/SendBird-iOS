@@ -22,11 +22,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerViewBottomMargin;
 
-// For Label Width
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerViewLeftMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerViewRightMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerViewLeftPadding;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerViewRightPadding;
 
 @property (strong, nonatomic) SBDAdminMessage *message;
 @property (strong, nonatomic) SBDBaseMessage *prevMessage;
@@ -119,14 +114,8 @@
 
 
 - (CGFloat)getHeightOfViewCell {
-    NSAttributedString *fullMessage = [self buildMessage];
     
-    CGRect fullMessageRect;
-    
-    CGFloat messageLabelMaxWidth = self.frame.size.width - (self.messageContainerViewLeftMargin.constant + self.messageContainerViewRightMargin.constant + self.messageContainerViewLeftPadding.constant + self.messageContainerViewRightPadding.constant);
-    fullMessageRect = [fullMessage boundingRectWithSize:CGSizeMake(messageLabelMaxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-    
-    CGFloat cellHeight = self.dateContainerViewTopMargin.constant + self.dateContainerHeight.constant + self.dateContainerViewBottomMargin.constant + self.messageContainerViewTopPadding.constant + self.iconImageViewHeight.constant + self.iconImageViewBottomMargin.constant + fullMessageRect.size.height + self.messageContainerViewBottomPadding.constant;
+    CGFloat cellHeight = self.dateContainerViewTopMargin.constant + self.dateContainerHeight.constant + self.dateContainerViewBottomMargin.constant + self.messageContainerViewTopPadding.constant + self.iconImageViewHeight.constant + self.iconImageViewBottomMargin.constant + self.messageLabel.bounds.size.height + self.messageContainerViewBottomPadding.constant;
     
     return cellHeight;
 }
