@@ -14,6 +14,7 @@
 #import "MemberListViewController.h"
 #import "BlockedUserListViewController.h"
 #import "NSBundle+SendBird.h"
+#import "Utils.h"
 
 @interface GroupChannelChattingViewController ()
 
@@ -27,6 +28,7 @@
 @property (atomic) BOOL refreshInViewDidAppear;
 
 @property (atomic) BOOL isLoading;
+@property (atomic) BOOL keyboardShown;
 
 @end
 
@@ -35,8 +37,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    UILabel *titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 100, 64)];
+    titleView.attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"GroupChannelTitle"], self.channel.memberCount] subTitle:nil];
+    titleView.numberOfLines = 2;
+    titleView.textAlignment = NSTextAlignmentCenter;
     
-    self.navItem.title = [NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"GroupChannelTitle"], self.channel.memberCount];
+    UITapGestureRecognizer *titleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickReconnect)];
+    titleView.userInteractionEnabled = YES;
+    [titleView addGestureRecognizer:titleTapRecognizer];
+    
+    self.navItem.titleView = titleView;
     
     UIBarButtonItem *negativeLeftSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeLeftSpacer.width = -2;
@@ -90,6 +100,7 @@
 }
 
 - (void)keyboardDidShow:(NSNotification *)notification {
+    self.keyboardShown = YES;
     NSDictionary* keyboardInfo = [notification userInfo];
     NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
@@ -102,6 +113,7 @@
 }
 
 - (void)keyboardDidHide:(NSNotification *)notification {
+    self.keyboardShown = NO;
     dispatch_async(dispatch_get_main_queue(), ^{
         self.bottomMargin.constant = 0;
         [self.view layoutIfNeeded];
@@ -143,6 +155,11 @@
 
 - (void)loadPreviousMessage:(BOOL)initial {
     if (initial) {
+        [self.chattingView.resendableFileData removeAllObjects];
+        [self.chattingView.resendableMessages removeAllObjects];
+        [self.chattingView.preSendFileData removeAllObjects];
+        [self.chattingView.preSendMessages removeAllObjects];
+        
         self.chattingView.chattingTableView.hidden = YES;
         self.messageQuery = [self.channel createPreviousMessageListQuery];
         self.hasNext = YES;
@@ -164,7 +181,7 @@
     
     self.isLoading = YES;
     
-    [self.messageQuery loadPreviousMessagesWithLimit:40 reverse:!initial completionHandler:^(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error) {
+    [self.messageQuery loadPreviousMessagesWithLimit:30 reverse:!initial completionHandler:^(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error) {
         if (error != nil) {
             UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -232,20 +249,37 @@
         [self.channel endTyping];
         NSString *message = [self.chattingView.messageTextView.text copy];
         self.chattingView.messageTextView.text = @"";
-        [self.channel sendUserMessage:message completionHandler:^(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error) {
-            if (error != nil) {
-                self.chattingView.resendableMessages[userMessage.requestId] = userMessage;
+        SBDUserMessage *preSendMessage = [self.channel sendUserMessage:message data:@"test_data" customType:@"test_custom_type" targetLanguages:@[@"ar", @"de", @"fr", @"nl", @"ja", @"ko", @"pt", @"es", @"zh-CHS"] completionHandler:^(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(150 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+                SBDUserMessage *preSendMessage = (SBDUserMessage *)self.chattingView.preSendMessages[userMessage.requestId];
+                [self.chattingView.preSendMessages removeObjectForKey:userMessage.requestId];
                 
-                return;
-            }
-            
-            [self.chattingView.messages addObject:userMessage];
-
-            [self.chattingView.chattingTableView reloadData];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.chattingView scrollToBottomAnimated:YES force:YES];
+                if (error != nil) {
+                    self.chattingView.resendableMessages[userMessage.requestId] = userMessage;
+                    [self.chattingView.chattingTableView reloadData];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.chattingView scrollToBottomAnimated:YES force:YES];
+                    });
+                    
+                    return;
+                }
+                
+                if (preSendMessage != nil) {
+                    [self.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:preSendMessage] withObject:userMessage];
+                }
+                
+                [self.chattingView.chattingTableView reloadData];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.chattingView scrollToBottomAnimated:YES force:YES];
+                });
             });
         }];
+        self.chattingView.preSendMessages[preSendMessage.requestId] = preSendMessage;
+        [self.chattingView.messages addObject:preSendMessage];
+        [self.chattingView.chattingTableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.chattingView scrollToBottomAnimated:YES force:YES];
+        });
     }
 }
 
@@ -259,18 +293,37 @@
     [self presentViewController:mediaUI animated:YES completion:nil];
 }
 
+- (void)clickReconnect {
+    if ([SBDMain getConnectState] != SBDWebSocketOpen && [SBDMain getConnectState] != SBDWebSocketConnecting) {
+        [SBDMain reconnect];
+    }
+}
+
 #pragma mark - SBDConnectionDelegate
 
 - (void)didStartReconnection {
-    
+    if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
+        ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"GroupChannelTitle"], self.channel.memberCount] subTitle:[NSBundle sbLocalizedStringForKey:@"ReconnectingSubTitle"]];
+    }
 }
 
 - (void)didSucceedReconnection {
     [self loadPreviousMessage:YES];
+    if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
+        ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"GroupChannelTitle"], self.channel.memberCount] subTitle:[NSBundle sbLocalizedStringForKey:@"ReconnectedSubTitle"]];
+    }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1000 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+        if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
+            ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"GroupChannelTitle"], self.channel.memberCount] subTitle:nil];
+        }
+    });
 }
 
 - (void)didFailReconnection {
-    
+    if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
+        ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"GroupChannelTitle"], self.channel.memberCount] subTitle:[NSBundle sbLocalizedStringForKey:@"ReconnectionFailedSubTitle"]];
+    }
 }
 
 #pragma mark - SBDChannelDelegate
@@ -398,10 +451,14 @@
 }
 
 - (void)hideKeyboardWhenFastScrolling:(UIView *)view {
+    if (self.keyboardShown == NO) {
+        return;
+    }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         self.bottomMargin.constant = 0;
         [self.view layoutIfNeeded];
-        [self.chattingView scrollToBottomAnimated:YES force:NO];
+        [self.chattingView scrollToBottomAnimated:NO force:NO];
     });
     [self.view endEditing:YES];
 }
@@ -453,7 +510,7 @@
         __block SBDBaseMessage *baseMessage = (SBDBaseMessage *)message;
         if ([baseMessage isKindOfClass:[SBDUserMessage class]]) {
             SBDUser *sender = ((SBDUserMessage *)baseMessage).sender;
-            if ([sender.userId isEqualToString:[SBDMain getCurrentUser].userId]) {
+            if ([sender.userId isEqualToString:[SBDMain getCurrentUser].userId] && self.chattingView.preSendMessages[((SBDUserMessage *)baseMessage).requestId] == nil) {
                 deleteMessageAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"DeleteMessageButton"] style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
                     [self.channel deleteMessage:baseMessage completionHandler:^(SBDError * _Nullable error) {
                         if (error != nil) {
@@ -488,7 +545,7 @@
             __block NSString *type = fileMessage.type;
             __block NSString *url = fileMessage.url;
             
-            if ([sender.userId isEqualToString:[SBDMain getCurrentUser].userId]) {
+            if ([sender.userId isEqualToString:[SBDMain getCurrentUser].userId] && self.chattingView.preSendMessages[fileMessage.requestId] == nil) {
                 deleteMessageAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"DeleteMessageButton"] style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
                     [self.channel deleteMessage:baseMessage completionHandler:^(SBDError * _Nullable error) {
                         if (error != nil) {
@@ -566,6 +623,113 @@
     }
 }
 
+- (void)clickResend:(UIView *)view message:(SBDBaseMessage *)message {
+    if ([message isKindOfClass:[SBDUserMessage class]]) {
+        SBDUserMessage *resendableUserMessage = (SBDUserMessage *)message;
+        NSArray<NSString *> *targetLanguages = nil;
+        if (resendableUserMessage.translations != nil) {
+            targetLanguages = [resendableUserMessage.translations allKeys];
+        }
+        SBDUserMessage *preSendMessage = [self.channel sendUserMessage:resendableUserMessage.message data:resendableUserMessage.data customType:resendableUserMessage.customType targetLanguages:targetLanguages completionHandler:^(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(150 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+                SBDUserMessage *preSendMessage = (SBDUserMessage *)self.chattingView.preSendMessages[userMessage.requestId];
+                [self.chattingView.preSendMessages removeObjectForKey:userMessage.requestId];
+                
+                if (error != nil) {
+                    self.chattingView.resendableMessages[userMessage.requestId] = userMessage;
+                    [self.chattingView.chattingTableView reloadData];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.chattingView scrollToBottomAnimated:YES force:YES];
+                    });
+                    
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+                    [alert addAction:closeAction];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self presentViewController:alert animated:YES completion:nil];
+                    });
+                    
+                    return;
+                }
+                
+                if (preSendMessage != nil) {
+                    [self.chattingView.messages removeObject:preSendMessage];
+                    [self.chattingView.messages addObject:userMessage];
+                }
+                
+                [self.chattingView.chattingTableView reloadData];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.chattingView scrollToBottomAnimated:YES force:YES];
+                });
+            });
+        }];
+        [self.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:resendableUserMessage] withObject:preSendMessage];
+        self.chattingView.preSendMessages[preSendMessage.requestId] = preSendMessage;
+        [self.chattingView.chattingTableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.chattingView scrollToBottomAnimated:YES force:YES];
+        });
+    }
+    else if ([message isKindOfClass:[SBDFileMessage class]]) {
+        __block SBDFileMessage *resendableFileMessage = (SBDFileMessage *)message;
+
+        NSMutableArray<SBDThumbnailSize *> *thumbnailsSizes = [[NSMutableArray alloc] init];
+        for (SBDThumbnail *thumbnail in resendableFileMessage.thumbnails) {
+            [thumbnailsSizes addObject:[SBDThumbnailSize makeWithMaxCGSize:thumbnail.maxSize]];
+        }
+        SBDFileMessage *preSendMessage = [self.channel sendFileMessageWithBinaryData:self.chattingView.preSendFileData[resendableFileMessage.requestId] filename:resendableFileMessage.name type:resendableFileMessage.type size:resendableFileMessage.size thumbnailSizes:thumbnailsSizes data:resendableFileMessage.data customType:resendableFileMessage.customType progressHandler:nil completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(150 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+                SBDFileMessage *preSendMessage = (SBDFileMessage *)self.chattingView.preSendMessages[fileMessage.requestId];
+                [self.chattingView.preSendMessages removeObjectForKey:fileMessage.requestId];
+                
+                if (error != nil) {
+                    self.chattingView.resendableMessages[fileMessage.requestId] = fileMessage;
+                    self.chattingView.resendableFileData[fileMessage.requestId] = self.chattingView.resendableFileData[resendableFileMessage.requestId];
+                    [self.chattingView.resendableFileData removeObjectForKey:resendableFileMessage.requestId];
+                    [self.chattingView.chattingTableView reloadData];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.chattingView scrollToBottomAnimated:YES force:YES];
+                    });
+                    
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+                    [alert addAction:closeAction];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self presentViewController:alert animated:YES completion:nil];
+                    });
+                    
+                    return;
+                }
+                
+                if (preSendMessage != nil) {
+                    [self.chattingView.messages removeObject:preSendMessage];
+                    [self.chattingView.messages addObject:fileMessage];
+                }
+                
+                [self.chattingView.chattingTableView reloadData];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.chattingView scrollToBottomAnimated:YES force:YES];
+                });
+            });
+        }];
+        [self.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:resendableFileMessage] withObject:preSendMessage];
+        self.chattingView.preSendMessages[preSendMessage.requestId] = preSendMessage;
+        self.chattingView.preSendFileData[preSendMessage.requestId] = self.chattingView.resendableFileData[resendableFileMessage.requestId];
+        [self.chattingView.preSendFileData removeObjectForKey:resendableFileMessage.requestId];
+        [self.chattingView.chattingTableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.chattingView scrollToBottomAnimated:YES force:YES];
+        });
+    }
+}
+
+- (void)clickDelete:(UIView *)view message:(SBDBaseMessage *)message {
+    [self.chattingView.messages removeObject:message];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chattingView.chattingTableView reloadData];
+    });
+}
+
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -628,70 +792,115 @@
             /* Thumbnail is a premium feature. */
             /***********************************/
             SBDThumbnailSize *thumbnailSize = [SBDThumbnailSize makeWithMaxWidth:320.0 maxHeight:320.0];
-            [strongSelf.channel sendFileMessageWithBinaryData:imageFileData filename:imageName type:imageType size:imageFileData.length thumbnailSizes:@[thumbnailSize] data:@"" customType:@"" progressHandler:nil completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
-                if (error != nil) {
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
-                    [alert addAction:closeAction];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self presentViewController:alert animated:YES completion:nil];
-                    });
+            SBDFileMessage *preSendMessage = [strongSelf.channel sendFileMessageWithBinaryData:imageFileData filename:imageName type:imageType size:imageFileData.length thumbnailSizes:@[thumbnailSize] data:@"" customType:@"" progressHandler:nil completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(150 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+                    SBDFileMessage *preSendMessage = (SBDFileMessage *)strongSelf.chattingView.preSendMessages[fileMessage.requestId];
+                    [strongSelf.chattingView.preSendMessages removeObjectForKey:fileMessage.requestId];
                     
-                    return;
-                }
-                
-                if (fileMessage != nil) {
-                    [strongSelf.chattingView.messages addObject:fileMessage];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                    if (error != nil) {
+                        strongSelf.chattingView.resendableMessages[fileMessage.requestId] = preSendMessage;
+                        strongSelf.chattingView.resendableFileData[preSendMessage.requestId] = imageFileData;
                         [strongSelf.chattingView.chattingTableView reloadData];
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [strongSelf.chattingView scrollToBottomAnimated:YES force:NO];
+                            [self.chattingView scrollToBottomAnimated:YES force:YES];
                         });
-                    });
-                }
+                        
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+                        [alert addAction:closeAction];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [strongSelf presentViewController:alert animated:YES completion:nil];
+                        });
+                        
+                        return;
+                    }
+                    
+                    if (fileMessage != nil) {
+                        [strongSelf.chattingView.resendableMessages removeObjectForKey:fileMessage.requestId];
+                        [strongSelf.chattingView.resendableFileData removeObjectForKey:fileMessage.requestId];
+                        [strongSelf.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:preSendMessage] withObject:fileMessage];
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [strongSelf.chattingView.chattingTableView reloadData];
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
+                            });
+                        });
+                    }
+                });
             }];
+            
+            strongSelf.chattingView.preSendFileData[preSendMessage.requestId] = imageFileData;
+            strongSelf.chattingView.preSendMessages[preSendMessage.requestId] = preSendMessage;
+            [strongSelf.chattingView.messages addObject:preSendMessage];
+            [strongSelf.chattingView.chattingTableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
+            });
         }
         else if (CFStringCompare ((CFStringRef) mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
             NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
             NSData *videoFileData = [NSData dataWithContentsOfURL:videoURL];
-            imageName = [videoURL lastPathComponent];
+            __block NSString *videoName = [videoURL lastPathComponent];
+            __block NSString *videoType;
             
-            NSString *extentionOfFile = [imageName substringFromIndex:[imageName rangeOfString:@"."].location + 1];
+            NSString *extentionOfFile = [videoName substringFromIndex:[videoName rangeOfString:@"."].location + 1];
             
             if ([extentionOfFile caseInsensitiveCompare:@"mov"]) {
-                imageType = @"video/quicktime";
+                videoType = @"video/quicktime";
             }
             else if ([extentionOfFile caseInsensitiveCompare:@"mp4"]) {
-                imageType = @"video/mp4";
+                videoType = @"video/mp4";
             }
             else {
-                imageType = @"video/mpeg";
+                videoType = @"video/mpeg";
             }
             
-            [strongSelf.channel sendFileMessageWithBinaryData:videoFileData filename:imageName type:imageType size:videoFileData.length data:@"" completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
-                if (error != nil) {
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
-                    [alert addAction:closeAction];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self presentViewController:alert animated:YES completion:nil];
-                    });
+            SBDFileMessage *preSendMessage = [strongSelf.channel sendFileMessageWithBinaryData:videoFileData filename:videoName type:videoType size:videoFileData.length thumbnailSizes:nil data:@"" customType:@"" progressHandler:nil completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(150 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+                    SBDFileMessage *preSendMessage = (SBDFileMessage *)strongSelf.chattingView.preSendMessages[fileMessage.requestId];
+                    [strongSelf.chattingView.preSendMessages removeObjectForKey:fileMessage.requestId];
                     
-                    return;
-                }
-                
-                if (fileMessage != nil) {
-                    [strongSelf.chattingView.messages addObject:fileMessage];
-
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                    if (error != nil) {
+                        strongSelf.chattingView.resendableMessages[fileMessage.requestId] = preSendMessage;
+                        strongSelf.chattingView.resendableFileData[preSendMessage.requestId] = videoFileData;
                         [strongSelf.chattingView.chattingTableView reloadData];
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [strongSelf.chattingView scrollToBottomAnimated:YES force:NO];
+                            [self.chattingView scrollToBottomAnimated:YES force:YES];
                         });
-                    });
-                }
+                        
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+                        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+                        [alert addAction:closeAction];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [strongSelf presentViewController:alert animated:YES completion:nil];
+                        });
+                        
+                        return;
+                    }
+                    
+                    if (fileMessage != nil) {
+                        [strongSelf.chattingView.resendableMessages removeObjectForKey:fileMessage.requestId];
+                        [strongSelf.chattingView.resendableFileData removeObjectForKey:fileMessage.requestId];
+                        [strongSelf.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:preSendMessage] withObject:fileMessage];
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [strongSelf.chattingView.chattingTableView reloadData];
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
+                            });
+                        });
+                    }
+                });
             }];
+            
+            strongSelf.chattingView.preSendFileData[preSendMessage.requestId] = videoFileData;
+            strongSelf.chattingView.preSendMessages[preSendMessage.requestId] = preSendMessage;
+            [strongSelf.chattingView.messages addObject:preSendMessage];
+            [strongSelf.chattingView.chattingTableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
+            });
         }
     }];
 }

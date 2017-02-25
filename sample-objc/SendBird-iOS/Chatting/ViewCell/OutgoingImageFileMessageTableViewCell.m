@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerBottomMargin;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *fileImageHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerTopMargin;
+@property (weak, nonatomic) IBOutlet UILabel *sendStatusLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *messageDateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *resendMessageButton;
@@ -49,6 +50,18 @@
     }
 }
 
+- (void)clickResendUserMessage {
+    if (self.delegate != nil) {
+        [self.delegate clickResend:self message:self.message];
+    }
+}
+
+- (void)clickDeleteUserMessage {
+    if (self.delegate != nil) {
+        [self.delegate clickDelete:self message:self.message];
+    }
+}
+
 - (void)setModel:(SBDFileMessage *)aMessage {
     self.message = aMessage;
     
@@ -56,15 +69,20 @@
     /* Thumbnail is a premium feature. */
     /***********************************/
     if (self.message.thumbnails != nil && self.message.thumbnails.count > 0) {
-        [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.thumbnails[0].url] placeholderImage:[Utils imageFromColor:[Constants outgoingFileImagePlaceholderColor]]];
+        if (self.message.thumbnails[0].url.length > 0) {
+            [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.thumbnails[0].url]];
+        }
     }
     else {
-        [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.url] placeholderImage:[Utils imageFromColor:[Constants outgoingFileImagePlaceholderColor]]];
+        [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.url]];
     }
     
     UITapGestureRecognizer *messageContainerTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickFileMessage)];
     self.fileImageView.userInteractionEnabled = YES;
     [self.fileImageView addGestureRecognizer:messageContainerTapRecognizer];
+    
+    [self.resendMessageButton addTarget:self action:@selector(clickResendUserMessage) forControlEvents:UIControlEventTouchUpInside];
+    [self.deleteMessageButton addTarget:self action:@selector(clickDeleteUserMessage) forControlEvents:UIControlEventTouchUpInside];
 
     // Unread message count
     if ([self.message.channelType isEqualToString:CHANNEL_TYPE_GROUP]) {
@@ -73,6 +91,7 @@
             int unreadMessageCount = [channelOfMessage getReadReceiptOfMessage:self.message];
             if (unreadMessageCount == 0) {
                 [self hideUnreadCount];
+                self.unreadCountLabel.text = @"";
             }
             else {
                 [self showUnreadCount];
@@ -173,7 +192,7 @@
 
 }
 
-- (void)setPreviousMessage:(SBDBaseMessage *)aPrevMessage {
+- (void)setPreviousMessage:(SBDBaseMessage * _Nullable)aPrevMessage {
     self.prevMessage = aPrevMessage;
 }
 
@@ -188,19 +207,57 @@
 }
 
 - (void)showUnreadCount {
-    self.unreadCountLabel.hidden = NO;
+    if ([self.message.channelType isEqualToString:CHANNEL_TYPE_GROUP]) {
+        self.unreadCountLabel.hidden = NO;
+        self.resendMessageButton.hidden = YES;
+        self.deleteMessageButton.hidden = YES;
+    }
 }
 
 - (void)hideMessageControlButton {
     self.resendMessageButton.hidden = YES;
     self.deleteMessageButton.hidden = YES;
-    self.messageDateLabel.hidden = NO;
 }
 
 - (void)showMessageControlButton {
+    self.sendStatusLabel.hidden = YES;
+    self.messageDateLabel.hidden = YES;
+    self.unreadCountLabel.hidden = YES;
+    
     self.resendMessageButton.hidden = NO;
     self.deleteMessageButton.hidden = NO;
+}
+
+- (void)showSendingStatus {
     self.messageDateLabel.hidden = YES;
+    self.unreadCountLabel.hidden = YES;
+    self.resendMessageButton.hidden = YES;
+    self.deleteMessageButton.hidden = YES;
+    
+    self.sendStatusLabel.hidden = NO;
+    self.sendStatusLabel.text = @"Sending";
+}
+
+- (void)showFailedStatus {
+    self.messageDateLabel.hidden = YES;
+    self.unreadCountLabel.hidden = YES;
+    self.resendMessageButton.hidden = YES;
+    self.deleteMessageButton.hidden = YES;
+    
+    self.sendStatusLabel.hidden = NO;
+    self.sendStatusLabel.text = @"Failed";
+}
+
+- (void)showMessageDate {
+    self.unreadCountLabel.hidden = YES;
+    self.resendMessageButton.hidden = YES;
+    self.sendStatusLabel.hidden = YES;
+    
+    self.messageDateLabel.hidden = NO;
+}
+
+- (void)setImageData:(NSData * _Nonnull)imageData {
+    [self.fileImageView setImage:[UIImage imageWithData:imageData]];
 }
 
 @end

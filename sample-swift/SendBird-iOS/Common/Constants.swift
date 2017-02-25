@@ -13,8 +13,16 @@ class Constants: NSObject {
         return UIColor(red: 128.0/255.0, green: 90.0/255.0, blue: 255.0/255.0, alpha: 1)
     }
     
+    static func navigationBarSubTitleColor() -> UIColor {
+        return UIColor(red: 142.0/255.0, green: 142.0/255.0, blue: 142.0/255.0, alpha: 1)
+    }
+    
     static func navigationBarTitleFont() -> UIFont {
         return UIFont(name: "HelveticaNeue", size: 16.0)!
+    }
+    
+    static func navigationBarSubTitleFont() -> UIFont {
+        return UIFont(name: "HelveticaNeue-LightItalic", size: 10.0)!
     }
     
     static func textFieldLineColorNormal() -> UIColor {

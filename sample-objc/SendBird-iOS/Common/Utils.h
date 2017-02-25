@@ -12,5 +12,6 @@
 @interface Utils : NSObject
 
 + (UIImage *)imageFromColor:(UIColor *)color;
++ (NSAttributedString *)generateNavigationTitle:(NSString *)mainTitle subTitle:(NSString *)subTitle;
 
 @end

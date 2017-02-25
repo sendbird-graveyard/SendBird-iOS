@@ -28,6 +28,9 @@
 "SeeMemberListButton" = "멤버 목록 보기";
 "SeeBlockedUserListButton" = "차단 유저 목록 보기";
 "GroupChannelTitle" = "그룹 채널(%ld명)";
+"ReconnectingSubTitle" = "재접속중...";
+"ReconnectedSubTitle" = "재접속됨";
+"ReconnectionFailedSubTitle" = "재접속 실패";
 "ChannelDeletedTitle" = "채널 삭제됨";
 "ChannelDeletedMessage" = "이 채널이 삭제되었습니다. 채널 화면이 닫힙니다.";
 "UserBlockedTitle" = "사용자 차단됨";

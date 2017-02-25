@@ -22,7 +22,6 @@
 		5AC3A07B1D97B66E00244336 /* IncomingImageFileMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3A0791D97B66E00244336 /* IncomingImageFileMessageTableViewCell.m */; };
 		5AC3A07C1D97B66E00244336 /* IncomingImageFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AC3A07A1D97B66E00244336 /* IncomingImageFileMessageTableViewCell.xib */; };
 		5AC3A0801D97BEF100244336 /* CreateGroupChannelSelectOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3A07E1D97BEF100244336 /* CreateGroupChannelSelectOptionViewController.m */; };
-		5AC3A0851D99DA3800244336 /* GroupChannelChattingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3A0831D99DA3800244336 /* GroupChannelChattingViewController.m */; };
 		5AC3A0861D99DA3800244336 /* GroupChannelChattingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AC3A0841D99DA3800244336 /* GroupChannelChattingViewController.xib */; };
 		5AD94BE21DB4A8C900A6CD66 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD94BE11DB4A8C900A6CD66 /* Constants.m */; };
 		5AD94BEB1DB5BCEE00A6CD66 /* NSBundle+SendBird.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD94BEA1DB5BCEE00A6CD66 /* NSBundle+SendBird.m */; };
@@ -73,6 +72,7 @@
 		5AF8AC7C1D913D91000F0578 /* GroupChannelListEditableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF8AC7A1D913D91000F0578 /* GroupChannelListEditableTableViewCell.xib */; };
 		5AF8AC891D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC871D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m */; };
 		A70556D294A247DB1E790AF6 /* libPods-SendBird-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F7440614FBAB0CE15886868 /* libPods-SendBird-iOS.a */; };
+		E2A8E63E1E5CEB6B0016BA63 /* GroupChannelChattingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3A0831D99DA3800244336 /* GroupChannelChattingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -486,7 +486,7 @@
 		5AB0CC1D1D8F840400F05EC1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = SendBird;
 				TargetAttributes = {
 					5AB0CC241D8F840400F05EC1 = {
@@ -624,6 +624,7 @@
 				5AD94BEB1DB5BCEE00A6CD66 /* NSBundle+SendBird.m in Sources */,
 				5AB0CC2D1D8F840400F05EC1 /* AppDelegate.m in Sources */,
 				5ADA68D51D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.m in Sources */,
+				E2A8E63E1E5CEB6B0016BA63 /* GroupChannelChattingViewController.m in Sources */,
 				5ADA68DC1D92573C00EFDF2B /* IncomingUserMessageTableViewCell.m in Sources */,
 				5ADA68D01D92032600EFDF2B /* SelectedUserListCollectionViewCell.m in Sources */,
 				5AD94BE21DB4A8C900A6CD66 /* Constants.m in Sources */,
@@ -631,7 +632,6 @@
 				5AC3A07B1D97B66E00244336 /* IncomingImageFileMessageTableViewCell.m in Sources */,
 				5AF199171DA3A50000BF2DE0 /* MemberListViewController.m in Sources */,
 				5AC3A06C1D9781A300244336 /* IncomingFileMessageTableViewCell.m in Sources */,
-				5AC3A0851D99DA3800244336 /* GroupChannelChattingViewController.m in Sources */,
 				5ADA68EF1D928E0F00EFDF2B /* Utils.m in Sources */,
 				5ADA68EB1D9284BD00EFDF2B /* ReusableViewFromXib.m in Sources */,
 				5AF199211DA3B4E900BF2DE0 /* ParticipantListTableViewCell.m in Sources */,
@@ -786,6 +786,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -836,6 +837,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

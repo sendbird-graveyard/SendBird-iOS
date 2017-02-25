@@ -13,5 +13,7 @@
 
 - (void)clickProfileImage:(UITableViewCell *)viewCell user:(SBDUser *)user;
 - (void)clickMessage:(UIView *)view message:(SBDBaseMessage *)message;
+- (void)clickResend:(UIView *)view message:(SBDBaseMessage *)message;
+- (void)clickDelete:(UIView *)view message:(SBDBaseMessage *)message;
 
 @end

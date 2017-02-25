@@ -31,6 +31,9 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     
     var messages: [SBDBaseMessage] = []
     var resendableMessages: [String:SBDBaseMessage] = [:]
+    var preSendMessages: [String:SBDBaseMessage] = [:]
+    var resendableFileData: [String:Data] = [:]
+    var preSendFileData: [String:Data] = [:]
     var stopMeasuringVelocity: Bool = true
     var initialLoading: Bool = true
     var lastMessageHeight: CGFloat = 0
@@ -46,7 +49,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     var outgoingImageFileMessageSizingTableViewCell: OutgoingImageFileMessageTableViewCell?
     var outgoingFileMessageSizingTableViewCell: OutgoingFileMessageTableViewCell?
     var incomingImageFileMessageSizingTableViewCell: IncomingImageFileMessageTableViewCell?
-    
+
     var delegate: ChattingViewDelegate & MessageDelegate?
     
     override init(frame: CGRect) {
@@ -578,11 +581,18 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                 (cell as! OutgoingUserMessageTableViewCell).setModel(aMessage: userMessage)
                 (cell as! OutgoingUserMessageTableViewCell).delegate = self.delegate
                 
-                if self.resendableMessages[userMessage.requestId!] != nil {
-                    (cell as! OutgoingUserMessageTableViewCell).showMessageControlButton()
+                if self.preSendMessages[userMessage.requestId!] != nil {
+                    (cell as! OutgoingUserMessageTableViewCell).showSendingStatus()
                 }
                 else {
-                    (cell as! OutgoingUserMessageTableViewCell).hideMessageControlButton()
+                    if self.resendableMessages[userMessage.requestId!] != nil {
+//                        (cell as! OutgoingUserMessageTableViewCell).showMessageControlButton()
+                        (cell as! OutgoingUserMessageTableViewCell).showFailedStatus()
+                    }
+                    else {
+                        (cell as! OutgoingUserMessageTableViewCell).showMessageDate()
+                        (cell as! OutgoingUserMessageTableViewCell).showUnreadCount()
+                    }
                 }
             }
             else {
@@ -617,11 +627,18 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     (cell as! OutgoingFileMessageTableViewCell).setModel(aMessage: fileMessage)
                     (cell as! OutgoingFileMessageTableViewCell).delegate = self.delegate
                     
-                    if self.resendableMessages[fileMessage.requestId!] != nil {
-                        (cell as! OutgoingFileMessageTableViewCell).showMessageControlButton()
+                    if self.preSendMessages[fileMessage.requestId!] != nil {
+                        (cell as! OutgoingFileMessageTableViewCell).showSendingStatus()
                     }
                     else {
-                        (cell as! OutgoingFileMessageTableViewCell).hideMessageControlButton()
+                        if self.resendableMessages[fileMessage.requestId!] != nil {
+//                            (cell as! OutgoingFileMessageTableViewCell).showMessageControlButton()
+                            (cell as! OutgoingFileMessageTableViewCell).showFailedStatus()
+                        }
+                        else {
+                            (cell as! OutgoingFileMessageTableViewCell).showMessageDate()
+                            (cell as! OutgoingFileMessageTableViewCell).showUnreadCount()
+                        }
                     }
                 }
                 else if fileMessage.type.hasPrefix("audio") {
@@ -636,11 +653,18 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     (cell as! OutgoingFileMessageTableViewCell).setModel(aMessage: fileMessage)
                     (cell as! OutgoingFileMessageTableViewCell).delegate = self.delegate
                     
-                    if self.resendableMessages[fileMessage.requestId!] != nil {
-                        (cell as! OutgoingFileMessageTableViewCell).showMessageControlButton()
+                    if self.preSendMessages[fileMessage.requestId!] != nil {
+                        (cell as! OutgoingFileMessageTableViewCell).showSendingStatus()
                     }
                     else {
-                        (cell as! OutgoingFileMessageTableViewCell).hideMessageControlButton()
+                        if self.resendableMessages[fileMessage.requestId!] != nil {
+//                            (cell as! OutgoingFileMessageTableViewCell).showMessageControlButton()
+                            (cell as! OutgoingFileMessageTableViewCell).showFailedStatus()
+                        }
+                        else {
+                            (cell as! OutgoingFileMessageTableViewCell).showMessageDate()
+                            (cell as! OutgoingFileMessageTableViewCell).showUnreadCount()
+                        }
                     }
                 }
                 else if fileMessage.type.hasPrefix("image") {
@@ -655,11 +679,46 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     (cell as! OutgoingImageFileMessageTableViewCell).setModel(aMessage: fileMessage)
                     (cell as! OutgoingImageFileMessageTableViewCell).delegate = self.delegate
                     
-                    if self.resendableMessages[fileMessage.requestId!] != nil {
-                        (cell as! OutgoingImageFileMessageTableViewCell).showMessageControlButton()
+                    if self.preSendMessages[fileMessage.requestId!] != nil {
+                        (cell as! OutgoingImageFileMessageTableViewCell).showSendingStatus()
+                        (cell as! OutgoingImageFileMessageTableViewCell).setImageData(aData: self.preSendFileData[fileMessage.requestId!]!)
                     }
                     else {
-                        (cell as! OutgoingImageFileMessageTableViewCell).hideMessageControlButton()
+                        if self.resendableMessages[fileMessage.requestId!] != nil {
+//                            (cell as! OutgoingImageFileMessageTableViewCell).showMessageControlButton()
+                            (cell as! OutgoingImageFileMessageTableViewCell).showFailedStatus()
+                            (cell as! OutgoingImageFileMessageTableViewCell).setImageData(aData: self.resendableFileData[fileMessage.requestId!]!)
+                        }
+                        else {
+                            (cell as! OutgoingImageFileMessageTableViewCell).showMessageDate()
+                            (cell as! OutgoingImageFileMessageTableViewCell).showUnreadCount()
+                        }
+                    }
+                }
+                else {
+                    cell = tableView.dequeueReusableCell(withIdentifier: OutgoingFileMessageTableViewCell.cellReuseIdentifier())
+                    cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
+                    if indexPath.row > 0 {
+                        (cell as! OutgoingFileMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+                    }
+                    else {
+                        (cell as! OutgoingFileMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
+                    }
+                    (cell as! OutgoingFileMessageTableViewCell).setModel(aMessage: fileMessage)
+                    (cell as! OutgoingFileMessageTableViewCell).delegate = self.delegate
+                    
+                    if self.preSendMessages[fileMessage.requestId!] != nil {
+                        (cell as! OutgoingFileMessageTableViewCell).showSendingStatus()
+                    }
+                    else {
+                        if self.resendableMessages[fileMessage.requestId!] != nil {
+//                            (cell as! OutgoingFileMessageTableViewCell).showMessageControlButton()
+                            (cell as! OutgoingFileMessageTableViewCell).showFailedStatus()
+                        }
+                        else {
+                            (cell as! OutgoingFileMessageTableViewCell).showMessageDate()
+                            (cell as! OutgoingFileMessageTableViewCell).showUnreadCount()
+                        }
                     }
                 }
             }

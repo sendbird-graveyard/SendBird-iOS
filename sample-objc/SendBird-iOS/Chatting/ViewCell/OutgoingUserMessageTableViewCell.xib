@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,23 +15,27 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="184"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="183"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="183"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yru-DR-yL3" userLabel="Date Container View">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="24"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAN-7T-yaA" userLabel="Left Line View">
+                                <rect key="frame" x="0.0" y="12" width="120" height="1"/>
                                 <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="jbF-bT-vmv"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 Sep, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzq-eO-w3c" userLabel="Date Label">
+                                <rect key="frame" x="124" y="5" width="72" height="15"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgj-Q7-ELb" userLabel="Right Line View">
+                                <rect key="frame" x="200" y="12" width="120" height="1"/>
                                 <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="EEF-qb-i8F"/>
@@ -55,8 +62,10 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="218-qq-guS" userLabel="Message Container View">
+                        <rect key="frame" x="125" y="34" width="181" height="132"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEf-kT-Jbd" userLabel="Message Label">
+                                <rect key="frame" x="10" y="10" width="161" height="112"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -76,7 +85,8 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99:99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0m-HV-6Ai" userLabel="Message Date Label">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99:99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0m-HV-6Ai" userLabel="Message Date Label">
+                        <rect key="frame" x="63" y="152" width="54" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="54" id="A2u-lR-kJa"/>
                         </constraints>
@@ -84,23 +94,32 @@
                         <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yt9-AQ-OB3" userLabel="Resend Message Button">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yt9-AQ-OB3" userLabel="Resend Message Button">
+                        <rect key="frame" x="93" y="141" width="24" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24.5" id="Yh6-8Y-9LJ"/>
                             <constraint firstAttribute="height" constant="25" id="bDI-5q-r7U"/>
                         </constraints>
                         <state key="normal" backgroundImage="btn_request_chat"/>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ud2-qG-Ln4" userLabel="Delete Message Button">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ud2-qG-Ln4" userLabel="Delete Message Button">
+                        <rect key="frame" x="68" y="141" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24.5" id="bUw-Nm-tfV"/>
                             <constraint firstAttribute="height" constant="25" id="kuS-dU-k2c"/>
                         </constraints>
                         <state key="normal" title="Button" image="btn_delete_chat"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJi-U7-1O8" userLabel="Unread Count Label">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJi-U7-1O8" userLabel="Unread Count Label">
+                        <rect key="frame" x="103" y="137" width="14" height="15"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" red="0.13333333333333333" green="0.75294117647058822" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sending" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sn7-Lg-tgx" userLabel="Sending Status Label">
+                        <rect key="frame" x="72" y="152" width="45" height="14"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -110,10 +129,14 @@
                     <constraint firstItem="218-qq-guS" firstAttribute="leading" secondItem="yt9-AQ-OB3" secondAttribute="trailing" constant="8" id="5XF-mj-9gb"/>
                     <constraint firstItem="Yru-DR-yL3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6Cs-hc-obg"/>
                     <constraint firstItem="h0m-HV-6Ai" firstAttribute="trailing" secondItem="vJi-U7-1O8" secondAttribute="trailing" id="6n0-lN-9jj"/>
+                    <constraint firstItem="Sn7-Lg-tgx" firstAttribute="bottom" secondItem="218-qq-guS" secondAttribute="bottom" id="8x7-RO-pnL"/>
+                    <constraint firstItem="Sn7-Lg-tgx" firstAttribute="top" secondItem="vJi-U7-1O8" secondAttribute="bottom" id="DOZ-uY-0Dw"/>
+                    <constraint firstItem="Sn7-Lg-tgx" firstAttribute="trailing" secondItem="vJi-U7-1O8" secondAttribute="trailing" id="F1m-7E-g8j"/>
                     <constraint firstItem="h0m-HV-6Ai" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="36" id="Ice-W6-rC4"/>
                     <constraint firstAttribute="trailing" secondItem="218-qq-guS" secondAttribute="trailing" constant="14" id="Rp1-Yy-Lyo"/>
                     <constraint firstItem="218-qq-guS" firstAttribute="bottom" secondItem="h0m-HV-6Ai" secondAttribute="bottom" id="Vuz-Nv-WbA"/>
                     <constraint firstItem="h0m-HV-6Ai" firstAttribute="top" secondItem="vJi-U7-1O8" secondAttribute="bottom" id="Xql-l8-kFY"/>
+                    <constraint firstItem="yt9-AQ-OB3" firstAttribute="trailing" secondItem="vJi-U7-1O8" secondAttribute="trailing" id="fI0-ww-pqY"/>
                     <constraint firstItem="yt9-AQ-OB3" firstAttribute="leading" secondItem="Ud2-qG-Ln4" secondAttribute="trailing" id="j2s-m2-GeI"/>
                     <constraint firstItem="Yru-DR-yL3" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="m1q-Wo-T5h"/>
                     <constraint firstItem="Yru-DR-yL3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="nty-wA-aFQ"/>
@@ -142,6 +165,7 @@
                 <outlet property="messageDateLabelWidth" destination="A2u-lR-kJa" id="qSR-oI-c3e"/>
                 <outlet property="messageLabel" destination="MEf-kT-Jbd" id="G01-oc-PsZ"/>
                 <outlet property="resendMessageButton" destination="yt9-AQ-OB3" id="uQw-5c-K6G"/>
+                <outlet property="sendStatusLabel" destination="Sn7-Lg-tgx" id="2db-YQ-ACa"/>
                 <outlet property="unreadCountLabel" destination="vJi-U7-1O8" id="WhK-iy-b52"/>
             </connections>
             <point key="canvasLocation" x="61" y="129"/>

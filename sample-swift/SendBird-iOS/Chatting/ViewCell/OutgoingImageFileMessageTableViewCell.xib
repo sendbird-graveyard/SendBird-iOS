@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -11,23 +14,27 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="179"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="178"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="178"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xlr-w5-VqB" userLabel="Date Container View">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="24"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYS-3k-jjv" userLabel="Left Line View">
+                                <rect key="frame" x="0.0" y="11.5" width="120" height="1"/>
                                 <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="FoI-pg-YQV"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 Sep, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLK-1G-zlT" userLabel="Date Label">
+                                <rect key="frame" x="124" y="5" width="72" height="14.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WKO-M9-2bJ" userLabel="Right Line View">
+                                <rect key="frame" x="200" y="11.5" width="120" height="1"/>
                                 <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="LDv-p1-K4y"/>
@@ -54,8 +61,10 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVE-It-kJl" userLabel="Message Container View">
+                        <rect key="frame" x="146" y="34" width="160" height="120"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o0m-EL-wBg" userLabel="File Image View">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="LUt-tY-une"/>
                                     <constraint firstAttribute="height" constant="120" id="fTn-nW-A2Q"/>
@@ -76,7 +85,8 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99:99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFs-UU-SjC" userLabel="Message Date Label">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99:99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFs-UU-SjC" userLabel="Message Date Label">
+                        <rect key="frame" x="64" y="139.5" width="74" height="14.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="74" id="RvT-9x-F0j"/>
                         </constraints>
@@ -84,23 +94,32 @@
                         <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIa-5w-dje" userLabel="Resend Message Button">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIa-5w-dje" userLabel="Resend Message Button">
+                        <rect key="frame" x="113.5" y="129" width="24.5" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24.5" id="5zs-lV-Ukg"/>
                             <constraint firstAttribute="height" constant="25" id="VQq-ST-moE"/>
                         </constraints>
                         <state key="normal" backgroundImage="btn_request_chat"/>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ua-Pb-z1N" userLabel="Delete Message Button">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ua-Pb-z1N" userLabel="Delete Message Button">
+                        <rect key="frame" x="89" y="129" width="24.5" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24.5" id="XeJ-lw-dTb"/>
                             <constraint firstAttribute="height" constant="25" id="hjc-fd-HRC"/>
                         </constraints>
                         <state key="normal" title="Button" image="btn_delete_chat"/>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbf-MR-kCw" userLabel="Unread Count Label">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbf-MR-kCw" userLabel="Unread Count Label">
+                        <rect key="frame" x="124.5" y="125" width="13.5" height="14.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" red="0.1333333333" green="0.75294117650000003" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sending" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Roy-Vp-8Lm" userLabel="Sending Status Label">
+                        <rect key="frame" x="93.5" y="139.5" width="44.5" height="14.5"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -108,10 +127,13 @@
                     <constraint firstItem="IIa-5w-dje" firstAttribute="bottom" secondItem="2ua-Pb-z1N" secondAttribute="bottom" id="00Y-dA-khp"/>
                     <constraint firstItem="cFs-UU-SjC" firstAttribute="bottom" secondItem="vVE-It-kJl" secondAttribute="bottom" id="5fy-BD-Vb6"/>
                     <constraint firstAttribute="trailing" secondItem="xlr-w5-VqB" secondAttribute="trailing" id="6RR-aN-3R2"/>
+                    <constraint firstItem="Roy-Vp-8Lm" firstAttribute="bottom" secondItem="vVE-It-kJl" secondAttribute="bottom" id="6hb-gN-GYd"/>
                     <constraint firstItem="IIa-5w-dje" firstAttribute="leading" secondItem="2ua-Pb-z1N" secondAttribute="trailing" id="7Qf-Hc-dOx"/>
                     <constraint firstItem="xlr-w5-VqB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9mq-jU-PWR"/>
                     <constraint firstItem="hbf-MR-kCw" firstAttribute="trailing" secondItem="cFs-UU-SjC" secondAttribute="trailing" id="Kt1-fA-XzF"/>
+                    <constraint firstItem="Roy-Vp-8Lm" firstAttribute="trailing" secondItem="hbf-MR-kCw" secondAttribute="trailing" id="MmT-bS-HWa"/>
                     <constraint firstItem="vVE-It-kJl" firstAttribute="leading" secondItem="cFs-UU-SjC" secondAttribute="trailing" constant="8" id="PDP-GY-U66"/>
+                    <constraint firstItem="Roy-Vp-8Lm" firstAttribute="top" secondItem="hbf-MR-kCw" secondAttribute="bottom" id="QGQ-dV-uf5"/>
                     <constraint firstItem="2ua-Pb-z1N" firstAttribute="bottom" secondItem="IIa-5w-dje" secondAttribute="bottom" id="TNq-7n-vLS"/>
                     <constraint firstItem="cFs-UU-SjC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="36" id="XUV-aM-8mb"/>
                     <constraint firstAttribute="trailing" secondItem="vVE-It-kJl" secondAttribute="trailing" constant="14" id="YGp-9u-I2y"/>
@@ -134,6 +156,7 @@
                 <outlet property="fileImageView" destination="o0m-EL-wBg" id="9I8-yS-BQ1"/>
                 <outlet property="messageDateLabel" destination="cFs-UU-SjC" id="tZd-ll-VDm"/>
                 <outlet property="resendMessageButton" destination="IIa-5w-dje" id="okX-ne-Qhy"/>
+                <outlet property="sendStatusLabel" destination="Roy-Vp-8Lm" id="zQq-eG-SeI"/>
                 <outlet property="unreadCountLabel" destination="hbf-MR-kCw" id="afb-qJ-2wA"/>
             </connections>
             <point key="canvasLocation" x="25" y="119.5"/>

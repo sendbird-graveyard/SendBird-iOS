@@ -14,8 +14,16 @@
     return [UIColor colorWithRed:(CGFloat)(128.0/255.0) green:(CGFloat)(90.0/255.0) blue:(CGFloat)(255.0/255.0) alpha:1];
 }
 
++ (UIColor *)navigationBarSubTitleColor {
+    return [UIColor colorWithRed:142.0/255.0 green:142.0/255.0 blue:142.0/255.0 alpha:1];
+}
+
 + (UIFont *)navigationBarTitleFont {
     return [UIFont fontWithName:@"HelveticaNeue" size:16.0];
+}
+
++ (UIFont *)navigationBarSubTitleFont {
+    return [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:10.0];
 }
 
 + (UIColor *)textFieldLineColorNormal {

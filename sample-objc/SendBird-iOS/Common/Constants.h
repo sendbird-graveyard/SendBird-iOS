@@ -13,6 +13,8 @@
 
 + (UIColor *)navigationBarTitleColor;
 + (UIFont *)navigationBarTitleFont;
++ (UIColor *)navigationBarSubTitleColor;
++ (UIFont *)navigationBarSubTitleFont;
 + (UIColor *)textFieldLineColorNormal;
 + (UIColor *)textFieldLineColorSelected;
 + (UIFont *)nicknameFontInMessage;

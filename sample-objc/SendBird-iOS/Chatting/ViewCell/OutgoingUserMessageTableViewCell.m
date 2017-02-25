@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIView *dateSeperatorContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *dateSeperatorLabel;
 @property (weak, nonatomic) IBOutlet UIView *messageContainerView;
+@property (weak, nonatomic) IBOutlet UILabel *sendStatusLabel;
 
 // For Cell Height
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerHeight;
@@ -59,6 +60,18 @@
     }
 }
 
+- (void)clickResendUserMessage {
+    if (self.delegate != nil) {
+        [self.delegate clickResend:self message:self.message];
+    }
+}
+
+- (void)clickDeleteUserMessage {
+    if (self.delegate != nil) {
+        [self.delegate clickDelete:self message:self.message];
+    }
+}
+
 - (void)setModel:(SBDUserMessage *)aMessage {
     self.message = aMessage;
     
@@ -73,6 +86,9 @@
     self.messageContainerView.userInteractionEnabled = YES;
     [self.messageContainerView addGestureRecognizer:messageContainerTapRecognizer];
     
+    [self.resendMessageButton addTarget:self action:@selector(clickResendUserMessage) forControlEvents:UIControlEventTouchUpInside];
+    [self.deleteMessageButton addTarget:self action:@selector(clickDeleteUserMessage) forControlEvents:UIControlEventTouchUpInside];
+    
     // Unread message count
     if ([self.message.channelType isEqualToString:CHANNEL_TYPE_GROUP]) {
         SBDGroupChannel *channelOfMessage = [SBDGroupChannel getChannelFromCacheWithChannelUrl:self.message.channelUrl];
@@ -80,6 +96,7 @@
             int unreadMessageCount = [channelOfMessage getReadReceiptOfMessage:self.message];
             if (unreadMessageCount == 0) {
                 [self hideUnreadCount];
+                self.unreadCountLabel.text = @"";
             }
             else {
                 [self showUnreadCount];
@@ -215,19 +232,53 @@
 }
 
 - (void)showUnreadCount {
-    self.unreadCountLabel.hidden = NO;
+    if ([self.message.channelType isEqualToString:CHANNEL_TYPE_GROUP]) {
+        self.unreadCountLabel.hidden = NO;
+        self.resendMessageButton.hidden = YES;
+        self.deleteMessageButton.hidden = YES;
+    }
 }
 
 - (void)hideMessageControlButton {
     self.resendMessageButton.hidden = YES;
     self.deleteMessageButton.hidden = YES;
-    self.messageDateLabel.hidden = NO;
 }
 
 - (void)showMessageControlButton {
+    self.sendStatusLabel.hidden = YES;
+    self.messageDateLabel.hidden = YES;
+    self.unreadCountLabel.hidden = YES;
+    
     self.resendMessageButton.hidden = NO;
     self.deleteMessageButton.hidden = NO;
+}
+
+- (void)showSendingStatus {
     self.messageDateLabel.hidden = YES;
+    self.unreadCountLabel.hidden = YES;
+    self.resendMessageButton.hidden = YES;
+    self.deleteMessageButton.hidden = YES;
+    
+    self.sendStatusLabel.hidden = NO;
+    self.sendStatusLabel.text = @"Sending";
+}
+
+- (void)showFailedStatus {
+    self.messageDateLabel.hidden = YES;
+    self.unreadCountLabel.hidden = YES;
+    self.resendMessageButton.hidden = YES;
+    self.deleteMessageButton.hidden = YES;
+    
+    self.sendStatusLabel.hidden = NO;
+    self.sendStatusLabel.text = @"Failed";
+}
+
+- (void)showMessageDate {
+    self.unreadCountLabel.hidden = YES;
+    self.resendMessageButton.hidden = YES;
+    self.sendStatusLabel.hidden = YES;
+    
+    self.messageDateLabel.hidden = NO;
 }
 
 @end

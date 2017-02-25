@@ -18,4 +18,41 @@ class Utils: NSObject {
         UIGraphicsEndImageContext()
         return image!
     }
+    
+    static func generateNavigationTitle(mainTitle: String, subTitle: String?) -> NSAttributedString? {
+        var mainTitleAttribute: [String:AnyObject]?
+        var subTitleAttribute: [String:AnyObject]?
+        
+        if subTitle == nil || subTitle?.characters.count == 0 {
+            mainTitleAttribute = [
+                NSFontAttributeName: Constants.navigationBarTitleFont(),
+                NSForegroundColorAttributeName: UIColor.black
+            ]
+        }
+        else {
+            mainTitleAttribute = [
+                NSFontAttributeName: Constants.navigationBarTitleFont(),
+                NSForegroundColorAttributeName: UIColor.black
+            ]
+            
+            subTitleAttribute = [
+                NSFontAttributeName: Constants.navigationBarSubTitleFont(),
+                NSForegroundColorAttributeName: Constants.navigationBarSubTitleColor()
+            ]
+        }
+        
+        var fullTitle: NSMutableAttributedString?
+        if subTitle == nil || subTitle?.characters.count == 0 {
+            fullTitle = NSMutableAttributedString(string: mainTitle)
+            fullTitle?.addAttributes(mainTitleAttribute!, range: NSMakeRange(0, mainTitle.characters.count))
+        }
+        else {
+            fullTitle = NSMutableAttributedString(string: NSString(format: "%@\n%@", mainTitle, subTitle!) as String)
+            
+            fullTitle?.addAttributes(mainTitleAttribute!, range: NSMakeRange(0, mainTitle.characters.count))
+            fullTitle?.addAttributes(subTitleAttribute!, range: NSMakeRange(mainTitle.characters.count + 1, (subTitle?.characters.count)!))
+        }
+        
+        return fullTitle
+    }
 }

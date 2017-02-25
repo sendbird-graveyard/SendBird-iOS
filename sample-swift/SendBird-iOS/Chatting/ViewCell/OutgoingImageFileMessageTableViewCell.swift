@@ -25,6 +25,7 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var dateSeperatorContainerView: UIView!
     @IBOutlet weak var dateSeperatorLabel: UILabel!
     @IBOutlet weak var fileImageView: UIImageView!
+    @IBOutlet weak var sendStatusLabel: UILabel!
     
     private var message: SBDFileMessage!
     private var prevMessage: SBDBaseMessage!
@@ -43,6 +44,18 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
         }
     }
     
+    @objc private func clickResendUserMessage() {
+        if self.delegate != nil {
+            self.delegate?.clickResend(view: self, message: self.message!)
+        }
+    }
+    
+    @objc private func clickDeleteUserMessage() {
+        if self.delegate != nil {
+            self.delegate?.clickDelete(view: self, message: self.message!)
+        }
+    }
+    
     func setModel(aMessage: SBDFileMessage) {
         self.message = aMessage
 
@@ -50,15 +63,22 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
         /* Thumbnail is a premium feature. */
         /***********************************/
         if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
-            self.fileImageView.af_setImage(withURL: URL(string: (self.message.thumbnails?[0].url)!)!, placeholderImage: Utils.imageFromColor(color: Constants.outgoingFileImagePlaceholderColor()))
+            if (self.message.thumbnails?[0].url.characters.count)! > 0 {
+                self.fileImageView.af_setImage(withURL: URL(string: (self.message.thumbnails?[0].url)!)!)
+            }
         }
         else {
-            self.fileImageView.af_setImage(withURL: URL(string: self.message.url)!, placeholderImage: Utils.imageFromColor(color: Constants.outgoingFileImagePlaceholderColor()))
+            if self.message.url.characters.count > 0 {
+                self.fileImageView.af_setImage(withURL:URL(string: self.message.url)!)
+            }
         }
         
         let messageContainerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(clickFileMessage))
         self.fileImageView.isUserInteractionEnabled = true
         self.fileImageView.addGestureRecognizer(messageContainerTapRecognizer)
+        
+        self.resendMessageButton.addTarget(self, action: #selector(clickResendUserMessage), for: UIControlEvents.touchUpInside)
+        self.deleteMessageButton.addTarget(self, action: #selector(clickDeleteUserMessage), for: UIControlEvents.touchUpInside)
         
         // Unread message count
         if self.message.channelType == CHANNEL_TYPE_GROUP {
@@ -67,6 +87,7 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
                 let unreadMessageCount = channelOfMessage?.getReadReceipt(of: self.message)
                 if unreadMessageCount == 0 {
                     self.hideUnreadCount()
+                    self.unreadCountLabel.text = ""
                 }
                 else {
                     self.showUnreadCount()
@@ -182,18 +203,56 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
     }
     
     func showUnreadCount() {
-        self.unreadCountLabel.isHidden = false;
+        if self.message.channelType == CHANNEL_TYPE_GROUP {
+            self.unreadCountLabel.isHidden = false
+            self.resendMessageButton.isHidden = true
+            self.deleteMessageButton.isHidden = true
+        }
     }
     
     func hideMessageControlButton() {
-        self.resendMessageButton.isHidden = true;
-        self.deleteMessageButton.isHidden = true;
-        self.messageDateLabel.isHidden = false;
+        self.resendMessageButton.isHidden = true
+        self.deleteMessageButton.isHidden = true
     }
     
     func showMessageControlButton() {
-        self.resendMessageButton.isHidden = false;
-        self.deleteMessageButton.isHidden = false;
-        self.messageDateLabel.isHidden = true;
+        self.sendStatusLabel.isHidden = true
+        self.messageDateLabel.isHidden = true
+        self.unreadCountLabel.isHidden = true
+        
+        self.resendMessageButton.isHidden = false
+        self.deleteMessageButton.isHidden = false
+    }
+    
+    func showSendingStatus() {
+        self.messageDateLabel.isHidden = true
+        self.unreadCountLabel.isHidden = true
+        self.resendMessageButton.isHidden = true
+        self.deleteMessageButton.isHidden = true
+        
+        self.sendStatusLabel.isHidden = false
+        self.sendStatusLabel.text = "Sending"
+    }
+    
+    func showFailedStatus() {
+        self.messageDateLabel.isHidden = true
+        self.unreadCountLabel.isHidden = true
+        self.resendMessageButton.isHidden = true
+        self.deleteMessageButton.isHidden = true
+        
+        self.sendStatusLabel.isHidden = false
+        self.sendStatusLabel.text = "Failed"
+    }
+    
+    func showMessageDate() {
+        self.unreadCountLabel.isHidden = true
+        self.resendMessageButton.isHidden = true
+        self.sendStatusLabel.isHidden = true
+        
+        self.messageDateLabel.isHidden = false
+    }
+    
+    func setImageData(aData: Data) {
+        self.fileImageView.image = UIImage.init(data: aData)
     }
 }

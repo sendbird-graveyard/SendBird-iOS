@@ -23,5 +23,8 @@
 - (void)showUnreadCount;
 - (void)hideMessageControlButton;
 - (void)showMessageControlButton;
+- (void)showSendingStatus;
+- (void)showFailedStatus;
+- (void)showMessageDate;
 
 @end

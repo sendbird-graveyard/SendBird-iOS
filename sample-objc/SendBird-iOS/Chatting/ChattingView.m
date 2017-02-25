@@ -81,6 +81,10 @@
     self.messageTextView.delegate = self;
     
     self.resendableMessages = [[NSMutableDictionary alloc] init];
+    self.preSendMessages = [[NSMutableDictionary alloc] init];
+    
+    self.resendableFileData = [[NSMutableDictionary alloc] init];
+    self.preSendFileData = [[NSMutableDictionary alloc] init];
     
     [self.chattingTableView registerNib:[IncomingUserMessageTableViewCell nib] forCellReuseIdentifier:[IncomingUserMessageTableViewCell cellReuseIdentifier]];
     [self.chattingTableView registerNib:[OutgoingUserMessageTableViewCell nib] forCellReuseIdentifier:[OutgoingUserMessageTableViewCell cellReuseIdentifier]];
@@ -584,11 +588,18 @@
             [(OutgoingUserMessageTableViewCell *)cell setModel:userMessage];
             ((OutgoingUserMessageTableViewCell *)cell).delegate = self.delegate;
 
-            if (self.resendableMessages[userMessage.requestId] != nil && ![self.resendableMessages[userMessage.requestId] isKindOfClass:[NSNull class]]) {
-                [(OutgoingUserMessageTableViewCell *)cell showMessageControlButton];
+            if (self.preSendMessages[userMessage.requestId] != nil && ![self.preSendMessages[userMessage.requestId] isKindOfClass:[NSNull class]]) {
+                [(OutgoingUserMessageTableViewCell *)cell showSendingStatus];
             }
             else {
-                [(OutgoingUserMessageTableViewCell *)cell hideMessageControlButton];
+                if (self.resendableMessages[userMessage.requestId] != nil && ![self.resendableMessages[userMessage.requestId] isKindOfClass:[NSNull class]]) {
+//                    [(OutgoingUserMessageTableViewCell *)cell showMessageControlButton];
+                    [(OutgoingUserMessageTableViewCell *)cell showFailedStatus];
+                }
+                else {
+                    [(OutgoingUserMessageTableViewCell *)cell showMessageDate];
+                    [(OutgoingUserMessageTableViewCell *)cell showUnreadCount];
+                }
             }
         }
         else {
@@ -623,11 +634,18 @@
                 [(OutgoingFileMessageTableViewCell *)cell setModel:fileMessage];
                 ((OutgoingFileMessageTableViewCell *)cell).delegate = self.delegate;
                 
-                if (self.resendableMessages[fileMessage.requestId] != nil && ![self.resendableMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
-                    [(OutgoingFileMessageTableViewCell *)cell showMessageControlButton];
+                if (self.preSendMessages[fileMessage.requestId] != nil && ![self.preSendMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
+                    [(OutgoingFileMessageTableViewCell *)cell showSendingStatus];
                 }
                 else {
-                    [(OutgoingFileMessageTableViewCell *)cell hideMessageControlButton];
+                    if (self.resendableMessages[fileMessage.requestId] != nil && ![self.resendableMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
+//                        [(OutgoingFileMessageTableViewCell *)cell showMessageControlButton];
+                        [(OutgoingFileMessageTableViewCell *)cell showFailedStatus];
+                    }
+                    else {
+                        [(OutgoingFileMessageTableViewCell *)cell showMessageDate];
+                        [(OutgoingFileMessageTableViewCell *)cell showUnreadCount];
+                    }
                 }
             }
             else if ([fileMessage.type hasPrefix:@"audio"]) {
@@ -642,11 +660,18 @@
                 [(OutgoingFileMessageTableViewCell *)cell setModel:fileMessage];
                 ((OutgoingFileMessageTableViewCell *)cell).delegate = self.delegate;
 
-                if (self.resendableMessages[fileMessage.requestId] != nil && ![self.resendableMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
-                    [(OutgoingFileMessageTableViewCell *)cell showMessageControlButton];
+                if (self.preSendMessages[fileMessage.requestId] != nil && ![self.preSendMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
+                    [(OutgoingFileMessageTableViewCell *)cell showSendingStatus];
                 }
                 else {
-                    [(OutgoingFileMessageTableViewCell *)cell hideMessageControlButton];
+                    if (self.resendableMessages[fileMessage.requestId] != nil && ![self.resendableMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
+//                        [(OutgoingFileMessageTableViewCell *)cell showMessageControlButton];
+                        [(OutgoingFileMessageTableViewCell *)cell showFailedStatus];
+                    }
+                    else {
+                        [(OutgoingFileMessageTableViewCell *)cell showMessageDate];
+                        [(OutgoingFileMessageTableViewCell *)cell showUnreadCount];
+                    }
                 }
             }
             else if ([fileMessage.type hasPrefix:@"image"]) {
@@ -661,11 +686,20 @@
                 [(OutgoingImageFileMessageTableViewCell *)cell setModel:fileMessage];
                 ((OutgoingImageFileMessageTableViewCell *)cell).delegate = self.delegate;
 
-                if (self.resendableMessages[fileMessage.requestId] != nil && ![self.resendableMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
-                    [(OutgoingImageFileMessageTableViewCell *)cell showMessageControlButton];
+                if (self.preSendMessages[fileMessage.requestId] != nil && ![self.preSendMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
+                    [(OutgoingImageFileMessageTableViewCell *)cell showSendingStatus];
+                    [(OutgoingImageFileMessageTableViewCell *)cell setImageData:self.preSendFileData[fileMessage.requestId]];
                 }
                 else {
-                    [(OutgoingImageFileMessageTableViewCell *)cell hideMessageControlButton];
+                    if (self.resendableMessages[fileMessage.requestId] != nil && ![self.resendableMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
+//                        [(OutgoingImageFileMessageTableViewCell *)cell showMessageControlButton];
+                        [(OutgoingImageFileMessageTableViewCell *)cell showFailedStatus];
+                        [(OutgoingImageFileMessageTableViewCell *)cell setImageData:self.resendableFileData[fileMessage.requestId]];
+                    }
+                    else {
+                        [(OutgoingImageFileMessageTableViewCell *)cell showMessageDate];
+                        [(OutgoingImageFileMessageTableViewCell *)cell showUnreadCount];
+                    }
                 }
             }
             else {
@@ -680,11 +714,18 @@
                 [(OutgoingFileMessageTableViewCell *)cell setModel:fileMessage];
                 ((OutgoingFileMessageTableViewCell *)cell).delegate = self.delegate;
 
-                if (self.resendableMessages[fileMessage.requestId] != nil && ![self.resendableMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
-                    [(OutgoingFileMessageTableViewCell *)cell showMessageControlButton];
+                if (self.preSendMessages[fileMessage.requestId] != nil && ![self.preSendMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
+                    [(OutgoingFileMessageTableViewCell *)cell showSendingStatus];
                 }
                 else {
-                    [(OutgoingFileMessageTableViewCell *)cell hideMessageControlButton];
+                    if (self.resendableMessages[fileMessage.requestId] != nil && ![self.resendableMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
+//                        [(OutgoingFileMessageTableViewCell *)cell showMessageControlButton];
+                        [(OutgoingFileMessageTableViewCell *)cell showFailedStatus];
+                    }
+                    else {
+                        [(OutgoingFileMessageTableViewCell *)cell showMessageDate];
+                        [(OutgoingFileMessageTableViewCell *)cell showUnreadCount];
+                    }
                 }
             }
         }

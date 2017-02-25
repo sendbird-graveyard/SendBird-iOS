@@ -52,7 +52,8 @@
 + (nullable SBDCommand *)buildEnterChannel:(SBDBaseChannel * _Nonnull)channel;
 + (nullable SBDCommand *)buildExitChannel:(SBDBaseChannel * _Nonnull)aUser;
 + (nullable SBDCommand *)buildUserMessageWithChannelUrl:(NSString * _Nonnull)channelUrl messageText:(NSString * _Nonnull)messageText data:(NSString * _Nullable)data customType:(NSString * _Nullable)customType targetLanguages:(NSArray<NSString *> * _Nullable)targetLanguages;
-+ (nullable SBDCommand *)buildFileMessageWithFileUrl:(NSString * _Nonnull)fileUrl name:(NSString * _Nullable)name type:(NSString * _Nullable)type size:(NSUInteger)size data:(NSString * _Nullable)data requestId:(NSString * _Nullable)requestId channel:(SBDBaseChannel * _Nonnull)channel customType:(NSString * _Nullable)customType thumbnails:(NSArray * _Nullable)thumbnails;
++ (nullable SBDCommand *)buildFileMessageWithFileUrl:(NSString * _Nonnull)fileUrl name:(NSString * _Nullable)name type:(NSString * _Nullable)type size:(NSUInteger)size data:(NSString * _Nullable)data requestId:(NSString * _Nullable)requestId channel:(SBDBaseChannel * _Nonnull)channel customType:(NSString * _Nullable)customType thumbnails:(NSArray * _Nullable)thumbnails DEPRECATED_ATTRIBUTE;
++ (nullable SBDCommand *)buildFileMessageWithFileUrl:(NSString * _Nonnull)fileUrl name:(NSString * _Nullable)name type:(NSString * _Nullable)type size:(NSUInteger)size data:(NSString * _Nullable)data requestId:(NSString * _Nullable)requestId channel:(SBDBaseChannel * _Nonnull)channel customType:(NSString * _Nullable)customType thumbnails:(NSArray * _Nullable)thumbnails requireAuth:(BOOL)requireAuth;
 + (nullable SBDCommand *)buildPing;
 + (nullable SBDCommand *)buildStartTyping:(SBDGroupChannel * _Nonnull)channel startAt:(long long)startAt;
 + (nullable SBDCommand *)buildEndTyping:(SBDGroupChannel * _Nonnull)channel endAt:(long long)endAt;

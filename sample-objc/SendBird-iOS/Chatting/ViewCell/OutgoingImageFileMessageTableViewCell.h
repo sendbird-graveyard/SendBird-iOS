@@ -12,16 +12,20 @@
 
 @interface OutgoingImageFileMessageTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) id<MessageDelegate> delegate;
+@property (weak, nonatomic, nullable) id<MessageDelegate> delegate;
 
-+ (UINib *)nib;
-+ (NSString *)cellReuseIdentifier;
-- (void)setModel:(SBDFileMessage *)message;
-- (void)setPreviousMessage:(SBDBaseMessage *)aPrevMessage;
++ (nullable UINib *)nib;
++ (nullable NSString *)cellReuseIdentifier;
+- (void)setModel:(SBDFileMessage * _Nonnull)message;
+- (void)setPreviousMessage:(SBDBaseMessage * _Nullable)aPrevMessage;
 - (CGFloat)getHeightOfViewCell;
 - (void)hideUnreadCount;
 - (void)showUnreadCount;
 - (void)hideMessageControlButton;
 - (void)showMessageControlButton;
+- (void)showSendingStatus;
+- (void)showFailedStatus;
+- (void)showMessageDate;
+- (void)setImageData:(NSData * _Nonnull)imageData;
 
 @end

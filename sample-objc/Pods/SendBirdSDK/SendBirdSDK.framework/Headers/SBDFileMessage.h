@@ -35,6 +35,7 @@
  */
 + (nullable instancetype)makeWithMaxWidth:(CGFloat)width maxHeight:(CGFloat)height;
 
+
 @end
 
 
@@ -46,13 +47,22 @@
 /**
  The url of the thumbnail.
  */
-@property (strong, nonatomic, readonly, nonnull) NSString *url;
+@property (strong, nonatomic, readonly, nonnull, getter = url) NSString *url;
 
 
 /**
  The maximum size of the thumbnail.
  */
 @property (nonatomic, readonly) CGSize maxSize;
+
+
+/**
+ Returns url
+ 
+ @return Image url.
+ */
+- (nonnull NSString *)url;
+
 
 @end
 
@@ -71,7 +81,7 @@
 /**
  *  The file URL.
  */
-@property (strong, nonatomic, readonly, nonnull) NSString *url;
+@property (strong, nonatomic, readonly, nonnull, getter = url) NSString *url;
 
 /**
  *  The name of file.
@@ -127,5 +137,30 @@
  *  @return File message object with request ID.
  */
 + (nullable NSMutableDictionary<NSString *, NSObject *> *)buildWithFileUrl:(NSString * _Nonnull)url name:(NSString * _Nullable)name size:(NSUInteger)size type:(NSString * _Nonnull)type data:(NSString * _Nullable)data requestId:(NSString * _Nullable)requestId sender:(SBDUser * _Nonnull)sender channel:(SBDBaseChannel * _Nonnull)channel customType:(NSString * _Nullable)customType;
+
+/**
+ *  Builds file message with the information which is releated to file.
+ *
+ *  @param url        The file URL.
+ *  @param name       The <span>name</span> of file.
+ *  @param size       The <span>size</span> of file.
+ *  @param type       The <span>type</span> of file.
+ *  @param data       The custom <span>data</span> for file.
+ *  @param requestId  Request ID for ACK.
+ *  @param sender     Sender of the message.
+ *  @param channel    The channel which the file message is sent.
+ *  @param customType Custom message type.
+ *  @param thumbnailSizes Thumbnail sizes to require.
+ *
+ *  @return File message object with request ID.
+ */
++ (nullable NSMutableDictionary<NSString *, NSObject *> *)buildWithFileUrl:(NSString * _Nonnull)url name:(NSString * _Nullable)name size:(NSUInteger)size type:(NSString * _Nonnull)type data:(NSString * _Nullable)data requestId:(NSString * _Nullable)requestId sender:(SBDUser * _Nonnull)sender channel:(SBDBaseChannel * _Nonnull)channel customType:(NSString * _Nullable)customType thumbnailSizes:(NSArray<SBDThumbnailSize *> * _Nullable)thumbnailSizes;
+
+/**
+ Returns url
+ 
+ @return Image url.
+ */
+- (nonnull NSString *)url;
 
 @end

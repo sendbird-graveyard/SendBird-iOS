@@ -26,8 +26,12 @@
 @property (weak, nonatomic) IBOutlet UITextView *messageTextView;
 @property (weak, nonatomic) IBOutlet UITableView *chattingTableView;
 @property (strong, nonatomic) NSMutableArray<SBDBaseMessage *> *messages;
-//@property (atomic) BOOL hideUnreadCountLabels;
+
 @property (strong, nonatomic) NSMutableDictionary<NSString *, SBDBaseMessage *> *resendableMessages;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, SBDBaseMessage *> *preSendMessages;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, NSData *> *resendableFileData;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, NSData *> *preSendFileData;
+
 @property (weak, nonatomic) IBOutlet UIButton *fileAttachButton;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
 @property (atomic) BOOL stopMeasuringVelocity;
