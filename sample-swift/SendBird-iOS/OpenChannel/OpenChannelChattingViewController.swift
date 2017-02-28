@@ -115,7 +115,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
         let vc = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         let seeParticipantListAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "SeeParticipantListButton"), style: UIAlertActionStyle.default) { (action) in
             DispatchQueue.main.async {
-                let plvc = ParticipantListViewController()
+                let plvc = ParticipantListViewController(nibName: "ParticipantListViewController", bundle: Bundle.main)
                 plvc.channel = self.openChannel
                 self.refreshInViewDidAppear = false
                 self.present(plvc, animated: false, completion: nil)
@@ -123,7 +123,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
         }
         let seeBlockedUserListAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "SeeBlockedUserListButton"), style: UIAlertActionStyle.default) { (action) in
             DispatchQueue.main.async {
-                let blvc = BlockedUserListViewController()
+                let blvc = BlockedUserListViewController(nibName: "BlockedUserListViewController", bundle: Bundle.main)
                 self.refreshInViewDidAppear = false
                 self.present(blvc, animated: false, completion: nil)
             }
@@ -386,7 +386,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                 }
                 
                 DispatchQueue.main.async {
-                    let vc = GroupChannelChattingViewController()
+                    let vc = GroupChannelChattingViewController(nibName: "GroupChannelChattingViewController", bundle: Bundle.main)
                     vc.groupChannel = channel
                     self.present(vc, animated: false, completion: nil)
                 }
@@ -408,7 +408,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                 }
                 
                 DispatchQueue.main.async {
-                    let vc = GroupChannelChattingViewController()
+                    let vc = GroupChannelChattingViewController(nibName: "GroupChannelChattingViewController", bundle: Bundle.main)
                     vc.groupChannel = channel
                     self.present(vc, animated: false, completion: nil)
                 }

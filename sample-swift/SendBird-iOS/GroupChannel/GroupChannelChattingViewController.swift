@@ -113,7 +113,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         let vc = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         let seeMemberListAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "SeeMemberListButton"), style: UIAlertActionStyle.default) { (action) in
             DispatchQueue.main.async {
-                let mlvc = MemberListViewController()
+                let mlvc = MemberListViewController(nibName: "MemberListViewController", bundle: Bundle.main)
                 mlvc.channel = self.groupChannel
                 self.refreshInViewDidAppear = false
                 self.present(mlvc, animated: false, completion: nil)
@@ -121,7 +121,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         }
         let seeBlockedUserListAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "SeeBlockedUserListButton"), style: UIAlertActionStyle.default) { (action) in
             DispatchQueue.main.async {
-                let plvc = BlockedUserListViewController()
+                let plvc = BlockedUserListViewController(nibName: "BlockedUserListViewController", bundle: Bundle.main)
                 self.refreshInViewDidAppear = false
                 self.present(plvc, animated: false, completion: nil)
             }

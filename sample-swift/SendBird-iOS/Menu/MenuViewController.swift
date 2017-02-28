@@ -62,7 +62,7 @@ class MenuViewController: UIViewController {
         self.openChannelCheckImageView.isHidden = false
         self.groupChannelCheckImageView.isHidden = true
         
-        let vc = OpenChannelListViewController()
+        let vc = OpenChannelListViewController(nibName: "OpenChannelListViewController", bundle: Bundle.main)
         self.present(vc, animated: false) {
             vc.view.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: self.view.frame.size.height)
         }
@@ -84,7 +84,7 @@ class MenuViewController: UIViewController {
         self.groupChannelCheckImageView.isHidden = false
 
         if self.groupChannelListViewController == nil {
-            self.groupChannelListViewController = GroupChannelListViewController()
+            self.groupChannelListViewController = GroupChannelListViewController(nibName: "GroupChannelListViewController", bundle: Bundle.main)
             self.groupChannelListViewController?.addDelegates()
         }
         

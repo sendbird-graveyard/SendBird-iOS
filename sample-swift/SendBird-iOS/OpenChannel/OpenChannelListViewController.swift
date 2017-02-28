@@ -112,7 +112,7 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     @objc private func createOpenChannel() {
-        let vc = CreateOpenChannelViewController()
+        let vc = CreateOpenChannelViewController(nibName: "CreateOpenChannelViewController", bundle: Bundle.main)
         vc.delegate = self
         DispatchQueue.main.async {
             self.present(vc, animated: true, completion: nil)
@@ -155,7 +155,7 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
                 return
             }
             
-            let vc = OpenChannelChattingViewController()
+            let vc = OpenChannelChattingViewController(nibName: "OpenChannelChattingViewController", bundle: Bundle.main)
             vc.openChannel = self.channels[indexPath.row]
             DispatchQueue.main.async {
                 self.present(vc, animated: false, completion: nil)

@@ -143,7 +143,7 @@ class ViewController: UITableViewController, UITextFieldDelegate {
                 })
                 
                 DispatchQueue.main.async {
-                    let vc = MenuViewController()
+                    let vc = MenuViewController(nibName: "MenuViewController", bundle: Bundle.main)
                     self.present(vc, animated: false, completion: nil)
                 }
             })

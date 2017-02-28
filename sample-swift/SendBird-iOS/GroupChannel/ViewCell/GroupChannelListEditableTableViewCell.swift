@@ -128,11 +128,11 @@ class GroupChannelListEditableTableViewCell: MGSwipeTableCell {
         }
         
         self.channelNameLabel.text = memberNames.joined(separator: ", ")
-        var lastMessageTimestamp: Int = 0
+        var lastMessageTimestamp: Int64 = 0
         if self.channel.lastMessage is SBDUserMessage {
             let lastMessage = (self.channel.lastMessage as! SBDUserMessage)
             self.lastMessageLabel.text = lastMessage.message
-            lastMessageTimestamp = Int(lastMessage.createdAt)
+            lastMessageTimestamp = Int64(lastMessage.createdAt)
         }
         else if self.channel.lastMessage is SBDFileMessage {
             let lastMessage = (self.channel.lastMessage as! SBDFileMessage)
@@ -148,16 +148,16 @@ class GroupChannelListEditableTableViewCell: MGSwipeTableCell {
             else {
                 self.lastMessageLabel.text = Bundle.sbLocalizedStringForKey(key: "MessageSummaryFile")
             }
-            lastMessageTimestamp = Int(lastMessage.createdAt)
+            lastMessageTimestamp = Int64(lastMessage.createdAt)
         }
         else if self.channel.lastMessage is SBDAdminMessage {
             let lastMessage = self.channel.lastMessage as! SBDAdminMessage
             self.lastMessageLabel.text = lastMessage.message
-            lastMessageTimestamp = Int(lastMessage.createdAt)
+            lastMessageTimestamp = Int64(lastMessage.createdAt)
         }
         else {
             self.lastMessageLabel.text = ""
-            lastMessageTimestamp = Int(self.channel.createdAt)
+            lastMessageTimestamp = Int64(self.channel.createdAt)
         }
         
         // Last message date time

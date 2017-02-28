@@ -77,7 +77,7 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
             return
         }
         
-        let vc = CreateGroupChannelSelectOptionViewController()
+        let vc = CreateGroupChannelSelectOptionViewController(nibName: "CreateGroupChannelSelectOptionViewController", bundle: Bundle.main)
         vc.selectedUser = NSArray(array: self.selectedUsers) as! [SBDUser]
         vc.delegate = self
         self.present(vc, animated: false, completion: nil)
