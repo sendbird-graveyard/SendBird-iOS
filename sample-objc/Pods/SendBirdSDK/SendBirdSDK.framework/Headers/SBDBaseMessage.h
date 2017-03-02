@@ -74,4 +74,19 @@
  */
 - (BOOL)isGroupChannel;
 
+/**
+ Builds a message object from serialized data.
+ 
+ @param data Serialized data.
+ @return SBDBaseMessage object.
+ */
++ (nullable instancetype)buildFromSerializedData:(NSData * _Nonnull)data;
+
+/**
+ Serializes message object.
+ 
+ @return Serialized data.
+ */
+- (nullable NSData *)serialize;
+
 @end

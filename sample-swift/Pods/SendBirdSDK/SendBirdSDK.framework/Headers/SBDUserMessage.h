@@ -50,4 +50,11 @@
 
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
 
+/**
+ Serializes message object.
+ 
+ @return Serialized data.
+ */
+- (nullable NSData *)serialize;
+
 @end

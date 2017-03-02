@@ -379,4 +379,19 @@
  */
 - (BOOL)isOperatorWithUserId:(NSString * _Nonnull)userId;
 
+/**
+ Builds a open channel object from serialized data.
+ 
+ @param data Serialized data.
+ @return SBDOpenChannel object.
+ */
++ (nullable instancetype)buildFromSerializedData:(NSData * _Nonnull)data;
+
+/**
+ Serializes open channel object.
+ 
+ @return Serialized data.
+ */
+- (nullable NSData *)serialize;
+
 @end

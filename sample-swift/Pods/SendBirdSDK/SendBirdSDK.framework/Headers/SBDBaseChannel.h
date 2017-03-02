@@ -652,5 +652,19 @@
  */
 - (void)getPreviousAndNextMessagesByMessageId:(long long)messageId prevLimit:(NSInteger)prevLimit nextLimit:(NSInteger)nextLimit reverse:(BOOL)reverse completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
 
+/**
+ Builds a base channel object from serialized data.
+ 
+ @param data Serialized data.
+ @return SBDBaseChannel object.
+ */
++ (nullable instancetype)buildFromSerializedData:(NSData * _Nonnull)data;
+
+/**
+ Serializes base channel object.
+ 
+ @return Serialized data.
+ */
+- (nullable NSData *)serialize;
 
 @end

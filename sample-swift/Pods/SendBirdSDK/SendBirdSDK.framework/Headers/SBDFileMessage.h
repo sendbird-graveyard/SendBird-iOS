@@ -163,4 +163,11 @@
  */
 - (nonnull NSString *)url;
 
+/**
+ Serializes message object.
+ 
+ @return Serialized data.
+ */
+- (nullable NSData *)serialize;
+
 @end

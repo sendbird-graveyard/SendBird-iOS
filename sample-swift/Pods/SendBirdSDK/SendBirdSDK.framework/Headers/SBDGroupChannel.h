@@ -564,4 +564,19 @@
  */
 + (void)getTotalUnreadMessageCountWithCompletionHandler:(nullable void (^)(NSUInteger unreadCount, SBDError * _Nullable error))completionHandler;
 
+/**
+ Builds a group channel object from serialized data.
+ 
+ @param data Serialized data.
+ @return SBDGroupChannel object.
+ */
++ (nullable instancetype)buildFromSerializedData:(NSData * _Nonnull)data;
+
+/**
+ Serializes group channel object.
+ 
+ @return Serialized data.
+ */
+- (nullable NSData *)serialize;
+
 @end

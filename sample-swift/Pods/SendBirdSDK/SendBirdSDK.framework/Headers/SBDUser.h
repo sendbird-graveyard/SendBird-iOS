@@ -45,4 +45,19 @@
  */
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
 
+/**
+ Builds a user object from serialized data.
+ 
+ @param data Serialized data.
+ @return SBDUser object.
+ */
++ (nullable instancetype)buildFromSerializedData:(NSData * _Nonnull)data;
+
+/**
+ Serializes message object.
+ 
+ @return Serialized data.
+ */
+- (nullable NSData *)serialize;
+
 @end
