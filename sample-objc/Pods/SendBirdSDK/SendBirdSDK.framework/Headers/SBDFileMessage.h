@@ -76,7 +76,7 @@
 /**
  *  Sender of the message.
  */
-@property (strong, nonatomic, readonly, nullable) SBDUser *sender;
+@property (strong, nonatomic, readonly, nullable, getter = sender) SBDUser *sender;
 
 /**
  *  The file URL.
@@ -166,8 +166,15 @@
 /**
  Serializes message object.
  
- @return Serialized data.
+ @return Serialized <span>data</span>.
  */
 - (nullable NSData *)serialize;
+
+/**
+ Returns sender.
+ 
+ @return Sender of the message.
+ */
+- (nonnull SBDUser *)sender;
 
 @end

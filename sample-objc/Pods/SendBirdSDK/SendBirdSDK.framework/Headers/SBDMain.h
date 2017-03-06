@@ -17,6 +17,27 @@
 #import "SBDInternalTypes.h"
 
 /**
+ Represents operation options.
+ */
+@interface SBDOptions : NSObject
+
+/**
+ Gets the value whether the sender information of `sender` of `SBDUserMessage` or `SBDFileMessage` such as nickname and profile url will be returned as the latest user's or not.
+
+ @return If YES, the sender is the latest information.
+ */
++ (BOOL)useMemberAsMessageSender;
+
+/**
+ If set <code>YES</code>, the sender information of `sender` of `SBDUserMessage` or `SBDFileMessage` such as nickname and profile url will be returned as the latest user's. Otherwise, the information will be the value of the message creation time.
+
+ @param tf <code>YES</code> or <code>NO</code>.
+ */
++ (void)setUseMemberAsMessageSender:(BOOL)tf;
+
+@end
+
+/**
  *  An object that adopts the `SBDConnectionDelegate` protocol is responsible for managing the connection statuses. This delegate includes three statuses: reconnection start, reconnection succession, and reconnection failure. The `SBDConnectionDelegate` can be added by [`addConnectionDelegate:identifier:`](../Classes/SBDMain.html#//api/name/addConnectionDelegate:identifier:) in `SBDMain`. Every `SBDConnectionDelegate` method which is added is going to manage the statues.
  *
  *  @warning If the object that adopts the `SBDConnectionDelegate` protocol is invalid, the delegate has to be removed by the identifier via [`removeConnectionDelegateForIdentifier:`](../Classes/SBDMain.html#//api/name/removeConnectionDelegateForIdentifier:) in `SBDMain`. If you miss this, it will cause the crash.

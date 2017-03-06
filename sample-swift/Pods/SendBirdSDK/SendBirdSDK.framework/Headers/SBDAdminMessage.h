@@ -34,7 +34,7 @@
 /**
  Serializes message object.
  
- @return Serialized data.
+ @return Serialized <span>data</span>.
  */
 - (nullable NSData *)serialize;
 

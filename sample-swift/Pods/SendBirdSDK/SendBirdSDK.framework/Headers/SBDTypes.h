@@ -146,4 +146,20 @@ typedef NS_ENUM(NSInteger, SBDGroupChannelListQueryType) {
     SBDGroupChannelListQueryTypeOr = 1,
 };
 
+
+/**
+ Message type for filtering
+
+ - SBDMessageTypeFilterAll: All.
+ - SBDMessageTypeFilterUser: User message.
+ - SBDMessageTypeFilterFile: File message.
+ - SBDMessageTypeFilterAdmin: Admin message.
+ */
+typedef NS_ENUM(NSInteger, SBDMessageTypeFilter) {
+    SBDMessageTypeFilterAll = 0,
+    SBDMessageTypeFilterUser = 1,
+    SBDMessageTypeFilterFile = 2,
+    SBDMessageTypeFilterAdmin = 3,
+};
+
 #endif /* SBDTypes_h */

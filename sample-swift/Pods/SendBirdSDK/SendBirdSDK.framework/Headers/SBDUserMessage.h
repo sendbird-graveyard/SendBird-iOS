@@ -31,7 +31,7 @@
 /**
  *  Sender of the <span>message</span>. This is represented by `SBDUser` class.
  */
-@property (strong, nonatomic, nullable) SBDUser *sender;
+@property (strong, nonatomic, nullable, getter = sender) SBDUser *sender;
 
 /**
  *  Request ID for checking ACK.
@@ -53,8 +53,15 @@
 /**
  Serializes message object.
  
- @return Serialized data.
+ @return Serialized <span>data</span>.
  */
 - (nullable NSData *)serialize;
+
+/**
+ Returns sender.
+ 
+ @return Sender of the message.
+ */
+- (nonnull SBDUser *)sender;
 
 @end

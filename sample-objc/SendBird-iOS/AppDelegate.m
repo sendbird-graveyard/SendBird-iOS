@@ -36,6 +36,7 @@
     
     [SBDMain initWithApplicationId:@"9DA1B1F4-0BE6-4DA8-82C5-2E81DAB56F23"];
     [SBDMain setLogLevel:SBDLogLevelDebug];
+    [SBDOptions setUseMemberAsMessageSender:YES];
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     if (audioSession != nil) {

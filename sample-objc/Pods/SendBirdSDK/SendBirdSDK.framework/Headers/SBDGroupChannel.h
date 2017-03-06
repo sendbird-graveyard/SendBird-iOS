@@ -334,6 +334,14 @@
 - (void)updateChannelWithName:(NSString * _Nullable)name coverImage:(NSData * _Nullable)coverImage coverImageName:(NSString * _Nullable)coverImageName data:(NSString * _Nullable)data progressHandler:(nullable void (^)(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend))progressHandler completionHandler:(nonnull void (^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
 
 /**
+ *  Gets a group channel instance with channel URL from server asynchronously.
+ *
+ *  @param channelUrl        The channel URL.
+ *  @param completionHandler The handler block to execute. `channel` is the group channel instance which has the `channelUrl`.
+ */
++ (void)getChannelWithoutCache:(NSString * _Nonnull)channelUrl completionHandler:(nullable void (^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
+
+/**
  *  Gets a group channel instance from channel URL asynchronously.
  *
  *  @param channelUrl        The channel URL.
@@ -565,9 +573,9 @@
 + (void)getTotalUnreadMessageCountWithCompletionHandler:(nullable void (^)(NSUInteger unreadCount, SBDError * _Nullable error))completionHandler;
 
 /**
- Builds a group channel object from serialized data.
+ Builds a group channel object from serialized <span>data</span>.
  
- @param data Serialized data.
+ @param data Serialized <span>data</span>.
  @return SBDGroupChannel object.
  */
 + (nullable instancetype)buildFromSerializedData:(NSData * _Nonnull)data;
@@ -575,8 +583,34 @@
 /**
  Serializes group channel object.
  
- @return Serialized data.
+ @return Serialized <span>data</span>.
  */
 - (nullable NSData *)serialize;
+
+/**
+ Checks if there is a channel object in cache.
+
+ @param channelUrl Channel URL to check.
+ @return If YES, cache has the channel.
+ */
++ (BOOL)hasChannelInCache:(NSString * _Nonnull)channelUrl;
+
+
+/**
+ Checks if the channel has a member that has `userId`.
+
+ @param userId User ID.
+ @return If YES, the channel has the member.
+ */
+- (BOOL)hasMember:(NSString * _Nonnull)userId;
+
+
+/**
+ Gets member in the channel.
+
+ @param userId User ID.
+ @return `SBDUser` object as a member. If there is a member who has the `userId`, returns nil.
+ */
+- (nullable SBDUser *)getMember:(NSString * _Nonnull)userId;
 
 @end
