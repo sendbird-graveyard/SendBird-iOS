@@ -57,8 +57,10 @@
 
 /**
  *  The flag for sending mark as read.
+ *
+ *  @deprecated in v3.0.42.
  */
-@property (atomic) BOOL sendMarkAsReadEnable;
+@property (atomic) BOOL sendMarkAsReadEnable DEPRECATED_ATTRIBUTE;
 
 /**
  *  Represents push notification is on or off. If true, push notification is on.
@@ -404,8 +406,10 @@
 
 /**
  *  Internal use only.
+ *
+ *  @deprecated in v3.0.42.
  */
-+ (void)_markAsRead;
++ (void)_markAsRead DEPRECATED_ATTRIBUTE;
 
 /**
  *  Sends mark as read. The other <span>members</span> in the channel will receive an event. The event will be received in `channelDidUpdateReadReceipt:` of `SBDChannelDelegate`.
@@ -571,6 +575,13 @@
  *  @param completionHandler The handler block to execute. The `unreadCount` is the total count of unread messages in all of group channel which the current is a member.
  */
 + (void)getTotalUnreadMessageCountWithCompletionHandler:(nullable void (^)(NSUInteger unreadCount, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Gets the total unread channel count of all group channels.
+ *
+ *  @param completionHandler The handler block to execute. The `unreadCount` is the total count of unread channels in all of group channel which the current is a member.
+ */
++ (void)getTotalUnreadChannelCountWithCompletionHandler:(nullable void (^)(NSUInteger unreadCount, SBDError * _Nullable error))completionHandler;
 
 /**
  Builds a group channel object from serialized <span>data</span>.
