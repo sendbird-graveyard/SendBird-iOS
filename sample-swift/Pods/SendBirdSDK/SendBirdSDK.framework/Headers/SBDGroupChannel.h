@@ -68,6 +68,11 @@
 @property (atomic, readonly) BOOL isPushEnabled;
 
 /**
+ Internal use only.
+ */
+@property (atomic) BOOL hasBeenUpdated;
+
+/**
  *  Refreshes this channel instance.
  *
  *  @param completionHandler The handler block to execute.
