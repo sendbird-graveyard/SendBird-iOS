@@ -198,11 +198,13 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
             if initial == true {
                 self.chattingView.initialLoading = true
                 
-                DispatchQueue.main.async {
-                    self.chattingView.chattingTableView.reloadData()
+                if (messages?.count)! > 0 {
                     DispatchQueue.main.async {
-                        self.chattingView.scrollToBottom(animated: false, force: true)
-                        self.chattingView.chattingTableView.isHidden = false
+                        self.chattingView.chattingTableView.reloadData()
+                        DispatchQueue.main.async {
+                            self.chattingView.scrollToBottom(animated: false, force: true)
+                            self.chattingView.chattingTableView.isHidden = false
+                        }
                     }
                 }
                 
@@ -212,9 +214,17 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
             else {
                 if (messages?.count)! > 0 {
                     DispatchQueue.main.async {
+                        let contentSizeBefore = self.chattingView.chattingTableView.contentSize;
+                        
                         self.chattingView.chattingTableView.reloadData()
+                        self.chattingView.chattingTableView.layoutIfNeeded()
+                        
+                        let contentSizeAfter = self.chattingView.chattingTableView.contentSize;
+                        
+                        let newContentOffset = CGPoint(x: 0, y: contentSizeAfter.height - contentSizeBefore.height)
+                        self.chattingView.chattingTableView.setContentOffset(newContentOffset, animated: false)
+                        
                         DispatchQueue.main.async {
-                            self.chattingView.scrollToPosition(position: (messages?.count)! - 1)
                             self.chattingView.chattingTableView.isHidden = false
                         }
                     }

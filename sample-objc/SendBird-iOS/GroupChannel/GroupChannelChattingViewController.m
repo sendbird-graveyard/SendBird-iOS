@@ -220,13 +220,15 @@
         if (initial) {
             self.chattingView.initialLoading = YES;
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.chattingView.chattingTableView reloadData];
+            if (messages.count > 0) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.chattingView scrollToBottomAnimated:NO force:YES];
-                    self.chattingView.chattingTableView.hidden = NO;
+                    [self.chattingView.chattingTableView reloadData];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.chattingView scrollToBottomAnimated:NO force:YES];
+                        self.chattingView.chattingTableView.hidden = NO;
+                    });
                 });
-            });
+            }
             
             self.chattingView.initialLoading = NO;
             self.isLoading = NO;
@@ -234,9 +236,17 @@
         else {
             if (messages.count > 0) {
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    CGSize contentSizeBefore = self.chattingView.chattingTableView.contentSize;
+
                     [self.chattingView.chattingTableView reloadData];
+                    [self.chattingView.chattingTableView layoutIfNeeded];
+                    
+                    CGSize contentSizeAfter = self.chattingView.chattingTableView.contentSize;
+
+                    CGPoint newContentOffset = CGPointMake(0, contentSizeAfter.height - contentSizeBefore.height);
+                    [self.chattingView.chattingTableView setContentOffset:newContentOffset animated:NO];
+
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.chattingView scrollToPosition:messages.count - 1];
                         self.chattingView.chattingTableView.hidden = NO;
                     });
                 });

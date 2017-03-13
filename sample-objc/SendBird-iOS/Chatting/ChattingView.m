@@ -410,6 +410,7 @@
     return height;
 }
 
+/*
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat height = 0;
@@ -543,6 +544,7 @@
     
     return height;
 }
+     */
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section
 {

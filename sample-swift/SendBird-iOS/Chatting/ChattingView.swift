@@ -399,6 +399,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
         return height
     }
     
+    /*
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         var height: CGFloat = 0
         
@@ -541,6 +542,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
         
         return height
     }
+ */
     
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return 0
