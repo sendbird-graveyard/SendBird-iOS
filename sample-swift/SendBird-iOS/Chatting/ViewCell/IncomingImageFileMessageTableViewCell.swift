@@ -9,6 +9,7 @@
 import UIKit
 import AlamofireImage
 import SendBirdSDK
+import FLAnimatedImage
 
 class IncomingImageFileMessageTableViewCell: UITableViewCell {
     weak var delegate: MessageDelegate?
@@ -20,7 +21,7 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
 
     @IBOutlet weak var dateSeperatorContainerView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var fileImageView: UIImageView!
+    @IBOutlet weak var fileImageView: FLAnimatedImageView!
     @IBOutlet weak var messageDateLabel: UILabel!
     @IBOutlet weak var dateSeperatorLabel: UILabel!
     
@@ -60,14 +61,33 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
         self.fileImageView.isUserInteractionEnabled = true
         self.fileImageView.addGestureRecognizer(messageContainerTapRecognizer)
         
-        /***********************************/
-        /* Thumbnail is a premium feature. */
-        /***********************************/
-        if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
-            self.fileImageView.af_setImage(withURL: URL(string: (self.message.thumbnails?[0].url)!)!, placeholderImage: Utils.imageFromColor(color: Constants.incomingFileImagePlaceholderColor()))
+        
+        if self.message.type == "image/gif" {
+            let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue");
+            
+            imageLoadQueue.async {
+                if let data = NSData(contentsOf: NSURL(string: self.message.url) as! URL) {
+                    let animatedImage = FLAnimatedImage(animatedGIFData: data as Data!)
+                    DispatchQueue.main.async {
+                        self.fileImageView.animatedImage = animatedImage;
+                    }
+                }
+            }
         }
         else {
-            self.fileImageView.af_setImage(withURL: URL(string: self.message.url)!, placeholderImage: Utils.imageFromColor(color: Constants.incomingFileImagePlaceholderColor()))
+            /***********************************/
+            /* Thumbnail is a premium feature. */
+            /***********************************/
+            if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
+                if (self.message.thumbnails?[0].url.characters.count)! > 0 {
+                    self.fileImageView.af_setImage(withURL: URL(string: (self.message.thumbnails?[0].url)!)!)
+                }
+            }
+            else {
+                if self.message.url.characters.count > 0 {
+                    self.fileImageView.af_setImage(withURL:URL(string: self.message.url)!)
+                }
+            }
         }
         
         // Message Date

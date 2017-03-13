@@ -9,6 +9,8 @@
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MobileCoreServices/UTCoreTypes.h>
+#import <MobileCoreServices/UTType.h>
+#import <Photos/Photos.h>
 
 #import "GroupChannelChattingViewController.h"
 #import "MemberListViewController.h"
@@ -677,7 +679,7 @@
         for (SBDThumbnail *thumbnail in resendableFileMessage.thumbnails) {
             [thumbnailsSizes addObject:[SBDThumbnailSize makeWithMaxCGSize:thumbnail.maxSize]];
         }
-        SBDFileMessage *preSendMessage = [self.channel sendFileMessageWithBinaryData:self.chattingView.preSendFileData[resendableFileMessage.requestId] filename:resendableFileMessage.name type:resendableFileMessage.type size:resendableFileMessage.size thumbnailSizes:thumbnailsSizes data:resendableFileMessage.data customType:resendableFileMessage.customType progressHandler:nil completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
+        SBDFileMessage *preSendMessage = [self.channel sendFileMessageWithBinaryData:(NSData *)self.chattingView.preSendFileData[resendableFileMessage.requestId][@"data"] filename:resendableFileMessage.name type:resendableFileMessage.type size:resendableFileMessage.size thumbnailSizes:thumbnailsSizes data:resendableFileMessage.data customType:resendableFileMessage.customType progressHandler:nil completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(150 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
                 SBDFileMessage *preSendMessage = (SBDFileMessage *)self.chattingView.preSendMessages[fileMessage.requestId];
                 [self.chattingView.preSendMessages removeObjectForKey:fileMessage.requestId];
@@ -733,137 +735,109 @@
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    __block NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
-    __block UIImage *originalImage, *editedImage, *imageToUse;
-    __block NSURL *imagePath;
-    __block NSString *imageName;
-    __block NSString *imageType;
-    
+    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
     __weak GroupChannelChattingViewController *weakSelf = self;
     [picker dismissViewControllerAnimated:YES completion:^{
         GroupChannelChattingViewController *strongSelf = weakSelf;
         if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0) == kCFCompareEqualTo) {
-            editedImage = (UIImage *) [info objectForKey:
-                                       UIImagePickerControllerEditedImage];
-            originalImage = (UIImage *) [info objectForKey:
-                                         UIImagePickerControllerOriginalImage];
-            NSURL *refUrl = [info objectForKey:UIImagePickerControllerReferenceURL];
-            imageName = [refUrl lastPathComponent];
-            
-            if (originalImage) {
-                imageToUse = originalImage;
-            } else {
-                imageToUse = editedImage;
-            }
-            
-            imagePath = [info objectForKey:@"UIImagePickerControllerReferenceURL"];
-            imageName = [imagePath lastPathComponent];
-            
-            CGFloat newWidth = 0;
-            CGFloat newHeight = 0;
-            if (imageToUse.size.width > imageToUse.size.height) {
-                newWidth = 640;
-                newHeight = newWidth * imageToUse.size.height / imageToUse.size.width;
-            }
-            else {
-                newHeight = 640;
-                newWidth = newHeight * imageToUse.size.width / imageToUse.size.height;
-            }
-            
-            UIGraphicsBeginImageContextWithOptions(CGSizeMake(newWidth, newHeight), NO, 0.0);
-            [imageToUse drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
-            UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            
-            
-            NSData *imageFileData = nil;
-            NSString *extentionOfFile = [imageName substringFromIndex:[imageName rangeOfString:@"."].location + 1];
-            
-            if ([extentionOfFile caseInsensitiveCompare:@"png"]) {
-                imageType = @"image/png";
-                imageFileData = UIImagePNGRepresentation(newImage);
-            }
-            else {
-                imageType = @"image/jpg";
-                imageFileData = UIImageJPEGRepresentation(newImage, 1.0);
-            }
-            
-            /***********************************/
-            /* Thumbnail is a premium feature. */
-            /***********************************/
-            SBDThumbnailSize *thumbnailSize = [SBDThumbnailSize makeWithMaxWidth:320.0 maxHeight:320.0];
-            SBDFileMessage *preSendMessage = [strongSelf.channel sendFileMessageWithBinaryData:imageFileData filename:imageName type:imageType size:imageFileData.length thumbnailSizes:@[thumbnailSize] data:@"" customType:@"" progressHandler:nil completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(150 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
-                    SBDFileMessage *preSendMessage = (SBDFileMessage *)strongSelf.chattingView.preSendMessages[fileMessage.requestId];
-                    [strongSelf.chattingView.preSendMessages removeObjectForKey:fileMessage.requestId];
+            NSURL *imagePath = [info objectForKey:@"UIImagePickerControllerReferenceURL"];
+            NSString *imageName = [imagePath lastPathComponent];
+
+            NSString *ext = [imageName pathExtension];
+            NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)ext, NULL);
+            NSString *mimeType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass((__bridge CFStringRef)UTI, kUTTagClassMIMEType);
+
+            PHAsset *asset = [[PHAsset fetchAssetsWithALAssetURLs:@[imagePath] options:nil] lastObject];
+            PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
+            options.synchronous = YES;
+            options.networkAccessAllowed = NO;
+            options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+            [[PHImageManager defaultManager] requestImageDataForAsset:asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+                NSNumber *isError = [info objectForKey:PHImageErrorKey];
+                NSNumber *isCloud = [info objectForKey:PHImageResultIsInCloudKey];
+                if ([isError boolValue] || [isCloud boolValue] || !imageData) {
+                    // fail
+                } else {
+                    // success, data is in imageData
+                    /***********************************/
+                    /* Thumbnail is a premium feature. */
+                    /***********************************/
+                    SBDThumbnailSize *thumbnailSize = [SBDThumbnailSize makeWithMaxWidth:320.0 maxHeight:320.0];
+
+                    SBDFileMessage *preSendMessage = [strongSelf.channel sendFileMessageWithBinaryData:imageData filename:[imageName lowercaseString] type:mimeType size:imageData.length thumbnailSizes:@[thumbnailSize] data:@"" customType:@"" progressHandler:nil completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(150 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+                            SBDFileMessage *preSendMessage = (SBDFileMessage *)strongSelf.chattingView.preSendMessages[fileMessage.requestId];
+                            [strongSelf.chattingView.preSendMessages removeObjectForKey:fileMessage.requestId];
+                            
+                            if (error != nil) {
+                                strongSelf.chattingView.resendableMessages[fileMessage.requestId] = preSendMessage;
+                                strongSelf.chattingView.resendableFileData[preSendMessage.requestId] = @{
+                                                                                                         @"data": imageData,
+                                                                                                         @"type": mimeType
+                                                                                                         };
+                                [strongSelf.chattingView.chattingTableView reloadData];
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [self.chattingView scrollToBottomAnimated:YES force:YES];
+                                });
+                                
+                                UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+                                UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+                                [alert addAction:closeAction];
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [strongSelf presentViewController:alert animated:YES completion:nil];
+                                });
+                                
+                                return;
+                            }
+                            
+                            if (fileMessage != nil) {
+                                [strongSelf.chattingView.resendableMessages removeObjectForKey:fileMessage.requestId];
+                                [strongSelf.chattingView.resendableFileData removeObjectForKey:fileMessage.requestId];
+                                [strongSelf.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:preSendMessage] withObject:fileMessage];
+                                
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [strongSelf.chattingView.chattingTableView reloadData];
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
+                                    });
+                                });
+                            }
+                        });
+                    }];
                     
-                    if (error != nil) {
-                        strongSelf.chattingView.resendableMessages[fileMessage.requestId] = preSendMessage;
-                        strongSelf.chattingView.resendableFileData[preSendMessage.requestId] = imageFileData;
-                        [strongSelf.chattingView.chattingTableView reloadData];
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [self.chattingView scrollToBottomAnimated:YES force:YES];
-                        });
-                        
-                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-                        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
-                        [alert addAction:closeAction];
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [strongSelf presentViewController:alert animated:YES completion:nil];
-                        });
-                        
-                        return;
-                    }
-                    
-                    if (fileMessage != nil) {
-                        [strongSelf.chattingView.resendableMessages removeObjectForKey:fileMessage.requestId];
-                        [strongSelf.chattingView.resendableFileData removeObjectForKey:fileMessage.requestId];
-                        [strongSelf.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:preSendMessage] withObject:fileMessage];
-                        
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [strongSelf.chattingView.chattingTableView reloadData];
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
-                            });
-                        });
-                    }
-                });
+                    strongSelf.chattingView.preSendFileData[preSendMessage.requestId] = @{
+                                                                                         @"data": imageData,
+                                                                                         @"type": mimeType
+                                                                                         };
+                    strongSelf.chattingView.preSendMessages[preSendMessage.requestId] = preSendMessage;
+                    [strongSelf.chattingView.messages addObject:preSendMessage];
+                    [strongSelf.chattingView.chattingTableView reloadData];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
+                    });
+                }
             }];
-            
-            strongSelf.chattingView.preSendFileData[preSendMessage.requestId] = imageFileData;
-            strongSelf.chattingView.preSendMessages[preSendMessage.requestId] = preSendMessage;
-            [strongSelf.chattingView.messages addObject:preSendMessage];
-            [strongSelf.chattingView.chattingTableView reloadData];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
-            });
         }
         else if (CFStringCompare ((CFStringRef) mediaType, kUTTypeMovie, 0) == kCFCompareEqualTo) {
             NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
             NSData *videoFileData = [NSData dataWithContentsOfURL:videoURL];
-            __block NSString *videoName = [videoURL lastPathComponent];
-            __block NSString *videoType;
+            NSString *videoName = [videoURL lastPathComponent];
+
+            NSString *ext = [videoName pathExtension];
+            NSString *UTI = (__bridge_transfer NSString *)UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)ext, NULL);
+            NSString *mimeType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass((__bridge CFStringRef)UTI, kUTTagClassMIMEType);
             
-            NSString *extentionOfFile = [videoName substringFromIndex:[videoName rangeOfString:@"."].location + 1];
-            
-            if ([extentionOfFile caseInsensitiveCompare:@"mov"]) {
-                videoType = @"video/quicktime";
-            }
-            else if ([extentionOfFile caseInsensitiveCompare:@"mp4"]) {
-                videoType = @"video/mp4";
-            }
-            else {
-                videoType = @"video/mpeg";
-            }
-            
-            SBDFileMessage *preSendMessage = [strongSelf.channel sendFileMessageWithBinaryData:videoFileData filename:videoName type:videoType size:videoFileData.length thumbnailSizes:nil data:@"" customType:@"" progressHandler:nil completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
+            SBDFileMessage *preSendMessage = [strongSelf.channel sendFileMessageWithBinaryData:videoFileData filename:videoName type:mimeType size:videoFileData.length thumbnailSizes:nil data:@"" customType:@"" progressHandler:nil completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(150 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
                     SBDFileMessage *preSendMessage = (SBDFileMessage *)strongSelf.chattingView.preSendMessages[fileMessage.requestId];
                     [strongSelf.chattingView.preSendMessages removeObjectForKey:fileMessage.requestId];
                     
                     if (error != nil) {
                         strongSelf.chattingView.resendableMessages[fileMessage.requestId] = preSendMessage;
-                        strongSelf.chattingView.resendableFileData[preSendMessage.requestId] = videoFileData;
+                        strongSelf.chattingView.resendableFileData[preSendMessage.requestId] = @{
+                                                                                                 @"data": videoFileData,
+                                                                                                 @"type": mimeType
+                                                                                                 };
                         [strongSelf.chattingView.chattingTableView reloadData];
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [self.chattingView scrollToBottomAnimated:YES force:YES];
@@ -894,7 +868,10 @@
                 });
             }];
             
-            strongSelf.chattingView.preSendFileData[preSendMessage.requestId] = videoFileData;
+            strongSelf.chattingView.preSendFileData[preSendMessage.requestId] = @{
+                                                                                  @"data": videoFileData,
+                                                                                  @"type": mimeType
+                                                                                  };
             strongSelf.chattingView.preSendMessages[preSendMessage.requestId] = preSendMessage;
             [strongSelf.chattingView.messages addObject:preSendMessage];
             [strongSelf.chattingView.chattingTableView reloadData];

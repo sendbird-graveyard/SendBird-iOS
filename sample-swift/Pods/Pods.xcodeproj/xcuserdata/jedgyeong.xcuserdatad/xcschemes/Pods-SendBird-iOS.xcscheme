@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "419EC608DA80D49F029C572B64B13839"
+               BlueprintIdentifier = "7E674FC83764A9357CF6A6A2FB715978"
                BuildableName = "Pods_SendBird_iOS.framework"
                BlueprintName = "Pods-SendBird-iOS"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "419EC608DA80D49F029C572B64B13839"
+            BlueprintIdentifier = "7E674FC83764A9357CF6A6A2FB715978"
             BuildableName = "Pods_SendBird_iOS.framework"
             BlueprintName = "Pods-SendBird-iOS"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -73,6 +73,7 @@
 		5ADEF82A1DAA663C000AABF9 /* CreateGroupChannelUserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADEF8291DAA663C000AABF9 /* CreateGroupChannelUserListTableViewCell.swift */; };
 		5ADEF82C1DAA67C5000AABF9 /* GroupChannelListEditableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADEF82B1DAA67C5000AABF9 /* GroupChannelListEditableTableViewCell.swift */; };
 		8F4B9B4CF66474515B5345D2 /* Pods_SendBird_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3A2CB679067572774BDE5D /* Pods_SendBird_iOS.framework */; };
+		E25E5A771E735BC8003E1E9B /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E25E5A761E735BC8003E1E9B /* Photos.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,6 +159,7 @@
 		8F3A2CB679067572774BDE5D /* Pods_SendBird_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SendBird_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96683C54D2DA7CFBF0C23471 /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C879E57358A8287C34B477A5 /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		E25E5A761E735BC8003E1E9B /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E25E5A771E735BC8003E1E9B /* Photos.framework in Frameworks */,
 				8F4B9B4CF66474515B5345D2 /* Pods_SendBird_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +341,7 @@
 		87F030833FB4898AD40CBE66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E25E5A761E735BC8003E1E9B /* Photos.framework */,
 				8F3A2CB679067572774BDE5D /* Pods_SendBird_iOS.framework */,
 			);
 			name = Frameworks;

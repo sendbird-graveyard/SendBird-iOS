@@ -26,6 +26,6 @@
 - (void)showSendingStatus;
 - (void)showFailedStatus;
 - (void)showMessageDate;
-- (void)setImageData:(NSData * _Nonnull)imageData;
+- (void)setImageData:(NSData * _Nonnull)imageData type:(NSString * _Nullable)type;
 
 @end

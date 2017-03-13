@@ -688,13 +688,13 @@
 
                 if (self.preSendMessages[fileMessage.requestId] != nil && ![self.preSendMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
                     [(OutgoingImageFileMessageTableViewCell *)cell showSendingStatus];
-                    [(OutgoingImageFileMessageTableViewCell *)cell setImageData:self.preSendFileData[fileMessage.requestId]];
+                    [(OutgoingImageFileMessageTableViewCell *)cell setImageData:(NSData *)self.preSendFileData[fileMessage.requestId][@"data"] type:(NSString *)self.preSendFileData[fileMessage.requestId][@"type"]];
                 }
                 else {
                     if (self.resendableMessages[fileMessage.requestId] != nil && ![self.resendableMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
 //                        [(OutgoingImageFileMessageTableViewCell *)cell showMessageControlButton];
                         [(OutgoingImageFileMessageTableViewCell *)cell showFailedStatus];
-                        [(OutgoingImageFileMessageTableViewCell *)cell setImageData:self.resendableFileData[fileMessage.requestId]];
+                        [(OutgoingImageFileMessageTableViewCell *)cell setImageData:(NSData *)self.resendableFileData[fileMessage.requestId][@"data"] type:(NSString *)self.resendableFileData[fileMessage.requestId][@"type"]];
                     }
                     else {
                         [(OutgoingImageFileMessageTableViewCell *)cell showMessageDate];

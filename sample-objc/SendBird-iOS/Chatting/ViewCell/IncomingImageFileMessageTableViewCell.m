@@ -10,6 +10,7 @@
 #import "IncomingImageFileMessageTableViewCell.h"
 #import "Utils.h"
 #import "Constants.h"
+#import "FLAnimatedImage.h"
 
 @interface IncomingImageFileMessageTableViewCell()
 
@@ -21,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIView *dateSeperatorContainerView;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *fileImageView;
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *fileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *messageDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateSeperatorLabel;
 
@@ -67,14 +68,28 @@
     self.fileImageView.userInteractionEnabled = YES;
     [self.fileImageView addGestureRecognizer:messageContainerTapRecognizer];
 
-    /***********************************/
-    /* Thumbnail is a premium feature. */
-    /***********************************/
-    if (self.message.thumbnails != nil && self.message.thumbnails.count > 0) {
-        [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.thumbnails[0].url] placeholderImage:[Utils imageFromColor:[Constants incomingFileImagePlaceholderColor]]];
+    if (self.message.type != nil && [self.message.type isEqualToString:@"image/gif"] ) {
+        dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
+        dispatch_async(imageLoadQueue, ^{
+            __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.message.url]]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.fileImageView setAnimatedImage:animatedImage];
+            });
+            
+        });
     }
     else {
-        [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.url] placeholderImage:[Utils imageFromColor:[Constants incomingFileImagePlaceholderColor]]];
+        /***********************************/
+        /* Thumbnail is a premium feature. */
+        /***********************************/
+        if (self.message.thumbnails != nil && self.message.thumbnails.count > 0) {
+            if (self.message.thumbnails[0].url.length > 0) {
+                [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.thumbnails[0].url]];
+            }
+        }
+        else {
+            [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.url]];
+        }
     }
 
     // Message Date

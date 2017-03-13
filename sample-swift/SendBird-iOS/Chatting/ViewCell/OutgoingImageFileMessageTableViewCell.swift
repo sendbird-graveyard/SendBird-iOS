@@ -9,6 +9,7 @@
 import UIKit
 import AlamofireImage
 import SendBirdSDK
+import FLAnimatedImage
 
 class OutgoingImageFileMessageTableViewCell: UITableViewCell {
     weak var delegate: MessageDelegate?
@@ -24,7 +25,7 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var unreadCountLabel: UILabel!
     @IBOutlet weak var dateSeperatorContainerView: UIView!
     @IBOutlet weak var dateSeperatorLabel: UILabel!
-    @IBOutlet weak var fileImageView: UIImageView!
+    @IBOutlet weak var fileImageView: FLAnimatedImageView!
     @IBOutlet weak var sendStatusLabel: UILabel!
     
     private var message: SBDFileMessage!
@@ -58,25 +59,39 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
     
     func setModel(aMessage: SBDFileMessage) {
         self.message = aMessage
-
-        /***********************************/
-        /* Thumbnail is a premium feature. */
-        /***********************************/
-        if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
-            if (self.message.thumbnails?[0].url.characters.count)! > 0 {
-                self.fileImageView.af_setImage(withURL: URL(string: (self.message.thumbnails?[0].url)!)!)
-            }
-        }
-        else {
-            if self.message.url.characters.count > 0 {
-                self.fileImageView.af_setImage(withURL:URL(string: self.message.url)!)
-            }
-        }
         
         let messageContainerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(clickFileMessage))
         self.fileImageView.isUserInteractionEnabled = true
         self.fileImageView.addGestureRecognizer(messageContainerTapRecognizer)
-        
+
+        if self.message.type == "image/gif" {
+            let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue");
+            
+            imageLoadQueue.async {
+                if let data = NSData(contentsOf: NSURL(string: self.message.url) as! URL) {
+                    let animatedImage = FLAnimatedImage(animatedGIFData: data as Data!)
+                    DispatchQueue.main.async {
+                        self.fileImageView.animatedImage = animatedImage;
+                    }
+                }
+            }
+        }
+        else {
+            /***********************************/
+            /* Thumbnail is a premium feature. */
+            /***********************************/
+            if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
+                if (self.message.thumbnails?[0].url.characters.count)! > 0 {
+                    self.fileImageView.af_setImage(withURL: URL(string: (self.message.thumbnails?[0].url)!)!)
+                }
+            }
+            else {
+                if self.message.url.characters.count > 0 {
+                    self.fileImageView.af_setImage(withURL:URL(string: self.message.url)!)
+                }
+            }
+        }
+
         self.resendMessageButton.addTarget(self, action: #selector(clickResendUserMessage), for: UIControlEvents.touchUpInside)
         self.deleteMessageButton.addTarget(self, action: #selector(clickDeleteUserMessage), for: UIControlEvents.touchUpInside)
         
@@ -252,7 +267,18 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
         self.messageDateLabel.isHidden = false
     }
     
-    func setImageData(aData: Data) {
-        self.fileImageView.image = UIImage.init(data: aData)
+    func setImageData(data: Data, type: String) {
+        if type == "image/gif" {
+            let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue");
+            imageLoadQueue.async {
+                let animatedImage = FLAnimatedImage(animatedGIFData: data)
+                DispatchQueue.main.async {
+                    self.fileImageView.animatedImage = animatedImage;
+                }
+            }
+        }
+        else {
+            self.fileImageView.image = UIImage(data: data)
+        }
     }
 }

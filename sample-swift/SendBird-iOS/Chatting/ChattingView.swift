@@ -32,8 +32,8 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     var messages: [SBDBaseMessage] = []
     var resendableMessages: [String:SBDBaseMessage] = [:]
     var preSendMessages: [String:SBDBaseMessage] = [:]
-    var resendableFileData: [String:Data] = [:]
-    var preSendFileData: [String:Data] = [:]
+    var resendableFileData: [String:[String:AnyObject]] = [:]
+    var preSendFileData: [String:[String:AnyObject]] = [:]
     var stopMeasuringVelocity: Bool = true
     var initialLoading: Bool = true
     var lastMessageHeight: CGFloat = 0
@@ -681,13 +681,13 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     
                     if self.preSendMessages[fileMessage.requestId!] != nil {
                         (cell as! OutgoingImageFileMessageTableViewCell).showSendingStatus()
-                        (cell as! OutgoingImageFileMessageTableViewCell).setImageData(aData: self.preSendFileData[fileMessage.requestId!]!)
+                        (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.preSendFileData[fileMessage.requestId!]!["data"] as! Data, type: self.preSendFileData[fileMessage.requestId!]!["type"] as! String)
                     }
                     else {
                         if self.resendableMessages[fileMessage.requestId!] != nil {
 //                            (cell as! OutgoingImageFileMessageTableViewCell).showMessageControlButton()
                             (cell as! OutgoingImageFileMessageTableViewCell).showFailedStatus()
-                            (cell as! OutgoingImageFileMessageTableViewCell).setImageData(aData: self.resendableFileData[fileMessage.requestId!]!)
+                            (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.resendableFileData[fileMessage.requestId!]?["data"] as! Data, type: self.resendableFileData[fileMessage.requestId!]?["type"] as! String)
                         }
                         else {
                             (cell as! OutgoingImageFileMessageTableViewCell).showMessageDate()

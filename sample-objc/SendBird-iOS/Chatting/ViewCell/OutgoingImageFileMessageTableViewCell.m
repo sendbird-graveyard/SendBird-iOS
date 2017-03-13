@@ -10,6 +10,7 @@
 #import "OutgoingImageFileMessageTableViewCell.h"
 #import "Utils.h"
 #import "Constants.h"
+#import "FLAnimatedImage.h"
 
 @interface OutgoingImageFileMessageTableViewCell()
 
@@ -25,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *unreadCountLabel;
 @property (weak, nonatomic) IBOutlet UIView *dateSeperatorContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *dateSeperatorLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *fileImageView;
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *fileImageView;
 
 @property (strong, nonatomic) SBDFileMessage *message;
 @property (strong, nonatomic) SBDBaseMessage *prevMessage;
@@ -65,16 +66,28 @@
 - (void)setModel:(SBDFileMessage *)aMessage {
     self.message = aMessage;
     
-    /***********************************/
-    /* Thumbnail is a premium feature. */
-    /***********************************/
-    if (self.message.thumbnails != nil && self.message.thumbnails.count > 0) {
-        if (self.message.thumbnails[0].url.length > 0) {
-            [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.thumbnails[0].url]];
-        }
+    if (self.message.type != nil && [self.message.type isEqualToString:@"image/gif"] ) {
+        dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
+        dispatch_async(imageLoadQueue, ^{
+            __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.message.url]]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.fileImageView setAnimatedImage:animatedImage];
+            });
+            
+        });
     }
     else {
-        [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.url]];
+        /***********************************/
+        /* Thumbnail is a premium feature. */
+        /***********************************/
+        if (self.message.thumbnails != nil && self.message.thumbnails.count > 0) {
+            if (self.message.thumbnails[0].url.length > 0) {
+                [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.thumbnails[0].url]];
+            }
+        }
+        else {
+            [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.url]];
+        }
     }
     
     UITapGestureRecognizer *messageContainerTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickFileMessage)];
@@ -256,8 +269,19 @@
     self.messageDateLabel.hidden = NO;
 }
 
-- (void)setImageData:(NSData * _Nonnull)imageData {
-    [self.fileImageView setImage:[UIImage imageWithData:imageData]];
+- (void)setImageData:(NSData * _Nonnull)imageData type:(NSString * _Nullable)type {
+    if (type != nil && [type isEqualToString:@"image/gif"]) {
+        dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
+        dispatch_async(imageLoadQueue, ^{
+            __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:imageData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.fileImageView setAnimatedImage:animatedImage];
+            });
+        });
+    }
+    else {
+        [self.fileImageView setImage:[UIImage imageWithData:imageData]];
+    }
 }
 
 @end

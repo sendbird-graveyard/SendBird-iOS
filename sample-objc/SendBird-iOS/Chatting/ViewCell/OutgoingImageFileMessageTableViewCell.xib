@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="179"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="178"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="179"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xlr-w5-VqB" userLabel="Date Container View">
@@ -64,20 +64,20 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVE-It-kJl" userLabel="Message Container View">
                         <rect key="frame" x="146" y="34" width="160" height="120"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o0m-EL-wBg" userLabel="File Image View">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SZ8-Im-cdz" userLabel="Animated Image View" customClass="FLAnimatedImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="160" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="160" id="LUt-tY-une"/>
-                                    <constraint firstAttribute="height" constant="120" id="fTn-nW-A2Q"/>
+                                    <constraint firstAttribute="width" constant="160" id="83W-mH-ROQ"/>
+                                    <constraint firstAttribute="height" constant="120" id="ym1-RN-oYf"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.50196078430000002" green="0.35294117650000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="o0m-EL-wBg" firstAttribute="leading" secondItem="vVE-It-kJl" secondAttribute="leading" id="2WB-8O-oey"/>
-                            <constraint firstItem="o0m-EL-wBg" firstAttribute="top" secondItem="vVE-It-kJl" secondAttribute="top" id="9iA-Ab-VrD"/>
-                            <constraint firstAttribute="trailing" secondItem="o0m-EL-wBg" secondAttribute="trailing" id="bFL-df-6DF"/>
-                            <constraint firstAttribute="bottom" secondItem="o0m-EL-wBg" secondAttribute="bottom" id="liz-F4-r5J"/>
+                            <constraint firstAttribute="bottom" secondItem="SZ8-Im-cdz" secondAttribute="bottom" id="94F-ry-L9K"/>
+                            <constraint firstAttribute="trailing" secondItem="SZ8-Im-cdz" secondAttribute="trailing" id="Ee1-Wo-Nls"/>
+                            <constraint firstItem="SZ8-Im-cdz" firstAttribute="leading" secondItem="vVE-It-kJl" secondAttribute="leading" id="jpZ-iK-3FN"/>
+                            <constraint firstItem="SZ8-Im-cdz" firstAttribute="top" secondItem="vVE-It-kJl" secondAttribute="top" id="rJY-F0-pXb"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -153,8 +153,8 @@
                 <outlet property="dateSeperatorContainerView" destination="xlr-w5-VqB" id="D3h-Ai-uDf"/>
                 <outlet property="dateSeperatorLabel" destination="jLK-1G-zlT" id="PBv-6d-VgV"/>
                 <outlet property="deleteMessageButton" destination="2ua-Pb-z1N" id="vau-MF-aIE"/>
-                <outlet property="fileImageHeight" destination="fTn-nW-A2Q" id="kdt-Ae-Tqo"/>
-                <outlet property="fileImageView" destination="o0m-EL-wBg" id="9I8-yS-BQ1"/>
+                <outlet property="fileImageHeight" destination="ym1-RN-oYf" id="j4y-uv-y0Y"/>
+                <outlet property="fileImageView" destination="SZ8-Im-cdz" id="ySW-DN-jiY"/>
                 <outlet property="messageDateLabel" destination="cFs-UU-SjC" id="tZd-ll-VDm"/>
                 <outlet property="resendMessageButton" destination="IIa-5w-dje" id="okX-ne-Qhy"/>
                 <outlet property="sendStatusLabel" destination="Tsw-4N-spP" id="9Ry-gH-m5K"/>

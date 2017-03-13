@@ -29,8 +29,9 @@
 
 @property (strong, nonatomic) NSMutableDictionary<NSString *, SBDBaseMessage *> *resendableMessages;
 @property (strong, nonatomic) NSMutableDictionary<NSString *, SBDBaseMessage *> *preSendMessages;
-@property (strong, nonatomic) NSMutableDictionary<NSString *, NSData *> *resendableFileData;
-@property (strong, nonatomic) NSMutableDictionary<NSString *, NSData *> *preSendFileData;
+
+@property (strong, nonatomic) NSMutableDictionary<NSString *, NSDictionary<NSString *, NSObject *> *> *resendableFileData;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, NSDictionary<NSString *, NSObject *> *> *preSendFileData;
 
 @property (weak, nonatomic) IBOutlet UIButton *fileAttachButton;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;

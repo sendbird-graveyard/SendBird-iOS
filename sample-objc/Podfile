@@ -9,4 +9,5 @@ target 'SendBird-iOS' do
   pod 'SendBirdSDK', '~> 3.0'
   pod 'MGSwipeTableCell'
   pod 'AFNetworking'
+  pod 'FLAnimatedImage', '~> 1.0'
 end

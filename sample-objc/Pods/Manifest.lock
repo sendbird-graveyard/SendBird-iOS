@@ -14,19 +14,22 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - FLAnimatedImage (1.0.12)
   - MGSwipeTableCell (1.5.6)
-  - SendBirdSDK (3.0.42)
+  - SendBirdSDK (3.0.44)
 
 DEPENDENCIES:
   - AFNetworking
+  - FLAnimatedImage (~> 1.0)
   - MGSwipeTableCell
   - SendBirdSDK (~> 3.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
-  SendBirdSDK: 1a3f542a14ec674cd8c7c61da7bd4e939e729128
+  SendBirdSDK: 976ced2079ea1fef23f97b51c1d09aaa70ff8182
 
-PODFILE CHECKSUM: 32ef896ba2bc235646ee5aead575f0a9f0aa0d42
+PODFILE CHECKSUM: 8a300c951cf6687f3030026ea305bbf737f1f26f
 
 COCOAPODS: 1.1.1
