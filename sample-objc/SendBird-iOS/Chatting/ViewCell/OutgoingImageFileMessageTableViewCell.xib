@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="179"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="179"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="178"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xlr-w5-VqB" userLabel="Date Container View">
@@ -137,7 +137,6 @@
                     <constraint firstItem="cFs-UU-SjC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="36" id="XUV-aM-8mb"/>
                     <constraint firstAttribute="trailing" secondItem="vVE-It-kJl" secondAttribute="trailing" constant="14" id="YGp-9u-I2y"/>
                     <constraint firstItem="xlr-w5-VqB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Zbw-j4-hIQ"/>
-                    <constraint firstItem="xlr-w5-VqB" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="eXe-rA-J4e"/>
                     <constraint firstItem="cFs-UU-SjC" firstAttribute="top" secondItem="hbf-MR-kCw" secondAttribute="bottom" id="fyA-b1-Kwy"/>
                     <constraint firstItem="Tsw-4N-spP" firstAttribute="top" secondItem="hbf-MR-kCw" secondAttribute="bottom" id="lDo-06-luX"/>
                     <constraint firstItem="IIa-5w-dje" firstAttribute="bottom" secondItem="vVE-It-kJl" secondAttribute="bottom" id="ph0-NZ-w7Q"/>

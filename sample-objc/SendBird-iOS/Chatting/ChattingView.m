@@ -14,6 +14,8 @@
 #import "OutgoingImageFileMessageTableViewCell.h"
 #import "OutgoingFileMessageTableViewCell.h"
 #import "IncomingImageFileMessageTableViewCell.h"
+#import "IncomingVideoFileMessageTableViewCell.h"
+#import "OutgoingVideoFileMessageTableViewCell.h"
 
 @interface ChattingView()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *typingIndicatorContainerViewHeight;
@@ -29,6 +31,8 @@
 @property (strong, nonatomic) OutgoingImageFileMessageTableViewCell *outgoingImageFileMessageSizingTableViewCell;
 @property (strong, nonatomic) OutgoingFileMessageTableViewCell *outgoingFileMessageSizingTableViewCell;
 @property (strong, nonatomic) IncomingImageFileMessageTableViewCell *incomingImageFileMessageSizingTableViewCell;
+@property (strong, nonatomic) IncomingVideoFileMessageTableViewCell *incomingVideoFileMessageSizingTableViewCell;
+@property (strong, nonatomic) OutgoingVideoFileMessageTableViewCell *outgoingVideoFileMessageSizingTableViewCell;
 
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
 
@@ -93,6 +97,8 @@
     [self.chattingTableView registerNib:[OutgoingImageFileMessageTableViewCell nib] forCellReuseIdentifier:[OutgoingImageFileMessageTableViewCell cellReuseIdentifier]];
     [self.chattingTableView registerNib:[OutgoingFileMessageTableViewCell nib] forCellReuseIdentifier:[OutgoingFileMessageTableViewCell cellReuseIdentifier]];
     [self.chattingTableView registerNib:[IncomingImageFileMessageTableViewCell nib] forCellReuseIdentifier:[IncomingImageFileMessageTableViewCell cellReuseIdentifier]];
+    [self.chattingTableView registerNib:[IncomingVideoFileMessageTableViewCell nib] forCellReuseIdentifier:[IncomingVideoFileMessageTableViewCell cellReuseIdentifier]];
+    [self.chattingTableView registerNib:[OutgoingVideoFileMessageTableViewCell nib] forCellReuseIdentifier:[OutgoingVideoFileMessageTableViewCell cellReuseIdentifier]];
     
     self.chattingTableView.delegate = self;
     self.chattingTableView.dataSource = self;
@@ -135,6 +141,16 @@
     [self.incomingImageFileMessageSizingTableViewCell setFrame:self.frame];
     [self.incomingImageFileMessageSizingTableViewCell setHidden:YES];
     [self addSubview:self.incomingImageFileMessageSizingTableViewCell];
+    
+    self.incomingVideoFileMessageSizingTableViewCell = (IncomingVideoFileMessageTableViewCell *)[[[IncomingVideoFileMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
+    [self.incomingVideoFileMessageSizingTableViewCell setFrame:self.frame];
+    [self.incomingVideoFileMessageSizingTableViewCell setHidden:YES];
+    [self addSubview:self.incomingVideoFileMessageSizingTableViewCell];
+    
+    self.outgoingVideoFileMessageSizingTableViewCell = (OutgoingVideoFileMessageTableViewCell *)[[[OutgoingVideoFileMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
+    [self.outgoingVideoFileMessageSizingTableViewCell setFrame:self.frame];
+    [self.outgoingVideoFileMessageSizingTableViewCell setHidden:YES];
+    [self addSubview:self.outgoingVideoFileMessageSizingTableViewCell];
 }
 
 - (void)scrollToBottomAnimated:(BOOL)animated force:(BOOL)force {
@@ -307,13 +323,13 @@
             // Outgoing
             if ([fileMessage.type hasPrefix:@"video"]) {
                 if (indexPath.row > 0) {
-                    [self.outgoingFileMessageSizingTableViewCell setPreviousMessage:self.messages[indexPath.row - 1]];
+                    [self.outgoingVideoFileMessageSizingTableViewCell setPreviousMessage:self.messages[indexPath.row - 1]];
                 }
                 else {
-                    [self.outgoingFileMessageSizingTableViewCell setPreviousMessage:nil];
+                    [self.outgoingVideoFileMessageSizingTableViewCell setPreviousMessage:nil];
                 }
-                [self.outgoingFileMessageSizingTableViewCell setModel:fileMessage];
-                height = [self.outgoingFileMessageSizingTableViewCell getHeightOfViewCell];
+                [self.outgoingVideoFileMessageSizingTableViewCell setModel:fileMessage];
+                height = [self.outgoingVideoFileMessageSizingTableViewCell getHeightOfViewCell];
             }
             else if ([fileMessage.type hasPrefix:@"audio"]) {
                 if (indexPath.row > 0) {
@@ -350,13 +366,13 @@
             // Incoming
             if ([fileMessage.type hasPrefix:@"video"]) {
                 if (indexPath.row > 0) {
-                    [self.incomingFileMessageSizingTableViewCell setPreviousMessage:self.messages[indexPath.row - 1]];
+                    [self.incomingVideoFileMessageSizingTableViewCell setPreviousMessage:self.messages[indexPath.row - 1]];
                 }
                 else {
-                    [self.incomingFileMessageSizingTableViewCell setPreviousMessage:nil];
+                    [self.incomingVideoFileMessageSizingTableViewCell setPreviousMessage:nil];
                 }
-                [self.incomingFileMessageSizingTableViewCell setModel:fileMessage];
-                height = [self.incomingFileMessageSizingTableViewCell getHeightOfViewCell];
+                [self.incomingVideoFileMessageSizingTableViewCell setModel:fileMessage];
+                height = [self.incomingVideoFileMessageSizingTableViewCell getHeightOfViewCell];
             }
             else if ([fileMessage.type hasPrefix:@"audio"]) {
                 if (indexPath.row > 0) {
@@ -625,28 +641,28 @@
         if ([sender.userId isEqualToString:[SBDMain getCurrentUser].userId]) {
             // Outgoing
             if ([fileMessage.type hasPrefix:@"video"]) {
-                cell = [tableView dequeueReusableCellWithIdentifier:[OutgoingFileMessageTableViewCell cellReuseIdentifier]];
+                cell = [tableView dequeueReusableCellWithIdentifier:[OutgoingVideoFileMessageTableViewCell cellReuseIdentifier]];
                 cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
                 if (indexPath.row > 0) {
-                    [(OutgoingFileMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
+                    [(OutgoingVideoFileMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
                 }
                 else {
-                    [(OutgoingFileMessageTableViewCell *)cell setPreviousMessage:nil];
+                    [(OutgoingVideoFileMessageTableViewCell *)cell setPreviousMessage:nil];
                 }
-                [(OutgoingFileMessageTableViewCell *)cell setModel:fileMessage];
-                ((OutgoingFileMessageTableViewCell *)cell).delegate = self.delegate;
+                [(OutgoingVideoFileMessageTableViewCell *)cell setModel:fileMessage];
+                ((OutgoingVideoFileMessageTableViewCell *)cell).delegate = self.delegate;
                 
                 if (self.preSendMessages[fileMessage.requestId] != nil && ![self.preSendMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
-                    [(OutgoingFileMessageTableViewCell *)cell showSendingStatus];
+                    [(OutgoingVideoFileMessageTableViewCell *)cell showSendingStatus];
                 }
                 else {
                     if (self.resendableMessages[fileMessage.requestId] != nil && ![self.resendableMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
-//                        [(OutgoingFileMessageTableViewCell *)cell showMessageControlButton];
-                        [(OutgoingFileMessageTableViewCell *)cell showFailedStatus];
+//                        [(OutgoingVideoFileMessageTableViewCell *)cell showMessageControlButton];
+                        [(OutgoingVideoFileMessageTableViewCell *)cell showFailedStatus];
                     }
                     else {
-                        [(OutgoingFileMessageTableViewCell *)cell showMessageDate];
-                        [(OutgoingFileMessageTableViewCell *)cell showUnreadCount];
+                        [(OutgoingVideoFileMessageTableViewCell *)cell showMessageDate];
+                        [(OutgoingVideoFileMessageTableViewCell *)cell showUnreadCount];
                     }
                 }
             }
@@ -734,16 +750,16 @@
         else {
             // Incoming
             if ([fileMessage.type hasPrefix:@"video"]) {
-                cell = [tableView dequeueReusableCellWithIdentifier:[IncomingFileMessageTableViewCell cellReuseIdentifier]];
+                cell = [tableView dequeueReusableCellWithIdentifier:[IncomingVideoFileMessageTableViewCell cellReuseIdentifier]];
                 cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
                 if (indexPath.row > 0) {
-                    [(IncomingFileMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
+                    [(IncomingVideoFileMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
                 }
                 else {
-                    [(IncomingFileMessageTableViewCell *)cell setPreviousMessage:nil];
+                    [(IncomingVideoFileMessageTableViewCell *)cell setPreviousMessage:nil];
                 }
-                [(IncomingFileMessageTableViewCell *)cell setModel:fileMessage];
-                ((IncomingFileMessageTableViewCell *)cell).delegate = self.delegate;
+                [(IncomingVideoFileMessageTableViewCell *)cell setModel:fileMessage];
+                ((IncomingVideoFileMessageTableViewCell *)cell).delegate = self.delegate;
             }
             else if ([fileMessage.type hasPrefix:@"audio"]) {
                 cell = [tableView dequeueReusableCellWithIdentifier:[IncomingFileMessageTableViewCell cellReuseIdentifier]];
