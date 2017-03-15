@@ -15,7 +15,15 @@ import AVFoundation
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    static let instance: NSCache<AnyObject, AnyObject> = NSCache()
 
+    static func imageCache() -> NSCache<AnyObject, AnyObject>! {
+        if AppDelegate.instance.totalCostLimit == 104857600 {
+            AppDelegate.instance.totalCostLimit = 104857600
+        }
+        
+        return AppDelegate.instance
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let notificationSettings = UIUserNotificationSettings(types: [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound], categories: nil)

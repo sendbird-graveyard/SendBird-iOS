@@ -71,13 +71,19 @@
                                     <constraint firstAttribute="height" constant="120" id="fTn-nW-A2Q"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="QtR-Bl-Qk2">
+                                <rect key="frame" x="70" y="50" width="20" height="20"/>
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.50196078430000002" green="0.35294117650000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="QtR-Bl-Qk2" firstAttribute="centerX" secondItem="vVE-It-kJl" secondAttribute="centerX" id="27h-5D-msE"/>
                             <constraint firstItem="o0m-EL-wBg" firstAttribute="leading" secondItem="vVE-It-kJl" secondAttribute="leading" id="2WB-8O-oey"/>
                             <constraint firstItem="o0m-EL-wBg" firstAttribute="top" secondItem="vVE-It-kJl" secondAttribute="top" id="9iA-Ab-VrD"/>
                             <constraint firstAttribute="trailing" secondItem="o0m-EL-wBg" secondAttribute="trailing" id="bFL-df-6DF"/>
                             <constraint firstAttribute="bottom" secondItem="o0m-EL-wBg" secondAttribute="bottom" id="liz-F4-r5J"/>
+                            <constraint firstItem="QtR-Bl-Qk2" firstAttribute="centerY" secondItem="vVE-It-kJl" secondAttribute="centerY" id="yFN-cv-2JI"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -139,7 +145,6 @@
                     <constraint firstItem="cFs-UU-SjC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="36" id="XUV-aM-8mb"/>
                     <constraint firstAttribute="trailing" secondItem="vVE-It-kJl" secondAttribute="trailing" constant="14" id="YGp-9u-I2y"/>
                     <constraint firstItem="xlr-w5-VqB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Zbw-j4-hIQ"/>
-                    <constraint firstItem="xlr-w5-VqB" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="eXe-rA-J4e"/>
                     <constraint firstItem="cFs-UU-SjC" firstAttribute="top" secondItem="hbf-MR-kCw" secondAttribute="bottom" id="fyA-b1-Kwy"/>
                     <constraint firstItem="IIa-5w-dje" firstAttribute="bottom" secondItem="vVE-It-kJl" secondAttribute="bottom" id="ph0-NZ-w7Q"/>
                     <constraint firstItem="vVE-It-kJl" firstAttribute="top" secondItem="xlr-w5-VqB" secondAttribute="bottom" constant="10" id="uK0-Lv-YNP"/>
@@ -155,6 +160,7 @@
                 <outlet property="deleteMessageButton" destination="2ua-Pb-z1N" id="vau-MF-aIE"/>
                 <outlet property="fileImageHeight" destination="fTn-nW-A2Q" id="kdt-Ae-Tqo"/>
                 <outlet property="fileImageView" destination="o0m-EL-wBg" id="9I8-yS-BQ1"/>
+                <outlet property="imageLoadingIndicator" destination="QtR-Bl-Qk2" id="3DC-Be-E41"/>
                 <outlet property="messageDateLabel" destination="cFs-UU-SjC" id="tZd-ll-VDm"/>
                 <outlet property="resendMessageButton" destination="IIa-5w-dje" id="okX-ne-Qhy"/>
                 <outlet property="sendStatusLabel" destination="Roy-Vp-8Lm" id="zQq-eG-SeI"/>

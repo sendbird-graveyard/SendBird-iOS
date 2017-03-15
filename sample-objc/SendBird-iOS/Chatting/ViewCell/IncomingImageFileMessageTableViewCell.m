@@ -71,6 +71,7 @@
     self.fileImageView.userInteractionEnabled = YES;
     [self.fileImageView addGestureRecognizer:messageContainerTapRecognizer];
 
+    self.imageLoadingIndicator.hidden = YES;
     if (self.message.type != nil && [self.message.type isEqualToString:@"image/gif"] ) {
         FLAnimatedImage *cachedImageData = (FLAnimatedImage *)[[AppDelegate imageCache] objectForKey:self.message.url];
         if (cachedImageData != nil) {

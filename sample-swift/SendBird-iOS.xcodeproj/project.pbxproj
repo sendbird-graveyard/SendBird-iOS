@@ -73,6 +73,10 @@
 		5ADEF82A1DAA663C000AABF9 /* CreateGroupChannelUserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADEF8291DAA663C000AABF9 /* CreateGroupChannelUserListTableViewCell.swift */; };
 		5ADEF82C1DAA67C5000AABF9 /* GroupChannelListEditableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADEF82B1DAA67C5000AABF9 /* GroupChannelListEditableTableViewCell.swift */; };
 		8F4B9B4CF66474515B5345D2 /* Pods_SendBird_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3A2CB679067572774BDE5D /* Pods_SendBird_iOS.framework */; };
+		CE806EF61E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE806EF41E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift */; };
+		CE806EF71E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806EF51E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib */; };
+		CE806EFA1E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE806EF81E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift */; };
+		CE806EFB1E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806EF91E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib */; };
 		E25E5A771E735BC8003E1E9B /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E25E5A761E735BC8003E1E9B /* Photos.framework */; };
 /* End PBXBuildFile section */
 
@@ -159,6 +163,10 @@
 		8F3A2CB679067572774BDE5D /* Pods_SendBird_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SendBird_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96683C54D2DA7CFBF0C23471 /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C879E57358A8287C34B477A5 /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		CE806EF41E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncomingVideoFileMessageTableViewCell.swift; path = ../../GroupChannel/ViewCell/IncomingVideoFileMessageTableViewCell.swift; sourceTree = "<group>"; };
+		CE806EF51E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IncomingVideoFileMessageTableViewCell.xib; path = ../../GroupChannel/ViewCell/IncomingVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		CE806EF81E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutgoingVideoFileMessageTableViewCell.swift; path = ../../GroupChannel/ViewCell/OutgoingVideoFileMessageTableViewCell.swift; sourceTree = "<group>"; };
+		CE806EF91E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OutgoingVideoFileMessageTableViewCell.xib; path = ../../GroupChannel/ViewCell/OutgoingVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
 		E25E5A761E735BC8003E1E9B /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -241,6 +249,10 @@
 				5ABA0BD31DA75357000C82DC /* OutgoingUserMessageTableViewCell.swift */,
 				5ABA0BBF1DA62094000C82DC /* OutgoingUserMessageTableViewCell.xib */,
 				5ABA0BB11DA60559000C82DC /* MessageDelegate.swift */,
+				CE806EF41E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift */,
+				CE806EF51E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib */,
+				CE806EF81E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift */,
+				CE806EF91E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib */,
 			);
 			path = ViewCell;
 			sourceTree = "<group>";
@@ -422,6 +434,7 @@
 			files = (
 				5AC2B6DB1DB6108300BA4BC7 /* CreateGroupChannelSelectOptionViewController.xib in Resources */,
 				5ABA0B8B1DA6010A000C82DC /* LaunchScreen.storyboard in Resources */,
+				CE806EFB1E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib in Resources */,
 				5ABA0BC21DA62094000C82DC /* IncomingUserMessageTableViewCell.xib in Resources */,
 				5ADEF81E1DAA616A000AABF9 /* SelectedUserListCollectionViewCell.xib in Resources */,
 				5AC2B6E51DB6168100BA4BC7 /* GroupChannelListViewController.xib in Resources */,
@@ -433,6 +446,7 @@
 				5AC2B6EF1DB61C3300BA4BC7 /* MenuViewController.xib in Resources */,
 				5ABA0BC41DA62094000C82DC /* OutgoingFileMessageTableViewCell.xib in Resources */,
 				5AD94BB71DAF220100A6CD66 /* ParticipantListTableViewCell.xib in Resources */,
+				CE806EF71E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib in Resources */,
 				5ADEF81D1DAA616A000AABF9 /* MemberListTableViewCell.xib in Resources */,
 				5ADEF81A1DAA616A000AABF9 /* CreateGroupChannelUserListTableViewCell.xib in Resources */,
 				5ABA0BC31DA62094000C82DC /* NeutralMessageTableViewCell.xib in Resources */,
@@ -530,6 +544,7 @@
 				5ABA0BD81DA76FFD000C82DC /* ChattingView.swift in Sources */,
 				5AD94B991DAB305700A6CD66 /* SelectedUserListCollectionViewCell.swift in Sources */,
 				5ABA0BD21DA74F5C000C82DC /* OutgoingImageFileMessageTableViewCell.swift in Sources */,
+				CE806EF61E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift in Sources */,
 				5ABA0BCE1DA7277A000C82DC /* NeutralMessageTableViewCell.swift in Sources */,
 				5AD94B951DAB1E1D00A6CD66 /* GroupChannelListTableViewCell.swift in Sources */,
 				5AD94BE41DB4A8D800A6CD66 /* Constants.swift in Sources */,
@@ -537,6 +552,7 @@
 				5ABA0BD61DA76B50000C82DC /* ReusableViewFromXib.swift in Sources */,
 				5AD94BBF1DAF560100A6CD66 /* CreateOpenChannelViewController.swift in Sources */,
 				5ABA0BCA1DA64707000C82DC /* Utils.swift in Sources */,
+				CE806EFA1E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift in Sources */,
 				5AD94C2C1DB5F74A00A6CD66 /* Bundle+SendBird.swift in Sources */,
 				5AD94BB91DAF24AD00A6CD66 /* OpenChannelListTableViewCell.swift in Sources */,
 				5AD94BA11DAB878600A6CD66 /* GroupChannelChattingViewController.swift in Sources */,

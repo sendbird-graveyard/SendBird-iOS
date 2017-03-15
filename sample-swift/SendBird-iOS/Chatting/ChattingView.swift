@@ -49,6 +49,8 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     var outgoingImageFileMessageSizingTableViewCell: OutgoingImageFileMessageTableViewCell?
     var outgoingFileMessageSizingTableViewCell: OutgoingFileMessageTableViewCell?
     var incomingImageFileMessageSizingTableViewCell: IncomingImageFileMessageTableViewCell?
+    var incomingVideoFileMessageSizingTableViewCell: IncomingVideoFileMessageTableViewCell?
+    var outgoingVideoFileMessageSizingTableViewCell: OutgoingVideoFileMessageTableViewCell?
 
     var delegate: ChattingViewDelegate & MessageDelegate?
     
@@ -83,6 +85,8 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
         self.chattingTableView.register(OutgoingImageFileMessageTableViewCell.nib(), forCellReuseIdentifier: OutgoingImageFileMessageTableViewCell.cellReuseIdentifier())
         self.chattingTableView.register(OutgoingFileMessageTableViewCell.nib(), forCellReuseIdentifier: OutgoingFileMessageTableViewCell.cellReuseIdentifier())
         self.chattingTableView.register(IncomingImageFileMessageTableViewCell.nib(), forCellReuseIdentifier: IncomingImageFileMessageTableViewCell.cellReuseIdentifier())
+        self.chattingTableView.register(IncomingVideoFileMessageTableViewCell.nib(), forCellReuseIdentifier: IncomingVideoFileMessageTableViewCell.cellReuseIdentifier())
+        self.chattingTableView.register(OutgoingVideoFileMessageTableViewCell.nib(), forCellReuseIdentifier: OutgoingVideoFileMessageTableViewCell.cellReuseIdentifier())
         
         self.chattingTableView.delegate = self
         self.chattingTableView.dataSource = self
@@ -125,6 +129,16 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
         self.incomingImageFileMessageSizingTableViewCell?.frame = self.frame
         self.incomingImageFileMessageSizingTableViewCell?.isHidden = true
         self.addSubview(self.incomingImageFileMessageSizingTableViewCell!)
+        
+        self.incomingVideoFileMessageSizingTableViewCell = IncomingVideoFileMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? IncomingVideoFileMessageTableViewCell
+        self.incomingVideoFileMessageSizingTableViewCell?.frame = self.frame
+        self.incomingVideoFileMessageSizingTableViewCell?.isHidden = true
+        self.addSubview(self.incomingVideoFileMessageSizingTableViewCell!)
+        
+        self.outgoingVideoFileMessageSizingTableViewCell = OutgoingVideoFileMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? OutgoingVideoFileMessageTableViewCell
+        self.outgoingVideoFileMessageSizingTableViewCell?.frame = self.frame
+        self.outgoingVideoFileMessageSizingTableViewCell?.isHidden = true
+        self.addSubview(self.outgoingVideoFileMessageSizingTableViewCell!)
     }
     
     func scrollToBottom(animated: Bool, force: Bool) {
@@ -296,13 +310,13 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                 // Outgoing
                 if fileMessage.type.hasPrefix("video") {
                     if indexPath.row > 0 {
-                        self.outgoingFileMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+                        self.outgoingVideoFileMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
                     }
                     else {
-                        self.outgoingFileMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: nil)
+                        self.outgoingVideoFileMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: nil)
                     }
-                    self.outgoingFileMessageSizingTableViewCell?.setModel(aMessage: fileMessage)
-                    height = (self.outgoingFileMessageSizingTableViewCell?.getHeightOfViewCell())!
+                    self.outgoingVideoFileMessageSizingTableViewCell?.setModel(aMessage: fileMessage)
+                    height = (self.outgoingVideoFileMessageSizingTableViewCell?.getHeightOfViewCell())!
                 }
                 else if fileMessage.type.hasPrefix("audio") {
                     if indexPath.row > 0 {
@@ -339,13 +353,13 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                 // Incoming
                 if fileMessage.type.hasPrefix("video") {
                     if indexPath.row > 0 {
-                        self.incomingFileMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+                        self.incomingVideoFileMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
                     }
                     else {
-                        self.incomingFileMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: nil)
+                        self.incomingVideoFileMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: nil)
                     }
-                    self.incomingFileMessageSizingTableViewCell?.setModel(aMessage: fileMessage)
-                    height = (self.incomingFileMessageSizingTableViewCell?.getHeightOfViewCell())!
+                    self.incomingVideoFileMessageSizingTableViewCell?.setModel(aMessage: fileMessage)
+                    height = (self.incomingVideoFileMessageSizingTableViewCell?.getHeightOfViewCell())!
                 }
                 else if fileMessage.type.hasPrefix("audio") {
                     if indexPath.row > 0 {
@@ -618,28 +632,28 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             if sender?.userId == SBDMain.getCurrentUser()?.userId {
                 // Outgoing
                 if fileMessage.type.hasPrefix("video") {
-                    cell = tableView.dequeueReusableCell(withIdentifier: OutgoingFileMessageTableViewCell.cellReuseIdentifier())
+                    cell = tableView.dequeueReusableCell(withIdentifier: OutgoingVideoFileMessageTableViewCell.cellReuseIdentifier())
                     cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
                     if indexPath.row > 0 {
-                        (cell as! OutgoingFileMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+                        (cell as! OutgoingVideoFileMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
                     }
                     else {
-                        (cell as! OutgoingFileMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
+                        (cell as! OutgoingVideoFileMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
                     }
-                    (cell as! OutgoingFileMessageTableViewCell).setModel(aMessage: fileMessage)
-                    (cell as! OutgoingFileMessageTableViewCell).delegate = self.delegate
+                    (cell as! OutgoingVideoFileMessageTableViewCell).setModel(aMessage: fileMessage)
+                    (cell as! OutgoingVideoFileMessageTableViewCell).delegate = self.delegate
                     
                     if self.preSendMessages[fileMessage.requestId!] != nil {
-                        (cell as! OutgoingFileMessageTableViewCell).showSendingStatus()
+                        (cell as! OutgoingVideoFileMessageTableViewCell).showSendingStatus()
                     }
                     else {
                         if self.resendableMessages[fileMessage.requestId!] != nil {
-//                            (cell as! OutgoingFileMessageTableViewCell).showMessageControlButton()
-                            (cell as! OutgoingFileMessageTableViewCell).showFailedStatus()
+//                            (cell as! OutgoingVideoFileMessageTableViewCell).showMessageControlButton()
+                            (cell as! OutgoingVideoFileMessageTableViewCell).showFailedStatus()
                         }
                         else {
-                            (cell as! OutgoingFileMessageTableViewCell).showMessageDate()
-                            (cell as! OutgoingFileMessageTableViewCell).showUnreadCount()
+                            (cell as! OutgoingVideoFileMessageTableViewCell).showMessageDate()
+                            (cell as! OutgoingVideoFileMessageTableViewCell).showUnreadCount()
                         }
                     }
                 }
@@ -727,16 +741,16 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             else {
                 // Incoming
                 if fileMessage.type.hasPrefix("video") {
-                    cell = tableView.dequeueReusableCell(withIdentifier: IncomingFileMessageTableViewCell.cellReuseIdentifier())
+                    cell = tableView.dequeueReusableCell(withIdentifier: IncomingVideoFileMessageTableViewCell.cellReuseIdentifier())
                     cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
                     if indexPath.row > 0 {
-                        (cell as! IncomingFileMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+                        (cell as! IncomingVideoFileMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
                     }
                     else {
-                        (cell as! IncomingFileMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
+                        (cell as! IncomingVideoFileMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
                     }
-                    (cell as! IncomingFileMessageTableViewCell).setModel(aMessage: fileMessage)
-                    (cell as! IncomingFileMessageTableViewCell).delegate = self.delegate
+                    (cell as! IncomingVideoFileMessageTableViewCell).setModel(aMessage: fileMessage)
+                    (cell as! IncomingVideoFileMessageTableViewCell).delegate = self.delegate
                 }
                 else if fileMessage.type.hasPrefix("audio") {
                     cell = tableView.dequeueReusableCell(withIdentifier: IncomingFileMessageTableViewCell.cellReuseIdentifier())
