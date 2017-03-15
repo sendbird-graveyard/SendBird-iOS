@@ -27,6 +27,7 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var dateSeperatorLabel: UILabel!
     @IBOutlet weak var fileImageView: FLAnimatedImageView!
     @IBOutlet weak var sendStatusLabel: UILabel!
+    @IBOutlet weak var imageLoadingIndicator: UIActivityIndicatorView!
     
     private var message: SBDFileMessage!
     private var prevMessage: SBDBaseMessage!
@@ -64,14 +65,33 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
         self.fileImageView.isUserInteractionEnabled = true
         self.fileImageView.addGestureRecognizer(messageContainerTapRecognizer)
 
+        self.imageLoadingIndicator.isHidden = true
         if self.message.type == "image/gif" {
-            let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue");
-            
-            imageLoadQueue.async {
-                if let data = NSData(contentsOf: NSURL(string: self.message.url) as! URL) {
-                    let animatedImage = FLAnimatedImage(animatedGIFData: data as Data!)
-                    DispatchQueue.main.async {
-                        self.fileImageView.animatedImage = animatedImage;
+            let cachedImageData = AppDelegate.imageCache().object(forKey: self.message.url as AnyObject) as? FLAnimatedImage
+            if cachedImageData != nil {
+                DispatchQueue.main.async {
+                    self.fileImageView.animatedImage = cachedImageData;
+                }
+            }
+            else {
+                self.fileImageView.animatedImage = nil
+                DispatchQueue.main.async {
+                    self.imageLoadingIndicator.isHidden = false
+                    self.imageLoadingIndicator.startAnimating()
+                }
+                let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue");
+                imageLoadQueue.async {
+                    if let data = NSData(contentsOf: NSURL(string: self.message.url) as! URL) {
+                        let animatedImage = FLAnimatedImage(animatedGIFData: data as Data!)
+                        AppDelegate.imageCache().setObject(animatedImage!, forKey: self.message.url as AnyObject)
+                        DispatchQueue.main.async {
+                            self.fileImageView.animatedImage = animatedImage;
+                            
+                            DispatchQueue.main.async {
+                                self.imageLoadingIndicator.isHidden = true
+                                self.imageLoadingIndicator.stopAnimating()
+                            }
+                        }
                     }
                 }
             }

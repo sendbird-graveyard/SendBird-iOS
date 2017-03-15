@@ -1,31 +1,28 @@
 //
-//  IncomingImageFileMessageTableViewCell.swift
+//  IncomingVideoFileMessageTableViewCell.swift
 //  SendBird-iOS
 //
-//  Created by Jed Kyung on 10/6/16.
-//  Copyright © 2016 SendBird. All rights reserved.
+//  Created by Jebeom Gyeong on 14/03/2017.
+//  Copyright © 2017 SendBird. All rights reserved.
 //
 
 import UIKit
 import AlamofireImage
 import SendBirdSDK
-import FLAnimatedImage
 
-class IncomingImageFileMessageTableViewCell: UITableViewCell {
+class IncomingVideoFileMessageTableViewCell: UITableViewCell {
     weak var delegate: MessageDelegate?
     
     @IBOutlet weak var dateContainerTopMargin: NSLayoutConstraint!
     @IBOutlet weak var dateContainerHeight: NSLayoutConstraint!
     @IBOutlet weak var dateContainerBottomMargin: NSLayoutConstraint!
     @IBOutlet weak var fileImageHeight: NSLayoutConstraint!
-
+    
     @IBOutlet weak var dateSeperatorContainerView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var fileImageView: FLAnimatedImageView!
+    @IBOutlet weak var fileImageView: UIImageView!
     @IBOutlet weak var messageDateLabel: UILabel!
     @IBOutlet weak var dateSeperatorLabel: UILabel!
-    
-    @IBOutlet weak var imageLoadingIndicator: UIActivityIndicatorView!
     
     private var message: SBDFileMessage!
     private var prevMessage: SBDBaseMessage!
@@ -37,7 +34,7 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
     static func cellReuseIdentifier() -> String {
         return String(describing: self)
     }
-
+    
     @objc private func clickProfileImage() {
         if self.delegate != nil {
             self.delegate?.clickProfileImage(viewCell: self, user: self.message!.sender!)
@@ -63,50 +60,18 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
         self.fileImageView.isUserInteractionEnabled = true
         self.fileImageView.addGestureRecognizer(messageContainerTapRecognizer)
         
-        self.imageLoadingIndicator.isHidden = true
-        if self.message.type == "image/gif" {
-            let cachedImageData = AppDelegate.imageCache().object(forKey: self.message.url as AnyObject) as? FLAnimatedImage
-            if cachedImageData != nil {
-                DispatchQueue.main.async {
-                    self.fileImageView.animatedImage = cachedImageData;
-                }
-            }
-            else {
-                self.fileImageView.animatedImage = nil
-                DispatchQueue.main.async {
-                    self.imageLoadingIndicator.isHidden = false
-                    self.imageLoadingIndicator.startAnimating()
-                }
-                let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue");
-                imageLoadQueue.async {
-                    if let data = NSData(contentsOf: NSURL(string: self.message.url) as! URL) {
-                        let animatedImage = FLAnimatedImage(animatedGIFData: data as Data!)
-                        AppDelegate.imageCache().setObject(animatedImage!, forKey: self.message.url as AnyObject)
-                        DispatchQueue.main.async {
-                            self.fileImageView.animatedImage = animatedImage;
-                            
-                            DispatchQueue.main.async {
-                                self.imageLoadingIndicator.isHidden = true
-                                self.imageLoadingIndicator.stopAnimating()
-                            }
-                        }
-                    }
-                }
+        
+        /***********************************/
+        /* Thumbnail is a premium feature. */
+        /***********************************/
+        if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
+            if (self.message.thumbnails?[0].url.characters.count)! > 0 {
+                self.fileImageView.af_setImage(withURL: URL(string: (self.message.thumbnails?[0].url)!)!)
             }
         }
         else {
-            /***********************************/
-            /* Thumbnail is a premium feature. */
-            /***********************************/
-            if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
-                if (self.message.thumbnails?[0].url.characters.count)! > 0 {
-                    self.fileImageView.af_setImage(withURL: URL(string: (self.message.thumbnails?[0].url)!)!)
-                }
-            }
-            else {
-                if self.message.url.characters.count > 0 {
-                    self.fileImageView.af_setImage(withURL:URL(string: self.message.url)!)
-                }
+            if self.message.url.characters.count > 0 {
+                self.fileImageView.af_setImage(withURL:URL(string: self.message.url)!)
             }
         }
         

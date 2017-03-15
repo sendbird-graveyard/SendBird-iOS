@@ -69,6 +69,7 @@
 - (void)setModel:(SBDFileMessage *)aMessage {
     self.message = aMessage;
     
+    self.imageLoadingIndicator.hidden = YES;
     if (self.message.url != nil && self.message.url.length > 0 && self.message.type != nil && [self.message.type isEqualToString:@"image/gif"]) {
         FLAnimatedImage *cachedImageData = (FLAnimatedImage *)[[AppDelegate imageCache] objectForKey:self.message.url];
         if (cachedImageData != nil) {

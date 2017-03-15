@@ -1,31 +1,31 @@
 //
-//  IncomingImageFileMessageTableViewCell.swift
+//  OutgoingVideoFileMessageTableViewCell.swift
 //  SendBird-iOS
 //
-//  Created by Jed Kyung on 10/6/16.
-//  Copyright © 2016 SendBird. All rights reserved.
+//  Created by Jebeom Gyeong on 14/03/2017.
+//  Copyright © 2017 SendBird. All rights reserved.
 //
 
 import UIKit
 import AlamofireImage
 import SendBirdSDK
-import FLAnimatedImage
 
-class IncomingImageFileMessageTableViewCell: UITableViewCell {
+class OutgoingVideoFileMessageTableViewCell: UITableViewCell {
     weak var delegate: MessageDelegate?
     
-    @IBOutlet weak var dateContainerTopMargin: NSLayoutConstraint!
     @IBOutlet weak var dateContainerHeight: NSLayoutConstraint!
     @IBOutlet weak var dateContainerBottomMargin: NSLayoutConstraint!
     @IBOutlet weak var fileImageHeight: NSLayoutConstraint!
-
-    @IBOutlet weak var dateSeperatorContainerView: UIView!
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var fileImageView: FLAnimatedImageView!
-    @IBOutlet weak var messageDateLabel: UILabel!
-    @IBOutlet weak var dateSeperatorLabel: UILabel!
+    @IBOutlet weak var dateContainerTopMargin: NSLayoutConstraint!
     
-    @IBOutlet weak var imageLoadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var messageDateLabel: UILabel!
+    @IBOutlet weak var resendMessageButton: UIButton!
+    @IBOutlet weak var deleteMessageButton: UIButton!
+    @IBOutlet weak var unreadCountLabel: UILabel!
+    @IBOutlet weak var dateSeperatorContainerView: UIView!
+    @IBOutlet weak var dateSeperatorLabel: UILabel!
+    @IBOutlet weak var fileImageView: UIImageView!
+    @IBOutlet weak var sendStatusLabel: UILabel!
     
     private var message: SBDFileMessage!
     private var prevMessage: SBDBaseMessage!
@@ -37,12 +37,6 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
     static func cellReuseIdentifier() -> String {
         return String(describing: self)
     }
-
-    @objc private func clickProfileImage() {
-        if self.delegate != nil {
-            self.delegate?.clickProfileImage(viewCell: self, user: self.message!.sender!)
-        }
-    }
     
     @objc private func clickFileMessage() {
         if self.delegate != nil {
@@ -50,64 +44,59 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
         }
     }
     
+    @objc private func clickResendUserMessage() {
+        if self.delegate != nil {
+            self.delegate?.clickResend(view: self, message: self.message!)
+        }
+    }
+    
+    @objc private func clickDeleteUserMessage() {
+        if self.delegate != nil {
+            self.delegate?.clickDelete(view: self, message: self.message!)
+        }
+    }
+    
     func setModel(aMessage: SBDFileMessage) {
         self.message = aMessage
-        
-        self.profileImageView.af_setImage(withURL: URL(string: (self.message.sender?.profileUrl!)!)!, placeholderImage: UIImage(named: "img_profile"))
-        
-        let profileImageTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(clickProfileImage))
-        self.profileImageView.isUserInteractionEnabled = true
-        self.profileImageView.addGestureRecognizer(profileImageTapRecognizer)
         
         let messageContainerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(clickFileMessage))
         self.fileImageView.isUserInteractionEnabled = true
         self.fileImageView.addGestureRecognizer(messageContainerTapRecognizer)
         
-        self.imageLoadingIndicator.isHidden = true
-        if self.message.type == "image/gif" {
-            let cachedImageData = AppDelegate.imageCache().object(forKey: self.message.url as AnyObject) as? FLAnimatedImage
-            if cachedImageData != nil {
-                DispatchQueue.main.async {
-                    self.fileImageView.animatedImage = cachedImageData;
-                }
+        /***********************************/
+        /* Thumbnail is a premium feature. */
+        /***********************************/
+        if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
+            if (self.message.thumbnails?[0].url.characters.count)! > 0 {
+                self.fileImageView.af_setImage(withURL: URL(string: (self.message.thumbnails?[0].url)!)!)
             }
-            else {
-                self.fileImageView.animatedImage = nil
-                DispatchQueue.main.async {
-                    self.imageLoadingIndicator.isHidden = false
-                    self.imageLoadingIndicator.startAnimating()
+        }
+        else {
+            if self.message.url.characters.count > 0 {
+                self.fileImageView.af_setImage(withURL:URL(string: self.message.url)!)
+            }
+        }
+        
+        self.resendMessageButton.addTarget(self, action: #selector(clickResendUserMessage), for: UIControlEvents.touchUpInside)
+        self.deleteMessageButton.addTarget(self, action: #selector(clickDeleteUserMessage), for: UIControlEvents.touchUpInside)
+        
+        // Unread message count
+        if self.message.channelType == CHANNEL_TYPE_GROUP {
+            let channelOfMessage = SBDGroupChannel.getChannelFromCache(withChannelUrl: self.message.channelUrl!)
+            if channelOfMessage != nil {
+                let unreadMessageCount = channelOfMessage?.getReadReceipt(of: self.message)
+                if unreadMessageCount == 0 {
+                    self.hideUnreadCount()
+                    self.unreadCountLabel.text = ""
                 }
-                let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue");
-                imageLoadQueue.async {
-                    if let data = NSData(contentsOf: NSURL(string: self.message.url) as! URL) {
-                        let animatedImage = FLAnimatedImage(animatedGIFData: data as Data!)
-                        AppDelegate.imageCache().setObject(animatedImage!, forKey: self.message.url as AnyObject)
-                        DispatchQueue.main.async {
-                            self.fileImageView.animatedImage = animatedImage;
-                            
-                            DispatchQueue.main.async {
-                                self.imageLoadingIndicator.isHidden = true
-                                self.imageLoadingIndicator.stopAnimating()
-                            }
-                        }
-                    }
+                else {
+                    self.showUnreadCount()
+                    self.unreadCountLabel.text = String(format: "%d", unreadMessageCount!)
                 }
             }
         }
         else {
-            /***********************************/
-            /* Thumbnail is a premium feature. */
-            /***********************************/
-            if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
-                if (self.message.thumbnails?[0].url.characters.count)! > 0 {
-                    self.fileImageView.af_setImage(withURL: URL(string: (self.message.thumbnails?[0].url)!)!)
-                }
-            }
-            else {
-                if self.message.url.characters.count > 0 {
-                    self.fileImageView.af_setImage(withURL:URL(string: self.message.url)!)
-                }
-            }
+            self.hideUnreadCount()
         }
         
         // Message Date
@@ -121,6 +110,7 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
         dateFormatter.timeStyle = DateFormatter.Style.short
         let messageCreatedDate = NSDate(timeIntervalSince1970: messageTimestamp)
         let messageDateString = dateFormatter.string(from: messageCreatedDate as Date)
+        
         let messageDateAttributedString = NSMutableAttributedString(string: messageDateString, attributes: messageDateAttribute)
         self.messageDateLabel.attributedText = messageDateAttributedString
         
@@ -130,7 +120,10 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
         self.dateSeperatorLabel.text = seperatorDateFormatter.string(from: messageCreatedDate as Date)
         
         // Relationship between the current message and the previous message
-        self.profileImageView.isHidden = false
+        self.dateSeperatorContainerView.isHidden = false;
+        self.dateContainerHeight.constant = 24.0;
+        self.dateContainerTopMargin.constant = 10.0;
+        self.dateContainerBottomMargin.constant = 10.0;
         if self.prevMessage != nil {
             // Day Changed
             let prevMessageDate = NSDate(timeIntervalSince1970: Double(self.prevMessage.createdAt) / 1000.0)
@@ -172,11 +165,9 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
                         if prevMessageSender?.userId == currMessageSender?.userId {
                             // Reduce margin
                             self.dateContainerTopMargin.constant = 5.0
-                            self.profileImageView.isHidden = true
                         }
                         else {
                             // Set default margin.
-                            self.profileImageView.isHidden = false
                             self.dateContainerTopMargin.constant = 10.0
                         }
                     }
@@ -205,5 +196,59 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
         let height = self.dateContainerTopMargin.constant + self.dateContainerHeight.constant + self.dateContainerBottomMargin.constant + self.fileImageHeight.constant
         
         return height
+    }
+    
+    func hideUnreadCount() {
+        self.unreadCountLabel.isHidden = true
+    }
+    
+    func showUnreadCount() {
+        if self.message.channelType == CHANNEL_TYPE_GROUP {
+            self.unreadCountLabel.isHidden = false
+            self.resendMessageButton.isHidden = true
+            self.deleteMessageButton.isHidden = true
+        }
+    }
+    
+    func hideMessageControlButton() {
+        self.resendMessageButton.isHidden = true
+        self.deleteMessageButton.isHidden = true
+    }
+    
+    func showMessageControlButton() {
+        self.sendStatusLabel.isHidden = true
+        self.messageDateLabel.isHidden = true
+        self.unreadCountLabel.isHidden = true
+        
+        self.resendMessageButton.isHidden = false
+        self.deleteMessageButton.isHidden = false
+    }
+    
+    func showSendingStatus() {
+        self.messageDateLabel.isHidden = true
+        self.unreadCountLabel.isHidden = true
+        self.resendMessageButton.isHidden = true
+        self.deleteMessageButton.isHidden = true
+        
+        self.sendStatusLabel.isHidden = false
+        self.sendStatusLabel.text = "Sending"
+    }
+    
+    func showFailedStatus() {
+        self.messageDateLabel.isHidden = true
+        self.unreadCountLabel.isHidden = true
+        self.resendMessageButton.isHidden = true
+        self.deleteMessageButton.isHidden = true
+        
+        self.sendStatusLabel.isHidden = false
+        self.sendStatusLabel.text = "Failed"
+    }
+    
+    func showMessageDate() {
+        self.unreadCountLabel.isHidden = true
+        self.resendMessageButton.isHidden = true
+        self.sendStatusLabel.isHidden = true
+        
+        self.messageDateLabel.isHidden = false
     }
 }
