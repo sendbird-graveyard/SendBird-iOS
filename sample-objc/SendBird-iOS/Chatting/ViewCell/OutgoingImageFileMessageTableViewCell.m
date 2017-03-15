@@ -7,10 +7,12 @@
 //
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
 #import "OutgoingImageFileMessageTableViewCell.h"
 #import "Utils.h"
 #import "Constants.h"
 #import "FLAnimatedImage.h"
+#import "AppDelegate.h"
 
 @interface OutgoingImageFileMessageTableViewCell()
 
@@ -27,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView *dateSeperatorContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *dateSeperatorLabel;
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *fileImageView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingIndicator;
 
 @property (strong, nonatomic) SBDFileMessage *message;
 @property (strong, nonatomic) SBDBaseMessage *prevMessage;
@@ -66,15 +69,25 @@
 - (void)setModel:(SBDFileMessage *)aMessage {
     self.message = aMessage;
     
-    if (self.message.type != nil && [self.message.type isEqualToString:@"image/gif"] ) {
-        dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
-        dispatch_async(imageLoadQueue, ^{
-            __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.message.url]]];
+    if (self.message.url != nil && self.message.url.length > 0 && self.message.type != nil && [self.message.type isEqualToString:@"image/gif"]) {
+        FLAnimatedImage *cachedImageData = (FLAnimatedImage *)[[AppDelegate imageCache] objectForKey:self.message.url];
+        if (cachedImageData != nil) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.fileImageView setAnimatedImage:animatedImage];
+                [self.fileImageView setAnimatedImage:cachedImageData];
             });
-            
-        });
+        }
+        else {
+            [self.fileImageView setAnimatedImage:nil];
+            dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
+            dispatch_async(imageLoadQueue, ^{
+                __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.message.url]]];
+                [[AppDelegate imageCache] setObject:animatedImage forKey:self.message.url];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [self.fileImageView setAnimatedImage:animatedImage];
+                });
+            });
+        }
     }
     else {
         /***********************************/

@@ -71,13 +71,19 @@
                                     <constraint firstAttribute="height" constant="120" id="ym1-RN-oYf"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="DUO-7W-pdc">
+                                <rect key="frame" x="70" y="50" width="20" height="20"/>
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.50196078430000002" green="0.35294117650000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="SZ8-Im-cdz" secondAttribute="bottom" id="94F-ry-L9K"/>
                             <constraint firstAttribute="trailing" secondItem="SZ8-Im-cdz" secondAttribute="trailing" id="Ee1-Wo-Nls"/>
+                            <constraint firstItem="DUO-7W-pdc" firstAttribute="centerY" secondItem="vVE-It-kJl" secondAttribute="centerY" id="PS1-Ra-7Y1"/>
                             <constraint firstItem="SZ8-Im-cdz" firstAttribute="leading" secondItem="vVE-It-kJl" secondAttribute="leading" id="jpZ-iK-3FN"/>
                             <constraint firstItem="SZ8-Im-cdz" firstAttribute="top" secondItem="vVE-It-kJl" secondAttribute="top" id="rJY-F0-pXb"/>
+                            <constraint firstItem="DUO-7W-pdc" firstAttribute="centerX" secondItem="vVE-It-kJl" secondAttribute="centerX" id="uwI-qN-R3b"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -154,6 +160,7 @@
                 <outlet property="deleteMessageButton" destination="2ua-Pb-z1N" id="vau-MF-aIE"/>
                 <outlet property="fileImageHeight" destination="ym1-RN-oYf" id="j4y-uv-y0Y"/>
                 <outlet property="fileImageView" destination="SZ8-Im-cdz" id="ySW-DN-jiY"/>
+                <outlet property="imageLoadingIndicator" destination="DUO-7W-pdc" id="Uc3-bk-cFP"/>
                 <outlet property="messageDateLabel" destination="cFs-UU-SjC" id="tZd-ll-VDm"/>
                 <outlet property="resendMessageButton" destination="IIa-5w-dje" id="okX-ne-Qhy"/>
                 <outlet property="sendStatusLabel" destination="Tsw-4N-spP" id="9Ry-gH-m5K"/>

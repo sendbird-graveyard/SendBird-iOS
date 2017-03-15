@@ -84,11 +84,17 @@
                                     <constraint firstAttribute="width" constant="160" id="K36-Yj-Jdu"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="mHT-nl-zcN">
+                                <rect key="frame" x="70" y="50" width="20" height="20"/>
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.50196078430000002" green="0.35294117650000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="mHT-nl-zcN" firstAttribute="centerX" secondItem="gOY-YY-Jbr" secondAttribute="centerX" id="AEd-P9-psm"/>
                             <constraint firstItem="UZQ-gs-qMb" firstAttribute="leading" secondItem="gOY-YY-Jbr" secondAttribute="leading" id="C0V-ew-UB7"/>
                             <constraint firstAttribute="trailing" secondItem="UZQ-gs-qMb" secondAttribute="trailing" id="EU1-4s-cQK"/>
+                            <constraint firstItem="mHT-nl-zcN" firstAttribute="centerY" secondItem="gOY-YY-Jbr" secondAttribute="centerY" id="Tjd-RY-Thw"/>
                             <constraint firstAttribute="bottom" secondItem="UZQ-gs-qMb" secondAttribute="bottom" id="Yi4-7k-uhk"/>
                             <constraint firstItem="UZQ-gs-qMb" firstAttribute="top" secondItem="gOY-YY-Jbr" secondAttribute="top" id="c6f-ym-uqq"/>
                         </constraints>
@@ -129,6 +135,7 @@
                 <outlet property="dateSeperatorLabel" destination="CjL-Q7-Mhr" id="Oa9-IZ-TYi"/>
                 <outlet property="fileImageHeight" destination="DmP-Tv-u9L" id="AmI-LE-LFb"/>
                 <outlet property="fileImageView" destination="UZQ-gs-qMb" id="p2n-i1-ZmU"/>
+                <outlet property="imageLoadingIndicator" destination="mHT-nl-zcN" id="X9t-Oq-UgP"/>
                 <outlet property="messageDateLabel" destination="eTF-bN-Vyw" id="xbL-d6-bNf"/>
                 <outlet property="profileImageView" destination="MLi-lv-uxK" id="iKg-o5-MKp"/>
             </connections>

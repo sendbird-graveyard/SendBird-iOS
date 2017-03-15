@@ -7,10 +7,12 @@
 //
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
 #import "IncomingImageFileMessageTableViewCell.h"
 #import "Utils.h"
 #import "Constants.h"
 #import "FLAnimatedImage.h"
+#import "AppDelegate.h"
 
 @interface IncomingImageFileMessageTableViewCell()
 
@@ -25,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *fileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *messageDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateSeperatorLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingIndicator;
 
 @property (strong, nonatomic) SBDFileMessage *message;
 @property (strong, nonatomic) SBDBaseMessage *prevMessage;
@@ -69,14 +72,32 @@
     [self.fileImageView addGestureRecognizer:messageContainerTapRecognizer];
 
     if (self.message.type != nil && [self.message.type isEqualToString:@"image/gif"] ) {
-        dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
-        dispatch_async(imageLoadQueue, ^{
-            __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.message.url]]];
+        FLAnimatedImage *cachedImageData = (FLAnimatedImage *)[[AppDelegate imageCache] objectForKey:self.message.url];
+        if (cachedImageData != nil) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.fileImageView setAnimatedImage:animatedImage];
+                [self.fileImageView setAnimatedImage:cachedImageData];
             });
-            
-        });
+        }
+        else {
+            [self.fileImageView setAnimatedImage:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.imageLoadingIndicator.hidden = NO;
+                [self.imageLoadingIndicator startAnimating];
+            });
+            dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
+            dispatch_async(imageLoadQueue, ^{
+                __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.message.url]]];
+                [[AppDelegate imageCache] setObject:animatedImage forKey:self.message.url];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.fileImageView setAnimatedImage:animatedImage];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.imageLoadingIndicator.hidden = YES;
+                        [self.imageLoadingIndicator stopAnimating];
+                    });
+                });
+            });
+        }
     }
     else {
         /***********************************/

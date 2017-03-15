@@ -19,6 +19,17 @@
 
 @implementation AppDelegate
 
++ (nonnull NSCache *)imageCache {
+    static dispatch_once_t p = 0;
+    __strong static NSCache *_sharedObject = nil;
+    
+    dispatch_once(&p, ^{
+        _sharedObject = [[NSCache alloc] init];
+        [_sharedObject setTotalCostLimit:104857600];
+    });
+    
+    return _sharedObject;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
@@ -33,6 +44,11 @@
     [[UINavigationBar appearance] setTintColor:[Constants navigationBarTitleColor]];
     
     application.applicationIconBadgeNumber = 0;
+    
+//    if (AppDelegate.cache == nil) {
+//        AppDelegate.cache = [[NSCache alloc] init];
+//        [AppDelegate.cache setTotalCostLimit:104857600];
+//    }
     
     [SBDMain initWithApplicationId:@"9DA1B1F4-0BE6-4DA8-82C5-2E81DAB56F23"];
     [SBDMain setLogLevel:SBDLogLevelDebug];

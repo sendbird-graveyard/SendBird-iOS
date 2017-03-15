@@ -17,38 +17,6 @@
             endingLineNumber = "488"
             landmarkName = "-clickProfileImage:user:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__61-[GroupChannelChattingViewController clickProfileImage:user:]_block_invoke_3"
-                  moduleName = "SendBird-iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-objc/SendBird-iOS/GroupChannel/GroupChannelChattingViewController.m"
-                  timestampString = "511140311.601432"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "488"
-                  endingLineNumber = "488"
-                  offsetFromSymbolStart = "376">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__61-[GroupChannelChattingViewController clickProfileImage:user:]_block_invoke_4"
-                  moduleName = "SendBird-iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-objc/SendBird-iOS/GroupChannel/GroupChannelChattingViewController.m"
-                  timestampString = "511140311.603725"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "488"
-                  endingLineNumber = "488"
-                  offsetFromSymbolStart = "32">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -57,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SendBird-iOS/GroupChannel/GroupChannelChattingViewController.m"
-            timestampString = "511140255.69502"
+            filePath = "SendBird-iOS/Chatting/ViewCell/OutgoingImageFileMessageTableViewCell.m"
+            timestampString = "511233459.416698"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
-            landmarkName = "-loadPreviousMessage:"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "-setModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
