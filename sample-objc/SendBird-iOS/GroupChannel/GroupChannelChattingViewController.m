@@ -229,6 +229,11 @@
                     });
                 });
             }
+            else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.chattingView.chattingTableView.hidden = NO;
+                });
+            }
             
             self.chattingView.initialLoading = NO;
             self.isLoading = NO;
@@ -249,6 +254,11 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         self.chattingView.chattingTableView.hidden = NO;
                     });
+                });
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.chattingView.chattingTableView.hidden = NO;
                 });
             }
             self.isLoading = NO;
@@ -288,9 +298,11 @@
         }];
         self.chattingView.preSendMessages[preSendMessage.requestId] = preSendMessage;
         [self.chattingView.messages addObject:preSendMessage];
-        [self.chattingView.chattingTableView reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.chattingView scrollToBottomAnimated:YES force:YES];
+            [self.chattingView.chattingTableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.chattingView scrollToBottomAnimated:YES force:YES];
+            });
         });
     }
 }

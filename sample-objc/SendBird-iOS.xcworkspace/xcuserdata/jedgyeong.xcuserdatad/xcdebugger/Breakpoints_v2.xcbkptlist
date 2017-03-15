@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SendBird-iOS/GroupChannel/GroupChannelChattingViewController.m"
-            timestampString = "511140252.686043"
+            timestampString = "511290940.283047"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "488"
-            endingLineNumber = "488"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
             landmarkName = "-clickProfileImage:user:"
             landmarkType = "7">
          </BreakpointContent>

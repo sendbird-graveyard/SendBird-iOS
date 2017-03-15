@@ -207,6 +207,11 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                         }
                     }
                 }
+                else {
+                    DispatchQueue.main.async {
+                        self.chattingView.chattingTableView.isHidden = false
+                    }
+                }
                 
                 self.chattingView.initialLoading = false
                 self.isLoading = false
@@ -227,6 +232,11 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                         DispatchQueue.main.async {
                             self.chattingView.chattingTableView.isHidden = false
                         }
+                    }
+                }
+                else {
+                    DispatchQueue.main.async {
+                        self.chattingView.chattingTableView.isHidden = false
                     }
                 }
                 self.isLoading = false
@@ -265,9 +275,11 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
             })
             self.chattingView.preSendMessages[preSendMessage.requestId!] = preSendMessage
             self.chattingView.messages.append(preSendMessage)
-            self.chattingView.chattingTableView.reloadData()
             DispatchQueue.main.async {
-                self.chattingView.scrollToBottom(animated: true, force: true)
+                self.chattingView.chattingTableView.reloadData()
+                DispatchQueue.main.async {
+                    self.chattingView.scrollToBottom(animated: true, force: true)
+                }
             }
         }
     }
