@@ -715,6 +715,10 @@
                         [(OutgoingImageFileMessageTableViewCell *)cell setImageData:(NSData *)self.resendableFileData[fileMessage.requestId][@"data"] type:(NSString *)self.resendableFileData[fileMessage.requestId][@"type"]];
                     }
                     else {
+                        if (fileMessage.url != nil && fileMessage.url.length > 0 && self.preSendFileData[fileMessage.requestId] != nil) {
+                            [(OutgoingImageFileMessageTableViewCell *)cell setImageData:(NSData *)self.preSendFileData[fileMessage.requestId][@"data"] type:(NSString *)self.preSendFileData[fileMessage.requestId][@"type"]];
+                            [self.preSendFileData removeObjectForKey:fileMessage.requestId];
+                        }
                         [(OutgoingImageFileMessageTableViewCell *)cell showMessageDate];
                         [(OutgoingImageFileMessageTableViewCell *)cell showUnreadCount];
                     }

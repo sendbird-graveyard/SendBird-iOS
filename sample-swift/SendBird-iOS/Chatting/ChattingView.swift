@@ -706,6 +706,10 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                             (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.resendableFileData[fileMessage.requestId!]?["data"] as! Data, type: self.resendableFileData[fileMessage.requestId!]?["type"] as! String)
                         }
                         else {
+                            if fileMessage.url.characters.count > 0 && self.preSendFileData[fileMessage.requestId!] != nil {
+                                (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.preSendFileData[fileMessage.requestId!]?["data"] as! Data, type: self.preSendFileData[fileMessage.requestId!]?["type"] as! String)
+                                self.preSendFileData.removeValue(forKey: fileMessage.requestId!);
+                            }
                             (cell as! OutgoingImageFileMessageTableViewCell).showMessageDate()
                             (cell as! OutgoingImageFileMessageTableViewCell).showUnreadCount()
                         }

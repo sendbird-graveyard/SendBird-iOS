@@ -70,25 +70,39 @@
     self.message = aMessage;
     
     self.imageLoadingIndicator.hidden = YES;
+    self.fileImageView.animatedImage = nil;
+    self.fileImageView.image = nil;
+    __block NSString *url = self.message.url;
     if (self.message.url != nil && self.message.url.length > 0 && self.message.type != nil && [self.message.type isEqualToString:@"image/gif"]) {
-        FLAnimatedImage *cachedImageData = (FLAnimatedImage *)[[AppDelegate imageCache] objectForKey:self.message.url];
-        if (cachedImageData != nil) {
-            dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            FLAnimatedImage *cachedImageData = (FLAnimatedImage *)[[AppDelegate imageCache] objectForKey:url];
+            if (cachedImageData != nil) {
                 [self.fileImageView setAnimatedImage:cachedImageData];
-            });
-        }
-        else {
-            [self.fileImageView setAnimatedImage:nil];
-            dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
-            dispatch_async(imageLoadQueue, ^{
-                __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.message.url]]];
-                [[AppDelegate imageCache] setObject:animatedImage forKey:self.message.url];
+            }
+            else {
+                [self.fileImageView setAnimatedImage:nil];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    [self.fileImageView setAnimatedImage:animatedImage];
+                    self.imageLoadingIndicator.hidden = NO;
+                    [self.imageLoadingIndicator startAnimating];
                 });
-            });
-        }
+                dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
+                dispatch_async(imageLoadQueue, ^{
+                    __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
+                    
+                    if ([[AppDelegate imageCache] objectForKey:url] == nil) {
+                        [[AppDelegate imageCache] setObject:animatedImage forKey:url];
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.fileImageView setAnimatedImage:animatedImage];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            self.imageLoadingIndicator.hidden = YES;
+                            [self.imageLoadingIndicator stopAnimating];
+                        });
+                    });
+                });
+            }
+        });
     }
     else {
         /***********************************/

@@ -815,6 +815,7 @@
                             if (fileMessage != nil) {
                                 [strongSelf.chattingView.resendableMessages removeObjectForKey:fileMessage.requestId];
                                 [strongSelf.chattingView.resendableFileData removeObjectForKey:fileMessage.requestId];
+                                [strongSelf.chattingView.preSendMessages removeObjectForKey:fileMessage.requestId];
                                 [strongSelf.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:preSendMessage] withObject:fileMessage];
                                 
                                 dispatch_async(dispatch_get_main_queue(), ^{

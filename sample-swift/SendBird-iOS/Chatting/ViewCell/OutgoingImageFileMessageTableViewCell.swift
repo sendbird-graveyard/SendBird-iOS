@@ -66,30 +66,33 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
         self.fileImageView.addGestureRecognizer(messageContainerTapRecognizer)
 
         self.imageLoadingIndicator.isHidden = true
+        self.fileImageView.animatedImage = nil;
+        self.fileImageView.image = nil;
+        let url = self.message.url
         if self.message.type == "image/gif" {
-            let cachedImageData = AppDelegate.imageCache().object(forKey: self.message.url as AnyObject) as? FLAnimatedImage
-            if cachedImageData != nil {
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                let cachedImageData = AppDelegate.imageCache().object(forKey: url as AnyObject) as? FLAnimatedImage
+                if cachedImageData != nil {
                     self.fileImageView.animatedImage = cachedImageData;
                 }
-            }
-            else {
-                self.fileImageView.animatedImage = nil
-                DispatchQueue.main.async {
-                    self.imageLoadingIndicator.isHidden = false
-                    self.imageLoadingIndicator.startAnimating()
-                }
-                let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue");
-                imageLoadQueue.async {
-                    if let data = NSData(contentsOf: NSURL(string: self.message.url) as! URL) {
-                        let animatedImage = FLAnimatedImage(animatedGIFData: data as Data!)
-                        AppDelegate.imageCache().setObject(animatedImage!, forKey: self.message.url as AnyObject)
-                        DispatchQueue.main.async {
-                            self.fileImageView.animatedImage = animatedImage;
-                            
+                else {
+                    self.fileImageView.animatedImage = nil
+                    DispatchQueue.main.async {
+                        self.imageLoadingIndicator.isHidden = false
+                        self.imageLoadingIndicator.startAnimating()
+                    }
+                    let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue");
+                    imageLoadQueue.async {
+                        if let data = NSData(contentsOf: NSURL(string: url) as! URL) {
+                            let animatedImage = FLAnimatedImage(animatedGIFData: data as Data!)
+                            AppDelegate.imageCache().setObject(animatedImage!, forKey: url as AnyObject)
                             DispatchQueue.main.async {
-                                self.imageLoadingIndicator.isHidden = true
-                                self.imageLoadingIndicator.stopAnimating()
+                                self.fileImageView.animatedImage = animatedImage;
+                                
+                                DispatchQueue.main.async {
+                                    self.imageLoadingIndicator.isHidden = true
+                                    self.imageLoadingIndicator.stopAnimating()
+                                }
                             }
                         }
                     }

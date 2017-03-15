@@ -746,6 +746,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                                 if fileMessage != nil {
                                     self.chattingView.resendableMessages.removeValue(forKey: (fileMessage?.requestId)!)
                                     self.chattingView.resendableFileData.removeValue(forKey: (fileMessage?.requestId)!)
+                                    self.chattingView.preSendMessages.removeValue(forKey: (fileMessage?.requestId)!)
                                     self.chattingView.messages[self.chattingView.messages.index(of: preSendMessage)!] = fileMessage!
                                     
                                     DispatchQueue.main.async {
