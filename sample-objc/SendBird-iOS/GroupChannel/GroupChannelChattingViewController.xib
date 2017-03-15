@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,6 +13,9 @@
             <connections>
                 <outlet property="bottomMargin" destination="5Ab-UI-o7I" id="7si-8B-fQY"/>
                 <outlet property="chattingView" destination="AAA-Vq-7hk" id="yX1-BT-ENu"/>
+                <outlet property="imageViewerLoadingIndicator" destination="L2O-WJ-jWz" id="yVr-QF-VDe"/>
+                <outlet property="imageViewerLoadingView" destination="A2P-am-xPk" id="PDC-wb-eGf"/>
+                <outlet property="imageViewerLoadingViewNavItem" destination="Pp2-Es-Goi" id="ofY-Nj-9eU"/>
                 <outlet property="navItem" destination="XbV-PA-rdE" id="5bP-Nt-a0o"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,6 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37l-RV-YBp">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="gFk-9g-M0b"/>
                     </constraints>
@@ -28,7 +35,34 @@
                     </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AAA-Vq-7hk" customClass="ChattingView">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A2P-am-xPk" userLabel="Image Viewer Loading View">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g6L-kB-17Z">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="Wh6-2d-4ZE"/>
+                            </constraints>
+                            <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <items>
+                                <navigationItem title="Title" id="Pp2-Es-Goi"/>
+                            </items>
+                        </navigationBar>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="L2O-WJ-jWz" userLabel="Image Viewer Loading Activity Indicator">
+                            <rect key="frame" x="177" y="323" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="L2O-WJ-jWz" firstAttribute="centerY" secondItem="A2P-am-xPk" secondAttribute="centerY" id="FtP-W3-ac8"/>
+                        <constraint firstAttribute="trailing" secondItem="g6L-kB-17Z" secondAttribute="trailing" id="iki-qL-1QG"/>
+                        <constraint firstItem="g6L-kB-17Z" firstAttribute="leading" secondItem="A2P-am-xPk" secondAttribute="leading" id="wSU-lf-pJb"/>
+                        <constraint firstItem="g6L-kB-17Z" firstAttribute="top" secondItem="A2P-am-xPk" secondAttribute="top" id="yRn-Rj-YWU"/>
+                        <constraint firstItem="L2O-WJ-jWz" firstAttribute="centerX" secondItem="A2P-am-xPk" secondAttribute="centerX" id="ygy-dp-wd1"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -36,8 +70,12 @@
                 <constraint firstAttribute="bottom" secondItem="AAA-Vq-7hk" secondAttribute="bottom" id="5Ab-UI-o7I"/>
                 <constraint firstItem="AAA-Vq-7hk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6TI-Ys-n4Z"/>
                 <constraint firstItem="AAA-Vq-7hk" firstAttribute="top" secondItem="37l-RV-YBp" secondAttribute="bottom" id="7h0-6I-ZK3"/>
+                <constraint firstItem="A2P-am-xPk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="87a-Jf-3eg"/>
+                <constraint firstAttribute="bottom" secondItem="A2P-am-xPk" secondAttribute="bottom" id="It9-T1-TNO"/>
                 <constraint firstItem="37l-RV-YBp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NAi-6v-l37"/>
+                <constraint firstItem="A2P-am-xPk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="T68-Ay-3h6"/>
                 <constraint firstItem="37l-RV-YBp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fMb-Td-tBM"/>
+                <constraint firstAttribute="trailing" secondItem="A2P-am-xPk" secondAttribute="trailing" id="iRy-f5-dbJ"/>
                 <constraint firstAttribute="trailing" secondItem="37l-RV-YBp" secondAttribute="trailing" id="uez-4l-rbu"/>
                 <constraint firstAttribute="trailing" secondItem="AAA-Vq-7hk" secondAttribute="trailing" id="vXg-FO-oE6"/>
             </constraints>

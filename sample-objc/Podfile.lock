@@ -16,20 +16,29 @@ PODS:
     - AFNetworking/NSURLSession
   - FLAnimatedImage (1.0.12)
   - MGSwipeTableCell (1.5.6)
+  - NYTPhotoViewer (1.1.0):
+    - NYTPhotoViewer/AnimatedGifSupport (= 1.1.0)
+    - NYTPhotoViewer/Core (= 1.1.0)
+  - NYTPhotoViewer/AnimatedGifSupport (1.1.0):
+    - FLAnimatedImage (~> 1.0.8)
+    - NYTPhotoViewer/Core
+  - NYTPhotoViewer/Core (1.1.0)
   - SendBirdSDK (3.0.44)
 
 DEPENDENCIES:
   - AFNetworking
   - FLAnimatedImage (~> 1.0)
   - MGSwipeTableCell
+  - NYTPhotoViewer (~> 1.1.0)
   - SendBirdSDK (~> 3.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
+  NYTPhotoViewer: e80e8767f3780d2df37c6f72cbab15d6c7232911
   SendBirdSDK: 976ced2079ea1fef23f97b51c1d09aaa70ff8182
 
-PODFILE CHECKSUM: 8a300c951cf6687f3030026ea305bbf737f1f26f
+PODFILE CHECKSUM: 5d36b54f287612cac261473843f9d4cad2912464
 
 COCOAPODS: 1.1.1

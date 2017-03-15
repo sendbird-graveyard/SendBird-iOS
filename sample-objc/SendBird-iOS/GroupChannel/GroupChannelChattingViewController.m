@@ -11,12 +11,15 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <MobileCoreServices/UTType.h>
 #import <Photos/Photos.h>
+#import <NYTPhotoViewer/NYTPhotosViewController.h>
 
+#import "AppDelegate.h"
 #import "GroupChannelChattingViewController.h"
 #import "MemberListViewController.h"
 #import "BlockedUserListViewController.h"
 #import "NSBundle+SendBird.h"
 #import "Utils.h"
+#import "ChatImage.h"
 
 @interface GroupChannelChattingViewController ()
 
@@ -25,12 +28,17 @@
 @property (strong, nonatomic) SBDPreviousMessageListQuery *messageQuery;
 @property (strong, nonatomic) NSString *delegateIdentifier;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomMargin;
+@property (weak, nonatomic) IBOutlet UIView *imageViewerLoadingView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *imageViewerLoadingIndicator;
+@property (weak, nonatomic) IBOutlet UINavigationItem *imageViewerLoadingViewNavItem;
 
 @property (atomic) BOOL hasNext;
 @property (atomic) BOOL refreshInViewDidAppear;
 
 @property (atomic) BOOL isLoading;
 @property (atomic) BOOL keyboardShown;
+
+@property (strong, nonatomic) NYTPhotosViewController *photosViewController;
 
 @end
 
@@ -71,6 +79,14 @@
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
     
+    
+    UIBarButtonItem *negativeLeftSpacerForImageViewerLoading = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    negativeLeftSpacerForImageViewerLoading.width = -2;
+    
+    UIBarButtonItem *leftCloseItemForImageViewerLoading = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_close"] style:UIBarButtonItemStyleDone target:self action:@selector(hideImageViewerLoading)];
+    
+    self.imageViewerLoadingViewNavItem.leftBarButtonItems = @[negativeLeftSpacerForImageViewerLoading, leftCloseItemForImageViewerLoading];
+
     self.delegateIdentifier = self.description;
     [SBDMain addChannelDelegate:self identifier:self.delegateIdentifier];
     [SBDMain addConnectionDelegate:self identifier:self.delegateIdentifier];
@@ -585,35 +601,96 @@
             }
             
             if ([type hasPrefix:@"video"]) {
-                openFileAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"PlayVideoButton"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    NSURL *videoUrl = [NSURL URLWithString:url];
-                    AVPlayer *player = [[AVPlayer alloc] initWithURL:videoUrl];
-                    AVPlayerViewController *vc = [[AVPlayerViewController alloc] init];
-                    vc.player = player;
-                    self.refreshInViewDidAppear = NO;
-                    [self presentViewController:vc animated:YES completion:^{
-                        [player play];
-                    }];
+                NSURL *videoUrl = [NSURL URLWithString:url];
+                AVPlayer *player = [[AVPlayer alloc] initWithURL:videoUrl];
+                AVPlayerViewController *vc = [[AVPlayerViewController alloc] init];
+                vc.player = player;
+                self.refreshInViewDidAppear = NO;
+                [self presentViewController:vc animated:YES completion:^{
+                    [player play];
                 }];
+                
+                return;
             }
             else if ([type hasPrefix:@"audio"]) {
-                openFileAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"PlayAudioButton"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    NSURL *audioUrl = [NSURL URLWithString:url];
-                    AVPlayer *player = [[AVPlayer alloc] initWithURL:audioUrl];
-                    AVPlayerViewController *vc = [[AVPlayerViewController alloc] init];
-                    vc.player = player;
-                    self.refreshInViewDidAppear = NO;
-                    [self presentViewController:vc animated:YES completion:^{
-                        [player play];
-                    }];
+                NSURL *audioUrl = [NSURL URLWithString:url];
+                AVPlayer *player = [[AVPlayer alloc] initWithURL:audioUrl];
+                AVPlayerViewController *vc = [[AVPlayerViewController alloc] init];
+                vc.player = player;
+                self.refreshInViewDidAppear = NO;
+                [self presentViewController:vc animated:YES completion:^{
+                    [player play];
                 }];
+                
+                return;
             }
             else if ([type hasPrefix:@"image"]) {
-                openFileAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"OpenImageButton"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    NSURL *imageUrl = [NSURL URLWithString:url];
-                    self.refreshInViewDidAppear = NO;
-                    [[UIApplication sharedApplication] openURL:imageUrl];
-                }];
+                [self showImageViewerLoading];
+                dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
+                dispatch_async(imageLoadQueue, ^{
+                    ChatImage *photo = [[ChatImage alloc] init];
+                    NSData *cachedData = [[AppDelegate imageCache] objectForKey:url];
+                    if (cachedData != nil) {
+                        photo.imageData = cachedData;
+                        
+                        self.photosViewController = [[NYTPhotosViewController alloc] initWithPhotos:@[photo]];
+                        self.photosViewController.rightBarButtonItems = nil;
+                        self.photosViewController.rightBarButtonItem = nil;
+                        
+                        UIBarButtonItem *negativeLeftSpacerForImageViewerLoading = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+                        negativeLeftSpacerForImageViewerLoading.width = -2;
+                        
+                        UIBarButtonItem *leftCloseItemForImageViewerLoading = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_close"] style:UIBarButtonItemStyleDone target:self action:@selector(closeImageViewer)];
+                        
+                        self.photosViewController.leftBarButtonItems = @[negativeLeftSpacerForImageViewerLoading, leftCloseItemForImageViewerLoading];
+
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self presentViewController:self.photosViewController animated:YES completion:^{
+                                [self hideImageViewerLoading];
+                            }];
+                        });
+                    }
+                    else {
+                        NSURLSession *session = [NSURLSession sharedSession];
+                        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+                        [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                            if (error != nil) {
+                                [self hideImageViewerLoading];
+                                
+                                return;
+                            }
+                            
+                            NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
+                            if ([resp statusCode] >= 200 && [resp statusCode] < 300) {
+                                [[AppDelegate imageCache] setObject:data forKey:url];
+                                ChatImage *photo = [[ChatImage alloc] init];
+                                photo.imageData = data;
+                                
+                                self.photosViewController = [[NYTPhotosViewController alloc] initWithPhotos:@[photo]];
+                                self.photosViewController.rightBarButtonItems = nil;
+                                self.photosViewController.rightBarButtonItem = nil;
+                                
+                                UIBarButtonItem *negativeLeftSpacerForImageViewerLoading = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+                                negativeLeftSpacerForImageViewerLoading.width = -2;
+                                
+                                UIBarButtonItem *leftCloseItemForImageViewerLoading = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_close"] style:UIBarButtonItemStyleDone target:self action:@selector(closeImageViewer)];
+                                
+                                self.photosViewController.leftBarButtonItems = @[negativeLeftSpacerForImageViewerLoading, leftCloseItemForImageViewerLoading];
+                                
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [self presentViewController:self.photosViewController animated:NO completion:^{
+                                        [self hideImageViewerLoading];
+                                    }];
+                                });
+                            }
+                            else {
+                                [self hideImageViewerLoading];
+                            }
+                        }] resume];
+                    }
+                });
+                
+                return;
             }
             else {
                 // TODO: Download file.
@@ -915,6 +992,28 @@
 {
     [picker dismissViewControllerAnimated:YES completion:^{
     }];
+}
+
+- (void)showImageViewerLoading {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.imageViewerLoadingView.hidden = NO;
+        self.imageViewerLoadingIndicator.hidden = NO;
+        [self.imageViewerLoadingIndicator startAnimating];
+    });
+}
+
+- (void)hideImageViewerLoading {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.imageViewerLoadingView.hidden = YES;
+        self.imageViewerLoadingIndicator.hidden = YES;
+        [self.imageViewerLoadingIndicator stopAnimating];
+    });
+}
+
+- (void)closeImageViewer {
+    if (self.photosViewController != nil) {
+        [self.photosViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

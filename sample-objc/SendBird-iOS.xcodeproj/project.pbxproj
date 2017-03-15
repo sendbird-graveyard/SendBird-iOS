@@ -77,6 +77,7 @@
 		E25E5A8D1E78A262003E1E9B /* IncomingVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25E5A8B1E78A262003E1E9B /* IncomingVideoFileMessageTableViewCell.xib */; };
 		E25E5A911E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E25E5A8F1E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.m */; };
 		E25E5A921E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25E5A901E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.xib */; };
+		E25E5A981E79E552003E1E9B /* ChatImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E25E5A971E79E552003E1E9B /* ChatImage.m */; };
 		E2A8E63E1E5CEB6B0016BA63 /* GroupChannelChattingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3A0831D99DA3800244336 /* GroupChannelChattingViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -220,6 +221,8 @@
 		E25E5A8E1E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingVideoFileMessageTableViewCell.h; sourceTree = "<group>"; };
 		E25E5A8F1E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutgoingVideoFileMessageTableViewCell.m; sourceTree = "<group>"; };
 		E25E5A901E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E25E5A961E79E552003E1E9B /* ChatImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImage.h; sourceTree = "<group>"; };
+		E25E5A971E79E552003E1E9B /* ChatImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImage.m; sourceTree = "<group>"; };
 		E2FFAC00B5E8A9493084E70F /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -258,6 +261,7 @@
 		5AB0CC271D8F840400F05EC1 /* SendBird-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				E25E5A951E79E513003E1E9B /* ImageViewer */,
 				5AC3A0871D9B688600244336 /* SendBird-iOS.entitlements */,
 				5ADA68D71D9256FB00EFDF2B /* Chatting */,
 				5ADA68EC1D928DFD00EFDF2B /* Common */,
@@ -478,6 +482,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		E25E5A951E79E513003E1E9B /* ImageViewer */ = {
+			isa = PBXGroup;
+			children = (
+				E25E5A961E79E552003E1E9B /* ChatImage.h */,
+				E25E5A971E79E552003E1E9B /* ChatImage.m */,
+			);
+			name = ImageViewer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -672,6 +685,7 @@
 				5ADA69111D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.m in Sources */,
 				5AF8AC5F1D90D4E2000F0578 /* OpenChannelListViewController.m in Sources */,
 				E25E5A911E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.m in Sources */,
+				E25E5A981E79E552003E1E9B /* ChatImage.m in Sources */,
 				5AF8AC711D911B85000F0578 /* GroupChannelListTableViewCell.m in Sources */,
 				5ADA69161D93CFAE00EFDF2B /* NeutralMessageTableViewCell.m in Sources */,
 			);

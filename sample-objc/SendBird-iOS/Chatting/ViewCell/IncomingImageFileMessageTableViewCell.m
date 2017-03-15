@@ -77,7 +77,7 @@
     __block NSString *url = self.message.url;
     if (self.message.type != nil && [self.message.type isEqualToString:@"image/gif"] ) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            FLAnimatedImage *cachedImageData = (FLAnimatedImage *)[[AppDelegate imageCache] objectForKey:url];
+            FLAnimatedImage *cachedImageData = (FLAnimatedImage *)[FLAnimatedImage animatedImageWithGIFData:[[AppDelegate imageCache] objectForKey:url]];
             if (cachedImageData != nil) {
                 [self.fileImageView setAnimatedImage:cachedImageData];
             }
@@ -87,23 +87,58 @@
                     self.imageLoadingIndicator.hidden = NO;
                     [self.imageLoadingIndicator startAnimating];
                 });
-                dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
-                dispatch_async(imageLoadQueue, ^{
-                    __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
-                    
-                    if ([[AppDelegate imageCache] objectForKey:url] == nil) {
-                        [[AppDelegate imageCache] setObject:animatedImage forKey:url];
+                NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+                [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    if (error != nil) {
+                        // TODO: Show download failed.
+                        
+                        [session invalidateAndCancel];
+                        
+                        return;
                     }
                     
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                    NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
+                    if ([resp statusCode] >= 200 && [resp statusCode] < 300) {
+                        __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:data];
+                        [[AppDelegate imageCache] setObject:data forKey:url];
                         
-                        [self.fileImageView setAnimatedImage:animatedImage];
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            self.imageLoadingIndicator.hidden = YES;
-                            [self.imageLoadingIndicator stopAnimating];
+                            
+                            [self.fileImageView setAnimatedImage:animatedImage];
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                self.imageLoadingIndicator.hidden = YES;
+                                [self.imageLoadingIndicator stopAnimating];
+                            });
                         });
-                    });
-                });
+                    }
+                    else {
+                        // TODO: Show download failed.
+                    }
+                    
+                    [session invalidateAndCancel];
+                }] resume];
+                
+                
+                
+//                dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
+//                dispatch_async(imageLoadQueue, ^{
+//                    __block NSData *cachedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+//                    __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:cachedData];
+//                    
+//                    if ([[AppDelegate imageCache] objectForKey:url] == nil && cachedData != nil) {
+//                        [[AppDelegate imageCache] setObject:cachedData forKey:url];
+//                    }
+//                    
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        
+//                        [self.fileImageView setAnimatedImage:animatedImage];
+//                        dispatch_async(dispatch_get_main_queue(), ^{
+//                            self.imageLoadingIndicator.hidden = YES;
+//                            [self.imageLoadingIndicator stopAnimating];
+//                        });
+//                    });
+//                });
             }
         });
     }
