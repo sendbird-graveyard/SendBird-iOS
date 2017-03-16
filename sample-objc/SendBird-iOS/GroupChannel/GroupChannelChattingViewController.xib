@@ -13,7 +13,6 @@
             <connections>
                 <outlet property="bottomMargin" destination="5Ab-UI-o7I" id="7si-8B-fQY"/>
                 <outlet property="chattingView" destination="AAA-Vq-7hk" id="yX1-BT-ENu"/>
-                <outlet property="imageViewerLoadingIndicator" destination="L2O-WJ-jWz" id="yVr-QF-VDe"/>
                 <outlet property="imageViewerLoadingView" destination="A2P-am-xPk" id="PDC-wb-eGf"/>
                 <outlet property="imageViewerLoadingViewNavItem" destination="Pp2-Es-Goi" id="ofY-Nj-9eU"/>
                 <outlet property="navItem" destination="XbV-PA-rdE" id="5bP-Nt-a0o"/>

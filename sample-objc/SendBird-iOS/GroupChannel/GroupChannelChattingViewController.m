@@ -626,14 +626,13 @@
             }
             else if ([type hasPrefix:@"image"]) {
                 [self showImageViewerLoading];
-                dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
-                dispatch_async(imageLoadQueue, ^{
-                    ChatImage *photo = [[ChatImage alloc] init];
-                    NSData *cachedData = [[AppDelegate imageCache] objectForKey:url];
-                    if (cachedData != nil) {
-                        photo.imageData = cachedData;
-                        
-                        self.photosViewController = [[NYTPhotosViewController alloc] initWithPhotos:@[photo]];
+                ChatImage *photo = [[ChatImage alloc] init];
+                NSData *cachedData = [[AppDelegate imageCache] objectForKey:url];
+                if (cachedData != nil) {
+                    photo.imageData = cachedData;
+                    
+                    self.photosViewController = [[NYTPhotosViewController alloc] initWithPhotos:@[photo]];
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         self.photosViewController.rightBarButtonItems = nil;
                         self.photosViewController.rightBarButtonItem = nil;
                         
@@ -643,30 +642,31 @@
                         UIBarButtonItem *leftCloseItemForImageViewerLoading = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_close"] style:UIBarButtonItemStyleDone target:self action:@selector(closeImageViewer)];
                         
                         self.photosViewController.leftBarButtonItems = @[negativeLeftSpacerForImageViewerLoading, leftCloseItemForImageViewerLoading];
-
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [self presentViewController:self.photosViewController animated:YES completion:^{
-                                [self hideImageViewerLoading];
-                            }];
-                        });
-                    }
-                    else {
-                        NSURLSession *session = [NSURLSession sharedSession];
-                        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-                        [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                            if (error != nil) {
-                                [self hideImageViewerLoading];
-                                
-                                return;
-                            }
+                    
+                    
+                        [self presentViewController:self.photosViewController animated:YES completion:^{
+                            [self hideImageViewerLoading];
+                        }];
+                    });
+                }
+                else {
+                    NSURLSession *session = [NSURLSession sharedSession];
+                    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+                    [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                        if (error != nil) {
+                            [self hideImageViewerLoading];
                             
-                            NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
-                            if ([resp statusCode] >= 200 && [resp statusCode] < 300) {
-                                [[AppDelegate imageCache] setObject:data forKey:url];
-                                ChatImage *photo = [[ChatImage alloc] init];
-                                photo.imageData = data;
-                                
-                                self.photosViewController = [[NYTPhotosViewController alloc] initWithPhotos:@[photo]];
+                            return;
+                        }
+                        
+                        NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
+                        if ([resp statusCode] >= 200 && [resp statusCode] < 300) {
+                            [[AppDelegate imageCache] setObject:data forKey:url];
+                            ChatImage *photo = [[ChatImage alloc] init];
+                            photo.imageData = data;
+                            
+                            self.photosViewController = [[NYTPhotosViewController alloc] initWithPhotos:@[photo]];
+                            dispatch_async(dispatch_get_main_queue(), ^{
                                 self.photosViewController.rightBarButtonItems = nil;
                                 self.photosViewController.rightBarButtonItem = nil;
                                 
@@ -676,19 +676,18 @@
                                 UIBarButtonItem *leftCloseItemForImageViewerLoading = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_close"] style:UIBarButtonItemStyleDone target:self action:@selector(closeImageViewer)];
                                 
                                 self.photosViewController.leftBarButtonItems = @[negativeLeftSpacerForImageViewerLoading, leftCloseItemForImageViewerLoading];
-                                
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    [self presentViewController:self.photosViewController animated:NO completion:^{
-                                        [self hideImageViewerLoading];
-                                    }];
-                                });
-                            }
-                            else {
-                                [self hideImageViewerLoading];
-                            }
-                        }] resume];
-                    }
-                });
+                            
+                            
+                                [self presentViewController:self.photosViewController animated:NO completion:^{
+                                    [self hideImageViewerLoading];
+                                }];
+                            });
+                        }
+                        else {
+                            [self hideImageViewerLoading];
+                        }
+                    }] resume];
+                }
                 
                 return;
             }

@@ -31,6 +31,8 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
     
     private var message: SBDFileMessage!
     private var prevMessage: SBDBaseMessage!
+    
+    public var hasImageCacheData: Bool?
 
     static func nib() -> UINib {
         return UINib(nibName: String(describing: self), bundle: Bundle(for: self))
@@ -68,24 +70,39 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
         self.imageLoadingIndicator.isHidden = true
         self.fileImageView.animatedImage = nil;
         self.fileImageView.image = nil;
-        let url = self.message.url
-        if self.message.type == "image/gif" {
+        let url: String?
+        url = self.message.url
+        if url != nil && (url?.characters.count)! > 0 && self.message.type == "image/gif" {
             DispatchQueue.main.async {
-                let cachedImageData = AppDelegate.imageCache().object(forKey: url as AnyObject) as? FLAnimatedImage
+                let cachedImageData = FLAnimatedImage(animatedGIFData: AppDelegate.imageCache().object(forKey: url as AnyObject) as? Data)
                 if cachedImageData != nil {
                     self.fileImageView.animatedImage = cachedImageData;
                 }
                 else {
                     self.fileImageView.animatedImage = nil
-                    DispatchQueue.main.async {
-                        self.imageLoadingIndicator.isHidden = false
-                        self.imageLoadingIndicator.startAnimating()
+                    
+                    if self.hasImageCacheData == false {
+                        DispatchQueue.main.async {
+                            self.imageLoadingIndicator.isHidden = false
+                            self.imageLoadingIndicator.startAnimating()
+                        }
                     }
-                    let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue");
-                    imageLoadQueue.async {
-                        if let data = NSData(contentsOf: NSURL(string: url) as! URL) {
+                    
+                    let session = URLSession(configuration: URLSessionConfiguration.default)
+                    let request = URLRequest(url: URL(string: url!)!)
+                    session.dataTask(with: request, completionHandler: { (data, response, error) in
+                        if error != nil {
+                            // TODO: Show download failed.
+                            
+                            session.invalidateAndCancel()
+                            
+                            return;
+                        }
+                        
+                        let resp = response as! HTTPURLResponse
+                        if resp.statusCode >= 200 && resp.statusCode < 300 {
                             let animatedImage = FLAnimatedImage(animatedGIFData: data as Data!)
-                            AppDelegate.imageCache().setObject(animatedImage!, forKey: url as AnyObject)
+                            AppDelegate.imageCache().setObject(data as AnyObject, forKey: url as AnyObject)
                             DispatchQueue.main.async {
                                 self.fileImageView.animatedImage = animatedImage;
                                 
@@ -95,7 +112,28 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
                                 }
                             }
                         }
-                    }
+                        else {
+                            // TODO: Show download failed.
+                        }
+                        
+                        session.invalidateAndCancel()
+                    }).resume()
+                    
+//                    let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue");
+//                    imageLoadQueue.async {
+//                        if let data = NSData(contentsOf: NSURL(string: url) as! URL) {
+//                            let animatedImage = FLAnimatedImage(animatedGIFData: data as Data!)
+//                            AppDelegate.imageCache().setObject(animatedImage!, forKey: url as AnyObject)
+//                            DispatchQueue.main.async {
+//                                self.fileImageView.animatedImage = animatedImage;
+//
+//                                DispatchQueue.main.async {
+//                                    self.imageLoadingIndicator.isHidden = true
+//                                    self.imageLoadingIndicator.stopAnimating()
+//                                }
+//                            }
+//                        }
+//                    }
                 }
             }
         }

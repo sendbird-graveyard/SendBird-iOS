@@ -69,7 +69,7 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
         let url = self.message.url
         if self.message.type == "image/gif" {
             DispatchQueue.main.async {
-                let cachedImageData = AppDelegate.imageCache().object(forKey: url as AnyObject) as? FLAnimatedImage
+                let cachedImageData = FLAnimatedImage(animatedGIFData: AppDelegate.imageCache().object(forKey: url as AnyObject) as? Data)
                 if cachedImageData != nil {
                     self.fileImageView.animatedImage = cachedImageData;
                 }
@@ -79,11 +79,22 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
                         self.imageLoadingIndicator.isHidden = false
                         self.imageLoadingIndicator.startAnimating()
                     }
-                    let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue");
-                    imageLoadQueue.async {
-                        if let data = NSData(contentsOf: NSURL(string: url) as! URL) {
+                    
+                    let session = URLSession(configuration: URLSessionConfiguration.default)
+                    let request = URLRequest(url: URL(string: url)!)
+                    session.dataTask(with: request, completionHandler: { (data, response, error) in
+                        if error != nil {
+                            // TODO: Show download failed.
+                            
+                            session.invalidateAndCancel()
+                            
+                            return;
+                        }
+                        
+                        let resp = response as! HTTPURLResponse
+                        if resp.statusCode >= 200 && resp.statusCode < 300 {
                             let animatedImage = FLAnimatedImage(animatedGIFData: data as Data!)
-                            AppDelegate.imageCache().setObject(animatedImage!, forKey: url as AnyObject)
+                            AppDelegate.imageCache().setObject(data as AnyObject, forKey: url as AnyObject)
                             DispatchQueue.main.async {
                                 self.fileImageView.animatedImage = animatedImage;
                                 
@@ -93,7 +104,28 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
                                 }
                             }
                         }
-                    }
+                        else {
+                            // TODO: Show download failed.
+                        }
+                        
+                        session.invalidateAndCancel()
+                    }).resume()
+                    
+//                    let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue");
+//                    imageLoadQueue.async {
+//                        if let data = NSData(contentsOf: NSURL(string: url) as! URL) {
+//                            let animatedImage = FLAnimatedImage(animatedGIFData: data as Data!)
+//                            AppDelegate.imageCache().setObject(animatedImage!, forKey: url as AnyObject)
+//                            DispatchQueue.main.async {
+//                                self.fileImageView.animatedImage = animatedImage;
+//                                
+//                                DispatchQueue.main.async {
+//                                    self.imageLoadingIndicator.isHidden = true
+//                                    self.imageLoadingIndicator.stopAnimating()
+//                                }
+//                            }
+//                        }
+//                    }
                 }
             }
         }

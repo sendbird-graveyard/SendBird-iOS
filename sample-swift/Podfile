@@ -10,4 +10,5 @@ target 'SendBird-iOS' do
   pod 'AlamofireImage'
   pod 'MGSwipeTableCell'
   pod 'FLAnimatedImage', '~> 1.0'
+  pod 'NYTPhotoViewer', '~> 1.1.0'
 end

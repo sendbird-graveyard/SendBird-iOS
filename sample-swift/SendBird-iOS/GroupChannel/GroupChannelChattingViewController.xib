@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -9,6 +13,9 @@
             <connections>
                 <outlet property="bottomMargin" destination="5Ab-UI-o7I" id="7si-8B-fQY"/>
                 <outlet property="chattingView" destination="AAA-Vq-7hk" id="yX1-BT-ENu"/>
+                <outlet property="imageViewerLoadingIndicator" destination="sqK-uF-ZNw" id="fhf-wi-Mqi"/>
+                <outlet property="imageViewerLoadingView" destination="Kgd-6s-sEz" id="KaX-Kz-4kb"/>
+                <outlet property="imageViewerLoadingViewNavItem" destination="Emv-36-QNT" id="Wv8-x2-wLD"/>
                 <outlet property="navItem" destination="XbV-PA-rdE" id="5bP-Nt-a0o"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,6 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37l-RV-YBp">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="gFk-9g-M0b"/>
                     </constraints>
@@ -27,7 +35,31 @@
                     </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AAA-Vq-7hk" customClass="ChattingView" customModule="SendBird_iOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kgd-6s-sEz" userLabel="Image Viewer Loading View">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2JN-2a-q7v">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <items>
+                                <navigationItem id="Emv-36-QNT"/>
+                            </items>
+                        </navigationBar>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="sqK-uF-ZNw" userLabel="Image Viewer Loading Activity Indicator">
+                            <rect key="frame" x="177" y="323" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="sqK-uF-ZNw" firstAttribute="centerX" secondItem="Kgd-6s-sEz" secondAttribute="centerX" id="0vp-B5-UFd"/>
+                        <constraint firstItem="2JN-2a-q7v" firstAttribute="top" secondItem="Kgd-6s-sEz" secondAttribute="top" id="3UR-zK-6vh"/>
+                        <constraint firstItem="2JN-2a-q7v" firstAttribute="leading" secondItem="Kgd-6s-sEz" secondAttribute="leading" id="5Ui-cW-gzT"/>
+                        <constraint firstItem="sqK-uF-ZNw" firstAttribute="centerY" secondItem="Kgd-6s-sEz" secondAttribute="centerY" id="D2m-dA-nsu"/>
+                        <constraint firstAttribute="trailing" secondItem="2JN-2a-q7v" secondAttribute="trailing" id="TTU-8g-FyX"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -35,8 +67,12 @@
                 <constraint firstAttribute="bottom" secondItem="AAA-Vq-7hk" secondAttribute="bottom" id="5Ab-UI-o7I"/>
                 <constraint firstItem="AAA-Vq-7hk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6TI-Ys-n4Z"/>
                 <constraint firstItem="AAA-Vq-7hk" firstAttribute="top" secondItem="37l-RV-YBp" secondAttribute="bottom" id="7h0-6I-ZK3"/>
+                <constraint firstAttribute="bottom" secondItem="Kgd-6s-sEz" secondAttribute="bottom" id="CMH-VW-AZI"/>
                 <constraint firstItem="37l-RV-YBp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NAi-6v-l37"/>
+                <constraint firstItem="Kgd-6s-sEz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YCq-AK-MYQ"/>
                 <constraint firstItem="37l-RV-YBp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fMb-Td-tBM"/>
+                <constraint firstAttribute="trailing" secondItem="Kgd-6s-sEz" secondAttribute="trailing" id="poM-97-6RZ"/>
+                <constraint firstItem="Kgd-6s-sEz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rcY-nS-x5K"/>
                 <constraint firstAttribute="trailing" secondItem="37l-RV-YBp" secondAttribute="trailing" id="uez-4l-rbu"/>
                 <constraint firstAttribute="trailing" secondItem="AAA-Vq-7hk" secondAttribute="trailing" id="vXg-FO-oE6"/>
             </constraints>

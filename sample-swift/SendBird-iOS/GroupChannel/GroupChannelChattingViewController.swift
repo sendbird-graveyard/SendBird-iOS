@@ -12,6 +12,7 @@ import AVKit
 import AVFoundation
 import MobileCoreServices
 import Photos
+import NYTPhotoViewer
 
 class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegate, SBDChannelDelegate, ChattingViewDelegate, MessageDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var groupChannel: SBDGroupChannel!
@@ -19,6 +20,9 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     @IBOutlet weak var chattingView: ChattingView!
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var bottomMargin: NSLayoutConstraint!
+    @IBOutlet weak var imageViewerLoadingView: UIView!
+    @IBOutlet weak var imageViewerLoadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var imageViewerLoadingViewNavItem: UINavigationItem!
     
     private var messageQuery: SBDPreviousMessageListQuery!
     private var delegateIdentifier: String!
@@ -26,6 +30,8 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     private var refreshInViewDidAppear: Bool = true
     private var isLoading: Bool = false
     private var keyboardShown: Bool = false
+    
+    private var photosViewController: NYTPhotosViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +61,15 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide(notification:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+        
+        let negativeLeftSpacerForImageViewerLoading = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+        negativeLeftSpacerForImageViewerLoading.width = -2
+        
+        let leftCloseItemForImageViewerLoading = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItemStyle.done, target: self, action: #selector(close))
+        
+        self.imageViewerLoadingViewNavItem.leftBarButtonItems = [negativeLeftSpacerForImageViewerLoading, leftCloseItemForImageViewerLoading]
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         
         self.delegateIdentifier = self.description
         SBDMain.add(self as SBDChannelDelegate, identifier: self.delegateIdentifier)
@@ -517,35 +532,99 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
             }
             
             if type.hasPrefix("video") {
-                openFileAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "PlayVideoButton"), style: UIAlertActionStyle.default, handler: { (action) in
-                    let videoUrl = NSURL(string: url)
-                    let player = AVPlayer(url: videoUrl as! URL)
-                    let vc = AVPlayerViewController()
-                    vc.player = player
-                    self.refreshInViewDidAppear = false
-                    self.present(vc, animated: true, completion: { 
-                        player.play()
-                    })
+                let videoUrl = NSURL(string: url)
+                let player = AVPlayer(url: videoUrl as! URL)
+                let vc = AVPlayerViewController()
+                vc.player = player
+                self.refreshInViewDidAppear = false
+                self.present(vc, animated: true, completion: {
+                    player.play()
                 })
+                
+                return
             }
             else if type.hasPrefix("audio") {
-                openFileAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "PlayAudioButton"), style: UIAlertActionStyle.default, handler: { (action) in
-                    let audioUrl = NSURL(string: url)
-                    let player = AVPlayer(url: audioUrl as! URL)
-                    let vc = AVPlayerViewController()
-                    vc.player = player
-                    self.refreshInViewDidAppear = false
-                    self.present(vc, animated: true, completion: {
-                        player.play()
-                    })
+                let audioUrl = NSURL(string: url)
+                let player = AVPlayer(url: audioUrl as! URL)
+                let vc = AVPlayerViewController()
+                vc.player = player
+                self.refreshInViewDidAppear = false
+                self.present(vc, animated: true, completion: {
+                    player.play()
                 })
+                
+                return
             }
             else if type.hasPrefix("image") {
-                openFileAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "OpenImageButton"), style: UIAlertActionStyle.default, handler: { (action) in
-                    let imageUrl = NSURL(string: url)
-                    self.refreshInViewDidAppear = false
-                    UIApplication.shared.openURL(imageUrl as! URL)
-                })
+                self.showImageViewerLoading()
+                let photo = ChatImage()
+                let cachedData = AppDelegate.imageCache().object(forKey: url as AnyObject) as? Data
+                if cachedData != nil {
+                    photo.imageData = cachedData
+                    
+                    self.photosViewController = NYTPhotosViewController(photos: [photo])
+                    DispatchQueue.main.async {
+                        self.photosViewController.rightBarButtonItems = nil
+                        self.photosViewController.rightBarButtonItem = nil
+                        
+                        let negativeLeftSpacerForImageViewerLoading = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+                        negativeLeftSpacerForImageViewerLoading.width = -2
+                        
+                        let leftCloseItemForImageViewerLoading = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItemStyle.done, target: self, action: #selector(self.closeImageViewer))
+                        
+                        self.imageViewerLoadingViewNavItem.leftBarButtonItems = [negativeLeftSpacerForImageViewerLoading, leftCloseItemForImageViewerLoading]
+                        
+                        
+                        self.present(self.photosViewController, animated: true, completion: {
+                            self.hideImageViewerLoading()
+                        })
+                    }
+                }
+                else {
+                    let session = URLSession.shared
+                    let request = URLRequest(url: URL(string: url)!)
+                    session.dataTask(with: request, completionHandler: { (data, response, error) in
+                        if error != nil {
+                            self.hideImageViewerLoading()
+                            
+                            return;
+                        }
+                        
+                        let resp = response as! HTTPURLResponse
+                        if resp.statusCode >= 200 && resp.statusCode < 300 {
+                            AppDelegate.imageCache().setObject(data as AnyObject, forKey: url as AnyObject)
+                            let photo = ChatImage()
+                            photo.imageData = data
+                            
+                            self.photosViewController = NYTPhotosViewController(photos: [photo])
+                            DispatchQueue.main.async {
+                                self.photosViewController.rightBarButtonItems = nil
+                                self.photosViewController.rightBarButtonItem = nil
+                                
+                                let negativeLeftSpacerForImageViewerLoading = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+                                negativeLeftSpacerForImageViewerLoading.width = -2
+                                
+                                let leftCloseItemForImageViewerLoading = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItemStyle.done, target: self, action: #selector(self.closeImageViewer))
+                                
+                                self.imageViewerLoadingViewNavItem.leftBarButtonItems = [negativeLeftSpacerForImageViewerLoading, leftCloseItemForImageViewerLoading]
+                                
+                                self.present(self.photosViewController, animated: true, completion: {
+                                    self.hideImageViewerLoading()
+                                })
+                            }
+                        }
+                        else {
+                            // TODO: Show download failed.
+                            self.hideImageViewerLoading()
+                        }
+                    }).resume()
+                }
+                
+//                openFileAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "OpenImageButton"), style: UIAlertActionStyle.default, handler: { (action) in
+//                    let imageUrl = NSURL(string: url)
+//                    self.refreshInViewDidAppear = false
+//                    UIApplication.shared.openURL(imageUrl as! URL)
+//                })
             }
             else {
                 // TODO: Download file. Is this possible on iOS?
@@ -839,5 +918,27 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func showImageViewerLoading() {
+        DispatchQueue.main.async {
+            self.imageViewerLoadingView.isHidden = false
+            self.imageViewerLoadingIndicator.isHidden = false
+            self.imageViewerLoadingIndicator.startAnimating()
+        }
+    }
+    
+    func hideImageViewerLoading() {
+        DispatchQueue.main.async {
+            self.imageViewerLoadingView.isHidden = true
+            self.imageViewerLoadingIndicator.isHidden = true
+            self.imageViewerLoadingIndicator.stopAnimating()
+        }
+    }
+    
+    func closeImageViewer() {
+        if self.photosViewController != nil {
+            self.photosViewController.dismiss(animated: true, completion: nil)
+        }
     }
 }

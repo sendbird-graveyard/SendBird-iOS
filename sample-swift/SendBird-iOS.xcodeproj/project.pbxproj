@@ -78,6 +78,7 @@
 		CE806EFA1E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE806EF81E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift */; };
 		CE806EFB1E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806EF91E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib */; };
 		E25E5A771E735BC8003E1E9B /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E25E5A761E735BC8003E1E9B /* Photos.framework */; };
+		E25E5A9B1E7A046D003E1E9B /* ChatImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E5A9A1E7A046D003E1E9B /* ChatImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -168,6 +169,7 @@
 		CE806EF81E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutgoingVideoFileMessageTableViewCell.swift; path = ../../GroupChannel/ViewCell/OutgoingVideoFileMessageTableViewCell.swift; sourceTree = "<group>"; };
 		CE806EF91E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OutgoingVideoFileMessageTableViewCell.xib; path = ../../GroupChannel/ViewCell/OutgoingVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
 		E25E5A761E735BC8003E1E9B /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		E25E5A9A1E7A046D003E1E9B /* ChatImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +207,7 @@
 		5ABA0B7F1DA6010A000C82DC /* SendBird-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				E25E5A991E7A03F3003E1E9B /* ImageViewer */,
 				5ABA0B921DA6020A000C82DC /* Chatting */,
 				5ABA0B941DA6021D000C82DC /* Common */,
 				5ABA0B951DA60228000C82DC /* GroupChannel */,
@@ -368,6 +371,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E25E5A991E7A03F3003E1E9B /* ImageViewer */ = {
+			isa = PBXGroup;
+			children = (
+				E25E5A9A1E7A046D003E1E9B /* ChatImage.swift */,
+			);
+			name = ImageViewer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -523,6 +534,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E25E5A9B1E7A046D003E1E9B /* ChatImage.swift in Sources */,
 				5ADEF82A1DAA663C000AABF9 /* CreateGroupChannelUserListTableViewCell.swift in Sources */,
 				5ABA0BB21DA60559000C82DC /* MessageDelegate.swift in Sources */,
 				5ABA0B831DA6010A000C82DC /* ViewController.swift in Sources */,

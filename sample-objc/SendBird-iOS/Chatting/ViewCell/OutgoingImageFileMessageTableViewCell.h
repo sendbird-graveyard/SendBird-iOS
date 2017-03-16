@@ -13,6 +13,7 @@
 @interface OutgoingImageFileMessageTableViewCell : UITableViewCell
 
 @property (weak, nonatomic, nullable) id<MessageDelegate> delegate;
+@property (atomic) BOOL hasImageCacheData;
 
 + (nullable UINib *)nib;
 + (nullable NSString *)cellReuseIdentifier;

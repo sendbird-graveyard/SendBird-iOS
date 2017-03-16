@@ -68,9 +68,10 @@
 
 - (void)setModel:(SBDFileMessage *)aMessage {
     self.message = aMessage;
-    
+
     self.imageLoadingIndicator.hidden = YES;
     self.fileImageView.animatedImage = nil;
+    
     self.fileImageView.image = nil;
     __block NSString *url = self.message.url;
     if (self.message.url != nil && self.message.url.length > 0 && self.message.type != nil && [self.message.type isEqualToString:@"image/gif"]) {
@@ -81,10 +82,12 @@
             }
             else {
                 [self.fileImageView setAnimatedImage:nil];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.imageLoadingIndicator.hidden = NO;
-                    [self.imageLoadingIndicator startAnimating];
-                });
+                if (self.hasImageCacheData == NO) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.imageLoadingIndicator.hidden = NO;
+                        [self.imageLoadingIndicator startAnimating];
+                    });
+                }
                 NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
                 NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
                 [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -115,24 +118,6 @@
                     
                     [session invalidateAndCancel];
                 }] resume];
-
-//                dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
-//                dispatch_async(imageLoadQueue, ^{
-//                    __block NSData *cachedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-//                    __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:cachedData];
-//                    
-//                    if ([[AppDelegate imageCache] objectForKey:url] == nil) {
-//                        [[AppDelegate imageCache] setObject:cachedData forKey:url];
-//                    }
-//                    
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        [self.fileImageView setAnimatedImage:animatedImage];
-//                        dispatch_async(dispatch_get_main_queue(), ^{
-//                            self.imageLoadingIndicator.hidden = YES;
-//                            [self.imageLoadingIndicator stopAnimating];
-//                        });
-//                    });
-//                });
             }
         });
     }

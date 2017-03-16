@@ -698,17 +698,23 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     if self.preSendMessages[fileMessage.requestId!] != nil {
                         (cell as! OutgoingImageFileMessageTableViewCell).showSendingStatus()
                         (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.preSendFileData[fileMessage.requestId!]!["data"] as! Data, type: self.preSendFileData[fileMessage.requestId!]!["type"] as! String)
+                        (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = true
                     }
                     else {
                         if self.resendableMessages[fileMessage.requestId!] != nil {
 //                            (cell as! OutgoingImageFileMessageTableViewCell).showMessageControlButton()
                             (cell as! OutgoingImageFileMessageTableViewCell).showFailedStatus()
                             (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.resendableFileData[fileMessage.requestId!]?["data"] as! Data, type: self.resendableFileData[fileMessage.requestId!]?["type"] as! String)
+                            (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = true
                         }
                         else {
                             if fileMessage.url.characters.count > 0 && self.preSendFileData[fileMessage.requestId!] != nil {
                                 (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.preSendFileData[fileMessage.requestId!]?["data"] as! Data, type: self.preSendFileData[fileMessage.requestId!]?["type"] as! String)
+                                (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = true
                                 self.preSendFileData.removeValue(forKey: fileMessage.requestId!);
+                            }
+                            else {
+                                (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = false
                             }
                             (cell as! OutgoingImageFileMessageTableViewCell).showMessageDate()
                             (cell as! OutgoingImageFileMessageTableViewCell).showUnreadCount()

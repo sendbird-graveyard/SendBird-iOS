@@ -24,6 +24,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>NYTPhotoViewer-NYTPhotoViewer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>NYTPhotoViewer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SendBird-iOS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,7 +47,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7E674FC83764A9357CF6A6A2FB715978</key>
+		<key>63C3C4E1FF5AC93C9FD3F9C7F0D87B04</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -53,6 +63,16 @@
 			<true/>
 		</dict>
 		<key>9EFE4C70245EE2857D336B8B9FA4E825</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B97720AEDDAEC6569BE907F8D81E7EB7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D85C3D5A275CC39B0CEEC53C5FA8F233</key>
 		<dict>
 			<key>primary</key>
 			<true/>
