@@ -114,17 +114,15 @@
     NSLog(@"Failed to get token, error: %@", error);
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-//    NSLog(@"didReceiveRemoteNotification: %@", userInfo);
-//    
-//    if (userInfo[@"sendbird"] != nil) {
-//        NSDictionary *sendBirdPayload = userInfo[@"sendbird"];
-//        NSString *channel = sendBirdPayload[@"channel"][@"channel_url"];
-//        NSString *channelType = sendBirdPayload[@"channel_type"];
-//        if ([channelType isEqualToString:@"group_messaging"]) {
-//            self.receivedPushChannelUrl = channel;
-//        }
-//    }
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {  
+    if (userInfo[@"sendbird"] != nil) {
+        NSDictionary *sendBirdPayload = userInfo[@"sendbird"];
+        NSString *channel = sendBirdPayload[@"channel"][@"channel_url"];
+        NSString *channelType = sendBirdPayload[@"channel_type"];
+        if ([channelType isEqualToString:@"group_messaging"]) {
+            self.receivedPushChannelUrl = channel;
+        }
+    }
 
 }
 

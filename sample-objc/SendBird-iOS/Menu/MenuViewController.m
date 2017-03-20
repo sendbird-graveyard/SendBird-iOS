@@ -158,7 +158,7 @@
             GroupChannelChattingViewController *vc = [[GroupChannelChattingViewController alloc] init];
             vc.channel = channel;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self presentViewController:vc animated:NO completion:nil];
+                [topViewController presentViewController:vc animated:NO completion:nil];
             });
         }];
     }
