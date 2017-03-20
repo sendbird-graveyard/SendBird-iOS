@@ -1104,6 +1104,39 @@
             if (resendableUserMessage.translations != nil) {
                 targetLanguages = [resendableUserMessage.translations allKeys];
             }
+            
+            NSError *error = nil;
+            NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
+            if (error == nil) {
+                NSArray *matches = [detector matchesInString:resendableUserMessage.message options:0 range:NSMakeRange(0, resendableUserMessage.message.length)];
+                NSURL *url = nil;
+                for (NSTextCheckingResult *match in matches) {
+                    url = [match URL];
+                    break;
+                }
+                
+                if (url != nil) {
+                    OutgoingGeneralUrlPreviewTempModel *tempModel = [[OutgoingGeneralUrlPreviewTempModel alloc] init];
+                    tempModel.createdAt = (long long)([[NSDate date] timeIntervalSince1970] * 1000);
+                    tempModel.message = resendableUserMessage.message;
+                    
+                    [self.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:resendableUserMessage] withObject:tempModel];
+                    [self.chattingView.resendableMessages removeObjectForKey:resendableUserMessage.requestId];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.chattingView.chattingTableView reloadData];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self.chattingView scrollToBottomAnimated:YES force:YES];
+                        });
+                    });
+                    
+                    // Send preview;
+                    [self sendUrlPreview:url message:resendableUserMessage.message tempModel:tempModel];
+                    
+                    return;
+                }
+            }
+
             SBDUserMessage *preSendMessage = [self.channel sendUserMessage:resendableUserMessage.message data:resendableUserMessage.data customType:resendableUserMessage.customType targetLanguages:targetLanguages completionHandler:^(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(150 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
                     SBDUserMessage *preSendMessage = (SBDUserMessage *)self.chattingView.preSendMessages[userMessage.requestId];
@@ -1144,15 +1177,16 @@
             for (SBDThumbnail *thumbnail in resendableFileMessage.thumbnails) {
                 [thumbnailsSizes addObject:[SBDThumbnailSize makeWithMaxCGSize:thumbnail.maxSize]];
             }
-            SBDFileMessage *preSendMessage = [self.channel sendFileMessageWithBinaryData:(NSData *)self.chattingView.preSendFileData[resendableFileMessage.requestId][@"data"] filename:resendableFileMessage.name type:resendableFileMessage.type size:resendableFileMessage.size thumbnailSizes:thumbnailsSizes data:resendableFileMessage.data customType:resendableFileMessage.customType progressHandler:nil completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
+            __block SBDFileMessage *preSendMessage = [self.channel sendFileMessageWithBinaryData:(NSData *)self.chattingView.resendableFileData[resendableFileMessage.requestId][@"data"] filename:resendableFileMessage.name type:resendableFileMessage.type size:resendableFileMessage.size thumbnailSizes:thumbnailsSizes data:resendableFileMessage.data customType:resendableFileMessage.customType progressHandler:nil completionHandler:^(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(150 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
                     SBDFileMessage *preSendMessage = (SBDFileMessage *)self.chattingView.preSendMessages[fileMessage.requestId];
                     [self.chattingView.preSendMessages removeObjectForKey:fileMessage.requestId];
                     
                     if (error != nil) {
                         self.chattingView.resendableMessages[fileMessage.requestId] = fileMessage;
-                        self.chattingView.resendableFileData[fileMessage.requestId] = self.chattingView.resendableFileData[resendableFileMessage.requestId];
-                        [self.chattingView.resendableFileData removeObjectForKey:resendableFileMessage.requestId];
+                        self.chattingView.resendableFileData[fileMessage.requestId] = self.chattingView.preSendFileData[fileMessage.requestId];
+                        [self.chattingView.preSendFileData removeObjectForKey:fileMessage.requestId];
+                        [self.chattingView.preSendMessages removeObjectForKey:fileMessage.requestId];
                         [self.chattingView.chattingTableView reloadData];
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [self.chattingView scrollToBottomAnimated:YES force:YES];

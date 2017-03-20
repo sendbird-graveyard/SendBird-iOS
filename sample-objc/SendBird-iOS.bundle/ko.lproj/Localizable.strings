@@ -35,7 +35,6 @@
 "ChannelDeletedMessage" = "이 채널이 삭제되었습니다. 채널 화면이 닫힙니다.";
 "UserBlockedTitle" = "사용자 차단됨";
 "UserBlockedMessage" = "%@이(가) 차단되었습니다.";
-"GroupChannelTitle" = "그룹 채널(%ld)";
 
 "OpenChannelCreatedTitle" = "오픈 채널 생성";
 "OpenChannelCreatedMessage" = "오픈 채널이 생성되었습니다.";
