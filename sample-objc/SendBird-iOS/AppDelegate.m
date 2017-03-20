@@ -44,7 +44,7 @@
     application.applicationIconBadgeNumber = 0;
     
     [SBDMain initWithApplicationId:@"9DA1B1F4-0BE6-4DA8-82C5-2E81DAB56F23"];
-    [SBDMain setLogLevel:SBDLogLevelDebug];
+    [SBDMain setLogLevel:SBDLogLevelNone];
     [SBDOptions setUseMemberAsMessageSender:YES];
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
@@ -62,15 +62,6 @@
     if (launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]) {
         [self application:application didReceiveRemoteNotification:launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]];
     }
-//    
-//    if (launchOptions[@"sendbird"] != nil) {
-//        NSDictionary *sendBirdPayload = launchOptions[@"sendbird"];
-//        NSString *channel = sendBirdPayload[@"channel"][@"channel_url"];
-//        NSString *channelType = sendBirdPayload[@"channel_type"];
-//        if ([channelType isEqualToString:@"group_messaging"]) {
-//            self.receivedPushChannelUrl = channel;
-//        }
-//    }
 
     return YES;
 }

@@ -99,7 +99,7 @@
     
     self.groupChannelListQuery = [SBDGroupChannel createMyGroupChannelListQuery];
     self.groupChannelListQuery.limit = 20;
-    self.groupChannelListQuery.order = SBDGroupChannelListOrderChronological;
+    self.groupChannelListQuery.order = SBDGroupChannelListOrderLatestLastMessage;
     
     [self.groupChannelListQuery loadNextPageWithCompletionHandler:^(NSArray<SBDGroupChannel *> * _Nullable channels, SBDError * _Nullable error) {
         if (error != nil) {

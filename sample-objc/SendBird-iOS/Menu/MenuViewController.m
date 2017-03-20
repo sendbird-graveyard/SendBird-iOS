@@ -135,12 +135,10 @@
 #pragma mark - SBDConnectionDelegate
 
 - (void)didStartReconnection {
-    NSLog(@"didStartReconnection in MenuViewController");
+    
 }
 
 - (void)didSucceedReconnection {
-    NSLog(@"didSucceedReconnection in MenuViewController");
-    
     if (((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl != nil) {
         NSString *channelUrl = ((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl;
         
@@ -167,7 +165,7 @@
 }
 
 - (void)didFailReconnection {
-    NSLog(@"didFailReconnection in MenuViewController");
+
 }
 
 @end

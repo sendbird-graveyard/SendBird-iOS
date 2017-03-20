@@ -16,6 +16,7 @@
                 <outlet property="imageViewerLoadingView" destination="A2P-am-xPk" id="PDC-wb-eGf"/>
                 <outlet property="imageViewerLoadingViewNavItem" destination="Pp2-Es-Goi" id="ofY-Nj-9eU"/>
                 <outlet property="navItem" destination="XbV-PA-rdE" id="5bP-Nt-a0o"/>
+                <outlet property="navigationBarHeight" destination="gFk-9g-M0b" id="ypY-gr-vRd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

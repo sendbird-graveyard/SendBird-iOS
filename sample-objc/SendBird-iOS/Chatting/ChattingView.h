@@ -26,6 +26,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *messageTextView;
 @property (weak, nonatomic) IBOutlet UITableView *chattingTableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputContainerViewHeight;
 @property (strong, nonatomic) NSMutableArray<SBDBaseMessage *> *messages;
 
 @property (strong, nonatomic) NSMutableDictionary<NSString *, SBDBaseMessage *> *resendableMessages;

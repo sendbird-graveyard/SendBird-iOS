@@ -89,6 +89,13 @@
     }
 }
 
+- (void)clickPreview {
+    NSString *url = self.previewData[@"url"];
+    if (url != nil && url.length > 0) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    }
+}
+
 - (void)setModel:(SBDUserMessage *)aMessage {
     self.message = aMessage;
 
@@ -100,6 +107,22 @@
     NSString *siteName = self.previewData[@"site_name"];
     NSString *title = self.previewData[@"title"];
     NSString *description = self.previewData[@"description"];
+    
+    UITapGestureRecognizer *previewThumbnailImageViewTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickPreview)];
+    self.previewThumbnailImageView.userInteractionEnabled = YES;
+    [self.previewThumbnailImageView addGestureRecognizer:previewThumbnailImageViewTapRecognizer];
+    
+    UITapGestureRecognizer *previewSiteNameLabelTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickPreview)];
+    self.previewSiteNameLabel.userInteractionEnabled = YES;
+    [self.previewSiteNameLabel addGestureRecognizer:previewSiteNameLabelTapRecognizer];
+    
+    UITapGestureRecognizer *previewTitleLabelTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickPreview)];
+    self.previewTitleLabel.userInteractionEnabled = YES;
+    [self.previewTitleLabel addGestureRecognizer:previewTitleLabelTapRecognizer];
+    
+    UITapGestureRecognizer *previewDescriptionLabelTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickPreview)];
+    self.previewDescriptionLabel.userInteractionEnabled = YES;
+    [self.previewDescriptionLabel addGestureRecognizer:previewDescriptionLabelTapRecognizer];
     
     self.previewThumbnailImageView.image = nil;
     self.previewThumbnailImageView.animatedImage = nil;

@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,6 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ld2-nK-TL2">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="Gw0-vc-MMH"/>
                     </constraints>
@@ -30,31 +34,44 @@
                     </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OsK-qo-u2o" userLabel="Seperator View 1">
+                    <rect key="frame" x="0.0" y="64" width="375" height="1"/>
                     <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="HHN-vY-J2Q"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2gY-kh-roS" userLabel="Seperator View 2">
+                    <rect key="frame" x="0.0" y="128" width="375" height="1"/>
+                    <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="XXN-Ao-kuR"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWr-Zk-cvs" userLabel="Open Channel View">
+                    <rect key="frame" x="0.0" y="130" width="375" height="62"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejz-tX-o15" userLabel="Open Channel Button">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
                             <connections>
                                 <action selector="clickOpenChannelButton:" destination="-1" eventType="touchUpInside" id="ewb-rp-1e0"/>
                                 <action selector="pressOpenChannelButton:" destination="-1" eventType="touchDown" id="jMn-9d-n8a"/>
                             </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_openchannel" translatesAutoresizingMaskIntoConstraints="NO" id="QCN-7v-OqK" userLabel="Open Channel Icon Image View">
+                            <rect key="frame" x="24" y="18" width="26" height="26"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="26" id="6df-6y-ZQi"/>
                                 <constraint firstAttribute="height" constant="26" id="gcU-i0-J7D"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open Channel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xd5-5M-qb3" userLabel="Open Channel Label">
+                            <rect key="frame" x="70" y="20.5" width="115.5" height="21"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_check" translatesAutoresizingMaskIntoConstraints="NO" id="bWY-st-d6y" userLabel="Open Channel Check Image View">
+                            <rect key="frame" x="346" y="26" width="15" height="10.5"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="10.5" id="XPC-Wy-2GF"/>
                                 <constraint firstAttribute="width" constant="15" id="q7Z-Cu-GYn"/>
@@ -76,32 +93,38 @@
                         <constraint firstItem="Xd5-5M-qb3" firstAttribute="leading" secondItem="QCN-7v-OqK" secondAttribute="trailing" constant="20" id="xKu-KT-dMR"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2gY-kh-roS" userLabel="Seperator View 2">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yXM-OV-dVO" userLabel="Seperator View 3">
+                    <rect key="frame" x="0.0" y="193" width="375" height="1"/>
                     <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="1" id="XXN-Ao-kuR"/>
+                        <constraint firstAttribute="height" constant="1" id="0vs-TR-Ifi"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N2O-2f-9dI" userLabel="Group Channel View">
+                    <rect key="frame" x="0.0" y="65" width="375" height="62"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ud-Aw-hD4" userLabel="Group Channel Button">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
                             <connections>
                                 <action selector="clickGroupChannelButton:" destination="-1" eventType="touchUpInside" id="Sql-5j-SKF"/>
                                 <action selector="pressGroupChannelButton:" destination="-1" eventType="touchDown" id="pag-j5-uJM"/>
                             </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_groupchannel" translatesAutoresizingMaskIntoConstraints="NO" id="lS0-VZ-2m2" userLabel="Group Channel Icon Image View">
+                            <rect key="frame" x="24" y="18" width="26" height="26"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="26" id="APR-6Q-XbV"/>
                                 <constraint firstAttribute="height" constant="26" id="AzM-a0-hFJ"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Channel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msC-qx-don" userLabel="Group Channel Label">
+                            <rect key="frame" x="70" y="20.5" width="122" height="21"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_check" translatesAutoresizingMaskIntoConstraints="NO" id="WaE-QS-Iuy" userLabel="Group Channel Check Image View">
+                            <rect key="frame" x="346" y="26" width="15" height="10.5"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="10.5" id="KU6-8O-UYd"/>
                                 <constraint firstAttribute="width" constant="15" id="gnw-Gw-ia5"/>
@@ -123,30 +146,24 @@
                         <constraint firstItem="WaE-QS-Iuy" firstAttribute="centerY" secondItem="N2O-2f-9dI" secondAttribute="centerY" id="p4N-OP-iZM"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yXM-OV-dVO" userLabel="Seperator View 3">
-                    <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="0vs-TR-Ifi"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="2gY-kh-roS" firstAttribute="top" secondItem="oWr-Zk-cvs" secondAttribute="bottom" id="0D3-oY-Qkm"/>
                 <constraint firstItem="yXM-OV-dVO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4S3-K3-RGF"/>
+                <constraint firstItem="2gY-kh-roS" firstAttribute="top" secondItem="N2O-2f-9dI" secondAttribute="bottom" constant="1" id="4Se-b9-Tmj"/>
+                <constraint firstItem="oWr-Zk-cvs" firstAttribute="top" secondItem="2gY-kh-roS" secondAttribute="bottom" constant="1" id="6jb-l4-XGH"/>
                 <constraint firstAttribute="trailing" secondItem="2gY-kh-roS" secondAttribute="trailing" id="8xq-t6-zPa"/>
-                <constraint firstItem="yXM-OV-dVO" firstAttribute="top" secondItem="N2O-2f-9dI" secondAttribute="bottom" id="CYK-5E-Aj6"/>
                 <constraint firstItem="N2O-2f-9dI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Dj5-DO-lkb"/>
                 <constraint firstItem="oWr-Zk-cvs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Gis-8p-Coq"/>
                 <constraint firstAttribute="trailing" secondItem="N2O-2f-9dI" secondAttribute="trailing" id="IWc-sx-0LY"/>
                 <constraint firstItem="ld2-nK-TL2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="J1P-D1-QYR"/>
                 <constraint firstItem="OsK-qo-u2o" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QbN-GI-Qsg"/>
-                <constraint firstItem="oWr-Zk-cvs" firstAttribute="top" secondItem="OsK-qo-u2o" secondAttribute="bottom" id="Qgu-pc-hTB"/>
                 <constraint firstItem="OsK-qo-u2o" firstAttribute="top" secondItem="ld2-nK-TL2" secondAttribute="bottom" id="USE-OV-aPc"/>
                 <constraint firstItem="2gY-kh-roS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="WrI-ip-Y0i"/>
-                <constraint firstItem="N2O-2f-9dI" firstAttribute="top" secondItem="2gY-kh-roS" secondAttribute="bottom" id="buW-EV-Lfm"/>
                 <constraint firstAttribute="trailing" secondItem="oWr-Zk-cvs" secondAttribute="trailing" id="cfb-69-S0V"/>
+                <constraint firstItem="yXM-OV-dVO" firstAttribute="top" secondItem="oWr-Zk-cvs" secondAttribute="bottom" constant="1" id="fWF-2a-nwL"/>
                 <constraint firstAttribute="trailing" secondItem="ld2-nK-TL2" secondAttribute="trailing" id="gP5-uA-sju"/>
+                <constraint firstItem="N2O-2f-9dI" firstAttribute="top" secondItem="OsK-qo-u2o" secondAttribute="bottom" id="gaX-jO-ETA"/>
                 <constraint firstAttribute="trailing" secondItem="yXM-OV-dVO" secondAttribute="trailing" id="r8M-IV-7ng"/>
                 <constraint firstAttribute="trailing" secondItem="OsK-qo-u2o" secondAttribute="trailing" id="yLO-Ef-h2r"/>
                 <constraint firstItem="ld2-nK-TL2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yfE-dI-7o5"/>
