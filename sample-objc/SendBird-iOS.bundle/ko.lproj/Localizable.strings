@@ -51,3 +51,11 @@
 
 "InviteUserButton" = "사용자 초대";
 "InviteButton" = "초대";
+
+"ResendFailedMessageTitle" = "메시지 재전송";
+"ResendFailedMessageDescription" = "메시지를 재전송하시겠습니까?";
+"ResendFailedMessageButton" = "재전송";
+
+"DeleteFailedMessageTitle" = "메시지 삭제";
+"DeleteFailedMessageDescription" = "메시지를 삭제하시겠습니까?";
+"DeleteFailedMessageButton" = "삭제";

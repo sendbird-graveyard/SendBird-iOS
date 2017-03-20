@@ -78,21 +78,15 @@
             
             return;
         }
-        
-        UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"GroupChannelCreatedTitle"] message:[NSBundle sbLocalizedStringForKey:@"GroupChannelCreatedMessage"] preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self dismissViewControllerAnimated:NO completion:^{
-                if (self.delegate != nil) {
-                    [self.delegate didFinishCreatingGroupChannel:channel viewController:self];
-                }
-            }];
-        }];
-        [vc addAction:closeAction];
-        [self presentViewController:vc animated:YES completion:^{
-            
-        }];
-        
+
+        self.activityIndicator.hidden = YES;
         [self.activityIndicator stopAnimating];
+        
+        [self dismissViewControllerAnimated:NO completion:^{
+            if (self.delegate != nil) {
+                [self.delegate didFinishCreatingGroupChannel:channel viewController:self];
+            }
+        }];
     }];
 }
 
