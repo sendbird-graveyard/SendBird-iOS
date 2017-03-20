@@ -41,8 +41,15 @@
     negativeRightSpacer.width = -2;
 
     UIBarButtonItem *leftCloseItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_close"] style:UIBarButtonItemStyleDone target:self action:@selector(close)];
-    UIBarButtonItem *rightNextItem = [[UIBarButtonItem alloc] initWithTitle:[NSBundle sbLocalizedStringForKey:@"NextButton"] style:UIBarButtonItemStylePlain target:self action:@selector(next)];
-    [rightNextItem setTitleTextAttributes:@{NSFontAttributeName: [Constants navigationBarButtonItemFont]} forState:UIControlStateNormal];
+    UIBarButtonItem *rightNextItem = nil;
+    if (self.userSelectionMode == 0) {
+        rightNextItem = [[UIBarButtonItem alloc] initWithTitle:[NSBundle sbLocalizedStringForKey:@"NextButton"] style:UIBarButtonItemStylePlain target:self action:@selector(next)];
+        [rightNextItem setTitleTextAttributes:@{NSFontAttributeName: [Constants navigationBarButtonItemFont]} forState:UIControlStateNormal];
+    }
+    else {
+        rightNextItem = [[UIBarButtonItem alloc] initWithTitle:[NSBundle sbLocalizedStringForKey:@"InviteButton"] style:UIBarButtonItemStylePlain target:self action:@selector(invite)];
+        [rightNextItem setTitleTextAttributes:@{NSFontAttributeName: [Constants navigationBarButtonItemFont]} forState:UIControlStateNormal];
+    }
     
     self.navItem.leftBarButtonItems = @[negativeLeftSpacer, leftCloseItem];
     self.navItem.rightBarButtonItems = @[negativeRightSpacer, rightNextItem];
@@ -82,6 +89,18 @@
     vc.selectedUser = [[NSArray alloc] initWithArray:self.selectedUsers];
     vc.delegate = self;
     [self presentViewController:vc animated:NO completion:nil];
+}
+
+- (void)invite {
+    if (self.selectedUsers.count == 0) {
+        return;
+    }
+    
+    [self.groupChannel inviteUsers:self.selectedUsers completionHandler:^(SBDError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self dismissViewControllerAnimated:NO completion:nil];
+        });
+    }];
 }
 
 - (void)refreshUserList {
@@ -139,7 +158,22 @@
             if ([user.userId isEqualToString:[SBDMain getCurrentUser].userId]) {
                 continue;
             }
-            [self.users addObject:user];
+            
+            if (self.userSelectionMode == 1) {
+                BOOL isMember = NO;
+                for (SBDUser *member in self.groupChannel.members) {
+                    if ([member.userId isEqualToString:user.userId]) {
+                        isMember = YES;
+                        break;
+                    }
+                }
+                if (isMember != YES) {
+                    [self.users addObject:user];
+                }
+            }
+            else {
+                [self.users addObject:user];
+            }
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{

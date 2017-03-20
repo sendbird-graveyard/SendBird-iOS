@@ -18,23 +18,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="328" height="171"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLh-45-YaR" userLabel="Date Container View">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLh-45-YaR" userLabel="Date Seperator View">
                         <rect key="frame" x="0.0" y="0.0" width="328" height="24"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AKs-yf-1qO" userLabel="Left Line View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AKs-yf-1qO" userLabel="Date Seperator Left Line View">
                                 <rect key="frame" x="0.0" y="11.5" width="124" height="1"/>
                                 <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="VEy-9x-j3b"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 Sep, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjL-Q7-Mhr" userLabel="Date Label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 Sep, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjL-Q7-Mhr" userLabel="Date Seperator Label">
                                 <rect key="frame" x="128" y="5" width="72" height="14.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNb-3I-Qkm" userLabel="Right Line View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNb-3I-Qkm" userLabel="Date Seperator Right Line View">
                                 <rect key="frame" x="204" y="11.5" width="124" height="1"/>
                                 <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -45,7 +45,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="CjL-Q7-Mhr" firstAttribute="centerX" secondItem="OLh-45-YaR" secondAttribute="centerX" id="0Ly-x7-5eB"/>
-                            <constraint firstAttribute="height" constant="24" id="2Iz-VC-Ptw" userLabel="Date Container Height"/>
+                            <constraint firstAttribute="height" constant="24" id="2Iz-VC-Ptw" userLabel="Date Seperator View Height"/>
                             <constraint firstItem="AKs-yf-1qO" firstAttribute="centerY" secondItem="OLh-45-YaR" secondAttribute="centerY" id="2jJ-3u-eDk"/>
                             <constraint firstItem="AKs-yf-1qO" firstAttribute="leading" secondItem="OLh-45-YaR" secondAttribute="leading" id="LPw-HE-nc1"/>
                             <constraint firstItem="CjL-Q7-Mhr" firstAttribute="centerY" secondItem="OLh-45-YaR" secondAttribute="centerY" id="UkX-PI-QN8"/>
@@ -128,11 +128,11 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="dateContainerBottomMargin" destination="cdE-Kc-eh5" id="bam-Mk-KtU"/>
-                <outlet property="dateContainerHeight" destination="2Iz-VC-Ptw" id="sNm-xm-sEa"/>
-                <outlet property="dateContainerTopMargin" destination="hWI-bm-MT4" id="zYJ-Mi-Bay"/>
-                <outlet property="dateSeperatorContainerView" destination="OLh-45-YaR" id="qCa-l9-Rjn"/>
                 <outlet property="dateSeperatorLabel" destination="CjL-Q7-Mhr" id="Oa9-IZ-TYi"/>
+                <outlet property="dateSeperatorView" destination="OLh-45-YaR" id="xrs-3a-6Ew"/>
+                <outlet property="dateSeperatorViewBottomMargin" destination="cdE-Kc-eh5" id="r8P-ZC-3n3"/>
+                <outlet property="dateSeperatorViewHeight" destination="2Iz-VC-Ptw" id="ymy-fF-b1a"/>
+                <outlet property="dateSeperatorViewTopMargin" destination="hWI-bm-MT4" id="UkB-Qb-QPt"/>
                 <outlet property="fileImageHeight" destination="DmP-Tv-u9L" id="AmI-LE-LFb"/>
                 <outlet property="fileImageView" destination="UZQ-gs-qMb" id="p2n-i1-ZmU"/>
                 <outlet property="imageLoadingIndicator" destination="mHT-nl-zcN" id="X9t-Oq-UgP"/>

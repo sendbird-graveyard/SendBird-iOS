@@ -180,6 +180,7 @@
 - (void)createGroupChannel {
     CreateGroupChannelUserListViewController *vc = [[CreateGroupChannelUserListViewController alloc] init];
     vc.delegate = self;
+    vc.userSelectionMode = 0;
     [self presentViewController:vc animated:NO completion:nil];
 }
 

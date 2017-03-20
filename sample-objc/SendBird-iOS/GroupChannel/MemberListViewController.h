@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <SendBirdSDK/SendBirdSDK.h>
 
-@interface MemberListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface MemberListViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, SBDChannelDelegate, SBDConnectionDelegate>
 
 @property (strong, nonatomic) SBDGroupChannel *channel;
 

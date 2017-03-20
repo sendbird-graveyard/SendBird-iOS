@@ -71,13 +71,21 @@
 		5AF8AC7B1D913D91000F0578 /* GroupChannelListEditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC791D913D91000F0578 /* GroupChannelListEditableTableViewCell.m */; };
 		5AF8AC7C1D913D91000F0578 /* GroupChannelListEditableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF8AC7A1D913D91000F0578 /* GroupChannelListEditableTableViewCell.xib */; };
 		5AF8AC891D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC871D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m */; };
-		A70556D294A247DB1E790AF6 /* libPods-SendBird-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F7440614FBAB0CE15886868 /* libPods-SendBird-iOS.a */; };
+		B4BD35B7B36280BBAF9B8122 /* Pods_SendBird_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 382D6CF042D942EB06CD9F0C /* Pods_SendBird_iOS.framework */; };
+		CE806EFF1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE806EFD1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.m */; };
+		CE806F001E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806EFE1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib */; };
+		CE806F041E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE806F021E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.m */; };
+		CE806F051E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806F031E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.xib */; };
+		E218A68E1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E218A68C1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.m */; };
+		E218A68F1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E218A68D1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib */; };
+		E218A6931E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E218A6921E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.m */; };
 		E23FFC571E6F7B4F007E2E2D /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E23FFC561E6F7B4F007E2E2D /* Photos.framework */; };
 		E25E5A8C1E78A262003E1E9B /* IncomingVideoFileMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E25E5A8A1E78A262003E1E9B /* IncomingVideoFileMessageTableViewCell.m */; };
 		E25E5A8D1E78A262003E1E9B /* IncomingVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25E5A8B1E78A262003E1E9B /* IncomingVideoFileMessageTableViewCell.xib */; };
 		E25E5A911E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E25E5A8F1E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.m */; };
 		E25E5A921E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25E5A901E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.xib */; };
 		E25E5A981E79E552003E1E9B /* ChatImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E25E5A971E79E552003E1E9B /* ChatImage.m */; };
+		E26802711E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E26802701E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.m */; };
 		E2A8E63E1E5CEB6B0016BA63 /* GroupChannelChattingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3A0831D99DA3800244336 /* GroupChannelChattingViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -96,9 +104,9 @@
 
 /* Begin PBXFileReference section */
 		095040316A653E09BB5B08B5 /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		0F7440614FBAB0CE15886868 /* libPods-SendBird-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SendBird-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1364F5B22175AB53DD65C48E /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		3F68010AC569401C3F0FAD95 /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		382D6CF042D942EB06CD9F0C /* Pods_SendBird_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SendBird_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		540E4E45AC85E10182D75E6E /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5AB0CC251D8F840400F05EC1 /* SendBird-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SendBird-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB0CC291D8F840400F05EC1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5AB0CC2B1D8F840400F05EC1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -213,6 +221,18 @@
 		5AF8AC7A1D913D91000F0578 /* GroupChannelListEditableTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupChannelListEditableTableViewCell.xib; sourceTree = "<group>"; };
 		5AF8AC861D91FF9E000F0578 /* CreateGroupChannelUserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupChannelUserListViewController.h; sourceTree = "<group>"; };
 		5AF8AC871D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupChannelUserListViewController.m; sourceTree = "<group>"; };
+		79490ADA791306CED6D99F2F /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		CE806EFC1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomingGeneralUrlPreviewMessageTableViewCell.h; sourceTree = "<group>"; };
+		CE806EFD1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomingGeneralUrlPreviewMessageTableViewCell.m; sourceTree = "<group>"; };
+		CE806EFE1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingGeneralUrlPreviewMessageTableViewCell.xib; sourceTree = "<group>"; };
+		CE806F011E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingGeneralUrlPreviewMessageTableViewCell.h; sourceTree = "<group>"; };
+		CE806F021E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutgoingGeneralUrlPreviewMessageTableViewCell.m; sourceTree = "<group>"; };
+		CE806F031E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingGeneralUrlPreviewMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E218A68B1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingGeneralUrlPreviewTempMessageTableViewCell.h; sourceTree = "<group>"; };
+		E218A68C1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutgoingGeneralUrlPreviewTempMessageTableViewCell.m; sourceTree = "<group>"; };
+		E218A68D1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E218A6911E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingGeneralUrlPreviewTempModel.h; sourceTree = "<group>"; };
+		E218A6921E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutgoingGeneralUrlPreviewTempModel.m; sourceTree = "<group>"; };
 		E23FFC541E6F796D007E2E2D /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		E23FFC561E6F7B4F007E2E2D /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		E25E5A891E78A262003E1E9B /* IncomingVideoFileMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomingVideoFileMessageTableViewCell.h; sourceTree = "<group>"; };
@@ -223,7 +243,8 @@
 		E25E5A901E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
 		E25E5A961E79E552003E1E9B /* ChatImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatImage.h; sourceTree = "<group>"; };
 		E25E5A971E79E552003E1E9B /* ChatImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImage.m; sourceTree = "<group>"; };
-		E2FFAC00B5E8A9493084E70F /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		E268026F1E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImageView+ImageCache.h"; sourceTree = "<group>"; };
+		E26802701E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLAnimatedImageView+ImageCache.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,13 +253,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				E23FFC571E6F7B4F007E2E2D /* Photos.framework in Frameworks */,
-				A70556D294A247DB1E790AF6 /* libPods-SendBird-iOS.a in Frameworks */,
+				B4BD35B7B36280BBAF9B8122 /* Pods_SendBird_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5728704B574226AD75F11154 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				540E4E45AC85E10182D75E6E /* Pods-SendBird-iOS.debug.xcconfig */,
+				79490ADA791306CED6D99F2F /* Pods-SendBird-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		5AB0CC1C1D8F840400F05EC1 = {
 			isa = PBXGroup;
 			children = (
@@ -246,7 +276,7 @@
 				5AB0CC261D8F840400F05EC1 /* Products */,
 				5AB0CC271D8F840400F05EC1 /* SendBird-iOS */,
 				7FBC9D59107481A6793B2D20 /* Frameworks */,
-				637A1CAA6BE9D31152E759CB /* Pods */,
+				5728704B574226AD75F11154 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -294,6 +324,7 @@
 		5ADA68D71D9256FB00EFDF2B /* Chatting */ = {
 			isa = PBXGroup;
 			children = (
+				E218A6901E7CB469008ED223 /* Model */,
 				5ADA68D81D92571500EFDF2B /* ViewCell */,
 				5ADA68DE1D92576A00EFDF2B /* ChattingView.h */,
 				5ADA68DF1D92576A00EFDF2B /* ChattingView.m */,
@@ -333,6 +364,15 @@
 				E25E5A8E1E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.h */,
 				E25E5A8F1E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.m */,
 				E25E5A901E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.xib */,
+				CE806EFC1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.h */,
+				CE806EFD1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.m */,
+				CE806EFE1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib */,
+				CE806F011E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.h */,
+				CE806F021E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.m */,
+				CE806F031E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.xib */,
+				E218A68B1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.h */,
+				E218A68C1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.m */,
+				E218A68D1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib */,
 			);
 			path = ViewCell;
 			sourceTree = "<group>";
@@ -355,6 +395,8 @@
 				5AD94BE11DB4A8C900A6CD66 /* Constants.m */,
 				5AD94BE91DB5BCEE00A6CD66 /* NSBundle+SendBird.h */,
 				5AD94BEA1DB5BCEE00A6CD66 /* NSBundle+SendBird.m */,
+				E268026F1E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.h */,
+				E26802701E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -453,21 +495,12 @@
 			path = ViewCell;
 			sourceTree = "<group>";
 		};
-		637A1CAA6BE9D31152E759CB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E2FFAC00B5E8A9493084E70F /* Pods-SendBird-iOS.debug.xcconfig */,
-				3F68010AC569401C3F0FAD95 /* Pods-SendBird-iOS.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		7FBC9D59107481A6793B2D20 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				E23FFC561E6F7B4F007E2E2D /* Photos.framework */,
 				E23FFC541E6F796D007E2E2D /* AssetsLibrary.framework */,
-				0F7440614FBAB0CE15886868 /* libPods-SendBird-iOS.a */,
+				382D6CF042D942EB06CD9F0C /* Pods_SendBird_iOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -480,6 +513,15 @@
 			);
 			name = Pods;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		E218A6901E7CB469008ED223 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E218A6911E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.h */,
+				E218A6921E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		E25E5A951E79E513003E1E9B /* ImageViewer */ = {
@@ -498,13 +540,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5AB0CC3C1D8F840400F05EC1 /* Build configuration list for PBXNativeTarget "SendBird-iOS" */;
 			buildPhases = (
-				241921FF02E731D044D1CA23 /* [CP] Check Pods Manifest.lock */,
+				6FC275EF6EA21B5F2AA2D6E4 /* [CP] Check Pods Manifest.lock */,
 				5AB0CC211D8F840400F05EC1 /* Sources */,
 				5AB0CC221D8F840400F05EC1 /* Frameworks */,
 				5AB0CC231D8F840400F05EC1 /* Resources */,
 				5AF8AC851D915D27000F0578 /* Embed Frameworks */,
-				26A6A5098B7990B4608FCC56 /* [CP] Embed Pods Frameworks */,
-				79297A287FD0878099942094 /* [CP] Copy Pods Resources */,
+				65F48B1CE201A6328586F962 /* [CP] Embed Pods Frameworks */,
+				33477679467C759F405C5CDA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -563,6 +605,7 @@
 				5AC3A06D1D9781A300244336 /* IncomingFileMessageTableViewCell.xib in Resources */,
 				5AB0CC381D8F840400F05EC1 /* LaunchScreen.storyboard in Resources */,
 				E25E5A921E78A275003E1E9B /* OutgoingVideoFileMessageTableViewCell.xib in Resources */,
+				E218A68F1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib in Resources */,
 				5AF199221DA3B4E900BF2DE0 /* ParticipantListTableViewCell.xib in Resources */,
 				5AD94C041DB5D54500A6CD66 /* CreateGroupChannelSelectOptionViewController.xib in Resources */,
 				5ADA69171D93CFAE00EFDF2B /* NeutralMessageTableViewCell.xib in Resources */,
@@ -584,6 +627,7 @@
 				5AB0CC331D8F840400F05EC1 /* Main.storyboard in Resources */,
 				5ADA68D61D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.xib in Resources */,
 				5ADA69121D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.xib in Resources */,
+				CE806F051E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.xib in Resources */,
 				5AF8AC721D911B85000F0578 /* GroupChannelListTableViewCell.xib in Resources */,
 				5AF199131DA3A1FB00BF2DE0 /* MemberListTableViewCell.xib in Resources */,
 				5AD94BF91DB5C4ED00A6CD66 /* SendBird-iOS.bundle in Resources */,
@@ -591,6 +635,7 @@
 				5AD94C221DB5F5A900A6CD66 /* ChattingView.xib in Resources */,
 				5AF199271DA3CCE000BF2DE0 /* BlockedUserListTableViewCell.xib in Resources */,
 				5AF8AC661D90D95E000F0578 /* OpenChannelListTableViewCell.xib in Resources */,
+				CE806F001E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib in Resources */,
 				5AC3A0861D99DA3800244336 /* GroupChannelChattingViewController.xib in Resources */,
 				5AD94BEC1DB5BDB300A6CD66 /* MenuViewController.xib in Resources */,
 			);
@@ -599,37 +644,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		241921FF02E731D044D1CA23 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		26A6A5098B7990B4608FCC56 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		79297A287FD0878099942094 /* [CP] Copy Pods Resources */ = {
+		33477679467C759F405C5CDA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -644,6 +659,36 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		65F48B1CE201A6328586F962 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6FC275EF6EA21B5F2AA2D6E4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -654,15 +699,18 @@
 				5AF199261DA3CCE000BF2DE0 /* BlockedUserListTableViewCell.m in Sources */,
 				5AB0CC301D8F840400F05EC1 /* ViewController.m in Sources */,
 				5AF8AC7B1D913D91000F0578 /* GroupChannelListEditableTableViewCell.m in Sources */,
+				E218A6931E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.m in Sources */,
 				5AF8AC651D90D95E000F0578 /* OpenChannelListTableViewCell.m in Sources */,
 				5AF8AC761D9131BD000F0578 /* GroupChannelListViewController.m in Sources */,
 				5AF199121DA3A1FB00BF2DE0 /* MemberListTableViewCell.m in Sources */,
 				5AF8AC6A1D911045000F0578 /* CreateOpenChannelViewController.m in Sources */,
 				5AD94BEB1DB5BCEE00A6CD66 /* NSBundle+SendBird.m in Sources */,
 				5AB0CC2D1D8F840400F05EC1 /* AppDelegate.m in Sources */,
+				CE806F041E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.m in Sources */,
 				5ADA68D51D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.m in Sources */,
 				E2A8E63E1E5CEB6B0016BA63 /* GroupChannelChattingViewController.m in Sources */,
 				5ADA68DC1D92573C00EFDF2B /* IncomingUserMessageTableViewCell.m in Sources */,
+				E26802711E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.m in Sources */,
 				5ADA68D01D92032600EFDF2B /* SelectedUserListCollectionViewCell.m in Sources */,
 				5AD94BE21DB4A8C900A6CD66 /* Constants.m in Sources */,
 				5AC3A0801D97BEF100244336 /* CreateGroupChannelSelectOptionViewController.m in Sources */,
@@ -675,6 +723,8 @@
 				E25E5A8C1E78A262003E1E9B /* IncomingVideoFileMessageTableViewCell.m in Sources */,
 				5AF8AC891D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m in Sources */,
 				5ADA68E61D925BE300EFDF2B /* OpenChannelChattingViewController.m in Sources */,
+				E218A68E1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.m in Sources */,
+				CE806EFF1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.m in Sources */,
 				5AF1991C1DA3B2B200BF2DE0 /* ParticipantListViewController.m in Sources */,
 				5AB0CC2A1D8F840400F05EC1 /* main.m in Sources */,
 				5ADA68E01D92576A00EFDF2B /* ChattingView.m in Sources */,

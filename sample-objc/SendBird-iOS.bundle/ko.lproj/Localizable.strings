@@ -48,3 +48,6 @@
 
 "OpenDistinctGroupChannel" = "기존 그룹 채널 열기";
 "OpenNonDistinctGroupChannel" = "새로운 그룹 채널 열기";
+
+"InviteUserButton" = "사용자 초대";
+"InviteButton" = "초대";

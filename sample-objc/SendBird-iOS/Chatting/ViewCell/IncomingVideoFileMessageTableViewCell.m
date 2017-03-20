@@ -13,17 +13,16 @@
 
 @interface IncomingVideoFileMessageTableViewCell()
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerTopMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerBottomMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *fileImageHeight;
-
-@property (weak, nonatomic) IBOutlet UIView *dateSeperatorContainerView;
+@property (weak, nonatomic) IBOutlet UIView *dateSeperatorView;
+@property (weak, nonatomic) IBOutlet UILabel *dateSeperatorLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
-
 @property (weak, nonatomic) IBOutlet UIImageView *fileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *messageDateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateSeperatorLabel;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateSeperatorViewTopMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateSeperatorViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateSeperatorViewBottomMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *fileImageViewHeight;
 
 @property (strong, nonatomic) SBDFileMessage *message;
 @property (strong, nonatomic) SBDBaseMessage *prevMessage;
@@ -109,20 +108,20 @@
         
         if (prevMessageDateComponents.year != currMessageDateComponents.year || prevMessageDateComponents.month != currMessageDateComponents.month || prevMessageDateComponents.day != currMessageDateComponents.day) {
             // Show date seperator.
-            self.dateSeperatorContainerView.hidden = NO;
-            self.dateContainerHeight.constant = 24.0;
-            self.dateContainerTopMargin.constant = 10.0;
-            self.dateContainerBottomMargin.constant = 10.0;
+            self.dateSeperatorView.hidden = NO;
+            self.dateSeperatorViewHeight.constant = 24.0;
+            self.dateSeperatorViewTopMargin.constant = 10.0;
+            self.dateSeperatorViewBottomMargin.constant = 10.0;
         }
         else {
             // Hide date seperator.
-            self.dateSeperatorContainerView.hidden = YES;
-            self.dateContainerHeight.constant = 0;
-            self.dateContainerBottomMargin.constant = 0;
+            self.dateSeperatorView.hidden = YES;
+            self.dateSeperatorViewHeight.constant = 0;
+            self.dateSeperatorViewBottomMargin.constant = 0;
             
             // Continuous Message
             if ([self.prevMessage isKindOfClass:[SBDAdminMessage class]]) {
-                self.dateContainerTopMargin.constant = 10.0;
+                self.dateSeperatorViewTopMargin.constant = 10.0;
             }
             else {
                 SBDUser *prevMessageSender = nil;
@@ -140,27 +139,27 @@
                 if (prevMessageSender != nil && currMessageSender != nil) {
                     if ([prevMessageSender.userId isEqualToString:currMessageSender.userId]) {
                         // Reduce margin
-                        self.dateContainerTopMargin.constant = 5.0;
+                        self.dateSeperatorViewTopMargin.constant = 5.0;
                         self.profileImageView.hidden = YES;
                     }
                     else {
                         // Set default margin.
                         self.profileImageView.hidden = NO;
-                        self.dateContainerTopMargin.constant = 10.0;
+                        self.dateSeperatorViewTopMargin.constant = 10.0;
                     }
                 }
                 else {
-                    self.dateContainerTopMargin.constant = 10.0;
+                    self.dateSeperatorViewTopMargin.constant = 10.0;
                 }
             }
         }
     }
     else {
         // Show date seperator.
-        self.dateSeperatorContainerView.hidden = NO;
-        self.dateContainerHeight.constant = 24.0;
-        self.dateContainerTopMargin.constant = 10.0;
-        self.dateContainerBottomMargin.constant = 10.0;
+        self.dateSeperatorView.hidden = NO;
+        self.dateSeperatorViewHeight.constant = 24.0;
+        self.dateSeperatorViewTopMargin.constant = 10.0;
+        self.dateSeperatorViewBottomMargin.constant = 10.0;
     }
     
     [self layoutIfNeeded];
@@ -171,7 +170,7 @@
 }
 
 - (CGFloat)getHeightOfViewCell {
-    CGFloat height = self.dateContainerTopMargin.constant + self.dateContainerHeight.constant + self.dateContainerBottomMargin.constant + self.fileImageHeight.constant;
+    CGFloat height = self.dateSeperatorViewTopMargin.constant + self.dateSeperatorViewHeight.constant + self.dateSeperatorViewBottomMargin.constant + self.fileImageViewHeight.constant;
     
     return height;
 }

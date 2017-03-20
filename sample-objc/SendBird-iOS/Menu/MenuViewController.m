@@ -6,13 +6,13 @@
 //  Copyright © 2016 SendBird. All rights reserved.
 //
 
-#import <SendBirdSDK/SendBirdSDK.h>
-
 #import "MenuViewController.h"
 #import "OpenChannelListViewController.h"
 #import "GroupChannelListViewController.h"
 #import "NSBundle+SendBird.h"
 #import "Constants.h"
+#import "AppDelegate.h"
+#import "GroupChannelChattingViewController.h"
 
 @interface MenuViewController ()
 
@@ -41,6 +41,22 @@
     UIBarButtonItem *rightDisconnectItem = [[UIBarButtonItem alloc] initWithTitle:[NSBundle sbLocalizedStringForKey:@"DisconnectButton"] style:UIBarButtonItemStylePlain target:self action:@selector(disconnect)];
     [rightDisconnectItem setTitleTextAttributes:@{NSFontAttributeName: [Constants navigationBarButtonItemFont]} forState:UIControlStateNormal];
     self.navItem.rightBarButtonItems = @[negativeRightSpacer, rightDisconnectItem];
+    
+    [SBDMain addConnectionDelegate:self identifier:self.description];
+
+    if (((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl != nil) {
+        NSString *channelUrl = ((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl;
+        ((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl = nil;
+        if (channelUrl != nil) {
+            [SBDGroupChannel getChannelWithUrl:channelUrl completionHandler:^(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error) {
+                GroupChannelChattingViewController *vc = [[GroupChannelChattingViewController alloc] init];
+                vc.channel = channel;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self presentViewController:vc animated:NO completion:nil];
+                });
+            }];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,7 +93,7 @@
     self.groupChannelCheckImageView.hidden = NO;
 }
 
-- (IBAction)clickGroupChannelButton:(id)sender {
+- (void)showGroupChannelList {
     self.openChannelView.backgroundColor = [UIColor whiteColor];
     self.groupChannelView.backgroundColor = [UIColor colorWithRed:(CGFloat)(248.0/255.0) green:(CGFloat)(248.0/255.0) blue:(CGFloat)(248.0/255.0) alpha:1];
     
@@ -94,11 +110,18 @@
     }];
 }
 
+- (IBAction)clickGroupChannelButton:(id)sender {
+    [self showGroupChannelList];
+}
+
 - (void)disconnect {
     [SBDMain unregisterAllPushTokenWithCompletionHandler:^(NSDictionary * _Nullable response, SBDError * _Nullable error) {
         if (error != nil) {
             NSLog(@"Unregister all push tokens. Error: %@", error);
         }
+        
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"sendbird_user_id"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"sendbird_user_nickname"];
         
         [SBDMain disconnectWithCompletionHandler:^{
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -107,6 +130,44 @@
             });
         }];
     }];
+}
+
+#pragma mark - SBDConnectionDelegate
+
+- (void)didStartReconnection {
+    NSLog(@"didStartReconnection in MenuViewController");
+}
+
+- (void)didSucceedReconnection {
+    NSLog(@"didSucceedReconnection in MenuViewController");
+    
+    if (((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl != nil) {
+        NSString *channelUrl = ((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl;
+        
+        UIViewController *topViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+        while (topViewController.presentedViewController) {
+            topViewController = topViewController.presentedViewController;
+        }
+        
+        if ([topViewController isKindOfClass:[GroupChannelChattingViewController class]]) {
+            if ([((GroupChannelChattingViewController *)topViewController).channel.channelUrl isEqualToString:channelUrl]) {
+                return;
+            }
+        }
+        
+        ((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl = nil;
+        [SBDGroupChannel getChannelWithUrl:channelUrl completionHandler:^(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error) {
+            GroupChannelChattingViewController *vc = [[GroupChannelChattingViewController alloc] init];
+            vc.channel = channel;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:vc animated:NO completion:nil];
+            });
+        }];
+    }
+}
+
+- (void)didFailReconnection {
+    NSLog(@"didFailReconnection in MenuViewController");
 }
 
 @end

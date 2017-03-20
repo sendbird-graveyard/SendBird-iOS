@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SendBirdSDK/SendBirdSDK.h>
 
-@interface MenuViewController : UIViewController
+@interface MenuViewController : UIViewController<SBDConnectionDelegate>
 
 @end

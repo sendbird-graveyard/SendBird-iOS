@@ -12,22 +12,21 @@
 #import "Utils.h"
 #import "Constants.h"
 #import "FLAnimatedImage.h"
-#import "AppDelegate.h"
+#import "FLAnimatedImageView+ImageCache.h"
 
 @interface IncomingImageFileMessageTableViewCell()
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerTopMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerBottomMargin;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *fileImageHeight;
-
-@property (weak, nonatomic) IBOutlet UIView *dateSeperatorContainerView;
+@property (weak, nonatomic) IBOutlet UIView *dateSeperatorView;
+@property (weak, nonatomic) IBOutlet UILabel *dateSeperatorLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
-
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *fileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *messageDateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateSeperatorLabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingIndicator;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateSeperatorViewTopMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateSeperatorViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateSeperatorViewBottomMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *fileImageHeight;
 
 @property (strong, nonatomic) SBDFileMessage *message;
 @property (strong, nonatomic) SBDBaseMessage *prevMessage;
@@ -71,76 +70,56 @@
     self.fileImageView.userInteractionEnabled = YES;
     [self.fileImageView addGestureRecognizer:messageContainerTapRecognizer];
 
-    self.imageLoadingIndicator.hidden = YES;
+    self.imageLoadingIndicator.hidden = NO;
+    [self.imageLoadingIndicator startAnimating];
     self.fileImageView.animatedImage = nil;
     self.fileImageView.image = nil;
     __block NSString *url = self.message.url;
     if (self.message.type != nil && [self.message.type isEqualToString:@"image/gif"] ) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            FLAnimatedImage *cachedImageData = (FLAnimatedImage *)[FLAnimatedImage animatedImageWithGIFData:[[AppDelegate imageCache] objectForKey:url]];
-            if (cachedImageData != nil) {
-                [self.fileImageView setAnimatedImage:cachedImageData];
-            }
-            else {
-                [self.fileImageView setAnimatedImage:nil];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.imageLoadingIndicator.hidden = NO;
-                    [self.imageLoadingIndicator startAnimating];
-                });
-                NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-                [[session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                    if (error != nil) {
-                        // TODO: Show download failed.
+        /***********************************/
+        /* Thumbnail is a premium feature. */
+        /***********************************/
+        if (self.message.thumbnails != nil && self.message.thumbnails.count > 0) {
+            if (self.message.thumbnails[0].url.length > 0) {
+                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.message.thumbnails[0].url]];
+                [self.fileImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.fileImageView setImage:image];
+                        self.imageLoadingIndicator.hidden = YES;
+                        [self.imageLoadingIndicator stopAnimating];
                         
-                        [session invalidateAndCancel];
-                        
-                        return;
-                    }
-                    
-                    NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
-                    if ([resp statusCode] >= 200 && [resp statusCode] < 300) {
-                        __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:data];
-                        [[AppDelegate imageCache] setObject:data forKey:url];
-                        
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            
-                            [self.fileImageView setAnimatedImage:animatedImage];
+                        [self.fileImageView setAnimatedImageWithURL:[NSURL URLWithString:url] success:^(FLAnimatedImage * _Nullable image) {
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                self.imageLoadingIndicator.hidden = YES;
-                                [self.imageLoadingIndicator stopAnimating];
+                                [self.fileImageView setAnimatedImage:image];
+                                
                             });
-                        });
-                    }
-                    else {
-                        // TODO: Show download failed.
-                    }
-                    
-                    [session invalidateAndCancel];
-                }] resume];
-                
-                
-                
-//                dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
-//                dispatch_async(imageLoadQueue, ^{
-//                    __block NSData *cachedData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-//                    __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:cachedData];
-//                    
-//                    if ([[AppDelegate imageCache] objectForKey:url] == nil && cachedData != nil) {
-//                        [[AppDelegate imageCache] setObject:cachedData forKey:url];
-//                    }
-//                    
-//                    dispatch_async(dispatch_get_main_queue(), ^{
-//                        
-//                        [self.fileImageView setAnimatedImage:animatedImage];
-//                        dispatch_async(dispatch_get_main_queue(), ^{
-//                            self.imageLoadingIndicator.hidden = YES;
-//                            [self.imageLoadingIndicator stopAnimating];
-//                        });
-//                    });
-//                });
+                        } failure:^(NSError * _Nullable error) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                            });
+                        }];
+                    });
+                } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.imageLoadingIndicator.hidden = YES;
+                        [self.imageLoadingIndicator stopAnimating];
+                    });
+                }];
             }
-        });
+        }
+        else {
+            [self.fileImageView setAnimatedImageWithURL:[NSURL URLWithString:url] success:^(FLAnimatedImage * _Nullable image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.fileImageView setAnimatedImage:image];
+                    self.imageLoadingIndicator.hidden = YES;
+                    [self.imageLoadingIndicator stopAnimating];
+                });
+            } failure:^(NSError * _Nullable error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.imageLoadingIndicator.hidden = YES;
+                    [self.imageLoadingIndicator stopAnimating];
+                });
+            }];
+        }
     }
     else {
         /***********************************/
@@ -148,11 +127,35 @@
         /***********************************/
         if (self.message.thumbnails != nil && self.message.thumbnails.count > 0) {
             if (self.message.thumbnails[0].url.length > 0) {
-                [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.thumbnails[0].url]];
+                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.message.thumbnails[0].url]];
+                [self.fileImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.fileImageView setImage:image];
+                        self.imageLoadingIndicator.hidden = YES;
+                        [self.imageLoadingIndicator stopAnimating];
+                    });
+                } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        self.imageLoadingIndicator.hidden = YES;
+                        [self.imageLoadingIndicator stopAnimating];
+                    });
+                }];
             }
         }
         else {
-            [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.url]];
+            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.message.url]];
+            [self.fileImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.fileImageView setImage:image];
+                    self.imageLoadingIndicator.hidden = YES;
+                    [self.imageLoadingIndicator stopAnimating];
+                });
+            } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.imageLoadingIndicator.hidden = YES;
+                    [self.imageLoadingIndicator stopAnimating];
+                });
+            }];
         }
     }
 
@@ -186,20 +189,20 @@
         
         if (prevMessageDateComponents.year != currMessageDateComponents.year || prevMessageDateComponents.month != currMessageDateComponents.month || prevMessageDateComponents.day != currMessageDateComponents.day) {
             // Show date seperator.
-            self.dateSeperatorContainerView.hidden = NO;
-            self.dateContainerHeight.constant = 24.0;
-            self.dateContainerTopMargin.constant = 10.0;
-            self.dateContainerBottomMargin.constant = 10.0;
+            self.dateSeperatorView.hidden = NO;
+            self.dateSeperatorViewHeight.constant = 24.0;
+            self.dateSeperatorViewTopMargin.constant = 10.0;
+            self.dateSeperatorViewBottomMargin.constant = 10.0;
         }
         else {
             // Hide date seperator.
-            self.dateSeperatorContainerView.hidden = YES;
-            self.dateContainerHeight.constant = 0;
-            self.dateContainerBottomMargin.constant = 0;
+            self.dateSeperatorView.hidden = YES;
+            self.dateSeperatorViewHeight.constant = 0;
+            self.dateSeperatorViewBottomMargin.constant = 0;
             
             // Continuous Message
             if ([self.prevMessage isKindOfClass:[SBDAdminMessage class]]) {
-                self.dateContainerTopMargin.constant = 10.0;
+                self.dateSeperatorViewTopMargin.constant = 10.0;
             }
             else {
                 SBDUser *prevMessageSender = nil;
@@ -217,27 +220,27 @@
                 if (prevMessageSender != nil && currMessageSender != nil) {
                     if ([prevMessageSender.userId isEqualToString:currMessageSender.userId]) {
                         // Reduce margin
-                        self.dateContainerTopMargin.constant = 5.0;
+                        self.dateSeperatorViewTopMargin.constant = 5.0;
                         self.profileImageView.hidden = YES;
                     }
                     else {
                         // Set default margin.
                         self.profileImageView.hidden = NO;
-                        self.dateContainerTopMargin.constant = 10.0;
+                        self.dateSeperatorViewTopMargin.constant = 10.0;
                     }
                 }
                 else {
-                    self.dateContainerTopMargin.constant = 10.0;
+                    self.dateSeperatorViewTopMargin.constant = 10.0;
                 }
             }
         }
     }
     else {
         // Show date seperator.
-        self.dateSeperatorContainerView.hidden = NO;
-        self.dateContainerHeight.constant = 24.0;
-        self.dateContainerTopMargin.constant = 10.0;
-        self.dateContainerBottomMargin.constant = 10.0;
+        self.dateSeperatorView.hidden = NO;
+        self.dateSeperatorViewHeight.constant = 24.0;
+        self.dateSeperatorViewTopMargin.constant = 10.0;
+        self.dateSeperatorViewBottomMargin.constant = 10.0;
     }
     
     [self layoutIfNeeded];
@@ -248,7 +251,7 @@
 }
 
 - (CGFloat)getHeightOfViewCell {
-    CGFloat height = self.dateContainerTopMargin.constant + self.dateContainerHeight.constant + self.dateContainerBottomMargin.constant + self.fileImageHeight.constant;
+    CGFloat height = self.dateSeperatorViewTopMargin.constant + self.dateSeperatorViewHeight.constant + self.dateSeperatorViewBottomMargin.constant + self.fileImageHeight.constant;
     
     return height;
 }

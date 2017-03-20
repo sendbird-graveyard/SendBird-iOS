@@ -11,6 +11,7 @@
 
 #import "ReusableViewFromXib.h"
 #import "ViewCell/MessageDelegate.h"
+#import "OutgoingGeneralUrlPreviewTempModel.h"
 
 @protocol ChattingViewDelegate <NSObject>
 

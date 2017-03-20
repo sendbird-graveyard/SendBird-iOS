@@ -27,6 +27,8 @@
 + (UIColor *)messageDateColor;
 + (UIColor *)incomingFileImagePlaceholderColor;
 + (UIFont *)messageFont;
++ (UIColor *)outgoingMessageColor;
++ (UIColor *)incomingMessageColor;
 + (UIColor *)outgoingFileImagePlaceholderColor;
 + (UIColor *)openChannelLineColorNo0;
 + (UIColor *)openChannelLineColorNo1;
@@ -43,5 +45,6 @@
 + (UIColor *)memberOnlineTextColor;
 + (UIColor *)memberOfflineDateTextColor;
 + (UIColor *)connectButtonColor;
++ (UIFont *)urlPreviewDescriptionFont;
 
 @end

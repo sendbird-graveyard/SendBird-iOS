@@ -74,6 +74,14 @@
     return [UIFont fontWithName:@"HelveticaNeue" size:16.0];
 }
 
++ (UIColor *)outgoingMessageColor {
+    return [UIColor colorWithRed:(CGFloat)(255.0/255.0) green:(CGFloat)(255.0/255.0) blue:(CGFloat)(255.0/255.0) alpha:1];
+}
+
++ (UIColor *)incomingMessageColor {
+    return [UIColor colorWithRed:(CGFloat)(0.0/255.0) green:(CGFloat)(0.0/255.0) blue:(CGFloat)(0.0/255.0) alpha:1];
+}
+
 + (UIColor *)outgoingFileImagePlaceholderColor {
     return [UIColor colorWithRed:(CGFloat)(128.0/255.0) green:(CGFloat)(90.0/255.0) blue:(CGFloat)(255.0/255.0) alpha:1];
 }
@@ -136,6 +144,10 @@
 
 + (UIColor *)connectButtonColor {
     return [UIColor colorWithRed:123.0/255.0 green:95.0/255.0 blue:217.0/255.0 alpha:1];
+}
+
++ (UIFont *)urlPreviewDescriptionFont {
+    return [UIFont fontWithName:@"HelveticaNeue-Light" size:12.0];
 }
 
 @end

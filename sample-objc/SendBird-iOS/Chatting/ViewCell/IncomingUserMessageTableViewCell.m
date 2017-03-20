@@ -7,50 +7,35 @@
 //
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
+
 #import "IncomingUserMessageTableViewCell.h"
 #import "Constants.h"
 
 @interface IncomingUserMessageTableViewCell()
 
-@property (weak, nonatomic) IBOutlet UIView *dateSeperatorContainerView;
+@property (weak, nonatomic) IBOutlet UIView *dateSeperatorView;
 @property (weak, nonatomic) IBOutlet UILabel *dateSeperatorLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
-@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageDateLabel;
 @property (weak, nonatomic) IBOutlet UIView *messageContainerView;
 
-// Date Container Height
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateLabelContainerHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateSeperatorViewTopMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateSeperatorViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateSeperatorViewBottomMargin;
 
-// Message Date Label Width
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *profileImageLeftMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerLeftMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *profileImageWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageDateLabelWidth;
 
-// Top Margin of Date Container
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerViewTopMargin;
-
-// Left Margin of Profile Image
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *profileImageLeftMargin;
-
-// Left Margin of Message Container
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerLeftMargin;
-
-// Profile Image Width
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *profileImageWidth;
-
-// Message Container Padding
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerLeftPadding;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerBottomPadding;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerRightPadding;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageContainerTopPadding;
 
-// Left Margin of Message Date
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageDateLabelLeftMargin;
-
-// Right Margin of Message Date
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageDateLabelRightMargin;
-
-// Bottom Margin of Date Container
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerBottomMargin;
 
 @property (strong, nonatomic) SBDUserMessage *message;
 @property (strong, nonatomic) SBDBaseMessage *prevMessage;
@@ -78,7 +63,7 @@
 
 - (void)clickUserMessage {
     if (self.delegate != nil) {
-        [self.delegate clickMessage:self message:self.message];
+//        [self.delegate clickMessage:self message:self.message];
     }
 }
 
@@ -91,11 +76,7 @@
     [profileImageTapRecognizer setDelegate:self];
     self.profileImageView.userInteractionEnabled = YES;
     [self.profileImageView addGestureRecognizer:profileImageTapRecognizer];
-    
-    UITapGestureRecognizer *messageContainerTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickUserMessage)];
-    self.messageContainerView.userInteractionEnabled = YES;
-    [self.messageContainerView addGestureRecognizer:messageContainerTapRecognizer];
-    
+
     // Message Date
     NSDictionary *messageDateAttribute = @{
                                            NSFontAttributeName: [Constants messageDateFont],
@@ -117,10 +98,10 @@
     
     // Relationship between the current message and the previous message
     self.profileImageView.hidden = NO;
-    self.dateSeperatorContainerView.hidden = NO;
-    self.dateLabelContainerHeight.constant = 24.0;
-    self.dateContainerViewTopMargin.constant = 10.0;
-    self.dateContainerBottomMargin.constant = 10.0;
+    self.dateSeperatorView.hidden = NO;
+    self.dateSeperatorViewHeight.constant = 24.0;
+    self.dateSeperatorViewTopMargin.constant = 10.0;
+    self.dateSeperatorViewBottomMargin.constant = 10.0;
     self.displayNickname = YES;
     if (self.prevMessage != nil) {
         // Day Changed
@@ -131,20 +112,20 @@
         
         if (prevMessageDateComponents.year != currMessageDateComponents.year || prevMessageDateComponents.month != currMessageDateComponents.month || prevMessageDateComponents.day != currMessageDateComponents.day) {
             // Show date seperator.
-            self.dateSeperatorContainerView.hidden = NO;
-            self.dateLabelContainerHeight.constant = 24.0;
-            self.dateContainerViewTopMargin.constant = 10.0;
-            self.dateContainerBottomMargin.constant = 10.0;
+            self.dateSeperatorView.hidden = NO;
+            self.dateSeperatorViewHeight.constant = 24.0;
+            self.dateSeperatorViewTopMargin.constant = 10.0;
+            self.dateSeperatorViewBottomMargin.constant = 10.0;
         }
         else {
             // Hide date seperator.
-            self.dateSeperatorContainerView.hidden = YES;
-            self.dateLabelContainerHeight.constant = 0;
-            self.dateContainerBottomMargin.constant = 0;
+            self.dateSeperatorView.hidden = YES;
+            self.dateSeperatorViewHeight.constant = 0;
+            self.dateSeperatorViewBottomMargin.constant = 0;
             
             // Continuous Message
             if ([self.prevMessage isKindOfClass:[SBDAdminMessage class]]) {
-                self.dateContainerViewTopMargin.constant = 10.0;
+                self.dateSeperatorViewTopMargin.constant = 10.0;
             }
             else {
                 SBDUser *prevMessageSender = nil;
@@ -167,32 +148,60 @@
                 if (prevMessageSender != nil && currMessageSender != nil) {
                     if ([prevMessageSender.userId isEqualToString:currMessageSender.userId]) {
                         // Reduce margin
-                        self.dateContainerViewTopMargin.constant = 5.0;
+                        self.dateSeperatorViewTopMargin.constant = 5.0;
                         self.profileImageView.hidden = YES;
                         self.displayNickname = NO;
                     }
                     else {
                         // Set default margin.
                         self.profileImageView.hidden = NO;
-                        self.dateContainerViewTopMargin.constant = 10.0;
+                        self.dateSeperatorViewTopMargin.constant = 10.0;
                     }
                 }
                 else {
-                    self.dateContainerViewTopMargin.constant = 10.0;
+                    self.dateSeperatorViewTopMargin.constant = 10.0;
                 }
             }
         }
     }
     else {
         // Show date seperator.
-        self.dateSeperatorContainerView.hidden = NO;
-        self.dateLabelContainerHeight.constant = 24.0;
-        self.dateContainerViewTopMargin.constant = 10.0;
-        self.dateContainerBottomMargin.constant = 10.0;
+        self.dateSeperatorView.hidden = NO;
+        self.dateSeperatorViewHeight.constant = 24.0;
+        self.dateSeperatorViewTopMargin.constant = 10.0;
+        self.dateSeperatorViewBottomMargin.constant = 10.0;
     }
-    
+
     NSAttributedString *fullMessage = [self buildMessage];
-    [self.messageLabel setAttributedText:fullMessage];
+    self.messageLabel.attributedText = fullMessage;
+    self.messageLabel.userInteractionEnabled = YES;
+    self.messageLabel.linkAttributes = @{
+                                         NSFontAttributeName: [Constants messageFont],
+                                         NSForegroundColorAttributeName: [Constants incomingMessageColor],
+                                         NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)
+                                         };
+    
+    NSError *error = nil;
+    NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
+    if (error == nil) {
+        NSArray *matches = [detector matchesInString:self.message.message options:0 range:NSMakeRange(0, self.message.message.length)];
+        if (matches.count > 0) {
+            self.messageLabel.delegate = self;
+            self.messageLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+            for (NSTextCheckingResult *match in matches) {
+                NSRange rangeOfOriginalMessage = [match range];
+                NSRange range;
+                if (self.displayNickname == YES) {
+                    range = NSMakeRange(self.message.sender.nickname.length + 1 + rangeOfOriginalMessage.location, rangeOfOriginalMessage.length);
+                }
+                else {
+                    range = rangeOfOriginalMessage;
+                }
+
+                [self.messageLabel addLinkToURL:[match URL] withRange:range];
+            }
+        }
+    }
     
     [self layoutIfNeeded];
 }
@@ -244,6 +253,7 @@
 
     NSDictionary *messageAttribute = @{
                                        NSFontAttributeName: [Constants messageFont],
+                                       NSForegroundColorAttributeName: [Constants incomingMessageColor]
                                        };
     
     NSString *nickname = self.message.sender.nickname;
@@ -272,9 +282,14 @@
     CGFloat messageLabelMaxWidth = self.frame.size.width - (self.profileImageLeftMargin.constant + self.profileImageWidth.constant + self.messageContainerLeftMargin.constant + self.messageContainerLeftPadding.constant + self.messageContainerRightPadding.constant + self.messageDateLabelLeftMargin.constant + self.messageDateLabelWidth.constant + self.messageDateLabelRightMargin.constant);
     fullMessageRect = [fullMessage boundingRectWithSize:CGSizeMake(messageLabelMaxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     
-    CGFloat cellHeight = self.dateContainerViewTopMargin.constant + self.dateLabelContainerHeight.constant + self.dateContainerBottomMargin.constant + self.messageContainerTopPadding.constant + fullMessageRect.size.height + self.messageContainerBottomPadding.constant;
+    CGFloat cellHeight = self.dateSeperatorViewTopMargin.constant + self.dateSeperatorViewHeight.constant + self.dateSeperatorViewBottomMargin.constant + self.messageContainerTopPadding.constant + fullMessageRect.size.height + self.messageContainerBottomPadding.constant;
     
     return cellHeight;
+}
+
+#pragma mark - TTTAttributedLabelDelegate
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 @end

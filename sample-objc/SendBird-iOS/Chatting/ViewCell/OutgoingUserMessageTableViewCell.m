@@ -11,16 +11,15 @@
 
 @interface OutgoingUserMessageTableViewCell()
 
-@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIView *dateSeperatorView;
+@property (weak, nonatomic) IBOutlet UILabel *dateSeperatorLabel;
+@property (weak, nonatomic) IBOutlet UIView *messageContainerView;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *messageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageDateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *resendMessageButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteMessageButton;
 @property (weak, nonatomic) IBOutlet UILabel *unreadCountLabel;
-@property (weak, nonatomic) IBOutlet UIView *dateSeperatorContainerView;
-@property (weak, nonatomic) IBOutlet UILabel *dateSeperatorLabel;
-@property (weak, nonatomic) IBOutlet UIView *messageContainerView;
-@property (weak, nonatomic) IBOutlet UILabel *sendStatusLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sendingStatusLabel;
 
 // For Cell Height
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateContainerHeight;
@@ -75,16 +74,12 @@
 - (void)setModel:(SBDUserMessage *)aMessage {
     self.message = aMessage;
     
-    NSAttributedString *fullMessage = [self buildMessage];
-
-    self.messageLabel.attributedText = fullMessage;
-    
     self.resendMessageButton.hidden = YES;
     self.deleteMessageButton.hidden = YES;
     
-    UITapGestureRecognizer *messageContainerTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickUserMessage)];
-    self.messageContainerView.userInteractionEnabled = YES;
-    [self.messageContainerView addGestureRecognizer:messageContainerTapRecognizer];
+//    UITapGestureRecognizer *messageContainerTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickUserMessage)];
+//    self.messageContainerView.userInteractionEnabled = YES;
+//    [self.messageContainerView addGestureRecognizer:messageContainerTapRecognizer];
     
     [self.resendMessageButton addTarget:self action:@selector(clickResendUserMessage) forControlEvents:UIControlEventTouchUpInside];
     [self.deleteMessageButton addTarget:self action:@selector(clickDeleteUserMessage) forControlEvents:UIControlEventTouchUpInside];
@@ -128,7 +123,7 @@
     self.dateSeperatorLabel.text = [seperatorDateFormatter stringFromDate:messageCreatedDate];
     
     // Relationship between the current message and the previous message
-    self.dateSeperatorContainerView.hidden = NO;
+    self.dateSeperatorView.hidden = NO;
     self.dateContainerHeight.constant = 24.0;
     self.dateContainerTopMargin.constant = 10.0;
     self.dateContainerBottomMargin.constant = 10.0;
@@ -141,14 +136,14 @@
         
         if (prevMessageDateComponents.year != currMessageDateComponents.year || prevMessageDateComponents.month != currMessageDateComponents.month || prevMessageDateComponents.day != currMessageDateComponents.day) {
             // Show date seperator.
-            self.dateSeperatorContainerView.hidden = NO;
+            self.dateSeperatorView.hidden = NO;
             self.dateContainerHeight.constant = 24.0;
             self.dateContainerTopMargin.constant = 10.0;
             self.dateContainerBottomMargin.constant = 10.0;
         }
         else {
             // Hide date seperator.
-            self.dateSeperatorContainerView.hidden = YES;
+            self.dateSeperatorView.hidden = YES;
             self.dateContainerHeight.constant = 0;
             self.dateContainerBottomMargin.constant = 0;
             
@@ -187,10 +182,33 @@
     }
     else {
         // Show date seperator.
-        self.dateSeperatorContainerView.hidden = NO;
+        self.dateSeperatorView.hidden = NO;
         self.dateContainerHeight.constant = 24.0;
         self.dateContainerTopMargin.constant = 10.0;
         self.dateContainerBottomMargin.constant = 10.0;
+    }
+    
+    NSAttributedString *fullMessage = [self buildMessage];
+    self.messageLabel.attributedText = fullMessage;
+    self.messageLabel.userInteractionEnabled = YES;
+    self.messageLabel.linkAttributes = @{
+                                         NSFontAttributeName: [Constants messageFont],
+                                         NSForegroundColorAttributeName: [Constants outgoingMessageColor],
+                                         NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)
+                                         };
+    
+    NSError *error = nil;
+    NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
+    if (error == nil) {
+        NSArray *matches = [detector matchesInString:self.message.message options:0 range:NSMakeRange(0, self.message.message.length)];
+        if (matches.count > 0) {
+            self.messageLabel.delegate = self;
+            self.messageLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+            for (NSTextCheckingResult *match in matches) {
+                NSRange range = [match range];
+                [self.messageLabel addLinkToURL:[match URL] withRange:range];
+            }
+        }
     }
     
     [self layoutIfNeeded];
@@ -202,7 +220,8 @@
 
 - (NSAttributedString *)buildMessage {
     NSDictionary *messageAttribute = @{
-                                       NSFontAttributeName: [Constants messageFont]
+                                       NSFontAttributeName: [Constants messageFont],
+                                       NSForegroundColorAttributeName: [Constants outgoingMessageColor],
                                        };
     
     NSString *message = self.message.message;
@@ -245,7 +264,7 @@
 }
 
 - (void)showMessageControlButton {
-    self.sendStatusLabel.hidden = YES;
+    self.sendingStatusLabel.hidden = YES;
     self.messageDateLabel.hidden = YES;
     self.unreadCountLabel.hidden = YES;
     
@@ -259,8 +278,8 @@
     self.resendMessageButton.hidden = YES;
     self.deleteMessageButton.hidden = YES;
     
-    self.sendStatusLabel.hidden = NO;
-    self.sendStatusLabel.text = @"Sending";
+    self.sendingStatusLabel.hidden = NO;
+    self.sendingStatusLabel.text = @"Sending";
 }
 
 - (void)showFailedStatus {
@@ -269,16 +288,21 @@
     self.resendMessageButton.hidden = YES;
     self.deleteMessageButton.hidden = YES;
     
-    self.sendStatusLabel.hidden = NO;
-    self.sendStatusLabel.text = @"Failed";
+    self.sendingStatusLabel.hidden = NO;
+    self.sendingStatusLabel.text = @"Failed";
 }
 
 - (void)showMessageDate {
     self.unreadCountLabel.hidden = YES;
     self.resendMessageButton.hidden = YES;
-    self.sendStatusLabel.hidden = YES;
+    self.sendingStatusLabel.hidden = YES;
     
     self.messageDateLabel.hidden = NO;
+}
+
+#pragma mark - TTTAttributedLabelDelegate
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 @end

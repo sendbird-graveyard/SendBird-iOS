@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SendBirdSDK/SendBirdSDK.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic, nullable) UIWindow *window;
 
-+ (nonnull NSCache *)imageCache;
+@property (strong, nonatomic, nullable) NSString *receivedPushChannelUrl;
+
++ (nonnull NSURLCache *)imageCache;
 
 @end
 

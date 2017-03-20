@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <SendBirdSDK/SendBirdSDK.h>
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
 
@@ -19,13 +18,12 @@
 
 @implementation AppDelegate
 
-+ (nonnull NSCache *)imageCache {
++ (nonnull NSURLCache *)imageCache {
     static dispatch_once_t p = 0;
-    __strong static NSCache *_sharedObject = nil;
+    __strong static NSURLCache *_sharedObject = nil;
     
     dispatch_once(&p, ^{
-        _sharedObject = [[NSCache alloc] init];
-        [_sharedObject setTotalCostLimit:104857600];
+        _sharedObject = [NSURLCache sharedURLCache];
     });
     
     return _sharedObject;
@@ -45,11 +43,6 @@
     
     application.applicationIconBadgeNumber = 0;
     
-//    if (AppDelegate.cache == nil) {
-//        AppDelegate.cache = [[NSCache alloc] init];
-//        [AppDelegate.cache setTotalCostLimit:104857600];
-//    }
-    
     [SBDMain initWithApplicationId:@"9DA1B1F4-0BE6-4DA8-82C5-2E81DAB56F23"];
     [SBDMain setLogLevel:SBDLogLevelDebug];
     [SBDOptions setUseMemberAsMessageSender:YES];
@@ -63,6 +56,21 @@
             NSLog(@"Set Audio Session error: %@", error);
         }
     }
+    
+    NSLog(@"launchOptions: %@", launchOptions);
+    
+    if (launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]) {
+        [self application:application didReceiveRemoteNotification:launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]];
+    }
+//    
+//    if (launchOptions[@"sendbird"] != nil) {
+//        NSDictionary *sendBirdPayload = launchOptions[@"sendbird"];
+//        NSString *channel = sendBirdPayload[@"channel"][@"channel_url"];
+//        NSString *channelType = sendBirdPayload[@"channel_type"];
+//        if ([channelType isEqualToString:@"group_messaging"]) {
+//            self.receivedPushChannelUrl = channel;
+//        }
+//    }
 
     return YES;
 }
@@ -113,6 +121,20 @@
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     NSLog(@"Failed to get token, error: %@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+//    NSLog(@"didReceiveRemoteNotification: %@", userInfo);
+//    
+//    if (userInfo[@"sendbird"] != nil) {
+//        NSDictionary *sendBirdPayload = userInfo[@"sendbird"];
+//        NSString *channel = sendBirdPayload[@"channel"][@"channel_url"];
+//        NSString *channelType = sendBirdPayload[@"channel_type"];
+//        if ([channelType isEqualToString:@"group_messaging"]) {
+//            self.receivedPushChannelUrl = channel;
+//        }
+//    }
+
 }
 
 @end

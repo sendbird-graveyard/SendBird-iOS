@@ -15,26 +15,26 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="184"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="183"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="183.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yru-DR-yL3" userLabel="Date Container View">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yru-DR-yL3" userLabel="Date Seperator View">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="24"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAN-7T-yaA" userLabel="Left Line View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAN-7T-yaA" userLabel="Date Seperator Left Line View">
                                 <rect key="frame" x="0.0" y="12" width="120" height="1"/>
                                 <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="jbF-bT-vmv"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 Sep, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzq-eO-w3c" userLabel="Date Label">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 Sep, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzq-eO-w3c" userLabel="Date Seperator Label">
                                 <rect key="frame" x="124" y="5" width="72" height="15"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgj-Q7-ELb" userLabel="Right Line View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgj-Q7-ELb" userLabel="Date Seperator Right Line View">
                                 <rect key="frame" x="200" y="12" width="120" height="1"/>
                                 <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -62,10 +62,10 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="218-qq-guS" userLabel="Message Container View">
-                        <rect key="frame" x="125" y="34" width="181" height="132"/>
+                        <rect key="frame" x="129" y="34" width="177" height="132"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEf-kT-Jbd" userLabel="Message Label">
-                                <rect key="frame" x="10" y="10" width="161" height="112"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEf-kT-Jbd" userLabel="Message Label" customClass="TTTAttributedLabel">
+                                <rect key="frame" x="10" y="10" width="157" height="112"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -86,7 +86,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99:99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0m-HV-6Ai" userLabel="Message Date Label">
-                        <rect key="frame" x="63" y="152" width="54" height="14"/>
+                        <rect key="frame" x="67" y="152" width="54" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="54" id="A2u-lR-kJa"/>
                         </constraints>
@@ -95,7 +95,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yt9-AQ-OB3" userLabel="Resend Message Button">
-                        <rect key="frame" x="93" y="141" width="24" height="25"/>
+                        <rect key="frame" x="97" y="141" width="24" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24.5" id="Yh6-8Y-9LJ"/>
                             <constraint firstAttribute="height" constant="25" id="bDI-5q-r7U"/>
@@ -103,7 +103,7 @@
                         <state key="normal" backgroundImage="btn_request_chat"/>
                     </button>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ud2-qG-Ln4" userLabel="Delete Message Button">
-                        <rect key="frame" x="68" y="141" width="25" height="25"/>
+                        <rect key="frame" x="72" y="141" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24.5" id="bUw-Nm-tfV"/>
                             <constraint firstAttribute="height" constant="25" id="kuS-dU-k2c"/>
@@ -111,13 +111,13 @@
                         <state key="normal" title="Button" image="btn_delete_chat"/>
                     </button>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJi-U7-1O8" userLabel="Unread Count Label">
-                        <rect key="frame" x="103" y="137" width="14" height="15"/>
+                        <rect key="frame" x="107" y="137" width="14" height="15"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" red="0.13333333333333333" green="0.75294117647058822" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sending" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sn7-Lg-tgx" userLabel="Sending Status Label">
-                        <rect key="frame" x="72" y="152" width="45" height="14"/>
+                        <rect key="frame" x="76" y="152" width="45" height="14"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -149,9 +149,8 @@
                 <outlet property="dateContainerBottomMargin" destination="wL6-3A-yvO" id="gVN-hh-rj3"/>
                 <outlet property="dateContainerHeight" destination="icc-pj-Zu6" id="gwj-f5-38Q"/>
                 <outlet property="dateContainerTopMargin" destination="6Cs-hc-obg" id="7Hg-Rh-FJ5"/>
-                <outlet property="dateLabel" destination="Qzq-eO-w3c" id="su1-vc-gR8"/>
-                <outlet property="dateSeperatorContainerView" destination="Yru-DR-yL3" id="sfC-YG-P0Z"/>
                 <outlet property="dateSeperatorLabel" destination="Qzq-eO-w3c" id="ubX-f3-ICw"/>
+                <outlet property="dateSeperatorView" destination="Yru-DR-yL3" id="iG3-68-1Qu"/>
                 <outlet property="deleteMessageButton" destination="Ud2-qG-Ln4" id="Eos-IF-6Jt"/>
                 <outlet property="messageContainerBottomPadding" destination="kwH-qB-1dY" id="RAg-hp-wVz"/>
                 <outlet property="messageContainerLeftMargin" destination="0kG-ca-LB9" id="G8D-aw-hDi"/>
@@ -165,7 +164,7 @@
                 <outlet property="messageDateLabelWidth" destination="A2u-lR-kJa" id="qSR-oI-c3e"/>
                 <outlet property="messageLabel" destination="MEf-kT-Jbd" id="G01-oc-PsZ"/>
                 <outlet property="resendMessageButton" destination="yt9-AQ-OB3" id="uQw-5c-K6G"/>
-                <outlet property="sendStatusLabel" destination="Sn7-Lg-tgx" id="2db-YQ-ACa"/>
+                <outlet property="sendingStatusLabel" destination="Sn7-Lg-tgx" id="fU1-Ot-ik3"/>
                 <outlet property="unreadCountLabel" destination="vJi-U7-1O8" id="WhK-iy-b52"/>
             </connections>
             <point key="canvasLocation" x="61" y="129"/>

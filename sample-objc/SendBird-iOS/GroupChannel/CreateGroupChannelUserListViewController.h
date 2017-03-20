@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SendBirdSDK/SendBirdSDK.h>
 #import "CreateGroupChannelSelectOptionViewController.h"
 
 @protocol CreateGroupChannelUserListViewControllerDelegate <NSObject>
@@ -18,5 +19,8 @@
 @interface CreateGroupChannelUserListViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource, CreateGroupChannelSelectOptionViewControllerDelegate>
 
 @property (weak, nonatomic) id<CreateGroupChannelUserListViewControllerDelegate> delegate;
+
+@property (atomic) int userSelectionMode; // 0: Create channel, 1: Invite user
+@property (strong, nonatomic) SBDGroupChannel *groupChannel;
 
 @end

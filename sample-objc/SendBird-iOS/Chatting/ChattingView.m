@@ -16,6 +16,9 @@
 #import "IncomingImageFileMessageTableViewCell.h"
 #import "IncomingVideoFileMessageTableViewCell.h"
 #import "OutgoingVideoFileMessageTableViewCell.h"
+#import "IncomingGeneralUrlPreviewMessageTableViewCell.h"
+#import "OutgoingGeneralUrlPreviewMessageTableViewCell.h"
+#import "OutgoingGeneralUrlPreviewTempMessageTableViewCell.h"
 
 @interface ChattingView()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *typingIndicatorContainerViewHeight;
@@ -33,6 +36,9 @@
 @property (strong, nonatomic) IncomingImageFileMessageTableViewCell *incomingImageFileMessageSizingTableViewCell;
 @property (strong, nonatomic) IncomingVideoFileMessageTableViewCell *incomingVideoFileMessageSizingTableViewCell;
 @property (strong, nonatomic) OutgoingVideoFileMessageTableViewCell *outgoingVideoFileMessageSizingTableViewCell;
+@property (strong, nonatomic) IncomingGeneralUrlPreviewMessageTableViewCell *incomingGeneralUrlPreviewMessageTableViewCell;
+@property (strong, nonatomic) OutgoingGeneralUrlPreviewMessageTableViewCell *outgoingGeneralUrlPreviewMessageTableViewCell;
+@property (strong, nonatomic) OutgoingGeneralUrlPreviewTempMessageTableViewCell *outgoingGeneralUrlPreviewTempMessageTableViewCell;
 
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
 
@@ -99,6 +105,9 @@
     [self.chattingTableView registerNib:[IncomingImageFileMessageTableViewCell nib] forCellReuseIdentifier:[IncomingImageFileMessageTableViewCell cellReuseIdentifier]];
     [self.chattingTableView registerNib:[IncomingVideoFileMessageTableViewCell nib] forCellReuseIdentifier:[IncomingVideoFileMessageTableViewCell cellReuseIdentifier]];
     [self.chattingTableView registerNib:[OutgoingVideoFileMessageTableViewCell nib] forCellReuseIdentifier:[OutgoingVideoFileMessageTableViewCell cellReuseIdentifier]];
+    [self.chattingTableView registerNib:[IncomingGeneralUrlPreviewMessageTableViewCell nib] forCellReuseIdentifier:[IncomingGeneralUrlPreviewMessageTableViewCell cellReuseIdentifier]];
+    [self.chattingTableView registerNib:[OutgoingGeneralUrlPreviewMessageTableViewCell nib] forCellReuseIdentifier:[OutgoingGeneralUrlPreviewMessageTableViewCell cellReuseIdentifier]];
+    [self.chattingTableView registerNib:[OutgoingGeneralUrlPreviewTempMessageTableViewCell nib] forCellReuseIdentifier:[OutgoingGeneralUrlPreviewTempMessageTableViewCell cellReuseIdentifier]];
     
     self.chattingTableView.delegate = self;
     self.chattingTableView.dataSource = self;
@@ -151,6 +160,21 @@
     [self.outgoingVideoFileMessageSizingTableViewCell setFrame:self.frame];
     [self.outgoingVideoFileMessageSizingTableViewCell setHidden:YES];
     [self addSubview:self.outgoingVideoFileMessageSizingTableViewCell];
+    
+    self.incomingGeneralUrlPreviewMessageTableViewCell = (IncomingGeneralUrlPreviewMessageTableViewCell *)[[[IncomingGeneralUrlPreviewMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
+    [self.incomingGeneralUrlPreviewMessageTableViewCell setFrame:self.frame];
+    [self.incomingGeneralUrlPreviewMessageTableViewCell setHidden:YES];
+    [self addSubview:self.incomingGeneralUrlPreviewMessageTableViewCell];
+    
+    self.outgoingGeneralUrlPreviewMessageTableViewCell = (OutgoingGeneralUrlPreviewMessageTableViewCell *)[[[OutgoingGeneralUrlPreviewMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
+    [self.outgoingGeneralUrlPreviewMessageTableViewCell setFrame:self.frame];
+    [self.outgoingGeneralUrlPreviewMessageTableViewCell setHidden:YES];
+    [self addSubview:self.outgoingGeneralUrlPreviewMessageTableViewCell];
+    
+    self.outgoingGeneralUrlPreviewTempMessageTableViewCell = (OutgoingGeneralUrlPreviewTempMessageTableViewCell *)[[[OutgoingGeneralUrlPreviewTempMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
+    [self.outgoingGeneralUrlPreviewTempMessageTableViewCell setFrame:self.frame];
+    [self.outgoingGeneralUrlPreviewTempMessageTableViewCell setHidden:YES];
+    [self addSubview:self.outgoingGeneralUrlPreviewTempMessageTableViewCell];
 }
 
 - (void)scrollToBottomAnimated:(BOOL)animated force:(BOOL)force {
@@ -162,7 +186,16 @@
         return;
     }
 
-    [self.chattingTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.messages.count - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    NSInteger currentRowNumber = [self.chattingTableView numberOfRowsInSection:0];
+    
+//    NSLog(@"in table view: %lld", (long long)currentRowNumber);
+//    NSLog(@"in count in t: %lld", (long long)self.messages.count);
+    
+//    if (currentRowNumber != self.messages.count) {
+//        return;
+//    }
+    
+    [self.chattingTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:currentRowNumber - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
 
 - (void)scrollToPosition:(NSInteger)position {
@@ -294,25 +327,49 @@
         
         if ([sender.userId isEqualToString:[SBDMain getCurrentUser].userId]) {
             // Outgoing
-            if (indexPath.row > 0) {
-                [self.outgoingUserMessageSizingTableViewCell setPreviousMessage:self.messages[indexPath.row - 1]];
+            if ([userMessage.customType isEqualToString:@"url_preview"]) {
+                if (indexPath.row > 0) {
+                    [self.outgoingGeneralUrlPreviewMessageTableViewCell setPreviousMessage:self.messages[indexPath.row - 1]];
+                }
+                else {
+                    [self.outgoingGeneralUrlPreviewMessageTableViewCell setPreviousMessage:nil];
+                }
+                [self.outgoingGeneralUrlPreviewMessageTableViewCell setModel:userMessage];
+                height = [self.outgoingGeneralUrlPreviewMessageTableViewCell getHeightOfViewCell];
             }
             else {
-                [self.outgoingUserMessageSizingTableViewCell setPreviousMessage:nil];
+                if (indexPath.row > 0) {
+                    [self.outgoingUserMessageSizingTableViewCell setPreviousMessage:self.messages[indexPath.row - 1]];
+                }
+                else {
+                    [self.outgoingUserMessageSizingTableViewCell setPreviousMessage:nil];
+                }
+                [self.outgoingUserMessageSizingTableViewCell setModel:userMessage];
+                height = [self.outgoingUserMessageSizingTableViewCell getHeightOfViewCell];
             }
-            [self.outgoingUserMessageSizingTableViewCell setModel:userMessage];
-            height = [self.outgoingUserMessageSizingTableViewCell getHeightOfViewCell];
         }
         else {
             // Incoming
-            if (indexPath.row > 0) {
-                [self.incomingUserMessageSizingTableViewCell setPreviousMessage:self.messages[indexPath.row - 1]];
+            if ([userMessage.customType isEqualToString:@"url_preview"]) {
+                if (indexPath.row > 0) {
+                    [self.incomingGeneralUrlPreviewMessageTableViewCell setPreviousMessage:self.messages[indexPath.row - 1]];
+                }
+                else {
+                    [self.incomingGeneralUrlPreviewMessageTableViewCell setPreviousMessage:nil];
+                }
+                [self.incomingGeneralUrlPreviewMessageTableViewCell setModel:userMessage];
+                height = [self.incomingGeneralUrlPreviewMessageTableViewCell getHeightOfViewCell];
             }
             else {
-                [self.incomingUserMessageSizingTableViewCell setPreviousMessage:nil];
+                if (indexPath.row > 0) {
+                    [self.incomingUserMessageSizingTableViewCell setPreviousMessage:self.messages[indexPath.row - 1]];
+                }
+                else {
+                    [self.incomingUserMessageSizingTableViewCell setPreviousMessage:nil];
+                }
+                [self.incomingUserMessageSizingTableViewCell setModel:userMessage];
+                height = [self.incomingUserMessageSizingTableViewCell getHeightOfViewCell];
             }
-            [self.incomingUserMessageSizingTableViewCell setModel:userMessage];
-            height = [self.incomingUserMessageSizingTableViewCell getHeightOfViewCell];
         }
     }
     else if ([msg isKindOfClass:[SBDFileMessage class]]) {
@@ -417,6 +474,17 @@
         
         [self.neutralMessageSizingTableViewCell setModel:adminMessage];
         height = [self.neutralMessageSizingTableViewCell getHeightOfViewCell];
+    }
+    else if ([msg isKindOfClass:[OutgoingGeneralUrlPreviewTempModel class]]) {
+        OutgoingGeneralUrlPreviewTempModel *tempModel = (OutgoingGeneralUrlPreviewTempModel *)msg;
+        if (indexPath.row > 0) {
+            [self.outgoingGeneralUrlPreviewTempMessageTableViewCell setPreviousMessage:self.messages[indexPath.row - 1]];
+        }
+        else {
+            [self.outgoingGeneralUrlPreviewTempMessageTableViewCell setPreviousMessage:nil];
+        }
+        [self.outgoingGeneralUrlPreviewTempMessageTableViewCell setModel:tempModel];
+        height = [self.outgoingGeneralUrlPreviewTempMessageTableViewCell getHeightOfViewCell];
     }
     
     if (self.messages.count > 0 && self.messages.count - 1 == indexPath.row) {
@@ -595,43 +663,85 @@
         
         if ([sender.userId isEqualToString:[SBDMain getCurrentUser].userId]) {
             // Outgoing
-            cell = [tableView dequeueReusableCellWithIdentifier:[OutgoingUserMessageTableViewCell cellReuseIdentifier]];
-            cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
-            if (indexPath.row > 0) {
-                [(OutgoingUserMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
-            }
-            else {
-                [(OutgoingUserMessageTableViewCell *)cell setPreviousMessage:nil];
-            }
-            [(OutgoingUserMessageTableViewCell *)cell setModel:userMessage];
-            ((OutgoingUserMessageTableViewCell *)cell).delegate = self.delegate;
-
-            if (self.preSendMessages[userMessage.requestId] != nil && ![self.preSendMessages[userMessage.requestId] isKindOfClass:[NSNull class]]) {
-                [(OutgoingUserMessageTableViewCell *)cell showSendingStatus];
-            }
-            else {
-                if (self.resendableMessages[userMessage.requestId] != nil && ![self.resendableMessages[userMessage.requestId] isKindOfClass:[NSNull class]]) {
-//                    [(OutgoingUserMessageTableViewCell *)cell showMessageControlButton];
-                    [(OutgoingUserMessageTableViewCell *)cell showFailedStatus];
+            if ([userMessage.customType isEqualToString:@"url_preview"]) {
+                cell = [tableView dequeueReusableCellWithIdentifier:[OutgoingGeneralUrlPreviewMessageTableViewCell cellReuseIdentifier]];
+                cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
+                if (indexPath.row > 0) {
+                    [(OutgoingGeneralUrlPreviewMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
                 }
                 else {
-                    [(OutgoingUserMessageTableViewCell *)cell showMessageDate];
-                    [(OutgoingUserMessageTableViewCell *)cell showUnreadCount];
+                    [(OutgoingGeneralUrlPreviewMessageTableViewCell *)cell setPreviousMessage:nil];
+                }
+                [(OutgoingGeneralUrlPreviewMessageTableViewCell *)cell setModel:userMessage];
+                ((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).delegate = self.delegate;
+                
+                if (self.preSendMessages[userMessage.requestId] != nil && ![self.preSendMessages[userMessage.requestId] isKindOfClass:[NSNull class]]) {
+                    [(OutgoingGeneralUrlPreviewMessageTableViewCell *)cell showSendingStatus];
+                }
+                else {
+                    if (self.resendableMessages[userMessage.requestId] != nil && ![self.resendableMessages[userMessage.requestId] isKindOfClass:[NSNull class]]) {
+                        [(OutgoingGeneralUrlPreviewMessageTableViewCell *)cell showMessageControlButton];
+//                        [(OutgoingGeneralUrlPreviewMessageTableViewCell *)cell showFailedStatus];
+                    }
+                    else {
+                        [(OutgoingGeneralUrlPreviewMessageTableViewCell *)cell showMessageDate];
+                        [(OutgoingGeneralUrlPreviewMessageTableViewCell *)cell showUnreadCount];
+                    }
+                }
+            }
+            else {
+                cell = [tableView dequeueReusableCellWithIdentifier:[OutgoingUserMessageTableViewCell cellReuseIdentifier]];
+                cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
+                if (indexPath.row > 0) {
+                    [(OutgoingUserMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
+                }
+                else {
+                    [(OutgoingUserMessageTableViewCell *)cell setPreviousMessage:nil];
+                }
+                [(OutgoingUserMessageTableViewCell *)cell setModel:userMessage];
+                ((OutgoingUserMessageTableViewCell *)cell).delegate = self.delegate;
+
+                if (self.preSendMessages[userMessage.requestId] != nil && ![self.preSendMessages[userMessage.requestId] isKindOfClass:[NSNull class]]) {
+                    [(OutgoingUserMessageTableViewCell *)cell showSendingStatus];
+                }
+                else {
+                    if (self.resendableMessages[userMessage.requestId] != nil && ![self.resendableMessages[userMessage.requestId] isKindOfClass:[NSNull class]]) {
+                        [(OutgoingUserMessageTableViewCell *)cell showMessageControlButton];
+//                        [(OutgoingUserMessageTableViewCell *)cell showFailedStatus];
+                    }
+                    else {
+                        [(OutgoingUserMessageTableViewCell *)cell showMessageDate];
+                        [(OutgoingUserMessageTableViewCell *)cell showUnreadCount];
+                    }
                 }
             }
         }
         else {
             // Incoming
-            cell = [tableView dequeueReusableCellWithIdentifier:[IncomingUserMessageTableViewCell cellReuseIdentifier]];
-            cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
-            if (indexPath.row > 0) {
-                [(IncomingUserMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
+            if ([userMessage.customType isEqualToString:@"url_preview"]) {
+                cell = [tableView dequeueReusableCellWithIdentifier:[IncomingGeneralUrlPreviewMessageTableViewCell cellReuseIdentifier]];
+                cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
+                if (indexPath.row > 0) {
+                    [(IncomingGeneralUrlPreviewMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
+                }
+                else {
+                    [(IncomingGeneralUrlPreviewMessageTableViewCell *)cell setPreviousMessage:nil];
+                }
+                [(IncomingGeneralUrlPreviewMessageTableViewCell *)cell setModel:userMessage];
+                ((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).delegate = self.delegate;
             }
             else {
-                [(IncomingUserMessageTableViewCell *)cell setPreviousMessage:nil];
+                cell = [tableView dequeueReusableCellWithIdentifier:[IncomingUserMessageTableViewCell cellReuseIdentifier]];
+                cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
+                if (indexPath.row > 0) {
+                    [(IncomingUserMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
+                }
+                else {
+                    [(IncomingUserMessageTableViewCell *)cell setPreviousMessage:nil];
+                }
+                [(IncomingUserMessageTableViewCell *)cell setModel:userMessage];
+                ((IncomingUserMessageTableViewCell *)cell).delegate = self.delegate;
             }
-            [(IncomingUserMessageTableViewCell *)cell setModel:userMessage];
-            ((IncomingUserMessageTableViewCell *)cell).delegate = self.delegate;
         }
     }
     else if ([msg isKindOfClass:[SBDFileMessage class]]) {
@@ -657,14 +767,15 @@
                 }
                 else {
                     if (self.resendableMessages[fileMessage.requestId] != nil && ![self.resendableMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
-//                        [(OutgoingVideoFileMessageTableViewCell *)cell showMessageControlButton];
-                        [(OutgoingVideoFileMessageTableViewCell *)cell showFailedStatus];
+                        [(OutgoingVideoFileMessageTableViewCell *)cell showMessageControlButton];
+//                        [(OutgoingVideoFileMessageTableViewCell *)cell showFailedStatus];
                     }
                     else {
                         [(OutgoingVideoFileMessageTableViewCell *)cell showMessageDate];
                         [(OutgoingVideoFileMessageTableViewCell *)cell showUnreadCount];
                     }
                 }
+                
             }
             else if ([fileMessage.type hasPrefix:@"audio"]) {
                 cell = [tableView dequeueReusableCellWithIdentifier:[OutgoingFileMessageTableViewCell cellReuseIdentifier]];
@@ -683,8 +794,8 @@
                 }
                 else {
                     if (self.resendableMessages[fileMessage.requestId] != nil && ![self.resendableMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
-//                        [(OutgoingFileMessageTableViewCell *)cell showMessageControlButton];
-                        [(OutgoingFileMessageTableViewCell *)cell showFailedStatus];
+                        [(OutgoingFileMessageTableViewCell *)cell showMessageControlButton];
+//                        [(OutgoingFileMessageTableViewCell *)cell showFailedStatus];
                     }
                     else {
                         [(OutgoingFileMessageTableViewCell *)cell showMessageDate];
@@ -706,13 +817,13 @@
 
                 if (self.preSendMessages[fileMessage.requestId] != nil && ![self.preSendMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
                     [(OutgoingImageFileMessageTableViewCell *)cell showSendingStatus];
-                    [(OutgoingImageFileMessageTableViewCell *)cell setImageData:(NSData *)self.preSendFileData[fileMessage.requestId][@"data"] type:(NSString *)self.preSendFileData[fileMessage.requestId][@"type"]];
                     [(OutgoingImageFileMessageTableViewCell *)cell setHasImageCacheData:YES];
+                    [(OutgoingImageFileMessageTableViewCell *)cell setImageData:(NSData *)self.preSendFileData[fileMessage.requestId][@"data"] type:(NSString *)self.preSendFileData[fileMessage.requestId][@"type"]];
                 }
                 else {
                     if (self.resendableMessages[fileMessage.requestId] != nil && ![self.resendableMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
-//                        [(OutgoingImageFileMessageTableViewCell *)cell showMessageControlButton];
-                        [(OutgoingImageFileMessageTableViewCell *)cell showFailedStatus];
+                        [(OutgoingImageFileMessageTableViewCell *)cell showMessageControlButton];
+//                        [(OutgoingImageFileMessageTableViewCell *)cell showFailedStatus];
                         [(OutgoingImageFileMessageTableViewCell *)cell setImageData:(NSData *)self.resendableFileData[fileMessage.requestId][@"data"] type:(NSString *)self.resendableFileData[fileMessage.requestId][@"type"]];
                         [(OutgoingImageFileMessageTableViewCell *)cell setHasImageCacheData:YES];
                     }
@@ -747,8 +858,8 @@
                 }
                 else {
                     if (self.resendableMessages[fileMessage.requestId] != nil && ![self.resendableMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
-//                        [(OutgoingFileMessageTableViewCell *)cell showMessageControlButton];
-                        [(OutgoingFileMessageTableViewCell *)cell showFailedStatus];
+                        [(OutgoingFileMessageTableViewCell *)cell showMessageControlButton];
+//                        [(OutgoingFileMessageTableViewCell *)cell showFailedStatus];
                     }
                     else {
                         [(OutgoingFileMessageTableViewCell *)cell showMessageDate];
@@ -822,6 +933,18 @@
         }
         
         [(NeutralMessageTableViewCell *)cell setModel:adminMessage];
+    }
+    else if ([msg isKindOfClass:[OutgoingGeneralUrlPreviewTempModel class]]) {
+        OutgoingGeneralUrlPreviewTempModel *model = (OutgoingGeneralUrlPreviewTempModel *)msg;
+        cell = [tableView dequeueReusableCellWithIdentifier:[OutgoingGeneralUrlPreviewTempMessageTableViewCell cellReuseIdentifier]];
+        cell.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y, self.frame.size.width, cell.frame.size.height);
+        if (indexPath.row > 0) {
+            [(OutgoingGeneralUrlPreviewTempMessageTableViewCell *)cell setPreviousMessage:self.messages[indexPath.row - 1]];
+        }
+        else {
+            [(OutgoingGeneralUrlPreviewTempMessageTableViewCell *)cell setPreviousMessage:nil];
+        }
+        [(OutgoingGeneralUrlPreviewTempMessageTableViewCell *)cell setModel:model];
     }
 
     return cell;

@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <SendBirdSDK/SendBirdSDK.h>
+#import <TTTAttributedLabel/TTTAttributedLabel.h>
+
 #import "MessageDelegate.h"
 
-@interface OutgoingUserMessageTableViewCell : UITableViewCell
+@interface OutgoingUserMessageTableViewCell : UITableViewCell<TTTAttributedLabelDelegate>
 
 @property (weak, nonatomic) id<MessageDelegate> delegate;
 

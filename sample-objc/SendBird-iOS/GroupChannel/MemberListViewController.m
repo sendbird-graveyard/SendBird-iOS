@@ -31,6 +31,9 @@
     negativeLeftSpacer.width = -2;
     UIBarButtonItem *leftCloseItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_close"] style:UIBarButtonItemStyleDone target:self action:@selector(close)];
     self.navItem.leftBarButtonItems = @[negativeLeftSpacer, leftCloseItem];
+    
+    [SBDMain addChannelDelegate:self identifier:self.description];
+    [SBDMain addConnectionDelegate:self identifier:self.description];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -48,8 +51,8 @@
             return;
         }
         
-        self.navItem.title = [NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"MemberListTitle"], (int)self.channel.memberCount];
         dispatch_async(dispatch_get_main_queue(), ^{
+            self.navItem.title = [NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"MemberListTitle"], (int)self.channel.memberCount];
             [self.tableView reloadData];
         });
     }];
@@ -63,6 +66,103 @@
 - (void)close {
     [self dismissViewControllerAnimated:NO completion:nil];
 }
+
+#pragma mark - SBDConnectionDelegate
+
+- (void)didStartReconnection {
+    
+}
+
+- (void)didSucceedReconnection {
+    [self.channel refreshWithCompletionHandler:^(SBDError * _Nullable error) {
+        if (error == nil) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.navItem.title = [NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"MemberListTitle"], (int)self.channel.memberCount];
+                [self.tableView reloadData];
+            });
+        }
+    }];
+}
+
+- (void)didFailReconnection {
+
+}
+
+#pragma mark - SBDChannelDelegate
+
+- (void)channel:(SBDBaseChannel * _Nonnull)sender didReceiveMessage:(SBDBaseMessage * _Nonnull)message {
+
+}
+
+- (void)channelDidUpdateReadReceipt:(SBDGroupChannel * _Nonnull)sender {
+
+}
+
+- (void)channelDidUpdateTypingStatus:(SBDGroupChannel * _Nonnull)sender {
+
+}
+
+- (void)channel:(SBDGroupChannel * _Nonnull)sender userDidJoin:(SBDUser * _Nonnull)user {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navItem.title = [NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"MemberListTitle"], (int)self.channel.memberCount];
+        [self.tableView reloadData];
+    });
+}
+
+- (void)channel:(SBDGroupChannel * _Nonnull)sender userDidLeave:(SBDUser * _Nonnull)user {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navItem.title = [NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"MemberListTitle"], (int)self.channel.memberCount];
+        [self.tableView reloadData];
+    });
+}
+
+- (void)channel:(SBDOpenChannel * _Nonnull)sender userDidEnter:(SBDUser * _Nonnull)user {
+    
+}
+
+- (void)channel:(SBDOpenChannel * _Nonnull)sender userDidExit:(SBDUser * _Nonnull)user {
+    
+}
+
+- (void)channel:(SBDOpenChannel * _Nonnull)sender userWasMuted:(SBDUser * _Nonnull)user {
+    
+}
+
+- (void)channel:(SBDOpenChannel * _Nonnull)sender userWasUnmuted:(SBDUser * _Nonnull)user {
+    
+}
+
+- (void)channel:(SBDOpenChannel * _Nonnull)sender userWasBanned:(SBDUser * _Nonnull)user {
+    
+}
+
+- (void)channel:(SBDOpenChannel * _Nonnull)sender userWasUnbanned:(SBDUser * _Nonnull)user {
+    
+}
+
+- (void)channelWasFrozen:(SBDOpenChannel * _Nonnull)sender {
+    
+}
+
+- (void)channelWasUnfrozen:(SBDOpenChannel * _Nonnull)sender {
+    
+}
+
+- (void)channelWasChanged:(SBDBaseChannel * _Nonnull)sender {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.navItem.title = [NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"MemberListTitle"], (int)self.channel.memberCount];
+        [self.tableView reloadData];
+    });
+}
+
+- (void)channelWasDeleted:(NSString * _Nonnull)channelUrl channelType:(SBDChannelType)channelType {
+
+}
+
+- (void)channel:(SBDBaseChannel * _Nonnull)sender messageWasDeleted:(long long)messageId {
+
+}
+
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

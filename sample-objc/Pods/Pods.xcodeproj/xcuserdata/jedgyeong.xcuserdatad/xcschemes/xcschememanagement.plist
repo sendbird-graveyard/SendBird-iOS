@@ -6,37 +6,52 @@
 	<dict>
 		<key>AFNetworking.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>FLAnimatedImage.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>HTMLKit.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>MGSwipeTableCell.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>NYTPhotoViewer-NYTPhotoViewer.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>NYTPhotoViewer.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>Pods-SendBird-iOS.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>TTTAttributedLabel.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1CD80321715FDB12A3A31B7BCB09EA28</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2D41637AE6F61C2B1F0D78C95417BEE8</key>
 		<dict>
 			<key>primary</key>
@@ -47,17 +62,57 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>43DDA116C85B6F28253FCACAFDD37DFD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>51CBA72B35D4DF6696236538B80AF3FC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>53F8571E2D572C4069860E38654A566A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>757503CFC67F34320B4F6562E0C4224B</key>
+		<key>7DF885F31CE63E4CAA6D8BB2EF575028</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83B5B60C676A8D31829A6AE91CE86A75</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>864F57D3EC45308B76328229B970434E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>9E033EDB5EC0819481B0546434FA577B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B97720AEDDAEC6569BE907F8D81E7EB7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BBADA24F3B21AA3D5D68EA75B5C42841</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CF671F7E57B92905F1CC91D036D6B4A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D85C3D5A275CC39B0CEEC53C5FA8F233</key>
 		<dict>
 			<key>primary</key>
 			<true/>

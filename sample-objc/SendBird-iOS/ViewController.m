@@ -13,6 +13,7 @@
 #import "Constants.h"
 #import "NSBundle+SendBird.h"
 #import "Utils.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 
@@ -79,9 +80,26 @@
 
     [self.userIdTextField addTarget:self action:@selector(userIdTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.nicknameTextField addTarget:self action:@selector(nicknameTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    
+    if (userId != nil && userId.length > 0 && userNickname != nil && userNickname.length > 0) {
+        [self connect];
+    }
 }
 
+//- (void)applicationEnteredForeground:(id)sender {
+//    NSString *userId = self.userIdTextField.text;
+//    NSString *nickname = self.nicknameTextField.text;
+//    
+//    if (userId != nil && userId.length > 0 && nickname != nil && nickname.length > 0) {
+//        [self connect];
+//    }
+//}
+
 - (IBAction)clickConnectButton:(id)sender {
+    [self connect];
+}
+
+- (void)connect {
     NSString *trimmedUserId = [self.userIdTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *trimmedNickname = [self.nicknameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (trimmedUserId.length > 0 && trimmedNickname.length > 0) {
@@ -89,7 +107,7 @@
         [self.nicknameTextField setEnabled:NO];
         
         [self.indicatorView startAnimating];
-
+        
         [SBDMain connectWithUserId:trimmedUserId completionHandler:^(SBDUser * _Nullable user, SBDError * _Nullable error) {
             if (error != nil) {
                 dispatch_async(dispatch_get_main_queue(), ^{
