@@ -58,3 +58,5 @@
 "DeleteFailedMessageTitle" = "메시지 삭제";
 "DeleteFailedMessageDescription" = "메시지를 삭제하시겠습니까?";
 "DeleteFailedMessageButton" = "삭제";
+
+"EmptyChannelName" = "대화 상대 없음";

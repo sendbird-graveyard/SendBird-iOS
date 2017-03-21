@@ -116,7 +116,7 @@
         
         SBDUser *member = self.channel.members[0];
         [self.coverImageView11 setImageWithURL:[NSURL URLWithString:member.profileUrl] placeholderImage:[UIImage imageNamed:@"img_profile"]];
-        [memberNames addObject:member.nickname];
+        [memberNames addObject:[NSBundle sbLocalizedStringForKey:@"EmptyChannelName"]];
     }
     else if (self.channel.memberCount == 2) {
         self.coverImageContainerForOne.hidden = NO;
@@ -180,7 +180,7 @@
             [memberNames addObject:member.nickname];
             
             memberCount += 1;
-            if (memberCount >= 4) {
+            if (memberCount >= 10) {
                 break;
             }
         }
