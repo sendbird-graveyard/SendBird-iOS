@@ -345,7 +345,21 @@
 }
 
 - (void)didSucceedReconnection {
-    
+    __block SBDGroupChannelListQuery *query = [SBDGroupChannel createMyGroupChannelListQuery];
+    query.limit = 20;
+    query.order = SBDGroupChannelListOrderLatestLastMessage;
+    [query loadNextPageWithCompletionHandler:^(NSArray<SBDGroupChannel *> * _Nullable channels, SBDError * _Nullable error) {
+        if (error != nil) {
+            return;
+        }
+        
+        [self.channels removeAllObjects];
+        [self.channels addObjectsFromArray:channels];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.groupChannelListQuery = query;
+            [self.tableView reloadData];
+        });
+    }];
 }
 
 - (void)didFailReconnection {
