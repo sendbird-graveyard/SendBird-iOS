@@ -111,6 +111,8 @@
     
     [self.chattingView.fileAttachButton addTarget:self action:@selector(sendFileMessage) forControlEvents:UIControlEventTouchUpInside];
     [self.chattingView.sendButton addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.dumpedMessages = [Utils loadMessagesInChannel:self.channel.channelUrl];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,49 +120,51 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.refreshInViewDidAppear) {
+        self.minMessageTimestamp = LLONG_MAX;
+        [self.chattingView initChattingView];
+        self.chattingView.delegate = self;
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     if (self.refreshInViewDidAppear) {
-        [self.chattingView initChattingView];
-        self.chattingView.delegate = self;
-        self.minMessageTimestamp = LLONG_MAX;
-        dispatch_queue_t dumpLoadQueue = dispatch_queue_create("com.sendbird.dumploadqueue", nil);
-        dispatch_async(dumpLoadQueue, ^{
-            self.dumpedMessages = [Utils loadMessagesInChannel:self.channel.channelUrl];
-            if (self.dumpedMessages.count > 0) {
-                [self.chattingView.messages addObjectsFromArray:self.dumpedMessages];
-//                self.minMessageTimestamp = self.dumpedMessages[0].createdAt;
+        if (self.dumpedMessages.count > 0) {
+            [self.chattingView.messages addObjectsFromArray:self.dumpedMessages];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.chattingView.chattingTableView reloadData];
+                [self.chattingView.chattingTableView layoutIfNeeded];
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.chattingView.chattingTableView reloadData];
-                    [self.chattingView.chattingTableView layoutIfNeeded];
-                    
-                    CGFloat viewHeight = [[UIScreen mainScreen] bounds].size.height - self.navigationBarHeight.constant - self.chattingView.inputContainerViewHeight.constant - 10;
-                    CGSize contentSize = self.chattingView.chattingTableView.contentSize;
-                    
-                    if (contentSize.height > viewHeight) {
-                        CGPoint newContentOffset = CGPointMake(0, contentSize.height - viewHeight);
-                        [self.chattingView.chattingTableView setContentOffset:newContentOffset animated:NO];
-                    }
-                    self.cachedMessage = YES;
-                    [self loadPreviousMessage:YES];
-                });
+                CGFloat viewHeight = [[UIScreen mainScreen] bounds].size.height - self.navigationBarHeight.constant - self.chattingView.inputContainerViewHeight.constant - 10;
+                CGSize contentSize = self.chattingView.chattingTableView.contentSize;
                 
-                return;
-            }
-            else {
-                self.cachedMessage = NO;
-                self.minMessageTimestamp = LLONG_MAX;
+                if (contentSize.height > viewHeight) {
+                    CGPoint newContentOffset = CGPointMake(0, contentSize.height - viewHeight);
+                    [self.chattingView.chattingTableView setContentOffset:newContentOffset animated:NO];
+                }
+                self.cachedMessage = YES;
                 [self loadPreviousMessage:YES];
-            }
-        });
+            });
+            
+            return;
+        }
+        else {
+            self.cachedMessage = NO;
+            self.minMessageTimestamp = LLONG_MAX;
+            [self loadPreviousMessage:YES];
+        }
     }
     
     self.refreshInViewDidAppear = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [Utils dumpMessages:self.chattingView.messages resendableMessages:self.chattingView.resendableMessages resendableFileData:self.chattingView.resendableFileData preSendMessages:self.chattingView.preSendMessages channelUrl:self.channel.channelUrl];
 }
 

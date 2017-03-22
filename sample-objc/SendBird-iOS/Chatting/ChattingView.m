@@ -86,7 +86,7 @@
     self.typingIndicatorContainerViewHeight.constant = 0;
     self.typingIndicatorImageHeight.constant = 0;
     
-    [self.typingIndicatorContainerView layoutIfNeeded];
+//    [self.typingIndicatorContainerView layoutIfNeeded];
     
     self.messageTextView.delegate = self;
     

@@ -77,6 +77,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [Utils dumpChannels:self.channels];
 }
 
