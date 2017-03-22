@@ -100,10 +100,13 @@
     self.openChannelCheckImageView.hidden = YES;
     self.groupChannelCheckImageView.hidden = NO;
     
-    if (self.groupChannelListViewController == nil) {
-        self.groupChannelListViewController = [[GroupChannelListViewController alloc] init];
-        [self.groupChannelListViewController addDelegates];
-    }
+//    if (self.groupChannelListViewController == nil) {
+//        self.groupChannelListViewController = [[GroupChannelListViewController alloc] init];
+//        [self.groupChannelListViewController addDelegates];
+//    }
+    
+    self.groupChannelListViewController = [[GroupChannelListViewController alloc] init];
+    [self.groupChannelListViewController addDelegates];
     
     [self presentViewController:self.groupChannelListViewController animated:NO completion:^{
         self.groupChannelListViewController.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);

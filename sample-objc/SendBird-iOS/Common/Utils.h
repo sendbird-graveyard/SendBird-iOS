@@ -8,10 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <SendBirdSDK/SendBirdSDK.h>
 
 @interface Utils : NSObject
 
-+ (UIImage *)imageFromColor:(UIColor *)color;
-+ (NSAttributedString *)generateNavigationTitle:(NSString *)mainTitle subTitle:(NSString *)subTitle;
++ (nullable UIImage *)imageFromColor:(UIColor * _Nonnull)color;
++ (nullable NSAttributedString *)generateNavigationTitle:(NSString * _Nonnull)mainTitle subTitle:(NSString * _Nullable)subTitle;
++ (void)dumpMessages:(NSArray<SBDBaseMessage *> * _Nonnull)messages channelUrl:(NSString * _Nonnull)channelUrl;
++ (void)dumpChannels:(NSArray<SBDBaseChannel *> * _Nonnull)channels;
 
++ (nullable NSArray<SBDBaseMessage *> *)loadMessagesInChannel:(NSString * _Nonnull)channelUrl;
++ (nullable NSArray<SBDGroupChannel *> *)loadGroupChannels;
 @end

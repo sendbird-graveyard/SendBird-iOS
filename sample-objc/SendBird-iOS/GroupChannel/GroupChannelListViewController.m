@@ -14,6 +14,7 @@
 #import "GroupChannelChattingViewController.h"
 #import "NSBundle+SendBird.h"
 #import "Constants.h"
+#import "Utils.h"
 
 @interface GroupChannelListViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *noChannelLabel;
@@ -27,6 +28,8 @@
 @property (atomic) BOOL editableChannel;
 @property (strong, nonatomic) SBDGroupChannelListQuery *groupChannelListQuery;
 @property (strong, nonatomic) NSMutableArray<NSString *> *typingAnimationChannelList;
+
+@property (atomic) BOOL cachedChannels;
 
 @end
 
@@ -51,7 +54,32 @@
     
     self.typingAnimationChannelList = [[NSMutableArray alloc] init];
     self.noChannelLabel.hidden = YES;
-    [self refreshChannelList];
+    
+    self.cachedChannels = YES;
+    
+    dispatch_queue_t dumpLoadQueue = dispatch_queue_create("com.sendbird.dumploadqueue", nil);
+    dispatch_async(dumpLoadQueue, ^{
+        self.channels = [[NSMutableArray alloc] initWithArray:[Utils loadGroupChannels]];
+        if (self.channels.count > 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(150 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+                    [self refreshChannelList];
+                });
+                
+            });
+        }
+        else {
+            self.cachedChannels = NO;
+            [self refreshChannelList];
+        }
+    });
+
+
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [Utils dumpChannels:self.channels];
 }
 
 - (void)addDelegates {
@@ -86,17 +114,13 @@
 }
 
 - (void)refreshChannelList {
-    if (self.channels != nil) {
-        [self.channels removeAllObjects];
-    }
-    else {
-        self.channels = [[NSMutableArray alloc] init];
-    }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
-    
+//    if (self.channels != nil) {
+//        [self.channels removeAllObjects];
+//    }
+//    else {
+//        self.channels = [[NSMutableArray alloc] init];
+//    }
+
     self.groupChannelListQuery = [SBDGroupChannel createMyGroupChannelListQuery];
     self.groupChannelListQuery.limit = 20;
     self.groupChannelListQuery.order = SBDGroupChannelListOrderLatestLastMessage;
@@ -107,15 +131,27 @@
                 [self.refreshControl endRefreshing];
             });
             
-            UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
-            [vc addAction:closeAction];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self presentViewController:vc animated:YES completion:nil];
-            });
+//            UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+//            UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+//            [vc addAction:closeAction];
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self presentViewController:vc animated:YES completion:nil];
+//            });
             
             return;
         }
+        
+        
+        if (self.cachedChannels == YES) {
+            if (self.channels != nil) {
+                [self.channels removeAllObjects];
+            }
+            else {
+                self.channels = [[NSMutableArray alloc] init];
+            }
+        }
+        
+        self.cachedChannels = NO;
         
         for (SBDGroupChannel *channel in channels) {
             [self.channels addObject:channel];
@@ -138,6 +174,10 @@
 }
 
 - (void)loadChannels {
+    if (self.cachedChannels == YES) {
+        return;
+    }
+    
     if (self.groupChannelListQuery != nil) {
         if ([self.groupChannelListQuery hasNext] == NO) {
             return;
