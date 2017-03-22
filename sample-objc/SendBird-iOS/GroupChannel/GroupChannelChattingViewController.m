@@ -136,20 +136,18 @@
         if (self.dumpedMessages.count > 0) {
             [self.chattingView.messages addObjectsFromArray:self.dumpedMessages];
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.chattingView.chattingTableView reloadData];
-                [self.chattingView.chattingTableView layoutIfNeeded];
-                
-                CGFloat viewHeight = [[UIScreen mainScreen] bounds].size.height - self.navigationBarHeight.constant - self.chattingView.inputContainerViewHeight.constant - 10;
-                CGSize contentSize = self.chattingView.chattingTableView.contentSize;
-                
-                if (contentSize.height > viewHeight) {
-                    CGPoint newContentOffset = CGPointMake(0, contentSize.height - viewHeight);
-                    [self.chattingView.chattingTableView setContentOffset:newContentOffset animated:NO];
-                }
-                self.cachedMessage = YES;
-                [self loadPreviousMessage:YES];
-            });
+            [self.chattingView.chattingTableView reloadData];
+            [self.chattingView.chattingTableView layoutIfNeeded];
+            
+            CGFloat viewHeight = [[UIScreen mainScreen] bounds].size.height - self.navigationBarHeight.constant - self.chattingView.inputContainerViewHeight.constant - 10;
+            CGSize contentSize = self.chattingView.chattingTableView.contentSize;
+            
+            if (contentSize.height > viewHeight) {
+                CGPoint newContentOffset = CGPointMake(0, contentSize.height - viewHeight);
+                [self.chattingView.chattingTableView setContentOffset:newContentOffset animated:NO];
+            }
+            self.cachedMessage = YES;
+            [self loadPreviousMessage:YES];
             
             return;
         }

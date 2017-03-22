@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SendBird-iOS/GroupChannel/GroupChannelChattingViewController.m"
-            timestampString = "511866662.027032"
+            timestampString = "511869460.523454"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1137"
-            endingLineNumber = "1137"
+            startingLineNumber = "1136"
+            endingLineNumber = "1136"
             landmarkName = "-clickResend:message:"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SendBird-iOS/GroupChannel/GroupChannelChattingViewController.m"
-            timestampString = "511866662.027032"
+            timestampString = "511869460.523454"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "827"
-            endingLineNumber = "827"
+            startingLineNumber = "826"
+            endingLineNumber = "826"
             landmarkName = "-endTyping:"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SendBird-iOS/GroupChannel/GroupChannelChattingViewController.m"
-            timestampString = "511866662.027032"
+            timestampString = "511869460.523454"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "823"
-            endingLineNumber = "823"
+            startingLineNumber = "822"
+            endingLineNumber = "822"
             landmarkName = "-startTyping:"
             landmarkType = "7">
          </BreakpointContent>
