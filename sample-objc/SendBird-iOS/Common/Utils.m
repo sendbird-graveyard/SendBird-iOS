@@ -59,7 +59,7 @@
     return fullTitle;
 }
 
-+ (void)dumpMessages:(NSArray<SBDBaseMessage *> * _Nonnull)messages channelUrl:(NSString * _Nonnull)channelUrl {
++ (void)dumpMessages:(NSArray<SBDBaseMessage *> * _Nonnull)messages resendableMessages:(NSDictionary<NSString *, SBDBaseMessage *> * _Nullable)resendableMessages resendableFileData:(NSDictionary<NSString *, NSDictionary<NSString *, NSObject *> *> * _Nullable)resendableFileData preSendMessages:(NSDictionary<NSString *, SBDBaseMessage *> * _Nullable)preSendMessages channelUrl:(NSString * _Nonnull)channelUrl{
     // Serialize messages
     NSUInteger startIndex = 0;
     
@@ -73,6 +73,28 @@
     
     NSMutableArray<NSString *> *serializedMessages = [[NSMutableArray alloc] init];
     for (; startIndex < messages.count; startIndex++) {
+        NSString *requestId = nil;
+        if ([messages[startIndex] isKindOfClass:[SBDUserMessage class]]) {
+            requestId = ((SBDUserMessage *)messages[startIndex]).requestId;
+        }
+        else if ([messages[startIndex] isKindOfClass:[SBDFileMessage class]]) {
+            requestId = ((SBDFileMessage *)messages[startIndex]).requestId;
+        }
+        
+        if (requestId != nil && requestId.length > 0) {
+            if (resendableMessages[requestId] != nil) {
+                continue;
+            }
+            
+            if (preSendMessages[requestId] != nil) {
+                continue;
+            }
+            
+            if (resendableFileData[requestId] != nil) {
+                continue;
+            }
+        }
+        
         NSData *messageData = [messages[startIndex] serialize];
         NSString *messageString = [messageData base64EncodedStringWithOptions:0];
         [serializedMessages addObject:messageString];

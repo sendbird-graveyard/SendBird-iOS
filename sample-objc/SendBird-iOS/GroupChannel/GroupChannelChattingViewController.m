@@ -161,7 +161,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [Utils dumpMessages:self.chattingView.messages channelUrl:self.channel.channelUrl];
+    [Utils dumpMessages:self.chattingView.messages resendableMessages:self.chattingView.resendableMessages resendableFileData:self.chattingView.resendableFileData preSendMessages:self.chattingView.preSendMessages channelUrl:self.channel.channelUrl];
 }
 
 - (void)keyboardDidShow:(NSNotification *)notification {
@@ -187,7 +187,7 @@
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notification {
-    [Utils dumpMessages:self.chattingView.messages channelUrl:self.channel.channelUrl];
+    [Utils dumpMessages:self.chattingView.messages resendableMessages:self.chattingView.resendableMessages resendableFileData:self.chattingView.resendableFileData preSendMessages:self.chattingView.preSendMessages channelUrl:self.channel.channelUrl];
 }
 
 - (void)close {
