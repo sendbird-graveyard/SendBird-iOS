@@ -57,7 +57,7 @@
     
     self.cachedChannels = YES;
     
-    dispatch_queue_t dumpLoadQueue = dispatch_queue_create("com.sendbird.dumploadqueue", nil);
+    dispatch_queue_t dumpLoadQueue = dispatch_queue_create("com.sendbird.dumploadqueue", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(dumpLoadQueue, ^{
         self.channels = [[NSMutableArray alloc] initWithArray:[Utils loadGroupChannels]];
         if (self.channels.count > 0) {
@@ -74,8 +74,6 @@
             [self refreshChannelList];
         }
     });
-
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -114,13 +112,6 @@
 }
 
 - (void)refreshChannelList {
-//    if (self.channels != nil) {
-//        [self.channels removeAllObjects];
-//    }
-//    else {
-//        self.channels = [[NSMutableArray alloc] init];
-//    }
-
     self.groupChannelListQuery = [SBDGroupChannel createMyGroupChannelListQuery];
     self.groupChannelListQuery.limit = 20;
     self.groupChannelListQuery.order = SBDGroupChannelListOrderLatestLastMessage;
@@ -130,25 +121,27 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.refreshControl endRefreshing];
             });
-            
-//            UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-//            UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
-//            [vc addAction:closeAction];
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [self presentViewController:vc animated:YES completion:nil];
-//            });
-            
+
             return;
         }
+
+//        if (self.cachedChannels == YES) {
+//            if (self.channels != nil) {
+//                [self.channels removeAllObjects];
+//            }
+//            else {
+//                self.channels = [[NSMutableArray alloc] init];
+//            }
+//        }
+//        else {
+//            
+//        }
         
-        
-        if (self.cachedChannels == YES) {
-            if (self.channels != nil) {
-                [self.channels removeAllObjects];
-            }
-            else {
-                self.channels = [[NSMutableArray alloc] init];
-            }
+        if (self.channels != nil) {
+            [self.channels removeAllObjects];
+        }
+        else {
+            self.channels = [[NSMutableArray alloc] init];
         }
         
         self.cachedChannels = NO;
