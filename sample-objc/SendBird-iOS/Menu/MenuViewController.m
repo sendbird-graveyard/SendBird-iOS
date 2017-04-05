@@ -13,6 +13,7 @@
 #import "Constants.h"
 #import "AppDelegate.h"
 #import "GroupChannelChattingViewController.h"
+#import "UserProfileViewController.h"
 
 @interface MenuViewController ()
 
@@ -40,7 +41,15 @@
     negativeRightSpacer.width = -2;
     UIBarButtonItem *rightDisconnectItem = [[UIBarButtonItem alloc] initWithTitle:[NSBundle sbLocalizedStringForKey:@"DisconnectButton"] style:UIBarButtonItemStylePlain target:self action:@selector(disconnect)];
     [rightDisconnectItem setTitleTextAttributes:@{NSFontAttributeName: [Constants navigationBarButtonItemFont]} forState:UIControlStateNormal];
+    
+    UIBarButtonItem *negativeLeftSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    negativeLeftSpacer.width = -2;
+    UIBarButtonItem *leftProfileItem = [[UIBarButtonItem alloc] initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(profile)];
+    [leftProfileItem setTitleTextAttributes:@{NSFontAttributeName: [Constants navigationBarButtonItemFont]} forState:UIControlStateNormal];
+
+    
     self.navItem.rightBarButtonItems = @[negativeRightSpacer, rightDisconnectItem];
+    self.navItem.leftBarButtonItems = @[negativeLeftSpacer, leftProfileItem];
     
     [SBDMain addConnectionDelegate:self identifier:self.description];
 
@@ -99,12 +108,7 @@
     
     self.openChannelCheckImageView.hidden = YES;
     self.groupChannelCheckImageView.hidden = NO;
-    
-//    if (self.groupChannelListViewController == nil) {
-//        self.groupChannelListViewController = [[GroupChannelListViewController alloc] init];
-//        [self.groupChannelListViewController addDelegates];
-//    }
-    
+
     self.groupChannelListViewController = [[GroupChannelListViewController alloc] init];
     [self.groupChannelListViewController addDelegates];
     
@@ -133,6 +137,13 @@
             });
         }];
     }];
+}
+
+- (void)profile {
+    UserProfileViewController *vc = [[UserProfileViewController alloc] init];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:vc animated:NO completion:nil];
+    });
 }
 
 #pragma mark - SBDConnectionDelegate

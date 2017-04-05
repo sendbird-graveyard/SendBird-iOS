@@ -74,6 +74,7 @@
     [self.imageLoadingIndicator startAnimating];
     self.fileImageView.animatedImage = nil;
     self.fileImageView.image = nil;
+    NSLog(@"Flush incoming cell image.");
     __block NSString *url = self.message.url;
     if (self.message.type != nil && [self.message.type isEqualToString:@"image/gif"] ) {
         /***********************************/

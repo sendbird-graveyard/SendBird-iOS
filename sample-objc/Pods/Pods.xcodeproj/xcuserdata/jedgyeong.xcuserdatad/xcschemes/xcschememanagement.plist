@@ -6,73 +6,58 @@
 	<dict>
 		<key>AFNetworking.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>FLAnimatedImage.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>HTMLKit.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>MGSwipeTableCell.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>NYTPhotoViewer-NYTPhotoViewer.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>NYTPhotoViewer.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-SendBird-iOS.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RSKImageCropper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>TTTAttributedLabel.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>01042C37CAEDDD175F1FF3487B0F04DB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1CD80321715FDB12A3A31B7BCB09EA28</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2D41637AE6F61C2B1F0D78C95417BEE8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>43AFBF4F2CD231A7499E3B7813A16837</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>43DDA116C85B6F28253FCACAFDD37DFD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>51CBA72B35D4DF6696236538B80AF3FC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>53F8571E2D572C4069860E38654A566A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,12 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>864F57D3EC45308B76328229B970434E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9E033EDB5EC0819481B0546434FA577B</key>
+		<key>AA3DBD333D407CD0C6301D235B8CC04F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,7 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BBADA24F3B21AA3D5D68EA75B5C42841</key>
+		<key>CECC4C02B91B38368D6706BC3141324A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -113,11 +93,6 @@
 			<true/>
 		</dict>
 		<key>D85C3D5A275CC39B0CEEC53C5FA8F233</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E28FF52E037F12A636856202D7DDC9E7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

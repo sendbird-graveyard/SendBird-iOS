@@ -78,7 +78,10 @@
         [self.imageLoadingIndicator stopAnimating];
     }
     
-    __block NSString *url = self.message.url;
+    self.fileImageView.animatedImage = nil;
+    self.fileImageView.image = nil;
+    NSLog(@"Flush outgoing cell image.");
+    NSString *url = self.message.url;
     if (self.message.type != nil && [self.message.type isEqualToString:@"image/gif"] ) {
         /***********************************/
         /* Thumbnail is a premium feature. */
@@ -351,7 +354,7 @@
     if (type != nil && [type isEqualToString:@"image/gif"]) {
         dispatch_queue_t imageLoadQueue = dispatch_queue_create("com.sendbird.imageloadqueue", NULL);
         dispatch_async(imageLoadQueue, ^{
-            __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:imageData];
+            FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:imageData];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.fileImageView setAnimatedImage:animatedImage];
             });

@@ -30,11 +30,13 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+#if !(TARGET_OS_SIMULATOR)
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
     }
+#endif
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{
                                                            NSFontAttributeName: [Constants navigationBarTitleFont]
@@ -56,9 +58,7 @@
             NSLog(@"Set Audio Session error: %@", error);
         }
     }
-    
-    NSLog(@"launchOptions: %@", launchOptions);
-    
+
     if (launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]) {
         [self application:application didReceiveRemoteNotification:launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]];
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "864F57D3EC45308B76328229B970434E"
+               BlueprintIdentifier = "01042C37CAEDDD175F1FF3487B0F04DB"
                BuildableName = "Pods_SendBird_iOS.framework"
                BlueprintName = "Pods-SendBird-iOS"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "864F57D3EC45308B76328229B970434E"
+            BlueprintIdentifier = "01042C37CAEDDD175F1FF3487B0F04DB"
             BuildableName = "Pods_SendBird_iOS.framework"
             BlueprintName = "Pods-SendBird-iOS"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,15 +60,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "864F57D3EC45308B76328229B970434E"
-            BuildableName = "Pods_SendBird_iOS.framework"
-            BlueprintName = "Pods-SendBird-iOS"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
