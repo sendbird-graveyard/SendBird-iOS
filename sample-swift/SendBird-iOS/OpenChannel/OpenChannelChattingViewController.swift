@@ -515,7 +515,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
             if type.hasPrefix("video") {
                 openFileAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "PlayVideoButton"), style: UIAlertActionStyle.default, handler: { (action) in
                     let videoUrl = NSURL(string: url)
-                    let player = AVPlayer(url: videoUrl as! URL)
+                    let player = AVPlayer(url: (videoUrl! as URL))
                     let vc = AVPlayerViewController()
                     vc.player = player
                     self.refreshInViewDidAppear = false
@@ -527,7 +527,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
             else if type.hasPrefix("audio") {
                 openFileAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "PlayAudioButton"), style: UIAlertActionStyle.default, handler: { (action) in
                     let audioUrl = NSURL(string: url)
-                    let player = AVPlayer(url: audioUrl as! URL)
+                    let player = AVPlayer(url: audioUrl! as URL)
                     let vc = AVPlayerViewController()
                     vc.player = player
                     self.refreshInViewDidAppear = false
@@ -540,7 +540,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                 openFileAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "OpenImageButton"), style: UIAlertActionStyle.default, handler: { (action) in
                     let imageUrl = NSURL(string: url)
                     self.refreshInViewDidAppear = false
-                    UIApplication.shared.openURL(imageUrl as! URL)
+                    UIApplication.shared.openURL(imageUrl! as URL)
                 })
             }
             else {
@@ -695,7 +695,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                 let imageName: NSString = (imagePath.lastPathComponent as NSString?)!
                 let ext = imageName.pathExtension
                 let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as CFString, nil)?.takeRetainedValue()
-                let mimeType = UTTypeCopyPreferredTagWithClass(UTI!, kUTTagClassMIMEType)?.takeRetainedValue() as! String
+                let mimeType = (UTTypeCopyPreferredTagWithClass(UTI!, kUTTagClassMIMEType)?.takeRetainedValue())! as String
                 
                 let asset = PHAsset.fetchAssets(withALAssetURLs: [imagePath], options: nil).lastObject
                 let options = PHImageRequestOptions()
@@ -775,7 +775,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                 let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as NSString, nil)
                 let mimeType = UTTypeCopyPreferredTagWithClass(UTI as! CFString, kUTTagClassMIMEType)?.takeRetainedValue()
                 
-                let preSendMessage = self.openChannel.sendFileMessage(withBinaryData: videoFileData as! Data, filename: videoName as String, type: mimeType! as String, size: UInt((videoFileData?.length)!), data: "", completionHandler: { (fileMessage, error) in
+                let preSendMessage = self.openChannel.sendFileMessage(withBinaryData: videoFileData! as Data, filename: videoName as String, type: mimeType! as String, size: UInt((videoFileData?.length)!), data: "", completionHandler: { (fileMessage, error) in
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
                         DispatchQueue.main.async {
                             let preSendMessage = self.chattingView.preSendMessages[(fileMessage?.requestId!)!] as! SBDFileMessage

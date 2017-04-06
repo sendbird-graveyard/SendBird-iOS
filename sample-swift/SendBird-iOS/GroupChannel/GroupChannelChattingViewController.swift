@@ -474,7 +474,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
         var deleteMessageAction: UIAlertAction?
-        var openFileAction: UIAlertAction?
+//        var openFileAction: UIAlertAction?
         var openURLsAction: [UIAlertAction] = []
         
         if message is SBDUserMessage {
@@ -533,7 +533,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
             
             if type.hasPrefix("video") {
                 let videoUrl = NSURL(string: url)
-                let player = AVPlayer(url: videoUrl as! URL)
+                let player = AVPlayer(url: videoUrl! as URL)
                 let vc = AVPlayerViewController()
                 vc.player = player
                 self.refreshInViewDidAppear = false
@@ -545,7 +545,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
             }
             else if type.hasPrefix("audio") {
                 let audioUrl = NSURL(string: url)
-                let player = AVPlayer(url: audioUrl as! URL)
+                let player = AVPlayer(url: audioUrl! as URL)
                 let vc = AVPlayerViewController()
                 vc.player = player
                 self.refreshInViewDidAppear = false
@@ -635,9 +635,9 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         }
         
         alert.addAction(closeAction)
-        if openFileAction != nil {
-            alert.addAction(openFileAction!)
-        }
+//        if openFileAction != nil {
+//            alert.addAction(openFileAction!)
+//        }
         
         if openURLsAction.count > 0 {
             for action in openURLsAction {
@@ -649,7 +649,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
             alert.addAction(deleteMessageAction!)
         }
         
-        if openFileAction != nil || openURLsAction.count > 0 || deleteMessageAction != nil {
+        if openURLsAction.count > 0 || deleteMessageAction != nil {
             DispatchQueue.main.async {
                 self.refreshInViewDidAppear = false
                 self.present(alert, animated: true, completion: nil)
@@ -779,7 +779,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                 let imageName: NSString = (imagePath.lastPathComponent as NSString?)!
                 let ext = imageName.pathExtension
                 let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as CFString, nil)?.takeRetainedValue()
-                let mimeType = UTTypeCopyPreferredTagWithClass(UTI!, kUTTagClassMIMEType)?.takeRetainedValue() as! String
+                let mimeType = UTTypeCopyPreferredTagWithClass(UTI!, kUTTagClassMIMEType)?.takeRetainedValue();
                 
                 let asset = PHAsset.fetchAssets(withALAssetURLs: [imagePath], options: nil).lastObject
                 let options = PHImageRequestOptions()
@@ -799,7 +799,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                         /***********************************/
                         let thumbnailSize = SBDThumbnailSize.make(withMaxWidth: 320.0, maxHeight: 320.0)
                         
-                        let preSendMessage = self.groupChannel.sendFileMessage(withBinaryData: imageData!, filename: imageName as String, type: mimeType, size: UInt((imageData?.count)!), thumbnailSizes: [thumbnailSize!], data: "", customType: "", progressHandler: nil, completionHandler: { (fileMessage, error) in
+                        let preSendMessage = self.groupChannel.sendFileMessage(withBinaryData: imageData!, filename: imageName as String, type: mimeType! as String, size: UInt((imageData?.count)!), thumbnailSizes: [thumbnailSize!], data: "", customType: "", progressHandler: nil, completionHandler: { (fileMessage, error) in
                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
                                 let preSendMessage = self.chattingView.preSendMessages[(fileMessage?.requestId)!] as! SBDFileMessage
                                 self.chattingView.preSendMessages.removeValue(forKey: (fileMessage?.requestId)!)
@@ -860,7 +860,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                 let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as NSString, nil)
                 let mimeType = UTTypeCopyPreferredTagWithClass(UTI as! CFString, kUTTagClassMIMEType)?.takeRetainedValue()
                 
-                let preSendMessage = self.groupChannel.sendFileMessage(withBinaryData: videoFileData as! Data, filename: videoName as String, type: mimeType! as String, size: UInt((videoFileData?.length)!), data: "", completionHandler: { (fileMessage, error) in
+                let preSendMessage = self.groupChannel.sendFileMessage(withBinaryData: videoFileData! as Data, filename: videoName as String, type: mimeType! as String, size: UInt((videoFileData?.length)!), data: "", completionHandler: { (fileMessage, error) in
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
                         DispatchQueue.main.async {
                             let preSendMessage = self.chattingView.preSendMessages[(fileMessage?.requestId!)!] as! SBDFileMessage

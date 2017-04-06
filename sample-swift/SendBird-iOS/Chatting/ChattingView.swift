@@ -52,7 +52,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     var incomingVideoFileMessageSizingTableViewCell: IncomingVideoFileMessageTableViewCell?
     var outgoingVideoFileMessageSizingTableViewCell: OutgoingVideoFileMessageTableViewCell?
 
-    var delegate: ChattingViewDelegate & MessageDelegate?
+    var delegate: (ChattingViewDelegate & MessageDelegate)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
