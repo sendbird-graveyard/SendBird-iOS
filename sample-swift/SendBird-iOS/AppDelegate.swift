@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.applicationIconBadgeNumber = 0
         
-        SBDMain.initWithApplicationId("9DA1B1F4-0BE6-4DA8-82C5-2E81DAB56F23")
+        SBDMain.initWithApplicationId("1B0C2F67-9D82-49DD-8DA8-FF067E6C4259")
         SBDMain.setLogLevel(SBDLogLevel.debug)
         SBDOptions.setUseMemberAsMessageSender(true)
         
