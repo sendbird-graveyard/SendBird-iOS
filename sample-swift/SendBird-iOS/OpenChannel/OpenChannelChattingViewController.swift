@@ -387,7 +387,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                 }
                 
                 DispatchQueue.main.async {
-                    let vc = GroupChannelChattingViewController(nibName: "GroupChannelChattingViewController", bundle: Bundle.main)
+                    let vc = SnapChatViewController(nibName: "GroupChannelChattingViewController", bundle: Bundle.main)
                     vc.groupChannel = channel
                     self.present(vc, animated: false, completion: nil)
                 }
@@ -409,7 +409,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                 }
                 
                 DispatchQueue.main.async {
-                    let vc = GroupChannelChattingViewController(nibName: "GroupChannelChattingViewController", bundle: Bundle.main)
+                    let vc = SnapChatViewController(nibName: "GroupChannelChattingViewController", bundle: Bundle.main)
                     vc.groupChannel = channel
                     self.present(vc, animated: false, completion: nil)
                 }

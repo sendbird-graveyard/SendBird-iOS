@@ -73,6 +73,7 @@
 		5ADEF82A1DAA663C000AABF9 /* CreateGroupChannelUserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADEF8291DAA663C000AABF9 /* CreateGroupChannelUserListTableViewCell.swift */; };
 		5ADEF82C1DAA67C5000AABF9 /* GroupChannelListEditableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADEF82B1DAA67C5000AABF9 /* GroupChannelListEditableTableViewCell.swift */; };
 		8F4B9B4CF66474515B5345D2 /* Pods_SendBird_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3A2CB679067572774BDE5D /* Pods_SendBird_iOS.framework */; };
+		AB7DC7761E9D867300614891 /* SnapChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7DC7751E9D867300614891 /* SnapChatViewController.swift */; };
 		CE806EF61E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE806EF41E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift */; };
 		CE806EF71E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806EF51E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib */; };
 		CE806EFA1E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE806EF81E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift */; };
@@ -163,6 +164,7 @@
 		5ADEF82B1DAA67C5000AABF9 /* GroupChannelListEditableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChannelListEditableTableViewCell.swift; sourceTree = "<group>"; };
 		8F3A2CB679067572774BDE5D /* Pods_SendBird_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SendBird_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96683C54D2DA7CFBF0C23471 /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		AB7DC7751E9D867300614891 /* SnapChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapChatViewController.swift; sourceTree = "<group>"; };
 		C879E57358A8287C34B477A5 /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		CE806EF41E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncomingVideoFileMessageTableViewCell.swift; path = ../../GroupChannel/ViewCell/IncomingVideoFileMessageTableViewCell.swift; sourceTree = "<group>"; };
 		CE806EF51E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IncomingVideoFileMessageTableViewCell.xib; path = ../../GroupChannel/ViewCell/IncomingVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				5ADEF8211DAA617D000AABF9 /* GroupChannelChattingViewController.xib */,
 				5AD94BA21DAF1A3A00A6CD66 /* MemberListViewController.swift */,
 				5AC2B6EC1DB61C1500BA4BC7 /* MemberListViewController.xib */,
+				AB7DC7751E9D867300614891 /* SnapChatViewController.swift */,
 			);
 			path = GroupChannel;
 			sourceTree = "<group>";
@@ -414,7 +417,7 @@
 				TargetAttributes = {
 					5ABA0B7C1DA6010A000C82DC = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 8K8M9F9X95;
+						DevelopmentTeam = 3W8D3S7TCY;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -568,6 +571,7 @@
 				5AD94C2C1DB5F74A00A6CD66 /* Bundle+SendBird.swift in Sources */,
 				5AD94BB91DAF24AD00A6CD66 /* OpenChannelListTableViewCell.swift in Sources */,
 				5AD94BA11DAB878600A6CD66 /* GroupChannelChattingViewController.swift in Sources */,
+				AB7DC7761E9D867300614891 /* SnapChatViewController.swift in Sources */,
 				5ABA0BCC1DA65240000C82DC /* IncomingUserMessageTableViewCell.swift in Sources */,
 				5AD94BBB1DAF262C00A6CD66 /* ParticipantListTableViewCell.swift in Sources */,
 				5AD94BC51DAF6FA500A6CD66 /* ParticipantListViewController.swift in Sources */,
@@ -794,7 +798,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8K8M9F9X95;
+				DEVELOPMENT_TEAM = 3W8D3S7TCY;
 				INFOPLIST_FILE = "SendBird-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -810,7 +814,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8K8M9F9X95;
+				DEVELOPMENT_TEAM = 3W8D3S7TCY;
 				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = "SendBird-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;

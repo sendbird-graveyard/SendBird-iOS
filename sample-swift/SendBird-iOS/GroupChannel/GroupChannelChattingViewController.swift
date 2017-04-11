@@ -14,7 +14,7 @@ import MobileCoreServices
 import Photos
 import NYTPhotoViewer
 
-class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegate, SBDChannelDelegate, ChattingViewDelegate, MessageDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegate, ChattingViewDelegate, MessageDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var groupChannel: SBDGroupChannel!
     
     @IBOutlet weak var chattingView: ChattingView!
@@ -25,7 +25,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     @IBOutlet weak var imageViewerLoadingViewNavItem: UINavigationItem!
     
     private var messageQuery: SBDPreviousMessageListQuery!
-    private var delegateIdentifier: String!
+    var delegateIdentifier: String!
     private var hasNext: Bool = true
     private var refreshInViewDidAppear: Bool = true
     private var isLoading: Bool = false
@@ -72,7 +72,6 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         
         self.delegateIdentifier = self.description
-        SBDMain.add(self as SBDChannelDelegate, identifier: self.delegateIdentifier)
         SBDMain.add(self as SBDConnectionDelegate, identifier: self.delegateIdentifier)
         
         self.chattingView.fileAttachButton.addTarget(self, action: #selector(sendFileMessage), for: UIControlEvents.touchUpInside)
@@ -119,7 +118,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         }
     }
     
-    @objc private func close() {
+    @objc func close() {
         self.dismiss(animated: false) { 
             
         }
@@ -338,76 +337,6 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     func didFailReconnection() {
         if self.navItem.titleView != nil && self.navItem.titleView is UILabel {
             (self.navItem.titleView as! UILabel).attributedText = Utils.generateNavigationTitle(mainTitle: String(format:Bundle.sbLocalizedStringForKey(key: "GroupChannelTitle"), self.groupChannel.memberCount), subTitle: Bundle.sbLocalizedStringForKey(key: "ReconnectionFailedSubTitle"))
-        }
-    }
-    
-    // MARK: SBDChannelDelegate
-    func channel(_ sender: SBDBaseChannel, didReceive message: SBDBaseMessage) {
-        if sender == self.groupChannel {
-            self.groupChannel.markAsRead()
-            
-            self.chattingView.messages.append(message)
-            self.chattingView.chattingTableView.reloadData()
-            DispatchQueue.main.async {
-                self.chattingView.scrollToBottom(animated: true, force: false)
-            }
-        }
-    }
-    
-    func channelDidUpdateReadReceipt(_ sender: SBDGroupChannel) {
-        if sender == self.groupChannel {
-            DispatchQueue.main.async {
-                self.chattingView.chattingTableView.reloadData()
-            }
-        }
-    }
-    
-    func channelDidUpdateTypingStatus(_ sender: SBDGroupChannel) {
-        if sender == self.groupChannel {
-            if sender.getTypingMembers()?.count == 0 {
-                self.chattingView.endTypingIndicator()
-            }
-            else {
-                if sender.getTypingMembers()?.count == 1 {
-                    self.chattingView.startTypingIndicator(text: String(format: Bundle.sbLocalizedStringForKey(key: "TypingMessageSingular"), (sender.getTypingMembers()?[0].nickname)!))
-                }
-                else {
-                    self.chattingView.startTypingIndicator(text: Bundle.sbLocalizedStringForKey(key: "TypingMessagePlural"))
-                }
-            }
-        }
-    }
-    
-    func channelWasChanged(_ sender: SBDBaseChannel) {
-        if sender == self.groupChannel {
-            DispatchQueue.main.async {
-                self.navItem.title = String(format: Bundle.sbLocalizedStringForKey(key: "GroupChannelTitle"), self.groupChannel.memberCount)
-            }
-        }
-    }
-    
-    func channelWasDeleted(_ channelUrl: String, channelType: SBDChannelType) {
-        let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ChannelDeletedTitle"), message: Bundle.sbLocalizedStringForKey(key: "ChannelDeletedMessage"), preferredStyle: UIAlertControllerStyle.alert)
-        let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel) { (action) in
-            self.close()
-        }
-        vc.addAction(closeAction)
-        DispatchQueue.main.async {
-            self.present(vc, animated: true, completion: nil)
-        }
-    }
-    
-    func channel(_ sender: SBDBaseChannel, messageWasDeleted messageId: Int64) {
-        if sender == self.groupChannel {
-            for message in self.chattingView.messages {
-                if message.messageId == messageId {
-                    self.chattingView.messages.remove(at: self.chattingView.messages.index(of: message)!)
-                    DispatchQueue.main.async {
-                        self.chattingView.chattingTableView.reloadData()
-                    }
-                    break
-                }
-            }
         }
     }
     

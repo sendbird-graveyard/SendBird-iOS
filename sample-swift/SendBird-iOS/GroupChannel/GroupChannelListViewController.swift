@@ -193,7 +193,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         if self.editableChannel == false {
-            let vc = GroupChannelChattingViewController(nibName: "GroupChannelChattingViewController", bundle: Bundle.main)
+            let vc = SnapChatViewController(nibName: "GroupChannelChattingViewController", bundle: Bundle.main)
             vc.groupChannel = self.channels[indexPath.row]
             self.present(vc, animated: false, completion: nil)
         }
@@ -302,7 +302,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     // MARK: CreateGroupChannelUserListViewControllerDelegate
     func openGroupChannel(channel: SBDGroupChannel, vc: UIViewController) {
         DispatchQueue.main.async {
-            let vc = GroupChannelChattingViewController(nibName: "GroupChannelChattingViewController", bundle: Bundle.main)
+            let vc = SnapChatViewController(nibName: "GroupChannelChattingViewController", bundle: Bundle.main)
             vc.groupChannel = channel
             self.present(vc, animated: false, completion: nil)
         }
