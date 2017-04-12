@@ -271,9 +271,14 @@
                 }
             }
             
-            NSArray *keys = [self.chattingView.resendableMessages allKeys];
-            for (NSString *key in keys) {
+            NSArray *resendableMessagesKeys = [self.chattingView.resendableMessages allKeys];
+            for (NSString *key in resendableMessagesKeys) {
                 [self.chattingView.messages addObject:self.chattingView.resendableMessages[key]];
+            }
+            
+            NSArray *preSendMessagesKeys = [self.chattingView.preSendMessages allKeys];
+            for (NSString *key in preSendMessagesKeys) {
+                [self.chattingView.messages addObject:self.chattingView.preSendMessages[key]];
             }
             
             [self.channel markAsRead];

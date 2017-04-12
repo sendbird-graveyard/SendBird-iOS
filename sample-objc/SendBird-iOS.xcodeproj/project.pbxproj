@@ -105,8 +105,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		095040316A653E09BB5B08B5 /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.debug.xcconfig"; path = "Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		1364F5B22175AB53DD65C48E /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.release.xcconfig"; path = "Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		095040316A653E09BB5B08B5 /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		1364F5B22175AB53DD65C48E /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		382D6CF042D942EB06CD9F0C /* Pods_SendBird_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SendBird_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		540E4E45AC85E10182D75E6E /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5AB0CC251D8F840400F05EC1 /* SendBird-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SendBird-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -517,7 +517,6 @@
 				095040316A653E09BB5B08B5 /* Pods-SendBird-iOS.debug.xcconfig */,
 				1364F5B22175AB53DD65C48E /* Pods-SendBird-iOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -527,7 +526,6 @@
 				E218A6911E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.h */,
 				E218A6921E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.m */,
 			);
-			name = Model;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -537,7 +535,6 @@
 				E25E5A961E79E552003E1E9B /* ChatImage.h */,
 				E25E5A971E79E552003E1E9B /* ChatImage.m */,
 			);
-			name = ImageViewer;
 			path = ImageViewer;
 			sourceTree = "<group>";
 		};
@@ -548,7 +545,6 @@
 				E2CEFCC31E956FDC0060C569 /* UserProfileViewController.m */,
 				E2CEFCC41E956FDC0060C569 /* UserProfileViewController.xib */,
 			);
-			name = UserProfile;
 			path = UserProfile;
 			sourceTree = "<group>";
 		};
@@ -986,7 +982,7 @@
 		};
 		5AB0CC3D1D8F840400F05EC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 095040316A653E09BB5B08B5 /* Pods-SendBird-iOS.debug.xcconfig */;
+			baseConfigurationReference = 540E4E45AC85E10182D75E6E /* Pods-SendBird-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "SendBird-iOS/SendBird-iOS.entitlements";
@@ -1004,7 +1000,7 @@
 		};
 		5AB0CC3E1D8F840400F05EC1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1364F5B22175AB53DD65C48E /* Pods-SendBird-iOS.release.xcconfig */;
+			baseConfigurationReference = 79490ADA791306CED6D99F2F /* Pods-SendBird-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "SendBird-iOS/SendBird-iOS.entitlements";

@@ -3,7 +3,7 @@
 
 [![Platform](https://img.shields.io/badge/platform-iOS-orange.svg)](https://cocoapods.org/pods/SendBirdSDK)
 [![Languages](https://img.shields.io/badge/language-Objective--C%20%7C%20Swift-orange.svg)](https://github.com/smilefam/sendbird-ios-framework)
-[![CocoaPods](https://img.shields.io/badge/pod-v3.0.44-green.svg)](https://cocoapods.org/pods/SendBirdSDK)
+[![CocoaPods](https://img.shields.io/badge/pod-v3.0.45-green.svg)](https://cocoapods.org/pods/SendBirdSDK)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Commercial License](https://img.shields.io/badge/license-Commercial-brightgreen.svg)](https://github.com/smilefam/sendbird-ios-framework/blob/master/LICENSE.md)
 
