@@ -25,7 +25,6 @@
  */
 + (nullable instancetype)makeWithMaxCGSize:(CGSize)size;
 
-
 /**
  Makes `SBDThumbnailSize` object with width and height.
 
@@ -54,6 +53,12 @@
  The maximum size of the thumbnail.
  */
 @property (nonatomic, readonly) CGSize maxSize;
+
+
+/**
+ The real size of the thumbnail.
+ */
+@property (nonatomic, readonly) CGSize realSize;
 
 
 /**

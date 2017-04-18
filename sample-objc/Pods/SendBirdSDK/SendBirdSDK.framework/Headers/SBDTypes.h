@@ -94,7 +94,7 @@ typedef NS_ENUM(NSUInteger, SBDWebSocketConnectionState) {
     /**
      *  Closed
      */
-    SBSWebSocketClosed = 3,
+    SBDWebSocketClosed = 3,
 };
 
 /**
