@@ -177,6 +177,11 @@
 + (void)connectWithUserId:(NSString * _Nonnull)userId accessToken:(NSString * _Nullable)accessToken completionHandler:(nullable void (^)(SBDUser * _Nullable user, SBDError * _Nullable error))completionHandler;
 
 /**
+ Internal use only.
+ */
++ (void)connectWithUserId:(NSString * _Nonnull)userId accessToken:(NSString * _Nullable)accessToken apiHost:(NSString * _Nullable)apiHost wsHost:(NSString * _Nullable)wsHost completionHandler:(nullable void (^)(SBDUser * _Nullable user, SBDError * _Nullable error))completionHandler;
+
+/**
  *  Gets the current user object. The object is valid when the connection succeeded.
  *
  *  @return The current user object.
@@ -489,5 +494,17 @@
  @param onOff If YES, the reconnection by network Awareness is turned.
  */
 + (void)setNetworkAwarenessReconnection:(BOOL)onOff;
+
+
+/**
+ Internal use only.
+ */
++ (nullable NSString *)getCustomApiHost;
+
+
+/**
+ Internal use only.
+ */
++ (nullable NSString *)getCustomWsHost;
 
 @end

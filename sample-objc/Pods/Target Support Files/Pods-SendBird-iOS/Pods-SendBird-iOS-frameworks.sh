@@ -95,6 +95,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/MGSwipeTableCell/MGSwipeTableCell.framework"
   install_framework "$BUILT_PRODUCTS_DIR/NYTPhotoViewer/NYTPhotoViewer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RSKImageCropper/RSKImageCropper.framework"
+  install_framework "${PODS_ROOT}/SendBirdSDK/SendBirdSDK.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TTTAttributedLabel/TTTAttributedLabel.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -104,6 +105,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/MGSwipeTableCell/MGSwipeTableCell.framework"
   install_framework "$BUILT_PRODUCTS_DIR/NYTPhotoViewer/NYTPhotoViewer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RSKImageCropper/RSKImageCropper.framework"
+  install_framework "${PODS_ROOT}/SendBirdSDK/SendBirdSDK.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TTTAttributedLabel/TTTAttributedLabel.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
