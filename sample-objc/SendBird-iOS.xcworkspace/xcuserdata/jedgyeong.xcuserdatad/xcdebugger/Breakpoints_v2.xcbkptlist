@@ -9,44 +9,44 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SendBird-iOS/Menu/MenuViewController.m"
-            timestampString = "513627417.566127"
+            filePath = "SendBird-iOS/ViewController.m"
+            timestampString = "514518444.888285"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "-didSucceedReconnection"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "-connect"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[MenuViewController didSucceedReconnection]"
+                  symbolName = "-[ViewController connect]"
                   moduleName = "SendBird-iOS"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-objc/SendBird-iOS/Menu/MenuViewController.m"
-                  timestampString = "513652231.355968"
+                  urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-objc/SendBird-iOS/ViewController.m"
+                  timestampString = "514518450.081793"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "178"
-                  endingLineNumber = "178"
-                  offsetFromSymbolStart = "1052">
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "700">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[MenuViewController didSucceedReconnection]"
+                  symbolName = "__25-[ViewController connect]_block_invoke"
                   moduleName = "SendBird-iOS"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-objc/SendBird-iOS/Menu/MenuViewController.m"
-                  timestampString = "513652231.358657"
+                  urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-objc/SendBird-iOS/ViewController.m"
+                  timestampString = "514518450.084036"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "178"
-                  endingLineNumber = "178"
-                  offsetFromSymbolStart = "1140">
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "84">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -57,62 +57,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SendBird-iOS/GroupChannel/GroupChannelChattingViewController.m"
-            timestampString = "513652135.801899"
+            filePath = "../../jios/SendBirdSDK/SBDMain.m"
+            timestampString = "514518524.644445"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "768"
-            endingLineNumber = "768"
-            landmarkName = "-channel:userWasBanned:"
+            startingLineNumber = "349"
+            endingLineNumber = "349"
+            landmarkName = "+connectWithUserId:accessToken:apiHost:wsHost:completionHandler:"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SendBird-iOS/Chatting/ChattingView.m"
-            timestampString = "513122623.298433"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "825"
-            endingLineNumber = "825"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SendBird-iOS/GroupChannel/GroupChannelChattingViewController.m"
-            timestampString = "513652135.801899"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "705"
-            endingLineNumber = "705"
-            landmarkName = "-channel:didReceiveMessage:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SendBird-iOS/GroupChannel/GroupChannelChattingViewController.m"
-            timestampString = "513652135.801899"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "726"
-            endingLineNumber = "726"
-            landmarkName = "-channelDidUpdateTypingStatus:"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[SBDMain connectWithUserId:accessToken:apiHost:wsHost:completionHandler:]"
+                  moduleName = "SendBirdSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jedgyeong/git/jios/SendBirdSDK/SBDMain.m"
+                  timestampString = "514518524.65219"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "349"
+                  endingLineNumber = "349"
+                  offsetFromSymbolStart = "724">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__74+[SBDMain connectWithUserId:accessToken:apiHost:wsHost:completionHandler:]_block_invoke.179"
+                  moduleName = "SendBirdSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jedgyeong/git/jios/SendBirdSDK/SBDMain.m"
+                  timestampString = "514518524.655044"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "351"
+                  endingLineNumber = "351"
+                  offsetFromSymbolStart = "64">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -122,12 +106,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../jios/SendBirdSDK/SBDMain.m"
-            timestampString = "513627417.566127"
+            timestampString = "514518542.984993"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
-            landmarkName = "+connectWithUserId:accessToken:completionHandler:"
+            startingLineNumber = "429"
+            endingLineNumber = "429"
+            landmarkName = "+connectWebSocketServerReconnect:userId:accessToken:sessionKey:completionHandler:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[SBDMain connectWebSocketServerReconnect:userId:accessToken:sessionKey:completionHandler:]"
+                  moduleName = "SendBirdSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jedgyeong/git/jios/SendBirdSDK/SBDMain.m"
+                  timestampString = "514518542.99231"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "429"
+                  endingLineNumber = "429"
+                  offsetFromSymbolStart = "1136">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__91+[SBDMain connectWebSocketServerReconnect:userId:accessToken:sessionKey:completionHandler:]_block_invoke.251"
+                  moduleName = "SendBirdSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jedgyeong/git/jios/SendBirdSDK/SBDMain.m"
+                  timestampString = "514518542.994849"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "430"
+                  endingLineNumber = "430"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../jios/SendBirdSDK/SBDApiClient.m"
+            timestampString = "514518553.859277"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "473"
+            endingLineNumber = "473"
+            landmarkName = "-getHostUrlWithCompletionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -137,13 +169,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SendBird-iOS/GroupChannel/GroupChannelChattingViewController.m"
-            timestampString = "513652135.801899"
+            filePath = "../../jios/SendBirdSDK/SBDApiClient.m"
+            timestampString = "514518569.714448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1289"
-            endingLineNumber = "1289"
-            landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
+            startingLineNumber = "507"
+            endingLineNumber = "507"
+            landmarkName = "-getHostUrlWithCompletionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -153,13 +185,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SendBird-iOS/GroupChannel/GroupChannelChattingViewController.m"
-            timestampString = "513652135.801899"
+            filePath = "../../jios/SendBirdSDK/SBDApiClient.m"
+            timestampString = "514518580.824518"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1351"
-            endingLineNumber = "1351"
-            landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
+            startingLineNumber = "508"
+            endingLineNumber = "508"
+            landmarkName = "-getHostUrlWithCompletionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
