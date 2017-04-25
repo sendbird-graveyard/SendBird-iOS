@@ -112,7 +112,7 @@
         self.bottomMargin.constant = keyboardFrameBeginRect.size.height;
         [self.view layoutIfNeeded];
         self.chattingView.stopMeasuringVelocity = YES;
-        [self.chattingView scrollToBottomAnimated:YES force:NO];
+        [self.chattingView scrollToBottomWithForce:NO];
     });
 }
 
@@ -121,7 +121,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.bottomMargin.constant = 0;
         [self.view layoutIfNeeded];
-        [self.chattingView scrollToBottomAnimated:YES force:NO];
+        [self.chattingView scrollToBottomWithForce:NO];
     });
 }
 
@@ -223,7 +223,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.chattingView.chattingTableView reloadData];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.chattingView scrollToBottomAnimated:NO force:YES];
+                    [self.chattingView scrollToBottomWithForce:YES];
                     self.chattingView.chattingTableView.hidden = NO;
                 });
             });
@@ -259,7 +259,7 @@
                     self.chattingView.resendableMessages[userMessage.requestId] = userMessage;
                     [self.chattingView.chattingTableView reloadData];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.chattingView scrollToBottomAnimated:YES force:YES];
+                        [self.chattingView scrollToBottomWithForce:YES];
                     });
                     
                     return;
@@ -271,7 +271,7 @@
                 
                 [self.chattingView.chattingTableView reloadData];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.chattingView scrollToBottomAnimated:YES force:YES];
+                    [self.chattingView scrollToBottomWithForce:YES];
                 });
             });
         }];
@@ -279,7 +279,7 @@
         [self.chattingView.messages addObject:preSendMessage];
         [self.chattingView.chattingTableView reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.chattingView scrollToBottomAnimated:YES force:YES];
+            [self.chattingView scrollToBottomWithForce:YES];
         });
     }
 }
@@ -335,7 +335,7 @@
         [self.chattingView.messages addObject:message];
         [self.chattingView.chattingTableView reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.chattingView scrollToBottomAnimated:YES force:NO];
+            [self.chattingView scrollToBottomWithForce:NO];
         });
     }
 }
@@ -442,7 +442,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.bottomMargin.constant = 0;
         [self.view layoutIfNeeded];
-        [self.chattingView scrollToBottomAnimated:YES force:NO];
+        [self.chattingView scrollToBottomWithForce:NO];
     });
     [self.view endEditing:YES];
 }
@@ -676,7 +676,7 @@
                     self.chattingView.resendableMessages[userMessage.requestId] = userMessage;
                     [self.chattingView.chattingTableView reloadData];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.chattingView scrollToBottomAnimated:YES force:YES];
+                        [self.chattingView scrollToBottomWithForce:YES];
                     });
                     
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
@@ -696,7 +696,7 @@
                 
                 [self.chattingView.chattingTableView reloadData];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.chattingView scrollToBottomAnimated:YES force:YES];
+                    [self.chattingView scrollToBottomWithForce:YES];
                 });
             });
         }];
@@ -704,7 +704,7 @@
         self.chattingView.preSendMessages[preSendMessage.requestId] = preSendMessage;
         [self.chattingView.chattingTableView reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.chattingView scrollToBottomAnimated:YES force:YES];
+            [self.chattingView scrollToBottomWithForce:YES];
         });
     }
     else if ([message isKindOfClass:[SBDFileMessage class]]) {
@@ -725,7 +725,7 @@
                     [self.chattingView.resendableFileData removeObjectForKey:resendableFileMessage.requestId];
                     [self.chattingView.chattingTableView reloadData];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.chattingView scrollToBottomAnimated:YES force:YES];
+                        [self.chattingView scrollToBottomWithForce:YES];
                     });
                     
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
@@ -745,7 +745,7 @@
                 
                 [self.chattingView.chattingTableView reloadData];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.chattingView scrollToBottomAnimated:YES force:YES];
+                    [self.chattingView scrollToBottomWithForce:YES];
                 });
             });
         }];
@@ -755,7 +755,7 @@
         [self.chattingView.preSendFileData removeObjectForKey:resendableFileMessage.requestId];
         [self.chattingView.chattingTableView reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.chattingView scrollToBottomAnimated:YES force:YES];
+            [self.chattingView scrollToBottomWithForce:YES];
         });
     }
 }
@@ -816,7 +816,7 @@
                                                                                                          };
                                 [strongSelf.chattingView.chattingTableView reloadData];
                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                    [self.chattingView scrollToBottomAnimated:YES force:YES];
+                                    [self.chattingView scrollToBottomWithForce:YES];
                                 });
                                 
                                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
@@ -837,7 +837,7 @@
                                 dispatch_async(dispatch_get_main_queue(), ^{
                                     [strongSelf.chattingView.chattingTableView reloadData];
                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                        [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
+                                        [strongSelf.chattingView scrollToBottomWithForce:YES];
                                     });
                                 });
                             }
@@ -852,7 +852,7 @@
                     [strongSelf.chattingView.messages addObject:preSendMessage];
                     [strongSelf.chattingView.chattingTableView reloadData];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
+                        [strongSelf.chattingView scrollToBottomWithForce:YES];
                     });
                 }
             }];
@@ -879,7 +879,7 @@
                                                                                                  };
                         [strongSelf.chattingView.chattingTableView reloadData];
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [self.chattingView scrollToBottomAnimated:YES force:YES];
+                            [self.chattingView scrollToBottomWithForce:YES];
                         });
                         
                         UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
@@ -900,7 +900,7 @@
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [strongSelf.chattingView.chattingTableView reloadData];
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
+                                [strongSelf.chattingView scrollToBottomWithForce:YES];
                             });
                         });
                     }
@@ -915,7 +915,7 @@
             [strongSelf.chattingView.messages addObject:preSendMessage];
             [strongSelf.chattingView.chattingTableView reloadData];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
+                [strongSelf.chattingView scrollToBottomWithForce:YES];
             });
         }
     }];

@@ -175,7 +175,7 @@
         self.bottomMargin.constant = keyboardFrameBeginRect.size.height;
         [self.view layoutIfNeeded];
         self.chattingView.stopMeasuringVelocity = YES;
-        [self.chattingView scrollToBottomAnimated:YES force:NO];
+        [self.chattingView scrollToBottomWithForce:NO];
     });
 }
 
@@ -184,7 +184,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.bottomMargin.constant = 0;
         [self.view layoutIfNeeded];
-        [self.chattingView scrollToBottomAnimated:YES force:NO];
+        [self.chattingView scrollToBottomWithForce:NO];
     });
 }
 
@@ -504,7 +504,7 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.chattingView.chattingTableView reloadData];
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [self.chattingView scrollToBottomAnimated:YES force:YES];
+                            [self.chattingView scrollToBottomWithForce:YES];
                         });
                     });
                 }];
@@ -528,7 +528,7 @@
                 self.chattingView.resendableMessages[userMessage.requestId] = userMessage;
                 [self.chattingView.chattingTableView reloadData];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.chattingView scrollToBottomAnimated:YES force:YES];
+                    [self.chattingView scrollToBottomWithForce:YES];
                 });
                 
                 return;
@@ -540,7 +540,7 @@
             
             [self.chattingView.chattingTableView reloadData];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.chattingView scrollToBottomAnimated:YES force:YES];
+                [self.chattingView scrollToBottomWithForce:YES];
             });
         });
     }];
@@ -549,7 +549,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.chattingView.chattingTableView reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.chattingView scrollToBottomAnimated:YES force:YES];
+            [self.chattingView scrollToBottomWithForce:YES];
         });
     });
 }
@@ -579,7 +579,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.chattingView.chattingTableView reloadData];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.chattingView scrollToBottomAnimated:YES force:YES];
+                        [self.chattingView scrollToBottomWithForce:YES];
                     });
                 });
                 
@@ -592,7 +592,7 @@
         
         self.chattingView.sendButton.enabled = NO;
         SBDUserMessage *preSendMessage = [self.channel sendUserMessage:message data:@"" customType:@"" targetLanguages:@[@"ar", @"de", @"fr", @"nl", @"ja", @"ko", @"pt", @"es", @"zh-CHS"] completionHandler:^(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(100 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 SBDUserMessage *preSendMessage = (SBDUserMessage *)self.chattingView.preSendMessages[userMessage.requestId];
                 [self.chattingView.preSendMessages removeObjectForKey:userMessage.requestId];
                 
@@ -600,38 +600,45 @@
                     self.chattingView.resendableMessages[userMessage.requestId] = userMessage;
                     [self.chattingView.chattingTableView reloadData];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.chattingView scrollToBottomAnimated:YES force:YES];
+                        [self.chattingView scrollToBottomWithForce:YES];
                     });
                     
                     return;
                 }
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (preSendMessage != nil) {
-                        [self.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:preSendMessage] withObject:userMessage];
-                    }
-                    
-                    NSIndexPath *index = [NSIndexPath indexPathForRow:[self.chattingView.messages indexOfObject:preSendMessage] inSection:0];
-                    [UIView setAnimationsEnabled:NO];
-                    [self.chattingView.chattingTableView reloadRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
-                    [UIView setAnimationsEnabled:YES];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.chattingView scrollToBottomAnimated:YES force:YES];
-                    });
-                });
+                NSIndexPath *index = [NSIndexPath indexPathForRow:[self.chattingView.messages indexOfObject:preSendMessage] inSection:0];
+                [self.chattingView.chattingTableView beginUpdates];
+                if (preSendMessage != nil) {
+                    [self.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:preSendMessage] withObject:userMessage];
+                }
+                [UIView setAnimationsEnabled:NO];
 
+                [self.chattingView.chattingTableView reloadRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
+                [UIView setAnimationsEnabled:YES];
+                [self.chattingView.chattingTableView endUpdates];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.chattingView scrollToBottomWithForce:YES];
+                });
             });
         }];
+        
         self.chattingView.preSendMessages[preSendMessage.requestId] = preSendMessage;
-        [self.chattingView.messages addObject:preSendMessage];
-        __block NSIndexPath *index = [NSIndexPath indexPathForRow:self.chattingView.messages.count - 1 inSection:0];
         dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.chattingView.preSendMessages[preSendMessage.requestId] == nil) {
+                return;
+            }
+            [self.chattingView.chattingTableView beginUpdates];
+            [self.chattingView.messages addObject:preSendMessage];
+
             [UIView setAnimationsEnabled:NO];
-            [self.chattingView.chattingTableView insertRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
+
+            [self.chattingView.chattingTableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[self.chattingView.messages indexOfObject:preSendMessage] inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+
             [UIView setAnimationsEnabled:YES];
+            [self.chattingView.chattingTableView endUpdates];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.chattingView scrollToBottomAnimated:YES force:YES];
+                [self.chattingView scrollToBottomWithForce:YES];
                 self.chattingView.sendButton.enabled = YES;
             });
         });
@@ -702,7 +709,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.chattingView.chattingTableView reloadData];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.chattingView scrollToBottomAnimated:YES force:NO];
+                [self.chattingView scrollToBottomWithForce:NO];
             });
         });
     }
@@ -838,7 +845,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.bottomMargin.constant = 0;
         [self.view layoutIfNeeded];
-        [self.chattingView scrollToBottomAnimated:NO force:NO];
+        [self.chattingView scrollToBottomWithForce:NO];
     });
     [self.view endEditing:YES];
 }
@@ -1106,7 +1113,7 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.chattingView.chattingTableView reloadData];
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [self.chattingView scrollToBottomAnimated:YES force:YES];
+                            [self.chattingView scrollToBottomWithForce:YES];
                         });
                     });
                     
@@ -1126,7 +1133,7 @@
                         self.chattingView.resendableMessages[userMessage.requestId] = userMessage;
                         [self.chattingView.chattingTableView reloadData];
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [self.chattingView scrollToBottomAnimated:YES force:YES];
+                            [self.chattingView scrollToBottomWithForce:YES];
                         });
 
                         return;
@@ -1138,7 +1145,7 @@
                     }
                     [self.chattingView.chattingTableView reloadData];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.chattingView scrollToBottomAnimated:YES force:YES];
+                        [self.chattingView scrollToBottomWithForce:YES];
                     });
                 });
             }];
@@ -1147,7 +1154,7 @@
             [self.chattingView.resendableMessages removeObjectForKey:resendableUserMessage.requestId];
             [self.chattingView.chattingTableView reloadData];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.chattingView scrollToBottomAnimated:YES force:YES];
+                [self.chattingView scrollToBottomWithForce:YES];
             });
         }
         else if ([message isKindOfClass:[SBDFileMessage class]]) {
@@ -1169,7 +1176,7 @@
                         [self.chattingView.preSendMessages removeObjectForKey:fileMessage.requestId];
                         [self.chattingView.chattingTableView reloadData];
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [self.chattingView scrollToBottomAnimated:YES force:YES];
+                            [self.chattingView scrollToBottomWithForce:YES];
                         });
 
                         return;
@@ -1182,7 +1189,7 @@
                     
                     [self.chattingView.chattingTableView reloadData];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.chattingView scrollToBottomAnimated:YES force:YES];
+                        [self.chattingView scrollToBottomWithForce:YES];
                     });
                 });
             }];
@@ -1193,7 +1200,7 @@
             [self.chattingView.resendableFileData removeObjectForKey:resendableFileMessage.requestId];
             [self.chattingView.chattingTableView reloadData];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.chattingView scrollToBottomAnimated:YES force:YES];
+                [self.chattingView scrollToBottomWithForce:YES];
             });
         }
     }];
@@ -1276,7 +1283,7 @@
                                                                                                          };
                                 [strongSelf.chattingView.chattingTableView reloadData];
                                 dispatch_async(dispatch_get_main_queue(), ^{
-                                    [self.chattingView scrollToBottomAnimated:YES force:YES];
+                                    [self.chattingView scrollToBottomWithForce:YES];
                                 });
 
                                 return;
@@ -1291,7 +1298,7 @@
                                 dispatch_async(dispatch_get_main_queue(), ^{
                                     [strongSelf.chattingView.chattingTableView reloadData];
                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                        [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
+                                        [strongSelf.chattingView scrollToBottomWithForce:YES];
                                     });
                                 });
                             }
@@ -1306,7 +1313,7 @@
                     [strongSelf.chattingView.messages addObject:preSendMessage];
                     [strongSelf.chattingView.chattingTableView reloadData];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
+                        [strongSelf.chattingView scrollToBottomWithForce:YES];
                     });
                 }
             }];
@@ -1339,7 +1346,7 @@
                                                                                                  };
                         [strongSelf.chattingView.chattingTableView reloadData];
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [self.chattingView scrollToBottomAnimated:YES force:YES];
+                            [self.chattingView scrollToBottomWithForce:YES];
                         });
 
                         return;
@@ -1353,7 +1360,7 @@
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [strongSelf.chattingView.chattingTableView reloadData];
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
+                                [strongSelf.chattingView scrollToBottomWithForce:YES];
                             });
                         });
                     }
@@ -1368,7 +1375,7 @@
             [strongSelf.chattingView.messages addObject:preSendMessage];
             [strongSelf.chattingView.chattingTableView reloadData];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf.chattingView scrollToBottomAnimated:YES force:YES];
+                [strongSelf.chattingView scrollToBottomWithForce:YES];
             });
         }
     }];

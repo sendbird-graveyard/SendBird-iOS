@@ -177,7 +177,7 @@
     [self addSubview:self.outgoingGeneralUrlPreviewTempMessageTableViewCell];
 }
 
-- (void)scrollToBottomAnimated:(BOOL)animated force:(BOOL)force {
+- (void)scrollToBottomWithForce:(BOOL)force {
     if (self.messages.count == 0) {
         return;
     }
