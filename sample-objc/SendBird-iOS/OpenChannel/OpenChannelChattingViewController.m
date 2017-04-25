@@ -250,8 +250,9 @@
     if (self.chattingView.messageTextView.text.length > 0) {
         NSString *message = [self.chattingView.messageTextView.text copy];
         self.chattingView.messageTextView.text = @"";
-        SBDUserMessage *preSendMessage = [self.channel sendUserMessage:message data:@"test_data" customType:@"test_custom_type" targetLanguages:@[@"ar", @"de", @"fr", @"nl", @"ja", @"ko", @"pt", @"es", @"zh-CHS"] completionHandler:^(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(150 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+        self.chattingView.sendButton.enabled = NO;
+        SBDUserMessage *preSendMessage = [self.channel sendUserMessage:message data:@"" customType:@"" targetLanguages:@[@"ar", @"de", @"fr", @"nl", @"ja", @"ko", @"pt", @"es", @"zh-CHS"] completionHandler:^(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
                 SBDUserMessage *preSendMessage = (SBDUserMessage *)self.chattingView.preSendMessages[userMessage.requestId];
                 [self.chattingView.preSendMessages removeObjectForKey:userMessage.requestId];
                 
@@ -265,22 +266,76 @@
                     return;
                 }
                 
+                NSIndexPath *index = [NSIndexPath indexPathForRow:[self.chattingView.messages indexOfObject:preSendMessage] inSection:0];
+                [self.chattingView.chattingTableView beginUpdates];
                 if (preSendMessage != nil) {
                     [self.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:preSendMessage] withObject:userMessage];
                 }
+                [UIView setAnimationsEnabled:NO];
                 
-                [self.chattingView.chattingTableView reloadData];
+                [self.chattingView.chattingTableView reloadRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
+                [UIView setAnimationsEnabled:YES];
+                [self.chattingView.chattingTableView endUpdates];
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.chattingView scrollToBottomWithForce:YES];
                 });
             });
         }];
+        
         self.chattingView.preSendMessages[preSendMessage.requestId] = preSendMessage;
-        [self.chattingView.messages addObject:preSendMessage];
-        [self.chattingView.chattingTableView reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.chattingView scrollToBottomWithForce:YES];
+            if (self.chattingView.preSendMessages[preSendMessage.requestId] == nil) {
+                return;
+            }
+            [self.chattingView.chattingTableView beginUpdates];
+            [self.chattingView.messages addObject:preSendMessage];
+            
+            [UIView setAnimationsEnabled:NO];
+            
+            [self.chattingView.chattingTableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[self.chattingView.messages indexOfObject:preSendMessage] inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            
+            [UIView setAnimationsEnabled:YES];
+            [self.chattingView.chattingTableView endUpdates];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.chattingView scrollToBottomWithForce:YES];
+                self.chattingView.sendButton.enabled = YES;
+            });
         });
+
+//        NSString *message = [self.chattingView.messageTextView.text copy];
+//        self.chattingView.messageTextView.text = @"";
+//        SBDUserMessage *preSendMessage = [self.channel sendUserMessage:message data:@"test_data" customType:@"test_custom_type" targetLanguages:@[@"ar", @"de", @"fr", @"nl", @"ja", @"ko", @"pt", @"es", @"zh-CHS"] completionHandler:^(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error) {
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(150 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+//                SBDUserMessage *preSendMessage = (SBDUserMessage *)self.chattingView.preSendMessages[userMessage.requestId];
+//                [self.chattingView.preSendMessages removeObjectForKey:userMessage.requestId];
+//                
+//                if (error != nil) {
+//                    self.chattingView.resendableMessages[userMessage.requestId] = userMessage;
+//                    [self.chattingView.chattingTableView reloadData];
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        [self.chattingView scrollToBottomWithForce:YES];
+//                    });
+//                    
+//                    return;
+//                }
+//                
+//                if (preSendMessage != nil) {
+//                    [self.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:preSendMessage] withObject:userMessage];
+//                }
+//                
+//                [self.chattingView.chattingTableView reloadData];
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [self.chattingView scrollToBottomWithForce:YES];
+//                });
+//            });
+//        }];
+//        self.chattingView.preSendMessages[preSendMessage.requestId] = preSendMessage;
+//        [self.chattingView.messages addObject:preSendMessage];
+//        [self.chattingView.chattingTableView reloadData];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.chattingView scrollToBottomWithForce:YES];
+//        });
     }
 }
 
