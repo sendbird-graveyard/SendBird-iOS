@@ -39,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RSKImageCropper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>TTTAttributedLabel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,12 +52,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1CD80321715FDB12A3A31B7BCB09EA28</key>
+		<key>01042C37CAEDDD175F1FF3487B0F04DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>51CBA72B35D4DF6696236538B80AF3FC</key>
+		<key>1CD80321715FDB12A3A31B7BCB09EA28</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,12 +72,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>864F57D3EC45308B76328229B970434E</key>
+		<key>AA3DBD333D407CD0C6301D235B8CC04F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>B97720AEDDAEC6569BE907F8D81E7EB7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CECC4C02B91B38368D6706BC3141324A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

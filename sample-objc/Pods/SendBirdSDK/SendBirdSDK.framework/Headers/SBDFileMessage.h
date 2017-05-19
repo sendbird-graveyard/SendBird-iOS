@@ -81,7 +81,7 @@
 /**
  *  Sender of the message.
  */
-@property (strong, nonatomic, readonly, nullable, getter = sender) SBDUser *sender;
+@property (strong, nonatomic, nullable, getter = sender) SBDUser *sender;
 
 /**
  *  The file URL.

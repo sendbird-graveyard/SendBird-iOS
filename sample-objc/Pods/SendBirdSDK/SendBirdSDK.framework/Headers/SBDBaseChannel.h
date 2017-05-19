@@ -32,6 +32,7 @@
  *  This protocol deals with the below events.
  *
  *  * Receives a message in the [`SBDBaseChannel`](../Classes/SBDBaseChannel.html).
+ *  * Receives an event when a message is updated in the [`SBDBaseChannel`](../Classes/SBDBaseChannel.html).
  *  * Receives an event when a member read a message in the [`SBDGroupChannel`](../Classes/SBDGroupChannel.html).
  *  * Receives an event when a member typed something in the [`SBDGroupChannel`](../Classes/SBDGroupChannel.html).
  *  * Receives an event when a new member joined the [`SBDGroupChannel`](../Classes/SBDGroupChannel.html).
@@ -50,12 +51,21 @@
 @optional
 
 /**
- *  A callback when a message received.
+ *  A callback when a message is received.
  *
  *  @param sender The channel where the message is received.
  *  @param message The received message.
  */
 - (void)channel:(SBDBaseChannel * _Nonnull)sender didReceiveMessage:(SBDBaseMessage * _Nonnull)message;
+
+
+/**
+ A callback when a message is updated.
+
+ @param sender The channel where the message is updated.
+ @param message The updated message.
+ */
+- (void)channel:(SBDBaseChannel * _Nonnull)sender didUpdateMessage:(SBDBaseMessage * _Nonnull)message;
 
 /**
  *  A callback when read receipts updated.
@@ -574,6 +584,28 @@
  */
 - (void)deleteMessage:(SBDBaseMessage * _Nonnull)message completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
+
+/**
+ *  Updates a user message. The message text, data, and custom type can be updated.
+ *
+ *  @param userMessage       The user message to be updated.
+ *  @param messageText       New message text.
+ *  @param data              New data.
+ *  @param customType        New custom type.
+ *  @param completionHandler The handler block to execute.
+ */
+- (void)updateUserMessage:(SBDUserMessage * _Nonnull)userMessage messageText:(NSString * _Nullable)messageText data:(NSString * _Nullable)data customType:(NSString * _Nullable)customType completionHandler:(nullable void (^)(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Updates a file message. The data and custom type can be updated.
+ *
+ *  @param fileMessage       The file message to be updated.
+ *  @param data              New data.
+ *  @param customType        New custom type.
+ *  @param completionHandler The handler block to execute.
+ */
+- (void)updateFileMessage:(SBDFileMessage * _Nonnull)fileMessage data:(NSString * _Nullable)data customType:(NSString * _Nullable)customType completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error))completionHandler;
+
 /**
  *  Checks the channel type.
  *
@@ -752,5 +784,13 @@
  @return Serialized <span>data</span>.
  */
 - (nullable NSData *)serialize;
+
+/**
+ Cancels the file message uploading.
+ 
+ @param requestId The request ID of the file message that is been uploading.
+ @param completionHandler The handler block to execute. If the `result` is `YES`, then the uploading task of the `requestId` has been cancelled.
+ */
++ (void)cancelUploadingFileMessageWithRequestId:(NSString * _Nonnull)requestId completionHandler:(nullable void (^)(BOOL result, SBDError * _Nullable error))completionHandler;
 
 @end
