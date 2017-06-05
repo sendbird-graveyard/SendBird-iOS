@@ -24,8 +24,8 @@ PODS:
     - FLAnimatedImage (~> 1.0.8)
     - NYTPhotoViewer/Core
   - NYTPhotoViewer/Core (1.1.0)
-  - RSKImageCropper (1.6.1)
-  - SendBirdSDK (3.0.53)
+  - RSKImageCropper (1.6.2)
+  - SendBirdSDK (3.0.54)
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
@@ -44,10 +44,10 @@ SPEC CHECKSUMS:
   HTMLKit: 9e1bde384fbc20be51eb62f2c1ad331d6ceccfa2
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
   NYTPhotoViewer: e80e8767f3780d2df37c6f72cbab15d6c7232911
-  RSKImageCropper: 0df8c99e77a8ea7ca7a8b83ef468556f31584254
-  SendBirdSDK: 87e3746e3ace9b0b3633ff39d808428c0b0b4a88
+  RSKImageCropper: 3e579d0000945a8be1c0efdad728fd9e25c2fd79
+  SendBirdSDK: 719968d31eb4813b634e37ea907847fe5f825d91
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
 PODFILE CHECKSUM: df0a399349eff5d99379145eab7b833f6baf886b
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1
