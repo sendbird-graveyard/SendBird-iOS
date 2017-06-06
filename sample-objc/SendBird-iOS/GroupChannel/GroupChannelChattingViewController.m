@@ -28,7 +28,6 @@
 
 @property (weak, nonatomic) IBOutlet ChattingView *chattingView;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
-//@property (strong, nonatomic) SBDPreviousMessageListQuery *messageQuery;
 @property (strong, nonatomic) NSString *delegateIdentifier;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomMargin;
 @property (weak, nonatomic) IBOutlet UIView *imageViewerLoadingView;
@@ -1381,8 +1380,7 @@
     }];
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:^{
     }];
 }

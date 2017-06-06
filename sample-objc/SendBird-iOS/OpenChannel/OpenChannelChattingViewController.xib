@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,7 +13,11 @@
             <connections>
                 <outlet property="bottomMargin" destination="EBM-vC-9Ko" id="UHk-VN-1nY"/>
                 <outlet property="chattingView" destination="Rm7-Ke-GOW" id="w6h-Mb-YpE"/>
+                <outlet property="imageViewerLoadingIndicator" destination="53W-x9-Qgb" id="uap-7d-QLU"/>
+                <outlet property="imageViewerLoadingView" destination="mTX-Ak-ZNT" id="gf9-ap-VQb"/>
+                <outlet property="imageViewerLoadingViewNavItem" destination="QeY-Bl-dBD" id="uPb-AR-fQd"/>
                 <outlet property="navItem" destination="oep-av-cQF" id="ksj-dB-RTS"/>
+                <outlet property="navigationBarHeight" destination="dFa-IO-RUh" id="IFw-S4-5Op"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,6 +27,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pfh-aV-1RU">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="dFa-IO-RUh"/>
                     </constraints>
@@ -28,17 +36,48 @@
                     </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rm7-Ke-GOW" userLabel="Chatting Container View" customClass="ChattingView">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTX-Ak-ZNT" userLabel="Image Viewer Loading View">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hET-0t-5ec">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="tXL-Zs-L0F"/>
+                            </constraints>
+                            <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <items>
+                                <navigationItem title="Title" id="QeY-Bl-dBD"/>
+                            </items>
+                        </navigationBar>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="53W-x9-Qgb" userLabel="Image Viewer Loading Activity Indicator">
+                            <rect key="frame" x="177" y="323" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="hET-0t-5ec" secondAttribute="trailing" id="5JO-iL-7Sa"/>
+                        <constraint firstItem="hET-0t-5ec" firstAttribute="leading" secondItem="mTX-Ak-ZNT" secondAttribute="leading" id="Xgl-pC-ZAx"/>
+                        <constraint firstItem="53W-x9-Qgb" firstAttribute="centerX" secondItem="mTX-Ak-ZNT" secondAttribute="centerX" id="hFS-pr-ap1"/>
+                        <constraint firstItem="53W-x9-Qgb" firstAttribute="centerY" secondItem="mTX-Ak-ZNT" secondAttribute="centerY" id="kte-95-ug9"/>
+                        <constraint firstItem="hET-0t-5ec" firstAttribute="top" secondItem="mTX-Ak-ZNT" secondAttribute="top" id="sw0-Er-QSp"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Pfh-aV-1RU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1gm-je-sB9"/>
+                <constraint firstAttribute="trailing" secondItem="mTX-Ak-ZNT" secondAttribute="trailing" id="B0p-so-qds"/>
                 <constraint firstAttribute="bottom" secondItem="Rm7-Ke-GOW" secondAttribute="bottom" id="EBM-vC-9Ko"/>
                 <constraint firstAttribute="trailing" secondItem="Rm7-Ke-GOW" secondAttribute="trailing" id="F2k-KN-kNA"/>
                 <constraint firstItem="Rm7-Ke-GOW" firstAttribute="top" secondItem="Pfh-aV-1RU" secondAttribute="bottom" id="QIo-Ac-t9S"/>
                 <constraint firstItem="Rm7-Ke-GOW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="T4o-KI-iBx"/>
+                <constraint firstItem="mTX-Ak-ZNT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UoW-0U-i2R"/>
+                <constraint firstItem="mTX-Ak-ZNT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cLa-rx-pRp"/>
                 <constraint firstItem="Pfh-aV-1RU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dYd-hQ-xSV"/>
+                <constraint firstAttribute="bottom" secondItem="mTX-Ak-ZNT" secondAttribute="bottom" id="dfQ-9f-7tk"/>
                 <constraint firstAttribute="trailing" secondItem="Pfh-aV-1RU" secondAttribute="trailing" id="h8a-Cb-Y8d"/>
             </constraints>
             <point key="canvasLocation" x="24.5" y="52.5"/>
