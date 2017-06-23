@@ -10,7 +10,7 @@ import UIKit
 import SendBirdSDK
 
 
-class MemberListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MemberListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SBDChannelDelegate, SBDConnectionDelegate {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,8 +18,6 @@ class MemberListViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -30,6 +28,9 @@ class MemberListViewController: UIViewController, UITableViewDelegate, UITableVi
         negativeLeftSpacer.width = -2
         let leftCloseItem = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItemStyle.done, target: self, action: #selector(close))
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftCloseItem]
+        
+        SBDMain.add(self as SBDChannelDelegate, identifier: self.description)
+        SBDMain.add(self as SBDConnectionDelegate, identifier: self.description)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -48,14 +49,108 @@ class MemberListViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
-        self.navItem.title = String(format: Bundle.sbLocalizedStringForKey(key: "MemberListTitle"), Int(self.channel.memberCount))
         DispatchQueue.main.async {
+            self.navItem.title = String(format: Bundle.sbLocalizedStringForKey(key: "MemberListTitle"), Int(self.channel.memberCount))
             self.tableView.reloadData()
         }
     }
     
     @objc private func close() {
         self.dismiss(animated: false, completion: nil)
+    }
+    
+    // MARK: GroupChannelChattingViewController
+    func didStartReconnection() {
+        
+    }
+    
+    func didSucceedReconnection() {
+        self.channel .refresh { (error) in
+            if error == nil {
+                DispatchQueue.main.async {
+                    self.navItem.title = String(format: Bundle.sbLocalizedStringForKey(key: "MemberListTitle"), Int(self.channel.memberCount))
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func didFailReconnection() {
+        
+    }
+    
+    // MARK: SBDChannelDelegate
+    func channel(_ sender: SBDBaseChannel, didReceive message: SBDBaseMessage) {
+
+    }
+    
+    func channelDidUpdateReadReceipt(_ sender: SBDGroupChannel) {
+        
+    }
+    
+    func channelDidUpdateTypingStatus(_ sender: SBDGroupChannel) {
+
+    }
+    
+    func channel(_ sender: SBDGroupChannel, userDidJoin user: SBDUser) {
+        DispatchQueue.main.async {
+            self.navItem.title = String(format: Bundle.sbLocalizedStringForKey(key: "MemberListTitle"), Int(self.channel.memberCount))
+            self.tableView.reloadData()
+        }
+    }
+    
+    func channel(_ sender: SBDGroupChannel, userDidLeave user: SBDUser) {
+        DispatchQueue.main.async {
+            self.navItem.title = String(format: Bundle.sbLocalizedStringForKey(key: "MemberListTitle"), Int(self.channel.memberCount))
+            self.tableView.reloadData()
+        }
+    }
+    
+    func channel(_ sender: SBDOpenChannel, userDidEnter user: SBDUser) {
+        
+    }
+    
+    func channel(_ sender: SBDOpenChannel, userDidExit user: SBDUser) {
+        
+    }
+    
+    func channel(_ sender: SBDOpenChannel, userWasMuted user: SBDUser) {
+        
+    }
+    
+    func channel(_ sender: SBDOpenChannel, userWasUnmuted user: SBDUser) {
+        
+    }
+    
+    func channel(_ sender: SBDOpenChannel, userWasBanned user: SBDUser) {
+        
+    }
+    
+    func channel(_ sender: SBDOpenChannel, userWasUnbanned user: SBDUser) {
+        
+    }
+    
+    func channelWasFrozen(_ sender: SBDOpenChannel) {
+        
+    }
+    
+    func channelWasUnfrozen(_ sender: SBDOpenChannel) {
+        
+    }
+    
+    func channelWasChanged(_ sender: SBDBaseChannel) {
+        DispatchQueue.main.async {
+            self.navItem.title = String(format: Bundle.sbLocalizedStringForKey(key: "MemberListTitle"), Int(self.channel.memberCount))
+            self.tableView.reloadData()
+        }
+    }
+    
+    func channelWasDeleted(_ channelUrl: String, channelType: SBDChannelType) {
+        
+    }
+    
+    func channel(_ sender: SBDBaseChannel, messageWasDeleted messageId: Int64) {
+        
     }
     
     // MARK: UITableViewDelegate

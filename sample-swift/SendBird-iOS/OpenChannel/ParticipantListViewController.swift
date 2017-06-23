@@ -10,7 +10,7 @@ import UIKit
 import SendBirdSDK
 
 class ParticipantListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var channel: SBDOpenChannel!
+    var openChannel: SBDOpenChannel!
     
     private var query: SBDUserListQuery?
     private var participants: [SBDUser] = []
@@ -52,7 +52,7 @@ class ParticipantListViewController: UIViewController, UITableViewDelegate, UITa
     private func loadList(initial: Bool) {
         if initial {
             self.participants.removeAll()
-            self.query = self.channel.createParticipantListQuery()
+            self.query = self.openChannel.createParticipantListQuery()
         }
         
         if self.query?.hasNext == false {

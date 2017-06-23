@@ -12,17 +12,8 @@ import AlamofireImage
 
 class IncomingFileMessageTableViewCell: UITableViewCell {
     weak var delegate: MessageDelegate?
-
-    @IBOutlet weak var dateContainerHeight: NSLayoutConstraint!
-    @IBOutlet weak var dateContainerBottomMargin: NSLayoutConstraint!
-    @IBOutlet weak var messageContainerTopPadding: NSLayoutConstraint!
-    @IBOutlet weak var nicknameLabelHeight: NSLayoutConstraint!
-    @IBOutlet weak var nicknameLabelBottomMargin: NSLayoutConstraint!
-    @IBOutlet weak var fileContainerHeight: NSLayoutConstraint!
-    @IBOutlet weak var messageContainerBottomPadding: NSLayoutConstraint!
-    @IBOutlet weak var dateContainerTopMargin: NSLayoutConstraint!
     
-    @IBOutlet weak var dateSeperatorContainerView: UIView!
+    @IBOutlet weak var dateSeperatorView: UIView!
     @IBOutlet weak var dateSeperatorLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nicknameLabel: UILabel!
@@ -31,7 +22,16 @@ class IncomingFileMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var fileActionImageView: UIImageView!
     @IBOutlet weak var messageDateLabel: UILabel!
     @IBOutlet weak var messageContainerView: UIView!
-    
+
+    @IBOutlet weak var dateSeperatorViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var dateSeperatorViewBottomMargin: NSLayoutConstraint!
+    @IBOutlet weak var messageContainerViewTopPadding: NSLayoutConstraint!
+    @IBOutlet weak var nicknameLabelHeight: NSLayoutConstraint!
+    @IBOutlet weak var nicknameLabelBottomMargin: NSLayoutConstraint!
+    @IBOutlet weak var fileContainerViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var messageContainerViewBottomPadding: NSLayoutConstraint!
+    @IBOutlet weak var dateSeperatorViewTopMargin: NSLayoutConstraint!
+
     private var message: SBDFileMessage!
     private var prevMessage: SBDBaseMessage!
 
@@ -156,20 +156,20 @@ class IncomingFileMessageTableViewCell: UITableViewCell {
             
             if prevMessageDateComponents.year != currMessagedateComponents.year || prevMessageDateComponents.month != currMessagedateComponents.month || prevMessageDateComponents.day != currMessagedateComponents.day {
                 // Show date seperator.
-                self.dateSeperatorContainerView.isHidden = false
-                self.dateContainerHeight.constant = 24.0
-                self.dateContainerTopMargin.constant = 10.0
-                self.dateContainerBottomMargin.constant = 10.0
+                self.dateSeperatorView.isHidden = false
+                self.dateSeperatorViewHeight.constant = 24.0
+                self.dateSeperatorViewTopMargin.constant = 10.0
+                self.dateSeperatorViewBottomMargin.constant = 10.0
             }
             else {
                 // Hide date seperator.
-                self.dateSeperatorContainerView.isHidden = true
-                self.dateContainerHeight.constant = 0
-                self.dateContainerBottomMargin.constant = 0
+                self.dateSeperatorView.isHidden = true
+                self.dateSeperatorViewHeight.constant = 0
+                self.dateSeperatorViewBottomMargin.constant = 0
                 
                 // Continuous Message
                 if self.prevMessage is SBDAdminMessage {
-                    self.dateContainerTopMargin.constant = 10.0
+                    self.dateSeperatorViewTopMargin.constant = 10.0
                 }
                 else {
                     var prevMessageSender: SBDUser?
@@ -187,7 +187,7 @@ class IncomingFileMessageTableViewCell: UITableViewCell {
                     if prevMessageSender != nil && currMessageSender != nil {
                         if prevMessageSender?.userId == currMessageSender?.userId {
                             // Reduce margin
-                            self.dateContainerTopMargin.constant = 5.0
+                            self.dateSeperatorViewTopMargin.constant = 5.0
                             self.profileImageView.isHidden = true
                             self.nicknameLabelHeight.constant = 0
                             self.nicknameLabelBottomMargin.constant = 0
@@ -195,23 +195,23 @@ class IncomingFileMessageTableViewCell: UITableViewCell {
                         else {
                             // Set default margin.
                             self.profileImageView.isHidden = false
-                            self.dateContainerTopMargin.constant = 10.0
+                            self.dateSeperatorViewTopMargin.constant = 10.0
                             self.nicknameLabelHeight.constant = 19.0
                             self.nicknameLabelBottomMargin.constant = 10.0
                         }
                     }
                     else {
-                        self.dateContainerTopMargin.constant = 10.0
+                        self.dateSeperatorViewTopMargin.constant = 10.0
                     }
                 }
             }
         }
         else {
             // Show date seperator.
-            self.dateSeperatorContainerView.isHidden = false
-            self.dateContainerHeight.constant = 24.0
-            self.dateContainerTopMargin.constant = 10.0
-            self.dateContainerBottomMargin.constant = 10.0
+            self.dateSeperatorView.isHidden = false
+            self.dateSeperatorViewHeight.constant = 24.0
+            self.dateSeperatorViewTopMargin.constant = 10.0
+            self.dateSeperatorViewBottomMargin.constant = 10.0
         }
         
         self.layoutIfNeeded()
@@ -222,7 +222,7 @@ class IncomingFileMessageTableViewCell: UITableViewCell {
     }
     
     func getHeightOfViewCell() -> CGFloat {
-        let height = self.dateContainerTopMargin.constant + self.dateContainerHeight.constant + self.dateContainerBottomMargin.constant + self.messageContainerTopPadding.constant + self.nicknameLabelHeight.constant + self.nicknameLabelBottomMargin.constant + self.fileContainerHeight.constant + self.messageContainerBottomPadding.constant
+        let height = self.dateSeperatorViewTopMargin.constant + self.dateSeperatorViewHeight.constant + self.dateSeperatorViewBottomMargin.constant + self.messageContainerViewTopPadding.constant + self.nicknameLabelHeight.constant + self.nicknameLabelBottomMargin.constant + self.fileContainerViewHeight.constant + self.messageContainerViewBottomPadding.constant
         
         return height
     }

@@ -75,7 +75,7 @@
     self.fileImageView.animatedImage = nil;
     self.fileImageView.image = nil;
 
-    __block NSString *url = self.message.url;
+    NSString *url = self.message.url;
     if (self.message.type != nil && [self.message.type isEqualToString:@"image/gif"] ) {
         /***********************************/
         /* Thumbnail is a premium feature. */

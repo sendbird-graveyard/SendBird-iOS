@@ -73,6 +73,8 @@ typedef NS_ENUM(NSInteger, SDBErrorCode) {
     SBDErrorWebSocketConnectionClosed = 800200,
     SBDErrorWebSocketConnectionFailed = 800210,
     SBDErrorRequestFailed = 800220,
+    SBDErrorFileUploadCancelFailed = 800230,
+    SBDErrorFileUploadCancelled = 800240,
 };
 
 /**
@@ -94,7 +96,7 @@ typedef NS_ENUM(NSUInteger, SBDWebSocketConnectionState) {
     /**
      *  Closed
      */
-    SBSWebSocketClosed = 3,
+    SBDWebSocketClosed = 3,
 };
 
 /**

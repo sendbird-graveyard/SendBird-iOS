@@ -36,6 +36,11 @@
 @property (strong, nonatomic, nullable) NSString *nameKeyword;
 
 /**
+ *  Sets the custom type filter.
+ */
+@property (strong, nonatomic, nullable) NSString *customTypeFilter;
+
+/**
  *  Shows if the query is loading.
  *
  *  @return Returns YES if the query is loading, otherwise returns NO.

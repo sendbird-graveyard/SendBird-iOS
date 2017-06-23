@@ -39,6 +39,7 @@ class CreateOpenChannelViewController: UIViewController, UITextFieldDelegate {
         self.navItem.rightBarButtonItems = [legativeRightSpacer, rightItem]
         
         self.channelNameLabel.alpha = 0
+        self.openChannelNameTextField.delegate = self
         self.openChannelNameTextField.addTarget(self, action: #selector(channelNameTextFieldDidChange(sender:)), for: UIControlEvents.editingChanged)
     }
 

@@ -15,6 +15,8 @@ import AVFoundation
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var receivedPushChannelUrl: String?
+    
     static let instance: NSCache<AnyObject, AnyObject> = NSCache()
 
     static func imageCache() -> NSCache<AnyObject, AnyObject>! {
@@ -26,17 +28,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+#if !(arch(i386) || arch(x86_64))
         let notificationSettings = UIUserNotificationSettings(types: [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound], categories: nil)
         UIApplication.shared.registerUserNotificationSettings(notificationSettings)
         UIApplication.shared.registerForRemoteNotifications()
-
+#endif
+        
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: Constants.navigationBarTitleFont()]
         UINavigationBar.appearance().tintColor = Constants.navigationBarTitleColor()
         
         application.applicationIconBadgeNumber = 0
         
         SBDMain.initWithApplicationId("9DA1B1F4-0BE6-4DA8-82C5-2E81DAB56F23")
-        SBDMain.setLogLevel(SBDLogLevel.debug)
+        SBDMain.setLogLevel(SBDLogLevel.none)
         SBDOptions.setUseMemberAsMessageSender(true)
         
         let audioSession = AVAudioSession.sharedInstance()
@@ -90,6 +94,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        if userInfo["sendbird"] != nil {
+            let sendBirdPayload = userInfo["sendbird"] as! Dictionary<String, Any>
+            let channel = (sendBirdPayload["channel"]  as! Dictionary<String, Any>)["channel_url"] as! String
+            let channelType = sendBirdPayload["channel_type"] as! String
+            if channelType == "group_messaging" {
+                self.receivedPushChannelUrl = channel
+            }
+        }
     }
 }
 

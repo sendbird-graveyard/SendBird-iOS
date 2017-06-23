@@ -21,6 +21,8 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     private var groupChannelListQuery: SBDGroupChannelListQuery?
     private var typingAnimationChannelList: [String] = []
 
+    private var cachedChannels: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,8 +38,30 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         self.tableView.addSubview(self.refreshControl!)
         
         self.setDefaultNavigationItems()
+        
         self.noChannelLabel.isHidden = true
-        self.refreshChannelList()
+        
+        let dumpLoadQueue: DispatchQueue = DispatchQueue(label: "com.sendbird.dumploadqueue", attributes: .concurrent)
+        dumpLoadQueue.async {
+            self.channels = Utils.loadGroupChannels()
+            if self.channels.count > 0 {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: { 
+                        self.refreshChannelList()
+                    })
+                }
+            }
+            else {
+                self.cachedChannels = false
+                self.refreshChannelList()
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Utils.dumpChannels(channels: self.channels)
     }
 
     func addDelegates() {
@@ -72,14 +96,9 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     @objc private func refreshChannelList() {
-        self.channels.removeAll()
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-        
         self.groupChannelListQuery = SBDGroupChannel.createMyGroupChannelListQuery()
         self.groupChannelListQuery?.limit = 20
+        self.groupChannelListQuery?.order = SBDGroupChannelListOrder.latestLastMessage
         
         self.groupChannelListQuery?.loadNextPage(completionHandler: { (channels, error) in
             if error != nil {
@@ -87,15 +106,11 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
                     self.refreshControl?.endRefreshing()
                 }
                 
-                let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
-                let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler:nil)
-                vc.addAction(closeAction)
-                DispatchQueue.main.async {
-                    self.present(vc, animated: true, completion: nil)
-                }
-                
                 return
             }
+            
+            self.channels.removeAll()
+            self.cachedChannels = false
             
             for channel in channels! {
                 self.channels.append(channel)
@@ -118,6 +133,10 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     private func loadChannels() {
+        if self.cachedChannels == true {
+            return
+        }
+        
         if self.groupChannelListQuery != nil {
             if self.groupChannelListQuery?.hasNext == false {
                 return
@@ -158,6 +177,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     @objc private func createGroupChannel() {
         let vc = CreateGroupChannelUserListViewController(nibName: "CreateGroupChannelUserListViewController", bundle: Bundle.main)
         vc.delegate = self
+        vc.userSelectionMode = 0
         self.present(vc, animated: false, completion: nil)
     }
     
@@ -195,6 +215,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         if self.editableChannel == false {
             let vc = GroupChannelChattingViewController(nibName: "GroupChannelChattingViewController", bundle: Bundle.main)
             vc.groupChannel = self.channels[indexPath.row]
+            
             self.present(vc, animated: false, completion: nil)
         }
         else {
@@ -246,7 +267,6 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     // MARK: MGSwipeTableCellDelegate
-    // TODO:
     func swipeTableCell(_ cell: MGSwipeTableCell, tappedButtonAt index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
         // 0: right, 1: left
         let row = self.tableView.indexPath(for: cell)?.row
@@ -314,7 +334,21 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func didSucceedReconnection() {
-        
+        let query = SBDGroupChannel.createMyGroupChannelListQuery()
+        query?.limit = 20
+        query?.order = SBDGroupChannelListOrder.latestLastMessage
+        query?.loadNextPage(completionHandler: { (channels, error) in
+            if error != nil {
+                return
+            }
+            
+            self.channels.removeAll()
+            self.channels.append(contentsOf: channels!)
+            DispatchQueue.main.async {
+                self.groupChannelListQuery = query
+                self.tableView.reloadData()
+            }
+        })
     }
     
     func didFailReconnection() {

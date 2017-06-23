@@ -231,7 +231,7 @@
     NSString *dumpedChannels = [serializedChannels componentsJoinedByString:@"\n"];
     NSString *dumpedChannelsHash = [[self class] sha256:dumpedChannels];
     
-    // Save messages to temp file.
+    // Save channels to temp file.
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *appIdDirectory = [documentsDirectory stringByAppendingPathComponent:[SBDMain getApplicationId]];

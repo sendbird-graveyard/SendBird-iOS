@@ -9,33 +9,37 @@
 import UIKit
 import SendBirdSDK
 import AlamofireImage
+import TTTAttributedLabel
 
-class IncomingUserMessageTableViewCell: UITableViewCell {
+class IncomingUserMessageTableViewCell: UITableViewCell, TTTAttributedLabelDelegate {
     weak var delegate: MessageDelegate?
     
-    @IBOutlet weak var dateSeperatorContainerView: UIView!
+    @IBOutlet weak var dateSeperatorView: UIView!
     @IBOutlet weak var dateSeperatorLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var messageLabel: TTTAttributedLabel!
     @IBOutlet weak var messageDateLabel: UILabel!
     @IBOutlet weak var messageContainerView: UIView!
     
-    @IBOutlet weak var dateLabelContainerHeight: NSLayoutConstraint!
-    @IBOutlet weak var messageDateLabelWidth: NSLayoutConstraint!
-    @IBOutlet weak var dateContainerViewTopMargin: NSLayoutConstraint!
+    @IBOutlet weak var dateSeperatorViewTopMargin: NSLayoutConstraint!
+    @IBOutlet weak var dateSeperatorViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var dateSeperatorViewBottomMargin: NSLayoutConstraint!
+    
     @IBOutlet weak var profileImageLeftMargin: NSLayoutConstraint!
     @IBOutlet weak var messageContainerLeftMargin: NSLayoutConstraint!
     @IBOutlet weak var profileImageWidth: NSLayoutConstraint!
+    @IBOutlet weak var messageDateLabelWidth: NSLayoutConstraint!
+
     @IBOutlet weak var messageContainerLeftPadding: NSLayoutConstraint!
     @IBOutlet weak var messageContainerBottomPadding: NSLayoutConstraint!
     @IBOutlet weak var messageContainerRightPadding: NSLayoutConstraint!
     @IBOutlet weak var messageContainerTopPadding: NSLayoutConstraint!
+    
     @IBOutlet weak var messageDateLabelLeftMargin: NSLayoutConstraint!
     @IBOutlet weak var messageDateLabelRightMargin: NSLayoutConstraint!
-    @IBOutlet weak var dateContainerBottomMargin: NSLayoutConstraint!
-    
+
     private var message: SBDUserMessage!
-    private var prevMessage: SBDBaseMessage!
+    private var prevMessage: SBDBaseMessage?
     private var displayNickname: Bool = true
 
     static func nib() -> UINib {
@@ -54,7 +58,7 @@ class IncomingUserMessageTableViewCell: UITableViewCell {
     
     @objc private func clickUserMessage() {
         if self.delegate != nil {
-            self.delegate?.clickMessage(view: self, message: self.message!)
+//            self.delegate?.clickMessage(view: self, message: self.message!)
         }
     }
     
@@ -66,11 +70,7 @@ class IncomingUserMessageTableViewCell: UITableViewCell {
         let profileImageTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(clickProfileImage))
         self.profileImageView.isUserInteractionEnabled = true
         self.profileImageView.addGestureRecognizer(profileImageTapRecognizer)
-        
-        let messageContainerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(clickUserMessage))
-        self.messageContainerView.isUserInteractionEnabled = true
-        self.messageContainerView.addGestureRecognizer(messageContainerTapRecognizer)
-        
+
         // Message Date
         let messageDateAttribute = [
             NSFontAttributeName: Constants.messageDateFont(),
@@ -92,34 +92,34 @@ class IncomingUserMessageTableViewCell: UITableViewCell {
         
         // Relationship between the current message and the previous message
         self.profileImageView.isHidden = false
-        self.dateSeperatorContainerView.isHidden = false
-        self.dateLabelContainerHeight.constant = 24.0
-        self.dateContainerViewTopMargin.constant = 10.0
-        self.dateContainerBottomMargin.constant = 10.0
+        self.dateSeperatorView.isHidden = false
+        self.dateSeperatorViewHeight.constant = 24.0
+        self.dateSeperatorViewTopMargin.constant = 10.0
+        self.dateSeperatorViewBottomMargin.constant = 10.0
         self.displayNickname = true
         if self.prevMessage != nil {
             // Day Changed
-            let prevMessageDate = NSDate(timeIntervalSince1970: Double(self.prevMessage.createdAt) / 1000.0)
+            let prevMessageDate = NSDate(timeIntervalSince1970: Double((self.prevMessage?.createdAt)!) / 1000.0)
             let currMessageDate = NSDate(timeIntervalSince1970: Double(self.message.createdAt) / 1000.0)
             let prevMessageDateComponents = NSCalendar.current.dateComponents([.day, .month, .year], from: prevMessageDate as Date)
             let currMessagedateComponents = NSCalendar.current.dateComponents([.day, .month, .year], from: currMessageDate as Date)
             
             if prevMessageDateComponents.year != currMessagedateComponents.year || prevMessageDateComponents.month != currMessagedateComponents.month || prevMessageDateComponents.day != currMessagedateComponents.day {
                 // Show date seperator.
-                self.dateSeperatorContainerView.isHidden = false
-                self.dateLabelContainerHeight.constant = 24.0
-                self.dateContainerViewTopMargin.constant = 10.0
-                self.dateContainerBottomMargin.constant = 10.0
+                self.dateSeperatorView.isHidden = false
+                self.dateSeperatorViewHeight.constant = 24.0
+                self.dateSeperatorViewTopMargin.constant = 10.0
+                self.dateSeperatorViewBottomMargin.constant = 10.0
             }
             else {
                 // Hide date seperator.
-                self.dateSeperatorContainerView.isHidden = true
-                self.dateLabelContainerHeight.constant = 0
-                self.dateContainerBottomMargin.constant = 0
+                self.dateSeperatorView.isHidden = true
+                self.dateSeperatorViewHeight.constant = 0
+                self.dateSeperatorViewBottomMargin.constant = 0
                 
                 // Continuous Message
                 if self.prevMessage is SBDAdminMessage {
-                    self.dateContainerViewTopMargin.constant = 10.0
+                    self.dateSeperatorViewTopMargin.constant = 10.0
                 }
                 else {
                     var prevMessageSender: SBDUser?
@@ -137,32 +137,64 @@ class IncomingUserMessageTableViewCell: UITableViewCell {
                     if prevMessageSender != nil && currMessageSender != nil {
                         if prevMessageSender?.userId == currMessageSender?.userId {
                             // Reduce margin
-                            self.dateContainerViewTopMargin.constant = 5.0
+                            self.dateSeperatorViewTopMargin.constant = 5.0
                             self.profileImageView.isHidden = true
                             self.displayNickname = false
                         }
                         else {
                             // Set default margin.
                             self.profileImageView.isHidden = false
-                            self.dateContainerViewTopMargin.constant = 10.0
+                            self.dateSeperatorViewTopMargin.constant = 10.0
                         }
                     }
                     else {
-                        self.dateContainerViewTopMargin.constant = 10.0
+                        self.dateSeperatorViewTopMargin.constant = 10.0
                     }
                 }
             }
         }
         else {
             // Show date seperator.
-            self.dateSeperatorContainerView.isHidden = false
-            self.dateLabelContainerHeight.constant = 24.0
-            self.dateContainerViewTopMargin.constant = 10.0
-            self.dateContainerBottomMargin.constant = 10.0
+            self.dateSeperatorView.isHidden = false
+            self.dateSeperatorViewHeight.constant = 24.0
+            self.dateSeperatorViewTopMargin.constant = 10.0
+            self.dateSeperatorViewBottomMargin.constant = 10.0
         }
         
         let fullMessage = self.buildMessage()
         self.messageLabel.attributedText = fullMessage
+        self.messageLabel.isUserInteractionEnabled = true
+        self.messageLabel.linkAttributes = [
+            NSFontAttributeName: Constants.messageFont(),
+            NSForegroundColorAttributeName: Constants.incomingMessageColor(),
+            NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue
+        ]
+        
+        do {
+            let detector: NSDataDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+            let matches = detector.matches(in: self.message.message!, options: [], range: NSMakeRange(0, (self.message.message?.characters.count)!))
+            if matches.count > 0 {
+                self.messageLabel.delegate = self
+                self.messageLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
+                for item in matches {
+                    let match = item
+                    let rangeOfOriginalMessage = match.range
+                    var range: NSRange
+                    if self.displayNickname {
+                        range = NSMakeRange((self.message.sender?.nickname?.characters.count)! + 1 + rangeOfOriginalMessage.location, rangeOfOriginalMessage.length)
+                    }
+                    else {
+                        range = rangeOfOriginalMessage
+                    }
+                    
+                    self.messageLabel.addLink(to: match.url, with: range)
+                    
+                }
+            }
+        }
+        catch {
+            
+        }
         
         self.layoutIfNeeded()
     }
@@ -243,8 +275,13 @@ class IncomingUserMessageTableViewCell: UITableViewCell {
         fullMessageRect = fullMessage.boundingRect(with: CGSize.init(width: messageLabelMaxWidth, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil)
 
         
-        let cellHeight = self.dateContainerViewTopMargin.constant + self.dateLabelContainerHeight.constant + self.dateContainerBottomMargin.constant + self.messageContainerTopPadding.constant + fullMessageRect.size.height + self.messageContainerBottomPadding.constant
+        let cellHeight = self.dateSeperatorViewTopMargin.constant + self.dateSeperatorViewHeight.constant + self.dateSeperatorViewBottomMargin.constant + self.messageContainerTopPadding.constant + fullMessageRect.size.height + self.messageContainerBottomPadding.constant
         
         return cellHeight
+    }
+    
+    // MARK: TTTAttributedLabelDelegate
+    func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
+        UIApplication.shared.openURL(url)
     }
 }

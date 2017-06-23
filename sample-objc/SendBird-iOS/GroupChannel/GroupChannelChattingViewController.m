@@ -192,6 +192,8 @@
 }
 
 - (void)close {
+    [SBDMain removeChannelDelegateForIdentifier:self.description];
+    [SBDMain removeConnectionDelegateForIdentifier:self.description];
     [self dismissViewControllerAnimated:NO completion:^{
         
     }];
@@ -289,7 +291,14 @@
                     [self.chattingView.chattingTableView reloadData];
                     [self.chattingView.chattingTableView layoutIfNeeded];
                     
-                    CGFloat viewHeight = [[UIScreen mainScreen] bounds].size.height - self.navigationBarHeight.constant - self.chattingView.inputContainerViewHeight.constant - 10;
+                    CGFloat viewHeight;
+                    if (self.keyboardShown) {
+                        viewHeight = self.chattingView.chattingTableView.frame.size.height - 10;
+                    }
+                    else {
+                        viewHeight = [[UIScreen mainScreen] bounds].size.height - self.navigationBarHeight.constant - self.chattingView.inputContainerViewHeight.constant - 10;
+                    }
+                    
                     CGSize contentSize = self.chattingView.chattingTableView.contentSize;
                     
                     if (contentSize.height > viewHeight) {

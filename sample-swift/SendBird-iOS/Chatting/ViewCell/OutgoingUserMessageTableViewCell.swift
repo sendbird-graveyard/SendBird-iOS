@@ -8,26 +8,27 @@
 
 import UIKit
 import SendBirdSDK
+import TTTAttributedLabel
 
 class OutgoingUserMessageTableViewCell: UITableViewCell {
     weak var delegate: MessageDelegate?
     
-    @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateSeperatorContainerView: UIView!
+    @IBOutlet weak var dateSeperatorLabel: UILabel!
+    @IBOutlet weak var messageContainerView: UIView!
+    @IBOutlet weak var messageLabel: TTTAttributedLabel!
     @IBOutlet weak var messageDateLabel: UILabel!
     @IBOutlet weak var resendMessageButton: UIButton!
     @IBOutlet weak var deleteMessageButton: UIButton!
     @IBOutlet weak var unreadCountLabel: UILabel!
-    @IBOutlet weak var dateSeperatorContainerView: UIView!
-    @IBOutlet weak var dateSeperatorLabel: UILabel!
-    @IBOutlet weak var messageContainerView: UIView!
-    @IBOutlet weak var sendStatusLabel: UILabel!
-    
+    @IBOutlet weak var sendingStatusLabel: UILabel!
+
     @IBOutlet weak var dateContainerHeight: NSLayoutConstraint!
     @IBOutlet weak var dateContainerTopMargin: NSLayoutConstraint!
     @IBOutlet weak var dateContainerBottomMargin: NSLayoutConstraint!
     @IBOutlet weak var messageContainerTopPadding: NSLayoutConstraint!
     @IBOutlet weak var messageContainerBottomPadding: NSLayoutConstraint!
+    
     @IBOutlet weak var messageContainerRightMargin: NSLayoutConstraint!
     @IBOutlet weak var messageContainerRightPadding: NSLayoutConstraint!
     @IBOutlet weak var messageContainerLeftPadding: NSLayoutConstraint!
@@ -74,10 +75,10 @@ class OutgoingUserMessageTableViewCell: UITableViewCell {
         self.resendMessageButton.isHidden = true
         self.deleteMessageButton.isHidden = true
         
-        let messageContainerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(clickUserMessage))
-        self.messageContainerView.isUserInteractionEnabled = true
-        self.messageContainerView.addGestureRecognizer(messageContainerTapRecognizer)
-        
+//        let messageContainerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(clickUserMessage))
+//        self.messageContainerView.isUserInteractionEnabled = true
+//        self.messageContainerView.addGestureRecognizer(messageContainerTapRecognizer)
+
         self.resendMessageButton.addTarget(self, action: #selector(clickResendUserMessage), for: UIControlEvents.touchUpInside)
         self.deleteMessageButton.addTarget(self, action: #selector(clickDeleteUserMessage), for: UIControlEvents.touchUpInside)
         
@@ -111,6 +112,7 @@ class OutgoingUserMessageTableViewCell: UITableViewCell {
         dateFormatter.timeStyle = DateFormatter.Style.short
         let messageCreatedDate = NSDate(timeIntervalSince1970: messageTimestamp)
         let messageDateString = dateFormatter.string(from: messageCreatedDate as Date)
+        
         let messageDateAttributedString = NSMutableAttributedString(string: messageDateString, attributes: messageDateAttribute)
         self.messageDateLabel.attributedText = messageDateAttributedString
         
@@ -194,7 +196,8 @@ class OutgoingUserMessageTableViewCell: UITableViewCell {
     
     func buildMessage() -> NSAttributedString {
         let messageAttribute = [
-            NSFontAttributeName: Constants.messageFont()
+            NSFontAttributeName: Constants.messageFont(),
+            NSForegroundColorAttributeName: Constants.outgoingMessageColor(),
         ]
         
         let message = self.message.message
@@ -236,7 +239,7 @@ class OutgoingUserMessageTableViewCell: UITableViewCell {
     }
     
     func showMessageControlButton() {
-        self.sendStatusLabel.isHidden = true
+        self.sendingStatusLabel.isHidden = true
         self.messageDateLabel.isHidden = true
         self.unreadCountLabel.isHidden = true
         
@@ -250,8 +253,8 @@ class OutgoingUserMessageTableViewCell: UITableViewCell {
         self.resendMessageButton.isHidden = true
         self.deleteMessageButton.isHidden = true
         
-        self.sendStatusLabel.isHidden = false
-        self.sendStatusLabel.text = "Sending"
+        self.sendingStatusLabel.isHidden = false
+        self.sendingStatusLabel.text = "Sending"
     }
     
     func showFailedStatus() {
@@ -260,14 +263,14 @@ class OutgoingUserMessageTableViewCell: UITableViewCell {
         self.resendMessageButton.isHidden = true
         self.deleteMessageButton.isHidden = true
         
-        self.sendStatusLabel.isHidden = false
-        self.sendStatusLabel.text = "Failed"
+        self.sendingStatusLabel.isHidden = false
+        self.sendingStatusLabel.text = "Failed"
     }
     
     func showMessageDate() {
         self.unreadCountLabel.isHidden = true
         self.resendMessageButton.isHidden = true
-        self.sendStatusLabel.isHidden = true
+        self.sendingStatusLabel.isHidden = true
         
         self.messageDateLabel.isHidden = false
     }

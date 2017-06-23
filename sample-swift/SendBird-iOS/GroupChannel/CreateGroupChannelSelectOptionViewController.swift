@@ -82,21 +82,15 @@ class CreateGroupChannelSelectOptionViewController: UIViewController {
                 
                 return
             }
-            
-            let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "GroupChannelCreatedTitle"), message: Bundle.sbLocalizedStringForKey(key: "GroupChannelCreatedMessage"), preferredStyle: UIAlertControllerStyle.alert)
-            let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: { (action) in
-                self.dismiss(animated: false, completion: { 
-                    if self.delegate != nil {
-                        self.delegate?.didFinishCreating(channel: channel!, vc: self)
-                    }
-                })
-            })
-            vc.addAction(closeAction)
-            self.present(vc, animated: true, completion: { 
-                
-            })
-            
+
+            self.activityIndicator.isHidden = true
             self.activityIndicator.stopAnimating()
+            
+            self.dismiss(animated: false, completion: { 
+                if self.delegate != nil {
+                    self.delegate?.didFinishCreating(channel: channel!, vc: self)
+                }
+            })
         }
     }
     

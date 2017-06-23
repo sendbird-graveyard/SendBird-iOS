@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="166" id="KGk-i7-Jjw" customClass="OutgoingGeneralUrlPreviewTempMessageTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="366" height="166"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="366" height="166"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hup-Bb-udY" userLabel="Date Seperator View">
+                        <rect key="frame" x="0.0" y="0.0" width="366" height="24"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q4b-X7-RxK" userLabel="Date Seperator Left Line View">
+                                <rect key="frame" x="0.0" y="12" width="143" height="1"/>
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="4IJ-Kz-NsK"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 Sep, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lW-EH-f2J" userLabel="Date Seperator Label">
+                                <rect key="frame" x="147" y="5" width="72" height="15"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z32-Yo-p02" userLabel="Date Seperator Right Line View">
+                                <rect key="frame" x="223" y="12" width="143" height="1"/>
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="U9e-tJ-HnW"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Q4b-X7-RxK" firstAttribute="centerY" secondItem="Hup-Bb-udY" secondAttribute="centerY" id="3te-6T-NEE"/>
+                            <constraint firstAttribute="height" constant="24" id="5Og-wp-zlw" userLabel="Date Seperator View Height"/>
+                            <constraint firstItem="9lW-EH-f2J" firstAttribute="centerX" secondItem="Hup-Bb-udY" secondAttribute="centerX" id="CJ7-Hq-Acq"/>
+                            <constraint firstItem="z32-Yo-p02" firstAttribute="leading" secondItem="9lW-EH-f2J" secondAttribute="trailing" constant="4" id="Jzu-0k-hK9"/>
+                            <constraint firstAttribute="trailing" secondItem="z32-Yo-p02" secondAttribute="trailing" id="Qii-LT-7xG"/>
+                            <constraint firstItem="Q4b-X7-RxK" firstAttribute="leading" secondItem="Hup-Bb-udY" secondAttribute="leading" id="TDW-YG-VS4"/>
+                            <constraint firstItem="9lW-EH-f2J" firstAttribute="leading" secondItem="Q4b-X7-RxK" secondAttribute="trailing" constant="4" id="bkC-5c-Nw4"/>
+                            <constraint firstItem="9lW-EH-f2J" firstAttribute="centerY" secondItem="Hup-Bb-udY" secondAttribute="centerY" id="gdu-sR-Wda"/>
+                            <constraint firstItem="z32-Yo-p02" firstAttribute="centerY" secondItem="Hup-Bb-udY" secondAttribute="centerY" id="jrH-n8-Uxk"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MUZ-wD-ggA" userLabel="Message Container View">
+                        <rect key="frame" x="102" y="34" width="250" height="113.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGG-u9-0ry" userLabel="Message Label">
+                                <rect key="frame" x="10" y="10" width="205" height="93.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="205" id="BaZ-df-KIB" userLabel="Message Label Width"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="lOE-83-Dup">
+                                <rect key="frame" x="220" y="83.5" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="hmC-Qe-4pd"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.50196078430000002" green="0.35294117650000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="nGG-u9-0ry" firstAttribute="top" secondItem="MUZ-wD-ggA" secondAttribute="top" constant="10" id="Dl1-qb-Ypz" userLabel="Message Label Top Margin"/>
+                            <constraint firstAttribute="bottom" secondItem="nGG-u9-0ry" secondAttribute="bottom" constant="10" id="GyR-vB-5Ns" userLabel="Message Label Bottom Margin"/>
+                            <constraint firstAttribute="trailing" secondItem="nGG-u9-0ry" secondAttribute="trailing" constant="35" id="Hhn-zO-b06"/>
+                            <constraint firstAttribute="bottom" secondItem="lOE-83-Dup" secondAttribute="bottom" constant="10" id="Iv3-59-BZg"/>
+                            <constraint firstAttribute="width" constant="250" id="ZvR-Lm-GgP"/>
+                            <constraint firstItem="nGG-u9-0ry" firstAttribute="leading" secondItem="MUZ-wD-ggA" secondAttribute="leading" constant="10" id="pup-wL-fth"/>
+                            <constraint firstAttribute="trailing" secondItem="lOE-83-Dup" secondAttribute="trailing" constant="10" id="zea-cw-EKU"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sending" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4F-zj-fyj" userLabel="Sending Status Label">
+                        <rect key="frame" x="49" y="132.5" width="45" height="15"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="MUZ-wD-ggA" firstAttribute="leading" secondItem="o4F-zj-fyj" secondAttribute="trailing" constant="8" id="1Di-tJ-odT"/>
+                    <constraint firstItem="o4F-zj-fyj" firstAttribute="bottom" secondItem="MUZ-wD-ggA" secondAttribute="bottom" id="6Gb-DU-aaX"/>
+                    <constraint firstItem="Hup-Bb-udY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Bns-Mf-bBQ"/>
+                    <constraint firstAttribute="trailing" secondItem="Hup-Bb-udY" secondAttribute="trailing" id="GRx-eF-vI6"/>
+                    <constraint firstItem="MUZ-wD-ggA" firstAttribute="top" secondItem="Hup-Bb-udY" secondAttribute="bottom" constant="10" id="H58-H6-TC6"/>
+                    <constraint firstItem="o4F-zj-fyj" firstAttribute="bottom" secondItem="MUZ-wD-ggA" secondAttribute="bottom" id="Mn5-dC-pYR"/>
+                    <constraint firstAttribute="trailing" secondItem="MUZ-wD-ggA" secondAttribute="trailing" constant="14" id="end-Ae-ncy"/>
+                    <constraint firstItem="Hup-Bb-udY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mc0-XB-SJi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateSeperatorLabel" destination="9lW-EH-f2J" id="0Qk-WG-nwx"/>
+                <outlet property="dateSeperatorView" destination="Hup-Bb-udY" id="JTm-dc-cGQ"/>
+                <outlet property="dateSeperatorViewBottomMargin" destination="H58-H6-TC6" id="a3n-L8-eFX"/>
+                <outlet property="dateSeperatorViewHeight" destination="5Og-wp-zlw" id="iee-S0-5tm"/>
+                <outlet property="dateSeperatorViewTopMargin" destination="Bns-Mf-bBQ" id="Ax8-cj-CKd"/>
+                <outlet property="messageLabel" destination="nGG-u9-0ry" id="4d7-qk-ryO"/>
+                <outlet property="messageLabelBottomMargin" destination="GyR-vB-5Ns" id="5b9-ry-8hC"/>
+                <outlet property="messageLabelTopMargin" destination="Dl1-qb-Ypz" id="umo-JV-mBq"/>
+                <outlet property="messageLabelWidth" destination="BaZ-df-KIB" id="mgq-d5-4jn"/>
+                <outlet property="previewLoadingIndicator" destination="lOE-83-Dup" id="lT6-78-KnY"/>
+            </connections>
+            <point key="canvasLocation" x="48" y="113"/>
+        </tableViewCell>
+    </objects>
+</document>

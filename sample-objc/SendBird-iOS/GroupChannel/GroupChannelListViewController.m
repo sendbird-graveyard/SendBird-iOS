@@ -126,18 +126,6 @@
             return;
         }
 
-//        if (self.cachedChannels == YES) {
-//            if (self.channels != nil) {
-//                [self.channels removeAllObjects];
-//            }
-//            else {
-//                self.channels = [[NSMutableArray alloc] init];
-//            }
-//        }
-//        else {
-//            
-//        }
-        
         if (self.channels != nil) {
             [self.channels removeAllObjects];
         }

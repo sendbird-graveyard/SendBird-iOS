@@ -36,6 +36,12 @@
  */
 @property (atomic) long long createdAt;
 
+
+/**
+ Message updated time in millisecond(UTC).
+ */
+@property (atomic) long long updatedAt;
+
 /**
  *  Initializes a message object.
  *

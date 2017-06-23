@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,10 +15,10 @@
             <rect key="frame" x="0.0" y="0.0" width="328" height="172"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="328" height="171"/>
+                <rect key="frame" x="0.0" y="0.0" width="328" height="171.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLh-45-YaR" userLabel="Date Container View">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OLh-45-YaR" userLabel="Date Seperator View">
                         <rect key="frame" x="0.0" y="0.0" width="328" height="24"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fBw-IB-59K" userLabel="Left Line View">
@@ -45,7 +45,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gTS-S3-PE2" firstAttribute="centerY" secondItem="OLh-45-YaR" secondAttribute="centerY" id="2Be-x1-b1b"/>
-                            <constraint firstAttribute="height" constant="24" id="2Iz-VC-Ptw" userLabel="Date Container Height"/>
+                            <constraint firstAttribute="height" constant="24" id="2Iz-VC-Ptw" userLabel="Date Seperator View Height"/>
                             <constraint firstItem="CjL-Q7-Mhr" firstAttribute="leading" secondItem="fBw-IB-59K" secondAttribute="trailing" constant="4" id="EKT-3Q-rM0"/>
                             <constraint firstAttribute="trailing" secondItem="gTS-S3-PE2" secondAttribute="trailing" id="TUp-LM-qId"/>
                             <constraint firstItem="CjL-Q7-Mhr" firstAttribute="centerY" secondItem="OLh-45-YaR" secondAttribute="centerY" id="UkX-PI-QN8"/>
@@ -119,20 +119,20 @@
                     <constraint firstItem="OLh-45-YaR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="MR5-3s-rJS"/>
                     <constraint firstAttribute="trailing" secondItem="OLh-45-YaR" secondAttribute="trailing" id="TrN-9L-ogR"/>
                     <constraint firstItem="eTF-bN-Vyw" firstAttribute="leading" secondItem="gOY-YY-Jbr" secondAttribute="trailing" constant="8" id="Uhg-Gz-1DF"/>
-                    <constraint firstItem="gOY-YY-Jbr" firstAttribute="top" secondItem="OLh-45-YaR" secondAttribute="bottom" constant="10" id="cdE-Kc-eh5"/>
+                    <constraint firstItem="gOY-YY-Jbr" firstAttribute="top" secondItem="OLh-45-YaR" secondAttribute="bottom" constant="10" id="cdE-Kc-eh5" userLabel="Date Seperator View Bottom Margin"/>
                     <constraint firstItem="MLi-lv-uxK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="dzb-1A-egn"/>
-                    <constraint firstItem="OLh-45-YaR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hWI-bm-MT4"/>
+                    <constraint firstItem="OLh-45-YaR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="hWI-bm-MT4" userLabel="Date Seperator View Top Margin"/>
                     <constraint firstItem="eTF-bN-Vyw" firstAttribute="bottom" secondItem="gOY-YY-Jbr" secondAttribute="bottom" id="oUG-kT-Fwl"/>
                     <constraint firstItem="gOY-YY-Jbr" firstAttribute="top" secondItem="MLi-lv-uxK" secondAttribute="top" id="s9W-Zl-b0a"/>
                     <constraint firstItem="gOY-YY-Jbr" firstAttribute="leading" secondItem="MLi-lv-uxK" secondAttribute="trailing" constant="8" id="zSV-2g-KjN"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="dateContainerBottomMargin" destination="cdE-Kc-eh5" id="bam-Mk-KtU"/>
-                <outlet property="dateContainerHeight" destination="2Iz-VC-Ptw" id="sNm-xm-sEa"/>
-                <outlet property="dateContainerTopMargin" destination="hWI-bm-MT4" id="zYJ-Mi-Bay"/>
-                <outlet property="dateSeperatorContainerView" destination="OLh-45-YaR" id="qCa-l9-Rjn"/>
                 <outlet property="dateSeperatorLabel" destination="CjL-Q7-Mhr" id="Oa9-IZ-TYi"/>
+                <outlet property="dateSeperatorView" destination="OLh-45-YaR" id="DbX-lh-Hg5"/>
+                <outlet property="dateSeperatorViewBottomMargin" destination="cdE-Kc-eh5" id="nqm-oY-yDM"/>
+                <outlet property="dateSeperatorViewHeight" destination="2Iz-VC-Ptw" id="aw1-ec-BJk"/>
+                <outlet property="dateSeperatorViewTopMargin" destination="hWI-bm-MT4" id="v4I-is-xaq"/>
                 <outlet property="fileImageHeight" destination="DmP-Tv-u9L" id="AmI-LE-LFb"/>
                 <outlet property="fileImageView" destination="UZQ-gs-qMb" id="p2n-i1-ZmU"/>
                 <outlet property="imageLoadingIndicator" destination="4xq-wa-ttW" id="I25-BI-6ju"/>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,10 +15,10 @@
             <rect key="frame" x="0.0" y="0.0" width="410" height="121"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="410" height="120"/>
+                <rect key="frame" x="0.0" y="0.0" width="410" height="120.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Wc-XM-Jf9" userLabel="Date Container View">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Wc-XM-Jf9" userLabel="Date Seperator View">
                         <rect key="frame" x="0.0" y="0.0" width="410" height="24"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vti-yq-cWt" userLabel="Left Line View">
@@ -47,7 +48,7 @@
                             <constraint firstItem="ae5-Yc-U4E" firstAttribute="leading" secondItem="RIx-7U-Q8F" secondAttribute="trailing" constant="4" id="EIy-Rg-oty"/>
                             <constraint firstItem="ae5-Yc-U4E" firstAttribute="centerY" secondItem="5Wc-XM-Jf9" secondAttribute="centerY" id="NOf-qX-hQE"/>
                             <constraint firstItem="RIx-7U-Q8F" firstAttribute="centerX" secondItem="5Wc-XM-Jf9" secondAttribute="centerX" id="PWP-fZ-2rk"/>
-                            <constraint firstAttribute="height" constant="24" id="WYN-zi-TpL" userLabel="Date Container Height"/>
+                            <constraint firstAttribute="height" constant="24" id="WYN-zi-TpL" userLabel="Date Seperator View Height"/>
                             <constraint firstItem="RIx-7U-Q8F" firstAttribute="centerY" secondItem="5Wc-XM-Jf9" secondAttribute="centerY" id="YkJ-oz-1Os"/>
                             <constraint firstItem="RIx-7U-Q8F" firstAttribute="leading" secondItem="Vti-yq-cWt" secondAttribute="trailing" constant="4" id="d0E-mK-ODU"/>
                             <constraint firstItem="Vti-yq-cWt" firstAttribute="centerY" secondItem="5Wc-XM-Jf9" secondAttribute="centerY" id="iCc-gd-vfW"/>
@@ -96,7 +97,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="54" id="2ZX-9X-QZR"/>
+                                    <constraint firstAttribute="height" constant="54" id="2ZX-9X-QZR" userLabel="File Container View Height"/>
                                     <constraint firstItem="c1G-gW-Ulb" firstAttribute="leading" secondItem="yu4-p2-ITH" secondAttribute="trailing" constant="16" id="8Gc-NQ-fTy"/>
                                     <constraint firstItem="gSH-QO-wZd" firstAttribute="centerY" secondItem="FUs-hg-fvI" secondAttribute="centerY" id="GXM-VY-PWi"/>
                                     <constraint firstItem="PBI-E0-VHH" firstAttribute="leading" secondItem="c1G-gW-Ulb" secondAttribute="trailing" constant="14" id="NDz-Ze-GTj"/>
@@ -113,7 +114,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.50196078431372548" green="0.3529411764705882" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="FUs-hg-fvI" secondAttribute="bottom" constant="10" id="9xy-J2-LNv"/>
+                            <constraint firstAttribute="bottom" secondItem="FUs-hg-fvI" secondAttribute="bottom" constant="10" id="9xy-J2-LNv" userLabel="Message Container View Bottom Padding"/>
                             <constraint firstItem="FUs-hg-fvI" firstAttribute="top" secondItem="6jH-nP-1ga" secondAttribute="top" constant="10" id="Xc6-Yo-yez"/>
                             <constraint firstAttribute="trailing" secondItem="FUs-hg-fvI" secondAttribute="trailing" constant="10" id="dvL-Ws-Uub"/>
                             <constraint firstItem="FUs-hg-fvI" firstAttribute="leading" secondItem="6jH-nP-1ga" secondAttribute="leading" constant="10" id="mof-nf-d5E"/>
@@ -166,7 +167,7 @@
                 <constraints>
                     <constraint firstItem="5WE-Kr-9kf" firstAttribute="top" secondItem="rza-Ci-52U" secondAttribute="bottom" id="28b-4k-Z1H"/>
                     <constraint firstItem="5Wc-XM-Jf9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="2s3-ZA-J5n"/>
-                    <constraint firstItem="6jH-nP-1ga" firstAttribute="top" secondItem="5Wc-XM-Jf9" secondAttribute="bottom" constant="10" id="6AZ-UT-CrS"/>
+                    <constraint firstItem="6jH-nP-1ga" firstAttribute="top" secondItem="5Wc-XM-Jf9" secondAttribute="bottom" constant="10" id="6AZ-UT-CrS" userLabel="Date Seperator View Bottom Margin"/>
                     <constraint firstItem="5Lu-ta-09s" firstAttribute="bottom" secondItem="6jH-nP-1ga" secondAttribute="bottom" id="8kr-C5-FZb"/>
                     <constraint firstItem="5Wc-XM-Jf9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="BTK-wX-3Jb"/>
                     <constraint firstItem="5WE-Kr-9kf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="36" id="FcR-j9-GqJ"/>
@@ -185,19 +186,19 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="dateContainerBottomMargin" destination="6AZ-UT-CrS" id="6Hq-q0-Rhd"/>
-                <outlet property="dateContainerHeight" destination="WYN-zi-TpL" id="KQB-S4-KBa"/>
-                <outlet property="dateContainerTopMargin" destination="2s3-ZA-J5n" id="nZS-K5-nhm"/>
-                <outlet property="dateSeperatorContainerView" destination="5Wc-XM-Jf9" id="Fib-2X-Agu"/>
                 <outlet property="dateSeperatorLabel" destination="RIx-7U-Q8F" id="HC7-ha-idg"/>
+                <outlet property="dateSeperatorView" destination="5Wc-XM-Jf9" id="Uma-hC-T9a"/>
+                <outlet property="dateSeperatorViewBottomMargin" destination="6AZ-UT-CrS" id="1Ee-vP-hqO"/>
+                <outlet property="dateSeperatorViewHeight" destination="WYN-zi-TpL" id="BJV-TZ-Z5R"/>
+                <outlet property="dateSeperatorViewTopMargin" destination="2s3-ZA-J5n" id="3YT-w9-PCQ"/>
                 <outlet property="deleteMessageButton" destination="IMm-Qf-Lha" id="Dar-yo-z3w"/>
                 <outlet property="fileActionImageView" destination="gSH-QO-wZd" id="lNp-RN-YF6"/>
-                <outlet property="fileContainerHeight" destination="2ZX-9X-QZR" id="o1q-jl-9Mz"/>
+                <outlet property="fileContainerViewHeight" destination="2ZX-9X-QZR" id="nVg-6b-Qg8"/>
                 <outlet property="fileTypeImageView" destination="yu4-p2-ITH" id="XGN-vi-nyy"/>
                 <outlet property="filenameLabel" destination="c1G-gW-Ulb" id="GDA-8v-8n9"/>
-                <outlet property="messageContainerBottomPadding" destination="9xy-J2-LNv" id="p7S-He-iEB"/>
-                <outlet property="messageContainerTopPadding" destination="Xc6-Yo-yez" id="w7h-tT-wQM"/>
-                <outlet property="messageContainerView" destination="6jH-nP-1ga" id="cEy-Mo-i3w"/>
+                <outlet property="messageContainerView" destination="6jH-nP-1ga" id="zRb-gZ-F4Y"/>
+                <outlet property="messageContainerViewBottomPadding" destination="9xy-J2-LNv" id="U1a-Bc-69y"/>
+                <outlet property="messageContainerViewTopPadding" destination="Xc6-Yo-yez" id="eps-89-mcm"/>
                 <outlet property="messageDateLabel" destination="5WE-Kr-9kf" id="ixH-h2-EYd"/>
                 <outlet property="resendMessageButton" destination="ti8-DM-lyD" id="dQe-Mq-H5V"/>
                 <outlet property="sendStatusLabel" destination="5Lu-ta-09s" id="i6M-vu-RO7"/>

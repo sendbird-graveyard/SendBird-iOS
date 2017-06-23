@@ -14,19 +14,18 @@ import FLAnimatedImage
 class IncomingImageFileMessageTableViewCell: UITableViewCell {
     weak var delegate: MessageDelegate?
     
-    @IBOutlet weak var dateContainerTopMargin: NSLayoutConstraint!
-    @IBOutlet weak var dateContainerHeight: NSLayoutConstraint!
-    @IBOutlet weak var dateContainerBottomMargin: NSLayoutConstraint!
-    @IBOutlet weak var fileImageHeight: NSLayoutConstraint!
-
-    @IBOutlet weak var dateSeperatorContainerView: UIView!
+    @IBOutlet weak var dateSeperatorView: UIView!
+    @IBOutlet weak var dateSeperatorLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var fileImageView: FLAnimatedImageView!
     @IBOutlet weak var messageDateLabel: UILabel!
-    @IBOutlet weak var dateSeperatorLabel: UILabel!
-    
     @IBOutlet weak var imageLoadingIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var dateSeperatorViewTopMargin: NSLayoutConstraint!
+    @IBOutlet weak var dateSeperatorViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var dateSeperatorViewBottomMargin: NSLayoutConstraint!
+    @IBOutlet weak var fileImageHeight: NSLayoutConstraint!
+
     private var message: SBDFileMessage!
     private var prevMessage: SBDBaseMessage!
     
@@ -67,66 +66,42 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
         self.fileImageView.animatedImage = nil;
         self.fileImageView.image = nil;
         let url = self.message.url
+        
         if self.message.type == "image/gif" {
-            DispatchQueue.main.async {
-                let cachedImageData = FLAnimatedImage(animatedGIFData: AppDelegate.imageCache().object(forKey: url as AnyObject) as? Data)
-                if cachedImageData != nil {
-                    self.fileImageView.animatedImage = cachedImageData;
-                }
-                else {
-                    self.fileImageView.animatedImage = nil
-                    DispatchQueue.main.async {
-                        self.imageLoadingIndicator.isHidden = false
-                        self.imageLoadingIndicator.startAnimating()
-                    }
-                    
-                    let session = URLSession(configuration: URLSessionConfiguration.default)
-                    let request = URLRequest(url: URL(string: url)!)
-                    session.dataTask(with: request, completionHandler: { (data, response, error) in
-                        if error != nil {
-                            // TODO: Show download failed.
+            /***********************************/
+            /* Thumbnail is a premium feature. */
+            /***********************************/
+            if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
+                if (self.message.thumbnails?[0].url.characters.count)! > 0 {
+                    let request = URLRequest(url: URL(string: (self.message.thumbnails?[0].url)!)!)
+                    self.fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (image) in
+                        DispatchQueue.main.async {
+                            self.fileImageView.image = nil
+                            self.imageLoadingIndicator.isHidden = true
+                            self.imageLoadingIndicator.stopAnimating()
                             
-                            session.invalidateAndCancel()
-                            
-                            return;
-                        }
-                        
-                        let resp = response as! HTTPURLResponse
-                        if resp.statusCode >= 200 && resp.statusCode < 300 {
-                            let animatedImage = FLAnimatedImage(animatedGIFData: data as Data!)
-                            AppDelegate.imageCache().setObject(data as AnyObject, forKey: url as AnyObject)
-                            DispatchQueue.main.async {
-                                self.fileImageView.animatedImage = animatedImage;
-                                
+                            self.fileImageView.setAnimatedImageWithURL(url: URL(string: url)!, success: { (image) in
                                 DispatchQueue.main.async {
-                                    self.imageLoadingIndicator.isHidden = true
-                                    self.imageLoadingIndicator.stopAnimating()
+                                    self.fileImageView.animatedImage = image
                                 }
-                            }
+                            }, failure: { (error) in
+                                // Do nothing.
+                            })
                         }
-                        else {
-                            // TODO: Show download failed.
-                        }
-                        
-                        session.invalidateAndCancel()
-                    }).resume()
-                    
-//                    let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue");
-//                    imageLoadQueue.async {
-//                        if let data = NSData(contentsOf: NSURL(string: url) as! URL) {
-//                            let animatedImage = FLAnimatedImage(animatedGIFData: data as Data!)
-//                            AppDelegate.imageCache().setObject(animatedImage!, forKey: url as AnyObject)
-//                            DispatchQueue.main.async {
-//                                self.fileImageView.animatedImage = animatedImage;
-//                                
-//                                DispatchQueue.main.async {
-//                                    self.imageLoadingIndicator.isHidden = true
-//                                    self.imageLoadingIndicator.stopAnimating()
-//                                }
-//                            }
-//                        }
-//                    }
+                    })
                 }
+            }
+            else {
+                self.fileImageView.setAnimatedImageWithURL(url: URL(string: url)!, success: { (image) in
+                    DispatchQueue.main.async {
+                        self.fileImageView.animatedImage = image
+                        self.imageLoadingIndicator.isHidden = true
+                        self.imageLoadingIndicator.stopAnimating()
+                    }
+                }, failure: { (error) in
+                    self.imageLoadingIndicator.isHidden = true
+                    self.imageLoadingIndicator.stopAnimating()
+                })
             }
         }
         else {
@@ -135,13 +110,43 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
             /***********************************/
             if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
                 if (self.message.thumbnails?[0].url.characters.count)! > 0 {
-                    self.fileImageView.af_setImage(withURL: URL(string: (self.message.thumbnails?[0].url)!)!)
+                    let request = URLRequest(url: URL(string: (self.message.thumbnails?[0].url)!)!)
+                    self.fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+                        if response.result.error != nil {
+                            DispatchQueue.main.async {
+                                self.fileImageView.image = nil
+                                self.imageLoadingIndicator.isHidden = true
+                                self.imageLoadingIndicator.stopAnimating()
+                            }
+                        }
+                        else {
+                            DispatchQueue.main.async {
+                                self.fileImageView.image = response.result.value
+                                self.imageLoadingIndicator.isHidden = true
+                                self.imageLoadingIndicator.stopAnimating()
+                            }
+                        }
+                    })
                 }
             }
             else {
-                if self.message.url.characters.count > 0 {
-                    self.fileImageView.af_setImage(withURL:URL(string: self.message.url)!)
-                }
+                let request = URLRequest(url: URL(string: (self.message.url))!)
+                self.fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+                    if response.result.error != nil {
+                        DispatchQueue.main.async {
+                            self.fileImageView.image = nil
+                            self.imageLoadingIndicator.isHidden = true
+                            self.imageLoadingIndicator.stopAnimating()
+                        }
+                    }
+                    else {
+                        DispatchQueue.main.async {
+                            self.fileImageView.image = response.result.value
+                            self.imageLoadingIndicator.isHidden = true
+                            self.imageLoadingIndicator.stopAnimating()
+                        }
+                    }
+                })
             }
         }
         
@@ -175,20 +180,20 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
             
             if prevMessageDateComponents.year != currMessagedateComponents.year || prevMessageDateComponents.month != currMessagedateComponents.month || prevMessageDateComponents.day != currMessagedateComponents.day {
                 // Show date seperator.
-                self.dateSeperatorContainerView.isHidden = false
-                self.dateContainerHeight.constant = 24.0
-                self.dateContainerTopMargin.constant = 10.0
-                self.dateContainerBottomMargin.constant = 10.0
+                self.dateSeperatorView.isHidden = false
+                self.dateSeperatorViewHeight.constant = 24.0
+                self.dateSeperatorViewTopMargin.constant = 10.0
+                self.dateSeperatorViewBottomMargin.constant = 10.0
             }
             else {
                 // Hide date seperator.
-                self.dateSeperatorContainerView.isHidden = true
-                self.dateContainerHeight.constant = 0
-                self.dateContainerBottomMargin.constant = 0
+                self.dateSeperatorView.isHidden = true
+                self.dateSeperatorViewHeight.constant = 0
+                self.dateSeperatorViewBottomMargin.constant = 0
                 
                 // Continuous Message
                 if self.prevMessage is SBDAdminMessage {
-                    self.dateContainerTopMargin.constant = 10.0
+                    self.dateSeperatorViewTopMargin.constant = 10.0
                 }
                 else {
                     var prevMessageSender: SBDUser?
@@ -206,27 +211,27 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
                     if prevMessageSender != nil && currMessageSender != nil {
                         if prevMessageSender?.userId == currMessageSender?.userId {
                             // Reduce margin
-                            self.dateContainerTopMargin.constant = 5.0
+                            self.dateSeperatorViewTopMargin.constant = 5.0
                             self.profileImageView.isHidden = true
                         }
                         else {
                             // Set default margin.
                             self.profileImageView.isHidden = false
-                            self.dateContainerTopMargin.constant = 10.0
+                            self.dateSeperatorViewTopMargin.constant = 10.0
                         }
                     }
                     else {
-                        self.dateContainerTopMargin.constant = 10.0
+                        self.dateSeperatorViewTopMargin.constant = 10.0
                     }
                 }
             }
         }
         else {
             // Show date seperator.
-            self.dateSeperatorContainerView.isHidden = false
-            self.dateContainerHeight.constant = 24.0
-            self.dateContainerTopMargin.constant = 10.0
-            self.dateContainerBottomMargin.constant = 10.0
+            self.dateSeperatorView.isHidden = false
+            self.dateSeperatorViewHeight.constant = 24.0
+            self.dateSeperatorViewTopMargin.constant = 10.0
+            self.dateSeperatorViewBottomMargin.constant = 10.0
         }
         
         self.layoutIfNeeded()
@@ -237,7 +242,7 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
     }
     
     func getHeightOfViewCell() -> CGFloat {
-        let height = self.dateContainerTopMargin.constant + self.dateContainerHeight.constant + self.dateContainerBottomMargin.constant + self.fileImageHeight.constant
+        let height = self.dateSeperatorViewTopMargin.constant + self.dateSeperatorViewHeight.constant + self.dateSeperatorViewBottomMargin.constant + self.fileImageHeight.constant
         
         return height
     }

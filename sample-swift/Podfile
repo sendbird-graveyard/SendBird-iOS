@@ -11,4 +11,7 @@ target 'SendBird-iOS' do
   pod 'MGSwipeTableCell'
   pod 'FLAnimatedImage', '~> 1.0'
   pod 'NYTPhotoViewer', '~> 1.1.0'
+#  pod 'HTMLKit', '~> 2.0'
+  pod 'TTTAttributedLabel'
+  pod 'RSKImageCropper'
 end

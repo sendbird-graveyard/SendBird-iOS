@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,10 +15,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="245"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="244"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="245"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etk-pH-YdC" userLabel="Date Container View">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etk-pH-YdC" userLabel="Date Seperator View">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="24"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YQL-Uc-XNy" userLabel="Left Line View">
@@ -49,7 +49,7 @@
                             <constraint firstItem="khh-FO-vok" firstAttribute="centerY" secondItem="etk-pH-YdC" secondAttribute="centerY" id="KM6-GY-Ej2"/>
                             <constraint firstItem="te8-sc-Jve" firstAttribute="centerX" secondItem="etk-pH-YdC" secondAttribute="centerX" id="XWa-kH-IIo"/>
                             <constraint firstItem="te8-sc-Jve" firstAttribute="leading" secondItem="YQL-Uc-XNy" secondAttribute="trailing" constant="4" id="b0v-mh-6nl"/>
-                            <constraint firstAttribute="height" constant="24" id="lFp-Fb-0uI" userLabel="Date Container Height"/>
+                            <constraint firstAttribute="height" constant="24" id="lFp-Fb-0uI" userLabel="Date Seperator View Height"/>
                             <constraint firstItem="YQL-Uc-XNy" firstAttribute="centerY" secondItem="etk-pH-YdC" secondAttribute="centerY" id="tmi-Pv-YtO"/>
                             <constraint firstItem="khh-FO-vok" firstAttribute="leading" secondItem="te8-sc-Jve" secondAttribute="trailing" constant="4" id="uuQ-P0-OLp"/>
                             <constraint firstItem="YQL-Uc-XNy" firstAttribute="leading" secondItem="etk-pH-YdC" secondAttribute="leading" id="xgF-ag-kcq"/>
@@ -75,10 +75,10 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXW-rK-eho" userLabel="Message Container View">
-                        <rect key="frame" x="62" y="34" width="152" height="169.5"/>
+                        <rect key="frame" x="62" y="34" width="151" height="170"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sh6-y1-hH1" userLabel="Message Label">
-                                <rect key="frame" x="10" y="10" width="132" height="149.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sh6-y1-hH1" userLabel="Message Label" customClass="TTTAttributedLabel">
+                                <rect key="frame" x="10" y="10" width="131" height="150"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -98,7 +98,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99:99 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="da1-hz-pe6" userLabel="Message Date Label">
-                        <rect key="frame" x="222" y="189.5" width="74" height="14"/>
+                        <rect key="frame" x="221" y="190" width="74" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="74" id="HP9-vC-J3e"/>
                         </constraints>
@@ -122,11 +122,11 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="dateContainerBottomMargin" destination="md4-fa-bgy" id="aA8-4F-kaL"/>
-                <outlet property="dateContainerViewTopMargin" destination="Y5E-PX-4j6" id="glS-zA-IBj"/>
-                <outlet property="dateLabelContainerHeight" destination="lFp-Fb-0uI" id="gp3-yp-Zxh"/>
-                <outlet property="dateSeperatorContainerView" destination="etk-pH-YdC" id="BCQ-UP-c9L"/>
                 <outlet property="dateSeperatorLabel" destination="te8-sc-Jve" id="iss-MS-aSt"/>
+                <outlet property="dateSeperatorView" destination="etk-pH-YdC" id="wdP-7g-OqW"/>
+                <outlet property="dateSeperatorViewBottomMargin" destination="md4-fa-bgy" id="lwO-Uv-j47"/>
+                <outlet property="dateSeperatorViewHeight" destination="lFp-Fb-0uI" id="feF-tH-VXr"/>
+                <outlet property="dateSeperatorViewTopMargin" destination="Y5E-PX-4j6" id="4KV-Dk-RF7"/>
                 <outlet property="messageContainerBottomPadding" destination="Sjy-yz-TB8" id="sJR-rh-nWQ"/>
                 <outlet property="messageContainerLeftMargin" destination="aU7-lV-qKd" id="Vjy-a2-VH3"/>
                 <outlet property="messageContainerLeftPadding" destination="QOW-3C-7S8" id="xTV-fd-pyd"/>

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "SBDUser.h"
 #import "SBDBaseChannel.h"
 #import "SBDGroupChannel.h"
@@ -61,6 +62,11 @@
  */
 - (void)didFailReconnection;
 
+/**
+ *  Invoked when reconnection is cancelled.
+ */
+- (void)didCancelReconnection;
+
 @end
 
 /**
@@ -83,6 +89,12 @@
  *  Manages registered `SBDChannelDelegate`.
  */
 @property (nonatomic, strong, readonly, nullable) NSMapTable<NSString *, id<SBDChannelDelegate>> *channelDelegatesDictionary;
+
+@property (nonatomic, strong, nullable) void (^backgroundSessionCompletionHandler)();
+
+@property (strong, nonatomic, nonnull) NSMutableArray<void (^)()> *backgroundTaskBlock;
+
+@property (atomic) int URLSessionDidFinishEventsForBackgroundURLSession;
 
 - (nullable instancetype)init;
 
@@ -163,6 +175,11 @@
  *  @param completionHandler The handler block to execute. `user` is the object to represent the current user.
  */
 + (void)connectWithUserId:(NSString * _Nonnull)userId accessToken:(NSString * _Nullable)accessToken completionHandler:(nullable void (^)(SBDUser * _Nullable user, SBDError * _Nullable error))completionHandler;
+
+/**
+ Internal use only.
+ */
++ (void)connectWithUserId:(NSString * _Nonnull)userId accessToken:(NSString * _Nullable)accessToken apiHost:(NSString * _Nullable)apiHost wsHost:(NSString * _Nullable)wsHost completionHandler:(nullable void (^)(SBDUser * _Nullable user, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Gets the current user object. The object is valid when the connection succeeded.
@@ -252,6 +269,20 @@
  *  - `SBSWebSocketClosed` - Disconnected from the chat server
  */
 + (SBDWebSocketConnectionState)getConnectState;
+
+/**
+ Sets dispatch queue for every completion handler and delegate. Default queue is the main queue.
+
+ @param queue Dispatch queue for every completion handler and delegate.
+ */
++ (void)setCompletionHandlerDelegateQueue:(dispatch_queue_t _Nullable)queue;
+
+/**
+ Runs block in the dispatch queue that was set by `setCompletionHandlerDelegateQueue:`.
+
+ @param block Block to run.
+ */
++ (void)performComletionHandlerDelegateQueueBlock:(dispatch_block_t _Nullable)block;
 
 /**
  *  Internal use only.
@@ -455,5 +486,25 @@
  @return Returns mime type of the file.
  */
 + (nullable NSString *)getMimeType:(NSData * _Nullable)file;
+
+
+/**
+ Turns on or off the reconnection by network awareness.
+
+ @param onOff If YES, the reconnection by network Awareness is turned.
+ */
++ (void)setNetworkAwarenessReconnection:(BOOL)onOff;
+
+
+/**
+ Internal use only.
+ */
++ (nullable NSString *)getCustomApiHost;
+
+
+/**
+ Internal use only.
+ */
++ (nullable NSString *)getCustomWsHost;
 
 @end

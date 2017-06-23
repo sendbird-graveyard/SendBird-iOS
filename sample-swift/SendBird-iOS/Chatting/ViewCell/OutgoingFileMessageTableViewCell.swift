@@ -12,24 +12,24 @@ import SendBirdSDK
 class OutgoingFileMessageTableViewCell: UITableViewCell {
     weak var delegate: MessageDelegate?
     
-    @IBOutlet weak var dateContainerHeight: NSLayoutConstraint!
-    @IBOutlet weak var dateContainerBottomMargin: NSLayoutConstraint!
-    @IBOutlet weak var messageContainerTopPadding: NSLayoutConstraint!
-    @IBOutlet weak var messageContainerBottomPadding: NSLayoutConstraint!
-    @IBOutlet weak var fileContainerHeight: NSLayoutConstraint!
-    @IBOutlet weak var dateContainerTopMargin: NSLayoutConstraint!
-    
+    @IBOutlet weak var dateSeperatorView: UIView!
+    @IBOutlet weak var dateSeperatorLabel: UILabel!
+    @IBOutlet weak var messageContainerView: UIView!
     @IBOutlet weak var fileTypeImageView: UIImageView!
     @IBOutlet weak var fileActionImageView: UIImageView!
     @IBOutlet weak var filenameLabel: UILabel!
+    @IBOutlet weak var sendStatusLabel: UILabel!
     @IBOutlet weak var messageDateLabel: UILabel!
     @IBOutlet weak var resendMessageButton: UIButton!
     @IBOutlet weak var deleteMessageButton: UIButton!
     @IBOutlet weak var unreadCountLabel: UILabel!
-    @IBOutlet weak var dateSeperatorContainerView: UIView!
-    @IBOutlet weak var dateSeperatorLabel: UILabel!
-    @IBOutlet weak var messageContainerView: UIView!
-    @IBOutlet weak var sendStatusLabel: UILabel!
+    
+    @IBOutlet weak var dateSeperatorViewTopMargin: NSLayoutConstraint!
+    @IBOutlet weak var dateSeperatorViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var dateSeperatorViewBottomMargin: NSLayoutConstraint!
+    @IBOutlet weak var messageContainerViewTopPadding: NSLayoutConstraint!
+    @IBOutlet weak var messageContainerViewBottomPadding: NSLayoutConstraint!
+    @IBOutlet weak var fileContainerViewHeight: NSLayoutConstraint!
     
     private var message: SBDFileMessage!
     private var prevMessage: SBDBaseMessage!
@@ -134,20 +134,20 @@ class OutgoingFileMessageTableViewCell: UITableViewCell {
             
             if prevMessageDateComponents.year != currMessagedateComponents.year || prevMessageDateComponents.month != currMessagedateComponents.month || prevMessageDateComponents.day != currMessagedateComponents.day {
                 // Show date seperator.
-                self.dateSeperatorContainerView.isHidden = false
-                self.dateContainerHeight.constant = 24.0
-                self.dateContainerTopMargin.constant = 10.0
-                self.dateContainerBottomMargin.constant = 10.0
+                self.dateSeperatorView.isHidden = false
+                self.dateSeperatorViewHeight.constant = 24.0
+                self.dateSeperatorViewTopMargin.constant = 10.0
+                self.dateSeperatorViewBottomMargin.constant = 10.0
             }
             else {
                 // Hide date seperator.
-                self.dateSeperatorContainerView.isHidden = true
-                self.dateContainerHeight.constant = 0
-                self.dateContainerBottomMargin.constant = 0
+                self.dateSeperatorView.isHidden = true
+                self.dateSeperatorViewHeight.constant = 0
+                self.dateSeperatorViewBottomMargin.constant = 0
                 
                 // Continuous Message
                 if self.prevMessage is SBDAdminMessage {
-                    self.dateContainerTopMargin.constant = 10.0
+                    self.dateSeperatorViewTopMargin.constant = 10.0
                 }
                 else {
                     var prevMessageSender: SBDUser?
@@ -165,25 +165,25 @@ class OutgoingFileMessageTableViewCell: UITableViewCell {
                     if prevMessageSender != nil && currMessageSender != nil {
                         if prevMessageSender?.userId == currMessageSender?.userId {
                             // Reduce margin
-                            self.dateContainerTopMargin.constant = 5.0
+                            self.dateSeperatorViewTopMargin.constant = 5.0
                         }
                         else {
                             // Set default margin.
-                            self.dateContainerTopMargin.constant = 10.0
+                            self.dateSeperatorViewTopMargin.constant = 10.0
                         }
                     }
                     else {
-                        self.dateContainerTopMargin.constant = 10.0
+                        self.dateSeperatorViewTopMargin.constant = 10.0
                     }
                 }
             }
         }
         else {
             // Show date seperator.
-            self.dateSeperatorContainerView.isHidden = false
-            self.dateContainerHeight.constant = 24.0
-            self.dateContainerTopMargin.constant = 10.0
-            self.dateContainerBottomMargin.constant = 10.0
+            self.dateSeperatorView.isHidden = false
+            self.dateSeperatorViewHeight.constant = 24.0
+            self.dateSeperatorViewTopMargin.constant = 10.0
+            self.dateSeperatorViewBottomMargin.constant = 10.0
         }
         
         self.layoutIfNeeded()
@@ -194,7 +194,7 @@ class OutgoingFileMessageTableViewCell: UITableViewCell {
     }
     
     func getHeightOfViewCell() -> CGFloat {
-        let height = self.dateContainerTopMargin.constant + self.dateContainerHeight.constant + self.dateContainerBottomMargin.constant + self.messageContainerTopPadding.constant + self.messageContainerBottomPadding.constant + self.fileContainerHeight.constant
+        let height = self.dateSeperatorViewTopMargin.constant + self.dateSeperatorViewHeight.constant + self.dateSeperatorViewBottomMargin.constant + self.messageContainerViewTopPadding.constant + self.messageContainerViewBottomPadding.constant + self.fileContainerViewHeight.constant
         
         return height
     }

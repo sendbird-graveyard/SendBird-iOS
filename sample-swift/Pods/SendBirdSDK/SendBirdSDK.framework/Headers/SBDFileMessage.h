@@ -25,7 +25,6 @@
  */
 + (nullable instancetype)makeWithMaxCGSize:(CGSize)size;
 
-
 /**
  Makes `SBDThumbnailSize` object with width and height.
 
@@ -57,6 +56,12 @@
 
 
 /**
+ The real size of the thumbnail.
+ */
+@property (nonatomic, readonly) CGSize realSize;
+
+
+/**
  Returns url
  
  @return Image url.
@@ -76,7 +81,7 @@
 /**
  *  Sender of the message.
  */
-@property (strong, nonatomic, readonly, nullable, getter = sender) SBDUser *sender;
+@property (strong, nonatomic, nullable, getter = sender) SBDUser *sender;
 
 /**
  *  The file URL.

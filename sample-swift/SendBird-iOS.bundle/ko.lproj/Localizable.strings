@@ -35,7 +35,6 @@
 "ChannelDeletedMessage" = "이 채널이 삭제되었습니다. 채널 화면이 닫힙니다.";
 "UserBlockedTitle" = "사용자 차단됨";
 "UserBlockedMessage" = "%@이(가) 차단되었습니다.";
-"GroupChannelTitle" = "그룹 채널(%ld)";
 
 "OpenChannelCreatedTitle" = "오픈 채널 생성";
 "OpenChannelCreatedMessage" = "오픈 채널이 생성되었습니다.";
@@ -48,3 +47,16 @@
 
 "OpenDistinctGroupChannel" = "기존 그룹 채널 열기";
 "OpenNonDistinctGroupChannel" = "새로운 그룹 채널 열기";
+
+"InviteUserButton" = "사용자 초대";
+"InviteButton" = "초대";
+
+"ResendFailedMessageTitle" = "메시지 재전송";
+"ResendFailedMessageDescription" = "메시지를 재전송하시겠습니까?";
+"ResendFailedMessageButton" = "재전송";
+
+"DeleteFailedMessageTitle" = "메시지 삭제";
+"DeleteFailedMessageDescription" = "메시지를 삭제하시겠습니까?";
+"DeleteFailedMessageButton" = "삭제";
+
+"EmptyChannelName" = "대화 상대 없음";

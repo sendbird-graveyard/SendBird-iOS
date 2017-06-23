@@ -19,28 +19,27 @@ protocol ChattingViewDelegate: class {
 class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var chattingTableView: UITableView!
+    @IBOutlet weak var inputContainerViewHeight: NSLayoutConstraint!
+    var messages: [SBDBaseMessage] = []
+    
+    var resendableMessages: [String:SBDBaseMessage] = [:]
+    var preSendMessages: [String:SBDBaseMessage] = [:]
+    
+    var resendableFileData: [String:[String:AnyObject]] = [:]
+    var preSendFileData: [String:[String:AnyObject]] = [:]
+
     @IBOutlet weak var fileAttachButton: UIButton!
     @IBOutlet weak var sendButton: UIButton!
+    var stopMeasuringVelocity: Bool = true
+    var initialLoading: Bool = true
+    
+    var delegate: (ChattingViewDelegate & MessageDelegate)?
+
+    @IBOutlet weak var typingIndicatorContainerViewHeight: NSLayoutConstraint!
     @IBOutlet weak var typingIndicatorImageView: UIImageView!
     @IBOutlet weak var typingIndicatorLabel: UILabel!
     @IBOutlet weak var typingIndicatorContainerView: UIView!
-    @IBOutlet weak var placeholderLabel: UILabel!
-    
-    @IBOutlet weak var typingIndicatorContainerViewHeight: NSLayoutConstraint!
     @IBOutlet weak var typingIndicatorImageHeight: NSLayoutConstraint!
-    
-    var messages: [SBDBaseMessage] = []
-    var resendableMessages: [String:SBDBaseMessage] = [:]
-    var preSendMessages: [String:SBDBaseMessage] = [:]
-    var resendableFileData: [String:[String:AnyObject]] = [:]
-    var preSendFileData: [String:[String:AnyObject]] = [:]
-    var stopMeasuringVelocity: Bool = true
-    var initialLoading: Bool = true
-    var lastMessageHeight: CGFloat = 0
-    var scrollLock: Bool = false
-    var lastOffset: CGPoint = CGPoint(x: 0, y: 0)
-    var lastOffsetCapture: TimeInterval = 0
-    var isScrollingFast: Bool = false
     
     var incomingUserMessageSizingTableViewCell: IncomingUserMessageTableViewCell?
     var outgoingUserMessageSizingTableViewCell: OutgoingUserMessageTableViewCell?
@@ -51,8 +50,18 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     var incomingImageFileMessageSizingTableViewCell: IncomingImageFileMessageTableViewCell?
     var incomingVideoFileMessageSizingTableViewCell: IncomingVideoFileMessageTableViewCell?
     var outgoingVideoFileMessageSizingTableViewCell: OutgoingVideoFileMessageTableViewCell?
+    var incomingGeneralUrlPreviewMessageTableViewCell: IncomingGeneralUrlPreviewMessageTableViewCell?
+    var outgoingGeneralUrlPreviewMessageTableViewCell: OutgoingGeneralUrlPreviewMessageTableViewCell?
+    var outgoingGeneralUrlPreviewTempMessageTableViewCell: OutgoingGeneralUrlPreviewTempMessageTableViewCell?
 
-    var delegate: (ChattingViewDelegate & MessageDelegate)?
+    @IBOutlet weak var placeholderLabel: UILabel!
+    
+    var lastMessageHeight: CGFloat = 0
+    var scrollLock: Bool = false
+    
+    var lastOffset: CGPoint = CGPoint(x: 0, y: 0)
+    var lastOffsetCapture: TimeInterval = 0
+    var isScrollingFast: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,11 +79,16 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     }
     
     func initChattingView() {
+        self.initialLoading = true
+        self.lastMessageHeight = 0
+        self.scrollLock = false
+        self.stopMeasuringVelocity = false
+        
         self.typingIndicatorContainerView.isHidden = true
         self.typingIndicatorContainerViewHeight.constant = 0
         self.typingIndicatorImageHeight.constant = 0
         
-        self.typingIndicatorContainerView.layoutIfNeeded()
+//        self.typingIndicatorContainerView.layoutIfNeeded()
         
         self.messageTextView.delegate = self
         
@@ -87,6 +101,10 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
         self.chattingTableView.register(IncomingImageFileMessageTableViewCell.nib(), forCellReuseIdentifier: IncomingImageFileMessageTableViewCell.cellReuseIdentifier())
         self.chattingTableView.register(IncomingVideoFileMessageTableViewCell.nib(), forCellReuseIdentifier: IncomingVideoFileMessageTableViewCell.cellReuseIdentifier())
         self.chattingTableView.register(OutgoingVideoFileMessageTableViewCell.nib(), forCellReuseIdentifier: OutgoingVideoFileMessageTableViewCell.cellReuseIdentifier())
+        
+        self.chattingTableView.register(IncomingGeneralUrlPreviewMessageTableViewCell.nib(), forCellReuseIdentifier: IncomingGeneralUrlPreviewMessageTableViewCell.cellReuseIdentifier())
+        self.chattingTableView.register(OutgoingGeneralUrlPreviewMessageTableViewCell.nib(), forCellReuseIdentifier: OutgoingGeneralUrlPreviewMessageTableViewCell.cellReuseIdentifier())
+        self.chattingTableView.register(OutgoingGeneralUrlPreviewTempMessageTableViewCell.nib(), forCellReuseIdentifier: OutgoingGeneralUrlPreviewTempMessageTableViewCell.cellReuseIdentifier())
         
         self.chattingTableView.delegate = self
         self.chattingTableView.dataSource = self
@@ -139,9 +157,24 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
         self.outgoingVideoFileMessageSizingTableViewCell?.frame = self.frame
         self.outgoingVideoFileMessageSizingTableViewCell?.isHidden = true
         self.addSubview(self.outgoingVideoFileMessageSizingTableViewCell!)
+
+        self.incomingGeneralUrlPreviewMessageTableViewCell = IncomingGeneralUrlPreviewMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? IncomingGeneralUrlPreviewMessageTableViewCell
+        self.incomingGeneralUrlPreviewMessageTableViewCell?.frame = self.frame
+        self.incomingGeneralUrlPreviewMessageTableViewCell?.isHidden = true
+        self.addSubview(self.incomingGeneralUrlPreviewMessageTableViewCell!)
+
+        self.outgoingGeneralUrlPreviewMessageTableViewCell = OutgoingGeneralUrlPreviewMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? OutgoingGeneralUrlPreviewMessageTableViewCell
+        self.outgoingGeneralUrlPreviewMessageTableViewCell?.frame = self.frame
+        self.outgoingGeneralUrlPreviewMessageTableViewCell?.isHidden = true
+        self.addSubview(self.outgoingGeneralUrlPreviewMessageTableViewCell!)
+
+        self.outgoingGeneralUrlPreviewTempMessageTableViewCell = OutgoingGeneralUrlPreviewTempMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? OutgoingGeneralUrlPreviewTempMessageTableViewCell
+        self.outgoingGeneralUrlPreviewTempMessageTableViewCell?.frame = self.frame
+        self.outgoingGeneralUrlPreviewTempMessageTableViewCell?.isHidden = true
+        self.addSubview(self.outgoingGeneralUrlPreviewTempMessageTableViewCell!)
     }
     
-    func scrollToBottom(animated: Bool, force: Bool) {
+    func scrollToBottom(force: Bool) {
         if self.messages.count == 0 {
             return
         }
@@ -281,25 +314,50 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             
             if sender?.userId == SBDMain.getCurrentUser()?.userId {
                 // Outgoing
-                if indexPath.row > 0 {
-                    self.outgoingUserMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+                if userMessage.customType == "url_preview" {
+                    if indexPath.row > 0 {
+                        self.outgoingGeneralUrlPreviewMessageTableViewCell?.setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+                    }
+                    else {
+                        self.outgoingGeneralUrlPreviewMessageTableViewCell?.setPreviousMessage(aPrevMessage: nil)
+                    }
+                    self.outgoingGeneralUrlPreviewMessageTableViewCell?.setModel(aMessage: userMessage)
+                    height = (self.outgoingGeneralUrlPreviewMessageTableViewCell?.getHeightOfViewCell())!
                 }
                 else {
-                    self.outgoingUserMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: nil)
+                    if indexPath.row > 0 {
+                        self.outgoingUserMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+                    }
+                    else {
+                        self.outgoingUserMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: nil)
+                    }
+                    self.outgoingUserMessageSizingTableViewCell?.setModel(aMessage: userMessage)
+                    height = (self.outgoingUserMessageSizingTableViewCell?.getHeightOfViewCell())!
                 }
-                self.outgoingUserMessageSizingTableViewCell?.setModel(aMessage: userMessage)
-                height = (self.outgoingUserMessageSizingTableViewCell?.getHeightOfViewCell())!
             }
             else {
                 // Incoming
-                if indexPath.row > 0 {
-                    self.incomingUserMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+                if userMessage.customType == "url_preview" {
+                    if indexPath.row > 0 {
+                        self.incomingGeneralUrlPreviewMessageTableViewCell?.setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+                    }
+                    else {
+                        self.incomingGeneralUrlPreviewMessageTableViewCell?.setPreviousMessage(aPrevMessage: nil)
+                    }
+                    self.incomingGeneralUrlPreviewMessageTableViewCell?.setModel(aMessage: userMessage)
+                    height = CGFloat((self.incomingGeneralUrlPreviewMessageTableViewCell?.getHeightOfViewCell())!)
                 }
                 else {
-                    self.incomingUserMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: nil)
+                    if indexPath.row > 0 {
+                        self.incomingUserMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+                    }
+                    else {
+                        self.incomingUserMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: nil)
+                    }
+                    self.incomingUserMessageSizingTableViewCell?.setModel(aMessage: userMessage)
+                    height = (self.incomingUserMessageSizingTableViewCell?.getHeightOfViewCell())!
                 }
-                self.incomingUserMessageSizingTableViewCell?.setModel(aMessage: userMessage)
-                height = (self.incomingUserMessageSizingTableViewCell?.getHeightOfViewCell())!
+                
             }
         }
         else if msg is SBDFileMessage {
@@ -404,6 +462,17 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             
             self.neutralMessageSizingTableViewCell?.setModel(aMessage: adminMessage)
             height = (self.neutralMessageSizingTableViewCell?.getHeightOfViewCell())!
+        }
+        else if msg is OutgoingGeneralUrlPreviewTempModel {
+            let tempModel: OutgoingGeneralUrlPreviewTempModel = msg as! OutgoingGeneralUrlPreviewTempModel
+            if indexPath.row > 0 {
+                self.outgoingGeneralUrlPreviewTempMessageTableViewCell?.setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+            }
+            else {
+                self.outgoingGeneralUrlPreviewTempMessageTableViewCell?.setPreviousMessage(aPrevMessage: nil)
+            }
+            self.outgoingGeneralUrlPreviewTempMessageTableViewCell?.setModel(aMessage: tempModel)
+            height = (self.outgoingGeneralUrlPreviewTempMessageTableViewCell?.getHeightOfViewCell())!
         }
         
         if self.messages.count > 0 && self.messages.count - 1 == indexPath.row {
@@ -586,43 +655,86 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             
             if sender?.userId == SBDMain.getCurrentUser()?.userId {
                 // Outgoing
-                cell = tableView.dequeueReusableCell(withIdentifier: OutgoingUserMessageTableViewCell.cellReuseIdentifier())
-                cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
-                if indexPath.row > 0 {
-                    (cell as! OutgoingUserMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
-                }
-                else {
-                    (cell as! OutgoingUserMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
-                }
-                (cell as! OutgoingUserMessageTableViewCell).setModel(aMessage: userMessage)
-                (cell as! OutgoingUserMessageTableViewCell).delegate = self.delegate
-                
-                if self.preSendMessages[userMessage.requestId!] != nil {
-                    (cell as! OutgoingUserMessageTableViewCell).showSendingStatus()
-                }
-                else {
-                    if self.resendableMessages[userMessage.requestId!] != nil {
-//                        (cell as! OutgoingUserMessageTableViewCell).showMessageControlButton()
-                        (cell as! OutgoingUserMessageTableViewCell).showFailedStatus()
+                if userMessage.customType == "url_preview" {
+                    cell = tableView.dequeueReusableCell(withIdentifier: OutgoingGeneralUrlPreviewMessageTableViewCell.cellReuseIdentifier())
+                    cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
+                    if indexPath.row > 0 {
+                        (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
                     }
                     else {
-                        (cell as! OutgoingUserMessageTableViewCell).showMessageDate()
-                        (cell as! OutgoingUserMessageTableViewCell).showUnreadCount()
+                        (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
+                    }
+                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).setModel(aMessage: userMessage)
+                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).delegate = self.delegate
+                    
+                    if self.preSendMessages[userMessage.requestId!] != nil {
+                        (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showSendingStatus()
+                    }
+                    else {
+                        if self.resendableMessages[userMessage.requestId!] != nil {
+                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showMessageControlButton()
+//                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showFailedStatus()
+                        }
+                        else {
+                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showMessageDate()
+                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showUnreadCount()
+                        }
                     }
                 }
+                else {
+                    cell = tableView.dequeueReusableCell(withIdentifier: OutgoingUserMessageTableViewCell.cellReuseIdentifier())
+                    cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
+                    if indexPath.row > 0 {
+                        (cell as! OutgoingUserMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+                    }
+                    else {
+                        (cell as! OutgoingUserMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
+                    }
+                    (cell as! OutgoingUserMessageTableViewCell).setModel(aMessage: userMessage)
+                    (cell as! OutgoingUserMessageTableViewCell).delegate = self.delegate
+                    
+                    if self.preSendMessages[userMessage.requestId!] != nil {
+                        (cell as! OutgoingUserMessageTableViewCell).showSendingStatus()
+                    }
+                    else {
+                        if self.resendableMessages[userMessage.requestId!] != nil {
+                            (cell as! OutgoingUserMessageTableViewCell).showMessageControlButton()
+//                            (cell as! OutgoingUserMessageTableViewCell).showFailedStatus()
+                        }
+                        else {
+                            (cell as! OutgoingUserMessageTableViewCell).showMessageDate()
+                            (cell as! OutgoingUserMessageTableViewCell).showUnreadCount()
+                        }
+                    }
+                }
+                
             }
             else {
                 // Incoming
-                cell = tableView.dequeueReusableCell(withIdentifier: IncomingUserMessageTableViewCell.cellReuseIdentifier())
-                cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
-                if indexPath.row > 0 {
-                    (cell as! IncomingUserMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+                if userMessage.customType == "url_preview" {
+                    cell = tableView.dequeueReusableCell(withIdentifier: IncomingGeneralUrlPreviewMessageTableViewCell.cellReuseIdentifier())
+                    cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
+                    if indexPath.row > 0 {
+                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+                    }
+                    else {
+                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
+                    }
+                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).setModel(aMessage: userMessage)
+                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).delegate = self.delegate
                 }
                 else {
-                    (cell as! IncomingUserMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
+                    cell = tableView.dequeueReusableCell(withIdentifier: IncomingUserMessageTableViewCell.cellReuseIdentifier())
+                    cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
+                    if indexPath.row > 0 {
+                        (cell as! IncomingUserMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+                    }
+                    else {
+                        (cell as! IncomingUserMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
+                    }
+                    (cell as! IncomingUserMessageTableViewCell).setModel(aMessage: userMessage)
+                    (cell as! IncomingUserMessageTableViewCell).delegate = self.delegate
                 }
-                (cell as! IncomingUserMessageTableViewCell).setModel(aMessage: userMessage)
-                (cell as! IncomingUserMessageTableViewCell).delegate = self.delegate
             }
         }
         else if msg is SBDFileMessage {
@@ -648,8 +760,8 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     }
                     else {
                         if self.resendableMessages[fileMessage.requestId!] != nil {
-//                            (cell as! OutgoingVideoFileMessageTableViewCell).showMessageControlButton()
-                            (cell as! OutgoingVideoFileMessageTableViewCell).showFailedStatus()
+                            (cell as! OutgoingVideoFileMessageTableViewCell).showMessageControlButton()
+//                            (cell as! OutgoingVideoFileMessageTableViewCell).showFailedStatus()
                         }
                         else {
                             (cell as! OutgoingVideoFileMessageTableViewCell).showMessageDate()
@@ -674,8 +786,8 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     }
                     else {
                         if self.resendableMessages[fileMessage.requestId!] != nil {
-//                            (cell as! OutgoingFileMessageTableViewCell).showMessageControlButton()
-                            (cell as! OutgoingFileMessageTableViewCell).showFailedStatus()
+                            (cell as! OutgoingFileMessageTableViewCell).showMessageControlButton()
+//                            (cell as! OutgoingFileMessageTableViewCell).showFailedStatus()
                         }
                         else {
                             (cell as! OutgoingFileMessageTableViewCell).showMessageDate()
@@ -702,8 +814,8 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     }
                     else {
                         if self.resendableMessages[fileMessage.requestId!] != nil {
-//                            (cell as! OutgoingImageFileMessageTableViewCell).showMessageControlButton()
-                            (cell as! OutgoingImageFileMessageTableViewCell).showFailedStatus()
+                            (cell as! OutgoingImageFileMessageTableViewCell).showMessageControlButton()
+//                            (cell as! OutgoingImageFileMessageTableViewCell).showFailedStatus()
                             (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.resendableFileData[fileMessage.requestId!]?["data"] as! Data, type: self.resendableFileData[fileMessage.requestId!]?["type"] as! String)
                             (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = true
                         }
@@ -738,8 +850,8 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     }
                     else {
                         if self.resendableMessages[fileMessage.requestId!] != nil {
-//                            (cell as! OutgoingFileMessageTableViewCell).showMessageControlButton()
-                            (cell as! OutgoingFileMessageTableViewCell).showFailedStatus()
+                            (cell as! OutgoingFileMessageTableViewCell).showMessageControlButton()
+//                            (cell as! OutgoingFileMessageTableViewCell).showFailedStatus()
                         }
                         else {
                             (cell as! OutgoingFileMessageTableViewCell).showMessageDate()
@@ -813,6 +925,20 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             }
             
             (cell as! NeutralMessageTableViewCell).setModel(aMessage: adminMessage)
+        }
+        else if msg is OutgoingGeneralUrlPreviewTempModel {
+            let model = msg as! OutgoingGeneralUrlPreviewTempModel
+            
+            cell = tableView.dequeueReusableCell(withIdentifier: OutgoingGeneralUrlPreviewTempMessageTableViewCell.cellReuseIdentifier())
+            cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
+            if indexPath.row > 0 {
+                (cell as! OutgoingGeneralUrlPreviewTempMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
+            }
+            else {
+                (cell as! OutgoingGeneralUrlPreviewTempMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
+            }
+            
+            (cell as! OutgoingGeneralUrlPreviewTempMessageTableViewCell).setModel(aMessage: model)
         }
         
         

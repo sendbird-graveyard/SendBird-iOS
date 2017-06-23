@@ -73,6 +73,14 @@ class Constants: NSObject {
         return UIFont(name: "HelveticaNeue", size: 16.0)!
     }
     
+    static func outgoingMessageColor() -> UIColor {
+        return UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1)
+    }
+    
+    static func incomingMessageColor() -> UIColor {
+        return UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1)
+    }
+
     static func outgoingFileImagePlaceholderColor() -> UIColor {
         return UIColor(red: 128.0/255.0, green: 90.0/255.0, blue: 255.0/255.0, alpha: 1)
     }
@@ -135,5 +143,9 @@ class Constants: NSObject {
     
     static func connectButtonColor() -> UIColor {
         return UIColor(red: 123.0/255.0, green: 95.0/255.0, blue: 217.0/255.0, alpha: 1)
+    }
+    
+    static func urlPreviewDescriptionFont() -> UIFont {
+        return UIFont(name: "HelveticaNeue-Light", size: 12.0)!
     }
 }

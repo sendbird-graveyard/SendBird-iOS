@@ -20,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIView *dateSeperatorView;
 @property (weak, nonatomic) IBOutlet UILabel *dateSeperatorLabel;
 @property (weak, nonatomic) IBOutlet TTTAttributedLabel *messageLabel;
-@property (weak, nonatomic) IBOutlet UIView *dividerView;
 @property (weak, nonatomic) IBOutlet UILabel *previewSiteNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *previewTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *previewDescriptionLabel;

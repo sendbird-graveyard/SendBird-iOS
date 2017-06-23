@@ -10,6 +10,8 @@ import UIKit
 import SendBirdSDK
 
 class BlockedUserListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    var baseChannel: SBDBaseChannel?
+    
     private var query: SBDUserListQuery?
     private var blockedUsers: [SBDUser] = []
     private var refreshControl: UIRefreshControl?

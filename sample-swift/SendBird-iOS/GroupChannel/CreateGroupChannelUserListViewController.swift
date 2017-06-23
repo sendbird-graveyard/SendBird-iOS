@@ -15,6 +15,8 @@ protocol CreateGroupChannelUserListViewControllerDelegate: class {
 
 class CreateGroupChannelUserListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDelegate, UITableViewDataSource, CreateGroupChannelSelectOptionViewControllerDelegate {
     weak var delegate: CreateGroupChannelUserListViewControllerDelegate?
+    var userSelectionMode: Int = 0
+    var groupChannel: SBDGroupChannel?
     
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var selectedUserListCollectionView: UICollectionView!
@@ -37,11 +39,18 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
         negativeRightSpacer.width = -2
         
         let leftCloseItem = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItemStyle.done, target: self, action: #selector(close))
-        let rightNextItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "NextButton"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(nextStage))
-        rightNextItem.setTitleTextAttributes([NSFontAttributeName : Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
+        var rightNextItem: UIBarButtonItem?
+        if self.userSelectionMode == 0 {
+            rightNextItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "NextButton"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(nextStage))
+            rightNextItem?.setTitleTextAttributes([NSFontAttributeName : Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
+        }
+        else {
+            rightNextItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "InviteButton"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(invite))
+            rightNextItem?.setTitleTextAttributes([NSFontAttributeName : Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
+        }
         
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftCloseItem]
-        self.navItem.rightBarButtonItems = [negativeRightSpacer, rightNextItem]
+        self.navItem.rightBarButtonItems = [negativeRightSpacer, rightNextItem!]
         
         self.selectedUserListCollectionView.contentInset = UIEdgeInsetsMake(0, 14, 0, 14)
         self.selectedUserListCollectionView.delegate = self
@@ -81,6 +90,18 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
         vc.selectedUser = NSArray(array: self.selectedUsers) as! [SBDUser]
         vc.delegate = self
         self.present(vc, animated: false, completion: nil)
+    }
+    
+    @objc private func invite() {
+        if self.selectedUsers.count == 0 {
+            return
+        }
+        
+        self.groupChannel?.invite(self.selectedUsers, completionHandler: { (error) in
+            DispatchQueue.main.async {
+                self.dismiss(animated: false, completion: nil)
+            }
+        })
     }
     
     @objc private func refreshUserList() {
@@ -131,7 +152,24 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
                 if user.userId == SBDMain.getCurrentUser()?.userId {
                     continue
                 }
-                self.users.append(user)
+                
+                if self.userSelectionMode == 1 {
+                    var isMember: Bool = false
+                    for item in (self.groupChannel?.members)! {
+                        let member: SBDUser = item as! SBDUser
+                        if member.userId == user.userId {
+                            isMember = true
+                            break
+                        }
+                    }
+                    
+                    if isMember == false {
+                        self.users.append(user)
+                    }
+                }
+                else {
+                    self.users.append(user)
+                }
             }
             
             DispatchQueue.main.async {

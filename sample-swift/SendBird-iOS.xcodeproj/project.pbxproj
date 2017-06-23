@@ -77,12 +77,99 @@
 		CE806EF71E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806EF51E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib */; };
 		CE806EFA1E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE806EF81E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift */; };
 		CE806EFB1E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806EF91E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib */; };
+		E2217E401EF893A000AEE668 /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2217E381EF893A000AEE668 /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E2217E4D1EF89A1700AEE668 /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2217E381EF893A000AEE668 /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E2332F831EF9D46F00E0738B /* HTMLKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2332F761EF9D46000E0738B /* HTMLKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E2332F871EFB186700E0738B /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2332F851EFB186700E0738B /* UserProfileViewController.swift */; };
+		E2332F881EFB186700E0738B /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2332F861EFB186700E0738B /* UserProfileViewController.xib */; };
+		E23EC4D61EF35F86008487BB /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23EC4D41EF35F86008487BB /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.swift */; };
+		E23EC4D71EF35F86008487BB /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E23EC4D51EF35F86008487BB /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib */; };
+		E24383801EF094860066559A /* OutgoingGeneralUrlPreviewMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E243837E1EF094860066559A /* OutgoingGeneralUrlPreviewMessageTableViewCell.swift */; };
+		E24383811EF094860066559A /* OutgoingGeneralUrlPreviewMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E243837F1EF094860066559A /* OutgoingGeneralUrlPreviewMessageTableViewCell.xib */; };
 		E25E5A771E735BC8003E1E9B /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E25E5A761E735BC8003E1E9B /* Photos.framework */; };
 		E25E5A9B1E7A046D003E1E9B /* ChatImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E5A9A1E7A046D003E1E9B /* ChatImage.swift */; };
+		E290199A1EE76E4B00DA8AB8 /* OutgoingGeneralUrlPreviewTempModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29019991EE76E4B00DA8AB8 /* OutgoingGeneralUrlPreviewTempModel.swift */; };
+		E290199D1EE77A6F00DA8AB8 /* IncomingGeneralUrlPreviewMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290199B1EE77A6F00DA8AB8 /* IncomingGeneralUrlPreviewMessageTableViewCell.swift */; };
+		E290199E1EE77A6F00DA8AB8 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E290199C1EE77A6F00DA8AB8 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib */; };
+		E29019A01EE8979C00DA8AB8 /* FLAnimatedImageView+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E290199F1EE8979C00DA8AB8 /* FLAnimatedImageView+ImageCache.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E2217E3D1EF893A000AEE668 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5ABA0B751DA6010A000C82DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E2217E371EF893A000AEE668;
+			remoteInfo = CommonCrypto;
+		};
+		E2332F751EF9D46000E0738B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 625A14AC19C7829400AD0C32;
+			remoteInfo = "HTMLKit-macOS";
+		};
+		E2332F771EF9D46000E0738B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 625A14C319C7829400AD0C32;
+			remoteInfo = "HTMLKitTests-macOS";
+		};
+		E2332F791EF9D46000E0738B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 62ECBF4D1C0B6C7600AF847B;
+			remoteInfo = "HTMLKit-iOS";
+		};
+		E2332F7B1EF9D46000E0738B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 62ECBF561C0B6C7600AF847B;
+			remoteInfo = "HTMLKitTests-iOS";
+		};
+		E2332F7D1EF9D46000E0738B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 62857CEA1D39A262008DC254;
+			remoteInfo = "HTMLKit-tvOS";
+		};
+		E2332F7F1EF9D46000E0738B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 62857CF31D39A262008DC254;
+			remoteInfo = "HTMLKit-tvOSTests";
+		};
+		E2332F811EF9D46000E0738B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 62857C4E1D398642008DC254;
+			remoteInfo = "HTMLKit-watchOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E2217E441EF893A000AEE668 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E2332F831EF9D46F00E0738B /* HTMLKit.framework in Embed Frameworks */,
+				E2217E401EF893A000AEE668 /* CommonCrypto.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		5A74B8EF1DC0D11D00EBA0F5 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/GroupChannelListViewController.strings; sourceTree = "<group>"; };
+		5A74B8EF1DC0D11D00EBA0F5 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/GroupChannelListViewController.xib; sourceTree = "<group>"; };
 		5ABA0B7D1DA6010A000C82DC /* SendBird-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SendBird-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABA0B801DA6010A000C82DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5ABA0B821DA6010A000C82DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,22 +195,22 @@
 		5ABA0BD51DA76B50000C82DC /* ReusableViewFromXib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewFromXib.swift; sourceTree = "<group>"; };
 		5ABA0BD71DA76FFD000C82DC /* ChattingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChattingView.swift; sourceTree = "<group>"; };
 		5AC2B6DC1DB6108300BA4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CreateGroupChannelSelectOptionViewController.xib; sourceTree = "<group>"; };
-		5AC2B6DF1DB6108C00BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CreateGroupChannelSelectOptionViewController.strings; sourceTree = "<group>"; };
+		5AC2B6DF1DB6108C00BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CreateGroupChannelSelectOptionViewController.xib; sourceTree = "<group>"; };
 		5AC2B6E11DB6110100BA4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CreateGroupChannelUserListViewController.xib; sourceTree = "<group>"; };
-		5AC2B6E41DB6110500BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CreateGroupChannelUserListViewController.strings; sourceTree = "<group>"; };
+		5AC2B6E41DB6110500BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CreateGroupChannelUserListViewController.xib; sourceTree = "<group>"; };
 		5AC2B6E61DB6168100BA4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GroupChannelListViewController.xib; sourceTree = "<group>"; };
 		5AC2B6EB1DB61C1500BA4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MemberListViewController.xib; sourceTree = "<group>"; };
-		5AC2B6EE1DB61C1D00BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MemberListViewController.strings; sourceTree = "<group>"; };
+		5AC2B6EE1DB61C1D00BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MemberListViewController.xib; sourceTree = "<group>"; };
 		5AC2B6F01DB61C3300BA4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MenuViewController.xib; sourceTree = "<group>"; };
-		5AC2B6F31DB61C3600BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MenuViewController.strings; sourceTree = "<group>"; };
+		5AC2B6F31DB61C3600BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MenuViewController.xib; sourceTree = "<group>"; };
 		5AC2B6F51DB6287100BA4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CreateOpenChannelViewController.xib; sourceTree = "<group>"; };
-		5AC2B6F81DB6287500BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CreateOpenChannelViewController.strings; sourceTree = "<group>"; };
+		5AC2B6F81DB6287500BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CreateOpenChannelViewController.xib; sourceTree = "<group>"; };
 		5AC2B6FA1DB62BD000BA4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OpenChannelListViewController.xib; sourceTree = "<group>"; };
-		5AC2B6FD1DB62BD200BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/OpenChannelListViewController.strings; sourceTree = "<group>"; };
+		5AC2B6FD1DB62BD200BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/OpenChannelListViewController.xib; sourceTree = "<group>"; };
 		5AC2B6FF1DB62C0D00BA4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ParticipantListViewController.xib; sourceTree = "<group>"; };
-		5AC2B7021DB62C0E00BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ParticipantListViewController.strings; sourceTree = "<group>"; };
+		5AC2B7021DB62C0E00BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ParticipantListViewController.xib; sourceTree = "<group>"; };
 		5AC2B7041DB62C2600BA4BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/BlockedUserListViewController.xib; sourceTree = "<group>"; };
-		5AC2B7071DB62C2700BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/BlockedUserListViewController.strings; sourceTree = "<group>"; };
+		5AC2B7071DB62C2700BA4BC7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/BlockedUserListViewController.xib; sourceTree = "<group>"; };
 		5AD94B941DAB1E1D00A6CD66 /* GroupChannelListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChannelListTableViewCell.swift; sourceTree = "<group>"; };
 		5AD94B961DAB21E400A6CD66 /* MemberListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberListTableViewCell.swift; sourceTree = "<group>"; };
 		5AD94B981DAB305700A6CD66 /* SelectedUserListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedUserListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -148,11 +235,11 @@
 		5AD94BC91DB0B6F200A6CD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5AD94BE31DB4A8D800A6CD66 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5AD94C271DB5F6B500A6CD66 /* SendBird-iOS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "SendBird-iOS.bundle"; sourceTree = "<group>"; };
-		5AD94C291DB5F6DF00A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5AD94C2A1DB5F6E000A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		5AD94C291DB5F6DF00A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5AD94C2A1DB5F6E000A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5AD94C2B1DB5F74A00A6CD66 /* Bundle+SendBird.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+SendBird.swift"; sourceTree = "<group>"; };
 		5AD94C2E1DB5F97600A6CD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ChattingView.xib; sourceTree = "<group>"; };
-		5AD94C311DB5F97800A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ChattingView.strings; sourceTree = "<group>"; };
+		5AD94C311DB5F97800A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ChattingView.xib; sourceTree = "<group>"; };
 		5ADEF8151DAA616A000AABF9 /* CreateGroupChannelUserListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGroupChannelUserListTableViewCell.xib; sourceTree = "<group>"; };
 		5ADEF8161DAA616A000AABF9 /* GroupChannelListEditableTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupChannelListEditableTableViewCell.xib; sourceTree = "<group>"; };
 		5ADEF8171DAA616A000AABF9 /* GroupChannelListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupChannelListTableViewCell.xib; sourceTree = "<group>"; };
@@ -164,12 +251,30 @@
 		8F3A2CB679067572774BDE5D /* Pods_SendBird_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SendBird_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96683C54D2DA7CFBF0C23471 /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		C879E57358A8287C34B477A5 /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		CE806EF41E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncomingVideoFileMessageTableViewCell.swift; path = ../../GroupChannel/ViewCell/IncomingVideoFileMessageTableViewCell.swift; sourceTree = "<group>"; };
-		CE806EF51E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IncomingVideoFileMessageTableViewCell.xib; path = ../../GroupChannel/ViewCell/IncomingVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
-		CE806EF81E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutgoingVideoFileMessageTableViewCell.swift; path = ../../GroupChannel/ViewCell/OutgoingVideoFileMessageTableViewCell.swift; sourceTree = "<group>"; };
-		CE806EF91E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OutgoingVideoFileMessageTableViewCell.xib; path = ../../GroupChannel/ViewCell/OutgoingVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		CE806EF41E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingVideoFileMessageTableViewCell.swift; sourceTree = "<group>"; };
+		CE806EF51E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		CE806EF81E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingVideoFileMessageTableViewCell.swift; sourceTree = "<group>"; };
+		CE806EF91E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E212EC7E1EFC8B6800FDED1D /* SendBird-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SendBird-iOS.entitlements"; sourceTree = "<group>"; };
+		E2217E381EF893A000AEE668 /* CommonCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CommonCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2217E3B1EF893A000AEE668 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2217E491EF8974F00AEE668 /* CommonCrypto.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CommonCrypto.xcconfig; sourceTree = SOURCE_ROOT; };
+		E2217E4A1EF897A800AEE668 /* iphoneos.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = iphoneos.modulemap; sourceTree = "<group>"; };
+		E2217E4B1EF897BA00AEE668 /* iphonesimulator.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = iphonesimulator.modulemap; sourceTree = "<group>"; };
+		E2217E4C1EF897C900AEE668 /* macosx.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = macosx.modulemap; sourceTree = "<group>"; };
+		E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HTMLKit.xcodeproj; path = HTMLKit/HTMLKit.xcodeproj; sourceTree = "<group>"; };
+		E2332F851EFB186700E0738B /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		E2332F861EFB186700E0738B /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
+		E23EC4D41EF35F86008487BB /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingGeneralUrlPreviewTempMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E23EC4D51EF35F86008487BB /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E243837E1EF094860066559A /* OutgoingGeneralUrlPreviewMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingGeneralUrlPreviewMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E243837F1EF094860066559A /* OutgoingGeneralUrlPreviewMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingGeneralUrlPreviewMessageTableViewCell.xib; sourceTree = "<group>"; };
 		E25E5A761E735BC8003E1E9B /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		E25E5A9A1E7A046D003E1E9B /* ChatImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatImage.swift; sourceTree = "<group>"; };
+		E29019991EE76E4B00DA8AB8 /* OutgoingGeneralUrlPreviewTempModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingGeneralUrlPreviewTempModel.swift; sourceTree = "<group>"; };
+		E290199B1EE77A6F00DA8AB8 /* IncomingGeneralUrlPreviewMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingGeneralUrlPreviewMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E290199C1EE77A6F00DA8AB8 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingGeneralUrlPreviewMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E290199F1EE8979C00DA8AB8 /* FLAnimatedImageView+ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FLAnimatedImageView+ImageCache.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +284,14 @@
 			files = (
 				E25E5A771E735BC8003E1E9B /* Photos.framework in Frameworks */,
 				8F4B9B4CF66474515B5345D2 /* Pods_SendBird_iOS.framework in Frameworks */,
+				E2217E4D1EF89A1700AEE668 /* CommonCrypto.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2217E341EF893A000AEE668 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,11 +301,14 @@
 		5ABA0B741DA6010A000C82DC = {
 			isa = PBXGroup;
 			children = (
-				5AD94C271DB5F6B500A6CD66 /* SendBird-iOS.bundle */,
+				E2217E391EF893A000AEE668 /* CommonCrypto */,
 				87F030833FB4898AD40CBE66 /* Frameworks */,
 				B7DFF76D457E2AA72C07058C /* Pods */,
 				5ABA0B7E1DA6010A000C82DC /* Products */,
 				5ABA0B7F1DA6010A000C82DC /* SendBird-iOS */,
+				E2217E491EF8974F00AEE668 /* CommonCrypto.xcconfig */,
+				E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */,
+				5AD94C271DB5F6B500A6CD66 /* SendBird-iOS.bundle */,
 			);
 			sourceTree = "<group>";
 		};
@@ -200,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				5ABA0B7D1DA6010A000C82DC /* SendBird-iOS.app */,
+				E2217E381EF893A000AEE668 /* CommonCrypto.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,13 +324,15 @@
 		5ABA0B7F1DA6010A000C82DC /* SendBird-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				E25E5A991E7A03F3003E1E9B /* ImageViewer */,
+				E212EC7E1EFC8B6800FDED1D /* SendBird-iOS.entitlements */,
 				5ABA0B921DA6020A000C82DC /* Chatting */,
 				5ABA0B941DA6021D000C82DC /* Common */,
 				5ABA0B951DA60228000C82DC /* GroupChannel */,
+				E25E5A991E7A03F3003E1E9B /* ImageViewer */,
 				5ABA0B971DA60236000C82DC /* Menu */,
 				5ABA0B981DA6023C000C82DC /* OpenChannel */,
 				5ABA0B9A1DA6024C000C82DC /* ReusableViewFromXib */,
+				E2332F841EFB183300E0738B /* UserProfile */,
 				5ABA0B801DA6010A000C82DC /* AppDelegate.swift */,
 				5ABA0B871DA6010A000C82DC /* Assets.xcassets */,
 				5ABA0B8C1DA6010A000C82DC /* Info.plist */,
@@ -227,6 +346,7 @@
 		5ABA0B921DA6020A000C82DC /* Chatting */ = {
 			isa = PBXGroup;
 			children = (
+				E29019981EE76E2600DA8AB8 /* Model */,
 				5ABA0B931DA60212000C82DC /* ViewCell */,
 				5ABA0BD71DA76FFD000C82DC /* ChattingView.swift */,
 				5AD94C2F1DB5F97600A6CD66 /* ChattingView.xib */,
@@ -239,21 +359,27 @@
 			children = (
 				5ABA0BAF1DA6050B000C82DC /* IncomingFileMessageTableViewCell.swift */,
 				5ABA0BB91DA62094000C82DC /* IncomingFileMessageTableViewCell.xib */,
+				E290199B1EE77A6F00DA8AB8 /* IncomingGeneralUrlPreviewMessageTableViewCell.swift */,
+				E290199C1EE77A6F00DA8AB8 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib */,
 				5ABA0BC71DA6455D000C82DC /* IncomingImageFileMessageTableViewCell.swift */,
 				5ABA0BBA1DA62094000C82DC /* IncomingImageFileMessageTableViewCell.xib */,
 				5ABA0BCB1DA65240000C82DC /* IncomingUserMessageTableViewCell.swift */,
 				5ABA0BBB1DA62094000C82DC /* IncomingUserMessageTableViewCell.xib */,
+				CE806EF41E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift */,
+				CE806EF51E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib */,
+				5ABA0BB11DA60559000C82DC /* MessageDelegate.swift */,
 				5ABA0BCD1DA7277A000C82DC /* NeutralMessageTableViewCell.swift */,
 				5ABA0BBC1DA62094000C82DC /* NeutralMessageTableViewCell.xib */,
 				5ABA0BCF1DA7469F000C82DC /* OutgoingFileMessageTableViewCell.swift */,
 				5ABA0BBD1DA62094000C82DC /* OutgoingFileMessageTableViewCell.xib */,
+				E243837E1EF094860066559A /* OutgoingGeneralUrlPreviewMessageTableViewCell.swift */,
+				E243837F1EF094860066559A /* OutgoingGeneralUrlPreviewMessageTableViewCell.xib */,
+				E23EC4D41EF35F86008487BB /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.swift */,
+				E23EC4D51EF35F86008487BB /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib */,
 				5ABA0BD11DA74F5C000C82DC /* OutgoingImageFileMessageTableViewCell.swift */,
 				5ABA0BBE1DA62094000C82DC /* OutgoingImageFileMessageTableViewCell.xib */,
 				5ABA0BD31DA75357000C82DC /* OutgoingUserMessageTableViewCell.swift */,
 				5ABA0BBF1DA62094000C82DC /* OutgoingUserMessageTableViewCell.xib */,
-				5ABA0BB11DA60559000C82DC /* MessageDelegate.swift */,
-				CE806EF41E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift */,
-				CE806EF51E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib */,
 				CE806EF81E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift */,
 				CE806EF91E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib */,
 			);
@@ -263,9 +389,10 @@
 		5ABA0B941DA6021D000C82DC /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				5ABA0BC91DA64707000C82DC /* Utils.swift */,
-				5AD94BE31DB4A8D800A6CD66 /* Constants.swift */,
 				5AD94C2B1DB5F74A00A6CD66 /* Bundle+SendBird.swift */,
+				5AD94BE31DB4A8D800A6CD66 /* Constants.swift */,
+				E290199F1EE8979C00DA8AB8 /* FLAnimatedImageView+ImageCache.swift */,
+				5ABA0BC91DA64707000C82DC /* Utils.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -278,10 +405,10 @@
 				5AC2B6DD1DB6108300BA4BC7 /* CreateGroupChannelSelectOptionViewController.xib */,
 				5AD94B9C1DAB42D000A6CD66 /* CreateGroupChannelUserListViewController.swift */,
 				5AC2B6E21DB6110100BA4BC7 /* CreateGroupChannelUserListViewController.xib */,
-				5AD94B9E1DAB68B700A6CD66 /* GroupChannelListViewController.swift */,
-				5AC2B6E71DB6168100BA4BC7 /* GroupChannelListViewController.xib */,
 				5AD94BA01DAB878600A6CD66 /* GroupChannelChattingViewController.swift */,
 				5ADEF8211DAA617D000AABF9 /* GroupChannelChattingViewController.xib */,
+				5AD94B9E1DAB68B700A6CD66 /* GroupChannelListViewController.swift */,
+				5AC2B6E71DB6168100BA4BC7 /* GroupChannelListViewController.xib */,
 				5AD94BA21DAF1A3A00A6CD66 /* MemberListViewController.swift */,
 				5AC2B6EC1DB61C1500BA4BC7 /* MemberListViewController.xib */,
 			);
@@ -371,15 +498,67 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E2217E391EF893A000AEE668 /* CommonCrypto */ = {
+			isa = PBXGroup;
+			children = (
+				E2217E3B1EF893A000AEE668 /* Info.plist */,
+				E2217E4A1EF897A800AEE668 /* iphoneos.modulemap */,
+				E2217E4B1EF897BA00AEE668 /* iphonesimulator.modulemap */,
+				E2217E4C1EF897C900AEE668 /* macosx.modulemap */,
+			);
+			path = CommonCrypto;
+			sourceTree = "<group>";
+		};
+		E2332F6C1EF9D45F00E0738B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E2332F761EF9D46000E0738B /* HTMLKit.framework */,
+				E2332F781EF9D46000E0738B /* HTMLKitTests-macOS.xctest */,
+				E2332F7A1EF9D46000E0738B /* HTMLKit.framework */,
+				E2332F7C1EF9D46000E0738B /* HTMLKitTests-iOS.xctest */,
+				E2332F7E1EF9D46000E0738B /* HTMLKit.framework */,
+				E2332F801EF9D46000E0738B /* HTMLKit-tvOSTests.xctest */,
+				E2332F821EF9D46000E0738B /* HTMLKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E2332F841EFB183300E0738B /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				E2332F851EFB186700E0738B /* UserProfileViewController.swift */,
+				E2332F861EFB186700E0738B /* UserProfileViewController.xib */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
 		E25E5A991E7A03F3003E1E9B /* ImageViewer */ = {
 			isa = PBXGroup;
 			children = (
 				E25E5A9A1E7A046D003E1E9B /* ChatImage.swift */,
 			);
-			name = ImageViewer;
+			path = ImageViewer;
+			sourceTree = "<group>";
+		};
+		E29019981EE76E2600DA8AB8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E29019991EE76E4B00DA8AB8 /* OutgoingGeneralUrlPreviewTempModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E2217E351EF893A000AEE668 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		5ABA0B7C1DA6010A000C82DC /* SendBird-iOS */ = {
@@ -392,15 +571,35 @@
 				5ABA0B7B1DA6010A000C82DC /* Resources */,
 				8C1E0916356E7246F394074F /* [CP] Embed Pods Frameworks */,
 				88618BF479B07A50BF60BDBE /* [CP] Copy Pods Resources */,
+				E2217E441EF893A000AEE668 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E2217E3E1EF893A000AEE668 /* PBXTargetDependency */,
 			);
 			name = "SendBird-iOS";
 			productName = "SendBird-iOS";
 			productReference = 5ABA0B7D1DA6010A000C82DC /* SendBird-iOS.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E2217E371EF893A000AEE668 /* CommonCrypto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2217E431EF893A000AEE668 /* Build configuration list for PBXNativeTarget "CommonCrypto" */;
+			buildPhases = (
+				E2217E331EF893A000AEE668 /* Sources */,
+				E2217E341EF893A000AEE668 /* Frameworks */,
+				E2217E351EF893A000AEE668 /* Headers */,
+				E2217E361EF893A000AEE668 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CommonCrypto;
+			productName = CommonCrypto;
+			productReference = E2217E381EF893A000AEE668 /* CommonCrypto.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -414,6 +613,16 @@
 				TargetAttributes = {
 					5ABA0B7C1DA6010A000C82DC = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 8K8M9F9X95;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					E2217E371EF893A000AEE668 = {
+						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 8K8M9F9X95;
 						ProvisioningStyle = Automatic;
 					};
@@ -431,12 +640,71 @@
 			mainGroup = 5ABA0B741DA6010A000C82DC;
 			productRefGroup = 5ABA0B7E1DA6010A000C82DC /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E2332F6C1EF9D45F00E0738B /* Products */;
+					ProjectRef = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				5ABA0B7C1DA6010A000C82DC /* SendBird-iOS */,
+				E2217E371EF893A000AEE668 /* CommonCrypto */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E2332F761EF9D46000E0738B /* HTMLKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = HTMLKit.framework;
+			remoteRef = E2332F751EF9D46000E0738B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E2332F781EF9D46000E0738B /* HTMLKitTests-macOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "HTMLKitTests-macOS.xctest";
+			remoteRef = E2332F771EF9D46000E0738B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E2332F7A1EF9D46000E0738B /* HTMLKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = HTMLKit.framework;
+			remoteRef = E2332F791EF9D46000E0738B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E2332F7C1EF9D46000E0738B /* HTMLKitTests-iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "HTMLKitTests-iOS.xctest";
+			remoteRef = E2332F7B1EF9D46000E0738B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E2332F7E1EF9D46000E0738B /* HTMLKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = HTMLKit.framework;
+			remoteRef = E2332F7D1EF9D46000E0738B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E2332F801EF9D46000E0738B /* HTMLKit-tvOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "HTMLKit-tvOSTests.xctest";
+			remoteRef = E2332F7F1EF9D46000E0738B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E2332F821EF9D46000E0738B /* HTMLKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = HTMLKit.framework;
+			remoteRef = E2332F811EF9D46000E0738B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5ABA0B7B1DA6010A000C82DC /* Resources */ = {
@@ -446,6 +714,7 @@
 				5AC2B6DB1DB6108300BA4BC7 /* CreateGroupChannelSelectOptionViewController.xib in Resources */,
 				5ABA0B8B1DA6010A000C82DC /* LaunchScreen.storyboard in Resources */,
 				CE806EFB1E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib in Resources */,
+				E23EC4D71EF35F86008487BB /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib in Resources */,
 				5ABA0BC21DA62094000C82DC /* IncomingUserMessageTableViewCell.xib in Resources */,
 				5ADEF81E1DAA616A000AABF9 /* SelectedUserListCollectionViewCell.xib in Resources */,
 				5AC2B6E51DB6168100BA4BC7 /* GroupChannelListViewController.xib in Resources */,
@@ -466,7 +735,9 @@
 				5AC2B6EA1DB61C1500BA4BC7 /* MemberListViewController.xib in Resources */,
 				5ADEF81B1DAA616A000AABF9 /* GroupChannelListEditableTableViewCell.xib in Resources */,
 				5ABA0B881DA6010A000C82DC /* Assets.xcassets in Resources */,
+				E2332F881EFB186700E0738B /* UserProfileViewController.xib in Resources */,
 				5AD94BAF1DAF21EF00A6CD66 /* OpenChannelChattingViewController.xib in Resources */,
+				E24383811EF094860066559A /* OutgoingGeneralUrlPreviewMessageTableViewCell.xib in Resources */,
 				5AC2B6F41DB6287100BA4BC7 /* CreateOpenChannelViewController.xib in Resources */,
 				5AC2B6FE1DB62C0D00BA4BC7 /* ParticipantListViewController.xib in Resources */,
 				5AD94C281DB5F6B500A6CD66 /* SendBird-iOS.bundle in Resources */,
@@ -474,8 +745,16 @@
 				5ABA0BC01DA62094000C82DC /* IncomingFileMessageTableViewCell.xib in Resources */,
 				5ADEF8261DAA617D000AABF9 /* GroupChannelChattingViewController.xib in Resources */,
 				5AD94BB51DAF220100A6CD66 /* BlockedUserListTableViewCell.xib in Resources */,
+				E290199E1EE77A6F00DA8AB8 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib in Resources */,
 				5AD94BCA1DB0B6F200A6CD66 /* Main.storyboard in Resources */,
 				5ABA0BC11DA62094000C82DC /* IncomingImageFileMessageTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2217E361EF893A000AEE668 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,7 +803,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -535,6 +814,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E25E5A9B1E7A046D003E1E9B /* ChatImage.swift in Sources */,
+				E290199D1EE77A6F00DA8AB8 /* IncomingGeneralUrlPreviewMessageTableViewCell.swift in Sources */,
 				5ADEF82A1DAA663C000AABF9 /* CreateGroupChannelUserListTableViewCell.swift in Sources */,
 				5ABA0BB21DA60559000C82DC /* MessageDelegate.swift in Sources */,
 				5ABA0B831DA6010A000C82DC /* ViewController.swift in Sources */,
@@ -547,17 +827,22 @@
 				5ABA0BC81DA6455D000C82DC /* IncomingImageFileMessageTableViewCell.swift in Sources */,
 				5AD94B9B1DAB312200A6CD66 /* CreateGroupChannelSelectOptionViewController.swift in Sources */,
 				5ABA0B811DA6010A000C82DC /* AppDelegate.swift in Sources */,
+				E290199A1EE76E4B00DA8AB8 /* OutgoingGeneralUrlPreviewTempModel.swift in Sources */,
+				E2332F871EFB186700E0738B /* UserProfileViewController.swift in Sources */,
 				5AD94BC71DAF780200A6CD66 /* BlockedUserListViewController.swift in Sources */,
 				5ADEF82C1DAA67C5000AABF9 /* GroupChannelListEditableTableViewCell.swift in Sources */,
 				5AD94BC11DAF598B00A6CD66 /* OpenChannelChattingViewController.swift in Sources */,
 				5AD94BBD1DAF557A00A6CD66 /* BlockedUserListTableViewCell.swift in Sources */,
+				E23EC4D61EF35F86008487BB /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.swift in Sources */,
 				5AD94B971DAB21E400A6CD66 /* MemberListTableViewCell.swift in Sources */,
+				E29019A01EE8979C00DA8AB8 /* FLAnimatedImageView+ImageCache.swift in Sources */,
 				5AD94BC31DAF5D0900A6CD66 /* OpenChannelListViewController.swift in Sources */,
 				5ABA0BD81DA76FFD000C82DC /* ChattingView.swift in Sources */,
 				5AD94B991DAB305700A6CD66 /* SelectedUserListCollectionViewCell.swift in Sources */,
 				5ABA0BD21DA74F5C000C82DC /* OutgoingImageFileMessageTableViewCell.swift in Sources */,
 				CE806EF61E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift in Sources */,
 				5ABA0BCE1DA7277A000C82DC /* NeutralMessageTableViewCell.swift in Sources */,
+				E24383801EF094860066559A /* OutgoingGeneralUrlPreviewMessageTableViewCell.swift in Sources */,
 				5AD94B951DAB1E1D00A6CD66 /* GroupChannelListTableViewCell.swift in Sources */,
 				5AD94BE41DB4A8D800A6CD66 /* Constants.swift in Sources */,
 				5ABA0BD01DA7469F000C82DC /* OutgoingFileMessageTableViewCell.swift in Sources */,
@@ -574,7 +859,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E2217E331EF893A000AEE668 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E2217E3E1EF893A000AEE668 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E2217E371EF893A000AEE668 /* CommonCrypto */;
+			targetProxy = E2217E3D1EF893A000AEE668 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5ABA0B891DA6010A000C82DC /* LaunchScreen.storyboard */ = {
@@ -594,6 +894,7 @@
 				5AC2B6DF1DB6108C00BA4BC7 /* ko */,
 			);
 			name = CreateGroupChannelSelectOptionViewController.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 		5AC2B6E21DB6110100BA4BC7 /* CreateGroupChannelUserListViewController.xib */ = {
@@ -603,6 +904,7 @@
 				5AC2B6E41DB6110500BA4BC7 /* ko */,
 			);
 			name = CreateGroupChannelUserListViewController.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 		5AC2B6E71DB6168100BA4BC7 /* GroupChannelListViewController.xib */ = {
@@ -612,6 +914,7 @@
 				5A74B8EF1DC0D11D00EBA0F5 /* ko */,
 			);
 			name = GroupChannelListViewController.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 		5AC2B6EC1DB61C1500BA4BC7 /* MemberListViewController.xib */ = {
@@ -621,6 +924,7 @@
 				5AC2B6EE1DB61C1D00BA4BC7 /* ko */,
 			);
 			name = MemberListViewController.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 		5AC2B6F11DB61C3300BA4BC7 /* MenuViewController.xib */ = {
@@ -630,6 +934,7 @@
 				5AC2B6F31DB61C3600BA4BC7 /* ko */,
 			);
 			name = MenuViewController.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 		5AC2B6F61DB6287100BA4BC7 /* CreateOpenChannelViewController.xib */ = {
@@ -639,6 +944,7 @@
 				5AC2B6F81DB6287500BA4BC7 /* ko */,
 			);
 			name = CreateOpenChannelViewController.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 		5AC2B6FB1DB62BD000BA4BC7 /* OpenChannelListViewController.xib */ = {
@@ -648,6 +954,7 @@
 				5AC2B6FD1DB62BD200BA4BC7 /* ko */,
 			);
 			name = OpenChannelListViewController.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 		5AC2B7001DB62C0D00BA4BC7 /* ParticipantListViewController.xib */ = {
@@ -657,6 +964,7 @@
 				5AC2B7021DB62C0E00BA4BC7 /* ko */,
 			);
 			name = ParticipantListViewController.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 		5AC2B7051DB62C2600BA4BC7 /* BlockedUserListViewController.xib */ = {
@@ -666,6 +974,7 @@
 				5AC2B7071DB62C2700BA4BC7 /* ko */,
 			);
 			name = BlockedUserListViewController.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 		5AD94BC81DB0B6F200A6CD66 /* Main.storyboard */ = {
@@ -675,6 +984,7 @@
 				5AD94C2A1DB5F6E000A6CD66 /* ko */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		5AD94C2F1DB5F97600A6CD66 /* ChattingView.xib */ = {
@@ -684,6 +994,7 @@
 				5AD94C311DB5F97800A6CD66 /* ko */,
 			);
 			name = ChattingView.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -692,6 +1003,7 @@
 		5ABA0B8D1DA6010A000C82DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -745,6 +1057,7 @@
 		5ABA0B8E1DA6010A000C82DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -792,8 +1105,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C879E57358A8287C34B477A5 /* Pods-SendBird-iOS.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "SendBird-iOS/SendBird-iOS.entitlements";
 				DEVELOPMENT_TEAM = 8K8M9F9X95;
 				INFOPLIST_FILE = "SendBird-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -808,8 +1122,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 96683C54D2DA7CFBF0C23471 /* Pods-SendBird-iOS.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "SendBird-iOS/SendBird-iOS.entitlements";
 				DEVELOPMENT_TEAM = 8K8M9F9X95;
 				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = "SendBird-iOS/Info.plist";
@@ -819,6 +1134,54 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		E2217E411EF893A000AEE668 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2217E491EF8974F00AEE668 /* CommonCrypto.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8K8M9F9X95;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CommonCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = SendBird.CommonCrypto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E2217E421EF893A000AEE668 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2217E491EF8974F00AEE668 /* CommonCrypto.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8K8M9F9X95;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CommonCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = SendBird.CommonCrypto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -839,6 +1202,15 @@
 			buildConfigurations = (
 				5ABA0B901DA6010A000C82DC /* Debug */,
 				5ABA0B911DA6010A000C82DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2217E431EF893A000AEE668 /* Build configuration list for PBXNativeTarget "CommonCrypto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2217E411EF893A000AEE668 /* Debug */,
+				E2217E421EF893A000AEE668 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

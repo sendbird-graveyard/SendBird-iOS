@@ -5,6 +5,9 @@
       location = "group:SendBird-iOS.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:HTMLKit/HTMLKit.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

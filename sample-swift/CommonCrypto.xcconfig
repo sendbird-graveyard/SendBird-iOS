@@ -1,0 +1,11 @@
+//
+//  CommonCrypto.xcconfig
+//  SendBird-iOS
+//
+//  Created by Jed Gyeong on 6/19/17.
+//  Copyright © 2017 SendBird. All rights reserved.
+//
+
+MODULEMAP_FILE[sdk=iphoneos*] = $(SRCROOT)/CommonCrypto/iphoneos.modulemap
+MODULEMAP_FILE[sdk=iphonesimulator*] = $(SRCROOT)/CommonCrypto/iphonesimulator.modulemap
+MODULEMAP_FILE[sdk=macosx*] = $(SRCROOT)/CommonCrypto/macosx.modulemap

@@ -70,9 +70,17 @@ class ViewController: UITableViewController, UITextFieldDelegate {
         
         self.userIdTextField.addTarget(self, action: #selector(userIdTextFieldDidChange(sender:)), for: UIControlEvents.editingChanged)
         self.nicknameTextField.addTarget(self, action: #selector(nicknameTextFieldDidChange(sender:)), for: UIControlEvents.editingChanged)
+        
+        if userId != nil && (userId?.characters.count)! > 0 && userNickname != nil && (userNickname?.characters.count)! > 0 {
+            self.connect()
+        }
     }
 
     @IBAction func clickConnectButton(_ sender: AnyObject) {
+        self.connect()
+    }
+    
+    func connect() {
         let trimmedUserId: String = (self.userIdTextField.text?.trimmingCharacters(in: NSCharacterSet.whitespaces))!
         let trimmedNickname: String = (self.nicknameTextField.text?.trimmingCharacters(in: NSCharacterSet.whitespaces))!
         if trimmedUserId.characters.count > 0 && trimmedNickname.characters.count > 0 {
@@ -80,6 +88,7 @@ class ViewController: UITableViewController, UITextFieldDelegate {
             self.nicknameTextField.isEnabled = false
             
             self.indicatorView.startAnimating()
+            
             SBDMain.connect(withUserId: trimmedUserId, completionHandler: { (user, error) in
                 if error != nil {
                     DispatchQueue.main.async {
@@ -131,7 +140,7 @@ class ViewController: UITableViewController, UITextFieldDelegate {
                             self.present(vc, animated: true, completion: nil)
                         }
                         
-                        SBDMain.disconnect(completionHandler: { 
+                        SBDMain.disconnect(completionHandler: {
                             
                         })
                         
