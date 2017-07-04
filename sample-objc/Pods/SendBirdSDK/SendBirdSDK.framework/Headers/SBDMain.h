@@ -454,6 +454,21 @@
  */
 + (void)getDoNotDisturbWithCompletionHandler:(nullable void (^)(BOOL isDoNotDisturbOn, int startHour, int startMin, int endHour, int endMin, NSString * _Nonnull timezone, SBDError * _Nullable error))completionHandler;
 
+/**
+ Sets push sound
+ 
+ @param sound Push sound
+ */
++ (void)setPushSound:(NSString * _Nonnull)sound completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+
+/**
+ Gets push shound
+
+ @param completionHandler The handler block to execute.
+ */
++ (void)getPushSoundWithCompletionHandler:(nullable void (^)(NSString * _Nullable sound, SBDError * _Nullable error))completionHandler;
+
 
 /**
  Sets a push template of the current user.
