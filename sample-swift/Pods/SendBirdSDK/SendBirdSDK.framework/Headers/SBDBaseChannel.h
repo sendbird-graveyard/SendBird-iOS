@@ -14,6 +14,7 @@
 #import "SBDAdminMessage.h"
 #import "SBDFileMessage.h"
 #import "SBDError.h"
+#import "SBDMember.h"
 
 @class SBDPreviousMessageListQuery;
 @class SBDThumbnailSize;
@@ -80,6 +81,26 @@
  *  @param sender The group channel where the typing status updated.
  */
 - (void)channelDidUpdateTypingStatus:(SBDGroupChannel * _Nonnull)sender;
+
+
+/**
+ A callback when users are invited by inviter.
+
+ @param sender The group channel where the invitation is occured.
+ @param inviter Inviter. It can be nil.
+ @param invitees Invitees.
+ */
+- (void)channel:(SBDGroupChannel * _Nonnull)sender didReceiveInvitation:(NSArray<SBDUser *> * _Nullable)invitees inviter:(SBDUser * _Nullable)inviter;
+
+
+/**
+ A callback when user declined the invitation.
+
+ @param sender The group channel where the invitation is occured.
+ @param invitee Inviter. It can be nil.
+ @param inviter Invitee.
+ */
+- (void)channel:(SBDGroupChannel * _Nonnull)sender didDeclineInvitation:(SBDUser * _Nonnull)invitee inviter:(SBDUser * _Nullable)inviter;
 
 /**
  *  A callback when new member joined to the group channel.
@@ -792,5 +813,28 @@
  @param completionHandler The handler block to execute. If the `result` is `YES`, then the uploading task of the `requestId` has been cancelled.
  */
 + (void)cancelUploadingFileMessageWithRequestId:(NSString * _Nonnull)requestId completionHandler:(nullable void (^)(BOOL result, SBDError * _Nullable error))completionHandler;
+
+
+/**
+ Copies a user message to the target channel.
+
+ @param message User message object.
+ @param targetChannel Target channel object.
+ @param completionHandler The handler block to execute. The `userMessage` is a user message which is returned from the SendBird server. The message has a message ID.
+ @return Returns the temporary user message with a request ID. It doesn't have a message ID.
+ */
+- (SBDUserMessage * _Nullable)copyUserMessage:(SBDUserMessage * _Nonnull)message toTargetChannel:(SBDBaseChannel * _Nonnull)targetChannel completionHandler:(nullable void (^)(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error))completionHandler;
+
+
+/**
+ Copies a file message to the target channel.
+
+ @param message File message object.
+ @param targetChannel Target channel object.
+ @param completionHandler The handler block to execute. The `fileMessage` is a user message which is returned from the SendBird server. The message has a message ID.
+ @return Returns the temporary file message with a request ID. It doesn't have a message ID.
+ */
+- (SBDFileMessage * _Nullable)copyFileMessage:(SBDFileMessage * _Nonnull)message toTargetChannel:(SBDBaseChannel * _Nonnull)targetChannel completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage,  SBDError * _Nullable error))completionHandler;
+
 
 @end

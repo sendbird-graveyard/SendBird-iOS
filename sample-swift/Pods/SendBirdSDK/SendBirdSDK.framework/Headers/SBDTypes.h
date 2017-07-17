@@ -164,4 +164,15 @@ typedef NS_ENUM(NSInteger, SBDMessageTypeFilter) {
     SBDMessageTypeFilterAdmin = 3,
 };
 
+typedef NS_ENUM(NSInteger, SBDMemberStateFilter) {
+    SBDMemberStateFilterAll = 0,
+    SBDMemberStateFilterJoinedOnly = 1,
+    SBDMemberStateFilterInvitedOnly = 2,
+};
+
+typedef NS_ENUM(NSInteger, SBDMemberState) {
+    SBDMemberStateJoined = 0,
+    SBDMemberStateInvited = 1,
+};
+
 #endif /* SBDTypes_h */

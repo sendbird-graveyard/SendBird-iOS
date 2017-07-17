@@ -10,8 +10,10 @@
 #import "SBDGroupChannelListQuery.h"
 #import "SBDBaseMessage.h"
 #import "SBDUser.h"
+#import "SBDMember.h"
 
 @class SBDUser;
+@class SBDMember;
 @class SBDGroupChannel;
 @class SBDGroupChannelListQuery;
 
@@ -48,7 +50,7 @@
 /**
  *  Channel <span>members</span>.
  */
-@property (strong, nonatomic, readonly, nullable) NSMutableArray<SBDUser *> *members;
+@property (strong, nonatomic, readonly, nullable) NSMutableArray<SBDMember *> *members;
 
 /**
  *  The number of <span>members</span>.
@@ -480,7 +482,7 @@
  *
  *  @return Members who read the message.
  */
-- (nullable NSArray<SBDUser *> *)getReadMembersWithMessage:(SBDBaseMessage * _Nonnull)message;
+- (nullable NSArray<SBDMember *> *)getReadMembersWithMessage:(SBDBaseMessage * _Nonnull)message;
 
 /**
  *  Returns the <span>members</span> who didn't read the message.
@@ -489,7 +491,7 @@
  *
  *  @return Members who don't read the message.
  */
-- (nullable NSArray<SBDUser *> *)getUnreadMemebersWithMessage:(SBDBaseMessage * _Nonnull)message;
+- (nullable NSArray<SBDMember *> *)getUnreadMemebersWithMessage:(SBDBaseMessage * _Nonnull)message;
 
 /**
  *  Returns the read status.
@@ -525,7 +527,7 @@
  *
  *  @return The <span>members</span> who are typing now.
  */
-- (nullable NSArray<SBDUser *> *)getTypingMembers;
+- (nullable NSArray<SBDMember *> *)getTypingMembers;
 
 /**
  *  Internal use only.
@@ -540,12 +542,12 @@
 /**
  *  Internal use only.
  */
-- (void)addMember:(SBDUser * _Nonnull)user;
+- (void)addMember:(SBDMember * _Nonnull)user;
 
 /**
  *  Internal use only.
  */
-- (void)removeMember:(SBDUser * _Nonnull)user;
+- (nullable SBDMember *)removeMember:(SBDMember * _Nonnull)user;
 
 /**
  *  Internal use only.
@@ -627,6 +629,22 @@
  @param userId User ID.
  @return `SBDUser` object as a member. If there is a member who has the `userId`, returns nil.
  */
-- (nullable SBDUser *)getMember:(NSString * _Nonnull)userId;
+- (nullable SBDMember *)getMember:(NSString * _Nonnull)userId;
+
+
+/**
+ Accpets the invitation.
+
+ @param completionHandler The handler block to execute.
+ */
+- (void)acceptInvitationWithCompletionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+
+/**
+ Declines the invitation.
+
+ @param completionHandler The handler block to execute.
+ */
+- (void)declineInvitationWithCompletionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 @end

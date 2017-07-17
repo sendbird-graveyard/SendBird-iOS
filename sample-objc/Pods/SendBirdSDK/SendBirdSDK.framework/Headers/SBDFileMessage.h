@@ -60,6 +60,11 @@
  */
 @property (nonatomic, readonly) CGSize realSize;
 
+/**
+ Internal use only.
+ */
+@property (atomic, readonly) BOOL requireAuth;
+
 
 /**
  Returns url
@@ -123,6 +128,11 @@
  Image thumbnails.
  */
 @property (strong, nonatomic, readonly, nullable) NSArray<SBDThumbnail *> *thumbnails;
+
+/**
+ Internal use only.
+ */
+@property (atomic, readonly) BOOL requireAuth;
 
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
 

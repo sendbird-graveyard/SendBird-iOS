@@ -36,6 +36,10 @@ typedef NS_ENUM(NSInteger, SBDChannelEventCategory) {
     SBDChannelEventCategoryChannelJoin = 10000,
     SBDChannelEventCategoryChannelLeave = 10001,
     
+    SBDChannelEventCategoryChannelInvite = 10020,
+//    SBDChannelEventCategoryChannelAcceptInvite = 10021,
+    SBDChannelEventCategoryChannelDeclineInvite = 10022,
+    
     SBDChannelEventCategoryChannelPropChanged = 11000,
     SBDChannelEventCategoryChannelDeleted = 12000,
 };

@@ -54,6 +54,12 @@
 @property (strong, nonatomic, nullable) NSString *customTypeFilter;
 
 /**
+ *  Sets the member state filter.
+ */
+@property (atomic) SBDMemberStateFilter memberStateFilter;
+
+
+/**
  *  Shows if the query is loading.
  *
  *  @return Returns YES if the query is loading, otherwise returns NO.

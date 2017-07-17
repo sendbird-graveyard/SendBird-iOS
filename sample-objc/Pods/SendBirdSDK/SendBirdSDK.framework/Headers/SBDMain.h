@@ -522,4 +522,21 @@
  */
 + (nullable NSString *)getCustomWsHost;
 
+
+/**
+ Sets group channel invitation preference for auto acceptance.
+
+ @param autoAccept If YES, the current user will accept the group channel invitation automatically.
+ @param completionHandler The handler block to execute.
+ */
++ (void)setChannelInvitationPreferenceAutoAccept:(BOOL)autoAccept completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+
+/**
+ Gets group channel inviation preference for auto acceptance.
+
+ @param completionHandler The handler block to execute.
+ */
++ (void)getChannelInvitationPreferenceAutoAcceptWithCompletionHandler:(nullable void (^)(BOOL autoAccept, SBDError * _Nullable error))completionHandler;
+
 @end
