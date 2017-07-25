@@ -58,6 +58,10 @@
  */
 @property (atomic) SBDMemberStateFilter memberStateFilter;
 
+/**
+ *  Sets <code>SBDGroupChannel</code> URLs filter. <code>SBDGroupChannel</code> list containing only and exactly the passed <code>SBDGroupChannel</code> URLs will be returned. This does not cooperate with other filters.
+ */
+@property (strong, nonatomic, nullable) NSArray<NSString *> *channelUrlsFilter;
 
 /**
  *  Shows if the query is loading.
