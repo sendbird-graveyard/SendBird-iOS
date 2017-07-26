@@ -10,6 +10,7 @@
 
 #import "Utils.h"
 #import "Constants.h"
+#import "NSString+URLEncode.h"
 
 @implementation Utils
 
@@ -124,7 +125,7 @@
         return;
     }
     
-    NSString *messageFileNamePrefix = [[self class] sha256:[NSString stringWithFormat:@"%@_%@", [SBDMain getCurrentUser].userId, channelUrl]];
+    NSString *messageFileNamePrefix = [[self class] sha256:[NSString stringWithFormat:@"%@_%@", [[SBDMain getCurrentUser].userId urlencoding], channelUrl]];
     NSString *messageDumpFileName = [NSString stringWithFormat:@"%@.data", messageFileNamePrefix];
     NSString *messageHashFileName = [NSString stringWithFormat:@"%@.hash", messageFileNamePrefix];
     
@@ -178,7 +179,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *appIdDirectory = [documentsDirectory stringByAppendingPathComponent:[SBDMain getApplicationId]];
-    NSString *messageFileNamePrefix = [[self class] sha256:[NSString stringWithFormat:@"%@_%@", [SBDMain getCurrentUser].userId, channelUrl]];
+    NSString *messageFileNamePrefix = [[self class] sha256:[NSString stringWithFormat:@"%@_%@", [[SBDMain getCurrentUser].userId urlencoding], channelUrl]];
     NSString *dumpFileName = [NSString stringWithFormat:@"%@.data", messageFileNamePrefix];
     NSString *dumpFilePath = [appIdDirectory stringByAppendingPathComponent:dumpFileName];
     
@@ -252,7 +253,7 @@
         return;
     }
     
-    NSString *channelFileNamePrefix = [NSString stringWithFormat:@"%@_channellist", [[self class] sha256:[SBDMain getCurrentUser].userId]];
+    NSString *channelFileNamePrefix = [NSString stringWithFormat:@"%@_channellist", [[self class] sha256:[[SBDMain getCurrentUser].userId urlencoding]]];
     NSString *channelDumpFileName = [NSString stringWithFormat:@"%@.data", channelFileNamePrefix];
     NSString *channelHashFileName = [NSString stringWithFormat:@"%@.hash", channelFileNamePrefix];
     
@@ -305,7 +306,8 @@
 + (nullable NSArray<SBDGroupChannel *> *)loadGroupChannels {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *channelFileNamePrefix = [NSString stringWithFormat:@"%@_channellist", [[self class] sha256:[SBDMain getCurrentUser].userId]];
+    NSLog(@"User ID: %@", [SBDMain getCurrentUser].userId);
+    NSString *channelFileNamePrefix = [NSString stringWithFormat:@"%@_channellist", [[self class] sha256:[[SBDMain getCurrentUser].userId urlencoding]]];
     NSString *dumpFileName = [NSString stringWithFormat:@"%@.data", channelFileNamePrefix];
     NSString *appIdDirectory = [documentsDirectory stringByAppendingPathComponent:[SBDMain getApplicationId]];
     NSString *dumpFilePath = [appIdDirectory stringByAppendingPathComponent:dumpFileName];

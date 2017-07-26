@@ -79,6 +79,7 @@
 		E218A68E1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E218A68C1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.m */; };
 		E218A68F1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E218A68D1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib */; };
 		E218A6931E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E218A6921E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.m */; };
+		E221A2E01F290CEB00767328 /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = E221A2DF1F290CEB00767328 /* NSString+URLEncode.m */; };
 		E23FFC571E6F7B4F007E2E2D /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E23FFC561E6F7B4F007E2E2D /* Photos.framework */; };
 		E25E5A8C1E78A262003E1E9B /* IncomingVideoFileMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E25E5A8A1E78A262003E1E9B /* IncomingVideoFileMessageTableViewCell.m */; };
 		E25E5A8D1E78A262003E1E9B /* IncomingVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25E5A8B1E78A262003E1E9B /* IncomingVideoFileMessageTableViewCell.xib */; };
@@ -235,6 +236,8 @@
 		E218A68D1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib; sourceTree = "<group>"; };
 		E218A6911E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingGeneralUrlPreviewTempModel.h; sourceTree = "<group>"; };
 		E218A6921E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutgoingGeneralUrlPreviewTempModel.m; sourceTree = "<group>"; };
+		E221A2DE1F290CEB00767328 /* NSString+URLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncode.h"; sourceTree = "<group>"; };
+		E221A2DF1F290CEB00767328 /* NSString+URLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncode.m"; sourceTree = "<group>"; };
 		E23FFC541E6F796D007E2E2D /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		E23FFC561E6F7B4F007E2E2D /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		E25E5A891E78A262003E1E9B /* IncomingVideoFileMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomingVideoFileMessageTableViewCell.h; sourceTree = "<group>"; };
@@ -403,6 +406,8 @@
 				5AD94BEA1DB5BCEE00A6CD66 /* NSBundle+SendBird.m */,
 				5ADA68ED1D928E0F00EFDF2B /* Utils.h */,
 				5ADA68EE1D928E0F00EFDF2B /* Utils.m */,
+				E221A2DE1F290CEB00767328 /* NSString+URLEncode.h */,
+				E221A2DF1F290CEB00767328 /* NSString+URLEncode.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -727,6 +732,7 @@
 				E2A8E63E1E5CEB6B0016BA63 /* GroupChannelChattingViewController.m in Sources */,
 				5ADA68DC1D92573C00EFDF2B /* IncomingUserMessageTableViewCell.m in Sources */,
 				E26802711E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.m in Sources */,
+				E221A2E01F290CEB00767328 /* NSString+URLEncode.m in Sources */,
 				5ADA68D01D92032600EFDF2B /* SelectedUserListCollectionViewCell.m in Sources */,
 				5AD94BE21DB4A8C900A6CD66 /* Constants.m in Sources */,
 				5AC3A0801D97BEF100244336 /* CreateGroupChannelSelectOptionViewController.m in Sources */,

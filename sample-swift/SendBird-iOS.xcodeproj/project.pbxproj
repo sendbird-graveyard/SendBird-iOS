@@ -79,6 +79,7 @@
 		CE806EFB1E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806EF91E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib */; };
 		E2217E401EF893A000AEE668 /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2217E381EF893A000AEE668 /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2217E4D1EF89A1700AEE668 /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2217E381EF893A000AEE668 /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E221A2E31F29192500767328 /* String+SendBird.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221A2E21F29192500767328 /* String+SendBird.swift */; };
 		E2332F831EF9D46F00E0738B /* HTMLKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2332F761EF9D46000E0738B /* HTMLKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2332F871EFB186700E0738B /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2332F851EFB186700E0738B /* UserProfileViewController.swift */; };
 		E2332F881EFB186700E0738B /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2332F861EFB186700E0738B /* UserProfileViewController.xib */; };
@@ -262,6 +263,7 @@
 		E2217E4A1EF897A800AEE668 /* iphoneos.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = iphoneos.modulemap; sourceTree = "<group>"; };
 		E2217E4B1EF897BA00AEE668 /* iphonesimulator.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = iphonesimulator.modulemap; sourceTree = "<group>"; };
 		E2217E4C1EF897C900AEE668 /* macosx.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = macosx.modulemap; sourceTree = "<group>"; };
+		E221A2E21F29192500767328 /* String+SendBird.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SendBird.swift"; sourceTree = "<group>"; };
 		E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HTMLKit.xcodeproj; path = HTMLKit/HTMLKit.xcodeproj; sourceTree = "<group>"; };
 		E2332F851EFB186700E0738B /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		E2332F861EFB186700E0738B /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 				5AD94BE31DB4A8D800A6CD66 /* Constants.swift */,
 				E290199F1EE8979C00DA8AB8 /* FLAnimatedImageView+ImageCache.swift */,
 				5ABA0BC91DA64707000C82DC /* Utils.swift */,
+				E221A2E21F29192500767328 /* String+SendBird.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -842,6 +845,7 @@
 				5ABA0BD21DA74F5C000C82DC /* OutgoingImageFileMessageTableViewCell.swift in Sources */,
 				CE806EF61E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift in Sources */,
 				5ABA0BCE1DA7277A000C82DC /* NeutralMessageTableViewCell.swift in Sources */,
+				E221A2E31F29192500767328 /* String+SendBird.swift in Sources */,
 				E24383801EF094860066559A /* OutgoingGeneralUrlPreviewMessageTableViewCell.swift in Sources */,
 				5AD94B951DAB1E1D00A6CD66 /* GroupChannelListTableViewCell.swift in Sources */,
 				5AD94BE41DB4A8D800A6CD66 /* Constants.swift in Sources */,

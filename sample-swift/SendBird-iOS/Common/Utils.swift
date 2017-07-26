@@ -123,7 +123,7 @@ class Utils: NSObject {
             }
         }
         
-        let messageFileNamePrefix = Utils.sha256(string: String(format: "%@_%@", (SBDMain.getCurrentUser()?.userId)!, channelUrl))
+        let messageFileNamePrefix = Utils.sha256(string: String(format: "%@_%@", (SBDMain.getCurrentUser()?.userId.urlencoding())!, channelUrl))
         let messageDumpFileName = String(format: "%@.data", messageFileNamePrefix!)
         let messageHashFileName = String(format: "%@.hash", messageFileNamePrefix!)
         
@@ -189,7 +189,7 @@ class Utils: NSObject {
         let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         let documentsDirectory = paths[0] as NSString
         let appIdDirectory = documentsDirectory.appendingPathComponent(SBDMain.getApplicationId()!) as NSString
-        let messageFileNamePrefix = Utils.sha256(string: String(format: "%@_%@", (SBDMain.getCurrentUser()?.userId)!, channelUrl))! as NSString
+        let messageFileNamePrefix = Utils.sha256(string: String(format: "%@_%@", (SBDMain.getCurrentUser()?.userId.urlencoding())!, channelUrl))! as NSString
         let dumpFileName = String(format: "%@.data", messageFileNamePrefix) as NSString
         let dumpFilePath = appIdDirectory.appendingPathComponent(dumpFileName as String)
         
@@ -266,7 +266,7 @@ class Utils: NSObject {
             }
         }
         
-        let channelFileNamePrefix = Utils.sha256(string: String(format: "%@_channellist", (SBDMain.getCurrentUser()?.userId)!))
+        let channelFileNamePrefix = Utils.sha256(string: String(format: "%@_channellist", (SBDMain.getCurrentUser()?.userId.urlencoding())!))
         let channelDumpFileName = String(format: "%@.data", channelFileNamePrefix!)
         let channelHashFileName = String(format: "%@.hash", channelFileNamePrefix!)
         
@@ -325,7 +325,7 @@ class Utils: NSObject {
     static func loadGroupChannels() -> [SBDGroupChannel] {
         let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
         let documentsDirectory = paths[0] as NSString
-        let messageFileNamePrefix = Utils.sha256(string: String(format: "%@_channellist", (SBDMain.getCurrentUser()?.userId)!))! as NSString
+        let messageFileNamePrefix = Utils.sha256(string: String(format: "%@_channellist", (SBDMain.getCurrentUser()?.userId.urlencoding())!))! as NSString
         let dumpFileName = String(format: "%@.data", messageFileNamePrefix) as NSString
         let appIdDirectory = documentsDirectory.appendingPathComponent(SBDMain.getApplicationId()!) as NSString
         let dumpFilePath = appIdDirectory.appendingPathComponent(dumpFileName as String)
