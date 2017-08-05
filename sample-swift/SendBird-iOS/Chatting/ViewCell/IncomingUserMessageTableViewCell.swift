@@ -205,7 +205,7 @@ class IncomingUserMessageTableViewCell: UITableViewCell, TTTAttributedLabelDeleg
     
     func buildMessage() -> NSAttributedString {
         var nicknameAttribute: [String:AnyObject]?
-        switch (self.message.sender?.nickname?.characters.count)! % 5 {
+        switch (self.message.sender?.nickname?.utf8.count)! % 5 {
         case 0:
             nicknameAttribute = [
                 NSFontAttributeName: Constants.nicknameFontInMessage(),
@@ -255,12 +255,12 @@ class IncomingUserMessageTableViewCell: UITableViewCell, TTTAttributedLabelDeleg
         if self.displayNickname == true {
             fullMessage = NSMutableAttributedString.init(string: NSString(format: "%@\n%@", nickname!, message!) as String)
             
-            fullMessage?.addAttributes(nicknameAttribute!, range: NSMakeRange(0, (nickname?.characters.count)!))
-            fullMessage?.addAttributes(messageAttribute, range: NSMakeRange((nickname?.characters.count)! + 1, (message?.characters.count)!))
+            fullMessage?.addAttributes(nicknameAttribute!, range: NSMakeRange(0, (nickname?.utf16.count)!))
+            fullMessage?.addAttributes(messageAttribute, range: NSMakeRange((nickname?.utf16.count)! + 1, (message?.utf16.count)!))
         }
         else {
             fullMessage = NSMutableAttributedString.init(string: message!)
-            fullMessage?.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.characters.count)!))
+            fullMessage?.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.utf16.count)!))
         }
         
         return fullMessage!
@@ -269,13 +269,13 @@ class IncomingUserMessageTableViewCell: UITableViewCell, TTTAttributedLabelDeleg
     func getHeightOfViewCell() -> CGFloat {
         let fullMessage = self.buildMessage()
         
-        var fullMessageRect: CGRect
+        var fullMessageSize: CGSize
 
         let messageLabelMaxWidth = self.frame.size.width - (self.profileImageLeftMargin.constant + self.profileImageWidth.constant + self.messageContainerLeftMargin.constant + self.messageContainerLeftPadding.constant + self.messageContainerRightPadding.constant + self.messageDateLabelLeftMargin.constant + self.messageDateLabelWidth.constant + self.messageDateLabelRightMargin.constant)
-        fullMessageRect = fullMessage.boundingRect(with: CGSize.init(width: messageLabelMaxWidth, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil)
+        let framesetter = CTFramesetterCreateWithAttributedString(fullMessage)
+        fullMessageSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRange(location: 0,length: 0), nil, CGSize(width: messageLabelMaxWidth, height: CGFloat(LONG_LONG_MAX)), nil)
 
-        
-        let cellHeight = self.dateSeperatorViewTopMargin.constant + self.dateSeperatorViewHeight.constant + self.dateSeperatorViewBottomMargin.constant + self.messageContainerTopPadding.constant + fullMessageRect.size.height + self.messageContainerBottomPadding.constant
+        let cellHeight = self.dateSeperatorViewTopMargin.constant + self.dateSeperatorViewHeight.constant + self.dateSeperatorViewBottomMargin.constant + self.messageContainerTopPadding.constant + fullMessageSize.height + self.messageContainerBottomPadding.constant
         
         return cellHeight
     }

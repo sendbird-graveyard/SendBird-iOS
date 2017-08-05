@@ -203,20 +203,23 @@ class OutgoingUserMessageTableViewCell: UITableViewCell {
         let message = self.message.message
         
         let fullMessage = NSMutableAttributedString.init(string: message!)
-        fullMessage.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.characters.count)!))
+        fullMessage.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.utf16.count)!))
         
         return fullMessage
     }
     
     func getHeightOfViewCell() -> CGFloat {
         let fullMessage = self.buildMessage()
-        var fullMessageRect: CGRect
+        var fullMessageSize: CGSize
         
         let messageLabelMaxWidth = self.frame.size.width - (self.messageContainerRightMargin.constant + self.messageContainerRightPadding.constant + self.messageContainerLeftPadding.constant + self.messageContainerLeftMargin.constant + self.messageDateLabelLeftMargin.constant + self.messageDateLabelWidth.constant)
 
-        fullMessageRect = fullMessage.boundingRect(with: CGSize.init(width: messageLabelMaxWidth, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil)
+//        fullMessageRect = fullMessage.boundingRect(with: CGSize.init(width: messageLabelMaxWidth, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil)
         
-        let cellHeight = self.dateContainerTopMargin.constant + self.dateContainerHeight.constant + self.dateContainerBottomMargin.constant + self.messageContainerTopPadding.constant + fullMessageRect.size.height + self.messageContainerBottomPadding.constant
+        let framesetter = CTFramesetterCreateWithAttributedString(fullMessage)
+        fullMessageSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRange(location: 0,length: 0), nil, CGSize(width: messageLabelMaxWidth, height: CGFloat(LONG_LONG_MAX)), nil)
+        
+        let cellHeight = self.dateContainerTopMargin.constant + self.dateContainerHeight.constant + self.dateContainerBottomMargin.constant + self.messageContainerTopPadding.constant + fullMessageSize.height + self.messageContainerBottomPadding.constant
         
         return cellHeight
     }
