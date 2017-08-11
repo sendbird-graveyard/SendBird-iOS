@@ -46,6 +46,8 @@
  *  * Receives an event when the property of the [`SBDBaseChannel`](../Classes/SBDBaseChannel.html) was changed.
  *  * Receives an event when the [`SBDBaseChannel`](../Classes/SBDBaseChannel.html) was deleted.
  *  * Receives an event when a message in the [`SBDBaseChannel`](../Classes/SBDBaseChannel.html) was deleted.
+ *  * Receives an event when meta data in the [`SBDBaseChannel`](../Classes/SBDBaseChannel.html) was changed.
+ *  * Receives an event when meta counters in the [`SBDBaseChannel`](../Classes/SBDBaseChannel.html) were changed.
  */
 @protocol SBDChannelDelegate <NSObject>
 
@@ -201,6 +203,54 @@
  *  @param messageId The message ID which was removed.
  */
 - (void)channel:(SBDBaseChannel * _Nonnull)sender messageWasDeleted:(long long)messageId;
+
+/**
+ A callback when meta data was created in the channel.
+
+ @param sender The channel that the meta data was created.
+ @param createdMetaData The created meta data.
+ */
+- (void)channel:(SBDBaseChannel * _Nonnull)sender createdMetaData:(NSDictionary<NSString *, NSString *> * _Nullable)createdMetaData;
+
+/**
+ A callback when meta data was updated in the channel.
+
+ @param sender The channel that the meta data was updated.
+ @param updatedMetaData The updated meta data.
+ */
+- (void)channel:(SBDBaseChannel * _Nonnull)sender updatedMetaData:(NSDictionary<NSString *, NSString *> * _Nullable)updatedMetaData;
+
+/**
+ A callback when meta data was deleted in the channel.
+ 
+ @param sender The channel that the meta data was deleted.
+ @param deletedMetaDataKeys The keys of the deleted meta data.
+ */
+- (void)channel:(SBDBaseChannel * _Nonnull)sender deletedMetaDataKeys:(NSArray<NSString *> * _Nullable)deletedMetaDataKeys;
+
+/**
+ A callback when meta counters were created in the channel.
+
+ @param sender The channel that the meta counters were created.
+ @param createdMetaCounters The created meta counters.
+ */
+- (void)channel:(SBDBaseChannel * _Nonnull)sender createdMetaCounters:(NSDictionary<NSString *, NSNumber *> * _Nullable)createdMetaCounters;
+
+/**
+ A callback when meta counters were updated in the channel.
+ 
+ @param sender The channel that the meta counters were updated.
+ @param updatedMetaCounters The updated meta counters.
+ */
+- (void)channel:(SBDBaseChannel * _Nonnull)sender updatedMetaCounters:(NSDictionary<NSString *, NSNumber *> * _Nullable)updatedMetaCounters;
+
+/**
+ A callback when meta counters were deleted in the channel.
+ 
+ @param sender The channel that the meta counters were deleted.
+ @param deletedMetaCountersKeys The keys of the deleted meta counters.
+ */
+- (void)channel:(SBDBaseChannel * _Nonnull)sender deletedMetaCountersKeys:(NSArray<NSString *> * _Nullable)deletedMetaCountersKeys;
 
 @end
 
@@ -836,5 +886,9 @@
  */
 - (SBDFileMessage * _Nullable)copyFileMessage:(SBDFileMessage * _Nonnull)message toTargetChannel:(SBDBaseChannel * _Nonnull)targetChannel completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage,  SBDError * _Nullable error))completionHandler;
 
+/**
+ *  Internal use only.
+ */
+- (nullable NSDictionary *)_toDictionary;
 
 @end

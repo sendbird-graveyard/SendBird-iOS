@@ -647,4 +647,17 @@
  */
 - (void)declineInvitationWithCompletionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
+
+/**
+ Gets the inviter.
+
+ @return Inviter.
+ */
+- (nullable SBDUser *)getInviter;
+
+/**
+ *  Internal use only.
+ */
+- (nullable NSDictionary *)_toDictionary;
+
 @end

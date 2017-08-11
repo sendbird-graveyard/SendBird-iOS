@@ -73,6 +73,11 @@
  */
 - (nonnull NSString *)url;
 
+/**
+ *  Internal use only.
+ */
+- (nullable NSDictionary *)_toDictionary;
+
 
 @end
 
@@ -191,5 +196,10 @@
  @return Sender of the message.
  */
 - (nonnull SBDUser *)sender;
+
+/**
+ *  Internal use only.
+ */
+- (nullable NSDictionary *)_toDictionary;
 
 @end

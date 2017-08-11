@@ -64,6 +64,11 @@
 @property (strong, nonatomic, nullable) NSArray<NSString *> *channelUrlsFilter;
 
 /**
+ *  Sets a filter to return only channels that contains the specified group channel name.
+ */
+@property (strong, nonatomic, nullable) NSString *channelNameFilter;
+
+/**
  *  Shows if the query is loading.
  *
  *  @return Returns YES if the query is loading, otherwise returns NO.

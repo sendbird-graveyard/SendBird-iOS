@@ -42,6 +42,9 @@ typedef NS_ENUM(NSInteger, SBDChannelEventCategory) {
     
     SBDChannelEventCategoryChannelPropChanged = 11000,
     SBDChannelEventCategoryChannelDeleted = 12000,
+    
+    SBDChannelEventCategoryMetaDataChanged = 11100,
+    SBDChannelEventCategoryMetaCounterChanged = 11200,
 };
 
 typedef NS_ENUM(NSUInteger, SBDUserListQueryType) {

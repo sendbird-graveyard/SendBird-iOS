@@ -288,6 +288,8 @@
     
     CGFloat cellHeight = self.dateSeperatorViewTopMargin.constant + self.dateSeperatorViewHeight.constant + self.dateSeperatorViewBottomMargin.constant + self.messageContainerTopPadding.constant + fullMessageSize.height + self.messageContainerBottomPadding.constant;
     
+    CFRelease(framesetter);
+    
     return cellHeight;
 }
 

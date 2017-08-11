@@ -38,4 +38,9 @@
  */
 - (nullable NSData *)serialize;
 
+/**
+ *  Internal use only.
+ */
+- (nullable NSDictionary *)_toDictionary;
+
 @end

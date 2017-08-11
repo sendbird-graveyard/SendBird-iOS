@@ -64,4 +64,9 @@
  */
 - (nonnull SBDUser *)sender;
 
+/**
+ *  Internal use only.
+ */
+- (nullable NSDictionary *)_toDictionary;
+
 @end
