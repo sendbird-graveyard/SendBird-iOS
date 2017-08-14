@@ -373,4 +373,40 @@ class Utils: NSObject {
         
         return (sha256hash as String)
     }
+    
+    static func findBestViewController(vc: UIViewController) -> UIViewController? {
+        if vc.presentedViewController != nil {
+            return Utils.findBestViewController(vc: vc.presentedViewController!)
+        }
+        else if vc.isKind(of: UISplitViewController.self) {
+            let svc = vc as! UISplitViewController
+            if svc.viewControllers.count > 0 {
+                return Utils.findBestViewController(vc: svc.viewControllers.last!)
+            }
+            else {
+                return vc
+            }
+        }
+        else if vc.isKind(of: UINavigationController.self) {
+            let svc = vc as! UINavigationController
+            if svc.viewControllers.count > 0 {
+                return Utils.findBestViewController(vc: svc.topViewController!)
+            }
+            else {
+                return vc
+            }
+        }
+        else if vc.isKind(of: UITabBarController.self) {
+            let svc = vc as! UITabBarController
+            if (svc.viewControllers?.count)! > 0 {
+                return Utils.findBestViewController(vc: svc.selectedViewController!)
+            }
+            else {
+                return vc
+            }
+        }
+        else {
+            return vc
+        }
+    }
 }

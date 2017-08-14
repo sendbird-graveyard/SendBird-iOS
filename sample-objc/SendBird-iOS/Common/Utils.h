@@ -19,4 +19,5 @@
 
 + (nullable NSArray<SBDBaseMessage *> *)loadMessagesInChannel:(NSString * _Nonnull)channelUrl;
 + (nullable NSArray<SBDGroupChannel *> *)loadGroupChannels;
++ (nullable UIViewController *)findBestViewController:(UIViewController * _Nonnull)vc;
 @end

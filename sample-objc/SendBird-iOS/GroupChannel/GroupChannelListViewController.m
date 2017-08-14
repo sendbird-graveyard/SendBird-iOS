@@ -31,6 +31,8 @@
 
 @property (atomic) BOOL cachedChannels;
 
+@property (atomic) BOOL firstLoading;
+
 @end
 
 @implementation GroupChannelListViewController
@@ -57,6 +59,8 @@
     
     self.cachedChannels = YES;
     
+    self.firstLoading = NO;
+    
     dispatch_queue_t dumpLoadQueue = dispatch_queue_create("com.sendbird.dumploadqueue", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(dumpLoadQueue, ^{
         self.channels = [[NSMutableArray alloc] initWithArray:[Utils loadGroupChannels]];
@@ -74,11 +78,23 @@
             [self refreshChannelList];
         }
     });
+    
+    self.firstLoading = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [Utils dumpChannels:self.channels];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    if (self.firstLoading == NO) {
+        [self refreshChannelList];
+    }
+    
+    self.firstLoading = NO;
 }
 
 - (void)addDelegates {
@@ -367,21 +383,26 @@
 }
 
 - (void)didSucceedReconnection {
-    __block SBDGroupChannelListQuery *query = [SBDGroupChannel createMyGroupChannelListQuery];
-    query.limit = 20;
-    query.order = SBDGroupChannelListOrderLatestLastMessage;
-    [query loadNextPageWithCompletionHandler:^(NSArray<SBDGroupChannel *> * _Nullable channels, SBDError * _Nullable error) {
-        if (error != nil) {
-            return;
-        }
-        
-        [self.channels removeAllObjects];
-        [self.channels addObjectsFromArray:channels];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.groupChannelListQuery = query;
-            [self.tableView reloadData];
-        });
-    }];
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController *bestVC = [Utils findBestViewController:vc];
+    
+    if (bestVC == self) {
+        SBDGroupChannelListQuery *query = [SBDGroupChannel createMyGroupChannelListQuery];
+        query.limit = 20;
+        query.order = SBDGroupChannelListOrderLatestLastMessage;
+        [query loadNextPageWithCompletionHandler:^(NSArray<SBDGroupChannel *> * _Nullable channels, SBDError * _Nullable error) {
+            if (error != nil) {
+                return;
+            }
+            
+            [self.channels removeAllObjects];
+            [self.channels addObjectsFromArray:channels];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.groupChannelListQuery = query;
+                [self.tableView reloadData];
+            });
+        }];
+    }
 }
 
 - (void)didFailReconnection {

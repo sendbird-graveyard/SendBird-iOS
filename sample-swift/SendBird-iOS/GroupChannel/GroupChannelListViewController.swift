@@ -23,6 +23,8 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
 
     private var cachedChannels: Bool = true
     
+    private var firstLoading: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -57,11 +59,23 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
                 self.refreshChannelList()
             }
         }
+        
+        self.firstLoading = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         Utils.dumpChannels(channels: self.channels)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if self.firstLoading == false {
+            self.refreshChannelList()
+        }
+        
+        self.firstLoading = false
     }
 
     func addDelegates() {
@@ -334,21 +348,26 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func didSucceedReconnection() {
-        let query = SBDGroupChannel.createMyGroupChannelListQuery()
-        query?.limit = 20
-        query?.order = SBDGroupChannelListOrder.latestLastMessage
-        query?.loadNextPage(completionHandler: { (channels, error) in
-            if error != nil {
-                return
-            }
-            
-            self.channels.removeAll()
-            self.channels.append(contentsOf: channels!)
-            DispatchQueue.main.async {
-                self.groupChannelListQuery = query
-                self.tableView.reloadData()
-            }
-        })
+        let vc = UIApplication.shared.keyWindow?.rootViewController
+        let bestVC = Utils.findBestViewController(vc: vc!)
+        
+        if bestVC == self {
+            let query = SBDGroupChannel.createMyGroupChannelListQuery()
+            query?.limit = 20
+            query?.order = SBDGroupChannelListOrder.latestLastMessage
+            query?.loadNextPage(completionHandler: { (channels, error) in
+                if error != nil {
+                    return
+                }
+                
+                self.channels.removeAll()
+                self.channels.append(contentsOf: channels!)
+                DispatchQueue.main.async {
+                    self.groupChannelListQuery = query
+                    self.tableView.reloadData()
+                }
+            })
+        }
     }
     
     func didFailReconnection() {
