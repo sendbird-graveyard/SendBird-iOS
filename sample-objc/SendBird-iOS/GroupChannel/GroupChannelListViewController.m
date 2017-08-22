@@ -183,18 +183,20 @@
         
         [self.groupChannelListQuery loadNextPageWithCompletionHandler:^(NSArray<SBDGroupChannel *> * _Nullable channels, SBDError * _Nullable error) {
             if (error != nil) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.refreshControl endRefreshing];
-                });
-                
-                UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                if (error.code != SBDErrorQueryInProgress) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.refreshControl endRefreshing];
+                    });
                     
-                }];
-                [vc addAction:closeAction];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self presentViewController:vc animated:YES completion:nil];
-                });
+                    UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                        
+                    }];
+                    [vc addAction:closeAction];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self presentViewController:vc animated:YES completion:nil];
+                    });
+                }
                 
                 return;
             }
