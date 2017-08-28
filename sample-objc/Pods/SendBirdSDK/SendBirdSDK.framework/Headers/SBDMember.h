@@ -21,6 +21,10 @@
  */
 @property (atomic) SBDMemberState state;
 
+@property (atomic) BOOL isBlockedByMe;
+
+@property (atomic) BOOL isBlockingMe;
+
 /**
  *  Internal use only.
  */

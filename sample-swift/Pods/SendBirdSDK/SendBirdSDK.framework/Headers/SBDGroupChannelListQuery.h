@@ -50,23 +50,31 @@
 
 /**
  *  Sets the custom type filter.
+ *
+ *  @deprecated in 3.0.64. Use `setCustomTypeFilter:` instead.
  */
-@property (strong, nonatomic, nullable) NSString *customTypeFilter;
+@property (strong, nonatomic, nullable) NSString *customTypeFilter DEPRECATED_ATTRIBUTE;
 
 /**
  *  Sets the member state filter.
+ *
+ *  @deprecated in 3.0.64. Use `setMemberStateFilter:` instead.
  */
-@property (atomic) SBDMemberStateFilter memberStateFilter;
+@property (nonatomic) SBDMemberStateFilter memberStateFilter DEPRECATED_ATTRIBUTE;
 
 /**
  *  Sets <code>SBDGroupChannel</code> URLs filter. <code>SBDGroupChannel</code> list containing only and exactly the passed <code>SBDGroupChannel</code> URLs will be returned. This does not cooperate with other filters.
+ *
+ *  @deprecated in 3.0.64. Use `setChannelUrlsFilter:` instead.
  */
-@property (strong, nonatomic, nullable) NSArray<NSString *> *channelUrlsFilter;
+@property (strong, nonatomic, nullable) NSArray<NSString *> *channelUrlsFilter DEPRECATED_ATTRIBUTE;
 
 /**
  *  Sets a filter to return only channels that contains the specified group channel name.
+ *
+ *  @deprecated in 3.0.64. Use `setChannelNameContainsFilter:` instead.
  */
-@property (strong, nonatomic, nullable) NSString *channelNameFilter;
+@property (strong, nonatomic, nullable) NSString *channelNameFilter DEPRECATED_ATTRIBUTE;
 
 /**
  *  Shows if the query is loading.
@@ -113,6 +121,37 @@
  *  @param userIds    User IDs to search.
  */
 - (void)setUserIdsExactFilter:(NSArray<NSString *>* _Nonnull)userIds;
+
+/**
+ Sets the custom type filter.
+
+ @param customType The custom type to search.
+ */
+- (void)setCustomTypeFilter:(NSString * _Nullable)customType;
+
+
+/**
+ Sets the member state filter.
+
+ @param memberStateFilter The member state to search.
+ */
+- (void)setMemberStateFilter:(SBDMemberStateFilter)memberStateFilter;
+
+
+/**
+ Sets <code>SBDGroupChannel</code> URLs filter. <code>SBDGroupChannel</code> list containing only and exactly the passed <code>SBDGroupChannel</code> URLs will be returned. This does not cooperate with other filters.
+
+ @param channelUrls The channel urls to search.
+ */
+- (void)setChannelUrlsFilter:(NSArray<NSString *> * _Nullable)channelUrls;
+
+
+/**
+ Sets a filter to return only channels that contains the specified group channel name.
+
+ @param channelName The channel name to search. The query will return the channels include `channelName`.
+ */
+- (void)setChannelNameContainsFilter:(NSString * _Nullable)channelName;
 
 /**
  *  Gets the list of channels. If this method is repeatedly called, it will retrieve the following pages of the channel list.

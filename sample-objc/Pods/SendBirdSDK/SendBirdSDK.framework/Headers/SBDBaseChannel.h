@@ -886,6 +886,15 @@
  */
 - (SBDFileMessage * _Nullable)copyFileMessage:(SBDFileMessage * _Nonnull)message toTargetChannel:(SBDBaseChannel * _Nonnull)targetChannel completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage,  SBDError * _Nullable error))completionHandler;
 
+
+/**
+ Gets the changelogs of the messages with token.
+
+ @param token The token that is used to get more changelogs.
+ @param completionHandler The handler block to execute. The `updatedMessages` is the messages that were updated. The `deletedMessageIds` is the list of the deleted message IDs. If there are more changelogs that are not returned yet, the `hasMore` is YES. The `token` can be used to get more changedlogs.
+ */
+- (void)getMessageChangeLogsWithToken:(NSString * _Nullable)token completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable updatedMessages, NSArray<NSNumber *> * _Nullable deletedMessageIds, BOOL hasMore, NSString * _Nullable token, SBDError * _Nullable error))completionHandler;
+
 /**
  *  Internal use only.
  */

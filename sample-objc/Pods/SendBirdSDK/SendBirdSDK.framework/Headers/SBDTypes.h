@@ -164,12 +164,27 @@ typedef NS_ENUM(NSInteger, SBDMessageTypeFilter) {
     SBDMessageTypeFilterAdmin = 3,
 };
 
+
+/**
+ Member state filter for group channel list query and group channel count
+
+ - SBDMemberStateFilterAll: All.
+ - SBDMemberStateFilterJoinedOnly: Joined state only.
+ - SBDMemberStateFilterInvitedOnly: Invited state only.
+ */
 typedef NS_ENUM(NSInteger, SBDMemberStateFilter) {
     SBDMemberStateFilterAll = 0,
     SBDMemberStateFilterJoinedOnly = 1,
     SBDMemberStateFilterInvitedOnly = 2,
 };
 
+
+/**
+ Member state in group channel.
+
+ - SBDMemberStateJoined: Joined member in a group channel.
+ - SBDMemberStateInvited: Invited member in a group channel.
+ */
 typedef NS_ENUM(NSInteger, SBDMemberState) {
     SBDMemberStateJoined = 0,
     SBDMemberStateInvited = 1,

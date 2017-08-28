@@ -394,8 +394,18 @@
  *  Hides the group channel. The channel will be hid from the channel list, but it will be appeared again when the other user send a message in the channel.
  *
  *  @param completionHandler The handler block to execute.
+ *
+ *  @deprecated in v3.0.63.
  */
-- (void)hideChannelWithCompletionHandler:(nullable void (^)(SBDError *_Nullable error))completionHandler;
+- (void)hideChannelWithCompletionHandler:(nullable void (^)(SBDError *_Nullable error))completionHandler DEPRECATED_ATTRIBUTE;
+
+/**
+ *  Hides the group channel. The channel will be hid from the channel list, but it will be appeared again when the other user send a message in the channel.
+ *
+ *  @param hidePreviousMessages The option to hide the previous message of this channel when the channel will be appeared again.
+ *  @param completionHandler The handler block to execute.
+ */
+- (void)hideChannelWithHidePreviousMessages:(BOOL)hidePreviousMessages completionHandler:(nullable void (^)(SBDError *_Nullable error))completionHandler;
 
 /**
  *  Leaves the group channel. The channel will be disappeared from the channel list. If join the channel, the invitation is required.
@@ -659,5 +669,25 @@
  *  Internal use only.
  */
 - (nullable NSDictionary *)_toDictionary;
+
+/**
+ *  Internal use only.
+ */
++ (nullable NSArray<SBDGroupChannel *> *)getCachedChannels;
+
+/**
+ Resets the history in this channel.
+
+ @param completionHandler The handler block to execute.
+ */
+- (void)resetMyHistoryWithCompletionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+/**
+ Gets the group channel count.
+
+ @param memberStateFilter The member state of the current user in the channels that are counted.
+ @param completionHandler The handler block to execute.
+ */
++ (void)getChannelCountWithMemberStateFilter:(SBDMemberStateFilter)memberStateFilter completionHandler:(nullable void (^)(NSUInteger groupChannelCount, SBDError * _Nullable error))completionHandler;
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02C3B5C4CB40FFA9F7D5BF21A06E062F /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B3193576DE406EFF8FD720C4DF6AFBB2 /* MGSwipeButton.m */; };
 		04B3E7F15CCA98E57F0A64EE7DF21398 /* NYTPhotoViewerCloseButtonXLandscape@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21E18348FD97154631CEEA6DCDFA0602 /* NYTPhotoViewerCloseButtonXLandscape@3x.png */; };
 		05006BDD7301FCF2678618DEDCC69B94 /* UIImage+AlamofireImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F617065F61BEA612241886131E5FF /* UIImage+AlamofireImage.swift */; };
 		07DC170C9DAB9B435B0D96BA7D3D9A57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 825F014F5FEDE97F1C0C32687D86B16D /* QuartzCore.framework */; };
@@ -15,10 +16,11 @@
 		0C951B49609F3C28AD52E268F334E2FC /* NYTPhotosDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 106FB21D3E6DDE50C9ADAFA0BF23B918 /* NYTPhotosDataSource.m */; };
 		0F1EF6DA45F047D57F1F477C89CEE332 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68C329DD77F163A0C362801879459DA /* Foundation.framework */; };
 		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAAD14D12B9771C3A2796A114B3E52D /* Timeline.swift */; };
-		112B3AE3695C10E75BD89585295481AB /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B3193576DE406EFF8FD720C4DF6AFBB2 /* MGSwipeButton.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		13ADE84F672E4DF94AB419484FFAEAFA /* FLAnimatedImage-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F034A93F07C7CAADA4C7E45F9456EF4 /* FLAnimatedImage-dummy.m */; };
+		181A9C4C01FE49B42A1F01A506873F56 /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200E0844C6782222BD74ABDD16B75B9 /* MGSwipeTableCell-dummy.m */; };
 		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 02217CA67853F969866598462E2BE477 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C48AE92F8C30AD01F19C9FB251220EF /* NYTPhotosViewControllerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 8521F63E9E9E7BAADF6BD2FA55421C19 /* NYTPhotosViewControllerDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CDA9CF3831C4BE7AC9F922031EDB667 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0972E4629037ACFDD710A9FE6F6914A5 /* MGSwipeTableCell.m */; };
 		1CE2036AF28D41FD085006E7059CD1A7 /* RSKTouchView.h in Headers */ = {isa = PBXBuildFile; fileRef = A467850A22F361D8B2003D604F827046 /* RSKTouchView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1FA1055DF1D7922626B5B8FD310AFB4B /* NYTPhotoViewerCloseButtonXLandscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 7581B8EDFFDFD82A2253D4F80655BBE3 /* NYTPhotoViewerCloseButtonXLandscape.png */; };
 		1FAD0537EFC009657E86B1DBBC028942 /* NYTPhotoCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D87C6A470A34AB648625F70A26B55F /* NYTPhotoCaptionView.m */; };
@@ -58,7 +60,6 @@
 		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629F3CC2D402F951522EFD1496AB7B9B /* ServerTrustPolicy.swift */; };
 		6325799576BD712045303B5B4AAC0291 /* NYTPhotoDismissalInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F75CA6035B7A4F100420678ECB743 /* NYTPhotoDismissalInteractionController.m */; };
 		6B907FD8469AA04BD694DEE0C2A9ACC7 /* RSKInternalUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = AAF845B6F865346B47FA18AB41EA4933 /* RSKInternalUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6CA804342026C8DD0D47F82901AE587D /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200E0844C6782222BD74ABDD16B75B9 /* MGSwipeTableCell-dummy.m */; };
 		73B9C996AED49ED7CF8EC2A6F1738059 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68C329DD77F163A0C362801879459DA /* Foundation.framework */; };
 		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FA2BEAC1EB2CD639F069AC0BB13487 /* SessionDelegate.swift */; };
 		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F50C2AF44CF864863AE60045CB37446 /* Result.swift */; };
@@ -112,7 +113,6 @@
 		CFA30DA4AB7558447CE599D0382F77C1 /* RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = AE5310DEC5144E81BD4AE0102B24F3ED /* RSKImageCropper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D9E544B8CB42DA8DD44838F83610D8E0 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A66CB32652D12671EB156310F6F2BB3 /* ImageCache.swift */; };
 		DAC5814F387EA2F61D11041BB468CF1C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6E23FFFE6C39833FF7450014D5A765 /* UIKit.framework */; };
-		DB33341B93BFF0A556A6F333BE95CFAD /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0972E4629037ACFDD710A9FE6F6914A5 /* MGSwipeTableCell.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		DC57CD8EC50C19BEE8F0F9B7DDC1CEB9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68C329DD77F163A0C362801879459DA /* Foundation.framework */; };
 		E0127808A60A18A4B6703EE0D79B1354 /* NYTPhotoViewerCloseButtonX@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D86D833836671F28C171BBB40C85441 /* NYTPhotoViewerCloseButtonX@3x.png */; };
 		E02BBF6E1796237C6963F735B8F6FD65 /* NYTPhotosViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9CB12BFDDD31881B53831F0796015A1 /* NYTPhotosViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -950,7 +950,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 782AD3C225DF6AF102A6DB24AFC59B5F /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */;
 			buildPhases = (
-				119E444BE35160E7AD3F82008DEF1E29 /* Sources */,
+				E5160283030B58DF7DFFA1BDC106605C /* Sources */,
 				5F86A802147CAEDCD5D2F69F78B5A758 /* Frameworks */,
 				60763A650B6C8007ECC91753A617BAB1 /* Headers */,
 			);
@@ -1154,16 +1154,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		119E444BE35160E7AD3F82008DEF1E29 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				112B3AE3695C10E75BD89585295481AB /* MGSwipeButton.m in Sources */,
-				6CA804342026C8DD0D47F82901AE587D /* MGSwipeTableCell-dummy.m in Sources */,
-				DB33341B93BFF0A556A6F333BE95CFAD /* MGSwipeTableCell.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		32B9974868188C4803318E36329C87FE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1263,6 +1253,16 @@
 				C73BF39A4CCC3E450E102C23027F8FF8 /* UIButton+AlamofireImage.swift in Sources */,
 				05006BDD7301FCF2678618DEDCC69B94 /* UIImage+AlamofireImage.swift in Sources */,
 				304C5736AC5D49B526C709397D0CF048 /* UIImageView+AlamofireImage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5160283030B58DF7DFFA1BDC106605C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02C3B5C4CB40FFA9F7D5BF21A06E062F /* MGSwipeButton.m in Sources */,
+				181A9C4C01FE49B42A1F01A506873F56 /* MGSwipeTableCell-dummy.m in Sources */,
+				1CDA9CF3831C4BE7AC9F922031EDB667 /* MGSwipeTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

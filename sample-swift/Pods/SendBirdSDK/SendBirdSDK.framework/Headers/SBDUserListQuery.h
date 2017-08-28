@@ -54,6 +54,15 @@
  */
 - (nullable instancetype)initWithUserIds:(NSArray<NSString *> * _Nonnull)userIds;
 
+
+/**
+ Sets meta data filter.
+
+ @param key The key of the meta data to use for filter.
+ @param values The values of the meta data to use for filter.
+ */
+- (void)setMetaDataFilterWithKey:(NSString * _Nonnull)key values:(NSArray<NSString *> * _Nonnull)values;
+
 /**
  *  Shows if the query is loading.
  *

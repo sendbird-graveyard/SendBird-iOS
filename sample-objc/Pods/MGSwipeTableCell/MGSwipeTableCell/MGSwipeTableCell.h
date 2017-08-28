@@ -39,7 +39,8 @@ typedef NS_ENUM(NSInteger, MGSwipeState) {
 /** Swipe state */
 typedef NS_ENUM(NSInteger, MGSwipeExpansionLayout) {
     MGSwipeExpansionLayoutBorder = 0,
-    MGSwipeExpansionLayoutCenter
+    MGSwipeExpansionLayoutCenter,
+    MGSwipeExpansionLayoutNone
 };
 
 /** Swipe Easing Function */
@@ -85,6 +86,8 @@ typedef NS_ENUM(NSInteger, MGSwipeEasingFunction) {
 @property (nonatomic, assign) CGFloat topMargin;
 /** Bottom margin of the buttons relative to the contentView */
 @property (nonatomic, assign) CGFloat bottomMargin;
+/** Distance between the buttons. Default value : 0 */
+@property (nonatomic, assign) CGFloat buttonsDistance;
 
 /** Animation settings when the swipe buttons are shown */
 @property (nonatomic, strong, nonnull) MGSwipeAnimation * showAnimation;
@@ -258,7 +261,7 @@ typedef NS_ENUM(NSInteger, MGSwipeEasingFunction) {
 -(void) showSwipe: (MGSwipeDirection) direction animated: (BOOL) animated;
 -(void) showSwipe: (MGSwipeDirection) direction animated: (BOOL) animated completion:(nullable void(^)(BOOL finished)) completion;
 -(void) setSwipeOffset:(CGFloat)offset animated: (BOOL) animated completion:(nullable void(^)(BOOL finished)) completion;
--(void) setSwipeOffset:(CGFloat)offset animation: (nonnull MGSwipeAnimation *) animation completion:(nullable void(^)(BOOL finished)) completion;
+-(void) setSwipeOffset:(CGFloat)offset animation: (nullable MGSwipeAnimation *) animation completion:(nullable void(^)(BOOL finished)) completion;
 -(void) expandSwipe: (MGSwipeDirection) direction animated: (BOOL) animated;
 
 /** Refresh method to be used when you want to update the cell contents while the user is swiping */

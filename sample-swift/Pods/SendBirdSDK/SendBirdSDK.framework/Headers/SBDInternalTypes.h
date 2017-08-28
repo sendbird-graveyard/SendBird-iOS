@@ -9,10 +9,10 @@
 #ifndef SBDInternalTypes_h
 #define SBDInternalTypes_h
 
-typedef NS_ENUM(NSInteger, SBDOpenChannelMetaCountersUpdateMode) {
-    SBDOpenChannelUpdateModeSet = 0,
-    SBDOpenChannelUpdateModeIncrease = 1,
-    SBDOpenChannelUpdateModeDecrease = 2,
+typedef NS_ENUM(NSInteger, SBDChannelMetaCountersUpdateMode) {
+    SBDChannelUpdateModeSet = 0,
+    SBDChannelUpdateModeIncrease = 1,
+    SBDChannelUpdateModeDecrease = 2,
 };
 
 typedef NS_ENUM(NSInteger, SBDChannelEventCategory) {
@@ -45,6 +45,11 @@ typedef NS_ENUM(NSInteger, SBDChannelEventCategory) {
     
     SBDChannelEventCategoryMetaDataChanged = 11100,
     SBDChannelEventCategoryMetaCounterChanged = 11200,
+};
+
+typedef NS_ENUM(NSInteger, SBDUserEventCategory) {
+    SBDUserEventCategoryUserUnblock = 20000,
+    SBDUserEventCategoryUserBlock = 20001,
 };
 
 typedef NS_ENUM(NSUInteger, SBDUserListQueryType) {

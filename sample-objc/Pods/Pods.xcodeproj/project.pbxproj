@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00C05031BBA5BA48A00FE41348F41BDA /* UIRefreshControl+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = FAE1B1009F99D49453385E8C5C089BEE /* UIRefreshControl+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02AB55564C811AA8E890D9C4BFB30A7B /* RSKInternalUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E9CC1253A1AB4859F3E7B3C8360CF74 /* RSKInternalUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		02C3B5C4CB40FFA9F7D5BF21A06E062F /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDFB320614E4480173B6372D1C5F405 /* MGSwipeButton.m */; };
 		03F9ED6006F1274DA84FD473C4E5F817 /* HTMLDocument+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A02870E7736DE6ADF1811B2767995E2 /* HTMLDocument+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		04B3E7F15CCA98E57F0A64EE7DF21398 /* NYTPhotoViewerCloseButtonXLandscape@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 937C8B4EEA4C8E8DF3012AE5F4F604C2 /* NYTPhotoViewerCloseButtonXLandscape@3x.png */; };
 		06DCED56DE057DAA6B4C0300991A6183 /* HTMLDocumentType.h in Headers */ = {isa = PBXBuildFile; fileRef = FF542BDBECFBB305278F5A7CF0880B01 /* HTMLDocumentType.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -21,7 +22,6 @@
 		0D1FFD30267C0776FD3E88EFF51E312F /* UIImageView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CF7918334636C8BA8C9084B7EAA19DF /* UIImageView+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0EBB45E9B07385B940C6A74AF62CAF88 /* HTMLTagToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2DC4F7DF346596D53F408D3AE92A0 /* HTMLTagToken.m */; };
 		0F1EF6DA45F047D57F1F477C89CEE332 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C658B70333C43EC7AF7FFBEE686D0710 /* Foundation.framework */; };
-		112B3AE3695C10E75BD89585295481AB /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BCDFB320614E4480173B6372D1C5F405 /* MGSwipeButton.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		12AE254B80805E215A40412C7AD553EC /* CSSTypeSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8AA911B3225AA9108759AEC050AB84 /* CSSTypeSelector.m */; };
 		12D248CC6DD5635DCCD92A565376B101 /* HTMLTokenizerStates.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F740D428EE883207C5E643E03DCD11C /* HTMLTokenizerStates.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		13ADE84F672E4DF94AB419484FFAEAFA /* FLAnimatedImage-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 569822C9BAF6F43E43EF9D8C8706D752 /* FLAnimatedImage-dummy.m */; };
@@ -30,9 +30,11 @@
 		1491187E44076B9847D57500233F9257 /* HTMLListOfActiveFormattingElements.h in Headers */ = {isa = PBXBuildFile; fileRef = B214D2C4780EE31644AD3EC8310B4959 /* HTMLListOfActiveFormattingElements.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		1594A2F4C5062A92154124AB7B1509C7 /* NSString+HTMLKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 83396EFA352BAEFCA2D9D0AB51946FB6 /* NSString+HTMLKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		15F7E036F4B5CF6C067882D7AEE81D17 /* HTMLNodeIterator+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C1E9FEEBE3EB7B2CAC79C21EB3BFD06 /* HTMLNodeIterator+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		181A9C4C01FE49B42A1F01A506873F56 /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DF6B3999F8B9103B6DD04F0E321FA1 /* MGSwipeTableCell-dummy.m */; };
 		1BBF07D075167145AC240AAA7DD0FE71 /* HTMLListOfActiveFormattingElements.m in Sources */ = {isa = PBXBuildFile; fileRef = F8103CE771403C91BDE5F004AE53A3A9 /* HTMLListOfActiveFormattingElements.m */; };
 		1BCC613A3BAD5C42DF6B617BC0A4A88E /* HTMLEOFToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 06FE56467C33793B92997B0C1B3D2B05 /* HTMLEOFToken.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		1C48AE92F8C30AD01F19C9FB251220EF /* NYTPhotosViewControllerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 46A63752B3C475620D71389EB4FABAD4 /* NYTPhotosViewControllerDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CDA9CF3831C4BE7AC9F922031EDB667 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 629B93F2D77B019E002398B87CEE1927 /* MGSwipeTableCell.m */; };
 		1D152239DF14B26C37A3F8AA57A9017F /* HTMLDOCTYPEToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 4824DA9228CE6FB86DF9823941713486 /* HTMLDOCTYPEToken.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		1D4D99E8F476591E37D276F410351CFD /* HTMLCharacterToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DA7A8D26B3D1CF2CD8AB9B1D68B09 /* HTMLCharacterToken.m */; };
 		1DCCC04D5C075AAA96B35409CC34CC19 /* HTMLMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4DC2FE1FC878C1F084A3BEBB9B826B /* HTMLMarker.m */; };
@@ -108,7 +110,6 @@
 		6B09CC266CC15DA34F6EB04979CADCBD /* HTMLCharacterData.m in Sources */ = {isa = PBXBuildFile; fileRef = D344C0ACF57D3C639A677ED9354ED4FD /* HTMLCharacterData.m */; };
 		6BC010D0BE74DB76857AEBF5F52A6A05 /* HTMLTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B75078B7AE8DFF60081DE534155997 /* HTMLTokenizer.m */; };
 		6C9CC55572575203674A29CC20F1C322 /* Pods-SendBird-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C4154EE258D79F70E426F05C07283123 /* Pods-SendBird-iOS-dummy.m */; };
-		6CA804342026C8DD0D47F82901AE587D /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DF6B3999F8B9103B6DD04F0E321FA1 /* MGSwipeTableCell-dummy.m */; };
 		6D1AE3AD75CE9591EC2227777DF3273E /* CSSNthExpressionSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = FB69867139048C993789A8B1D3F04131 /* CSSNthExpressionSelector.m */; };
 		6DB790C2E98FEA8D3AD6D76420D504F6 /* HTMLDOMUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DD933CFF5B1E57E4058F0036EBC670 /* HTMLDOMUtils.m */; };
 		6FD8CE53F0BA564E9405243DF5FC2E7D /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BCCD2ECA76FDD230B52942271B8AD33 /* TTTAttributedLabel.m */; };
@@ -218,7 +219,6 @@
 		D8673935AE2F4E568F353F2D77A6DBB7 /* CSSPseudoFunctionSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 960B9934B33F47224C20ACDDBD38A95F /* CSSPseudoFunctionSelector.m */; };
 		D95391EB453FEA9E51AAF4BFEF719B8E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C658B70333C43EC7AF7FFBEE686D0710 /* Foundation.framework */; };
 		DAC5814F387EA2F61D11041BB468CF1C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA9694C898A5EABBDDB5B734D48A0B03 /* UIKit.framework */; };
-		DB33341B93BFF0A556A6F333BE95CFAD /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 629B93F2D77B019E002398B87CEE1927 /* MGSwipeTableCell.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		DB983D6B4F3EEF8CFF7852BFD09F0A90 /* HTMLDOMUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0158C7BFB7ADEC3474D734987E125023 /* HTMLDOMUtils.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DD340F7F2E2D3DB97FE1D136568C3D0D /* HTMLComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 2115BAAF8B7232C858B70EF7CB31BF37 /* HTMLComment.m */; };
 		DD887A93A200A87A51B3D00BD1B80D20 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF8BC3994A82E6EBB37AAC4EFEC40EF /* AFNetworkReachabilityManager.m */; };
@@ -1438,7 +1438,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 782AD3C225DF6AF102A6DB24AFC59B5F /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */;
 			buildPhases = (
-				119E444BE35160E7AD3F82008DEF1E29 /* Sources */,
+				E5160283030B58DF7DFFA1BDC106605C /* Sources */,
 				5F86A802147CAEDCD5D2F69F78B5A758 /* Frameworks */,
 				60763A650B6C8007ECC91753A617BAB1 /* Headers */,
 			);
@@ -1641,16 +1641,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		119E444BE35160E7AD3F82008DEF1E29 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				112B3AE3695C10E75BD89585295481AB /* MGSwipeButton.m in Sources */,
-				6CA804342026C8DD0D47F82901AE587D /* MGSwipeTableCell-dummy.m in Sources */,
-				DB33341B93BFF0A556A6F333BE95CFAD /* MGSwipeTableCell.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4AAEDB21198D433CF90C7195F1F02A6F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1787,6 +1777,16 @@
 				2530676EFF64D0A7B67A998728936EB2 /* RSKTouchView.m in Sources */,
 				F3CA30C6EFB1AF30E95C91B178465458 /* UIApplication+RSKImageCropper.m in Sources */,
 				70B6221D4A678293FF883C263586D761 /* UIImage+RSKImageCropper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5160283030B58DF7DFFA1BDC106605C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02C3B5C4CB40FFA9F7D5BF21A06E062F /* MGSwipeButton.m in Sources */,
+				181A9C4C01FE49B42A1F01A506873F56 /* MGSwipeTableCell-dummy.m in Sources */,
+				1CDA9CF3831C4BE7AC9F922031EDB667 /* MGSwipeTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
