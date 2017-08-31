@@ -36,7 +36,13 @@
 - (void)setModel:(SBDUser *)aUser {
     self.user = aUser;
     
-    [self.profileImageView setImageWithURL:[NSURL URLWithString:self.user.profileUrl] placeholderImage:[UIImage imageNamed:@"img_profile"]];
+    if (self.user.profileUrl != nil) {
+        [self.profileImageView setImageWithURL:[NSURL URLWithString:self.user.profileUrl] placeholderImage:[UIImage imageNamed:@"img_profile"]];
+    }
+    else {
+        self.profileImageView.image = [UIImage imageNamed:@"img_profile"];
+    }
+    
     self.nicknameLabel.text = self.user.nickname;
 
     if (self.user.connectionStatus == SBDUserConnectionStatusOnline) {

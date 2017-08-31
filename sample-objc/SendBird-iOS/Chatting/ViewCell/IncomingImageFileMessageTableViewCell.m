@@ -75,40 +75,9 @@
     self.fileImageView.animatedImage = nil;
     self.fileImageView.image = nil;
 
-    NSString *url = self.message.url;
-    if (self.message.type != nil && [self.message.type isEqualToString:@"image/gif"] ) {
-        /***********************************/
-        /* Thumbnail is a premium feature. */
-        /***********************************/
-        if (self.message.thumbnails != nil && self.message.thumbnails.count > 0) {
-            if (self.message.thumbnails[0].url.length > 0) {
-                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.message.thumbnails[0].url]];
-                [self.fileImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.fileImageView setImage:image];
-                        self.imageLoadingIndicator.hidden = YES;
-                        [self.imageLoadingIndicator stopAnimating];
-                        
-                        [self.fileImageView setAnimatedImageWithURL:[NSURL URLWithString:url] success:^(FLAnimatedImage * _Nullable image) {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [self.fileImageView setAnimatedImage:image];
-                                
-                            });
-                        } failure:^(NSError * _Nullable error) {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                            });
-                        }];
-                    });
-                } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.imageLoadingIndicator.hidden = YES;
-                        [self.imageLoadingIndicator stopAnimating];
-                    });
-                }];
-            }
-        }
-        else {
-            [self.fileImageView setAnimatedImageWithURL:[NSURL URLWithString:url] success:^(FLAnimatedImage * _Nullable image) {
+    if (self.message.url != nil && self.message.url.length > 0) {
+        if (self.message.type != nil && [self.message.type isEqualToString:@"image/gif"] ) {
+            [self.fileImageView setAnimatedImageWithURL:[NSURL URLWithString:self.message.url] success:^(FLAnimatedImage * _Nullable image) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.fileImageView setAnimatedImage:image];
                     self.imageLoadingIndicator.hidden = YES;
@@ -118,17 +87,33 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     self.imageLoadingIndicator.hidden = YES;
                     [self.imageLoadingIndicator stopAnimating];
+                    [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.url]];
                 });
             }];
         }
-    }
-    else {
-        /***********************************/
-        /* Thumbnail is a premium feature. */
-        /***********************************/
-        if (self.message.thumbnails != nil && self.message.thumbnails.count > 0) {
-            if (self.message.thumbnails[0].url.length > 0) {
-                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.message.thumbnails[0].url]];
+        else {
+            /***********************************/
+            /* Thumbnail is a premium feature. */
+            /***********************************/
+            if (self.message.thumbnails != nil && self.message.thumbnails.count > 0) {
+                if (self.message.thumbnails[0].url.length > 0) {
+                    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.message.thumbnails[0].url]];
+                    [self.fileImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self.fileImageView setImage:image];
+                            self.imageLoadingIndicator.hidden = YES;
+                            [self.imageLoadingIndicator stopAnimating];
+                        });
+                    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            self.imageLoadingIndicator.hidden = YES;
+                            [self.imageLoadingIndicator stopAnimating];
+                        });
+                    }];
+                }
+            }
+            else {
+                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.message.url]];
                 [self.fileImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.fileImageView setImage:image];
@@ -142,21 +127,6 @@
                     });
                 }];
             }
-        }
-        else {
-            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.message.url]];
-            [self.fileImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.fileImageView setImage:image];
-                    self.imageLoadingIndicator.hidden = YES;
-                    [self.imageLoadingIndicator stopAnimating];
-                });
-            } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.imageLoadingIndicator.hidden = YES;
-                    [self.imageLoadingIndicator stopAnimating];
-                });
-            }];
         }
     }
 

@@ -40,8 +40,15 @@ extension FLAnimatedImageView {
                 CustomURLCache.sharedInstance.storeCachedResponse(cachedResponse, for: request)
                 let animatedImage = FLAnimatedImage(animatedGIFData: data)
                 
-                if success != nil {
-                    success!(animatedImage!)
+                if animatedImage != nil {
+                    if success != nil {
+                        success!(animatedImage!)
+                    }
+                }
+                else {
+                    if failure != nil {
+                        failure!(nil)
+                    }
                 }
             }
             else {

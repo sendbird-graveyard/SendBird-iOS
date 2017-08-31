@@ -42,8 +42,15 @@
             [[FLAnimatedImageView imageCache] storeCachedResponse:cachedResponse forRequest:request];
             __block FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:data];
 
-            if (success != nil) {
-                success(animatedImage);
+            if (animatedImage != NULL) {
+                if (success != nil) {
+                    success(animatedImage);
+                }
+            }
+            else {
+                if (failure != nil) {
+                    failure(nil);
+                }
             }
         }
         else {
