@@ -704,9 +704,12 @@
 
 - (void)channel:(SBDBaseChannel * _Nonnull)sender didReceiveMessage:(SBDBaseMessage * _Nonnull)message {
     if (sender == self.channel) {
-        [self.chattingView.messages addObject:message];
         dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView setAnimationsEnabled:NO];
+            [self.chattingView.messages addObject:message];
             [self.chattingView.chattingTableView reloadData];
+            [UIView setAnimationsEnabled:YES];
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.chattingView scrollToBottomWithForce:NO];
             });

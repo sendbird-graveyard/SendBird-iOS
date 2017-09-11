@@ -677,9 +677,12 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
     // MARK: SBDChannelDelegate
     func channel(_ sender: SBDBaseChannel, didReceive message: SBDBaseMessage) {
         if sender == self.openChannel {
-            self.chattingView.messages.append(message)
+            
             DispatchQueue.main.async {
+                UIView.setAnimationsEnabled(false)
+                self.chattingView.messages.append(message)
                 self.chattingView.chattingTableView.reloadData()
+                UIView.setAnimationsEnabled(true)
                 DispatchQueue.main.async {
                     self.chattingView.scrollToBottom(force: false)
                 }

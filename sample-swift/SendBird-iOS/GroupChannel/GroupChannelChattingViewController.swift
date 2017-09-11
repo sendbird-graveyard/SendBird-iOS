@@ -684,9 +684,11 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         if sender == self.groupChannel {
             self.groupChannel.markAsRead()
             
-            self.chattingView.messages.append(message)
             DispatchQueue.main.async {
+                UIView.setAnimationsEnabled(false)
+                self.chattingView.messages.append(message)
                 self.chattingView.chattingTableView.reloadData()
+                UIView.setAnimationsEnabled(true)
                 DispatchQueue.main.async {
                     self.chattingView.scrollToBottom(force: false)
                 }

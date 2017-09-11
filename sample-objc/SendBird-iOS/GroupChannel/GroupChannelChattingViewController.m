@@ -713,9 +713,12 @@
     if (sender == self.channel) {
         [self.channel markAsRead];
         
-        [self.chattingView.messages addObject:message];
         dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView setAnimationsEnabled:NO];
+            [self.chattingView.messages addObject:message];
             [self.chattingView.chattingTableView reloadData];
+            [UIView setAnimationsEnabled:YES];
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.chattingView scrollToBottomWithForce:NO];
             });
