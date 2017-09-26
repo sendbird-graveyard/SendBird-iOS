@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuViewController">
             <connections>
@@ -21,11 +26,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ld2-nK-TL2">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ld2-nK-TL2" customClass="CustomNavigationBar">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="Gw0-vc-MMH"/>
                     </constraints>
@@ -34,24 +39,24 @@
                     </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OsK-qo-u2o" userLabel="Seperator View 1">
-                    <rect key="frame" x="0.0" y="64" width="375" height="1"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="1"/>
                     <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="HHN-vY-J2Q"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2gY-kh-roS" userLabel="Seperator View 2">
-                    <rect key="frame" x="0.0" y="128" width="375" height="1"/>
+                    <rect key="frame" x="0.0" y="128" width="320" height="1"/>
                     <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="XXN-Ao-kuR"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oWr-Zk-cvs" userLabel="Open Channel View">
-                    <rect key="frame" x="0.0" y="130" width="375" height="62"/>
+                    <rect key="frame" x="0.0" y="130" width="320" height="62"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejz-tX-o15" userLabel="Open Channel Button">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                             <connections>
                                 <action selector="clickOpenChannelButton:" destination="-1" eventType="touchUpInside" id="ewb-rp-1e0"/>
                                 <action selector="pressOpenChannelButton:" destination="-1" eventType="touchDown" id="jMn-9d-n8a"/>
@@ -71,7 +76,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_check" translatesAutoresizingMaskIntoConstraints="NO" id="bWY-st-d6y" userLabel="Open Channel Check Image View">
-                            <rect key="frame" x="346" y="26" width="15" height="10.5"/>
+                            <rect key="frame" x="291" y="26" width="15" height="10.5"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="10.5" id="XPC-Wy-2GF"/>
                                 <constraint firstAttribute="width" constant="15" id="q7Z-Cu-GYn"/>
@@ -94,17 +99,17 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yXM-OV-dVO" userLabel="Seperator View 3">
-                    <rect key="frame" x="0.0" y="193" width="375" height="1"/>
+                    <rect key="frame" x="0.0" y="193" width="320" height="1"/>
                     <color key="backgroundColor" red="0.87058823529999996" green="0.87058823529999996" blue="0.87058823529999996" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="0vs-TR-Ifi"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N2O-2f-9dI" userLabel="Group Channel View">
-                    <rect key="frame" x="0.0" y="65" width="375" height="62"/>
+                    <rect key="frame" x="0.0" y="65" width="320" height="62"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ud-Aw-hD4" userLabel="Group Channel Button">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                             <connections>
                                 <action selector="clickGroupChannelButton:" destination="-1" eventType="touchUpInside" id="Sql-5j-SKF"/>
                                 <action selector="pressGroupChannelButton:" destination="-1" eventType="touchDown" id="pag-j5-uJM"/>
@@ -124,7 +129,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_check" translatesAutoresizingMaskIntoConstraints="NO" id="WaE-QS-Iuy" userLabel="Group Channel Check Image View">
-                            <rect key="frame" x="346" y="26" width="15" height="10.5"/>
+                            <rect key="frame" x="291" y="26" width="15" height="10.5"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="10.5" id="KU6-8O-UYd"/>
                                 <constraint firstAttribute="width" constant="15" id="gnw-Gw-ia5"/>

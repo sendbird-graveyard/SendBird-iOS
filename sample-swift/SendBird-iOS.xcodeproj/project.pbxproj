@@ -77,6 +77,7 @@
 		CE806EF71E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806EF51E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib */; };
 		CE806EFA1E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE806EF81E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift */; };
 		CE806EFB1E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806EF91E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib */; };
+		E209E9271F7A1D7600E7713F /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E209E9261F7A1D7600E7713F /* CustomNavigationBar.swift */; };
 		E2217E401EF893A000AEE668 /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2217E381EF893A000AEE668 /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2217E4D1EF89A1700AEE668 /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2217E381EF893A000AEE668 /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E221A2E31F29192500767328 /* String+SendBird.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221A2E21F29192500767328 /* String+SendBird.swift */; };
@@ -256,6 +257,7 @@
 		CE806EF51E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
 		CE806EF81E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingVideoFileMessageTableViewCell.swift; sourceTree = "<group>"; };
 		CE806EF91E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E209E9261F7A1D7600E7713F /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		E212EC7E1EFC8B6800FDED1D /* SendBird-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SendBird-iOS.entitlements"; sourceTree = "<group>"; };
 		E2217E381EF893A000AEE668 /* CommonCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CommonCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2217E3B1EF893A000AEE668 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				E290199F1EE8979C00DA8AB8 /* FLAnimatedImageView+ImageCache.swift */,
 				5ABA0BC91DA64707000C82DC /* Utils.swift */,
 				E221A2E21F29192500767328 /* String+SendBird.swift */,
+				E209E9261F7A1D7600E7713F /* CustomNavigationBar.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -855,6 +858,7 @@
 				5ABA0BCA1DA64707000C82DC /* Utils.swift in Sources */,
 				CE806EFA1E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift in Sources */,
 				5AD94C2C1DB5F74A00A6CD66 /* Bundle+SendBird.swift in Sources */,
+				E209E9271F7A1D7600E7713F /* CustomNavigationBar.swift in Sources */,
 				5AD94BB91DAF24AD00A6CD66 /* OpenChannelListTableViewCell.swift in Sources */,
 				5AD94BA11DAB878600A6CD66 /* GroupChannelChattingViewController.swift in Sources */,
 				5ABA0BCC1DA65240000C82DC /* IncomingUserMessageTableViewCell.swift in Sources */,

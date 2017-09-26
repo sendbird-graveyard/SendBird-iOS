@@ -76,6 +76,7 @@
 		CE806F001E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806EFE1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib */; };
 		CE806F041E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE806F021E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.m */; };
 		CE806F051E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806F031E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.xib */; };
+		E209E9241F7A105300E7713F /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E209E9231F7A105300E7713F /* CustomNavigationBar.m */; };
 		E218A68E1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E218A68C1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.m */; };
 		E218A68F1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E218A68D1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib */; };
 		E218A6931E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E218A6921E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.m */; };
@@ -231,6 +232,8 @@
 		CE806F011E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingGeneralUrlPreviewMessageTableViewCell.h; sourceTree = "<group>"; };
 		CE806F021E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutgoingGeneralUrlPreviewMessageTableViewCell.m; sourceTree = "<group>"; };
 		CE806F031E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingGeneralUrlPreviewMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E209E9221F7A105300E7713F /* CustomNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNavigationBar.h; sourceTree = "<group>"; };
+		E209E9231F7A105300E7713F /* CustomNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationBar.m; sourceTree = "<group>"; };
 		E218A68B1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutgoingGeneralUrlPreviewTempMessageTableViewCell.h; sourceTree = "<group>"; };
 		E218A68C1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutgoingGeneralUrlPreviewTempMessageTableViewCell.m; sourceTree = "<group>"; };
 		E218A68D1E7CAAE4008ED223 /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OutgoingGeneralUrlPreviewTempMessageTableViewCell.xib; sourceTree = "<group>"; };
@@ -408,6 +411,8 @@
 				5ADA68EE1D928E0F00EFDF2B /* Utils.m */,
 				E221A2DE1F290CEB00767328 /* NSString+URLEncode.h */,
 				E221A2DF1F290CEB00767328 /* NSString+URLEncode.m */,
+				E209E9221F7A105300E7713F /* CustomNavigationBar.h */,
+				E209E9231F7A105300E7713F /* CustomNavigationBar.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -754,6 +759,7 @@
 				5AF8AC591D8FE121000F0578 /* MenuViewController.m in Sources */,
 				5AC3A0711D97975B00244336 /* OutgoingImageFileMessageTableViewCell.m in Sources */,
 				5AC3A0761D97A85000244336 /* OutgoingFileMessageTableViewCell.m in Sources */,
+				E209E9241F7A105300E7713F /* CustomNavigationBar.m in Sources */,
 				5AF1992B1DA3CE4500BF2DE0 /* BlockedUserListViewController.m in Sources */,
 				5ADA69111D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.m in Sources */,
 				5AF8AC5F1D90D4E2000F0578 /* OpenChannelListViewController.m in Sources */,

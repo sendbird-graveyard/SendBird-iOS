@@ -49,38 +49,6 @@
             endingLineNumber = "862"
             landmarkName = "clickProfileImage(viewCell:user:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SendBird_iOS.OpenChannelChattingViewController.(clickProfileImage (viewCell : __ObjC.UITableViewCell, user : __ObjC.SBDUser) -&gt; ()).(closure #3)"
-                  moduleName = "SendBird-iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-swift/SendBird-iOS/OpenChannel/OpenChannelChattingViewController.swift"
-                  timestampString = "526406983.874213"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "859"
-                  endingLineNumber = "859"
-                  offsetFromSymbolStart = "32">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SendBird_iOS.OpenChannelChattingViewController.(clickProfileImage (viewCell : __ObjC.UITableViewCell, user : __ObjC.SBDUser) -&gt; ()).(closure #3).(closure #1)"
-                  moduleName = "SendBird-iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-swift/SendBird-iOS/OpenChannel/OpenChannelChattingViewController.swift"
-                  timestampString = "526406983.876069"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "860"
-                  endingLineNumber = "860"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
