@@ -1,6 +1,6 @@
 {
   "name": "SendBirdSDK",
-  "version": "3.0.61",
+  "version": "3.0.66",
   "summary": "SendBird iOS Framework",
   "description": "Messaging and Chat API for Mobile Apps and Websites",
   "homepage": "https://sendbird.com",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/smilefam/sendbird-ios-framework.git",
-    "tag": "v3.0.61"
+    "tag": "v3.0.66"
   },
   "requires_arc": true,
   "platforms": {
