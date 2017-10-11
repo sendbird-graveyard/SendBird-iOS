@@ -43,17 +43,18 @@ typedef NS_ENUM(NSInteger, SDBErrorCode) {
     SBDErrorUnusableCharacterIncluded = 400151,
     SBDErrorNotFoundInDatabase = 400201,
     SBDErrorDuplicatedData = 400202,
+    
+    SBDErrorUserDeactivated = 400300,
+    SBDErrorUserNotExist = 400301,
+    SBDErrorAccessTokenNotValid = 400302,
+    SBDErrorAuthUnknownError = 400303,
+    SBDErrorAppIdNotValid = 400304,
+    SBDErrorAuthUserIdTooLong = 400305,
+    SBDErrorAuthPlanQuotaExceeded = 400306,
+    
     SBDErrorInvalidApiToken = 400401,
     SBDErrorParameterMissing = 400402,
     SBDErrorInvalidJsonBody = 400403,
-    
-    // RESTful API Errors for SDK
-    SBDErrorAppIdNotValid = 400404,
-    SBDErrorAccessTokenEmpty = 400500,
-    SBDErrorAccessTokenNotValid = 400501,
-    SBDErrorUserNotExist = 400502,
-    SBDErrorUserDeactivated = 400503,
-    SBDErrorUserCreationFailed = 400504,
     
     SBDErrorInternalServerError = 500901,
     
