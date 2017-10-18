@@ -89,6 +89,12 @@
       "idiom" : "ipad",
       "filename" : "167x167_SendBird_swift.png",
       "scale" : "2x"
+    },
+    {
+      "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "1024x1024_SendBird_swift.png",
+      "scale" : "1x"
     }
   ],
   "info" : {

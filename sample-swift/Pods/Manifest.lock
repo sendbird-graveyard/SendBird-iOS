@@ -12,7 +12,7 @@ PODS:
     - NYTPhotoViewer/Core
   - NYTPhotoViewer/Core (1.1.0)
   - RSKImageCropper (1.6.3)
-  - SendBirdSDK (3.0.68)
+  - SendBirdSDK (3.0.69)
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
@@ -31,7 +31,7 @@ SPEC CHECKSUMS:
   MGSwipeTableCell: 19a1d65dcc1ceaea42eb44bb2adae32101904514
   NYTPhotoViewer: e80e8767f3780d2df37c6f72cbab15d6c7232911
   RSKImageCropper: 356e36fc58c57c371b5d8b23d603936d6a73df6c
-  SendBirdSDK: 60b579adfcb485f5e34cad84dbb1f1e56be8196a
+  SendBirdSDK: bedd2243a54d77b5b7fe2d6b43f40ca043891dbb
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
 PODFILE CHECKSUM: 9cbb42b5354bc4dc8b079e49148c24287caf665f

@@ -15,7 +15,7 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - FLAnimatedImage (1.0.12)
-  - HTMLKit (2.0.6)
+  - HTMLKit (2.1.1)
   - MGSwipeTableCell (1.6.1)
   - NYTPhotoViewer (1.1.0):
     - NYTPhotoViewer/AnimatedGifSupport (= 1.1.0)
@@ -25,7 +25,7 @@ PODS:
     - NYTPhotoViewer/Core
   - NYTPhotoViewer/Core (1.1.0)
   - RSKImageCropper (1.6.3)
-  - SendBirdSDK (3.0.68)
+  - SendBirdSDK (3.0.69)
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
@@ -41,11 +41,11 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  HTMLKit: 9e1bde384fbc20be51eb62f2c1ad331d6ceccfa2
+  HTMLKit: 05e54c503c39606402cd84498955bfad3a08dd5d
   MGSwipeTableCell: 19a1d65dcc1ceaea42eb44bb2adae32101904514
   NYTPhotoViewer: e80e8767f3780d2df37c6f72cbab15d6c7232911
   RSKImageCropper: 356e36fc58c57c371b5d8b23d603936d6a73df6c
-  SendBirdSDK: 60b579adfcb485f5e34cad84dbb1f1e56be8196a
+  SendBirdSDK: bedd2243a54d77b5b7fe2d6b43f40ca043891dbb
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
 PODFILE CHECKSUM: df0a399349eff5d99379145eab7b833f6baf886b
