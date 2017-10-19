@@ -1259,64 +1259,124 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                 options.isSynchronous = true
                 options.isNetworkAccessAllowed = false
                 options.deliveryMode = PHImageRequestOptionsDeliveryMode.highQualityFormat
-                PHImageManager.default().requestImageData(for: asset!, options: options, resultHandler: { (imageData, dataUTI, orientation, info) in
-                    let isError = info?[PHImageErrorKey]
-                    let isCloud = info?[PHImageResultIsInCloudKey]
-                    if ((isError != nil && (isError as! Bool) == true)) || (isCloud != nil && (isCloud as! Bool) == true) || imageData == nil {
-                        // Fail.
-                    }
-                    else {
-                        // sucess, data is in imagedata
-                        /***********************************/
-                        /* Thumbnail is a premium feature. */
-                        /***********************************/
-                        let thumbnailSize = SBDThumbnailSize.make(withMaxWidth: 320.0, maxHeight: 320.0)
-                        
-                        let preSendMessage = self.groupChannel.sendFileMessage(withBinaryData: imageData!, filename: imageName as String, type: mimeType! as String, size: UInt((imageData?.count)!), thumbnailSizes: [thumbnailSize!], data: "", customType: "", progressHandler: nil, completionHandler: { (fileMessage, error) in
-                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
-                                let preSendMessage = self.chattingView.preSendMessages[(fileMessage?.requestId)!] as! SBDFileMessage
-                                self.chattingView.preSendMessages.removeValue(forKey: (fileMessage?.requestId)!)
-                                
-                                if error != nil {
-                                    self.chattingView.resendableMessages[(fileMessage?.requestId)!] = preSendMessage
-                                    self.chattingView.resendableFileData[preSendMessage.requestId!]?["data"] = imageData as AnyObject?
-                                    self.chattingView.resendableFileData[preSendMessage.requestId!]?["type"] = mimeType as AnyObject?
-                                    self.chattingView.chattingTableView.reloadData()
-                                    DispatchQueue.main.async {
-                                        self.chattingView.scrollToBottom(force: true)
-                                    }
 
-                                    return
-                                }
-                                
-                                if fileMessage != nil {
-                                    self.chattingView.resendableMessages.removeValue(forKey: (fileMessage?.requestId)!)
-                                    self.chattingView.resendableFileData.removeValue(forKey: (fileMessage?.requestId)!)
+                if ((mimeType! as String) == "image/gif") {
+                    PHImageManager.default().requestImageData(for: asset!, options: options, resultHandler: { (imageData, dataUTI, orientation, info) in
+                        let isError = info?[PHImageErrorKey]
+                        let isCloud = info?[PHImageResultIsInCloudKey]
+                        if ((isError != nil && (isError as! Bool) == true)) || (isCloud != nil && (isCloud as! Bool) == true) || imageData == nil {
+                            // Fail.
+                        }
+                        else {
+                            // sucess, data is in imagedata
+                            /***********************************/
+                            /* Thumbnail is a premium feature. */
+                            /***********************************/
+                            let thumbnailSize = SBDThumbnailSize.make(withMaxWidth: 320.0, maxHeight: 320.0)
+                            
+                            let preSendMessage = self.groupChannel.sendFileMessage(withBinaryData: imageData!, filename: imageName as String, type: mimeType! as String, size: UInt((imageData?.count)!), thumbnailSizes: [thumbnailSize!], data: "", customType: "", progressHandler: nil, completionHandler: { (fileMessage, error) in
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
+                                    let preSendMessage = self.chattingView.preSendMessages[(fileMessage?.requestId)!] as! SBDFileMessage
                                     self.chattingView.preSendMessages.removeValue(forKey: (fileMessage?.requestId)!)
-                                    self.chattingView.messages[self.chattingView.messages.index(of: preSendMessage)!] = fileMessage!
                                     
-                                    DispatchQueue.main.async {
+                                    if error != nil {
+                                        self.chattingView.resendableMessages[(fileMessage?.requestId)!] = preSendMessage
+                                        self.chattingView.resendableFileData[preSendMessage.requestId!]?["data"] = imageData as AnyObject?
+                                        self.chattingView.resendableFileData[preSendMessage.requestId!]?["type"] = mimeType as AnyObject?
                                         self.chattingView.chattingTableView.reloadData()
                                         DispatchQueue.main.async {
                                             self.chattingView.scrollToBottom(force: true)
                                         }
+                                        
+                                        return
                                     }
-                                }
+                                    
+                                    if fileMessage != nil {
+                                        self.chattingView.resendableMessages.removeValue(forKey: (fileMessage?.requestId)!)
+                                        self.chattingView.resendableFileData.removeValue(forKey: (fileMessage?.requestId)!)
+                                        self.chattingView.preSendMessages.removeValue(forKey: (fileMessage?.requestId)!)
+                                        self.chattingView.messages[self.chattingView.messages.index(of: preSendMessage)!] = fileMessage!
+                                        
+                                        DispatchQueue.main.async {
+                                            self.chattingView.chattingTableView.reloadData()
+                                            DispatchQueue.main.async {
+                                                self.chattingView.scrollToBottom(force: true)
+                                            }
+                                        }
+                                    }
+                                })
                             })
-                        })
-
-                        self.chattingView.preSendFileData[preSendMessage.requestId!] = [
-                            "data": imageData as AnyObject,
-                            "type": mimeType as AnyObject,
-                        ]
-                        self.chattingView.preSendMessages[preSendMessage.requestId!] = preSendMessage
-                        self.chattingView.messages.append(preSendMessage)
-                        self.chattingView.chattingTableView.reloadData()
-                        DispatchQueue.main.async {
-                            self.chattingView.scrollToBottom(force: true)
+                            
+                            self.chattingView.preSendFileData[preSendMessage.requestId!] = [
+                                "data": imageData as AnyObject,
+                                "type": mimeType as AnyObject,
+                            ]
+                            self.chattingView.preSendMessages[preSendMessage.requestId!] = preSendMessage
+                            self.chattingView.messages.append(preSendMessage)
+                            self.chattingView.chattingTableView.reloadData()
+                            DispatchQueue.main.async {
+                                self.chattingView.scrollToBottom(force: true)
+                            }
                         }
-                    }
-                })
+                    })
+                }
+                else {
+                    PHImageManager.default().requestImage(for: asset!, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: nil, resultHandler: { (result, info) in
+                        if (result != nil) {
+                            // sucess, data is in imagedata
+                            /***********************************/
+                            /* Thumbnail is a premium feature. */
+                            /***********************************/
+                            let imageData = UIImageJPEGRepresentation(result!, 1.0)
+                            
+                            let thumbnailSize = SBDThumbnailSize.make(withMaxWidth: 320.0, maxHeight: 320.0)
+                            
+                            let preSendMessage = self.groupChannel.sendFileMessage(withBinaryData: imageData!, filename: imageName as String, type: mimeType! as String, size: UInt((imageData?.count)!), thumbnailSizes: [thumbnailSize!], data: "", customType: "", progressHandler: nil, completionHandler: { (fileMessage, error) in
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
+                                    let preSendMessage = self.chattingView.preSendMessages[(fileMessage?.requestId)!] as! SBDFileMessage
+                                    self.chattingView.preSendMessages.removeValue(forKey: (fileMessage?.requestId)!)
+                                    
+                                    if error != nil {
+                                        self.chattingView.resendableMessages[(fileMessage?.requestId)!] = preSendMessage
+                                        self.chattingView.resendableFileData[preSendMessage.requestId!]?["data"] = imageData as AnyObject?
+                                        self.chattingView.resendableFileData[preSendMessage.requestId!]?["type"] = mimeType as AnyObject?
+                                        self.chattingView.chattingTableView.reloadData()
+                                        DispatchQueue.main.async {
+                                            self.chattingView.scrollToBottom(force: true)
+                                        }
+                                        
+                                        return
+                                    }
+                                    
+                                    if fileMessage != nil {
+                                        self.chattingView.resendableMessages.removeValue(forKey: (fileMessage?.requestId)!)
+                                        self.chattingView.resendableFileData.removeValue(forKey: (fileMessage?.requestId)!)
+                                        self.chattingView.preSendMessages.removeValue(forKey: (fileMessage?.requestId)!)
+                                        self.chattingView.messages[self.chattingView.messages.index(of: preSendMessage)!] = fileMessage!
+                                        
+                                        DispatchQueue.main.async {
+                                            self.chattingView.chattingTableView.reloadData()
+                                            DispatchQueue.main.async {
+                                                self.chattingView.scrollToBottom(force: true)
+                                            }
+                                        }
+                                    }
+                                })
+                            })
+                            
+                            self.chattingView.preSendFileData[preSendMessage.requestId!] = [
+                                "data": imageData as AnyObject,
+                                "type": mimeType as AnyObject,
+                            ]
+                            self.chattingView.preSendMessages[preSendMessage.requestId!] = preSendMessage
+                            self.chattingView.messages.append(preSendMessage)
+                            self.chattingView.chattingTableView.reloadData()
+                            DispatchQueue.main.async {
+                                self.chattingView.scrollToBottom(force: true)
+                            }
+                        }
+                    })
+                }
             }
             else if CFStringCompare(mediaType as CFString, kUTTypeMovie, []) == CFComparisonResult.compareEqualTo {
                 let videoUrl: URL = info[UIImagePickerControllerMediaURL] as! URL
