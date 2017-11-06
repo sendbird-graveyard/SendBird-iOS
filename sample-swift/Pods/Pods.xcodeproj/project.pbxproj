@@ -7,126 +7,126 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02C3B5C4CB40FFA9F7D5BF21A06E062F /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B3193576DE406EFF8FD720C4DF6AFBB2 /* MGSwipeButton.m */; };
-		04B3E7F15CCA98E57F0A64EE7DF21398 /* NYTPhotoViewerCloseButtonXLandscape@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21E18348FD97154631CEEA6DCDFA0602 /* NYTPhotoViewerCloseButtonXLandscape@3x.png */; };
-		05006BDD7301FCF2678618DEDCC69B94 /* UIImage+AlamofireImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F617065F61BEA612241886131E5FF /* UIImage+AlamofireImage.swift */; };
+		02C3B5C4CB40FFA9F7D5BF21A06E062F /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 93366A6997B2DB894D997CD2FF211679 /* MGSwipeButton.m */; };
+		04B3E7F15CCA98E57F0A64EE7DF21398 /* NYTPhotoViewerCloseButtonXLandscape@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 06DAB03FE9E457BBBC722B0E465D7D66 /* NYTPhotoViewerCloseButtonXLandscape@3x.png */; };
+		05006BDD7301FCF2678618DEDCC69B94 /* UIImage+AlamofireImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5227C3C8CB1C42488C0CBD9BDAE411 /* UIImage+AlamofireImage.swift */; };
 		07DC170C9DAB9B435B0D96BA7D3D9A57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 825F014F5FEDE97F1C0C32687D86B16D /* QuartzCore.framework */; };
-		0B402C7A1D509199BB8CA1224226ED29 /* NYTScalingImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 867D462AB1F3AE2A14F85918AF924980 /* NYTScalingImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0C0C5FA56E7114D2CF89247DC7DB2F64 /* NYTPhotoContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A1E4C935F9C8E713D9C52E11C14716A /* NYTPhotoContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0C951B49609F3C28AD52E268F334E2FC /* NYTPhotosDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 106FB21D3E6DDE50C9ADAFA0BF23B918 /* NYTPhotosDataSource.m */; };
+		0B402C7A1D509199BB8CA1224226ED29 /* NYTScalingImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 35C0380C5347DE5BC3A597005FF5D8AE /* NYTScalingImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C0C5FA56E7114D2CF89247DC7DB2F64 /* NYTPhotoContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FD9F4D38471A76D341C66CB1A7A39D /* NYTPhotoContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0C951B49609F3C28AD52E268F334E2FC /* NYTPhotosDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D6B56BF655FA1A57960CD1A6A067F0E1 /* NYTPhotosDataSource.m */; };
 		0F1EF6DA45F047D57F1F477C89CEE332 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68C329DD77F163A0C362801879459DA /* Foundation.framework */; };
-		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAAD14D12B9771C3A2796A114B3E52D /* Timeline.swift */; };
-		13ADE84F672E4DF94AB419484FFAEAFA /* FLAnimatedImage-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F034A93F07C7CAADA4C7E45F9456EF4 /* FLAnimatedImage-dummy.m */; };
-		181A9C4C01FE49B42A1F01A506873F56 /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0200E0844C6782222BD74ABDD16B75B9 /* MGSwipeTableCell-dummy.m */; };
-		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 02217CA67853F969866598462E2BE477 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1C48AE92F8C30AD01F19C9FB251220EF /* NYTPhotosViewControllerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 8521F63E9E9E7BAADF6BD2FA55421C19 /* NYTPhotosViewControllerDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CDA9CF3831C4BE7AC9F922031EDB667 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0972E4629037ACFDD710A9FE6F6914A5 /* MGSwipeTableCell.m */; };
-		1CE2036AF28D41FD085006E7059CD1A7 /* RSKTouchView.h in Headers */ = {isa = PBXBuildFile; fileRef = A467850A22F361D8B2003D604F827046 /* RSKTouchView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1FA1055DF1D7922626B5B8FD310AFB4B /* NYTPhotoViewerCloseButtonXLandscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 7581B8EDFFDFD82A2253D4F80655BBE3 /* NYTPhotoViewerCloseButtonXLandscape.png */; };
-		1FAD0537EFC009657E86B1DBBC028942 /* NYTPhotoCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D87C6A470A34AB648625F70A26B55F /* NYTPhotoCaptionView.m */; };
-		202822E4668C16D115A8F68F3ADF0E0F /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854184FDD077775BCDC48C82B3A40098 /* ImageDownloader.swift */; };
-		234EDA1AD57BEF1D11AE524E4FCC0369 /* RSKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AE521C2A1E7024DE7C544AB4EEC79F3 /* RSKImageScrollView.m */; };
+		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E122C6F3D11DB33F7B809D1010210E /* Timeline.swift */; };
+		13ADE84F672E4DF94AB419484FFAEAFA /* FLAnimatedImage-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD6AAFDAEE045DE09EC3189456F1D45 /* FLAnimatedImage-dummy.m */; };
+		181A9C4C01FE49B42A1F01A506873F56 /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DFCEB169D608991DC5EC5812F256DB3 /* MGSwipeTableCell-dummy.m */; };
+		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 60F73519C6820B59B4FC0F601E8835BB /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C48AE92F8C30AD01F19C9FB251220EF /* NYTPhotosViewControllerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 94F7CE6B88848C6D6B47465A73246A98 /* NYTPhotosViewControllerDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CDA9CF3831C4BE7AC9F922031EDB667 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EAB5F93F6FD262CABE857BC2F9B50C /* MGSwipeTableCell.m */; };
+		1CE2036AF28D41FD085006E7059CD1A7 /* RSKTouchView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A6C6ACBBA1A5E2294869A4619A5B2B9 /* RSKTouchView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1FA1055DF1D7922626B5B8FD310AFB4B /* NYTPhotoViewerCloseButtonXLandscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 49F13345ACCCA1C6BF02CC09145AB86F /* NYTPhotoViewerCloseButtonXLandscape.png */; };
+		1FAD0537EFC009657E86B1DBBC028942 /* NYTPhotoCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFF0D67BCD7F6C296A3437AE8A09C947 /* NYTPhotoCaptionView.m */; };
+		202822E4668C16D115A8F68F3ADF0E0F /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC5A9E13B7FE2DD2072401F30813BD /* ImageDownloader.swift */; };
+		234EDA1AD57BEF1D11AE524E4FCC0369 /* RSKImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 366F0086AB3B397BE760115ADA45FA51 /* RSKImageScrollView.m */; };
 		26479B07464784F3BF8C0853CA049976 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68C329DD77F163A0C362801879459DA /* Foundation.framework */; };
-		27996F52CCABBD6D0874B79D1B913598 /* ImageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170B4C45AA17B4BC8A9D07AA2704C176 /* ImageFilter.swift */; };
-		2BD7CFD41DACC439E8C0A527F1643495 /* Request+AlamofireImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55A4F263846A35D55CB4F3FB0E23EA7 /* Request+AlamofireImage.swift */; };
-		2EA0415A1A8A4FFC7403E201F915F9A4 /* AFIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A7E556826903CA02355C9F65A0276C /* AFIError.swift */; };
-		304C5736AC5D49B526C709397D0CF048 /* UIImageView+AlamofireImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603CC7EA83F1DF7ACF2EB3E7AF5A8A40 /* UIImageView+AlamofireImage.swift */; };
+		27996F52CCABBD6D0874B79D1B913598 /* ImageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20854D4B34121D6037413281CE3B91D3 /* ImageFilter.swift */; };
+		2BD7CFD41DACC439E8C0A527F1643495 /* Request+AlamofireImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F7FEF33BC69CE8D307BF5DECDC7222 /* Request+AlamofireImage.swift */; };
+		2EA0415A1A8A4FFC7403E201F915F9A4 /* AFIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24516D46EC14D2F1EBF21666FAC754DC /* AFIError.swift */; };
+		304C5736AC5D49B526C709397D0CF048 /* UIImageView+AlamofireImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F50E784892E02342313D621E7A7837 /* UIImageView+AlamofireImage.swift */; };
 		30F9E6A30F6BA5FFA7E8ECCAC30378C9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15108A29CA1DE3139DF4F840A6C897E4 /* CoreText.framework */; };
 		3266E71EB6DEDE7E09F260A4EE5C8562 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 825F014F5FEDE97F1C0C32687D86B16D /* QuartzCore.framework */; };
-		32EDA9ED83F4442303A46839027E152E /* AlamofireImage-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CE507C97D8CA1BD0DA49B59343537811 /* AlamofireImage-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		336A856321D468FC1716472658E74A50 /* NYTPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = 241705490FC67A892CEA2831F7FD50D6 /* NYTPhoto.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		34FCD16A349DD30807D383538D8BA812 /* UIImage+RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = F0B48E09A5E1DFFFFFA3AA6B2585877C /* UIImage+RSKImageCropper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32EDA9ED83F4442303A46839027E152E /* AlamofireImage-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 66F29B4219B07D885B771CC817459F6F /* AlamofireImage-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		336A856321D468FC1716472658E74A50 /* NYTPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F77D7EE59FB051C1828521064A1858C /* NYTPhoto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		34FCD16A349DD30807D383538D8BA812 /* UIImage+RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = 022EBA06AB43A1ECDE8FFE306ED7A39A /* UIImage+RSKImageCropper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		36129CE33FBA2284CF013AB3A2CCA7B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68C329DD77F163A0C362801879459DA /* Foundation.framework */; };
-		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59778D94958569B1DEA07989E3326720 /* TaskDelegate.swift */; };
-		37F951F2BDB75BD682C2999EB7B51A35 /* AlamofireImage-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A55B16D91865883EFD82F25BBF3AE7B /* AlamofireImage-dummy.m */; };
-		3861BF5B7FCC9F4D46FD6C82D7DD81BF /* RSKImageCropperStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 72B3402907EF8F1AC65FFBC49A3CD249 /* RSKImageCropperStrings.bundle */; };
-		3A1D03BA8E27FC93876A2D85E0600AB5 /* NYTScalingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFBC03F1A9CA555F43C30B00C055CD6 /* NYTScalingImageView.m */; };
-		3E0FE0E37C7869814AC686BA65A2317D /* RSKImageCropper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D908B219B656C585B5F8768BB54F85 /* RSKImageCropper-dummy.m */; };
-		40152F614ED0C66A19480180BFD8C3F9 /* NYTPhotoTransitionAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 00FE583B573AD6B14C487B780174076A /* NYTPhotoTransitionAnimator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06AB8CA8D4D459F779B22AA95386908 /* TaskDelegate.swift */; };
+		37F951F2BDB75BD682C2999EB7B51A35 /* AlamofireImage-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0866C2BE291EA0BD66D20483016DD756 /* AlamofireImage-dummy.m */; };
+		3861BF5B7FCC9F4D46FD6C82D7DD81BF /* RSKImageCropperStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 14D8D31CB0A9B6337E266C55400E26E0 /* RSKImageCropperStrings.bundle */; };
+		3A1D03BA8E27FC93876A2D85E0600AB5 /* NYTScalingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D6CC01CD5297EF0EBE89679DEC18E4 /* NYTScalingImageView.m */; };
+		3E0FE0E37C7869814AC686BA65A2317D /* RSKImageCropper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B1A6573F21694BF5CC28BE685ED3AE /* RSKImageCropper-dummy.m */; };
+		40152F614ED0C66A19480180BFD8C3F9 /* NYTPhotoTransitionAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A086063D03401EAB9D35B2496A7D76 /* NYTPhotoTransitionAnimator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		408D2FED518321485951402E227634CC /* FLAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8BB6D31F5D0D430F13F4B9A9D003E2D /* FLAnimatedImage.framework */; };
-		498027F0460F95B6C676703174EEA551 /* NYTPhotoViewerCloseButtonX@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 958526ECDB561957E030FFBC46D50CD8 /* NYTPhotoViewerCloseButtonX@2x.png */; };
-		4A2276A8228028E427FABAEF343B9FA6 /* NYTPhotoViewerCloseButtonXLandscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EA815D6D6C70F5CD7DFCC840FBEC36D /* NYTPhotoViewerCloseButtonXLandscape@2x.png */; };
-		4A6A0458CFBA71B72910DE731AFA0778 /* NYTPhotosDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 4ED6FC60AAF9154AFF902A5E5990C326 /* NYTPhotosDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C184DEEC413C77BF5A84F341B263B7F /* Request.swift */; };
-		54B72BE8851E881007E5620B47F98A89 /* FLAnimatedImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 41FFD5384B476EE39EEC668AB5A7B92A /* FLAnimatedImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		498027F0460F95B6C676703174EEA551 /* NYTPhotoViewerCloseButtonX@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FF9EE66D95F136E55300ED569926D4C /* NYTPhotoViewerCloseButtonX@2x.png */; };
+		4A2276A8228028E427FABAEF343B9FA6 /* NYTPhotoViewerCloseButtonXLandscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E856F19514EEBBFC721D4B7FA2535D18 /* NYTPhotoViewerCloseButtonXLandscape@2x.png */; };
+		4A6A0458CFBA71B72910DE731AFA0778 /* NYTPhotosDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 31ACE5542A4E529D64418D59A8D77323 /* NYTPhotosDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1CC83A638BADFC253403CE6B9C767D /* Request.swift */; };
+		54B72BE8851E881007E5620B47F98A89 /* FLAnimatedImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C944B81A15BF44EBB1E50131E37F30 /* FLAnimatedImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		557DE8990533E424B8C48948C1576A64 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 271D681F529B10DE077AFC7CC2F74A32 /* CoreGraphics.framework */; };
 		5AB6538B57B186E932CD8295FFFE5C84 /* Pods-SendBird-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C4154EE258D79F70E426F05C07283123 /* Pods-SendBird-iOS-dummy.m */; };
-		5BAF799FF6F33E552697C6F83A917CC7 /* NSBundle+NYTPhotoViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = 01214F8077C73692CFA3C724DDC0F025 /* NSBundle+NYTPhotoViewer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5BAF799FF6F33E552697C6F83A917CC7 /* NSBundle+NYTPhotoViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = C1454538623E7F56CFFA12BAD5DDE04E /* NSBundle+NYTPhotoViewer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DFFB7DBB759D5BF3FE765DDDE8567A9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 825F014F5FEDE97F1C0C32687D86B16D /* QuartzCore.framework */; };
-		60CEDC8FE258A72AE1EED811AA0DCF5A /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = C705BE30A7D6696A46B0C820FC4FEEC2 /* CGGeometry+RSKImageCropper.m */; };
-		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9086E81F3E2472DCFBEF01E7025C27E4 /* DispatchQueue+Alamofire.swift */; };
+		60CEDC8FE258A72AE1EED811AA0DCF5A /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E6FC9B8060EC28D54E06C46C348398 /* CGGeometry+RSKImageCropper.m */; };
+		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DC8768A6AFC67435A2B0880F6576FB /* DispatchQueue+Alamofire.swift */; };
 		613167D898FF421A6F75D1FE5D145B9B /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10EF6B7451649B047F44C2C8860D3E1F /* Alamofire.framework */; };
-		62A51114A57D5ED3719E570526FFDB07 /* RSKInternalUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 885A9475B745129D4CED9EE0183FDBC0 /* RSKInternalUtility.m */; };
-		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629F3CC2D402F951522EFD1496AB7B9B /* ServerTrustPolicy.swift */; };
-		6325799576BD712045303B5B4AAC0291 /* NYTPhotoDismissalInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6F75CA6035B7A4F100420678ECB743 /* NYTPhotoDismissalInteractionController.m */; };
-		6B907FD8469AA04BD694DEE0C2A9ACC7 /* RSKInternalUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = AAF845B6F865346B47FA18AB41EA4933 /* RSKInternalUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		62A51114A57D5ED3719E570526FFDB07 /* RSKInternalUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D950AA401E43D2F9117DCD914A10AC5 /* RSKInternalUtility.m */; };
+		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B2AEEFE29BF05832C496BAD3A4D1E4 /* ServerTrustPolicy.swift */; };
+		6325799576BD712045303B5B4AAC0291 /* NYTPhotoDismissalInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D583A55264A1D517D6B6FA7F8B531B /* NYTPhotoDismissalInteractionController.m */; };
+		6B907FD8469AA04BD694DEE0C2A9ACC7 /* RSKInternalUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = C22D9E2EBF32984ECE8DEDCE49AD793B /* RSKInternalUtility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		73B9C996AED49ED7CF8EC2A6F1738059 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68C329DD77F163A0C362801879459DA /* Foundation.framework */; };
-		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FA2BEAC1EB2CD639F069AC0BB13487 /* SessionDelegate.swift */; };
-		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F50C2AF44CF864863AE60045CB37446 /* Result.swift */; };
-		7E0FD622B74E9AC29786466566A35AAF /* RSKImageScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 09CEB7F65291F89555C8CCC38DC51FE6 /* RSKImageScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C315069CA7F49405512EB0C6B3CD8C5 /* SessionDelegate.swift */; };
+		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2BFB4BE547E66D1BD7A33F04973B4B /* Result.swift */; };
+		7E0FD622B74E9AC29786466566A35AAF /* RSKImageScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = F0D0516AA62A283A16DEEE5999F882C9 /* RSKImageScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E525CD9DC9EB633B3C105B04538E385 /* Pods-SendBird-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ECA41BA06481226BC97AC13102BC7E3 /* Pods-SendBird-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7E90B4B7E8340D89605D04B97D0AE8AD /* NYTPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F65B22E9B9246578527BD8F0681F5D10 /* NYTPhotosViewController.m */; };
+		7E90B4B7E8340D89605D04B97D0AE8AD /* NYTPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171B6A10AFE81ED913357494C41B6F3A /* NYTPhotosViewController.m */; };
 		8064B78C5212BFF5850E3919AF0E6258 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6E23FFFE6C39833FF7450014D5A765 /* UIKit.framework */; };
-		80EC22B4F58B0534F6C4580168887325 /* NYTPhotoViewerCloseButtonX.png in Resources */ = {isa = PBXBuildFile; fileRef = D2C9270783A9DD4A596539F90ACC074D /* NYTPhotoViewerCloseButtonX.png */; };
-		853A57622AD74BC28B636A4BA38E6873 /* MGSwipeTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EBF24AABAFFCCFB1B49B7EDBAB2A4B79 /* MGSwipeTableCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		85DDF26736256FF897F4D687F8D76F7C /* NYTPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4D773D394FEFDFCA973CF6656D112CB /* NYTPhotoViewController.m */; };
-		8641AF104EE29A2577E6D24789C71715 /* CGGeometry+RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = C085AC69E5866DD1EB8ED5BD22F504BE /* CGGeometry+RSKImageCropper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		879F3C72BF6A5122BA70CAEEDDC5B845 /* FLAnimatedImage-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9001F26BEF688662554FD79E4341198C /* FLAnimatedImage-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80EC22B4F58B0534F6C4580168887325 /* NYTPhotoViewerCloseButtonX.png in Resources */ = {isa = PBXBuildFile; fileRef = 12EBF8F08CDCA3D7656F8AE9161973CA /* NYTPhotoViewerCloseButtonX.png */; };
+		853A57622AD74BC28B636A4BA38E6873 /* MGSwipeTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0865485AE978C7378400F6F5C2F10032 /* MGSwipeTableCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		85DDF26736256FF897F4D687F8D76F7C /* NYTPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD85950DC33CB67B287743560D07DA60 /* NYTPhotoViewController.m */; };
+		8641AF104EE29A2577E6D24789C71715 /* CGGeometry+RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = BF9E3887C8BB34F59C77956838A417BB /* CGGeometry+RSKImageCropper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		879F3C72BF6A5122BA70CAEEDDC5B845 /* FLAnimatedImage-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 057B35AF63A4D8CE174A1C975D245E60 /* FLAnimatedImage-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		89AB2AE681A8B73DCAFB0D9A2E44AB93 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68C329DD77F163A0C362801879459DA /* Foundation.framework */; };
-		8C1771BECC0DA6C28D8EB206F8D62D67 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF02033980939A1653BD23DFB27725F /* FLAnimatedImage.m */; };
-		8C2BAE5B65EA1E9EE53C251D92C9F276 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B82EA0D4C46DAB3AC559F2F288878C94 /* TTTAttributedLabel.m */; };
-		8D0D11B8393705D61CCD650624097C08 /* NSBundle+NYTPhotoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C10A89A05BCA603193615B2E4A756F /* NSBundle+NYTPhotoViewer.m */; };
+		8C1771BECC0DA6C28D8EB206F8D62D67 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 75937C9E30DB7E4B98EA47F18E65745A /* FLAnimatedImage.m */; };
+		8C2BAE5B65EA1E9EE53C251D92C9F276 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEFEE0187B9DD9094402A16797741134 /* TTTAttributedLabel.m */; };
+		8D0D11B8393705D61CCD650624097C08 /* NSBundle+NYTPhotoViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = AD44A85B788C993B462853FBDE66860E /* NSBundle+NYTPhotoViewer.m */; };
 		8E866D91CB4C5DCF2A8E4680E807298F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 271D681F529B10DE077AFC7CC2F74A32 /* CoreGraphics.framework */; };
-		90823B1ECF8659C7863122DFA0F22A56 /* RSKTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7CA8ABEA5D0A98814E89CAC5EED6A4 /* RSKTouchView.m */; };
+		90823B1ECF8659C7863122DFA0F22A56 /* RSKTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F6D71B026A6394DD09CC655C08ECBD /* RSKTouchView.m */; };
 		912F654B90E17294E7DAC7BD3D41C778 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68C329DD77F163A0C362801879459DA /* Foundation.framework */; };
 		92B0C6990DC7099C2F81F7861ADB0430 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA7A9CCB828C9486E7E889B4492F604 /* ImageIO.framework */; };
-		92BCABA8FE49167CC373863EAF496834 /* RSKImageCropViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E93B74A39A7B3DAC020DB622BACE84 /* RSKImageCropViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9385853994FC9D969A651F43DFCC7B9D /* TTTAttributedLabel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E98609F59A259666AE5963DA1889334 /* TTTAttributedLabel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		979C399F8B6210B1B61F1C68582BAAD0 /* NYTPhotoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 272B6710A4D6AB12AEE8EF9F8678A9D2 /* NYTPhotoTransitionAnimator.m */; };
-		99D1610C6CBA866564F8C4B53F2C1341 /* TTTAttributedLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B0F68BDC753591893D78AE6F92DCF23 /* TTTAttributedLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9ED2BB2981896E0A39EFA365503F58CE /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317095BEE30D55770CC3FA26CB9C3E3E /* AFError.swift */; };
-		A0ED48D0BA8B0010AA0454327F5AD005 /* NYTPhotoViewer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 098A96F709406735C6054088DB23E5F8 /* NYTPhotoViewer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A2A6F71B727312BD45CC7A4AAD7B0AB7 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598FB59327538AFFC2B8431A2E971C29 /* NetworkReachabilityManager.swift */; };
-		A529F6618C883A9CAA2B74CE4155BA7D /* NYTPhotoTransitionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 52092E682519D2330309BA28A56046F4 /* NYTPhotoTransitionController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A9EEEA7477981DEEBC72432DE9990A4B /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D773D8744B2EEB6A046D311F315ECFE /* Alamofire-dummy.m */; };
-		AA3741CE83763885CD7DF650607E9E49 /* NYTPhotoDismissalInteractionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 078DAA3B9D92BE487002FB30577F4DC7 /* NYTPhotoDismissalInteractionController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ACEF52D266CBF9E8C7E9F7D5E2C0937A /* FLAnimatedImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 01F87D7C9A55014E379DB76AA4EF05E0 /* FLAnimatedImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AE1EF48399533730D0066E04B22CA2D6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B840B158864BD9874ACD73FDF1A1DD /* SessionManager.swift */; };
-		B6533EFF69AA9E2AB73837FD8950F1C8 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4926FB1EF9FFAE03296C994CBCDD5E /* FLAnimatedImageView.m */; };
-		B65FCF589DA398C3EFE0128064E510EC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D29F6F3081757829C4C5E19C5122E /* MultipartFormData.swift */; };
-		B8DAFF01576084C6E303AC77E9A769D9 /* RSKImageCropViewController+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 47658FBA6DDD7E5C075318D899EBF5AC /* RSKImageCropViewController+Protected.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B9EA0E6A4A2B360A4D734D96EEFD8E8C /* TTTAttributedLabel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE6D19F4F993507A65734CDF3D0C3A5 /* TTTAttributedLabel-dummy.m */; };
-		BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F080FF242D4D753816CC8D0859818 /* Validation.swift */; };
-		BDC39B3C59FB265DBF51BAAF9BF2167C /* UIImage+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F86C5B906CE4403AE4B48765C1ADB7 /* UIImage+RSKImageCropper.m */; };
-		BE5C67A07E289FE1F9BE27335B159997 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9233027C036F8AA32B76170C71B630 /* ParameterEncoding.swift */; };
+		92BCABA8FE49167CC373863EAF496834 /* RSKImageCropViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1181611B2D3A7621F5FFCC10FE20F91F /* RSKImageCropViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9385853994FC9D969A651F43DFCC7B9D /* TTTAttributedLabel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 556B001BDDE3E8B45874E14E9DF74108 /* TTTAttributedLabel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		979C399F8B6210B1B61F1C68582BAAD0 /* NYTPhotoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B31E8114B58168A5BF5D58E62E5F16 /* NYTPhotoTransitionAnimator.m */; };
+		99D1610C6CBA866564F8C4B53F2C1341 /* TTTAttributedLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A5853C0FEC2671BA6C70F3B2B35302E /* TTTAttributedLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9ED2BB2981896E0A39EFA365503F58CE /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4403971A98C79D2128FF57E72A144C /* AFError.swift */; };
+		A0ED48D0BA8B0010AA0454327F5AD005 /* NYTPhotoViewer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C6F361A35CEFF03F926C66AD87408098 /* NYTPhotoViewer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A2A6F71B727312BD45CC7A4AAD7B0AB7 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98572774846A59F26DFFECFE8CA134C5 /* NetworkReachabilityManager.swift */; };
+		A529F6618C883A9CAA2B74CE4155BA7D /* NYTPhotoTransitionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A3C234E8F36DEDA0C4AE0BA2A643B49 /* NYTPhotoTransitionController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9EEEA7477981DEEBC72432DE9990A4B /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EED4B5B4FDEAF9191D8B0FB6298FB83 /* Alamofire-dummy.m */; };
+		AA3741CE83763885CD7DF650607E9E49 /* NYTPhotoDismissalInteractionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CB9F4EE76F8EC7AAA844A141F878985 /* NYTPhotoDismissalInteractionController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ACEF52D266CBF9E8C7E9F7D5E2C0937A /* FLAnimatedImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EFDBB5B5F51FBF9C86F01C2EE1A6DA7 /* FLAnimatedImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE1EF48399533730D0066E04B22CA2D6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C77C9206B308F5C86FA2DD213B1E272 /* SessionManager.swift */; };
+		B6533EFF69AA9E2AB73837FD8950F1C8 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2FFA84861FE1278E2B63A53CF4E831 /* FLAnimatedImageView.m */; };
+		B65FCF589DA398C3EFE0128064E510EC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEFD40ECA11ACF79FB652A479250B28 /* MultipartFormData.swift */; };
+		B8DAFF01576084C6E303AC77E9A769D9 /* RSKImageCropViewController+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 73C16C927AF367777E524847FCCD40FC /* RSKImageCropViewController+Protected.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B9EA0E6A4A2B360A4D734D96EEFD8E8C /* TTTAttributedLabel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 105DC019A25181CC7AD01E5220816386 /* TTTAttributedLabel-dummy.m */; };
+		BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AACBD167425C62CE95CE661EA75E12 /* Validation.swift */; };
+		BDC39B3C59FB265DBF51BAAF9BF2167C /* UIImage+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = C586E232FC5881889427D45ABF7595DE /* UIImage+RSKImageCropper.m */; };
+		BE5C67A07E289FE1F9BE27335B159997 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DC7C1E5895402E8DEF7F9D6D631FD4 /* ParameterEncoding.swift */; };
 		BF2FC0A3574CE5A9A97584F44935EC36 /* NYTPhotoViewer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BD55BF21346D28F496E77C5C9AC5D07B /* NYTPhotoViewer.bundle */; };
-		C08BD0F89195335062D9BBA7EBA2BE76 /* NYTPhotoCaptionView.h in Headers */ = {isa = PBXBuildFile; fileRef = E7EB08B1E6D301963923E7ED9C65D9E3 /* NYTPhotoCaptionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C0CECE73A91765A621B9E8D3D3026760 /* NYTPhotoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1880228515EA2F78F7130C3DA0914156 /* NYTPhotoViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C08BD0F89195335062D9BBA7EBA2BE76 /* NYTPhotoCaptionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32D07C764662F9ACF4A68D740B23F2AB /* NYTPhotoCaptionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0CECE73A91765A621B9E8D3D3026760 /* NYTPhotoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FB130D62F8213E2325AFE5A79329C32 /* NYTPhotoViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C1324C1737936BFEBC73EC062840B2CA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68C329DD77F163A0C362801879459DA /* Foundation.framework */; };
-		C618773779D9872AB103150F17206DAC /* NYTPhotosOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B4505AAF9EFF41CDA4ED2567FA12FC /* NYTPhotosOverlayView.m */; };
-		C73BF39A4CCC3E450E102C23027F8FF8 /* UIButton+AlamofireImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA806A524C70E7820243645A80770174 /* UIButton+AlamofireImage.swift */; };
-		C7C107AAF64355F17B30DE60C820F37C /* UIApplication+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1FCF939ACF773F2F77C9BBF9FAE45A /* UIApplication+RSKImageCropper.m */; };
-		C9BB9572D929D9F65BD27F9AB29562EB /* MGSwipeTableCell-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 576C1390DE7AB9A1A475F635F3D6369E /* MGSwipeTableCell-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E514519CC450E3BD4609AF26F6E30A /* Response.swift */; };
+		C618773779D9872AB103150F17206DAC /* NYTPhotosOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = C69709F5F812899125C6DE74577E51E5 /* NYTPhotosOverlayView.m */; };
+		C73BF39A4CCC3E450E102C23027F8FF8 /* UIButton+AlamofireImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0EBA3DD9FAA1C1F24F9524D425F0C9 /* UIButton+AlamofireImage.swift */; };
+		C7C107AAF64355F17B30DE60C820F37C /* UIApplication+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD242CCD3F654FEA658A106FAB3C4D /* UIApplication+RSKImageCropper.m */; };
+		C9BB9572D929D9F65BD27F9AB29562EB /* MGSwipeTableCell-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AD8351313E12E03E83AF5A3E21184BD2 /* MGSwipeTableCell-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE29EAA2FA6E18CDD19FCA76252D5A1 /* Response.swift */; };
 		CC72AC7921142AEA50CE7CDD778FEB45 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE7125253462CED4F7924A142C72D61 /* MobileCoreServices.framework */; };
 		CD2146E1021094CB1861839FBABFBFD4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6E23FFFE6C39833FF7450014D5A765 /* UIKit.framework */; };
-		CFA30DA4AB7558447CE599D0382F77C1 /* RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = AE5310DEC5144E81BD4AE0102B24F3ED /* RSKImageCropper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D9E544B8CB42DA8DD44838F83610D8E0 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A66CB32652D12671EB156310F6F2BB3 /* ImageCache.swift */; };
+		CFA30DA4AB7558447CE599D0382F77C1 /* RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = 46B9E1FE9CC50C2F2CE31B91CDDCE281 /* RSKImageCropper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D9E544B8CB42DA8DD44838F83610D8E0 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7298777BE2FBBA0F7C8A2771DD06DC62 /* ImageCache.swift */; };
 		DAC5814F387EA2F61D11041BB468CF1C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6E23FFFE6C39833FF7450014D5A765 /* UIKit.framework */; };
 		DC57CD8EC50C19BEE8F0F9B7DDC1CEB9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C68C329DD77F163A0C362801879459DA /* Foundation.framework */; };
-		E0127808A60A18A4B6703EE0D79B1354 /* NYTPhotoViewerCloseButtonX@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D86D833836671F28C171BBB40C85441 /* NYTPhotoViewerCloseButtonX@3x.png */; };
-		E02BBF6E1796237C6963F735B8F6FD65 /* NYTPhotosViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9CB12BFDDD31881B53831F0796015A1 /* NYTPhotosViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E1FF4985892E23B75A3381EFF830DFD5 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824AA6DE48471D053DB36E4CBB34202 /* Image.swift */; };
-		E4971E481764EB00FDEA72D8DB8E1D44 /* NYTPhotoTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8650241702CD7844BDB8085BDC7508 /* NYTPhotoTransitionController.m */; };
-		E4BF47046BA4675E1DA2F34893947702 /* MGSwipeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = A18F52227E82E36F46E227737E371123 /* MGSwipeButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8CDC875E4D7E51B60A1AE1D8C1BED9C /* NYTPhotoCaptionViewLayoutWidthHinting.h in Headers */ = {isa = PBXBuildFile; fileRef = 128A8494B5675D151C3B6171177E9538 /* NYTPhotoCaptionViewLayoutWidthHinting.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E999B540182C6497EADC6860FB856CC3 /* NYTPhotoViewer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B3B1C6C1E4C85CC5440FB18B42007C85 /* NYTPhotoViewer-dummy.m */; };
-		ED2E6963B0720B910249555E3A4F577A /* RSKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042F5A72AA15A36ED159A788AA02A256 /* RSKImageCropViewController.m */; };
-		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C56D2F2EFBE2720DD27539220E576 /* Notifications.swift */; };
-		F3C4F910AE1A12E7ABE2FBFAC6CC5E1F /* NYTPhotosOverlayView.h in Headers */ = {isa = PBXBuildFile; fileRef = F0CF465229E53F756BF610D48E8B7D76 /* NYTPhotosOverlayView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F6BECD98B97CBFEBE2C96F0E9E72A6C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B42170EA21D0E46999DF2F04442AAA /* ResponseSerialization.swift */; };
-		F796DABA9C806A7A497B5A911657ADAE /* UIApplication+RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = CCB8A9152976039D5FF9BB295BB3D927 /* UIApplication+RSKImageCropper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F8B3D3092ED0417E8CDF32033F6122F5 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963982DFB69DB88583601E162CFBCD80 /* Alamofire.swift */; };
+		E0127808A60A18A4B6703EE0D79B1354 /* NYTPhotoViewerCloseButtonX@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0365E44D910CE41360730A8942604BD8 /* NYTPhotoViewerCloseButtonX@3x.png */; };
+		E02BBF6E1796237C6963F735B8F6FD65 /* NYTPhotosViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 04B5E9CC36C917D77E94D0BDFCECED47 /* NYTPhotosViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E1FF4985892E23B75A3381EFF830DFD5 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE454A1EF98A480C000272CC7E455A /* Image.swift */; };
+		E4971E481764EB00FDEA72D8DB8E1D44 /* NYTPhotoTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7D2A2A262094B2B6C179E3EB192FFD /* NYTPhotoTransitionController.m */; };
+		E4BF47046BA4675E1DA2F34893947702 /* MGSwipeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 459E378BC39B234C937C64B6B6D9F00D /* MGSwipeButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8CDC875E4D7E51B60A1AE1D8C1BED9C /* NYTPhotoCaptionViewLayoutWidthHinting.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CB92214285CD58460CB7A20D35CEF15 /* NYTPhotoCaptionViewLayoutWidthHinting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E999B540182C6497EADC6860FB856CC3 /* NYTPhotoViewer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E95716465184D7020323D694E09F93C7 /* NYTPhotoViewer-dummy.m */; };
+		ED2E6963B0720B910249555E3A4F577A /* RSKImageCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ECB86597CF7A6CCD93DF23E8AD4A65 /* RSKImageCropViewController.m */; };
+		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82B57BBAE61BD7236D8C35F1769DBA6 /* Notifications.swift */; };
+		F3C4F910AE1A12E7ABE2FBFAC6CC5E1F /* NYTPhotosOverlayView.h in Headers */ = {isa = PBXBuildFile; fileRef = A1C22CA4159CF57AAC38FC23B7842126 /* NYTPhotosOverlayView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F6BECD98B97CBFEBE2C96F0E9E72A6C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19C5215B271708A88F4041154DBADFC /* ResponseSerialization.swift */; };
+		F796DABA9C806A7A497B5A911657ADAE /* UIApplication+RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = 29E8C0E977E87E39447DF58712C7016B /* UIApplication+RSKImageCropper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8B3D3092ED0417E8CDF32033F6122F5 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31EF0C9017F2B9482734C3B3699D806 /* Alamofire.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,161 +203,161 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00FE583B573AD6B14C487B780174076A /* NYTPhotoTransitionAnimator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotoTransitionAnimator.h; path = Pod/Classes/ios/NYTPhotoTransitionAnimator.h; sourceTree = "<group>"; };
-		01214F8077C73692CFA3C724DDC0F025 /* NSBundle+NYTPhotoViewer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSBundle+NYTPhotoViewer.h"; path = "Pod/Classes/ios/Resource Loading/NSBundle+NYTPhotoViewer.h"; sourceTree = "<group>"; };
-		017D5055215877D6AADF635A13E0D9A6 /* TTTAttributedLabel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TTTAttributedLabel.modulemap; sourceTree = "<group>"; };
-		01F87D7C9A55014E379DB76AA4EF05E0 /* FLAnimatedImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLAnimatedImage.h; path = FLAnimatedImage/FLAnimatedImage.h; sourceTree = "<group>"; };
-		0200E0844C6782222BD74ABDD16B75B9 /* MGSwipeTableCell-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MGSwipeTableCell-dummy.m"; sourceTree = "<group>"; };
-		02217CA67853F969866598462E2BE477 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
 		02251C13F61AFE845CC5EE7A03BDEF16 /* Pods-SendBird-iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SendBird-iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
-		042F5A72AA15A36ED159A788AA02A256 /* RSKImageCropViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RSKImageCropViewController.m; path = RSKImageCropper/RSKImageCropViewController.m; sourceTree = "<group>"; };
-		078DAA3B9D92BE487002FB30577F4DC7 /* NYTPhotoDismissalInteractionController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotoDismissalInteractionController.h; path = Pod/Classes/ios/NYTPhotoDismissalInteractionController.h; sourceTree = "<group>"; };
-		0972E4629037ACFDD710A9FE6F6914A5 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = MGSwipeTableCell/MGSwipeTableCell.m; sourceTree = "<group>"; };
-		098A96F709406735C6054088DB23E5F8 /* NYTPhotoViewer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NYTPhotoViewer-umbrella.h"; sourceTree = "<group>"; };
-		09CEB7F65291F89555C8CCC38DC51FE6 /* RSKImageScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RSKImageScrollView.h; path = RSKImageCropper/RSKImageScrollView.h; sourceTree = "<group>"; };
+		022EBA06AB43A1ECDE8FFE306ED7A39A /* UIImage+RSKImageCropper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+RSKImageCropper.h"; path = "RSKImageCropper/UIImage+RSKImageCropper.h"; sourceTree = "<group>"; };
+		0365E44D910CE41360730A8942604BD8 /* NYTPhotoViewerCloseButtonX@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NYTPhotoViewerCloseButtonX@3x.png"; path = "Pod/Assets/ios/NYTPhotoViewerCloseButtonX@3x.png"; sourceTree = "<group>"; };
+		03BF6ABBF5F647F9EDF7E316ACAF6522 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		040F22D73EF80A1447BB50DDDB6E1341 /* FLAnimatedImage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImage-prefix.pch"; sourceTree = "<group>"; };
+		04B5E9CC36C917D77E94D0BDFCECED47 /* NYTPhotosViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotosViewController.h; path = Pod/Classes/ios/NYTPhotosViewController.h; sourceTree = "<group>"; };
+		057B35AF63A4D8CE174A1C975D245E60 /* FLAnimatedImage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImage-umbrella.h"; sourceTree = "<group>"; };
+		06DAB03FE9E457BBBC722B0E465D7D66 /* NYTPhotoViewerCloseButtonXLandscape@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NYTPhotoViewerCloseButtonXLandscape@3x.png"; path = "Pod/Assets/ios/NYTPhotoViewerCloseButtonXLandscape@3x.png"; sourceTree = "<group>"; };
+		07DC8768A6AFC67435A2B0880F6576FB /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
+		0865485AE978C7378400F6F5C2F10032 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = MGSwipeTableCell/MGSwipeTableCell.h; sourceTree = "<group>"; };
+		0866C2BE291EA0BD66D20483016DD756 /* AlamofireImage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AlamofireImage-dummy.m"; sourceTree = "<group>"; };
 		0AE7125253462CED4F7924A142C72D61 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		0C315069CA7F49405512EB0C6B3CD8C5 /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
 		0C637D4CD685AC51263DE430625AF156 /* TTTAttributedLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TTTAttributedLabel.framework; path = TTTAttributedLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0E98609F59A259666AE5963DA1889334 /* TTTAttributedLabel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TTTAttributedLabel-umbrella.h"; sourceTree = "<group>"; };
-		106FB21D3E6DDE50C9ADAFA0BF23B918 /* NYTPhotosDataSource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotosDataSource.m; path = Pod/Classes/ios/NYTPhotosDataSource.m; sourceTree = "<group>"; };
-		10CD9EB03F6C9D2623560F8E1EBB1B7A /* AlamofireImage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlamofireImage.xcconfig; sourceTree = "<group>"; };
+		0CB9F4EE76F8EC7AAA844A141F878985 /* NYTPhotoDismissalInteractionController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotoDismissalInteractionController.h; path = Pod/Classes/ios/NYTPhotoDismissalInteractionController.h; sourceTree = "<group>"; };
+		0CFF386A215E612D03E5C90562C42230 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		105DC019A25181CC7AD01E5220816386 /* TTTAttributedLabel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TTTAttributedLabel-dummy.m"; sourceTree = "<group>"; };
+		10B2AEEFE29BF05832C496BAD3A4D1E4 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
 		10EF6B7451649B047F44C2C8860D3E1F /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		128A8494B5675D151C3B6171177E9538 /* NYTPhotoCaptionViewLayoutWidthHinting.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotoCaptionViewLayoutWidthHinting.h; path = Pod/Classes/ios/Protocols/NYTPhotoCaptionViewLayoutWidthHinting.h; sourceTree = "<group>"; };
+		1181611B2D3A7621F5FFCC10FE20F91F /* RSKImageCropViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RSKImageCropViewController.h; path = RSKImageCropper/RSKImageCropViewController.h; sourceTree = "<group>"; };
+		12EBF8F08CDCA3D7656F8AE9161973CA /* NYTPhotoViewerCloseButtonX.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NYTPhotoViewerCloseButtonX.png; path = Pod/Assets/ios/NYTPhotoViewerCloseButtonX.png; sourceTree = "<group>"; };
+		14A086063D03401EAB9D35B2496A7D76 /* NYTPhotoTransitionAnimator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotoTransitionAnimator.h; path = Pod/Classes/ios/NYTPhotoTransitionAnimator.h; sourceTree = "<group>"; };
+		14D8D31CB0A9B6337E266C55400E26E0 /* RSKImageCropperStrings.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = RSKImageCropperStrings.bundle; path = RSKImageCropper/RSKImageCropperStrings.bundle; sourceTree = "<group>"; };
+		14F50E784892E02342313D621E7A7837 /* UIImageView+AlamofireImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImageView+AlamofireImage.swift"; path = "Source/UIImageView+AlamofireImage.swift"; sourceTree = "<group>"; };
 		15108A29CA1DE3139DF4F840A6C897E4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
-		170B4C45AA17B4BC8A9D07AA2704C176 /* ImageFilter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageFilter.swift; path = Source/ImageFilter.swift; sourceTree = "<group>"; };
-		1880228515EA2F78F7130C3DA0914156 /* NYTPhotoViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotoViewController.h; path = Pod/Classes/ios/NYTPhotoViewController.h; sourceTree = "<group>"; };
-		19C6CE771280A25C599B85315DC4BB3F /* FLAnimatedImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FLAnimatedImage.modulemap; sourceTree = "<group>"; };
-		19FA2BEAC1EB2CD639F069AC0BB13487 /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
-		1CD2C713BBD31447468E3A59E36B4F9F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		21E18348FD97154631CEEA6DCDFA0602 /* NYTPhotoViewerCloseButtonXLandscape@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NYTPhotoViewerCloseButtonXLandscape@3x.png"; path = "Pod/Assets/ios/NYTPhotoViewerCloseButtonXLandscape@3x.png"; sourceTree = "<group>"; };
-		241705490FC67A892CEA2831F7FD50D6 /* NYTPhoto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhoto.h; path = Pod/Classes/ios/Protocols/NYTPhoto.h; sourceTree = "<group>"; };
+		171B6A10AFE81ED913357494C41B6F3A /* NYTPhotosViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotosViewController.m; path = Pod/Classes/ios/NYTPhotosViewController.m; sourceTree = "<group>"; };
+		18DC7C1E5895402E8DEF7F9D6D631FD4 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		1A5853C0FEC2671BA6C70F3B2B35302E /* TTTAttributedLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TTTAttributedLabel.h; path = TTTAttributedLabel/TTTAttributedLabel.h; sourceTree = "<group>"; };
+		1A7D2A2A262094B2B6C179E3EB192FFD /* NYTPhotoTransitionController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotoTransitionController.m; path = Pod/Classes/ios/NYTPhotoTransitionController.m; sourceTree = "<group>"; };
+		1DFCEB169D608991DC5EC5812F256DB3 /* MGSwipeTableCell-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MGSwipeTableCell-dummy.m"; sourceTree = "<group>"; };
+		1EFDBB5B5F51FBF9C86F01C2EE1A6DA7 /* FLAnimatedImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLAnimatedImage.h; path = FLAnimatedImage/FLAnimatedImage.h; sourceTree = "<group>"; };
+		20854D4B34121D6037413281CE3B91D3 /* ImageFilter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageFilter.swift; path = Source/ImageFilter.swift; sourceTree = "<group>"; };
+		20AACBD167425C62CE95CE661EA75E12 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
+		21F5DC98DF6E9FA0CEA30EEF4B59BBE4 /* NYTPhotoViewer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NYTPhotoViewer.xcconfig; sourceTree = "<group>"; };
+		2392A7A805BF5F81E46A4C3BA8455DA6 /* AlamofireImage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlamofireImage.xcconfig; sourceTree = "<group>"; };
+		24516D46EC14D2F1EBF21666FAC754DC /* AFIError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFIError.swift; path = Source/AFIError.swift; sourceTree = "<group>"; };
 		271D681F529B10DE077AFC7CC2F74A32 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		272B6710A4D6AB12AEE8EF9F8678A9D2 /* NYTPhotoTransitionAnimator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotoTransitionAnimator.m; path = Pod/Classes/ios/NYTPhotoTransitionAnimator.m; sourceTree = "<group>"; };
-		282B51C153D23D5EDDC7F205B1E79F41 /* TTTAttributedLabel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TTTAttributedLabel-prefix.pch"; sourceTree = "<group>"; };
-		28B42170EA21D0E46999DF2F04442AAA /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
-		29F3B1EA24528125F4112D69BAB1CB4A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A1E4C935F9C8E713D9C52E11C14716A /* NYTPhotoContainer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotoContainer.h; path = Pod/Classes/ios/Protocols/NYTPhotoContainer.h; sourceTree = "<group>"; };
-		2D86D833836671F28C171BBB40C85441 /* NYTPhotoViewerCloseButtonX@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NYTPhotoViewerCloseButtonX@3x.png"; path = "Pod/Assets/ios/NYTPhotoViewerCloseButtonX@3x.png"; sourceTree = "<group>"; };
-		30967ABAA6210641F026EDD037BE80A3 /* MGSwipeTableCell.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MGSwipeTableCell.xcconfig; sourceTree = "<group>"; };
-		317095BEE30D55770CC3FA26CB9C3E3E /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
-		31D87C6A470A34AB648625F70A26B55F /* NYTPhotoCaptionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotoCaptionView.m; path = Pod/Classes/ios/NYTPhotoCaptionView.m; sourceTree = "<group>"; };
-		329E145EADDB10FF1DCDC65FDABD9643 /* RSKImageCropper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = RSKImageCropper.modulemap; sourceTree = "<group>"; };
-		3B17265A674A55679A981AD79E592DBD /* RSKImageCropper.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RSKImageCropper.xcconfig; sourceTree = "<group>"; };
-		3EFBC03F1A9CA555F43C30B00C055CD6 /* NYTScalingImageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTScalingImageView.m; path = Pod/Classes/ios/NYTScalingImageView.m; sourceTree = "<group>"; };
-		41FFD5384B476EE39EEC668AB5A7B92A /* FLAnimatedImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLAnimatedImageView.h; path = FLAnimatedImage/FLAnimatedImageView.h; sourceTree = "<group>"; };
+		286B42626C751555FBBFA93D0622BDBF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29E8C0E977E87E39447DF58712C7016B /* UIApplication+RSKImageCropper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+RSKImageCropper.h"; path = "RSKImageCropper/UIApplication+RSKImageCropper.h"; sourceTree = "<group>"; };
+		2A3C234E8F36DEDA0C4AE0BA2A643B49 /* NYTPhotoTransitionController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotoTransitionController.h; path = Pod/Classes/ios/NYTPhotoTransitionController.h; sourceTree = "<group>"; };
+		2CD6AAFDAEE045DE09EC3189456F1D45 /* FLAnimatedImage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FLAnimatedImage-dummy.m"; sourceTree = "<group>"; };
+		2EED4B5B4FDEAF9191D8B0FB6298FB83 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
+		2FF9EE66D95F136E55300ED569926D4C /* NYTPhotoViewerCloseButtonX@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NYTPhotoViewerCloseButtonX@2x.png"; path = "Pod/Assets/ios/NYTPhotoViewerCloseButtonX@2x.png"; sourceTree = "<group>"; };
+		31ACE5542A4E529D64418D59A8D77323 /* NYTPhotosDataSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotosDataSource.h; path = Pod/Classes/ios/NYTPhotosDataSource.h; sourceTree = "<group>"; };
+		32D07C764662F9ACF4A68D740B23F2AB /* NYTPhotoCaptionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotoCaptionView.h; path = Pod/Classes/ios/NYTPhotoCaptionView.h; sourceTree = "<group>"; };
+		33E6FC9B8060EC28D54E06C46C348398 /* CGGeometry+RSKImageCropper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CGGeometry+RSKImageCropper.m"; path = "RSKImageCropper/CGGeometry+RSKImageCropper.m"; sourceTree = "<group>"; };
+		35C0380C5347DE5BC3A597005FF5D8AE /* NYTScalingImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTScalingImageView.h; path = Pod/Classes/ios/NYTScalingImageView.h; sourceTree = "<group>"; };
+		366F0086AB3B397BE760115ADA45FA51 /* RSKImageScrollView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RSKImageScrollView.m; path = RSKImageCropper/RSKImageScrollView.m; sourceTree = "<group>"; };
+		3806A70809A87D8213E8B09947A25B11 /* FLAnimatedImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FLAnimatedImage.modulemap; sourceTree = "<group>"; };
+		3C77C9206B308F5C86FA2DD213B1E272 /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
 		421C6B81118ADB81E8A63D4BFC3542E7 /* RSKImageCropper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RSKImageCropper.framework; path = RSKImageCropper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		45E93B74A39A7B3DAC020DB622BACE84 /* RSKImageCropViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RSKImageCropViewController.h; path = RSKImageCropper/RSKImageCropViewController.h; sourceTree = "<group>"; };
-		47658FBA6DDD7E5C075318D899EBF5AC /* RSKImageCropViewController+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RSKImageCropViewController+Protected.h"; path = "RSKImageCropper/RSKImageCropViewController+Protected.h"; sourceTree = "<group>"; };
-		4A55B16D91865883EFD82F25BBF3AE7B /* AlamofireImage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AlamofireImage-dummy.m"; sourceTree = "<group>"; };
-		4A6F080FF242D4D753816CC8D0859818 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
-		4AC0B2220FB6014B52D03D80FED4D0E9 /* SendBirdSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SendBirdSDK.framework; sourceTree = "<group>"; };
-		4AE521C2A1E7024DE7C544AB4EEC79F3 /* RSKImageScrollView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RSKImageScrollView.m; path = RSKImageCropper/RSKImageScrollView.m; sourceTree = "<group>"; };
-		4B0F68BDC753591893D78AE6F92DCF23 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TTTAttributedLabel.h; path = TTTAttributedLabel/TTTAttributedLabel.h; sourceTree = "<group>"; };
-		4BF02033980939A1653BD23DFB27725F /* FLAnimatedImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLAnimatedImage.m; path = FLAnimatedImage/FLAnimatedImage.m; sourceTree = "<group>"; };
-		4C184DEEC413C77BF5A84F341B263B7F /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
-		4D773D8744B2EEB6A046D311F315ECFE /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
-		4ED6FC60AAF9154AFF902A5E5990C326 /* NYTPhotosDataSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotosDataSource.h; path = Pod/Classes/ios/NYTPhotosDataSource.h; sourceTree = "<group>"; };
-		506D29F6F3081757829C4C5E19C5122E /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
-		51F88B66B34B311156D24D3E675A3DB3 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
-		52092E682519D2330309BA28A56046F4 /* NYTPhotoTransitionController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotoTransitionController.h; path = Pod/Classes/ios/NYTPhotoTransitionController.h; sourceTree = "<group>"; };
-		55B1A975E491C97A63F2E4A2D6539404 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		56A2CBDB331D5C66E3D53134C0E2FCEA /* MGSwipeTableCell-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-prefix.pch"; sourceTree = "<group>"; };
-		576C1390DE7AB9A1A475F635F3D6369E /* MGSwipeTableCell-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-umbrella.h"; sourceTree = "<group>"; };
-		582714A87A31C958A454F0DD4A79C037 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
-		59778D94958569B1DEA07989E3326720 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
-		598FB59327538AFFC2B8431A2E971C29 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		459E378BC39B234C937C64B6B6D9F00D /* MGSwipeButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeButton.h; path = MGSwipeTableCell/MGSwipeButton.h; sourceTree = "<group>"; };
+		46B9E1FE9CC50C2F2CE31B91CDDCE281 /* RSKImageCropper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RSKImageCropper.h; path = RSKImageCropper/RSKImageCropper.h; sourceTree = "<group>"; };
+		46F7FEF33BC69CE8D307BF5DECDC7222 /* Request+AlamofireImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Request+AlamofireImage.swift"; path = "Source/Request+AlamofireImage.swift"; sourceTree = "<group>"; };
+		49F13345ACCCA1C6BF02CC09145AB86F /* NYTPhotoViewerCloseButtonXLandscape.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NYTPhotoViewerCloseButtonXLandscape.png; path = Pod/Assets/ios/NYTPhotoViewerCloseButtonXLandscape.png; sourceTree = "<group>"; };
+		4FBE454A1EF98A480C000272CC7E455A /* Image.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Image.swift; path = Source/Image.swift; sourceTree = "<group>"; };
+		51F6D71B026A6394DD09CC655C08ECBD /* RSKTouchView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RSKTouchView.m; path = RSKImageCropper/RSKTouchView.m; sourceTree = "<group>"; };
+		5550867D2C18B3BDEEAA70B623738D4C /* RSKImageCropper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RSKImageCropper-prefix.pch"; sourceTree = "<group>"; };
+		556B001BDDE3E8B45874E14E9DF74108 /* TTTAttributedLabel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TTTAttributedLabel-umbrella.h"; sourceTree = "<group>"; };
+		5831755B46F1ACEC69A21077C36FB88E /* TTTAttributedLabel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TTTAttributedLabel.modulemap; sourceTree = "<group>"; };
 		5A4008F504E911FDD2A19D50D31535E0 /* Pods-SendBird-iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SendBird-iOS-resources.sh"; sourceTree = "<group>"; };
 		5ECA41BA06481226BC97AC13102BC7E3 /* Pods-SendBird-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SendBird-iOS-umbrella.h"; sourceTree = "<group>"; };
-		5F034A93F07C7CAADA4C7E45F9456EF4 /* FLAnimatedImage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FLAnimatedImage-dummy.m"; sourceTree = "<group>"; };
-		603CC7EA83F1DF7ACF2EB3E7AF5A8A40 /* UIImageView+AlamofireImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImageView+AlamofireImage.swift"; path = "Source/UIImageView+AlamofireImage.swift"; sourceTree = "<group>"; };
-		609BAE4EB123E8B7094B73853E8FD82D /* FLAnimatedImage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FLAnimatedImage.xcconfig; sourceTree = "<group>"; };
-		60A7E556826903CA02355C9F65A0276C /* AFIError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFIError.swift; path = Source/AFIError.swift; sourceTree = "<group>"; };
-		629F3CC2D402F951522EFD1496AB7B9B /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		60F73519C6820B59B4FC0F601E8835BB /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
+		635DEB6DC4DEE8B72AD52DA5BDCEB807 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6390B9851C478E1FC5D2CF6BEDE799B0 /* Pods-SendBird-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SendBird-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		68C65036503895C6199E39ED342B6D6D /* NYTPhotoViewer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NYTPhotoViewer-prefix.pch"; sourceTree = "<group>"; };
-		6C778FAB1E11F53F0EFDB99B98FB3585 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6E9233027C036F8AA32B76170C71B630 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
-		72B3402907EF8F1AC65FFBC49A3CD249 /* RSKImageCropperStrings.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = RSKImageCropperStrings.bundle; path = RSKImageCropper/RSKImageCropperStrings.bundle; sourceTree = "<group>"; };
-		73877F9DA81B15148FD4CE1E0AE55796 /* AlamofireImage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlamofireImage-prefix.pch"; sourceTree = "<group>"; };
+		65ECB86597CF7A6CCD93DF23E8AD4A65 /* RSKImageCropViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RSKImageCropViewController.m; path = RSKImageCropper/RSKImageCropViewController.m; sourceTree = "<group>"; };
+		66F29B4219B07D885B771CC817459F6F /* AlamofireImage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlamofireImage-umbrella.h"; sourceTree = "<group>"; };
+		6A6C6ACBBA1A5E2294869A4619A5B2B9 /* RSKTouchView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RSKTouchView.h; path = RSKImageCropper/RSKTouchView.h; sourceTree = "<group>"; };
+		6CB92214285CD58460CB7A20D35CEF15 /* NYTPhotoCaptionViewLayoutWidthHinting.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotoCaptionViewLayoutWidthHinting.h; path = Pod/Classes/ios/Protocols/NYTPhotoCaptionViewLayoutWidthHinting.h; sourceTree = "<group>"; };
+		6F1CC83A638BADFC253403CE6B9C767D /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		70E11710CA2D236505F61CF19334E335 /* RSKImageCropper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = RSKImageCropper.modulemap; sourceTree = "<group>"; };
+		7298777BE2FBBA0F7C8A2771DD06DC62 /* ImageCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageCache.swift; path = Source/ImageCache.swift; sourceTree = "<group>"; };
+		73C16C927AF367777E524847FCCD40FC /* RSKImageCropViewController+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RSKImageCropViewController+Protected.h"; path = "RSKImageCropper/RSKImageCropViewController+Protected.h"; sourceTree = "<group>"; };
 		73E9DBAEFA3272E604C6B0E5E5486B22 /* AlamofireImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AlamofireImage.framework; path = AlamofireImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7581B8EDFFDFD82A2253D4F80655BBE3 /* NYTPhotoViewerCloseButtonXLandscape.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NYTPhotoViewerCloseButtonXLandscape.png; path = Pod/Assets/ios/NYTPhotoViewerCloseButtonXLandscape.png; sourceTree = "<group>"; };
-		78E514519CC450E3BD4609AF26F6E30A /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
+		75937C9E30DB7E4B98EA47F18E65745A /* FLAnimatedImage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLAnimatedImage.m; path = FLAnimatedImage/FLAnimatedImage.m; sourceTree = "<group>"; };
+		76D583A55264A1D517D6B6FA7F8B531B /* NYTPhotoDismissalInteractionController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotoDismissalInteractionController.m; path = Pod/Classes/ios/NYTPhotoDismissalInteractionController.m; sourceTree = "<group>"; };
 		790D7E3333FEC26539E1FEAA4B4557F7 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7AC6C517B39BED360959B58B597C077A /* AlamofireImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = AlamofireImage.modulemap; sourceTree = "<group>"; };
-		7E6F75CA6035B7A4F100420678ECB743 /* NYTPhotoDismissalInteractionController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotoDismissalInteractionController.m; path = Pod/Classes/ios/NYTPhotoDismissalInteractionController.m; sourceTree = "<group>"; };
-		7EA815D6D6C70F5CD7DFCC840FBEC36D /* NYTPhotoViewerCloseButtonXLandscape@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NYTPhotoViewerCloseButtonXLandscape@2x.png"; path = "Pod/Assets/ios/NYTPhotoViewerCloseButtonXLandscape@2x.png"; sourceTree = "<group>"; };
+		79B31E8114B58168A5BF5D58E62E5F16 /* NYTPhotoTransitionAnimator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotoTransitionAnimator.m; path = Pod/Classes/ios/NYTPhotoTransitionAnimator.m; sourceTree = "<group>"; };
+		7D950AA401E43D2F9117DCD914A10AC5 /* RSKInternalUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RSKInternalUtility.m; path = RSKImageCropper/RSKInternalUtility.m; sourceTree = "<group>"; };
 		8100E83429C0E2B43A3CD6D23D2F1083 /* Pods-SendBird-iOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SendBird-iOS-frameworks.sh"; sourceTree = "<group>"; };
 		825F014F5FEDE97F1C0C32687D86B16D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		83A85500AA7183FA22E580C7322580CD /* FLAnimatedImage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImage-prefix.pch"; sourceTree = "<group>"; };
 		849AF1EB3A1D15645A4BDE87693D0BCE /* FLAnimatedImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FLAnimatedImage.framework; path = FLAnimatedImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		84E2F7556EF64FFE46C9CCA6ABCCAF2C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8521F63E9E9E7BAADF6BD2FA55421C19 /* NYTPhotosViewControllerDataSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotosViewControllerDataSource.h; path = Pod/Classes/ios/Protocols/NYTPhotosViewControllerDataSource.h; sourceTree = "<group>"; };
-		85351FE08216DDB268B713D13D0D901D /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
-		854184FDD077775BCDC48C82B3A40098 /* ImageDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageDownloader.swift; path = Source/ImageDownloader.swift; sourceTree = "<group>"; };
-		867D462AB1F3AE2A14F85918AF924980 /* NYTScalingImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTScalingImageView.h; path = Pod/Classes/ios/NYTScalingImageView.h; sourceTree = "<group>"; };
-		885A9475B745129D4CED9EE0183FDBC0 /* RSKInternalUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RSKInternalUtility.m; path = RSKImageCropper/RSKInternalUtility.m; sourceTree = "<group>"; };
 		89D435158BF9D164716DD44CEEB6E9B2 /* NYTPhotoViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = NYTPhotoViewer.framework; path = NYTPhotoViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CA7A9CCB828C9486E7E889B4492F604 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
-		8F9F617065F61BEA612241886131E5FF /* UIImage+AlamofireImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+AlamofireImage.swift"; path = "Source/UIImage+AlamofireImage.swift"; sourceTree = "<group>"; };
-		9001F26BEF688662554FD79E4341198C /* FLAnimatedImage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImage-umbrella.h"; sourceTree = "<group>"; };
-		9086E81F3E2472DCFBEF01E7025C27E4 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
+		9217EB7A716B3A8438513C7CB8D2BD57 /* AlamofireImage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlamofireImage-prefix.pch"; sourceTree = "<group>"; };
+		93366A6997B2DB894D997CD2FF211679 /* MGSwipeButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = MGSwipeTableCell/MGSwipeButton.m; sourceTree = "<group>"; };
 		936FB06FE7D006C052DB48E31DF2AA44 /* Pods-SendBird-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SendBird-iOS.modulemap"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		958526ECDB561957E030FFBC46D50CD8 /* NYTPhotoViewerCloseButtonX@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NYTPhotoViewerCloseButtonX@2x.png"; path = "Pod/Assets/ios/NYTPhotoViewerCloseButtonX@2x.png"; sourceTree = "<group>"; };
-		95F86C5B906CE4403AE4B48765C1ADB7 /* UIImage+RSKImageCropper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RSKImageCropper.m"; path = "RSKImageCropper/UIImage+RSKImageCropper.m"; sourceTree = "<group>"; };
-		963982DFB69DB88583601E162CFBCD80 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
-		97B840B158864BD9874ACD73FDF1A1DD /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
-		98B4505AAF9EFF41CDA4ED2567FA12FC /* NYTPhotosOverlayView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotosOverlayView.m; path = Pod/Classes/ios/NYTPhotosOverlayView.m; sourceTree = "<group>"; };
-		9A66CB32652D12671EB156310F6F2BB3 /* ImageCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageCache.swift; path = Source/ImageCache.swift; sourceTree = "<group>"; };
-		9AAAD14D12B9771C3A2796A114B3E52D /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
-		9E7CA8ABEA5D0A98814E89CAC5EED6A4 /* RSKTouchView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RSKTouchView.m; path = RSKImageCropper/RSKTouchView.m; sourceTree = "<group>"; };
-		9F50C2AF44CF864863AE60045CB37446 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
+		94F7CE6B88848C6D6B47465A73246A98 /* NYTPhotosViewControllerDataSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotosViewControllerDataSource.h; path = Pod/Classes/ios/Protocols/NYTPhotosViewControllerDataSource.h; sourceTree = "<group>"; };
+		96019E9AF80BE8BC9FFDC879F77CD2C9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96FA4A9B19C94BE9CB5CCC832938FC5C /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
+		98572774846A59F26DFFECFE8CA134C5 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		9BEFD40ECA11ACF79FB652A479250B28 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
+		9DE29EAA2FA6E18CDD19FCA76252D5A1 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
+		9ECC5A9E13B7FE2DD2072401F30813BD /* ImageDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageDownloader.swift; path = Source/ImageDownloader.swift; sourceTree = "<group>"; };
+		9ED4C273A132DE213D9D54F648D9755E /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
+		9F77D7EE59FB051C1828521064A1858C /* NYTPhoto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhoto.h; path = Pod/Classes/ios/Protocols/NYTPhoto.h; sourceTree = "<group>"; };
+		9FB130D62F8213E2325AFE5A79329C32 /* NYTPhotoViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotoViewController.h; path = Pod/Classes/ios/NYTPhotoViewController.h; sourceTree = "<group>"; };
 		A077B272EBA72A6F9F064538369406A7 /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		A18F52227E82E36F46E227737E371123 /* MGSwipeButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeButton.h; path = MGSwipeTableCell/MGSwipeButton.h; sourceTree = "<group>"; };
-		A26AA77554028F9B0F4776919E0D44C8 /* NYTPhotoViewer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NYTPhotoViewer.xcconfig; sourceTree = "<group>"; };
-		A467850A22F361D8B2003D604F827046 /* RSKTouchView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RSKTouchView.h; path = RSKImageCropper/RSKTouchView.h; sourceTree = "<group>"; };
-		A4D773D394FEFDFCA973CF6656D112CB /* NYTPhotoViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotoViewController.m; path = Pod/Classes/ios/NYTPhotoViewController.m; sourceTree = "<group>"; };
-		A824AA6DE48471D053DB36E4CBB34202 /* Image.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Image.swift; path = Source/Image.swift; sourceTree = "<group>"; };
-		AA2E8621E18226868319C0BC99DAF532 /* TTTAttributedLabel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TTTAttributedLabel.xcconfig; sourceTree = "<group>"; };
-		AA721291E3B96D02DB7B7B24D92D7007 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAF845B6F865346B47FA18AB41EA4933 /* RSKInternalUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RSKInternalUtility.h; path = RSKImageCropper/RSKInternalUtility.h; sourceTree = "<group>"; };
-		AE5310DEC5144E81BD4AE0102B24F3ED /* RSKImageCropper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RSKImageCropper.h; path = RSKImageCropper/RSKImageCropper.h; sourceTree = "<group>"; };
-		B3193576DE406EFF8FD720C4DF6AFBB2 /* MGSwipeButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = MGSwipeTableCell/MGSwipeButton.m; sourceTree = "<group>"; };
-		B3B1C6C1E4C85CC5440FB18B42007C85 /* NYTPhotoViewer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NYTPhotoViewer-dummy.m"; sourceTree = "<group>"; };
-		B5D908B219B656C585B5F8768BB54F85 /* RSKImageCropper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RSKImageCropper-dummy.m"; sourceTree = "<group>"; };
+		A1C22CA4159CF57AAC38FC23B7842126 /* NYTPhotosOverlayView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotosOverlayView.h; path = Pod/Classes/ios/NYTPhotosOverlayView.h; sourceTree = "<group>"; };
+		A765BE6B0B18EA47D4602A7143BFC7DC /* FLAnimatedImage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FLAnimatedImage.xcconfig; sourceTree = "<group>"; };
+		ABA822A284DE64D7B822E5415EE3EB53 /* NYTPhotoViewer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NYTPhotoViewer-prefix.pch"; sourceTree = "<group>"; };
+		AC2FEA5989C3F075B5FCB08E64DCCBF7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD44A85B788C993B462853FBDE66860E /* NSBundle+NYTPhotoViewer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+NYTPhotoViewer.m"; path = "Pod/Classes/ios/Resource Loading/NSBundle+NYTPhotoViewer.m"; sourceTree = "<group>"; };
+		AD8351313E12E03E83AF5A3E21184BD2 /* MGSwipeTableCell-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-umbrella.h"; sourceTree = "<group>"; };
+		AFF0D67BCD7F6C296A3437AE8A09C947 /* NYTPhotoCaptionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotoCaptionView.m; path = Pod/Classes/ios/NYTPhotoCaptionView.m; sourceTree = "<group>"; };
 		B6BF90542DD377E15C1FDB780B6ED867 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B82EA0D4C46DAB3AC559F2F288878C94 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TTTAttributedLabel.m; path = TTTAttributedLabel/TTTAttributedLabel.m; sourceTree = "<group>"; };
-		BD1FCF939ACF773F2F77C9BBF9FAE45A /* UIApplication+RSKImageCropper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+RSKImageCropper.m"; path = "RSKImageCropper/UIApplication+RSKImageCropper.m"; sourceTree = "<group>"; };
+		BD4403971A98C79D2128FF57E72A144C /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
 		BD55BF21346D28F496E77C5C9AC5D07B /* NYTPhotoViewer.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = NYTPhotoViewer.bundle; path = NYTPhotoViewer.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		BD79DA73BFAF63282CAB09E1FCF9ED97 /* NYTPhotoViewer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = NYTPhotoViewer.modulemap; sourceTree = "<group>"; };
+		BF2BFB4BE547E66D1BD7A33F04973B4B /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
 		BF2DBCD37F270BC1D5E0FADD26EDDF11 /* MGSwipeTableCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MGSwipeTableCell.framework; path = MGSwipeTableCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C085AC69E5866DD1EB8ED5BD22F504BE /* CGGeometry+RSKImageCropper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CGGeometry+RSKImageCropper.h"; path = "RSKImageCropper/CGGeometry+RSKImageCropper.h"; sourceTree = "<group>"; };
+		BF9E3887C8BB34F59C77956838A417BB /* CGGeometry+RSKImageCropper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CGGeometry+RSKImageCropper.h"; path = "RSKImageCropper/CGGeometry+RSKImageCropper.h"; sourceTree = "<group>"; };
+		C06AB8CA8D4D459F779B22AA95386908 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
+		C0EAB5F93F6FD262CABE857BC2F9B50C /* MGSwipeTableCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = MGSwipeTableCell/MGSwipeTableCell.m; sourceTree = "<group>"; };
+		C1454538623E7F56CFFA12BAD5DDE04E /* NSBundle+NYTPhotoViewer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSBundle+NYTPhotoViewer.h"; path = "Pod/Classes/ios/Resource Loading/NSBundle+NYTPhotoViewer.h"; sourceTree = "<group>"; };
+		C22D9E2EBF32984ECE8DEDCE49AD793B /* RSKInternalUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RSKInternalUtility.h; path = RSKImageCropper/RSKInternalUtility.h; sourceTree = "<group>"; };
+		C31EF0C9017F2B9482734C3B3699D806 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
+		C3BF2F5035A4B742FD9257806F91D928 /* MGSwipeTableCell-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-prefix.pch"; sourceTree = "<group>"; };
 		C4154EE258D79F70E426F05C07283123 /* Pods-SendBird-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SendBird-iOS-dummy.m"; sourceTree = "<group>"; };
+		C586E232FC5881889427D45ABF7595DE /* UIImage+RSKImageCropper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RSKImageCropper.m"; path = "RSKImageCropper/UIImage+RSKImageCropper.m"; sourceTree = "<group>"; };
+		C5B1A6573F21694BF5CC28BE685ED3AE /* RSKImageCropper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RSKImageCropper-dummy.m"; sourceTree = "<group>"; };
 		C68C329DD77F163A0C362801879459DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		C705BE30A7D6696A46B0C820FC4FEEC2 /* CGGeometry+RSKImageCropper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CGGeometry+RSKImageCropper.m"; path = "RSKImageCropper/CGGeometry+RSKImageCropper.m"; sourceTree = "<group>"; };
+		C69709F5F812899125C6DE74577E51E5 /* NYTPhotosOverlayView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotosOverlayView.m; path = Pod/Classes/ios/NYTPhotosOverlayView.m; sourceTree = "<group>"; };
+		C6F361A35CEFF03F926C66AD87408098 /* NYTPhotoViewer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NYTPhotoViewer-umbrella.h"; sourceTree = "<group>"; };
+		C82B57BBAE61BD7236D8C35F1769DBA6 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
 		C9680B06E6485519284A3ACABB37C223 /* Pods_SendBird_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SendBird_iOS.framework; path = "Pods-SendBird-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9CB12BFDDD31881B53831F0796015A1 /* NYTPhotosViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotosViewController.h; path = Pod/Classes/ios/NYTPhotosViewController.h; sourceTree = "<group>"; };
-		CA3DDD09319AA6B8F275EB2177E09572 /* MGSwipeTableCell.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MGSwipeTableCell.modulemap; sourceTree = "<group>"; };
-		CCB8A9152976039D5FF9BB295BB3D927 /* UIApplication+RSKImageCropper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+RSKImageCropper.h"; path = "RSKImageCropper/UIApplication+RSKImageCropper.h"; sourceTree = "<group>"; };
-		CE4926FB1EF9FFAE03296C994CBCDD5E /* FLAnimatedImageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLAnimatedImageView.m; path = FLAnimatedImage/FLAnimatedImageView.m; sourceTree = "<group>"; };
-		CE507C97D8CA1BD0DA49B59343537811 /* AlamofireImage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlamofireImage-umbrella.h"; sourceTree = "<group>"; };
-		D05C56D2F2EFBE2720DD27539220E576 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
-		D2C9270783A9DD4A596539F90ACC074D /* NYTPhotoViewerCloseButtonX.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = NYTPhotoViewerCloseButtonX.png; path = Pod/Assets/ios/NYTPhotoViewerCloseButtonX.png; sourceTree = "<group>"; };
-		D4439C866217D7446D53A9A86D44FD1B /* RSKImageCropper-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RSKImageCropper-prefix.pch"; sourceTree = "<group>"; };
-		DA806A524C70E7820243645A80770174 /* UIButton+AlamofireImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIButton+AlamofireImage.swift"; path = "Source/UIButton+AlamofireImage.swift"; sourceTree = "<group>"; };
-		DEE6D19F4F993507A65734CDF3D0C3A5 /* TTTAttributedLabel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TTTAttributedLabel-dummy.m"; sourceTree = "<group>"; };
-		E4C10A89A05BCA603193615B2E4A756F /* NSBundle+NYTPhotoViewer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+NYTPhotoViewer.m"; path = "Pod/Classes/ios/Resource Loading/NSBundle+NYTPhotoViewer.m"; sourceTree = "<group>"; };
-		E55A4F263846A35D55CB4F3FB0E23EA7 /* Request+AlamofireImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Request+AlamofireImage.swift"; path = "Source/Request+AlamofireImage.swift"; sourceTree = "<group>"; };
-		E621D0A39CBA63BDAE6751DF1ED205A2 /* ResourceBundle-NYTPhotoViewer-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-NYTPhotoViewer-Info.plist"; sourceTree = "<group>"; };
-		E7EB08B1E6D301963923E7ED9C65D9E3 /* NYTPhotoCaptionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotoCaptionView.h; path = Pod/Classes/ios/NYTPhotoCaptionView.h; sourceTree = "<group>"; };
+		CC0EBA3DD9FAA1C1F24F9524D425F0C9 /* UIButton+AlamofireImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIButton+AlamofireImage.swift"; path = "Source/UIButton+AlamofireImage.swift"; sourceTree = "<group>"; };
+		CD5227C3C8CB1C42488C0CBD9BDAE411 /* UIImage+AlamofireImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+AlamofireImage.swift"; path = "Source/UIImage+AlamofireImage.swift"; sourceTree = "<group>"; };
+		CD85950DC33CB67B287743560D07DA60 /* NYTPhotoViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotoViewController.m; path = Pod/Classes/ios/NYTPhotoViewController.m; sourceTree = "<group>"; };
+		D22D00B579B4530ACD3422FEA879EC9F /* TTTAttributedLabel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TTTAttributedLabel-prefix.pch"; sourceTree = "<group>"; };
+		D2CD654D5B649E4983F72B676FE90A9B /* ResourceBundle-NYTPhotoViewer-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-NYTPhotoViewer-Info.plist"; sourceTree = "<group>"; };
+		D3C944B81A15BF44EBB1E50131E37F30 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FLAnimatedImageView.h; path = FLAnimatedImage/FLAnimatedImageView.h; sourceTree = "<group>"; };
+		D47DC605B6D8FA11DCFD86A3449869EA /* MGSwipeTableCell.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MGSwipeTableCell.xcconfig; sourceTree = "<group>"; };
+		D66265487A1165B404AD2C6B2144CD53 /* AlamofireImage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = AlamofireImage.modulemap; sourceTree = "<group>"; };
+		D6B56BF655FA1A57960CD1A6A067F0E1 /* NYTPhotosDataSource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotosDataSource.m; path = Pod/Classes/ios/NYTPhotosDataSource.m; sourceTree = "<group>"; };
+		D90B0CDD22497198966A487979B2B910 /* NYTPhotoViewer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = NYTPhotoViewer.modulemap; sourceTree = "<group>"; };
+		DC2FFA84861FE1278E2B63A53CF4E831 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FLAnimatedImageView.m; path = FLAnimatedImage/FLAnimatedImageView.m; sourceTree = "<group>"; };
+		DD4B0B929F751020B121EC28CB82A08C /* SendBirdSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SendBirdSDK.framework; sourceTree = "<group>"; };
+		DEFDDDE04509EF87B2DEC313F1C0C514 /* RSKImageCropper.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RSKImageCropper.xcconfig; sourceTree = "<group>"; };
+		E19C5215B271708A88F4041154DBADFC /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
+		E6E122C6F3D11DB33F7B809D1010210E /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
+		E856F19514EEBBFC721D4B7FA2535D18 /* NYTPhotoViewerCloseButtonXLandscape@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "NYTPhotoViewerCloseButtonXLandscape@2x.png"; path = "Pod/Assets/ios/NYTPhotoViewerCloseButtonXLandscape@2x.png"; sourceTree = "<group>"; };
 		E8BB6D31F5D0D430F13F4B9A9D003E2D /* FLAnimatedImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FLAnimatedImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EBF24AABAFFCCFB1B49B7EDBAB2A4B79 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = MGSwipeTableCell/MGSwipeTableCell.h; sourceTree = "<group>"; };
+		E8FD9F4D38471A76D341C66CB1A7A39D /* NYTPhotoContainer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotoContainer.h; path = Pod/Classes/ios/Protocols/NYTPhotoContainer.h; sourceTree = "<group>"; };
+		E95716465184D7020323D694E09F93C7 /* NYTPhotoViewer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NYTPhotoViewer-dummy.m"; sourceTree = "<group>"; };
+		ECFD242CCD3F654FEA658A106FAB3C4D /* UIApplication+RSKImageCropper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+RSKImageCropper.m"; path = "RSKImageCropper/UIApplication+RSKImageCropper.m"; sourceTree = "<group>"; };
 		ED6E23FFFE6C39833FF7450014D5A765 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		F0B48E09A5E1DFFFFFA3AA6B2585877C /* UIImage+RSKImageCropper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+RSKImageCropper.h"; path = "RSKImageCropper/UIImage+RSKImageCropper.h"; sourceTree = "<group>"; };
-		F0CF465229E53F756BF610D48E8B7D76 /* NYTPhotosOverlayView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NYTPhotosOverlayView.h; path = Pod/Classes/ios/NYTPhotosOverlayView.h; sourceTree = "<group>"; };
-		F65B22E9B9246578527BD8F0681F5D10 /* NYTPhotosViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotosViewController.m; path = Pod/Classes/ios/NYTPhotosViewController.m; sourceTree = "<group>"; };
-		FB8650241702CD7844BDB8085BDC7508 /* NYTPhotoTransitionController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTPhotoTransitionController.m; path = Pod/Classes/ios/NYTPhotoTransitionController.m; sourceTree = "<group>"; };
+		EF270ECE041B7CDE6EAD9A80A349232E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0D0516AA62A283A16DEEE5999F882C9 /* RSKImageScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RSKImageScrollView.h; path = RSKImageCropper/RSKImageScrollView.h; sourceTree = "<group>"; };
+		F34599E36CFC700DA6E56A236EE2AE55 /* MGSwipeTableCell.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = MGSwipeTableCell.modulemap; sourceTree = "<group>"; };
+		F3D1D4D4D44BB0FF9B8731B562DA0395 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9D6CC01CD5297EF0EBE89679DEC18E4 /* NYTScalingImageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NYTScalingImageView.m; path = Pod/Classes/ios/NYTScalingImageView.m; sourceTree = "<group>"; };
+		FA58C65FB0CA29E26A7295844DD01CF1 /* TTTAttributedLabel.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TTTAttributedLabel.xcconfig; sourceTree = "<group>"; };
 		FD03E7D5EAF62B7A686A76BCA85DFDE3 /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		FD716C1187EADF8B232D33234E55703C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEFEE0187B9DD9094402A16797741134 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TTTAttributedLabel.m; path = TTTAttributedLabel/TTTAttributedLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -448,112 +448,111 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07FAE57D1278C08DDD7DDDE049DC909A /* NYTPhotoViewer */ = {
+		045FCEB3D631367BC74C3F950B1D4C2A /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				630F93542BAE7C6ED870DABDEC68B1FB /* Core */,
-				0A9BBBFAE9B12CFB6FBC2912A6E01436 /* Support Files */,
-			);
-			name = NYTPhotoViewer;
-			path = NYTPhotoViewer;
-			sourceTree = "<group>";
-		};
-		0A9BBBFAE9B12CFB6FBC2912A6E01436 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				29F3B1EA24528125F4112D69BAB1CB4A /* Info.plist */,
-				BD79DA73BFAF63282CAB09E1FCF9ED97 /* NYTPhotoViewer.modulemap */,
-				A26AA77554028F9B0F4776919E0D44C8 /* NYTPhotoViewer.xcconfig */,
-				B3B1C6C1E4C85CC5440FB18B42007C85 /* NYTPhotoViewer-dummy.m */,
-				68C65036503895C6199E39ED342B6D6D /* NYTPhotoViewer-prefix.pch */,
-				098A96F709406735C6054088DB23E5F8 /* NYTPhotoViewer-umbrella.h */,
-				E621D0A39CBA63BDAE6751DF1ED205A2 /* ResourceBundle-NYTPhotoViewer-Info.plist */,
+				96019E9AF80BE8BC9FFDC879F77CD2C9 /* Info.plist */,
+				F34599E36CFC700DA6E56A236EE2AE55 /* MGSwipeTableCell.modulemap */,
+				D47DC605B6D8FA11DCFD86A3449869EA /* MGSwipeTableCell.xcconfig */,
+				1DFCEB169D608991DC5EC5812F256DB3 /* MGSwipeTableCell-dummy.m */,
+				C3BF2F5035A4B742FD9257806F91D928 /* MGSwipeTableCell-prefix.pch */,
+				AD8351313E12E03E83AF5A3E21184BD2 /* MGSwipeTableCell-umbrella.h */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/NYTPhotoViewer";
+			path = "../Target Support Files/MGSwipeTableCell";
 			sourceTree = "<group>";
 		};
-		1EFD8B49A03723646FD76E3F7A7C0EA1 /* FLAnimatedImage */ = {
+		0A92DF45DA7CD29F6329104A24FCE6A0 /* TTTAttributedLabel */ = {
 			isa = PBXGroup;
 			children = (
-				01F87D7C9A55014E379DB76AA4EF05E0 /* FLAnimatedImage.h */,
-				4BF02033980939A1653BD23DFB27725F /* FLAnimatedImage.m */,
-				41FFD5384B476EE39EEC668AB5A7B92A /* FLAnimatedImageView.h */,
-				CE4926FB1EF9FFAE03296C994CBCDD5E /* FLAnimatedImageView.m */,
-				807704CF845FA94E960961015A15CAE3 /* Support Files */,
+				1A5853C0FEC2671BA6C70F3B2B35302E /* TTTAttributedLabel.h */,
+				FEFEE0187B9DD9094402A16797741134 /* TTTAttributedLabel.m */,
+				49080BE5BFBECB168D473B0E87EF87B1 /* Support Files */,
 			);
-			name = FLAnimatedImage;
-			path = FLAnimatedImage;
+			name = TTTAttributedLabel;
+			path = TTTAttributedLabel;
 			sourceTree = "<group>";
 		};
-		2128A86259C90546AC575EA2E0B4BBA3 /* Resources */ = {
+		1D66B998F15B381628683EF9B043F89B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				72B3402907EF8F1AC65FFBC49A3CD249 /* RSKImageCropperStrings.bundle */,
+				14D8D31CB0A9B6337E266C55400E26E0 /* RSKImageCropperStrings.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		23A321318A21F44F02CC30C536717A69 /* Frameworks */ = {
+		22511D1CCE3E54DA42D0BDB59EFA8F82 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				4AC0B2220FB6014B52D03D80FED4D0E9 /* SendBirdSDK.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2D7B82690CBEB5B326F1F6A127B9DFBA /* Alamofire */ = {
-			isa = PBXGroup;
-			children = (
-				317095BEE30D55770CC3FA26CB9C3E3E /* AFError.swift */,
-				963982DFB69DB88583601E162CFBCD80 /* Alamofire.swift */,
-				9086E81F3E2472DCFBEF01E7025C27E4 /* DispatchQueue+Alamofire.swift */,
-				506D29F6F3081757829C4C5E19C5122E /* MultipartFormData.swift */,
-				598FB59327538AFFC2B8431A2E971C29 /* NetworkReachabilityManager.swift */,
-				D05C56D2F2EFBE2720DD27539220E576 /* Notifications.swift */,
-				6E9233027C036F8AA32B76170C71B630 /* ParameterEncoding.swift */,
-				4C184DEEC413C77BF5A84F341B263B7F /* Request.swift */,
-				78E514519CC450E3BD4609AF26F6E30A /* Response.swift */,
-				28B42170EA21D0E46999DF2F04442AAA /* ResponseSerialization.swift */,
-				9F50C2AF44CF864863AE60045CB37446 /* Result.swift */,
-				629F3CC2D402F951522EFD1496AB7B9B /* ServerTrustPolicy.swift */,
-				19FA2BEAC1EB2CD639F069AC0BB13487 /* SessionDelegate.swift */,
-				97B840B158864BD9874ACD73FDF1A1DD /* SessionManager.swift */,
-				59778D94958569B1DEA07989E3326720 /* TaskDelegate.swift */,
-				9AAAD14D12B9771C3A2796A114B3E52D /* Timeline.swift */,
-				4A6F080FF242D4D753816CC8D0859818 /* Validation.swift */,
-				332FD604E0B875D03E6DE2CDA214D5D4 /* Support Files */,
-			);
-			name = Alamofire;
-			path = Alamofire;
-			sourceTree = "<group>";
-		};
-		32DAA3B6D8FE0B078A34835EC3C518A8 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				7AC6C517B39BED360959B58B597C077A /* AlamofireImage.modulemap */,
-				10CD9EB03F6C9D2623560F8E1EBB1B7A /* AlamofireImage.xcconfig */,
-				4A55B16D91865883EFD82F25BBF3AE7B /* AlamofireImage-dummy.m */,
-				73877F9DA81B15148FD4CE1E0AE55796 /* AlamofireImage-prefix.pch */,
-				CE507C97D8CA1BD0DA49B59343537811 /* AlamofireImage-umbrella.h */,
-				1CD2C713BBD31447468E3A59E36B4F9F /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/AlamofireImage";
-			sourceTree = "<group>";
-		};
-		332FD604E0B875D03E6DE2CDA214D5D4 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				582714A87A31C958A454F0DD4A79C037 /* Alamofire.modulemap */,
-				51F88B66B34B311156D24D3E675A3DB3 /* Alamofire.xcconfig */,
-				4D773D8744B2EEB6A046D311F315ECFE /* Alamofire-dummy.m */,
-				85351FE08216DDB268B713D13D0D901D /* Alamofire-prefix.pch */,
-				02217CA67853F969866598462E2BE477 /* Alamofire-umbrella.h */,
-				55B1A975E491C97A63F2E4A2D6539404 /* Info.plist */,
+				0CFF386A215E612D03E5C90562C42230 /* Alamofire.modulemap */,
+				96FA4A9B19C94BE9CB5CCC832938FC5C /* Alamofire.xcconfig */,
+				2EED4B5B4FDEAF9191D8B0FB6298FB83 /* Alamofire-dummy.m */,
+				9ED4C273A132DE213D9D54F648D9755E /* Alamofire-prefix.pch */,
+				60F73519C6820B59B4FC0F601E8835BB /* Alamofire-umbrella.h */,
+				286B42626C751555FBBFA93D0622BDBF /* Info.plist */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Alamofire";
+			sourceTree = "<group>";
+		};
+		2B003B2EE1E897F61BD49DFB3C8D5CEB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3806A70809A87D8213E8B09947A25B11 /* FLAnimatedImage.modulemap */,
+				A765BE6B0B18EA47D4602A7143BFC7DC /* FLAnimatedImage.xcconfig */,
+				2CD6AAFDAEE045DE09EC3189456F1D45 /* FLAnimatedImage-dummy.m */,
+				040F22D73EF80A1447BB50DDDB6E1341 /* FLAnimatedImage-prefix.pch */,
+				057B35AF63A4D8CE174A1C975D245E60 /* FLAnimatedImage-umbrella.h */,
+				F3D1D4D4D44BB0FF9B8731B562DA0395 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FLAnimatedImage";
+			sourceTree = "<group>";
+		};
+		3BB0D6EAF8978E1A0E055FC3F37AB4C6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BF6A08F3C4C6DDF889318BA951DA9C35 /* Alamofire */,
+				4BCA40E5598791B37585F1139F1DABD7 /* AlamofireImage */,
+				8C2232E08BD849AB7CA941F2A42295E9 /* FLAnimatedImage */,
+				E42016C2E872209D0D4B72B388E043F8 /* MGSwipeTableCell */,
+				C57F31D3C2877257F50EAB4275B4D98B /* NYTPhotoViewer */,
+				80AE2007DA19D68CB12F0613A5F6E9ED /* RSKImageCropper */,
+				0A92DF45DA7CD29F6329104A24FCE6A0 /* TTTAttributedLabel */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		49080BE5BFBECB168D473B0E87EF87B1 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EF270ECE041B7CDE6EAD9A80A349232E /* Info.plist */,
+				5831755B46F1ACEC69A21077C36FB88E /* TTTAttributedLabel.modulemap */,
+				FA58C65FB0CA29E26A7295844DD01CF1 /* TTTAttributedLabel.xcconfig */,
+				105DC019A25181CC7AD01E5220816386 /* TTTAttributedLabel-dummy.m */,
+				D22D00B579B4530ACD3422FEA879EC9F /* TTTAttributedLabel-prefix.pch */,
+				556B001BDDE3E8B45874E14E9DF74108 /* TTTAttributedLabel-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TTTAttributedLabel";
+			sourceTree = "<group>";
+		};
+		4BCA40E5598791B37585F1139F1DABD7 /* AlamofireImage */ = {
+			isa = PBXGroup;
+			children = (
+				24516D46EC14D2F1EBF21666FAC754DC /* AFIError.swift */,
+				4FBE454A1EF98A480C000272CC7E455A /* Image.swift */,
+				7298777BE2FBBA0F7C8A2771DD06DC62 /* ImageCache.swift */,
+				9ECC5A9E13B7FE2DD2072401F30813BD /* ImageDownloader.swift */,
+				20854D4B34121D6037413281CE3B91D3 /* ImageFilter.swift */,
+				46F7FEF33BC69CE8D307BF5DECDC7222 /* Request+AlamofireImage.swift */,
+				CC0EBA3DD9FAA1C1F24F9524D425F0C9 /* UIButton+AlamofireImage.swift */,
+				CD5227C3C8CB1C42488C0CBD9BDAE411 /* UIImage+AlamofireImage.swift */,
+				14F50E784892E02342313D621E7A7837 /* UIImageView+AlamofireImage.swift */,
+				8D62247D2D296D71B0B9D6F2C13D442C /* Support Files */,
+			);
+			name = AlamofireImage;
+			path = AlamofireImage;
 			sourceTree = "<group>";
 		};
 		4D1318B1BBED5B194AD87B1E543583C3 /* Frameworks */ = {
@@ -566,89 +565,106 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		59D0E4235DA8FB9D17443467BE45C9DF /* Pods */ = {
+		72A94F806E9F32967FDF71F687B6D5F1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				2D7B82690CBEB5B326F1F6A127B9DFBA /* Alamofire */,
-				BBDC7B8AD030217C54D8BC363437D270 /* AlamofireImage */,
-				1EFD8B49A03723646FD76E3F7A7C0EA1 /* FLAnimatedImage */,
-				B9513DCDBE8652DED99719B2D29375ED /* MGSwipeTableCell */,
-				07FAE57D1278C08DDD7DDDE049DC909A /* NYTPhotoViewer */,
-				A25583BDAFB1F3C85429F10A2F13D564 /* RSKImageCropper */,
-				BEA0D9D1E221901DE5FBD870CCF36D4D /* SendBirdSDK */,
-				DFCF998EF89108C8B94F7DB35197D156 /* TTTAttributedLabel */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		630F93542BAE7C6ED870DABDEC68B1FB /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				01214F8077C73692CFA3C724DDC0F025 /* NSBundle+NYTPhotoViewer.h */,
-				E4C10A89A05BCA603193615B2E4A756F /* NSBundle+NYTPhotoViewer.m */,
-				241705490FC67A892CEA2831F7FD50D6 /* NYTPhoto.h */,
-				E7EB08B1E6D301963923E7ED9C65D9E3 /* NYTPhotoCaptionView.h */,
-				31D87C6A470A34AB648625F70A26B55F /* NYTPhotoCaptionView.m */,
-				128A8494B5675D151C3B6171177E9538 /* NYTPhotoCaptionViewLayoutWidthHinting.h */,
-				2A1E4C935F9C8E713D9C52E11C14716A /* NYTPhotoContainer.h */,
-				078DAA3B9D92BE487002FB30577F4DC7 /* NYTPhotoDismissalInteractionController.h */,
-				7E6F75CA6035B7A4F100420678ECB743 /* NYTPhotoDismissalInteractionController.m */,
-				4ED6FC60AAF9154AFF902A5E5990C326 /* NYTPhotosDataSource.h */,
-				106FB21D3E6DDE50C9ADAFA0BF23B918 /* NYTPhotosDataSource.m */,
-				F0CF465229E53F756BF610D48E8B7D76 /* NYTPhotosOverlayView.h */,
-				98B4505AAF9EFF41CDA4ED2567FA12FC /* NYTPhotosOverlayView.m */,
-				C9CB12BFDDD31881B53831F0796015A1 /* NYTPhotosViewController.h */,
-				F65B22E9B9246578527BD8F0681F5D10 /* NYTPhotosViewController.m */,
-				8521F63E9E9E7BAADF6BD2FA55421C19 /* NYTPhotosViewControllerDataSource.h */,
-				00FE583B573AD6B14C487B780174076A /* NYTPhotoTransitionAnimator.h */,
-				272B6710A4D6AB12AEE8EF9F8678A9D2 /* NYTPhotoTransitionAnimator.m */,
-				52092E682519D2330309BA28A56046F4 /* NYTPhotoTransitionController.h */,
-				FB8650241702CD7844BDB8085BDC7508 /* NYTPhotoTransitionController.m */,
-				1880228515EA2F78F7130C3DA0914156 /* NYTPhotoViewController.h */,
-				A4D773D394FEFDFCA973CF6656D112CB /* NYTPhotoViewController.m */,
-				867D462AB1F3AE2A14F85918AF924980 /* NYTScalingImageView.h */,
-				3EFBC03F1A9CA555F43C30B00C055CD6 /* NYTScalingImageView.m */,
-				8A3375233485EBADE15B1F9405094599 /* Resources */,
+				C1454538623E7F56CFFA12BAD5DDE04E /* NSBundle+NYTPhotoViewer.h */,
+				AD44A85B788C993B462853FBDE66860E /* NSBundle+NYTPhotoViewer.m */,
+				9F77D7EE59FB051C1828521064A1858C /* NYTPhoto.h */,
+				32D07C764662F9ACF4A68D740B23F2AB /* NYTPhotoCaptionView.h */,
+				AFF0D67BCD7F6C296A3437AE8A09C947 /* NYTPhotoCaptionView.m */,
+				6CB92214285CD58460CB7A20D35CEF15 /* NYTPhotoCaptionViewLayoutWidthHinting.h */,
+				E8FD9F4D38471A76D341C66CB1A7A39D /* NYTPhotoContainer.h */,
+				0CB9F4EE76F8EC7AAA844A141F878985 /* NYTPhotoDismissalInteractionController.h */,
+				76D583A55264A1D517D6B6FA7F8B531B /* NYTPhotoDismissalInteractionController.m */,
+				31ACE5542A4E529D64418D59A8D77323 /* NYTPhotosDataSource.h */,
+				D6B56BF655FA1A57960CD1A6A067F0E1 /* NYTPhotosDataSource.m */,
+				A1C22CA4159CF57AAC38FC23B7842126 /* NYTPhotosOverlayView.h */,
+				C69709F5F812899125C6DE74577E51E5 /* NYTPhotosOverlayView.m */,
+				04B5E9CC36C917D77E94D0BDFCECED47 /* NYTPhotosViewController.h */,
+				171B6A10AFE81ED913357494C41B6F3A /* NYTPhotosViewController.m */,
+				94F7CE6B88848C6D6B47465A73246A98 /* NYTPhotosViewControllerDataSource.h */,
+				14A086063D03401EAB9D35B2496A7D76 /* NYTPhotoTransitionAnimator.h */,
+				79B31E8114B58168A5BF5D58E62E5F16 /* NYTPhotoTransitionAnimator.m */,
+				2A3C234E8F36DEDA0C4AE0BA2A643B49 /* NYTPhotoTransitionController.h */,
+				1A7D2A2A262094B2B6C179E3EB192FFD /* NYTPhotoTransitionController.m */,
+				9FB130D62F8213E2325AFE5A79329C32 /* NYTPhotoViewController.h */,
+				CD85950DC33CB67B287743560D07DA60 /* NYTPhotoViewController.m */,
+				35C0380C5347DE5BC3A597005FF5D8AE /* NYTScalingImageView.h */,
+				F9D6CC01CD5297EF0EBE89679DEC18E4 /* NYTScalingImageView.m */,
+				9A06C048B64B9EE103E580570EF166EE /* Resources */,
 			);
 			name = Core;
 			sourceTree = "<group>";
+		};
+		73F725BCD7DC03EA58A4006BF658A90B /* SendBirdSDK */ = {
+			isa = PBXGroup;
+			children = (
+				7DD736B896A98A126731655E42437522 /* Frameworks */,
+			);
+			name = SendBirdSDK;
+			path = "/Users/jedgyeong/git/sendbird-ios-framework";
+			sourceTree = "<absolute>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				9AF9F175A714F1375D0CFECA667FB9BA /* Development Pods */,
 				4D1318B1BBED5B194AD87B1E543583C3 /* Frameworks */,
-				59D0E4235DA8FB9D17443467BE45C9DF /* Pods */,
+				3BB0D6EAF8978E1A0E055FC3F37AB4C6 /* Pods */,
 				D4154B3A7158033F9979C7BF9258F004 /* Products */,
 				CB735373AF0E3106E53E7786CFCD6F52 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		807704CF845FA94E960961015A15CAE3 /* Support Files */ = {
+		7DD736B896A98A126731655E42437522 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				19C6CE771280A25C599B85315DC4BB3F /* FLAnimatedImage.modulemap */,
-				609BAE4EB123E8B7094B73853E8FD82D /* FLAnimatedImage.xcconfig */,
-				5F034A93F07C7CAADA4C7E45F9456EF4 /* FLAnimatedImage-dummy.m */,
-				83A85500AA7183FA22E580C7322580CD /* FLAnimatedImage-prefix.pch */,
-				9001F26BEF688662554FD79E4341198C /* FLAnimatedImage-umbrella.h */,
-				84E2F7556EF64FFE46C9CCA6ABCCAF2C /* Info.plist */,
+				DD4B0B929F751020B121EC28CB82A08C /* SendBirdSDK.framework */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/FLAnimatedImage";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8A3375233485EBADE15B1F9405094599 /* Resources */ = {
+		80AE2007DA19D68CB12F0613A5F6E9ED /* RSKImageCropper */ = {
 			isa = PBXGroup;
 			children = (
-				D2C9270783A9DD4A596539F90ACC074D /* NYTPhotoViewerCloseButtonX.png */,
-				958526ECDB561957E030FFBC46D50CD8 /* NYTPhotoViewerCloseButtonX@2x.png */,
-				2D86D833836671F28C171BBB40C85441 /* NYTPhotoViewerCloseButtonX@3x.png */,
-				7581B8EDFFDFD82A2253D4F80655BBE3 /* NYTPhotoViewerCloseButtonXLandscape.png */,
-				7EA815D6D6C70F5CD7DFCC840FBEC36D /* NYTPhotoViewerCloseButtonXLandscape@2x.png */,
-				21E18348FD97154631CEEA6DCDFA0602 /* NYTPhotoViewerCloseButtonXLandscape@3x.png */,
+				BF9E3887C8BB34F59C77956838A417BB /* CGGeometry+RSKImageCropper.h */,
+				33E6FC9B8060EC28D54E06C46C348398 /* CGGeometry+RSKImageCropper.m */,
+				46B9E1FE9CC50C2F2CE31B91CDDCE281 /* RSKImageCropper.h */,
+				1181611B2D3A7621F5FFCC10FE20F91F /* RSKImageCropViewController.h */,
+				65ECB86597CF7A6CCD93DF23E8AD4A65 /* RSKImageCropViewController.m */,
+				73C16C927AF367777E524847FCCD40FC /* RSKImageCropViewController+Protected.h */,
+				F0D0516AA62A283A16DEEE5999F882C9 /* RSKImageScrollView.h */,
+				366F0086AB3B397BE760115ADA45FA51 /* RSKImageScrollView.m */,
+				C22D9E2EBF32984ECE8DEDCE49AD793B /* RSKInternalUtility.h */,
+				7D950AA401E43D2F9117DCD914A10AC5 /* RSKInternalUtility.m */,
+				6A6C6ACBBA1A5E2294869A4619A5B2B9 /* RSKTouchView.h */,
+				51F6D71B026A6394DD09CC655C08ECBD /* RSKTouchView.m */,
+				29E8C0E977E87E39447DF58712C7016B /* UIApplication+RSKImageCropper.h */,
+				ECFD242CCD3F654FEA658A106FAB3C4D /* UIApplication+RSKImageCropper.m */,
+				022EBA06AB43A1ECDE8FFE306ED7A39A /* UIImage+RSKImageCropper.h */,
+				C586E232FC5881889427D45ABF7595DE /* UIImage+RSKImageCropper.m */,
+				1D66B998F15B381628683EF9B043F89B /* Resources */,
+				DF6E61C40A75775663CFA87EA72A1A5D /* Support Files */,
 			);
-			name = Resources;
+			name = RSKImageCropper;
+			path = RSKImageCropper;
+			sourceTree = "<group>";
+		};
+		81C6BAE2DACFDE82F097565210D2D98C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				03BF6ABBF5F647F9EDF7E316ACAF6522 /* Info.plist */,
+				D90B0CDD22497198966A487979B2B910 /* NYTPhotoViewer.modulemap */,
+				21F5DC98DF6E9FA0CEA30EEF4B59BBE4 /* NYTPhotoViewer.xcconfig */,
+				E95716465184D7020323D694E09F93C7 /* NYTPhotoViewer-dummy.m */,
+				ABA822A284DE64D7B822E5415EE3EB53 /* NYTPhotoViewer-prefix.pch */,
+				C6F361A35CEFF03F926C66AD87408098 /* NYTPhotoViewer-umbrella.h */,
+				D2CD654D5B649E4983F72B676FE90A9B /* ResourceBundle-NYTPhotoViewer-Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/NYTPhotoViewer";
 			sourceTree = "<group>";
 		};
 		8BC13069A81C55BCAC479D96A6122C87 /* iOS */ = {
@@ -665,30 +681,52 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		A25583BDAFB1F3C85429F10A2F13D564 /* RSKImageCropper */ = {
+		8C2232E08BD849AB7CA941F2A42295E9 /* FLAnimatedImage */ = {
 			isa = PBXGroup;
 			children = (
-				C085AC69E5866DD1EB8ED5BD22F504BE /* CGGeometry+RSKImageCropper.h */,
-				C705BE30A7D6696A46B0C820FC4FEEC2 /* CGGeometry+RSKImageCropper.m */,
-				AE5310DEC5144E81BD4AE0102B24F3ED /* RSKImageCropper.h */,
-				45E93B74A39A7B3DAC020DB622BACE84 /* RSKImageCropViewController.h */,
-				042F5A72AA15A36ED159A788AA02A256 /* RSKImageCropViewController.m */,
-				47658FBA6DDD7E5C075318D899EBF5AC /* RSKImageCropViewController+Protected.h */,
-				09CEB7F65291F89555C8CCC38DC51FE6 /* RSKImageScrollView.h */,
-				4AE521C2A1E7024DE7C544AB4EEC79F3 /* RSKImageScrollView.m */,
-				AAF845B6F865346B47FA18AB41EA4933 /* RSKInternalUtility.h */,
-				885A9475B745129D4CED9EE0183FDBC0 /* RSKInternalUtility.m */,
-				A467850A22F361D8B2003D604F827046 /* RSKTouchView.h */,
-				9E7CA8ABEA5D0A98814E89CAC5EED6A4 /* RSKTouchView.m */,
-				CCB8A9152976039D5FF9BB295BB3D927 /* UIApplication+RSKImageCropper.h */,
-				BD1FCF939ACF773F2F77C9BBF9FAE45A /* UIApplication+RSKImageCropper.m */,
-				F0B48E09A5E1DFFFFFA3AA6B2585877C /* UIImage+RSKImageCropper.h */,
-				95F86C5B906CE4403AE4B48765C1ADB7 /* UIImage+RSKImageCropper.m */,
-				2128A86259C90546AC575EA2E0B4BBA3 /* Resources */,
-				F9055F975FC0730EA6BBFBBC0FDDBBB0 /* Support Files */,
+				1EFDBB5B5F51FBF9C86F01C2EE1A6DA7 /* FLAnimatedImage.h */,
+				75937C9E30DB7E4B98EA47F18E65745A /* FLAnimatedImage.m */,
+				D3C944B81A15BF44EBB1E50131E37F30 /* FLAnimatedImageView.h */,
+				DC2FFA84861FE1278E2B63A53CF4E831 /* FLAnimatedImageView.m */,
+				2B003B2EE1E897F61BD49DFB3C8D5CEB /* Support Files */,
 			);
-			name = RSKImageCropper;
-			path = RSKImageCropper;
+			name = FLAnimatedImage;
+			path = FLAnimatedImage;
+			sourceTree = "<group>";
+		};
+		8D62247D2D296D71B0B9D6F2C13D442C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D66265487A1165B404AD2C6B2144CD53 /* AlamofireImage.modulemap */,
+				2392A7A805BF5F81E46A4C3BA8455DA6 /* AlamofireImage.xcconfig */,
+				0866C2BE291EA0BD66D20483016DD756 /* AlamofireImage-dummy.m */,
+				9217EB7A716B3A8438513C7CB8D2BD57 /* AlamofireImage-prefix.pch */,
+				66F29B4219B07D885B771CC817459F6F /* AlamofireImage-umbrella.h */,
+				635DEB6DC4DEE8B72AD52DA5BDCEB807 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AlamofireImage";
+			sourceTree = "<group>";
+		};
+		9A06C048B64B9EE103E580570EF166EE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				12EBF8F08CDCA3D7656F8AE9161973CA /* NYTPhotoViewerCloseButtonX.png */,
+				2FF9EE66D95F136E55300ED569926D4C /* NYTPhotoViewerCloseButtonX@2x.png */,
+				0365E44D910CE41360730A8942604BD8 /* NYTPhotoViewerCloseButtonX@3x.png */,
+				49F13345ACCCA1C6BF02CC09145AB86F /* NYTPhotoViewerCloseButtonXLandscape.png */,
+				E856F19514EEBBFC721D4B7FA2535D18 /* NYTPhotoViewerCloseButtonXLandscape@2x.png */,
+				06DAB03FE9E457BBBC722B0E465D7D66 /* NYTPhotoViewerCloseButtonXLandscape@3x.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		9AF9F175A714F1375D0CFECA667FB9BA /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				73F725BCD7DC03EA58A4006BF658A90B /* SendBirdSDK */,
+			);
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		B4C58EE33902171C2141D4E074B9654E /* Pods-SendBird-iOS */ = {
@@ -709,58 +747,40 @@
 			path = "Target Support Files/Pods-SendBird-iOS";
 			sourceTree = "<group>";
 		};
-		B7198E374D83C7FE5CBD59F5D5E98C03 /* Support Files */ = {
+		BF6A08F3C4C6DDF889318BA951DA9C35 /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
-				FD716C1187EADF8B232D33234E55703C /* Info.plist */,
-				017D5055215877D6AADF635A13E0D9A6 /* TTTAttributedLabel.modulemap */,
-				AA2E8621E18226868319C0BC99DAF532 /* TTTAttributedLabel.xcconfig */,
-				DEE6D19F4F993507A65734CDF3D0C3A5 /* TTTAttributedLabel-dummy.m */,
-				282B51C153D23D5EDDC7F205B1E79F41 /* TTTAttributedLabel-prefix.pch */,
-				0E98609F59A259666AE5963DA1889334 /* TTTAttributedLabel-umbrella.h */,
+				BD4403971A98C79D2128FF57E72A144C /* AFError.swift */,
+				C31EF0C9017F2B9482734C3B3699D806 /* Alamofire.swift */,
+				07DC8768A6AFC67435A2B0880F6576FB /* DispatchQueue+Alamofire.swift */,
+				9BEFD40ECA11ACF79FB652A479250B28 /* MultipartFormData.swift */,
+				98572774846A59F26DFFECFE8CA134C5 /* NetworkReachabilityManager.swift */,
+				C82B57BBAE61BD7236D8C35F1769DBA6 /* Notifications.swift */,
+				18DC7C1E5895402E8DEF7F9D6D631FD4 /* ParameterEncoding.swift */,
+				6F1CC83A638BADFC253403CE6B9C767D /* Request.swift */,
+				9DE29EAA2FA6E18CDD19FCA76252D5A1 /* Response.swift */,
+				E19C5215B271708A88F4041154DBADFC /* ResponseSerialization.swift */,
+				BF2BFB4BE547E66D1BD7A33F04973B4B /* Result.swift */,
+				10B2AEEFE29BF05832C496BAD3A4D1E4 /* ServerTrustPolicy.swift */,
+				0C315069CA7F49405512EB0C6B3CD8C5 /* SessionDelegate.swift */,
+				3C77C9206B308F5C86FA2DD213B1E272 /* SessionManager.swift */,
+				C06AB8CA8D4D459F779B22AA95386908 /* TaskDelegate.swift */,
+				E6E122C6F3D11DB33F7B809D1010210E /* Timeline.swift */,
+				20AACBD167425C62CE95CE661EA75E12 /* Validation.swift */,
+				22511D1CCE3E54DA42D0BDB59EFA8F82 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/TTTAttributedLabel";
+			name = Alamofire;
+			path = Alamofire;
 			sourceTree = "<group>";
 		};
-		B9513DCDBE8652DED99719B2D29375ED /* MGSwipeTableCell */ = {
+		C57F31D3C2877257F50EAB4275B4D98B /* NYTPhotoViewer */ = {
 			isa = PBXGroup;
 			children = (
-				A18F52227E82E36F46E227737E371123 /* MGSwipeButton.h */,
-				B3193576DE406EFF8FD720C4DF6AFBB2 /* MGSwipeButton.m */,
-				EBF24AABAFFCCFB1B49B7EDBAB2A4B79 /* MGSwipeTableCell.h */,
-				0972E4629037ACFDD710A9FE6F6914A5 /* MGSwipeTableCell.m */,
-				E9DB566497D5583AECCA9E2096A073DA /* Support Files */,
+				72A94F806E9F32967FDF71F687B6D5F1 /* Core */,
+				81C6BAE2DACFDE82F097565210D2D98C /* Support Files */,
 			);
-			name = MGSwipeTableCell;
-			path = MGSwipeTableCell;
-			sourceTree = "<group>";
-		};
-		BBDC7B8AD030217C54D8BC363437D270 /* AlamofireImage */ = {
-			isa = PBXGroup;
-			children = (
-				60A7E556826903CA02355C9F65A0276C /* AFIError.swift */,
-				A824AA6DE48471D053DB36E4CBB34202 /* Image.swift */,
-				9A66CB32652D12671EB156310F6F2BB3 /* ImageCache.swift */,
-				854184FDD077775BCDC48C82B3A40098 /* ImageDownloader.swift */,
-				170B4C45AA17B4BC8A9D07AA2704C176 /* ImageFilter.swift */,
-				E55A4F263846A35D55CB4F3FB0E23EA7 /* Request+AlamofireImage.swift */,
-				DA806A524C70E7820243645A80770174 /* UIButton+AlamofireImage.swift */,
-				8F9F617065F61BEA612241886131E5FF /* UIImage+AlamofireImage.swift */,
-				603CC7EA83F1DF7ACF2EB3E7AF5A8A40 /* UIImageView+AlamofireImage.swift */,
-				32DAA3B6D8FE0B078A34835EC3C518A8 /* Support Files */,
-			);
-			name = AlamofireImage;
-			path = AlamofireImage;
-			sourceTree = "<group>";
-		};
-		BEA0D9D1E221901DE5FBD870CCF36D4D /* SendBirdSDK */ = {
-			isa = PBXGroup;
-			children = (
-				23A321318A21F44F02CC30C536717A69 /* Frameworks */,
-			);
-			name = SendBirdSDK;
-			path = SendBirdSDK;
+			name = NYTPhotoViewer;
+			path = NYTPhotoViewer;
 			sourceTree = "<group>";
 		};
 		CB735373AF0E3106E53E7786CFCD6F52 /* Targets Support Files */ = {
@@ -787,42 +807,30 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DFCF998EF89108C8B94F7DB35197D156 /* TTTAttributedLabel */ = {
+		DF6E61C40A75775663CFA87EA72A1A5D /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				4B0F68BDC753591893D78AE6F92DCF23 /* TTTAttributedLabel.h */,
-				B82EA0D4C46DAB3AC559F2F288878C94 /* TTTAttributedLabel.m */,
-				B7198E374D83C7FE5CBD59F5D5E98C03 /* Support Files */,
-			);
-			name = TTTAttributedLabel;
-			path = TTTAttributedLabel;
-			sourceTree = "<group>";
-		};
-		E9DB566497D5583AECCA9E2096A073DA /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				6C778FAB1E11F53F0EFDB99B98FB3585 /* Info.plist */,
-				CA3DDD09319AA6B8F275EB2177E09572 /* MGSwipeTableCell.modulemap */,
-				30967ABAA6210641F026EDD037BE80A3 /* MGSwipeTableCell.xcconfig */,
-				0200E0844C6782222BD74ABDD16B75B9 /* MGSwipeTableCell-dummy.m */,
-				56A2CBDB331D5C66E3D53134C0E2FCEA /* MGSwipeTableCell-prefix.pch */,
-				576C1390DE7AB9A1A475F635F3D6369E /* MGSwipeTableCell-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/MGSwipeTableCell";
-			sourceTree = "<group>";
-		};
-		F9055F975FC0730EA6BBFBBC0FDDBBB0 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				AA721291E3B96D02DB7B7B24D92D7007 /* Info.plist */,
-				329E145EADDB10FF1DCDC65FDABD9643 /* RSKImageCropper.modulemap */,
-				3B17265A674A55679A981AD79E592DBD /* RSKImageCropper.xcconfig */,
-				B5D908B219B656C585B5F8768BB54F85 /* RSKImageCropper-dummy.m */,
-				D4439C866217D7446D53A9A86D44FD1B /* RSKImageCropper-prefix.pch */,
+				AC2FEA5989C3F075B5FCB08E64DCCBF7 /* Info.plist */,
+				70E11710CA2D236505F61CF19334E335 /* RSKImageCropper.modulemap */,
+				DEFDDDE04509EF87B2DEC313F1C0C514 /* RSKImageCropper.xcconfig */,
+				C5B1A6573F21694BF5CC28BE685ED3AE /* RSKImageCropper-dummy.m */,
+				5550867D2C18B3BDEEAA70B623738D4C /* RSKImageCropper-prefix.pch */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/RSKImageCropper";
+			sourceTree = "<group>";
+		};
+		E42016C2E872209D0D4B72B388E043F8 /* MGSwipeTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				459E378BC39B234C937C64B6B6D9F00D /* MGSwipeButton.h */,
+				93366A6997B2DB894D997CD2FF211679 /* MGSwipeButton.m */,
+				0865485AE978C7378400F6F5C2F10032 /* MGSwipeTableCell.h */,
+				C0EAB5F93F6FD262CABE857BC2F9B50C /* MGSwipeTableCell.m */,
+				045FCEB3D631367BC74C3F950B1D4C2A /* Support Files */,
+			);
+			name = MGSwipeTableCell;
+			path = MGSwipeTableCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1341,7 +1349,7 @@
 /* Begin XCBuildConfiguration section */
 		076EFA6009042EE9DC6C3E5FE5FBA213 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10CD9EB03F6C9D2623560F8E1EBB1B7A /* AlamofireImage.xcconfig */;
+			baseConfigurationReference = 2392A7A805BF5F81E46A4C3BA8455DA6 /* AlamofireImage.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1376,7 +1384,7 @@
 		};
 		127958CF9B0456140AD7459DE77AAFB4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A26AA77554028F9B0F4776919E0D44C8 /* NYTPhotoViewer.xcconfig */;
+			baseConfigurationReference = 21F5DC98DF6E9FA0CEA30EEF4B59BBE4 /* NYTPhotoViewer.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1453,7 +1461,7 @@
 		};
 		438F5E3C59C8BB20FF9C395AB611E5D3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A26AA77554028F9B0F4776919E0D44C8 /* NYTPhotoViewer.xcconfig */;
+			baseConfigurationReference = 21F5DC98DF6E9FA0CEA30EEF4B59BBE4 /* NYTPhotoViewer.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/NYTPhotoViewer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1470,7 +1478,7 @@
 		};
 		4B79C5791FD06A458E333F2EADBB677B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A26AA77554028F9B0F4776919E0D44C8 /* NYTPhotoViewer.xcconfig */;
+			baseConfigurationReference = 21F5DC98DF6E9FA0CEA30EEF4B59BBE4 /* NYTPhotoViewer.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1503,7 +1511,7 @@
 		};
 		4E1669890D341EC4D28EB0AE728D1421 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30967ABAA6210641F026EDD037BE80A3 /* MGSwipeTableCell.xcconfig */;
+			baseConfigurationReference = D47DC605B6D8FA11DCFD86A3449869EA /* MGSwipeTableCell.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1536,7 +1544,7 @@
 		};
 		5406F469878A33833E1E37167B463927 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10CD9EB03F6C9D2623560F8E1EBB1B7A /* AlamofireImage.xcconfig */;
+			baseConfigurationReference = 2392A7A805BF5F81E46A4C3BA8455DA6 /* AlamofireImage.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1570,7 +1578,7 @@
 		};
 		68D002F30167ABD1747F89B45F96F440 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B17265A674A55679A981AD79E592DBD /* RSKImageCropper.xcconfig */;
+			baseConfigurationReference = DEFDDDE04509EF87B2DEC313F1C0C514 /* RSKImageCropper.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1642,7 +1650,7 @@
 		};
 		7D072D0D174F12EAACC1862DA756E67A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51F88B66B34B311156D24D3E675A3DB3 /* Alamofire.xcconfig */;
+			baseConfigurationReference = 96FA4A9B19C94BE9CB5CCC832938FC5C /* Alamofire.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1714,7 +1722,7 @@
 		};
 		885DBC3F1E0150EC945011110C0394F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA2E8621E18226868319C0BC99DAF532 /* TTTAttributedLabel.xcconfig */;
+			baseConfigurationReference = FA58C65FB0CA29E26A7295844DD01CF1 /* TTTAttributedLabel.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1747,7 +1755,7 @@
 		};
 		A6E41073B71BF5A50C4692D244CBC2FA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA2E8621E18226868319C0BC99DAF532 /* TTTAttributedLabel.xcconfig */;
+			baseConfigurationReference = FA58C65FB0CA29E26A7295844DD01CF1 /* TTTAttributedLabel.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1828,7 +1836,7 @@
 		};
 		C9660A42FEDD040185578ADA021EC8E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51F88B66B34B311156D24D3E675A3DB3 /* Alamofire.xcconfig */;
+			baseConfigurationReference = 96FA4A9B19C94BE9CB5CCC832938FC5C /* Alamofire.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1863,7 +1871,7 @@
 		};
 		DA2348F32C3A2F793F2E49EEDD584E68 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A26AA77554028F9B0F4776919E0D44C8 /* NYTPhotoViewer.xcconfig */;
+			baseConfigurationReference = 21F5DC98DF6E9FA0CEA30EEF4B59BBE4 /* NYTPhotoViewer.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/NYTPhotoViewer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1880,7 +1888,7 @@
 		};
 		EDA26210586C38FBDFF8B003F682A580 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30967ABAA6210641F026EDD037BE80A3 /* MGSwipeTableCell.xcconfig */;
+			baseConfigurationReference = D47DC605B6D8FA11DCFD86A3449869EA /* MGSwipeTableCell.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1913,7 +1921,7 @@
 		};
 		EE8C18731636FDCB0E0C88907CD68257 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 609BAE4EB123E8B7094B73853E8FD82D /* FLAnimatedImage.xcconfig */;
+			baseConfigurationReference = A765BE6B0B18EA47D4602A7143BFC7DC /* FLAnimatedImage.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1946,7 +1954,7 @@
 		};
 		F2EFF2CC484BE416BBE178115D7ACC98 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B17265A674A55679A981AD79E592DBD /* RSKImageCropper.xcconfig */;
+			baseConfigurationReference = DEFDDDE04509EF87B2DEC313F1C0C514 /* RSKImageCropper.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1979,7 +1987,7 @@
 		};
 		F9AC827C88996FB0CDFA1B6E83A81AF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 609BAE4EB123E8B7094B73853E8FD82D /* FLAnimatedImage.xcconfig */;
+			baseConfigurationReference = A765BE6B0B18EA47D4602A7143BFC7DC /* FLAnimatedImage.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";

@@ -340,8 +340,7 @@
 }
 
 - (void)sendUrlPreview:(NSURL * _Nonnull)url message:(NSString * _Nonnull)message tempModel:(OutgoingGeneralUrlPreviewTempModel * _Nonnull)aTempModel {
-    __block OutgoingGeneralUrlPreviewTempModel *tempModel = aTempModel;
-    __block NSURL *preViewUrl = url;
+    NSURL *preViewUrl = url;
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];
@@ -507,14 +506,17 @@
                         
                         return;
                     }
-                    
-                    [self.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:tempModel] withObject:userMessage];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.chattingView.chattingTableView reloadData];
+
+                    NSUInteger tempIndex = [self.chattingView.messages indexOfObject:aTempModel];
+                    if (tempIndex != NSNotFound) {
+                        [self.chattingView.messages replaceObjectAtIndex:[self.chattingView.messages indexOfObject:aTempModel] withObject:userMessage];
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [self.chattingView scrollToBottomWithForce:YES];
+                            [self.chattingView.chattingTableView reloadData];
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [self.chattingView scrollToBottomWithForce:YES];
+                            });
                         });
-                    });
+                    }
                 }];
             }
             else {
@@ -586,14 +588,12 @@
                 [self.chattingView.messages addObject:tempModel];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.chattingView.chattingTableView reloadData];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.chattingView scrollToBottomWithForce:YES];
-                    });
+                    [self.chattingView scrollToBottomWithForce:YES];
+                    
+                    // Send preview;
+                    [self sendUrlPreview:url message:message tempModel:tempModel];
                 });
-                
-                // Send preview;
-                [self sendUrlPreview:url message:message tempModel:tempModel];
-                
+
                 return;
             }
         }

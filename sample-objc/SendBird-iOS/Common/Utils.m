@@ -393,4 +393,8 @@
     }
 }
 
++ (bool)isIPhoneX {
+    return [[UIScreen mainScreen] fixedCoordinateSpace].bounds.size.height == 812.0;
+}
+
 @end

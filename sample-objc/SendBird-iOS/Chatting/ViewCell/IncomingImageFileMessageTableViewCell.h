@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <SendBirdSDK/SendBirdSDK.h>
 #import "MessageDelegate.h"
+#import "FLAnimatedImage.h"
+#import "FLAnimatedImageView+ImageCache.h"
 
 @interface IncomingImageFileMessageTableViewCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *fileImageView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingIndicator;
 
 @property (weak, nonatomic) id<MessageDelegate> delegate;
 

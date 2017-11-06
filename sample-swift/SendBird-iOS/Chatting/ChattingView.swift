@@ -8,6 +8,9 @@
 
 import UIKit
 import SendBirdSDK
+import Alamofire
+import AlamofireImage
+import FLAnimatedImage
 
 protocol ChattingViewDelegate: class {
     func loadMoreMessage(view: UIView)
@@ -667,6 +670,48 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).setModel(aMessage: userMessage)
                     (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).delegate = self.delegate
                     
+                    let imageUrl = (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewData["image"] as! String
+                    let ext = (imageUrl as NSString).pathExtension
+                    
+                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.image = nil
+                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = nil
+                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = false
+                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.startAnimating()
+                    if imageUrl.count > 0 {
+                        if ext.lowercased().hasPrefix("gif") {
+                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.setAnimatedImageWithURL(url: URL(string: imageUrl)! , success: { (image) in
+                                DispatchQueue.main.async {
+                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = image
+                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                                }
+                            }, failure: { (error) in
+                                DispatchQueue.main.async {
+                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                                }
+                            })
+                        }
+                    }
+                    else {
+                        Alamofire.request(imageUrl, method: .get).responseImage { response in
+                            guard let image = response.result.value else {
+                                DispatchQueue.main.async {
+                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                                }
+                                
+                                return
+                            }
+                            
+                            DispatchQueue.main.async {
+                                (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.image = image
+                                (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                                (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                            }
+                        }
+                    }
+                    
                     if self.preSendMessages[userMessage.requestId!] != nil {
                         (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showSendingStatus()
                     }
@@ -722,6 +767,51 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     }
                     (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).setModel(aMessage: userMessage)
                     (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).delegate = self.delegate
+                    
+                    let imageUrl = (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewData["image"] as! String
+                    let ext = (imageUrl as NSString).pathExtension
+                    
+                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.image = nil
+                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = nil
+                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = false
+                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.startAnimating()
+                    
+                    if imageUrl.count > 0 {
+                        if ext.lowercased().hasPrefix("gif") {
+                            (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.setAnimatedImageWithURL(url: URL(string: imageUrl)! , success: { (image) in
+                                DispatchQueue.main.async {
+                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.image = nil
+                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = nil
+                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = image
+                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                                }
+                            }, failure: { (error) in
+                                DispatchQueue.main.async {
+                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                                }
+                            })
+                        }
+                        else {
+                            Alamofire.request(imageUrl, method: .get).responseImage { response in
+                                guard let image = response.result.value else {
+                                    DispatchQueue.main.async {
+                                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                                    }
+                                    
+                                    return
+                                }
+                                
+                                DispatchQueue.main.async {
+                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.image = image
+                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                                }
+                            }
+                        }
+                    }
                 }
                 else {
                     cell = tableView.dequeueReusableCell(withIdentifier: IncomingUserMessageTableViewCell.cellReuseIdentifier())
@@ -809,8 +899,8 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     
                     if self.preSendMessages[fileMessage.requestId!] != nil {
                         (cell as! OutgoingImageFileMessageTableViewCell).showSendingStatus()
-                        (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.preSendFileData[fileMessage.requestId!]!["data"] as! Data, type: self.preSendFileData[fileMessage.requestId!]!["type"] as! String)
                         (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = true
+                        (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.preSendFileData[fileMessage.requestId!]!["data"] as! Data, type: self.preSendFileData[fileMessage.requestId!]!["type"] as! String)
                     }
                     else {
                         if self.resendableMessages[fileMessage.requestId!] != nil {
@@ -820,13 +910,74 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                             (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = true
                         }
                         else {
-                            if fileMessage.url.characters.count > 0 && self.preSendFileData[fileMessage.requestId!] != nil {
+                            if fileMessage.url.count > 0 && self.preSendFileData[fileMessage.requestId!] != nil {
                                 (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.preSendFileData[fileMessage.requestId!]?["data"] as! Data, type: self.preSendFileData[fileMessage.requestId!]?["type"] as! String)
                                 (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = true
                                 self.preSendFileData.removeValue(forKey: fileMessage.requestId!);
                             }
                             else {
                                 (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = false
+                                
+                                var fileImageUrl = ""
+                                if let thumbnails = fileMessage.thumbnails {
+                                    let thumbnailsCount = thumbnails.count
+                                    if thumbnailsCount > 0 && fileMessage.type != "image/gif" {
+                                        fileImageUrl = thumbnails[0].url
+                                    }
+                                    else {
+                                        fileImageUrl = fileMessage.url
+                                    }
+                                }
+                                
+                                (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.image = nil
+                                (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.animatedImage = nil
+                                
+                                if fileMessage.type == "image/gif" {
+                                    (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.setAnimatedImageWithURL(url: URL(string: fileImageUrl)!, success: { (image) in
+                                        DispatchQueue.main.async {
+                                            let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
+                                            if updateCell != nil {
+                                                (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.animatedImage = image
+                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
+                                            }
+                                        }
+                                    }, failure: { (error) in
+                                        DispatchQueue.main.async {
+                                            let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
+                                            if updateCell != nil {
+                                                (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.af_setImage(withURL: URL(string: fileImageUrl)!)
+                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
+                                            }
+                                        }
+                                    })
+                                }
+                                else {
+                                    let request = URLRequest(url: URL(string: fileImageUrl)!)
+                                    (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+                                        if response.result.error != nil {
+                                            DispatchQueue.main.async {
+                                                let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
+                                                if updateCell != nil {
+                                                    (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.image = nil
+                                                    (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
+                                                    (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                                }
+                                            }
+                                        }
+                                        else {
+                                            DispatchQueue.main.async {
+                                                let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
+                                                if updateCell != nil {
+                                                    (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.image = response.result.value
+                                                    (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
+                                                    (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                                }
+                                            }
+                                        }
+                                    })
+                                }
                             }
                             (cell as! OutgoingImageFileMessageTableViewCell).showMessageDate()
                             (cell as! OutgoingImageFileMessageTableViewCell).showUnreadCount()
@@ -897,6 +1048,44 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     }
                     (cell as! IncomingImageFileMessageTableViewCell).setModel(aMessage: fileMessage)
                     (cell as! IncomingImageFileMessageTableViewCell).delegate = self.delegate
+                    
+                    var fileImageUrl = ""
+                    if let thumbnails = fileMessage.thumbnails {
+                        let thumbnailsCount = thumbnails.count
+                        if thumbnailsCount > 0 && fileMessage.type != "image/gif" {
+                            fileImageUrl = thumbnails[0].url
+                        }
+                        else {
+                            fileImageUrl = fileMessage.url
+                        }
+                    }
+                    
+                    (cell as! IncomingImageFileMessageTableViewCell).fileImageView.image = nil
+                    (cell as! IncomingImageFileMessageTableViewCell).fileImageView.animatedImage = nil
+                    
+                    if fileMessage.type == "image/gif" {
+                        (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = false
+                        (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.startAnimating()
+                        (cell as! IncomingImageFileMessageTableViewCell).fileImageView.setAnimatedImageWithURL(url: URL(string: fileImageUrl)!, success: { (image) in
+                            DispatchQueue.main.async {
+                                let updateCell = tableView.cellForRow(at: indexPath) as? IncomingImageFileMessageTableViewCell
+                                if updateCell != nil {
+                                    (cell as! IncomingImageFileMessageTableViewCell).fileImageView.animatedImage = image
+                                    (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                    (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
+                                }
+                            }
+                        }, failure: { (error) in
+                            DispatchQueue.main.async {
+                                let updateCell = tableView.cellForRow(at: indexPath) as? IncomingImageFileMessageTableViewCell
+                                if updateCell != nil {
+                                    (cell as! IncomingImageFileMessageTableViewCell).fileImageView.af_setImage(withURL: URL(string: fileImageUrl)!)
+                                    (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                    (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
+                                }
+                            }
+                        })
+                    }
                 }
                 else {
                     cell = tableView.dequeueReusableCell(withIdentifier: IncomingFileMessageTableViewCell.cellReuseIdentifier())

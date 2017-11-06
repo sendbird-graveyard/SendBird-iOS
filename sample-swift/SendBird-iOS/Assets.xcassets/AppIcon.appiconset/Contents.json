@@ -33,13 +33,13 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "120x120_SendBird_swift.png",
+      "filename" : "icon_120px.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "180x180_SendBird_swift.png",
+      "filename" : "icon_180px.png",
       "scale" : "3x"
     },
     {
@@ -75,25 +75,25 @@
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "76x76_SendBird_swift.png",
+      "filename" : "icon_76px.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "152x152_SendBird_swift.png",
+      "filename" : "icon_152px.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "167x167_SendBird_swift.png",
+      "filename" : "icon_167px.png",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "1024x1024_SendBird_swift.png",
+      "filename" : "icon_1024px.png",
       "scale" : "1x"
     }
   ],

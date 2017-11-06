@@ -48,7 +48,7 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
     weak var delegate: MessageDelegate!
     private var message: SBDUserMessage!
     private var prevMessage: SBDBaseMessage!
-    private var previewData: Dictionary<String, Any>!
+    var previewData: Dictionary<String, Any>!
     private var displayNickname: Bool!
     
     static func nib() -> UINib {
@@ -108,54 +108,54 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         let previewDescriptionLabelTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(clickPreview))
         self.previewDescriptionLabel.isUserInteractionEnabled = true
         self.previewDescriptionLabel.addGestureRecognizer(previewDescriptionLabelTapRecognizer)
-        
-        self.previewThumbnailImageView.image = nil
-        self.previewThumbnailImageView.animatedImage = nil
-        self.previewThumbnailLoadingIndicator.isHidden = false
-        self.previewThumbnailLoadingIndicator.startAnimating()
-    
-        if imageUrl.characters.count > 0 {
-            if ext.lowercased().hasPrefix("gif") {
-                self.previewThumbnailImageView.setAnimatedImageWithURL(url: URL(string: imageUrl)! , success: { (image) in
-                    DispatchQueue.main.async {
-                        self.previewThumbnailImageView.image = nil
-                        self.previewThumbnailImageView.animatedImage = nil
-                        self.previewThumbnailImageView.animatedImage = image
-                        self.previewThumbnailLoadingIndicator.isHidden = true
-                        self.previewThumbnailLoadingIndicator.stopAnimating()
-                    }
-                }, failure: { (error) in
-                    DispatchQueue.main.async {
-                        self.previewThumbnailLoadingIndicator.isHidden = true
-                        self.previewThumbnailLoadingIndicator.stopAnimating()
-                    }
-                })
-            }
-            else {
-                Alamofire.request(imageUrl, method: .get).responseImage { response in
-                    guard let image = response.result.value else {
-                        DispatchQueue.main.async {
-                            self.previewThumbnailLoadingIndicator.isHidden = true
-                            self.previewThumbnailLoadingIndicator.stopAnimating()
-                        }
-                        
-                        return
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self.previewThumbnailImageView.image = image
-                        self.previewThumbnailLoadingIndicator.isHidden = true
-                        self.previewThumbnailLoadingIndicator.stopAnimating()
-                    }
-                }
-            }
-        }
-        else {
-            self.previewThumbnailImageView.isHidden = true
-            self.previewThumbnailLoadingIndicator.isHidden = true
-            self.previewThumbnailImageHeight.constant = 0
-            self.previewDescriptionBottomMargin.constant = 10
-        }
+//
+//        self.previewThumbnailImageView.image = nil
+//        self.previewThumbnailImageView.animatedImage = nil
+//        self.previewThumbnailLoadingIndicator.isHidden = false
+//        self.previewThumbnailLoadingIndicator.startAnimating()
+//
+//        if imageUrl.characters.count > 0 {
+//            if ext.lowercased().hasPrefix("gif") {
+//                self.previewThumbnailImageView.setAnimatedImageWithURL(url: URL(string: imageUrl)! , success: { (image) in
+//                    DispatchQueue.main.async {
+//                        self.previewThumbnailImageView.image = nil
+//                        self.previewThumbnailImageView.animatedImage = nil
+//                        self.previewThumbnailImageView.animatedImage = image
+//                        self.previewThumbnailLoadingIndicator.isHidden = true
+//                        self.previewThumbnailLoadingIndicator.stopAnimating()
+//                    }
+//                }, failure: { (error) in
+//                    DispatchQueue.main.async {
+//                        self.previewThumbnailLoadingIndicator.isHidden = true
+//                        self.previewThumbnailLoadingIndicator.stopAnimating()
+//                    }
+//                })
+//            }
+//            else {
+//                Alamofire.request(imageUrl, method: .get).responseImage { response in
+//                    guard let image = response.result.value else {
+//                        DispatchQueue.main.async {
+//                            self.previewThumbnailLoadingIndicator.isHidden = true
+//                            self.previewThumbnailLoadingIndicator.stopAnimating()
+//                        }
+//
+//                        return
+//                    }
+//
+//                    DispatchQueue.main.async {
+//                        self.previewThumbnailImageView.image = image
+//                        self.previewThumbnailLoadingIndicator.isHidden = true
+//                        self.previewThumbnailLoadingIndicator.stopAnimating()
+//                    }
+//                }
+//            }
+//        }
+//        else {
+//            self.previewThumbnailImageView.isHidden = true
+//            self.previewThumbnailLoadingIndicator.isHidden = true
+//            self.previewThumbnailImageHeight.constant = 0
+//            self.previewDescriptionBottomMargin.constant = 10
+//        }
         
         self.profileImageView.af_setImage(withURL: URL(string: (self.message.sender?.profileUrl)!)!, placeholderImage: UIImage(named: "img_profile"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: true, completion: nil)
         

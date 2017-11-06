@@ -63,109 +63,109 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
         self.fileImageView.addGestureRecognizer(messageContainerTapRecognizer)
         
         self.imageLoadingIndicator.isHidden = true
-        self.fileImageView.animatedImage = nil;
-        self.fileImageView.image = nil;
-
-        if self.message.url.characters.count > 0 {
-            if self.message.type == "image/gif" {
-                self.fileImageView.setAnimatedImageWithURL(url: URL(string: self.message.url)!, success: { (image) in
-                    DispatchQueue.main.async {
-                        self.fileImageView.animatedImage = image
-                        self.imageLoadingIndicator.isHidden = true
-                        self.imageLoadingIndicator.stopAnimating()
-                    }
-                }, failure: { (error) in
-                    /***********************************/
-                    /* Thumbnail is a premium feature. */
-                    /***********************************/
-                    if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
-                        if (self.message.thumbnails?[0].url.characters.count)! > 0 {
-                            let request = URLRequest(url: URL(string: (self.message.thumbnails?[0].url)!)!)
-                            self.fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
-                                if response.result.error != nil {
-                                    DispatchQueue.main.async {
-                                        self.fileImageView.image = nil
-                                        self.imageLoadingIndicator.isHidden = true
-                                        self.imageLoadingIndicator.stopAnimating()
-                                    }
-                                }
-                                else {
-                                    DispatchQueue.main.async {
-                                        self.fileImageView.image = response.result.value
-                                        self.imageLoadingIndicator.isHidden = true
-                                        self.imageLoadingIndicator.stopAnimating()
-                                    }
-                                }
-                            })
-                        }
-                    }
-                    else {
-                        let request = URLRequest(url: URL(string: (self.message.url))!)
-                        self.fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
-                            if response.result.error != nil {
-                                DispatchQueue.main.async {
-                                    self.fileImageView.image = nil
-                                    self.imageLoadingIndicator.isHidden = true
-                                    self.imageLoadingIndicator.stopAnimating()
-                                }
-                            }
-                            else {
-                                DispatchQueue.main.async {
-                                    self.fileImageView.image = response.result.value
-                                    self.imageLoadingIndicator.isHidden = true
-                                    self.imageLoadingIndicator.stopAnimating()
-                                }
-                            }
-                        })
-                    }
-                })
-            }
-            else {
-                /***********************************/
-                /* Thumbnail is a premium feature. */
-                /***********************************/
-                if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
-                    if (self.message.thumbnails?[0].url.characters.count)! > 0 {
-                        let request = URLRequest(url: URL(string: (self.message.thumbnails?[0].url)!)!)
-                        self.fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
-                            if response.result.error != nil {
-                                DispatchQueue.main.async {
-                                    self.fileImageView.image = nil
-                                    self.imageLoadingIndicator.isHidden = true
-                                    self.imageLoadingIndicator.stopAnimating()
-                                }
-                            }
-                            else {
-                                DispatchQueue.main.async {
-                                    self.fileImageView.image = response.result.value
-                                    self.imageLoadingIndicator.isHidden = true
-                                    self.imageLoadingIndicator.stopAnimating()
-                                }
-                            }
-                        })
-                    }
-                }
-                else {
-                    let request = URLRequest(url: URL(string: (self.message.url))!)
-                    self.fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
-                        if response.result.error != nil {
-                            DispatchQueue.main.async {
-                                self.fileImageView.image = nil
-                                self.imageLoadingIndicator.isHidden = true
-                                self.imageLoadingIndicator.stopAnimating()
-                            }
-                        }
-                        else {
-                            DispatchQueue.main.async {
-                                self.fileImageView.image = response.result.value
-                                self.imageLoadingIndicator.isHidden = true
-                                self.imageLoadingIndicator.stopAnimating()
-                            }
-                        }
-                    })
-                }
-            }
-        }
+//        self.fileImageView.animatedImage = nil;
+//        self.fileImageView.image = nil;
+//
+//        if self.message.url.characters.count > 0 {
+//            if self.message.type == "image/gif" {
+//                self.fileImageView.setAnimatedImageWithURL(url: URL(string: self.message.url)!, success: { (image) in
+//                    DispatchQueue.main.async {
+//                        self.fileImageView.animatedImage = image
+//                        self.imageLoadingIndicator.isHidden = true
+//                        self.imageLoadingIndicator.stopAnimating()
+//                    }
+//                }, failure: { (error) in
+//                    /***********************************/
+//                    /* Thumbnail is a premium feature. */
+//                    /***********************************/
+//                    if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
+//                        if (self.message.thumbnails?[0].url.characters.count)! > 0 {
+//                            let request = URLRequest(url: URL(string: (self.message.thumbnails?[0].url)!)!)
+//                            self.fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+//                                if response.result.error != nil {
+//                                    DispatchQueue.main.async {
+//                                        self.fileImageView.image = nil
+//                                        self.imageLoadingIndicator.isHidden = true
+//                                        self.imageLoadingIndicator.stopAnimating()
+//                                    }
+//                                }
+//                                else {
+//                                    DispatchQueue.main.async {
+//                                        self.fileImageView.image = response.result.value
+//                                        self.imageLoadingIndicator.isHidden = true
+//                                        self.imageLoadingIndicator.stopAnimating()
+//                                    }
+//                                }
+//                            })
+//                        }
+//                    }
+//                    else {
+//                        let request = URLRequest(url: URL(string: (self.message.url))!)
+//                        self.fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+//                            if response.result.error != nil {
+//                                DispatchQueue.main.async {
+//                                    self.fileImageView.image = nil
+//                                    self.imageLoadingIndicator.isHidden = true
+//                                    self.imageLoadingIndicator.stopAnimating()
+//                                }
+//                            }
+//                            else {
+//                                DispatchQueue.main.async {
+//                                    self.fileImageView.image = response.result.value
+//                                    self.imageLoadingIndicator.isHidden = true
+//                                    self.imageLoadingIndicator.stopAnimating()
+//                                }
+//                            }
+//                        })
+//                    }
+//                })
+//            }
+//            else {
+//                /***********************************/
+//                /* Thumbnail is a premium feature. */
+//                /***********************************/
+//                if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
+//                    if (self.message.thumbnails?[0].url.characters.count)! > 0 {
+//                        let request = URLRequest(url: URL(string: (self.message.thumbnails?[0].url)!)!)
+//                        self.fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+//                            if response.result.error != nil {
+//                                DispatchQueue.main.async {
+//                                    self.fileImageView.image = nil
+//                                    self.imageLoadingIndicator.isHidden = true
+//                                    self.imageLoadingIndicator.stopAnimating()
+//                                }
+//                            }
+//                            else {
+//                                DispatchQueue.main.async {
+//                                    self.fileImageView.image = response.result.value
+//                                    self.imageLoadingIndicator.isHidden = true
+//                                    self.imageLoadingIndicator.stopAnimating()
+//                                }
+//                            }
+//                        })
+//                    }
+//                }
+//                else {
+//                    let request = URLRequest(url: URL(string: (self.message.url))!)
+//                    self.fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+//                        if response.result.error != nil {
+//                            DispatchQueue.main.async {
+//                                self.fileImageView.image = nil
+//                                self.imageLoadingIndicator.isHidden = true
+//                                self.imageLoadingIndicator.stopAnimating()
+//                            }
+//                        }
+//                        else {
+//                            DispatchQueue.main.async {
+//                                self.fileImageView.image = response.result.value
+//                                self.imageLoadingIndicator.isHidden = true
+//                                self.imageLoadingIndicator.stopAnimating()
+//                            }
+//                        }
+//                    })
+//                }
+//            }
+//        }
         // Message Date
         let messageDateAttribute = [
             NSFontAttributeName: Constants.messageDateFont(),

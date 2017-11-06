@@ -20,6 +20,11 @@
 #import "OutgoingGeneralUrlPreviewMessageTableViewCell.h"
 #import "OutgoingGeneralUrlPreviewTempMessageTableViewCell.h"
 
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
+#import "FLAnimatedImage.h"
+#import "FLAnimatedImageView+ImageCache.h"
+
 @interface ChattingView()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *typingIndicatorContainerViewHeight;
 @property (weak, nonatomic) IBOutlet UIImageView *typingIndicatorImageView;
@@ -675,6 +680,44 @@
                 [(OutgoingGeneralUrlPreviewMessageTableViewCell *)cell setModel:userMessage];
                 ((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).delegate = self.delegate;
                 
+                NSString *imageUrl = ((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewData[@"image"];
+                NSString *ext = [imageUrl pathExtension];
+                ((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageView.image = nil;
+                ((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageView.animatedImage = nil;
+                ((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageLoadingIndicator.hidden = NO;
+                [((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageLoadingIndicator startAnimating];
+                if (imageUrl != nil && imageUrl.length > 0) {
+                    if ([[ext lowercaseString] hasPrefix:@"gif"]) {
+                        [((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageView setAnimatedImageWithURL:[NSURL URLWithString:imageUrl] success:^(FLAnimatedImage * _Nullable image) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageView setAnimatedImage:image];
+                                ((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageLoadingIndicator.hidden = YES;
+                                [((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageLoadingIndicator stopAnimating];
+                            });
+                        } failure:^(NSError * _Nullable error) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                ((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageLoadingIndicator.hidden = YES;
+                                [((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageLoadingIndicator stopAnimating];
+                            });
+                        }];
+                    }
+                    else {
+                        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]];
+                        [((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageView setImage:image];
+                                ((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageLoadingIndicator.hidden = YES;
+                                [((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageLoadingIndicator stopAnimating];
+                            });
+                        } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                ((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageLoadingIndicator.hidden = YES;
+                                [((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageLoadingIndicator stopAnimating];
+                            });
+                        }];
+                    }
+                }
+
                 if (self.preSendMessages[userMessage.requestId] != nil && ![self.preSendMessages[userMessage.requestId] isKindOfClass:[NSNull class]]) {
                     [(OutgoingGeneralUrlPreviewMessageTableViewCell *)cell showSendingStatus];
                 }
@@ -729,6 +772,47 @@
                 }
                 [(IncomingGeneralUrlPreviewMessageTableViewCell *)cell setModel:userMessage];
                 ((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).delegate = self.delegate;
+                
+                NSString *imageUrl = ((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewData[@"image"];
+                NSString *ext = [imageUrl pathExtension];
+                
+                ((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageView.image = nil;
+                ((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageView.animatedImage = nil;
+                ((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailLoadingIndicator.hidden = NO;
+                [((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailLoadingIndicator startAnimating];
+                if (imageUrl != nil && imageUrl.length > 0) {
+                    if ([[ext lowercaseString] hasPrefix:@"gif"]) {
+                        [((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageView setAnimatedImageWithURL:[NSURL URLWithString:imageUrl] success:^(FLAnimatedImage * _Nullable image) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                ((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageView.image = nil;
+                                ((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageView.animatedImage = nil;
+                                [((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageView setAnimatedImage:image];
+                                ((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailLoadingIndicator.hidden = YES;
+                                [((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailLoadingIndicator stopAnimating];
+                            });
+                        } failure:^(NSError * _Nullable error) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                ((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailLoadingIndicator.hidden = YES;
+                                [((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailLoadingIndicator stopAnimating];
+                            });
+                        }];
+                    }
+                    else {
+                        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]];
+                        [((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageView setImage:image];
+                                ((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailLoadingIndicator.hidden = YES;
+                                [((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailLoadingIndicator stopAnimating];
+                            });
+                        } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                ((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailLoadingIndicator.hidden = YES;
+                                [((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailLoadingIndicator stopAnimating];
+                            });
+                        }];
+                    }
+                }
             }
             else {
                 cell = [tableView dequeueReusableCellWithIdentifier:[IncomingUserMessageTableViewCell cellReuseIdentifier]];
@@ -835,6 +919,61 @@
                         }
                         else {
                             [(OutgoingImageFileMessageTableViewCell *)cell setHasImageCacheData:NO];
+                            
+                            NSString *fileImageUrl = @"";
+                            if (fileMessage.thumbnails.count > 0 && ![fileMessage.type isEqualToString:@"image/gif"]) {
+                                fileImageUrl = fileMessage.thumbnails[0].url;
+                            }
+                            else {
+                                fileImageUrl = fileMessage.url;
+                            }
+                            
+                            [((OutgoingImageFileMessageTableViewCell *)cell).fileImageView setImage:nil];
+                            [((OutgoingImageFileMessageTableViewCell *)cell).fileImageView setAnimatedImage:nil];
+                            
+                            if ([fileMessage.type isEqualToString:@"image/gif"]) {
+                                [((OutgoingImageFileMessageTableViewCell *)cell).fileImageView setAnimatedImageWithURL:[NSURL URLWithString:fileImageUrl] success:^(FLAnimatedImage * _Nullable image) {
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        OutgoingImageFileMessageTableViewCell *updateCell = (OutgoingImageFileMessageTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+                                        if (updateCell) {
+                                            [((OutgoingImageFileMessageTableViewCell *)cell).fileImageView setAnimatedImage:image];
+                                            [((OutgoingImageFileMessageTableViewCell *)cell).imageLoadingIndicator stopAnimating];
+                                            ((OutgoingImageFileMessageTableViewCell *)cell).imageLoadingIndicator.hidden = YES;
+                                        }
+                                    });
+                                } failure:^(NSError * _Nullable error) {
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        OutgoingImageFileMessageTableViewCell *updateCell = (OutgoingImageFileMessageTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+                                        if (updateCell) {
+                                            [((OutgoingImageFileMessageTableViewCell *)cell).fileImageView setImageWithURL:[NSURL URLWithString:fileImageUrl]];
+                                            [((OutgoingImageFileMessageTableViewCell *)cell).imageLoadingIndicator stopAnimating];
+                                            ((OutgoingImageFileMessageTableViewCell *)cell).imageLoadingIndicator.hidden = YES;
+                                        }
+                                    });
+                                }];
+                            }
+                            else {
+                                NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:fileImageUrl]];
+                                [((OutgoingImageFileMessageTableViewCell *)cell).fileImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        OutgoingImageFileMessageTableViewCell *updateCell = (OutgoingImageFileMessageTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+                                        if (updateCell) {
+                                            [((OutgoingImageFileMessageTableViewCell *)cell).fileImageView setImage:image];
+                                            
+                                            [((OutgoingImageFileMessageTableViewCell *)cell).imageLoadingIndicator stopAnimating];
+                                            ((OutgoingImageFileMessageTableViewCell *)cell).imageLoadingIndicator.hidden = YES;
+                                        }
+                                    });
+                                } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        OutgoingImageFileMessageTableViewCell *updateCell = (OutgoingImageFileMessageTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+                                        if (updateCell) {
+                                            [((OutgoingImageFileMessageTableViewCell *)cell).imageLoadingIndicator stopAnimating];
+                                            ((OutgoingImageFileMessageTableViewCell *)cell).imageLoadingIndicator.hidden = YES;
+                                        }
+                                    });
+                                }];
+                            }
                         }
                         [(OutgoingImageFileMessageTableViewCell *)cell showMessageDate];
                         [(OutgoingImageFileMessageTableViewCell *)cell showUnreadCount];
@@ -905,6 +1044,44 @@
                 }
                 [(IncomingImageFileMessageTableViewCell *)cell setModel:fileMessage];
                 ((IncomingImageFileMessageTableViewCell *)cell).delegate = self.delegate;
+                
+                NSString *fileImageUrl = @"";
+                
+                if (fileMessage.thumbnails.count > 0 && ![fileMessage.type isEqualToString:@"image/gif"]) {
+                    fileImageUrl = fileMessage.thumbnails[0].url;
+                }
+                else {
+                    fileImageUrl = fileMessage.url;
+                }
+                
+                [((IncomingImageFileMessageTableViewCell *)cell).fileImageView setImage:nil];
+                [((IncomingImageFileMessageTableViewCell *)cell).fileImageView setAnimatedImage:nil];
+                 
+                if ([fileMessage.type isEqualToString:@"image/gif"]) {
+                    ((IncomingImageFileMessageTableViewCell *)cell).imageLoadingIndicator.hidden = NO;
+                    [((IncomingImageFileMessageTableViewCell *)cell).imageLoadingIndicator startAnimating];
+                    [((IncomingImageFileMessageTableViewCell *)cell).fileImageView setAnimatedImageWithURL:[NSURL URLWithString:fileImageUrl] success:^(FLAnimatedImage * _Nullable image) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            IncomingImageFileMessageTableViewCell *updateCell = (IncomingImageFileMessageTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+                            if (updateCell) {
+                                [((IncomingImageFileMessageTableViewCell *)cell).fileImageView setAnimatedImage:image];
+                                
+                                [((IncomingImageFileMessageTableViewCell *)cell).imageLoadingIndicator stopAnimating];
+                                ((IncomingImageFileMessageTableViewCell *)cell).imageLoadingIndicator.hidden = YES;
+                            }
+                        });
+                    } failure:^(NSError * _Nullable error) {
+                        [((IncomingImageFileMessageTableViewCell *)cell).fileImageView setImageWithURL:[NSURL URLWithString:fileImageUrl]];
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            IncomingImageFileMessageTableViewCell *updateCell = (IncomingImageFileMessageTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+                            if (updateCell) {
+                                [((IncomingImageFileMessageTableViewCell *)cell).imageLoadingIndicator stopAnimating];
+                                ((IncomingImageFileMessageTableViewCell *)cell).imageLoadingIndicator.hidden = YES;
+                            }
+                        });
+                    }];
+                }
             }
             else {
                 cell = [tableView dequeueReusableCellWithIdentifier:[IncomingFileMessageTableViewCell cellReuseIdentifier]];

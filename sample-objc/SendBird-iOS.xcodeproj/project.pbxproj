@@ -111,7 +111,7 @@
 		1364F5B22175AB53DD65C48E /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		382D6CF042D942EB06CD9F0C /* Pods_SendBird_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SendBird_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		540E4E45AC85E10182D75E6E /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		5AB0CC251D8F840400F05EC1 /* SendBird-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SendBird-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AB0CC251D8F840400F05EC1 /* SendBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SendBird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB0CC291D8F840400F05EC1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5AB0CC2B1D8F840400F05EC1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5AB0CC2C1D8F840400F05EC1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -294,7 +294,7 @@
 		5AB0CC261D8F840400F05EC1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5AB0CC251D8F840400F05EC1 /* SendBird-iOS.app */,
+				5AB0CC251D8F840400F05EC1 /* SendBird.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -579,7 +579,7 @@
 			);
 			name = "SendBird-iOS";
 			productName = "SendBird-iOS";
-			productReference = 5AB0CC251D8F840400F05EC1 /* SendBird-iOS.app */;
+			productReference = 5AB0CC251D8F840400F05EC1 /* SendBird.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1006,7 +1006,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.sample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SendBird;
 			};
 			name = Debug;
 		};
@@ -1024,7 +1024,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.sample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SendBird;
 			};
 			name = Release;
 		};

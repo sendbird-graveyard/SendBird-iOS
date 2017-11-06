@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
 #import <SendBirdSDK/SendBirdSDK.h>
 #import "MessageDelegate.h"
+#import "FLAnimatedImage.h"
+#import "FLAnimatedImageView+ImageCache.h"
 
 @interface OutgoingImageFileMessageTableViewCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *fileImageView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingIndicator;
 
 @property (weak, nonatomic, nullable) id<MessageDelegate> delegate;
 @property (atomic) BOOL hasImageCacheData;

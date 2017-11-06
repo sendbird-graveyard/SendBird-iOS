@@ -9,9 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <SendBirdSDK/SendBirdSDK.h>
 #import <TTTAttributedLabel/TTTAttributedLabel.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
+#import "FLAnimatedImage.h"
+#import "FLAnimatedImageView+ImageCache.h"
 #import "MessageDelegate.h"
 
 @interface OutgoingGeneralUrlPreviewMessageTableViewCell : UITableViewCell<TTTAttributedLabelDelegate>
+
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *previewThumbnailImageView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *previewThumbnailImageLoadingIndicator;
+@property (strong, nonatomic) NSDictionary *previewData;
 
 @property (weak, nonatomic) id<MessageDelegate> delegate;
 

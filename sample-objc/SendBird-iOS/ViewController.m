@@ -107,7 +107,7 @@
         [self.nicknameTextField setEnabled:NO];
         
         [self.indicatorView startAnimating];
-        
+
         [SBDMain connectWithUserId:trimmedUserId completionHandler:^(SBDUser * _Nullable user, SBDError * _Nullable error) {
             if (error != nil) {
                 dispatch_async(dispatch_get_main_queue(), ^{

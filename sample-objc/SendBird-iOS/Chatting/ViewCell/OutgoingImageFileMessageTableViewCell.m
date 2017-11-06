@@ -6,20 +6,17 @@
 //  Copyright © 2016 SendBird. All rights reserved.
 //
 
-#import <AFNetworking/UIImageView+AFNetworking.h>
-#import <AFNetworking/AFNetworking.h>
+
 #import "OutgoingImageFileMessageTableViewCell.h"
 #import "Utils.h"
 #import "Constants.h"
-#import "FLAnimatedImage.h"
-#import "FLAnimatedImageView+ImageCache.h"
+
 
 @interface OutgoingImageFileMessageTableViewCell()
 
 @property (weak, nonatomic) IBOutlet UIView *dateSeperatorView;
 @property (weak, nonatomic) IBOutlet UILabel *dateSeperatorLabel;
-@property (weak, nonatomic) IBOutlet FLAnimatedImageView *fileImageView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingIndicator;
+
 @property (weak, nonatomic) IBOutlet UILabel *sendingStatusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *messageDateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *resendMessageButton;
@@ -81,60 +78,60 @@
     self.fileImageView.animatedImage = nil;
     self.fileImageView.image = nil;
 
-    if (self.message.url != nil && self.message.url.length > 0) {
-        if (self.message.type != nil && [self.message.type isEqualToString:@"image/gif"] ) {
-            [self.fileImageView setAnimatedImageWithURL:[NSURL URLWithString:self.message.url] success:^(FLAnimatedImage * _Nullable image) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.fileImageView setAnimatedImage:image];
-                    self.imageLoadingIndicator.hidden = YES;
-                    [self.imageLoadingIndicator stopAnimating];
-                });
-            } failure:^(NSError * _Nullable error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.imageLoadingIndicator.hidden = YES;
-                    [self.imageLoadingIndicator stopAnimating];
-                    [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.url]];
-                });
-            }];
-        }
-        else {
-            /***********************************/
-            /* Thumbnail is a premium feature. */
-            /***********************************/
-            if (self.message.thumbnails != nil && self.message.thumbnails.count > 0) {
-                if (self.message.thumbnails[0].url.length > 0) {
-                    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.message.thumbnails[0].url]];
-                    [self.fileImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [self.fileImageView setImage:image];
-                            self.imageLoadingIndicator.hidden = YES;
-                            [self.imageLoadingIndicator stopAnimating];
-                        });
-                    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            self.imageLoadingIndicator.hidden = YES;
-                            [self.imageLoadingIndicator stopAnimating];
-                        });
-                    }];
-                }
-            }
-            else {
-                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.message.url]];
-                [self.fileImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.fileImageView setImage:image];
-                        self.imageLoadingIndicator.hidden = YES;
-                        [self.imageLoadingIndicator stopAnimating];
-                    });
-                } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.imageLoadingIndicator.hidden = YES;
-                        [self.imageLoadingIndicator stopAnimating];
-                    });
-                }];
-            }
-        }
-    }
+//    if (self.message.url != nil && self.message.url.length > 0) {
+//        if (self.message.type != nil && [self.message.type isEqualToString:@"image/gif"] ) {
+//            [self.fileImageView setAnimatedImageWithURL:[NSURL URLWithString:self.message.url] success:^(FLAnimatedImage * _Nullable image) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [self.fileImageView setAnimatedImage:image];
+//                    self.imageLoadingIndicator.hidden = YES;
+//                    [self.imageLoadingIndicator stopAnimating];
+//                });
+//            } failure:^(NSError * _Nullable error) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    self.imageLoadingIndicator.hidden = YES;
+//                    [self.imageLoadingIndicator stopAnimating];
+//                    [self.fileImageView setImageWithURL:[NSURL URLWithString:self.message.url]];
+//                });
+//            }];
+//        }
+//        else {
+//            /***********************************/
+//            /* Thumbnail is a premium feature. */
+//            /***********************************/
+//            if (self.message.thumbnails != nil && self.message.thumbnails.count > 0) {
+//                if (self.message.thumbnails[0].url.length > 0) {
+//                    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.message.thumbnails[0].url]];
+//                    [self.fileImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+//                        dispatch_async(dispatch_get_main_queue(), ^{
+//                            [self.fileImageView setImage:image];
+//                            self.imageLoadingIndicator.hidden = YES;
+//                            [self.imageLoadingIndicator stopAnimating];
+//                        });
+//                    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+//                        dispatch_async(dispatch_get_main_queue(), ^{
+//                            self.imageLoadingIndicator.hidden = YES;
+//                            [self.imageLoadingIndicator stopAnimating];
+//                        });
+//                    }];
+//                }
+//            }
+//            else {
+//                NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.message.url]];
+//                [self.fileImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        [self.fileImageView setImage:image];
+//                        self.imageLoadingIndicator.hidden = YES;
+//                        [self.imageLoadingIndicator stopAnimating];
+//                    });
+//                } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        self.imageLoadingIndicator.hidden = YES;
+//                        [self.imageLoadingIndicator stopAnimating];
+//                    });
+//                }];
+//            }
+//        }
+//    }
     
     UITapGestureRecognizer *messageContainerTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickFileMessage)];
     self.fileImageView.userInteractionEnabled = YES;

@@ -6,14 +6,10 @@
 //  Copyright © 2017 SendBird. All rights reserved.
 //
 
-#import <AFNetworking/UIImageView+AFNetworking.h>
-#import <AFNetworking/AFNetworking.h>
 #import "OutgoingGeneralUrlPreviewMessageTableViewCell.h"
 #import "Utils.h"
 #import "Constants.h"
-#import "FLAnimatedImage.h"
 #import "AppDelegate.h"
-#import "FLAnimatedImageView+ImageCache.h"
 
 @interface OutgoingGeneralUrlPreviewMessageTableViewCell()
 
@@ -23,8 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *previewSiteNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *previewTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *previewDescriptionLabel;
-@property (weak, nonatomic) IBOutlet FLAnimatedImageView *previewThumbnailImageView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *previewThumbnailImageLoadingIndicator;
+
 @property (weak, nonatomic) IBOutlet UILabel *messageDateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *resendMessageButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteMessageButton;
@@ -54,7 +49,6 @@
 
 @property (strong, nonatomic) SBDUserMessage *message;
 @property (strong, nonatomic) SBDBaseMessage *prevMessage;
-@property (strong, nonatomic) NSDictionary *previewData;
 
 @end
 
@@ -99,7 +93,9 @@
     self.message = aMessage;
 
     NSData *data = [self.message.data dataUsingEncoding:NSUTF8StringEncoding];
-    self.previewData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    @autoreleasepool {
+        self.previewData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    }
 
     NSString *imageUrl = self.previewData[@"image"];
     NSString *ext = [imageUrl pathExtension];
@@ -123,47 +119,47 @@
     self.previewDescriptionLabel.userInteractionEnabled = YES;
     [self.previewDescriptionLabel addGestureRecognizer:previewDescriptionLabelTapRecognizer];
     
-    self.previewThumbnailImageView.image = nil;
-    self.previewThumbnailImageView.animatedImage = nil;
-    self.previewThumbnailImageLoadingIndicator.hidden = NO;
-    [self.previewThumbnailImageLoadingIndicator startAnimating];
-    if (imageUrl != nil && imageUrl.length > 0) {
-        if ([[ext lowercaseString] hasPrefix:@"gif"]) {
-            [self.previewThumbnailImageView setAnimatedImageWithURL:[NSURL URLWithString:imageUrl] success:^(FLAnimatedImage * _Nullable image) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.previewThumbnailImageView setAnimatedImage:image];
-                    self.previewThumbnailImageLoadingIndicator.hidden = YES;
-                    [self.previewThumbnailImageLoadingIndicator stopAnimating];
-                });
-            } failure:^(NSError * _Nullable error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.previewThumbnailImageLoadingIndicator.hidden = YES;
-                    [self.previewThumbnailImageLoadingIndicator stopAnimating];
-                });
-            }];
-        }
-        else {
-            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]];
-            [self.previewThumbnailImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.previewThumbnailImageView setImage:image];
-                    self.previewThumbnailImageLoadingIndicator.hidden = YES;
-                    [self.previewThumbnailImageLoadingIndicator stopAnimating];
-                });
-            } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.previewThumbnailImageLoadingIndicator.hidden = YES;
-                    [self.previewThumbnailImageLoadingIndicator stopAnimating];
-                });
-            }];
-        }
-    }
-    else {
-        self.previewThumbnailImageView.hidden = YES;
-        self.previewThumbnailImageLoadingIndicator.hidden = YES;
-        self.previewThumbnailImageViewHeight.constant = 0;
-        self.previewDescriptionLabelBottomMargin.constant = 10;
-    }
+//    self.previewThumbnailImageView.image = nil;
+//    self.previewThumbnailImageView.animatedImage = nil;
+//    self.previewThumbnailImageLoadingIndicator.hidden = NO;
+//    [self.previewThumbnailImageLoadingIndicator startAnimating];
+//    if (imageUrl != nil && imageUrl.length > 0) {
+//        if ([[ext lowercaseString] hasPrefix:@"gif"]) {
+//            [self.previewThumbnailImageView setAnimatedImageWithURL:[NSURL URLWithString:imageUrl] success:^(FLAnimatedImage * _Nullable image) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [self.previewThumbnailImageView setAnimatedImage:image];
+//                    self.previewThumbnailImageLoadingIndicator.hidden = YES;
+//                    [self.previewThumbnailImageLoadingIndicator stopAnimating];
+//                });
+//            } failure:^(NSError * _Nullable error) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    self.previewThumbnailImageLoadingIndicator.hidden = YES;
+//                    [self.previewThumbnailImageLoadingIndicator stopAnimating];
+//                });
+//            }];
+//        }
+//        else {
+//            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]];
+//            [self.previewThumbnailImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [self.previewThumbnailImageView setImage:image];
+//                    self.previewThumbnailImageLoadingIndicator.hidden = YES;
+//                    [self.previewThumbnailImageLoadingIndicator stopAnimating];
+//                });
+//            } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    self.previewThumbnailImageLoadingIndicator.hidden = YES;
+//                    [self.previewThumbnailImageLoadingIndicator stopAnimating];
+//                });
+//            }];
+//        }
+//    }
+//    else {
+//        self.previewThumbnailImageView.hidden = YES;
+//        self.previewThumbnailImageLoadingIndicator.hidden = YES;
+//        self.previewThumbnailImageViewHeight.constant = 0;
+//        self.previewDescriptionLabelBottomMargin.constant = 10;
+//    }
     
     self.resendMessageButton.hidden = YES;
     self.deleteMessageButton.hidden = YES;
