@@ -6,8 +6,7 @@ target 'SendBird-iOS' do
   use_frameworks!
 
   # Pods for SendBird-iOS
-#  pod 'SendBirdSDK', '~> 3.0'
-  pod 'SendBirdSDK', :path=> '/Users/jedgyeong/git/sendbird-ios-framework'
+  pod 'SendBirdSDK', '~> 3.0'
   pod 'AlamofireImage'
   pod 'MGSwipeTableCell'
   pod 'FLAnimatedImage', '~> 1.0'
