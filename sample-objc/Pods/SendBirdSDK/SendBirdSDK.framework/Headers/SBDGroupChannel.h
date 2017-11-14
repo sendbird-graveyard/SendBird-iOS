@@ -70,6 +70,11 @@
 @property (atomic, readonly) BOOL isPushEnabled;
 
 /**
+ *  Represents this channel is hidden or not.
+ */
+@property (atomic) BOOL isHidden;
+
+/**
  Internal use only.
  */
 @property (atomic) BOOL hasBeenUpdated;

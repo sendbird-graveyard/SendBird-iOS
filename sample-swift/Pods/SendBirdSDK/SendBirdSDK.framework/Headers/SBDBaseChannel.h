@@ -252,6 +252,14 @@
  */
 - (void)channel:(SBDBaseChannel * _Nonnull)sender deletedMetaCountersKeys:(NSArray<NSString *> * _Nullable)deletedMetaCountersKeys;
 
+
+/**
+ A callback when the channel was hidden on the other device or by Platform API.
+
+ @param sender The channel that was hidden on the other device or by Platform API.
+ */
+- (void)channelWasHidden:(SBDGroupChannel * _Nonnull)sender;
+
 @end
 
 /**

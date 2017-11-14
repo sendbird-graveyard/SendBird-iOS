@@ -3,7 +3,7 @@ PODS:
   - AlamofireImage (3.3.0):
     - Alamofire (~> 4.5)
   - FLAnimatedImage (1.0.12)
-  - MGSwipeTableCell (1.6.1)
+  - MGSwipeTableCell (1.6.4)
   - NYTPhotoViewer (1.1.0):
     - NYTPhotoViewer/AnimatedGifSupport (= 1.1.0)
     - NYTPhotoViewer/Core (= 1.1.0)
@@ -12,7 +12,7 @@ PODS:
     - NYTPhotoViewer/Core
   - NYTPhotoViewer/Core (1.1.0)
   - RSKImageCropper (1.6.3)
-  - SendBirdSDK (3.0.70)
+  - SendBirdSDK (3.0.73)
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
@@ -21,23 +21,19 @@ DEPENDENCIES:
   - MGSwipeTableCell
   - NYTPhotoViewer (~> 1.1.0)
   - RSKImageCropper
-  - SendBirdSDK (from `/Users/jedgyeong/git/sendbird-ios-framework`)
+  - SendBirdSDK (~> 3.0)
   - TTTAttributedLabel
-
-EXTERNAL SOURCES:
-  SendBirdSDK:
-    :path: /Users/jedgyeong/git/sendbird-ios-framework
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  MGSwipeTableCell: 19a1d65dcc1ceaea42eb44bb2adae32101904514
+  MGSwipeTableCell: 8b422e0c1c0b6f1adb49265be86bf4a474b6b516
   NYTPhotoViewer: e80e8767f3780d2df37c6f72cbab15d6c7232911
   RSKImageCropper: 356e36fc58c57c371b5d8b23d603936d6a73df6c
-  SendBirdSDK: bce64970876b5dbea677a7745b3d360926044a40
+  SendBirdSDK: 4b94942fb38558c4e4856e588af9f3d9f4720e2c
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: d5ada814214be512d887d331c29568bcb3e14825
+PODFILE CHECKSUM: 9cbb42b5354bc4dc8b079e49148c24287caf665f
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1
