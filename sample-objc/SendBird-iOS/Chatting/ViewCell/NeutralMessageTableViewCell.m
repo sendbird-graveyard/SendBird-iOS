@@ -123,7 +123,7 @@
     
     CGRect fullMessageRect;
     
-    CGFloat messageLabelMaxWidth = self.frame.size.width - (self.messageContainerViewLeftMargin.constant + self.messageContainerViewRightMargin.constant + self.messageContainerViewLeftPadding.constant + self.messageContainerViewRightPadding.constant);
+    CGFloat messageLabelMaxWidth = [UIScreen mainScreen].bounds.size.width - (self.messageContainerViewLeftMargin.constant + self.messageContainerViewRightMargin.constant + self.messageContainerViewLeftPadding.constant + self.messageContainerViewRightPadding.constant);
     fullMessageRect = [fullMessage boundingRectWithSize:CGSizeMake(messageLabelMaxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     
     CGFloat cellHeight = self.dateContainerViewTopMargin.constant + self.dateContainerHeight.constant + self.dateContainerViewBottomMargin.constant + self.messageContainerViewTopPadding.constant + self.iconImageViewHeight.constant + self.iconImageViewBottomMargin.constant + fullMessageRect.size.height + self.messageContainerViewBottomPadding.constant;

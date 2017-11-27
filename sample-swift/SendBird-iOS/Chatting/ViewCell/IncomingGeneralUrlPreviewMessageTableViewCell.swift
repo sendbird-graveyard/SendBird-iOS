@@ -87,11 +87,15 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         catch let error as NSError {
             print("Details of JSON parsing error:\n \(error)")
         }
-        let imageUrl = self.previewData?["image"] as! String
-        let ext = (imageUrl as NSString).pathExtension
-        let siteName = self.previewData?["site_name"] as! String
+        
+        var ext: String?
+        if let imageUrl = self.previewData?["image"] as? String {
+            ext = (imageUrl as NSString).pathExtension
+        }
+
+        let siteName = self.previewData?["site_name"] as? String
         let title = self.previewData?["title"] as? String
-        let description = self.previewData?["description"] as! String
+        let description = self.previewData?["description"] as? String
         
         let previewThumbnailImageViewTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(clickPreview))
         self.previewThumbnailImageView.isUserInteractionEnabled = true

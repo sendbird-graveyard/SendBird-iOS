@@ -58,12 +58,12 @@
                   moduleName = "SendBird-iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-swift/SendBird-iOS/GroupChannel/GroupChannelChattingViewController.swift"
-                  timestampString = "530517003.186876"
+                  timestampString = "533512022.382394"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1279"
                   endingLineNumber = "1279"
-                  offsetFromSymbolStart = "528">
+                  offsetFromSymbolStart = "607">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -73,12 +73,12 @@
                   moduleName = "SendBird-iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-swift/SendBird-iOS/GroupChannel/GroupChannelChattingViewController.swift"
-                  timestampString = "530517003.188085"
+                  timestampString = "533512022.384539"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1280"
                   endingLineNumber = "1280"
-                  offsetFromSymbolStart = "52">
+                  offsetFromSymbolStart = "84">
                </Location>
             </Locations>
          </BreakpointContent>

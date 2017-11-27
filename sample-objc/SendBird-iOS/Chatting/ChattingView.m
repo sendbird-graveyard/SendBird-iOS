@@ -122,62 +122,50 @@
 
 - (void)initSizingCell {
     self.incomingUserMessageSizingTableViewCell = (IncomingUserMessageTableViewCell *)[[[IncomingUserMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
-    [self.incomingUserMessageSizingTableViewCell setFrame:self.frame];
     [self.incomingUserMessageSizingTableViewCell setHidden:YES];
     [self addSubview:self.incomingUserMessageSizingTableViewCell];
     
     self.outgoingUserMessageSizingTableViewCell = (OutgoingUserMessageTableViewCell *)[[[OutgoingUserMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
-    [self.outgoingUserMessageSizingTableViewCell setFrame:self.frame];
     [self.outgoingUserMessageSizingTableViewCell setHidden:YES];
     [self addSubview:self.outgoingUserMessageSizingTableViewCell];
     
     self.neutralMessageSizingTableViewCell = (NeutralMessageTableViewCell *)[[[NeutralMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
-    [self.neutralMessageSizingTableViewCell setFrame:self.frame];
     [self.neutralMessageSizingTableViewCell setHidden:YES];
     [self addSubview:self.neutralMessageSizingTableViewCell];
     
     self.incomingFileMessageSizingTableViewCell = (IncomingFileMessageTableViewCell *)[[[IncomingFileMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
-    [self.incomingFileMessageSizingTableViewCell setFrame:self.frame];
     [self.incomingFileMessageSizingTableViewCell setHidden:YES];
     [self addSubview:self.incomingFileMessageSizingTableViewCell];
     
     self.outgoingImageFileMessageSizingTableViewCell = (OutgoingImageFileMessageTableViewCell *)[[[OutgoingImageFileMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
-    [self.outgoingImageFileMessageSizingTableViewCell setFrame:self.frame];
     [self.outgoingImageFileMessageSizingTableViewCell setHidden:YES];
     [self addSubview:self.outgoingImageFileMessageSizingTableViewCell];
     
     self.outgoingFileMessageSizingTableViewCell = (OutgoingFileMessageTableViewCell *)[[[OutgoingFileMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
-    [self.outgoingFileMessageSizingTableViewCell setFrame:self.frame];
     [self.outgoingFileMessageSizingTableViewCell setHidden:YES];
     [self addSubview:self.outgoingFileMessageSizingTableViewCell];
     
     self.incomingImageFileMessageSizingTableViewCell = (IncomingImageFileMessageTableViewCell *)[[[IncomingImageFileMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
-    [self.incomingImageFileMessageSizingTableViewCell setFrame:self.frame];
     [self.incomingImageFileMessageSizingTableViewCell setHidden:YES];
     [self addSubview:self.incomingImageFileMessageSizingTableViewCell];
     
     self.incomingVideoFileMessageSizingTableViewCell = (IncomingVideoFileMessageTableViewCell *)[[[IncomingVideoFileMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
-    [self.incomingVideoFileMessageSizingTableViewCell setFrame:self.frame];
     [self.incomingVideoFileMessageSizingTableViewCell setHidden:YES];
     [self addSubview:self.incomingVideoFileMessageSizingTableViewCell];
     
     self.outgoingVideoFileMessageSizingTableViewCell = (OutgoingVideoFileMessageTableViewCell *)[[[OutgoingVideoFileMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
-    [self.outgoingVideoFileMessageSizingTableViewCell setFrame:self.frame];
     [self.outgoingVideoFileMessageSizingTableViewCell setHidden:YES];
     [self addSubview:self.outgoingVideoFileMessageSizingTableViewCell];
     
     self.incomingGeneralUrlPreviewMessageTableViewCell = (IncomingGeneralUrlPreviewMessageTableViewCell *)[[[IncomingGeneralUrlPreviewMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
-    [self.incomingGeneralUrlPreviewMessageTableViewCell setFrame:self.frame];
     [self.incomingGeneralUrlPreviewMessageTableViewCell setHidden:YES];
     [self addSubview:self.incomingGeneralUrlPreviewMessageTableViewCell];
     
     self.outgoingGeneralUrlPreviewMessageTableViewCell = (OutgoingGeneralUrlPreviewMessageTableViewCell *)[[[OutgoingGeneralUrlPreviewMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
-    [self.outgoingGeneralUrlPreviewMessageTableViewCell setFrame:self.frame];
     [self.outgoingGeneralUrlPreviewMessageTableViewCell setHidden:YES];
     [self addSubview:self.outgoingGeneralUrlPreviewMessageTableViewCell];
     
     self.outgoingGeneralUrlPreviewTempMessageTableViewCell = (OutgoingGeneralUrlPreviewTempMessageTableViewCell *)[[[OutgoingGeneralUrlPreviewTempMessageTableViewCell nib] instantiateWithOwner:self options:nil] objectAtIndex:0];
-    [self.outgoingGeneralUrlPreviewTempMessageTableViewCell setFrame:self.frame];
     [self.outgoingGeneralUrlPreviewTempMessageTableViewCell setHidden:YES];
     [self addSubview:self.outgoingGeneralUrlPreviewTempMessageTableViewCell];
 }
@@ -717,6 +705,12 @@
                         }];
                     }
                 }
+                else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        ((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageLoadingIndicator.hidden = YES;
+                        [((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailImageLoadingIndicator stopAnimating];
+                    });
+                }
 
                 if (self.preSendMessages[userMessage.requestId] != nil && ![self.preSendMessages[userMessage.requestId] isKindOfClass:[NSNull class]]) {
                     [(OutgoingGeneralUrlPreviewMessageTableViewCell *)cell showSendingStatus];
@@ -812,6 +806,12 @@
                             });
                         }];
                     }
+                }
+                else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        ((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailLoadingIndicator.hidden = YES;
+                        [((IncomingGeneralUrlPreviewMessageTableViewCell *)cell).previewThumbnailLoadingIndicator stopAnimating];
+                    });
                 }
             }
             else {

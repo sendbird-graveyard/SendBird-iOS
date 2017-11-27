@@ -117,62 +117,50 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     
     func initSizingCell() {
         self.incomingUserMessageSizingTableViewCell = IncomingUserMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? IncomingUserMessageTableViewCell
-        self.incomingUserMessageSizingTableViewCell?.frame = self.frame
         self.incomingUserMessageSizingTableViewCell?.isHidden = true
         self.addSubview(self.incomingUserMessageSizingTableViewCell!)
         
         self.outgoingUserMessageSizingTableViewCell = OutgoingUserMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? OutgoingUserMessageTableViewCell
-        self.outgoingUserMessageSizingTableViewCell?.frame = self.frame
         self.outgoingUserMessageSizingTableViewCell?.isHidden = true
         self.addSubview(self.outgoingUserMessageSizingTableViewCell!)
         
         self.neutralMessageSizingTableViewCell = NeutralMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? NeutralMessageTableViewCell
-        self.neutralMessageSizingTableViewCell?.frame = self.frame
         self.neutralMessageSizingTableViewCell?.isHidden = true
         self.addSubview(self.neutralMessageSizingTableViewCell!)
         
         self.incomingFileMessageSizingTableViewCell = IncomingFileMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? IncomingFileMessageTableViewCell
-        self.incomingFileMessageSizingTableViewCell?.frame = self.frame
         self.incomingFileMessageSizingTableViewCell?.isHidden = true
         self.addSubview(self.incomingFileMessageSizingTableViewCell!)
         
         self.outgoingImageFileMessageSizingTableViewCell = OutgoingImageFileMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? OutgoingImageFileMessageTableViewCell
-        self.outgoingImageFileMessageSizingTableViewCell?.frame = self.frame
         self.outgoingImageFileMessageSizingTableViewCell?.isHidden = true
         self.addSubview(self.outgoingImageFileMessageSizingTableViewCell!)
         
         self.outgoingFileMessageSizingTableViewCell = OutgoingFileMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? OutgoingFileMessageTableViewCell
-        self.outgoingFileMessageSizingTableViewCell?.frame = self.frame
         self.outgoingFileMessageSizingTableViewCell?.isHidden = true
         self.addSubview(self.outgoingFileMessageSizingTableViewCell!)
         
         self.incomingImageFileMessageSizingTableViewCell = IncomingImageFileMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? IncomingImageFileMessageTableViewCell
-        self.incomingImageFileMessageSizingTableViewCell?.frame = self.frame
         self.incomingImageFileMessageSizingTableViewCell?.isHidden = true
         self.addSubview(self.incomingImageFileMessageSizingTableViewCell!)
         
         self.incomingVideoFileMessageSizingTableViewCell = IncomingVideoFileMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? IncomingVideoFileMessageTableViewCell
-        self.incomingVideoFileMessageSizingTableViewCell?.frame = self.frame
         self.incomingVideoFileMessageSizingTableViewCell?.isHidden = true
         self.addSubview(self.incomingVideoFileMessageSizingTableViewCell!)
         
         self.outgoingVideoFileMessageSizingTableViewCell = OutgoingVideoFileMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? OutgoingVideoFileMessageTableViewCell
-        self.outgoingVideoFileMessageSizingTableViewCell?.frame = self.frame
         self.outgoingVideoFileMessageSizingTableViewCell?.isHidden = true
         self.addSubview(self.outgoingVideoFileMessageSizingTableViewCell!)
 
         self.incomingGeneralUrlPreviewMessageTableViewCell = IncomingGeneralUrlPreviewMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? IncomingGeneralUrlPreviewMessageTableViewCell
-        self.incomingGeneralUrlPreviewMessageTableViewCell?.frame = self.frame
         self.incomingGeneralUrlPreviewMessageTableViewCell?.isHidden = true
         self.addSubview(self.incomingGeneralUrlPreviewMessageTableViewCell!)
 
         self.outgoingGeneralUrlPreviewMessageTableViewCell = OutgoingGeneralUrlPreviewMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? OutgoingGeneralUrlPreviewMessageTableViewCell
-        self.outgoingGeneralUrlPreviewMessageTableViewCell?.frame = self.frame
         self.outgoingGeneralUrlPreviewMessageTableViewCell?.isHidden = true
         self.addSubview(self.outgoingGeneralUrlPreviewMessageTableViewCell!)
 
         self.outgoingGeneralUrlPreviewTempMessageTableViewCell = OutgoingGeneralUrlPreviewTempMessageTableViewCell.nib().instantiate(withOwner: self, options: nil)[0] as? OutgoingGeneralUrlPreviewTempMessageTableViewCell
-        self.outgoingGeneralUrlPreviewTempMessageTableViewCell?.frame = self.frame
         self.outgoingGeneralUrlPreviewTempMessageTableViewCell?.isHidden = true
         self.addSubview(self.outgoingGeneralUrlPreviewTempMessageTableViewCell!)
     }
@@ -670,59 +658,66 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).setModel(aMessage: userMessage)
                     (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).delegate = self.delegate
                     
-                    let imageUrl = (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewData["image"] as! String
-                    let ext = (imageUrl as NSString).pathExtension
-                    
-                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.image = nil
-                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = nil
-                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = false
-                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.startAnimating()
-                    if imageUrl.count > 0 {
-                        if ext.lowercased().hasPrefix("gif") {
-                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.setAnimatedImageWithURL(url: URL(string: imageUrl)! , success: { (image) in
-                                DispatchQueue.main.async {
-                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = image
-                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
-                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
-                                }
-                            }, failure: { (error) in
-                                DispatchQueue.main.async {
-                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
-                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
-                                }
-                            })
-                        }
-                    }
-                    else {
-                        Alamofire.request(imageUrl, method: .get).responseImage { response in
-                            guard let image = response.result.value else {
-                                DispatchQueue.main.async {
-                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
-                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
-                                }
-                                
-                                return
+                    if let imageUrl = (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewData["image"] as? String {
+                        let ext = (imageUrl as NSString).pathExtension
+                        
+                        (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.image = nil
+                        (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = nil
+                        (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = false
+                        (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.startAnimating()
+                        if imageUrl.count > 0 {
+                            if ext.lowercased().hasPrefix("gif") {
+                                (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.setAnimatedImageWithURL(url: URL(string: imageUrl)! , success: { (image) in
+                                    DispatchQueue.main.async {
+                                        (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = image
+                                        (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                                        (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                                    }
+                                }, failure: { (error) in
+                                    DispatchQueue.main.async {
+                                        (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                                        (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                                    }
+                                })
                             }
-                            
-                            DispatchQueue.main.async {
-                                (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.image = image
-                                (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
-                                (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
-                            }
-                        }
-                    }
-                    
-                    if self.preSendMessages[userMessage.requestId!] != nil {
-                        (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showSendingStatus()
-                    }
-                    else {
-                        if self.resendableMessages[userMessage.requestId!] != nil {
-                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showMessageControlButton()
-//                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showFailedStatus()
                         }
                         else {
-                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showMessageDate()
-                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showUnreadCount()
+                            Alamofire.request(imageUrl, method: .get).responseImage { response in
+                                guard let image = response.result.value else {
+                                    DispatchQueue.main.async {
+                                        (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                                        (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                                    }
+                                    
+                                    return
+                                }
+                                
+                                DispatchQueue.main.async {
+                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.image = image
+                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                                }
+                            }
+                        }
+                        
+                        if self.preSendMessages[userMessage.requestId!] != nil {
+                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showSendingStatus()
+                        }
+                        else {
+                            if self.resendableMessages[userMessage.requestId!] != nil {
+                                (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showMessageControlButton()
+                                //                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showFailedStatus()
+                            }
+                            else {
+                                (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showMessageDate()
+                                (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showUnreadCount()
+                            }
+                        }
+                    }
+                    else {
+                        DispatchQueue.main.async {
+                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
                         }
                     }
                 }
@@ -752,7 +747,6 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                         }
                     }
                 }
-                
             }
             else {
                 // Incoming
@@ -768,48 +762,56 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).setModel(aMessage: userMessage)
                     (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).delegate = self.delegate
                     
-                    let imageUrl = (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewData["image"] as! String
-                    let ext = (imageUrl as NSString).pathExtension
-                    
-                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.image = nil
-                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = nil
-                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = false
-                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.startAnimating()
-                    
-                    if imageUrl.count > 0 {
-                        if ext.lowercased().hasPrefix("gif") {
-                            (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.setAnimatedImageWithURL(url: URL(string: imageUrl)! , success: { (image) in
-                                DispatchQueue.main.async {
-                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.image = nil
-                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = nil
-                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = image
-                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
-                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
-                                }
-                            }, failure: { (error) in
-                                DispatchQueue.main.async {
-                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
-                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
-                                }
-                            })
-                        }
-                        else {
-                            Alamofire.request(imageUrl, method: .get).responseImage { response in
-                                guard let image = response.result.value else {
+                    var ext: String?
+                    if let imageUrl = (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewData["image"] as? String {
+                        ext = (imageUrl as NSString).pathExtension
+                        
+                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.image = nil
+                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = nil
+                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = false
+                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.startAnimating()
+                        
+                        if imageUrl.count > 0 {
+                            if ext!.lowercased().hasPrefix("gif") {
+                                (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.setAnimatedImageWithURL(url: URL(string: imageUrl)! , success: { (image) in
+                                    DispatchQueue.main.async {
+                                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.image = nil
+                                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = nil
+                                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = image
+                                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                                    }
+                                }, failure: { (error) in
                                     DispatchQueue.main.async {
                                         (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
                                         (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
                                     }
+                                })
+                            }
+                            else {
+                                Alamofire.request(imageUrl, method: .get).responseImage { response in
+                                    guard let image = response.result.value else {
+                                        DispatchQueue.main.async {
+                                            (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                                            (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                                        }
+                                        
+                                        return
+                                    }
                                     
-                                    return
-                                }
-                                
-                                DispatchQueue.main.async {
-                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.image = image
-                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
-                                    (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                                    DispatchQueue.main.async {
+                                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.image = image
+                                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                                        (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
+                                    }
                                 }
                             }
+                        }
+                    }
+                    else {
+                        DispatchQueue.main.async {
+                            (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = true
+                            (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.stopAnimating()
                         }
                     }
                 }

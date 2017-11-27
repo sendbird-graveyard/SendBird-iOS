@@ -115,7 +115,7 @@ class NeutralMessageTableViewCell: UITableViewCell {
         
         var fullMessageRect: CGRect
         
-        let messageLabelMaxWidth = self.frame.size.width - (self.messageContainerViewLeftMargin.constant + self.messageContainerViewRightMargin.constant + self.messageContainerViewLeftPadding.constant + self.messageContainerViewRightPadding.constant)
+        let messageLabelMaxWidth = UIScreen.main.bounds.size.width - (self.messageContainerViewLeftMargin.constant + self.messageContainerViewRightMargin.constant + self.messageContainerViewLeftPadding.constant + self.messageContainerViewRightPadding.constant)
         fullMessageRect = fullMessage.boundingRect(with: CGSize.init(width: messageLabelMaxWidth, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions.usesLineFragmentOrigin, context: nil)
         
         
