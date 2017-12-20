@@ -125,4 +125,11 @@
 
 }
 
+- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)(void))completionHandler {
+    NSLog(@"method for handling events for background url session is waiting to be process. background session id: %@", identifier);
+    if (completionHandler != nil) {
+        completionHandler();
+    }
+}
+
 @end
