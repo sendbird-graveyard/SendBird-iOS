@@ -106,5 +106,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
+        debugPrint("method for handling events for background url session is waiting to be process. background session id: \(identifier)")
+        completionHandler()
+    }
 }
 
