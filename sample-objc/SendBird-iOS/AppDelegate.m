@@ -61,38 +61,25 @@
         }
     }
     
-    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"sendbird_user_id"];
-    NSString *userNickname = [[NSUserDefaults standardUserDefaults] objectForKey:@"sendbird_user_nickname"];
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LaunchScreen" bundle:nil];
+    UIViewController *launchViewController = [storyboard instantiateViewControllerWithIdentifier:@"com.sendbird.sample.viewcontroller.launch"];
+    self.window.rootViewController = launchViewController;
+    [self.window makeKeyAndVisible];
     
-    if (userId != nil && userId.length > 0 && userNickname != nil && userNickname.length > 0) {
-        self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LaunchScreen" bundle:nil];
-        UIViewController *launchViewController = [storyboard instantiateViewControllerWithIdentifier:@"com.sendbird.sample.viewcontroller.launch"];
-        self.window.rootViewController = launchViewController;
-        [self.window makeKeyAndVisible];
-        
-        [ConnectionManager connectWithUserId:userId nickname:userNickname completionHandler:^(SBDUser * _Nullable user, NSError  * _Nullable error) {
-            if (error != nil) {
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"com.sendbird.sample.viewcontroller.initial"];
-                self.window.rootViewController = viewController;
-                [self.window makeKeyAndVisible];
-                return;
-            }
-            
-            self.window.rootViewController = [[MenuViewController alloc] init];;
+    [ConnectionManager connectWithCompletionHandler:^(SBDUser * _Nullable user, NSError * _Nullable error) {
+        if (error != nil) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"com.sendbird.sample.viewcontroller.initial"];
+            self.window.rootViewController = viewController;
             [self.window makeKeyAndVisible];
-        }];
-        return YES;
-    }
-    else {
-        self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"com.sendbird.sample.viewcontroller.initial"];
-        self.window.rootViewController = viewController;
+            return;
+        }
+        
+        self.window.rootViewController = [[MenuViewController alloc] init];;
         [self.window makeKeyAndVisible];
-    }
-
+    }];
+    
     return YES;
 }
 

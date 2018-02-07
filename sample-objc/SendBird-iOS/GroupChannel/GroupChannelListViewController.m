@@ -15,8 +15,9 @@
 #import "NSBundle+SendBird.h"
 #import "Constants.h"
 #import "Utils.h"
+#import "ConnectionManager.h"
 
-@interface GroupChannelListViewController ()
+@interface GroupChannelListViewController () <ConnectionManagerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *noChannelLabel;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -59,8 +60,20 @@
     
     self.cachedChannels = YES;
     
+    [ConnectionManager addConnectionObserver:self];
+    if ([SBDMain getConnectState] == SBDWebSocketClosed) {
+        [ConnectionManager connectWithCompletionHandler:^(SBDUser * _Nullable user, NSError * _Nullable error) {
+            if (error != nil) {
+                return;
+            }
+            
+            [self showList];
+        }];
+    }
+}
+
+- (void)showList {
     self.firstLoading = NO;
-    
     dispatch_queue_t dumpLoadQueue = dispatch_queue_create("com.sendbird.dumploadqueue", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(dumpLoadQueue, ^{
         self.channels = [[NSMutableArray alloc] initWithArray:[Utils loadGroupChannels]];
@@ -77,24 +90,13 @@
             self.cachedChannels = NO;
             [self refreshChannelList];
         }
+        self.firstLoading = YES;
     });
-    
-    self.firstLoading = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [Utils dumpChannels:self.channels];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-    if (self.firstLoading == NO) {
-        [self refreshChannelList];
-    }
-    
-    self.firstLoading = NO;
 }
 
 - (void)addDelegates {
@@ -378,37 +380,13 @@
     });
 }
 
-#pragma mark - SBDConnectionDelegate
-
-- (void)didStartReconnection {
-    
-}
-
-- (void)didSucceedReconnection {
+#pragma mark - Connection Manager Delegate
+- (void)didConnect {
     UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
     UIViewController *bestVC = [Utils findBestViewController:vc];
-    
     if (bestVC == self) {
-        SBDGroupChannelListQuery *query = [SBDGroupChannel createMyGroupChannelListQuery];
-        query.limit = 20;
-        query.order = SBDGroupChannelListOrderLatestLastMessage;
-        [query loadNextPageWithCompletionHandler:^(NSArray<SBDGroupChannel *> * _Nullable channels, SBDError * _Nullable error) {
-            if (error != nil) {
-                return;
-            }
-            
-            [self.channels removeAllObjects];
-            [self.channels addObjectsFromArray:channels];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.groupChannelListQuery = query;
-                [self.tableView reloadData];
-            });
-        }];
+        [self showList];
     }
-}
-
-- (void)didFailReconnection {
-    
 }
 
 #pragma mark - SBDChannelDelegate

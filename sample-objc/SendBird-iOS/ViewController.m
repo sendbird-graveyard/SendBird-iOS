@@ -94,28 +94,16 @@
             });
             
             if (error != nil) {
-                if ([error.domain isEqualToString:ConnectionManagerErrorDomainConnection]) {
-                    UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
-                    [vc addAction:closeAction];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self presentViewController:vc animated:YES completion:nil];
-                    });
-                    return;
-                }
+                UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+                [vc addAction:closeAction];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self presentViewController:vc animated:YES completion:nil];
+                });
                 if ([error.domain isEqualToString:ConnectionManagerErrorDomainUser]) {
-                    UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
-                    [vc addAction:closeAction];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self presentViewController:vc animated:YES completion:nil];
-                    });
-                    
-                    [SBDMain disconnectWithCompletionHandler:^{
-                        
-                    }];
-                    return;
+                    [SBDMain disconnectWithCompletionHandler:nil];
                 }
+                return;
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{

@@ -14,8 +14,9 @@
 #import "AppDelegate.h"
 #import "GroupChannelChattingViewController.h"
 #import "UserProfileViewController.h"
+#import "ConnectionManager.h"
 
-@interface MenuViewController ()
+@interface MenuViewController () <ConnectionManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
 @property (weak, nonatomic) IBOutlet UIView *openChannelView;
@@ -51,7 +52,7 @@
     self.navItem.rightBarButtonItems = @[negativeRightSpacer, rightDisconnectItem];
     self.navItem.leftBarButtonItems = @[negativeLeftSpacer, leftProfileItem];
     
-    [SBDMain addConnectionDelegate:self identifier:self.description];
+    [ConnectionManager addConnectionObserver:self];
 
     if (((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl != nil) {
         NSString *channelUrl = ((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl;
@@ -66,6 +67,18 @@
             }];
         }
     }
+    
+    if ([SBDMain getConnectState] == SBDWebSocketClosed) {
+        [ConnectionManager connectWithCompletionHandler:^(SBDUser * _Nullable user, NSError * _Nullable error) {
+            if (error != nil && error.code == -1) {
+                [self presentLoginViewController];
+            }
+        }];
+    }
+}
+
+-(void)dealloc {
+    [ConnectionManager removeConnectionObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -131,17 +144,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"sendbird_user_nickname"];
         
         [SBDMain disconnectWithCompletionHandler:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-                if ([[UIApplication sharedApplication].delegate.window.rootViewController isKindOfClass:[self class]]) {
-                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                    UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"com.sendbird.sample.viewcontroller.initial"];
-                    [self presentViewController:loginViewController animated:NO completion:nil];
-                }
-                else {
-                    [self dismissViewControllerAnimated:NO completion:nil];
-                }
-            });
+            [self presentLoginViewController];
         }];
     }];
 }
@@ -153,15 +156,26 @@
     });
 }
 
-#pragma mark - SBDConnectionDelegate
-
-- (void)didStartReconnection {
-    
+- (void)presentLoginViewController {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        if ([[UIApplication sharedApplication].delegate.window.rootViewController isKindOfClass:[self class]]) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"com.sendbird.sample.viewcontroller.initial"];
+            [self presentViewController:loginViewController animated:NO completion:nil];
+        }
+        else {
+            [self dismissViewControllerAnimated:NO completion:nil];
+        }
+    });
 }
 
-- (void)didSucceedReconnection {
+#pragma mark - Connection Manage Delegate
+- (void)didConnect {
+    // from push notification
     if (((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl != nil) {
         NSString *channelUrl = ((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl;
+        ((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl = nil;
         
         UIViewController *topViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
         while (topViewController.presentedViewController) {
@@ -174,7 +188,6 @@
             }
         }
         
-        ((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl = nil;
         [SBDGroupChannel getChannelWithUrl:channelUrl completionHandler:^(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error) {
             GroupChannelChattingViewController *vc = [[GroupChannelChattingViewController alloc] init];
             vc.channel = channel;
@@ -183,10 +196,6 @@
             });
         }];
     }
-}
-
-- (void)didFailReconnection {
-
 }
 
 @end
