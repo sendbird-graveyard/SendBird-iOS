@@ -9,7 +9,7 @@
         <!--View Controller-->
         <scene sceneID="2i8-m2-EIv">
             <objects>
-                <tableViewController id="Usp-TB-Q5O" customClass="ViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="com.sendbird.sample.viewcontroller.initial" id="Usp-TB-Q5O" customClass="ViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="259" sectionHeaderHeight="28" sectionFooterHeight="28" id="gMT-ZA-Qzw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

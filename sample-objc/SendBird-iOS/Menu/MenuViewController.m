@@ -133,7 +133,14 @@
         [SBDMain disconnectWithCompletionHandler:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-                [self dismissViewControllerAnimated:NO completion:nil];
+                if ([[UIApplication sharedApplication].delegate.window.rootViewController isKindOfClass:[self class]]) {
+                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    UIViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"com.sendbird.sample.viewcontroller.initial"];
+                    [self presentViewController:loginViewController animated:NO completion:nil];
+                }
+                else {
+                    [self dismissViewControllerAnimated:NO completion:nil];
+                }
             });
         }];
     }];
