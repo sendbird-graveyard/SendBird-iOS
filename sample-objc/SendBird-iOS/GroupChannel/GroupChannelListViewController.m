@@ -62,18 +62,23 @@
     
     [ConnectionManager addConnectionObserver:self];
     if ([SBDMain getConnectState] == SBDWebSocketClosed) {
-        [ConnectionManager connectWithCompletionHandler:^(SBDUser * _Nullable user, NSError * _Nullable error) {
+        [ConnectionManager loginWithCompletionHandler:^(SBDUser * _Nullable user, NSError * _Nullable error) {
             if (error != nil) {
                 return;
             }
-            
-            [self showList];
         }];
+    }
+    else {
+        self.firstLoading = NO;
+        [self showList];
     }
 }
 
+- (void)dealloc {
+    [ConnectionManager removeConnectionObserver:self];
+}
+
 - (void)showList {
-    self.firstLoading = NO;
     dispatch_queue_t dumpLoadQueue = dispatch_queue_create("com.sendbird.dumploadqueue", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(dumpLoadQueue, ^{
         self.channels = [[NSMutableArray alloc] initWithArray:[Utils loadGroupChannels]];
@@ -92,6 +97,7 @@
         }
         self.firstLoading = YES;
     });
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -381,11 +387,12 @@
 }
 
 #pragma mark - Connection Manager Delegate
-- (void)didConnect {
+- (void)didConnect:(BOOL)isReconnection {
     UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
     UIViewController *bestVC = [Utils findBestViewController:vc];
+    
     if (bestVC == self) {
-        [self showList];
+        [self refreshChannelList];
     }
 }
 

@@ -69,7 +69,7 @@
     }
     
     if ([SBDMain getConnectState] == SBDWebSocketClosed) {
-        [ConnectionManager connectWithCompletionHandler:^(SBDUser * _Nullable user, NSError * _Nullable error) {
+        [ConnectionManager loginWithCompletionHandler:^(SBDUser * _Nullable user, NSError * _Nullable error) {
             if (error != nil && error.code == -1) {
                 [self presentLoginViewController];
             }
@@ -171,7 +171,7 @@
 }
 
 #pragma mark - Connection Manage Delegate
-- (void)didConnect {
+- (void)didConnect:(BOOL)isReconnection {
     // from push notification
     if (((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl != nil) {
         NSString *channelUrl = ((AppDelegate *)[UIApplication sharedApplication].delegate).receivedPushChannelUrl;

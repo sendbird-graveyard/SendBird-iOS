@@ -15,7 +15,10 @@ FOUNDATION_EXTERN NSString *const _Nonnull ConnectionManagerErrorDomainUser;
 
 @protocol ConnectionManagerDelegate <NSObject>
 
-- (void)didConnect;
+- (void)didConnect:(BOOL)isReconnection;
+
+@optional
+- (void)didDisconnect;
 
 @end
 
@@ -23,9 +26,11 @@ FOUNDATION_EXTERN NSString *const _Nonnull ConnectionManagerErrorDomainUser;
 
 + (nullable instancetype)sharedInstance;
 
-+ (void)connectWithCompletionHandler:(nullable void(^)(SBDUser * _Nullable user, NSError * _Nullable error))completionHandler;
++ (void)loginWithCompletionHandler:(nullable void(^)(SBDUser * _Nullable user, NSError * _Nullable error))completionHandler;
 
-+ (void)connectWithUserId:(nonnull NSString *)userId nickname:(nonnull NSString *)nickname completionHandler:(nullable void(^)(SBDUser * _Nullable user, NSError * _Nullable error))completionHandler;
++ (void)loginWithUserId:(nonnull NSString *)userId nickname:(nonnull NSString *)nickname completionHandler:(nullable void(^)(SBDUser * _Nullable user, NSError * _Nullable error))completionHandler;
+
++ (void)logoutWithCompletionHandler:(nullable void(^)(void))completionHandler;
 
 /**
  * Registers an observer to receive connection notifications.

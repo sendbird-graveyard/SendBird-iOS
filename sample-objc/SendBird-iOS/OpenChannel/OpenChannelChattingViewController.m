@@ -24,8 +24,9 @@
 #import "ChatImage.h"
 #import "FLAnimatedImageView+ImageCache.h"
 #import "CreateGroupChannelUserListViewController.h"
+#import "ConnectionManager.h"
 
-@interface OpenChannelChattingViewController ()
+@interface OpenChannelChattingViewController () <ConnectionManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet ChattingView *chattingView;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
@@ -36,7 +37,6 @@
 @property (weak, nonatomic) IBOutlet UINavigationItem *imageViewerLoadingViewNavItem;
 
 @property (atomic) BOOL hasNext;
-@property (atomic) BOOL refreshInViewDidAppear;
 
 @property (atomic) BOOL isLoading;
 @property (atomic) BOOL keyboardShown;
@@ -101,62 +101,51 @@
     
     self.delegateIdentifier = self.description;
     [SBDMain addChannelDelegate:self identifier:self.delegateIdentifier];
-    [SBDMain addConnectionDelegate:self identifier:self.delegateIdentifier];
+    [ConnectionManager addConnectionObserver:self];
     
     self.hasNext = YES;
-    self.refreshInViewDidAppear = YES;
     self.isLoading = NO;
     
     [self.chattingView.fileAttachButton addTarget:self action:@selector(sendFileMessage) forControlEvents:UIControlEventTouchUpInside];
     [self.chattingView.sendButton addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
     
     self.dumpedMessages = [Utils loadMessagesInChannel:self.channel.channelUrl];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if (self.refreshInViewDidAppear) {
-        self.minMessageTimestamp = LLONG_MAX;
-        [self.chattingView initChattingView];
-        self.chattingView.delegate = self;
-    }
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
     
-    if (self.refreshInViewDidAppear) {
-        if (self.dumpedMessages.count > 0) {
-            [self.chattingView.messages addObjectsFromArray:self.dumpedMessages];
-            
-            [self.chattingView.chattingTableView reloadData];
-            [self.chattingView.chattingTableView layoutIfNeeded];
-            
-            CGFloat viewHeight = [[UIScreen mainScreen] bounds].size.height - self.navigationBarHeight.constant - self.chattingView.inputContainerViewHeight.constant - 10;
-            CGSize contentSize = self.chattingView.chattingTableView.contentSize;
-            
-            if (contentSize.height > viewHeight) {
-                CGPoint newContentOffset = CGPointMake(0, contentSize.height - viewHeight);
-                [self.chattingView.chattingTableView setContentOffset:newContentOffset animated:NO];
+    [self.chattingView initChattingView];
+    self.chattingView.delegate = self;
+    self.minMessageTimestamp = LLONG_MAX;
+    self.cachedMessage = NO;
+    
+    if (self.dumpedMessages.count > 0) {
+        [self.chattingView.messages addObjectsFromArray:self.dumpedMessages];
+        
+        [self.chattingView.chattingTableView reloadData];
+        [self.chattingView.chattingTableView layoutIfNeeded];
+        
+        CGFloat viewHeight = [[UIScreen mainScreen] bounds].size.height - self.navigationBarHeight.constant - self.chattingView.inputContainerViewHeight.constant - 10;
+        CGSize contentSize = self.chattingView.chattingTableView.contentSize;
+        
+        if (contentSize.height > viewHeight) {
+            CGPoint newContentOffset = CGPointMake(0, contentSize.height - viewHeight);
+            [self.chattingView.chattingTableView setContentOffset:newContentOffset animated:NO];
+        }
+        self.cachedMessage = YES;
+    }
+    
+    if ([SBDMain getConnectState] == SBDWebSocketClosed) {
+        [ConnectionManager loginWithCompletionHandler:^(SBDUser * _Nullable user, NSError * _Nullable error) {
+            if (error != nil) {
+                return;
             }
-            self.cachedMessage = YES;
-            [self loadPreviousMessage:YES];
-            
-            return;
-        }
-        else {
-            self.cachedMessage = NO;
-            self.minMessageTimestamp = LLONG_MAX;
-            [self loadPreviousMessage:YES];
-        }
+        }];
     }
-    
-    self.refreshInViewDidAppear = YES;
+    else {
+        [self loadPreviousMessage:YES];
+    }
+}
+
+- (void)dealloc {
+    [ConnectionManager removeConnectionObserver:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -204,7 +193,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             ParticipantListViewController *plvc = [[ParticipantListViewController alloc] init];
             [plvc setChannel:self.channel];
-            self.refreshInViewDidAppear = NO;
             [self presentViewController:plvc animated:NO completion:nil];
         });
     }];
@@ -212,7 +200,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             BlockedUserListViewController *plvc = [[BlockedUserListViewController alloc] init];
             [plvc setChannel:self.channel];
-            self.refreshInViewDidAppear = NO;
             [self presentViewController:plvc animated:NO completion:nil];
         });
     }];
@@ -652,7 +639,6 @@
     NSMutableArray *mediaTypes = [[NSMutableArray alloc] initWithObjects:(NSString *)kUTTypeImage, (NSString *)kUTTypeMovie, nil];
     mediaUI.mediaTypes = mediaTypes;
     [mediaUI setDelegate:self];
-    self.refreshInViewDidAppear = NO;
     [self presentViewController:mediaUI animated:YES completion:nil];
 }
 
@@ -662,40 +648,44 @@
     }
 }
 
-#pragma mark - SBDConnectionDelegate
-
-- (void)didStartReconnection {
-    if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:@"%@(%ld)", self.channel.name, (long)self.channel.participantCount] subTitle:[NSBundle sbLocalizedStringForKey:@"ReconnectingSubTitle"]];
-        });
-    }
-}
-
-- (void)didSucceedReconnection {
+#pragma mark - Connection Manager Delegate
+- (void)didConnect:(BOOL)isReconnection {
     [self loadPreviousMessage:YES];
     
     [self.channel refreshWithCompletionHandler:^(SBDError * _Nullable error) {
         if (error == nil) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
-                    ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:@"%@(%ld)", self.channel.name, (long)self.channel.participantCount] subTitle:[NSBundle sbLocalizedStringForKey:@"ReconnectedSubTitle"]];
-                }
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1000 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
-                    if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
-                        ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:@"%@(%ld)", self.channel.name, (long)self.channel.participantCount] subTitle:nil];
-                    }
+            if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSString *title = [NSString stringWithFormat:@"%@(%zd)", self.channel.name, self.channel.participantCount];
+                    NSString *subtitle = [NSBundle sbLocalizedStringForKey:@"ReconnectedSubTitle"];
+                    UILabel *label = (UILabel *)self.navItem.titleView;
+                    label.attributedText = [Utils generateNavigationTitle:title subTitle:subtitle];
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1000 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
+                        NSString *title = [NSString stringWithFormat:@"%@(%zd)", self.channel.name, self.channel.participantCount];
+                        UILabel *label = (UILabel *)self.navItem.titleView;
+                        label.attributedText = [Utils generateNavigationTitle:title subTitle:nil];
+                    });
                 });
-            });
+            }
         }
     }];
 }
 
-- (void)didFailReconnection {
+- (void)didDisconnect {
     if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            ((UILabel *)self.navItem.titleView).attributedText = [Utils generateNavigationTitle:[NSString stringWithFormat:@"%@(%ld)", self.channel.name, (long)self.channel.participantCount] subTitle:[NSBundle sbLocalizedStringForKey:@"ReconnectionFailedSubTitle"]];
+            NSString *title = [NSString stringWithFormat:@"%@(%zd)", self.channel.name, self.channel.participantCount];
+            NSString *subtitle = [NSBundle sbLocalizedStringForKey:@"ReconnectionFailedSubTitle"];
+            UILabel *label = (UILabel *)self.navItem.titleView;
+            label.attributedText = [Utils generateNavigationTitle:title subTitle:subtitle];
+        });
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSString *title = [NSString stringWithFormat:@"%@(%zd)", self.channel.name, self.channel.participantCount];
+            NSString *subtitle = [NSBundle sbLocalizedStringForKey:@"ReconnectingSubTitle"];
+            UILabel *label = (UILabel *)self.navItem.titleView;
+            label.attributedText = [Utils generateNavigationTitle:title subTitle:subtitle];
         });
     }
 }
@@ -953,7 +943,6 @@
                     for (NSTextCheckingResult *match in matches) {
                         __block NSURL *url = [match URL];
                         UIAlertAction *openURLAction = [UIAlertAction actionWithTitle:[url relativeString] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                            self.refreshInViewDidAppear = NO;
                             [[UIApplication sharedApplication] openURL:url];
                         }];
                         [openURLsAction addObject:openURLAction];
@@ -987,7 +976,6 @@
                 AVPlayer *player = [[AVPlayer alloc] initWithURL:videoUrl];
                 AVPlayerViewController *vc = [[AVPlayerViewController alloc] init];
                 vc.player = player;
-                self.refreshInViewDidAppear = NO;
                 [self presentViewController:vc animated:YES completion:^{
                     [player play];
                 }];
@@ -999,7 +987,6 @@
                 AVPlayer *player = [[AVPlayer alloc] initWithURL:audioUrl];
                 AVPlayerViewController *vc = [[AVPlayerViewController alloc] init];
                 vc.player = player;
-                self.refreshInViewDidAppear = NO;
                 [self presentViewController:vc animated:YES completion:^{
                     [player play];
                 }];
@@ -1100,7 +1087,6 @@
         
         if (openFileAction != nil || openURLsAction.count > 0 || deleteMessageAction != nil) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.refreshInViewDidAppear = NO;
                 [self presentViewController:alert animated:YES completion:nil];
             });
         }

@@ -39,7 +39,11 @@ NSString *const ConnectionManagerErrorDomainUser = @"com.sendbird.sample.user";
     return self;
 }
 
-+ (void)connectWithCompletionHandler:(nullable void(^)(SBDUser * _Nullable user, NSError * _Nullable error))completionHandler {
+- (void)dealloc {
+    [SBDMain removeConnectionDelegateForIdentifier:self.description];
+}
+
++ (void)loginWithCompletionHandler:(nullable void(^)(SBDUser * _Nullable user, NSError * _Nullable error))completionHandler {
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"sendbird_user_id"];
     NSString *userNickname = [[NSUserDefaults standardUserDefaults] objectForKey:@"sendbird_user_nickname"];
     
@@ -52,16 +56,21 @@ NSString *const ConnectionManagerErrorDomainUser = @"com.sendbird.sample.user";
         return;
     }
     
-    [self connectWithUserId:userId nickname:userNickname completionHandler:completionHandler];
+    [self loginWithUserId:userId nickname:userNickname completionHandler:completionHandler];
 }
 
-+ (void)connectWithUserId:(nonnull NSString *)userId nickname:(nonnull NSString *)nickname completionHandler:(nullable void(^)(SBDUser * _Nullable user, NSError * _Nullable error))completionHandler {
-    [[self sharedInstance] connectWithUserId:userId nickname:nickname completionHandler:completionHandler];
++ (void)loginWithUserId:(nonnull NSString *)userId nickname:(nonnull NSString *)nickname completionHandler:(nullable void(^)(SBDUser * _Nullable user, NSError * _Nullable error))completionHandler {
+    [[self sharedInstance] loginWithUserId:userId nickname:nickname completionHandler:completionHandler];
 }
 
-- (void)connectWithUserId:(nonnull NSString *)userId nickname:(nonnull NSString *)nickname completionHandler:(nullable void(^)(SBDUser * _Nullable user, NSError * _Nullable error))completionHandler {
+- (void)loginWithUserId:(nonnull NSString *)userId nickname:(nonnull NSString *)nickname completionHandler:(nullable void(^)(SBDUser * _Nullable user, NSError * _Nullable error))completionHandler {
     [SBDMain connectWithUserId:userId completionHandler:^(SBDUser * _Nullable user, SBDError * _Nullable error) {
         if (error != nil) {
+            NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+            [userDefault removeObjectForKey:@"sendbird_user_id"];
+            [userDefault removeObjectForKey:@"sendbird_user_nickname"];
+            [userDefault synchronize];
+            
             if (completionHandler != nil) {
                 NSError *theError = [NSError errorWithDomain:ConnectionManagerErrorDomainConnection code:error.code userInfo:@{NSLocalizedDescriptionKey:(error.localizedDescription ? : @""),
                                                                                                                                NSLocalizedFailureReasonErrorKey:(error.localizedFailureReason ? : @""),
@@ -84,20 +93,24 @@ NSString *const ConnectionManagerErrorDomainUser = @"com.sendbird.sample.user";
             }
         }];
         
+        [self broadcastConnection:NO];
+        
         [SBDMain updateCurrentUserInfoWithNickname:nickname profileUrl:nil completionHandler:^(SBDError * _Nullable error) {
             if (error != nil) {
-                if (completionHandler != nil) {
-                    NSError *theError = [NSError errorWithDomain:ConnectionManagerErrorDomainUser code:error.code userInfo:@{NSLocalizedDescriptionKey:(error.localizedDescription ? : @""),
-                                                                                                                                   NSLocalizedFailureReasonErrorKey:(error.localizedFailureReason ? : @""),
-                                                                                                                                   NSUnderlyingErrorKey:error}];
-                    completionHandler(nil, theError);
-                }
+                [self logoutWithCompletionHandler:^{
+                    if (completionHandler != nil) {
+                        NSError *theError = [NSError errorWithDomain:ConnectionManagerErrorDomainUser code:error.code userInfo:@{NSLocalizedDescriptionKey:(error.localizedDescription ? : @""),
+                                                                                                                                 NSLocalizedFailureReasonErrorKey:(error.localizedFailureReason ? : @""),
+                                                                                                                                 NSUnderlyingErrorKey:error}];
+                        completionHandler(nil, theError);
+                    }
+                }];
                 return;
             }
             
             NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-            [[NSUserDefaults standardUserDefaults] setObject:[SBDMain getCurrentUser].userId forKey:@"sendbird_user_id"];
-            [[NSUserDefaults standardUserDefaults] setObject:[SBDMain getCurrentUser].nickname forKey:@"sendbird_user_nickname"];
+            [userDefault setObject:[SBDMain getCurrentUser].userId forKey:@"sendbird_user_id"];
+            [userDefault setObject:[SBDMain getCurrentUser].nickname forKey:@"sendbird_user_nickname"];
             [userDefault synchronize];
             
             if (completionHandler != nil) {
@@ -107,10 +120,33 @@ NSString *const ConnectionManagerErrorDomainUser = @"com.sendbird.sample.user";
     }];
 }
 
++ (void)logoutWithCompletionHandler:(nullable void(^)(void))completionHandler {
+    [[self sharedInstance] logoutWithCompletionHandler:completionHandler];
+}
+
+- (void)logoutWithCompletionHandler:(nullable void(^)(void))completionHandler {
+    [SBDMain disconnectWithCompletionHandler:^{
+        [self broadcastDisconnection];
+        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+        [userDefault removeObjectForKey:@"sendbird_user_id"];
+        [userDefault removeObjectForKey:@"sendbird_user_nickname"];
+        [userDefault synchronize];
+    }];
+}
+
 + (void)addConnectionObserver:(id<ConnectionManagerDelegate>)observer {
     NSMutableArray<id<ConnectionManagerDelegate>> *observers = [[self sharedInstance] observers];
     if (![observers containsObject:observer]) {
         [observers addObject:observer];
+    }
+    
+    if ([SBDMain getConnectState] == SBDWebSocketOpen) {
+        if ([observer respondsToSelector:@selector(didConnect:)]) {
+            [observer didConnect:NO];
+        }
+    }
+    else if ([SBDMain getConnectState] == SBDWebSocketClosed) {
+        [self loginWithCompletionHandler:nil];
     }
 }
 
@@ -121,14 +157,39 @@ NSString *const ConnectionManagerErrorDomainUser = @"com.sendbird.sample.user";
     }
 }
 
-#pragma mark - SBD Connection Delegate
-- (void)didSuccessReconnection {
-    // notify
+- (void)broadcastConnection:(BOOL)isReconnection {
     NSArray<id<ConnectionManagerDelegate>> *observers = [self.observers copy];
     for (id<ConnectionManagerDelegate> observer in observers) {
-        if ([observers respondsToSelector:@selector(didConnect)]) {
-            [observer didConnect];
+        if ([observer respondsToSelector:@selector(didConnect:)]) {
+            [observer didConnect:isReconnection];
         }
     }
 }
+
+- (void)broadcastDisconnection {
+    NSArray<id<ConnectionManagerDelegate>> *observers = [self.observers copy];
+    for (id<ConnectionManagerDelegate> observer in observers) {
+        if ([observer respondsToSelector:@selector(didDisconnect)]) {
+            [observer didDisconnect];
+        }
+    }
+}
+
+#pragma mark - SBD Connection Delegate
+- (void)didStartReconnection {
+    [self broadcastDisconnection];
+}
+
+- (void)didSucceedReconnection {
+    [self broadcastConnection:YES];
+}
+
+- (void)didFailReconnection {
+    
+}
+
+- (void)didCancelReconnection {
+    
+}
+
 @end

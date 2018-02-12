@@ -85,7 +85,7 @@
         
         [self.indicatorView startAnimating];
 
-        [ConnectionManager connectWithUserId:trimmedUserId nickname:trimmedNickname completionHandler:^(SBDUser * _Nullable user, NSError * _Nullable error) {
+        [ConnectionManager loginWithUserId:trimmedUserId nickname:trimmedNickname completionHandler:^(SBDUser * _Nullable user, NSError * _Nullable error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.userIdTextField setEnabled:YES];
                 [self.nicknameTextField setEnabled:YES];
@@ -100,9 +100,6 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self presentViewController:vc animated:YES completion:nil];
                 });
-                if ([error.domain isEqualToString:ConnectionManagerErrorDomainUser]) {
-                    [SBDMain disconnectWithCompletionHandler:nil];
-                }
                 return;
             }
             
