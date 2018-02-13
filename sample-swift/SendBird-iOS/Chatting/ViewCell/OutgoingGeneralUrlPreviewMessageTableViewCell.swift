@@ -98,11 +98,7 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         catch let error as NSError {
             print("Details of JSON parsing error:\n \(error)")
         }
-        var ext: String?
-        if let imageUrl = self.previewData?["image"] as? String {
-            ext = (imageUrl as NSString).pathExtension
-        }
-
+        
         let siteName = self.previewData?["site_name"] as? String
         let title = self.previewData?["title"] as? String
         let description = self.previewData?["description"] as! String
@@ -122,52 +118,6 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         let previewDescriptionLabelTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(clickPreview))
         self.previewDescriptionLabel.isUserInteractionEnabled = true
         self.previewDescriptionLabel.addGestureRecognizer(previewDescriptionLabelTapRecognizer)
-        
-//        self.previewThumbnailImageView.image = nil
-//        self.previewThumbnailImageView.animatedImage = nil
-//        self.previewThumbnailLoadingIndicator.isHidden = false
-//        self.previewThumbnailLoadingIndicator.startAnimating()
-//
-//        if imageUrl.characters.count > 0 {
-//            if ext.lowercased().hasPrefix("gif") {
-//                self.previewThumbnailImageView.setAnimatedImageWithURL(url: URL(string: imageUrl)! , success: { (image) in
-//                    DispatchQueue.main.async {
-//                        self.previewThumbnailImageView.animatedImage = image
-//                        self.previewThumbnailLoadingIndicator.isHidden = true
-//                        self.previewThumbnailLoadingIndicator.stopAnimating()
-//                    }
-//                }, failure: { (error) in
-//                    DispatchQueue.main.async {
-//                        self.previewThumbnailLoadingIndicator.isHidden = true
-//                        self.previewThumbnailLoadingIndicator.stopAnimating()
-//                    }
-//                })
-//            }
-//            else {
-//                Alamofire.request(imageUrl, method: .get).responseImage { response in
-//                    guard let image = response.result.value else {
-//                        DispatchQueue.main.async {
-//                            self.previewThumbnailLoadingIndicator.isHidden = true
-//                            self.previewThumbnailLoadingIndicator.stopAnimating()
-//                        }
-//
-//                        return
-//                    }
-//
-//                    DispatchQueue.main.async {
-//                        self.previewThumbnailImageView.image = image
-//                        self.previewThumbnailLoadingIndicator.isHidden = true
-//                        self.previewThumbnailLoadingIndicator.stopAnimating()
-//                    }
-//                }
-//            }
-//        }
-//        else {
-//            self.previewThumbnailImageView.isHidden = true
-//            self.previewThumbnailLoadingIndicator.isHidden = true
-//            self.previewThumbnailImageViewHeight.constant = 0
-//            self.previewDescriptionLabelBottomMargin.constant = 10
-//        }
 
         self.resendMessageButton.isHidden = true
         self.deleteMessageButton.isHidden = true

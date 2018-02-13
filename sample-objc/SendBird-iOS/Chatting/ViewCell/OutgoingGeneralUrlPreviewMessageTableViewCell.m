@@ -97,8 +97,6 @@
         self.previewData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     }
 
-    NSString *imageUrl = self.previewData[@"image"];
-    NSString *ext = [imageUrl pathExtension];
     NSString *siteName = self.previewData[@"site_name"];
     NSString *title = self.previewData[@"title"];
     NSString *description = self.previewData[@"description"];
@@ -118,48 +116,6 @@
     UITapGestureRecognizer *previewDescriptionLabelTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickPreview)];
     self.previewDescriptionLabel.userInteractionEnabled = YES;
     [self.previewDescriptionLabel addGestureRecognizer:previewDescriptionLabelTapRecognizer];
-    
-//    self.previewThumbnailImageView.image = nil;
-//    self.previewThumbnailImageView.animatedImage = nil;
-//    self.previewThumbnailImageLoadingIndicator.hidden = NO;
-//    [self.previewThumbnailImageLoadingIndicator startAnimating];
-//    if (imageUrl != nil && imageUrl.length > 0) {
-//        if ([[ext lowercaseString] hasPrefix:@"gif"]) {
-//            [self.previewThumbnailImageView setAnimatedImageWithURL:[NSURL URLWithString:imageUrl] success:^(FLAnimatedImage * _Nullable image) {
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [self.previewThumbnailImageView setAnimatedImage:image];
-//                    self.previewThumbnailImageLoadingIndicator.hidden = YES;
-//                    [self.previewThumbnailImageLoadingIndicator stopAnimating];
-//                });
-//            } failure:^(NSError * _Nullable error) {
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    self.previewThumbnailImageLoadingIndicator.hidden = YES;
-//                    [self.previewThumbnailImageLoadingIndicator stopAnimating];
-//                });
-//            }];
-//        }
-//        else {
-//            NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:imageUrl]];
-//            [self.previewThumbnailImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [self.previewThumbnailImageView setImage:image];
-//                    self.previewThumbnailImageLoadingIndicator.hidden = YES;
-//                    [self.previewThumbnailImageLoadingIndicator stopAnimating];
-//                });
-//            } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    self.previewThumbnailImageLoadingIndicator.hidden = YES;
-//                    [self.previewThumbnailImageLoadingIndicator stopAnimating];
-//                });
-//            }];
-//        }
-//    }
-//    else {
-//        self.previewThumbnailImageView.hidden = YES;
-//        self.previewThumbnailImageLoadingIndicator.hidden = YES;
-//        self.previewThumbnailImageViewHeight.constant = 0;
-//        self.previewDescriptionLabelBottomMargin.constant = 10;
-//    }
     
     self.resendMessageButton.hidden = YES;
     self.deleteMessageButton.hidden = YES;

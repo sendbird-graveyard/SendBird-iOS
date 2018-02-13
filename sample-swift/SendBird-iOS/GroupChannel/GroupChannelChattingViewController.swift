@@ -872,7 +872,6 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
         var deleteMessageAction: UIAlertAction?
-        var openFileAction: UIAlertAction?
         var openURLsAction: [UIAlertAction] = []
         
         if message is SBDUserMessage {
@@ -1044,9 +1043,6 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         }
         
         alert.addAction(closeAction)
-//        if openFileAction != nil {
-//            alert.addAction(openFileAction!)
-//        }
         
         if openURLsAction.count > 0 {
             for action in openURLsAction {
@@ -1275,7 +1271,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                             let thumbnailSize = SBDThumbnailSize.make(withMaxWidth: 320.0, maxHeight: 320.0)
                             
                             let preSendMessage = self.groupChannel.sendFileMessage(withBinaryData: imageData!, filename: imageName as String, type: mimeType! as String, size: UInt((imageData?.count)!), thumbnailSizes: [thumbnailSize!], data: "", customType: "TEST_CUSTOM_TYPE", progressHandler: nil, completionHandler: { (fileMessage, error) in
-                                print("Custom Type: %@", fileMessage?.customType);
+                                print("Custom Type: %@", fileMessage?.customType ?? "");
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
                                     let preSendMessage = self.chattingView.preSendMessages[(fileMessage?.requestId)!] as! SBDFileMessage
                                     self.chattingView.preSendMessages.removeValue(forKey: (fileMessage?.requestId)!)

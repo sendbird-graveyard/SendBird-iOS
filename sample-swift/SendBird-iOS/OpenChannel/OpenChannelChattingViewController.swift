@@ -888,7 +888,6 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
         var deleteMessageAction: UIAlertAction?
-        var openFileAction: UIAlertAction?
         var openURLsAction: [UIAlertAction] = []
         
         if message is SBDUserMessage {
@@ -1058,9 +1057,6 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
         }
         
         alert.addAction(closeAction)
-//        if openFileAction != nil {
-//            alert.addAction(openFileAction!)
-//        }
         
         if openURLsAction.count > 0 {
             for action in openURLsAction {

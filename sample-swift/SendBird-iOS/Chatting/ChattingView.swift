@@ -665,7 +665,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                         (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.animatedImage = nil
                         (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = false
                         (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.startAnimating()
-                        if imageUrl.count > 0 {
+                        if !imageUrl.isEmpty {
                             if ext.lowercased().hasPrefix("gif") {
                                 (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.setAnimatedImageWithURL(url: URL(string: imageUrl)! , success: { (image) in
                                     DispatchQueue.main.async {
@@ -771,7 +771,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                         (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.isHidden = false
                         (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailLoadingIndicator.startAnimating()
                         
-                        if imageUrl.count > 0 {
+                        if !imageUrl.isEmpty {
                             if ext!.lowercased().hasPrefix("gif") {
                                 (cell as! IncomingGeneralUrlPreviewMessageTableViewCell).previewThumbnailImageView.setAnimatedImageWithURL(url: URL(string: imageUrl)! , success: { (image) in
                                     DispatchQueue.main.async {
@@ -912,7 +912,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                             (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = true
                         }
                         else {
-                            if fileMessage.url.count > 0 && self.preSendFileData[fileMessage.requestId!] != nil {
+                            if !fileMessage.url.isEmpty && self.preSendFileData[fileMessage.requestId!] != nil {
                                 (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.preSendFileData[fileMessage.requestId!]?["data"] as! Data, type: self.preSendFileData[fileMessage.requestId!]?["type"] as! String)
                                 (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = true
                                 self.preSendFileData.removeValue(forKey: fileMessage.requestId!);

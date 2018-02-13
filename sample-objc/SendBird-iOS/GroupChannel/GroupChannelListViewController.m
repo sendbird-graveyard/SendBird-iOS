@@ -303,19 +303,13 @@
     }
     else {
         cell = [tableView dequeueReusableCellWithIdentifier:[GroupChannelListTableViewCell cellReuseIdentifier]];
-        BOOL startAnimating = NO;
         if (self.channels[indexPath.row].isTyping == YES) {
             if ([self.typingAnimationChannelList indexOfObject:self.channels[indexPath.row].channelUrl] == NSNotFound) {
-                startAnimating = YES;
                 [self.typingAnimationChannelList addObject:self.channels[indexPath.row].channelUrl];
-            }
-            else {
-                startAnimating = NO;
             }
         }
         else {
             [self.typingAnimationChannelList removeObject:self.channels[indexPath.row].channelUrl];
-            startAnimating = NO;
         }
 
         [(GroupChannelListTableViewCell *)cell setModel:self.channels[indexPath.row]];
@@ -335,7 +329,7 @@
     SBDGroupChannel *selectedChannel = self.channels[row];
     if (index == 0) {
         // Hide
-        [selectedChannel hideChannelWithCompletionHandler:^(SBDError * _Nullable error) {
+        [selectedChannel hideChannelWithHidePreviousMessages:NO completionHandler:^(SBDError * _Nullable error) {
             if (error != nil) {
                 UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
