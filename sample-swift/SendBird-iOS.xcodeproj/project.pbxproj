@@ -619,7 +619,7 @@
 				TargetAttributes = {
 					5ABA0B7C1DA6010A000C82DC = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 8K8M9F9X95;
+						DevelopmentTeam = ZBPP83795K;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -1138,11 +1138,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "SendBird-iOS/SendBird-iOS.entitlements";
-				DEVELOPMENT_TEAM = 8K8M9F9X95;
+				DEVELOPMENT_TEAM = ZBPP83795K;
 				INFOPLIST_FILE = "SendBird-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.sample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sheddapp.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1155,12 +1155,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "SendBird-iOS/SendBird-iOS.entitlements";
-				DEVELOPMENT_TEAM = 8K8M9F9X95;
+				DEVELOPMENT_TEAM = ZBPP83795K;
 				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = "SendBird-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.sample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sheddapp.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
