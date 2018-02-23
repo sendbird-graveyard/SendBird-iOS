@@ -15,7 +15,7 @@ NSString *const ConnectionManagerErrorDomainUser = @"com.sendbird.sample.user";
 
 @interface ConnectionManager () <SBDConnectionDelegate>
 
-@property (atomic, strong) NSMutableArray<id<ConnectionManagerDelegate>> *observers;
+@property (atomic, strong, nullable) NSMapTable<NSString *, id<ConnectionManagerDelegate>> *observers;
 
 @end
 
@@ -33,7 +33,7 @@ NSString *const ConnectionManagerErrorDomainUser = @"com.sendbird.sample.user";
 - (nullable instancetype)init {
     self = [super init];
     if (self) {
-        _observers = [NSMutableArray array];
+        _observers = [NSMapTable mapTableWithKeyOptions:NSMapTableCopyIn valueOptions:NSMapTableWeakMemory];
         [SBDMain addConnectionDelegate:self identifier:self.description];
     }
     return self;
@@ -135,9 +135,9 @@ NSString *const ConnectionManagerErrorDomainUser = @"com.sendbird.sample.user";
 }
 
 + (void)addConnectionObserver:(id<ConnectionManagerDelegate>)observer {
-    NSMutableArray<id<ConnectionManagerDelegate>> *observers = [[self sharedInstance] observers];
-    if (![observers containsObject:observer]) {
-        [observers addObject:observer];
+    NSMapTable<NSString *, id<ConnectionManagerDelegate>> *observers = [[self sharedInstance] observers];
+    if (observer != nil) {
+        [observers setObject:observer forKey:[self instanceIdentifier:observer]];
     }
     
     if ([SBDMain getConnectState] == SBDWebSocketOpen) {
@@ -151,15 +151,16 @@ NSString *const ConnectionManagerErrorDomainUser = @"com.sendbird.sample.user";
 }
 
 + (void)removeConnectionObserver:(id<ConnectionManagerDelegate>)observer {
-    NSMutableArray<id<ConnectionManagerDelegate>> *observers = [[self sharedInstance] observers];
-    if ([observers containsObject:observer]) {
-        [observers removeObject:observer];
+    NSMapTable<NSString *, id<ConnectionManagerDelegate>> *observers = [[self sharedInstance] observers];
+    if (observer != nil) {
+        [observers removeObjectForKey:[self instanceIdentifier:observer]];
     }
 }
 
 - (void)broadcastConnection:(BOOL)isReconnection {
-    NSArray<id<ConnectionManagerDelegate>> *observers = [self.observers copy];
-    for (id<ConnectionManagerDelegate> observer in observers) {
+    NSEnumerator <id<ConnectionManagerDelegate>> *enumerator = [self.observers objectEnumerator];
+    __weak id<ConnectionManagerDelegate> observer;
+    while (observer = [enumerator nextObject]) {
         if ([observer respondsToSelector:@selector(didConnect:)]) {
             [observer didConnect:isReconnection];
         }
@@ -167,12 +168,20 @@ NSString *const ConnectionManagerErrorDomainUser = @"com.sendbird.sample.user";
 }
 
 - (void)broadcastDisconnection {
-    NSArray<id<ConnectionManagerDelegate>> *observers = [self.observers copy];
-    for (id<ConnectionManagerDelegate> observer in observers) {
+    NSEnumerator <id<ConnectionManagerDelegate>> *enumerator = [self.observers objectEnumerator];
+    __weak id<ConnectionManagerDelegate> observer;
+    while (observer = [enumerator nextObject]) {
         if ([observer respondsToSelector:@selector(didDisconnect)]) {
             [observer didDisconnect];
         }
     }
+}
+
++ (nullable NSString *)instanceIdentifier:(nullable id)instance {
+    if (instance == nil) {
+        return nil;
+    }
+    return [NSString stringWithFormat:@"%p_%@", instance, instance];
 }
 
 #pragma mark - SBD Connection Delegate
