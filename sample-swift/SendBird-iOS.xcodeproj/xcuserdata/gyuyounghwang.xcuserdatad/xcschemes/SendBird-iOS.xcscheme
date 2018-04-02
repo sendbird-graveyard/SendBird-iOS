@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5AB0CC241D8F840400F05EC1"
-               BuildableName = "SendBird.app"
+               BlueprintIdentifier = "5ABA0B7C1DA6010A000C82DC"
+               BuildableName = "SendBird-iOS.app"
                BlueprintName = "SendBird-iOS"
                ReferencedContainer = "container:SendBird-iOS.xcodeproj">
             </BuildableReference>
@@ -32,8 +32,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5AB0CC241D8F840400F05EC1"
-            BuildableName = "SendBird.app"
+            BlueprintIdentifier = "5ABA0B7C1DA6010A000C82DC"
+            BuildableName = "SendBird-iOS.app"
             BlueprintName = "SendBird-iOS"
             ReferencedContainer = "container:SendBird-iOS.xcodeproj">
          </BuildableReference>
@@ -55,19 +55,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5AB0CC241D8F840400F05EC1"
-            BuildableName = "SendBird.app"
+            BlueprintIdentifier = "5ABA0B7C1DA6010A000C82DC"
+            BuildableName = "SendBird-iOS.app"
             BlueprintName = "SendBird-iOS"
             ReferencedContainer = "container:SendBird-iOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OS_ACTIVITY_MODE"
-            value = "disable"
-            isEnabled = "NO">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -81,8 +74,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5AB0CC241D8F840400F05EC1"
-            BuildableName = "SendBird.app"
+            BlueprintIdentifier = "5ABA0B7C1DA6010A000C82DC"
+            BuildableName = "SendBird-iOS.app"
             BlueprintName = "SendBird-iOS"
             ReferencedContainer = "container:SendBird-iOS.xcodeproj">
          </BuildableReference>
