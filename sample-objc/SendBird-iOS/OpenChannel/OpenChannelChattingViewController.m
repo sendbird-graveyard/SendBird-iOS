@@ -647,13 +647,29 @@
 }
 
 - (void)sendFileMessage {
-    UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
-    mediaUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    NSMutableArray *mediaTypes = [[NSMutableArray alloc] initWithObjects:(NSString *)kUTTypeImage, (NSString *)kUTTypeMovie, nil];
-    mediaUI.mediaTypes = mediaTypes;
-    [mediaUI setDelegate:self];
-    self.refreshInViewDidAppear = NO;
-    [self presentViewController:mediaUI animated:YES completion:nil];
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    if (status != PHAuthorizationStatusAuthorized) {
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            if (status == PHAuthorizationStatusAuthorized) {
+                UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
+                mediaUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                NSMutableArray *mediaTypes = [[NSMutableArray alloc] initWithObjects:(NSString *)kUTTypeImage, (NSString *)kUTTypeMovie, nil];
+                mediaUI.mediaTypes = mediaTypes;
+                [mediaUI setDelegate:self];
+                self.refreshInViewDidAppear = NO;
+                [self presentViewController:mediaUI animated:YES completion:nil];
+            }
+        }];
+    }
+    else {
+        UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
+        mediaUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        NSMutableArray *mediaTypes = [[NSMutableArray alloc] initWithObjects:(NSString *)kUTTypeImage, (NSString *)kUTTypeMovie, nil];
+        mediaUI.mediaTypes = mediaTypes;
+        [mediaUI setDelegate:self];
+        self.refreshInViewDidAppear = NO;
+        [self presentViewController:mediaUI animated:YES completion:nil];
+    }
 }
 
 - (void)clickReconnect {

@@ -21,6 +21,10 @@ __attribute__ ((deprecated))
 
 /**
  *  Internal use only.
+ *
+ *  @param channel channel
+ *  @see [`-createMessageListQuery`](../Classes/SBDBaseChannel.html#//api/name/createMessageListQuery) in `SBDBaseChannel` class.
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (nullable instancetype)initWithChannel:(SBDBaseChannel * _Nonnull)channel;
 

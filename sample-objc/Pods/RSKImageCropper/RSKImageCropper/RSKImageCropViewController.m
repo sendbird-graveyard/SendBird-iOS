@@ -136,7 +136,16 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
     [super viewDidLoad];
     
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        
         self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
+    if (@available(iOS 11.0, *)) {
+        
+        self.imageScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    else if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] == YES) {
+        
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
@@ -157,10 +166,14 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
 {
     [super viewWillAppear:animated];
     
-    UIApplication *application = [UIApplication rsk_sharedApplication];
-    if (application) {
-        self.originalStatusBarHidden = application.statusBarHidden;
-        [application setStatusBarHidden:YES];
+    if ([self respondsToSelector:@selector(prefersStatusBarHidden)] == NO) {
+        
+        UIApplication *application = [UIApplication rsk_sharedApplication];
+        if (application) {
+            
+            self.originalStatusBarHidden = application.statusBarHidden;
+            [application setStatusBarHidden:YES];
+        }
     }
     
     self.originalNavigationControllerNavigationBarHidden = self.navigationController.navigationBarHidden;
@@ -182,9 +195,13 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
 {
     [super viewWillDisappear:animated];
     
-    UIApplication *application = [UIApplication rsk_sharedApplication];
-    if (application) {
-        [application setStatusBarHidden:self.originalStatusBarHidden];
+    if ([self respondsToSelector:@selector(prefersStatusBarHidden)] == NO) {
+        
+        UIApplication *application = [UIApplication rsk_sharedApplication];
+        if (application) {
+            
+            [application setStatusBarHidden:self.originalStatusBarHidden];
+        }
     }
     
     [self.navigationController setNavigationBarHidden:self.originalNavigationControllerNavigationBarHidden animated:animated];
@@ -390,8 +407,8 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
     CGRect cropRect = CGRectZero;
     float zoomScale = 1.0 / self.imageScrollView.zoomScale;
     
-    cropRect.origin.x = round(self.imageScrollView.contentOffset.x * zoomScale);
-    cropRect.origin.y = round(self.imageScrollView.contentOffset.y * zoomScale);
+    cropRect.origin.x = floor(self.imageScrollView.contentOffset.x * zoomScale);
+    cropRect.origin.y = floor(self.imageScrollView.contentOffset.y * zoomScale);
     cropRect.size.width = CGRectGetWidth(self.imageScrollView.bounds) * zoomScale;
     cropRect.size.height = CGRectGetHeight(self.imageScrollView.bounds) * zoomScale;
     
@@ -734,8 +751,8 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
                     frame = RSKRectScaleAroundPoint(initialRect, center, scale, scale);
                     
                     // Step 7: Avoid floats.
-                    frame.origin.x = round(CGRectGetMinX(frame));
-                    frame.origin.y = round(CGRectGetMinY(frame));
+                    frame.origin.x = floor(CGRectGetMinX(frame));
+                    frame.origin.y = floor(CGRectGetMinY(frame));
                     frame = CGRectIntegral(frame);
                 } else {
                     // Step 4: Use the initial rect.
@@ -749,12 +766,7 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
             break;
         }
         case RSKImageCropModeCustom: {
-            if ([self.dataSource respondsToSelector:@selector(imageCropViewControllerCustomMovementRect:)]) {
-                frame = [self.dataSource imageCropViewControllerCustomMovementRect:self];
-            } else {
-                // Will be changed to `CGRectNull` in version `2.0.0`.
-                frame = self.maskRect;
-            }
+            frame = [self.dataSource imageCropViewControllerCustomMovementRect:self];
             break;
         }
     }
@@ -867,17 +879,17 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
     UIImageOrientation imageOrientation = image.imageOrientation;
     if (imageOrientation == UIImageOrientationRight || imageOrientation == UIImageOrientationRightMirrored) {
         cropRect.origin.x = y;
-        cropRect.origin.y = round(imageSize.width - CGRectGetWidth(cropRect) - x);
+        cropRect.origin.y = floor(imageSize.width - CGRectGetWidth(cropRect) - x);
         cropRect.size.width = height;
         cropRect.size.height = width;
     } else if (imageOrientation == UIImageOrientationLeft || imageOrientation == UIImageOrientationLeftMirrored) {
-        cropRect.origin.x = round(imageSize.height - CGRectGetHeight(cropRect) - y);
+        cropRect.origin.x = floor(imageSize.height - CGRectGetHeight(cropRect) - y);
         cropRect.origin.y = x;
         cropRect.size.width = height;
         cropRect.size.height = width;
     } else if (imageOrientation == UIImageOrientationDown || imageOrientation == UIImageOrientationDownMirrored) {
-        cropRect.origin.x = round(imageSize.width - CGRectGetWidth(cropRect) - x);
-        cropRect.origin.y = round(imageSize.height - CGRectGetHeight(cropRect) - y);
+        cropRect.origin.x = floor(imageSize.width - CGRectGetWidth(cropRect) - x);
+        cropRect.origin.y = floor(imageSize.height - CGRectGetHeight(cropRect) - y);
     }
     
     CGFloat imageScale = image.scale;
@@ -899,16 +911,14 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
         return croppedImage;
     } else {
         // Step 5: create a new context.
-        CGSize maskSize = CGRectIntegral(maskPath.bounds).size;
-        CGSize contextSize = CGSizeMake(ceil(maskSize.width / zoomScale),
-                                        ceil(maskSize.height / zoomScale));
+        CGSize contextSize = cropRect.size;
         UIGraphicsBeginImageContextWithOptions(contextSize, NO, imageScale);
         
         // Step 6: apply the mask if needed.
         if (applyMaskToCroppedImage) {
             // 6a: scale the mask to the size of the crop rect.
             UIBezierPath *maskPathCopy = [maskPath copy];
-            CGFloat scale = 1 / zoomScale;
+            CGFloat scale = 1.0 / zoomScale;
             [maskPathCopy applyTransform:CGAffineTransformMakeScale(scale, scale)];
             
             // 6b: move the mask to the top-left.
@@ -926,8 +936,8 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
         }
         
         // Step 8: draw the cropped image.
-        CGPoint point = CGPointMake(round((contextSize.width - croppedImage.size.width) * 0.5f),
-                                    round((contextSize.height - croppedImage.size.height) * 0.5f));
+        CGPoint point = CGPointMake(floor((contextSize.width - croppedImage.size.width) * 0.5f),
+                                    floor((contextSize.height - croppedImage.size.height) * 0.5f));
         [croppedImage drawAtPoint:point];
         
         // Step 9: get the cropped image affter processing from the context.
@@ -962,11 +972,7 @@ static const CGFloat kLayoutImageScrollViewAnimationDuration = 0.25;
         UIImage *croppedImage = [self croppedImage:originalImage cropMode:cropMode cropRect:cropRect rotationAngle:rotationAngle zoomScale:zoomScale maskPath:maskPath applyMaskToCroppedImage:applyMaskToCroppedImage];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([self.delegate respondsToSelector:@selector(imageCropViewController:didCropImage:usingCropRect:rotationAngle:)]) {
-                [self.delegate imageCropViewController:self didCropImage:croppedImage usingCropRect:cropRect rotationAngle:rotationAngle];
-            } else if ([self.delegate respondsToSelector:@selector(imageCropViewController:didCropImage:usingCropRect:)]) {
-                [self.delegate imageCropViewController:self didCropImage:croppedImage usingCropRect:cropRect];
-            }
+            [self.delegate imageCropViewController:self didCropImage:croppedImage usingCropRect:cropRect rotationAngle:rotationAngle];
         });
     });
 }

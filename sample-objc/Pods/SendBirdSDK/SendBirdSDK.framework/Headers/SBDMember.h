@@ -27,6 +27,9 @@
 
 /**
  *  Internal use only.
+ *
+ *  @param dict dict
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
 
@@ -47,6 +50,9 @@
 
 /**
  *  Internal use only.
+ *
+ *  @see -serialize
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (nullable NSDictionary *)_toDictionary;
 

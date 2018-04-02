@@ -89,6 +89,7 @@
 		E25E5A981E79E552003E1E9B /* ChatImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E25E5A971E79E552003E1E9B /* ChatImage.m */; };
 		E26802711E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E26802701E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.m */; };
 		E2A8E63E1E5CEB6B0016BA63 /* GroupChannelChattingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3A0831D99DA3800244336 /* GroupChannelChattingViewController.m */; };
+		E2B401342022789600531A7A /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B401332022789600531A7A /* UserNotifications.framework */; };
 		E2CEFCC51E956FDC0060C569 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2CEFCC31E956FDC0060C569 /* UserProfileViewController.m */; };
 		E2CEFCC61E956FDC0060C569 /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2CEFCC41E956FDC0060C569 /* UserProfileViewController.xib */; };
 /* End PBXBuildFile section */
@@ -253,6 +254,7 @@
 		E25E5A971E79E552003E1E9B /* ChatImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatImage.m; sourceTree = "<group>"; };
 		E268026F1E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImageView+ImageCache.h"; sourceTree = "<group>"; };
 		E26802701E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLAnimatedImageView+ImageCache.m"; sourceTree = "<group>"; };
+		E2B401332022789600531A7A /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		E2CEFCC21E956FDC0060C569 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		E2CEFCC31E956FDC0060C569 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		E2CEFCC41E956FDC0060C569 /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2B401342022789600531A7A /* UserNotifications.framework in Frameworks */,
 				E23FFC571E6F7B4F007E2E2D /* Photos.framework in Frameworks */,
 				B4BD35B7B36280BBAF9B8122 /* Pods_SendBird_iOS.framework in Frameworks */,
 			);
@@ -514,6 +517,7 @@
 		7FBC9D59107481A6793B2D20 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E2B401332022789600531A7A /* UserNotifications.framework */,
 				E23FFC561E6F7B4F007E2E2D /* Photos.framework */,
 				E23FFC541E6F796D007E2E2D /* AssetsLibrary.framework */,
 				382D6CF042D942EB06CD9F0C /* Pods_SendBird_iOS.framework */,
@@ -1025,7 +1029,7 @@
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "SendBird-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.sample;
 				PRODUCT_NAME = SendBird;
@@ -1043,7 +1047,7 @@
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "SendBird-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.sample;
 				PRODUCT_NAME = SendBird;

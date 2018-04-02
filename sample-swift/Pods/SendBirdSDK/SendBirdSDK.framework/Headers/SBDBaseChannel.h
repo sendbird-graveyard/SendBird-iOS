@@ -24,6 +24,7 @@
 @class SBDMessageListQuery;
 @class SBDGroupChannel;
 @class SBDOpenChannel;
+@class SBDUserMessageParams, SBDFileMessageParams;
 
 /**
  *  An object that adopts the `SBDChannelDelegate` protocol is responsible for receiving the events in the channel. Some of delegate methods are common for the `SBDBaseChannel`. However, there are delegate methods for the `SBDOpenChannel` and `SBDGroupChannel` exclusive. The `SBDChannelDelegate` can be added by [`addChannelDelegate:identifier:`](../Classes/SBDMain.html#//api/name/addChannelDelegate:identifier:) in `SBDMain`. Every `SBDChannelDelegate` method which is added is going to receive events. 
@@ -69,6 +70,14 @@
  @param message The updated message.
  */
 - (void)channel:(SBDBaseChannel * _Nonnull)sender didUpdateMessage:(SBDBaseMessage * _Nonnull)message;
+
+/**
+ A delegate is called when someone mentioned the user.
+
+ @param channel The channel mention was occured in.
+ @param message The message mention was occured about.
+ */
+- (void)channel:(nonnull SBDBaseChannel *)channel didReceiveMention:(nonnull SBDBaseMessage *)message;
 
 /**
  *  A callback when read receipts updated.
@@ -137,50 +146,50 @@
 - (void)channel:(SBDOpenChannel * _Nonnull)sender userDidExit:(SBDUser * _Nonnull)user;
 
 /**
- *  A callback when a user was muted in the open channel.
+ *  A callback when a user was muted in the channel.
  *
- *  @param sender The open channel.
+ *  @param sender The channel.
  *  @param user   The user who was muted.
  */
-- (void)channel:(SBDOpenChannel * _Nonnull)sender userWasMuted:(SBDUser * _Nonnull)user;
+- (void)channel:(SBDBaseChannel * _Nonnull)sender userWasMuted:(SBDUser * _Nonnull)user;
 
 /**
- *  A callback when a user was unmuted in the open channel.
+ *  A callback when a user was unmuted in the channel.
  *
- *  @param sender The open channel.
+ *  @param sender The channel.
  *  @param user   The user who was unmuted.
  */
-- (void)channel:(SBDOpenChannel * _Nonnull)sender userWasUnmuted:(SBDUser * _Nonnull)user;
+- (void)channel:(SBDBaseChannel * _Nonnull)sender userWasUnmuted:(SBDUser * _Nonnull)user;
 
 /**
- *  A callback when a user was banned in the open channel.
+ *  A callback when a user was banned in the channel.
  *
- *  @param sender The open channel.
+ *  @param sender The channel.
  *  @param user   The user who was banned.
  */
-- (void)channel:(SBDOpenChannel * _Nonnull)sender userWasBanned:(SBDUser * _Nonnull)user;
+- (void)channel:(SBDBaseChannel * _Nonnull)sender userWasBanned:(SBDUser * _Nonnull)user;
 
 /**
- *  A callback when a user was unbanned in the open channel.
+ *  A callback when a user was unbanned in the channel.
  *
- *  @param sender The open channel.
+ *  @param sender The channel.
  *  @param user   The user who was unbanned.
  */
-- (void)channel:(SBDOpenChannel * _Nonnull)sender userWasUnbanned:(SBDUser * _Nonnull)user;
+- (void)channel:(SBDBaseChannel * _Nonnull)sender userWasUnbanned:(SBDUser * _Nonnull)user;
 
 /**
- *  A callback when an open channel was frozen.
+ *  A callback when an channel was frozen.
  *
- *  @param sender The open channel.
+ *  @param sender The channel.
  */
-- (void)channelWasFrozen:(SBDOpenChannel * _Nonnull)sender;
+- (void)channelWasFrozen:(SBDBaseChannel * _Nonnull)sender;
 
 /**
- *  A callback when an open channel was unfrozen.
+ *  A callback when an channel was unfrozen.
  *
- *  @param sender The open channel.
+ *  @param sender The channel.
  */
-- (void)channelWasUnfrozen:(SBDOpenChannel * _Nonnull)sender;
+- (void)channelWasUnfrozen:(SBDBaseChannel * _Nonnull)sender;
 
 /**
  *  A callback when an open channel was changed.
@@ -192,7 +201,8 @@
 /**
  *  A callback when an open channel was deleted.
  *
- *  @param channelUrl The open channel.
+ *  @param channelUrl The channel url.
+ *  @param channelType The Type of channel, types of open channel or group channel.
  */
 - (void)channelWasDeleted:(NSString * _Nonnull)channelUrl channelType:(SBDChannelType)channelType;
 
@@ -305,7 +315,44 @@
  */
 @property (strong, nonatomic, nullable) NSString *customType;
 
+/**
+ *  Internal use only.
+ *
+ *  @warning *Important*: DON'T use this property. This property will be unavailable.
+ */
+@property (atomic) BOOL isDirty;
+
+/**
+ *  The flag for a frozen channel.
+ *
+ *  @since 3.0.89
+ *  Was moved from SBDOpenChannel
+ */
+@property (atomic, setter=setFreeze:) BOOL isFrozen;
+
+/**
+ *  Represents the channel is ephemeral or not.
+ *
+ *  @since 3.0.90
+ */
+@property (nonatomic, readonly) BOOL isEphemeral;
+
+/**
+ *  Internal use only.
+ *
+ *  @param dict dict
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
+ */
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
+
+/**
+ *  Internal use only.
+ *
+ *  @param dict dict
+ *  @param isDirty isDirty
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
+ */
+- (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict isDirty:(BOOL)isDirty;
 
 /**
  *  Sends a user message without <span>data</span>.
@@ -375,6 +422,16 @@
  *  @return Returns the temporary user message with a request ID. It doesn't have a message ID.
  */
 - (nonnull SBDUserMessage *)sendUserMessage:(NSString * _Nullable)message data:(NSString * _Nullable)data customType:(NSString * _Nullable)customType targetLanguages:(NSArray<NSString *> * _Nullable)targetLanguages completionHandler:(nullable void (^)(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Sends a string message of params. The message is translated into the target languages.
+ *
+ *  @param params               The instance of SBDUserMessageParams that can has parameters related with string message.
+ *  @param completionHandler    The handler block to be executed after the message was sent. This block has no return value and takes two argument, one is a file message was sent and other is an error made when there is something wrong to message.
+ *
+ *  @return SDBUserMessage      Returns the temporary user message instance with a request ID. It doesn't have a message ID and an URL.
+ */
+- (nonnull SBDUserMessage *)sendUserMessageWithParams:(nonnull SBDUserMessageParams *)params completionHandler:(nullable void (^)(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Sends a file message with binary <span>data</span>. The binary <span>data</span> is uploaded to SendBird file storage and a URL of the file will be generated.
@@ -527,6 +584,27 @@
  *  @return Returns the temporary file message with a request ID. It doesn't have a message ID and an URL.
  */
 - (nonnull SBDFileMessage *)sendFileMessageWithFilePath:(NSString * _Nonnull)filepath type:(NSString * _Nonnull)type thumbnailSizes:(NSArray<SBDThumbnailSize *> * _Nullable)thumbnailSizes data:(NSString * _Nullable)data customType:(NSString * _Nullable)customType progressHandler:(nullable void (^)(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend))progressHandler completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Sends a file message with file or file URL of params without progress. If the params has a binary file, it will upload data to Sendbird storage. If not, the params has a file url, it will send a message with file url.
+ *
+ *  @param params               The instance of SBDFileMessageParams that can has parameters related with file.
+ *  @param completionHandler    The handler block to be executed after the message was sent. This block has no return value and takes two argument, one is a file message was sent and other is an error made when there is something wrong to message.
+ *
+ *  @return SDBFileMessage      Returns the temporary file message instance with a request ID. It doesn't have a message ID and an URL.
+ */
+- (nonnull SBDFileMessage *)sendFileMessageWithParams:(nonnull SBDFileMessageParams *)params completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Sends a file message with file or file URL of params with progress. If the params has a binary file, it will upload data to Sendbird storage. If not, the params has a file url, it will send a message with file url.
+ *
+ *  @param params               The instance of SBDFileMessageParams that can has parameters related with file.
+ *  @param progressHandler      The handler block to be used to monitor progression. `bytesSent` is the number of bytes sent since this method was called. `totalBytesSent` is the total number of bytes sent so far. `totalBytesExpectedToSend` is the expected length of the body data. These parameters are the same to the declaration of [`URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:`](https://developer.apple.com/reference/foundation/nsurlsessiontaskdelegate/1408299-urlsession?language=objc).
+ *  @param completionHandler    The handler block to be executed after the message was sent. This block has no return value and takes two argument, one is a file message was sent and other is an error made when there is something wrong to message.
+ *
+ *  @return SDBFileMessage      Returns the temporary file message instance with a request ID. It doesn't have a message ID and an URL.
+ */
+- (nonnull SBDFileMessage *)sendFileMessageWithParams:(nonnull SBDFileMessageParams *)params progressHandler:(nullable void (^)(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend))progressHandler completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error))completionHandler;
 
 #pragma mark - Load message list
 /**
@@ -905,6 +983,9 @@
 
 /**
  *  Internal use only.
+ *
+ *  @see -serialize
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (nullable NSDictionary *)_toDictionary;
 

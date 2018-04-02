@@ -16,6 +16,10 @@
 @class SBDMember;
 @class SBDGroupChannel;
 @class SBDGroupChannelListQuery;
+@class SBDGroupChannelParams;
+@class SBDGroupChannelMemberListQuery;
+@class SBDPublicGroupChannelListQuery;
+@class SBDUserListQuery;
 
 /**
  *  The `SBDGroupChannel` class represents a group channel which is a private chat. The user who wants to join the group channel has to be invited by another user who is already joined the channel. This class is derived from `SBDBaseChannel`. If the `SBDChannelDelegate` is added, the user will automatically receive all messages from the group channels where the user belongs after connection. The `SBDGroupChannel` provides the features of general messaging apps.
@@ -36,6 +40,18 @@
  *  Last message of the channel.
  */
 @property (strong, nonatomic, nullable) SBDBaseMessage *lastMessage;
+
+/**
+ *  Represents the channel is super channel or not.
+ *  NO by default.
+ */
+@property (nonatomic, setter=setSuper:) BOOL isSuper;
+
+/**
+ *  Represents the channel is public channel or private one.
+ *  NO by default.
+ */
+@property (nonatomic, setter=setPublic:) BOOL isPublic;
 
 /**
  *  Represents the channel is distinct or not.
@@ -75,9 +91,16 @@
 @property (atomic) BOOL isHidden;
 
 /**
- Internal use only.
+ *  Internal use only.
+ *
+ *  @warning *Important*: DON'T use this property. This property will be unavailable.
  */
 @property (atomic) BOOL hasBeenUpdated;
+
+/**
+ Current member's state in the channel.
+ */
+@property (atomic) SBDMemberState myMemberState;
 
 /**
  *  Refreshes this channel instance.
@@ -96,11 +119,43 @@
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
 
 /**
+ *  Internal use only.
+ *
+ *  @param dict dict
+ *  @param isDirty isDirty
+ *  @see -initWithDictionary:
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
+ */
+- (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict isDirty:(BOOL)isDirty;
+
+/**
  *  Creates a query for my group channel list.
  *
  *  @return SBDGroupChannelListQuery instance for the current user.
  */
 + (nullable SBDGroupChannelListQuery *)createMyGroupChannelListQuery;
+
+/**
+ *  Creates a query for public group channel list.
+ *
+ *  @return SBDPublicGroupChannelListQuery  The instance to query public group channels.
+ */
++ (nullable SBDPublicGroupChannelListQuery *)createPublicGroupChannelListQuery;
+
+/**
+ *  Creates a query for members in group channel list.
+ *
+ *  @return SBDGroupChannelMemberListQuery  The instance of the members in group channel.
+ */
+- (nullable SBDGroupChannelMemberListQuery *)createMemberListQuery;
+
+/**
+ *  Creates a query instance for banned user list of the channel.
+ *
+ *  @return SBDUserListQuery The instance for the banned user list. Query only banned user list.
+ *  @since 3.0.89
+ */
+- (nullable SBDUserListQuery *)createBannedUserListQuery;
 
 /**
  *  Creates a group channel with user objects.
@@ -296,6 +351,14 @@
 + (void)createChannelWithName:(NSString * _Nullable)name isDistinct:(BOOL)isDistinct userIds:(NSArray<NSString *> * _Nonnull)userIds coverImageFilePath:(NSString * _Nonnull)coverImageFilePath data:(NSString * _Nullable)data customType:(NSString * _Nullable)customType progressHandler:(nullable void (^)(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend))progressHandler completionHandler:(nonnull void (^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
 
 /**
+ *  Create a group channel with `SBDGroupChannelParams` class.
+ *
+ *  @param params               The parameter instance of SBDGroupChannelParams what has properties to create group channel.
+ *  @param completionHandler    The handler block to execute. `channel` is the group channel instance which has the `userIds` as <span>members</span>.
+ */
++ (void)createChannelWithParams:(nonnull SBDGroupChannelParams *)params completionHandler:(nonnull void(^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
+
+/**
  *  Updates a group channel with user IDs.
  *
  *  @param name              The name of group channel.
@@ -346,6 +409,14 @@
  *  @param completionHandler The handler block to execute. `channel` is the group channel instance which has the `userIds` as <span>members</span>.
  */
 - (void)updateChannelWithName:(NSString * _Nullable)name coverImage:(NSData * _Nullable)coverImage coverImageName:(NSString * _Nullable)coverImageName data:(NSString * _Nullable)data progressHandler:(nullable void (^)(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend))progressHandler completionHandler:(nonnull void (^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Update a group channel with `SBDGroupChannelParams` class.
+ *
+ *  @param params               The parameter instance of SBDGroupChannelParams what has properties to update group channel.
+ *  @param completionHandler    The handler block to execute. `channel` is the group channel instance which has the `userIds` as <span>members</span>.
+ */
+- (void)updateChannelWithParams:(nonnull SBDGroupChannelParams *)params completionHandler:(nonnull void (^)(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Gets a group channel instance with channel URL from server asynchronously.
@@ -424,12 +495,13 @@
  *
  *  @param completionHandler The handler block to execute.
  */
-+ (void)markAsReadAllWithCompletionHandler:(nullable void (^)(SBDError *_Nullable error))completionHandler;
++ (void)markAsReadAllWithCompletionHandler:(nullable void (^)(SBDError *_Nullable error))completionHandler DEPRECATED_ATTRIBUTE;
 
 /**
  *  Internal use only.
  *
  *  @deprecated in v3.0.42.
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 + (void)_markAsRead DEPRECATED_ATTRIBUTE;
 
@@ -450,16 +522,25 @@
 
 /**
  *  Internal use only.
+ *
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 + (void)clearCache;
 
 /**
  *  Internal use only.
+ *
+ *  @param channelUrl channelUrl
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 + (void)removeChannelFromCacheWithChannelUrl:(NSString * _Nonnull)channelUrl;
 
 /**
  *  Internal use only.
+ *
+ *  @param channelUrl channelUrl
+ *  @see +getChannelWithUrl:completionHandler:
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 + (SBDGroupChannel * _Nullable)getChannelFromCacheWithChannelUrl:(NSString * _Nonnull)channelUrl;
 
@@ -478,8 +559,10 @@
  *  @param user The user
  *
  *  @return the timestamp of the last seen at.
+ *
+ *  @deprecated in 3.0.86.
  */
-- (long long)getLastSeenAtByUser:(SBDUser * _Nonnull)user;
+- (long long)getLastSeenAtByUser:(SBDUser * _Nonnull)user DEPRECATED_ATTRIBUTE;
 
 /**
  *  Returns the timestamp of the last seen at the channel by user Id.
@@ -487,8 +570,10 @@
  *  @param userId The user Id.
  *
  *  @return the timestamp of the last seen at.
+ *
+ *  @deprecated in 3.0.86.
  */
-- (long long)getLastSeenAtByUserId:(NSString * _Nonnull)userId;
+- (long long)getLastSeenAtByUserId:(NSString * _Nonnull)userId DEPRECATED_ATTRIBUTE;
 
 /**
  *  Returns the <span>members</span> who read the message.
@@ -506,7 +591,7 @@
  *
  *  @return Members who don't read the message.
  */
-- (nullable NSArray<SBDMember *> *)getUnreadMemebersWithMessage:(SBDBaseMessage * _Nonnull)message;
+- (nullable NSArray<SBDMember *> *)getUnreadMembersWithMessage:(SBDBaseMessage * _Nonnull)message;
 
 /**
  *  Returns the read status.
@@ -546,31 +631,49 @@
 
 /**
  *  Internal use only.
+ *
+ *  @param userId userId
+ *  @param timestamp timestamp
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (void)updateReadReceiptWithUserId:(NSString * _Nonnull)userId timestamp:(long long)timestamp;
 
 /**
  *  Internal use only.
+ *
+ *  @param user user
+ *  @param start start
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (void)updateTypingStatusWithUser:(SBDUser * _Nonnull)user start:(BOOL)start;
 
 /**
  *  Internal use only.
+ *
+ *  @param user user
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (void)addMember:(SBDMember * _Nonnull)user;
 
 /**
  *  Internal use only.
+ *
+ *  @param user user
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (nullable SBDMember *)removeMember:(SBDMember * _Nonnull)user;
 
 /**
  *  Internal use only.
+ *
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (void)typingStatusTimeout;
 
 /**
  *  Internal use only.
+ *
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 + (void)updateTypingStatus;
 
@@ -604,6 +707,15 @@
  *  @param completionHandler The handler block to execute. The `unreadCount` is the total count of unread channels in all of group channel which the current is a member.
  */
 + (void)getTotalUnreadChannelCountWithCompletionHandler:(nullable void (^)(NSUInteger unreadCount, SBDError * _Nullable error))completionHandler;
+
+/**
+ Gets the total unread message count of the channels that have the specific custom types.
+
+ @param customTypes The array of the custom types. If the array is nil or the length of the array is zero, the total unread message count will be the same result of the `getTotalUnreadMessageCountWithCompletionHandler:`.
+ @param completionHandler The handler block to execute. The `unreadCount` is the total unread message count of the channels that have the specific custom types. If there isn't any error, the `error` will be nil.
+ */
++ (void)getTotalUnreadMessageCountWithChannelCustomTypes:(NSArray<NSString *> * _Nullable)customTypes
+                                       completionHandler:(nullable void (^)(NSUInteger unreadCount, SBDError * _Nullable error))completionHandler;
 
 /**
  Builds a group channel object from serialized <span>data</span>.
@@ -672,11 +784,16 @@
 
 /**
  *  Internal use only.
+ *
+ *  @see -serialize
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (nullable NSDictionary *)_toDictionary;
 
 /**
  *  Internal use only.
+ *
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 + (nullable NSArray<SBDGroupChannel *> *)getCachedChannels;
 
@@ -694,5 +811,106 @@
  @param completionHandler The handler block to execute.
  */
 + (void)getChannelCountWithMemberStateFilter:(SBDMemberStateFilter)memberStateFilter completionHandler:(nullable void (^)(NSUInteger groupChannelCount, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Join a group channel
+ *
+ *  @param completionHandler    The handler block to execute.
+ */
+- (void)joinWithCompletionHandler:(nullable void(^)(SBDError * _Nullable error))completionHandler;
+
+#pragma mark - moderation
+
+/**
+ *  Bans a user for seconds. Let a user out and prevent to join again. If the user is already banned, duration will be updated from the time that was initialized.
+ *
+ *  @param userId               The user id to be banned.
+ *  @param seconds              Seconds of ducation to be banned. Seconds should be larger than -1. If it is -1, user is banned forever. If it is 0, duration is set 10years by default.
+ *  @param description          The reason why the user was banned.
+ *  @param completionHandler    The handler block to be executed after the user is banned. This block has no return value and takes an argument that is an error made when there is something wrong to ban.
+ *  @since 3.0.89
+ */
+- (void)banUserWithUserId:(nonnull NSString *)userId seconds:(NSInteger)seconds description:(nullable NSString *)description completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Bans a user for seconds. Let a user out and prevent to join again. If the user is already banned, duration will be updated from the time that was initialized.
+ *
+ *  @param user                 The user to be banned.
+ *  @param seconds              Seconds of ducation to be banned. Seconds should be larger than -1. If it is -1, user is banned forever. If it is 0, duration is set 10years by default.
+ *  @param description          The reason why the user was banned.
+ *  @param completionHandler    The handler block to be executed after the user is banned. This block has no return value and takes an argument that is an error made when there is something wrong to ban.
+ *  @since 3.0.89
+ */
+- (void)banUser:(nonnull SBDUser *)user seconds:(NSInteger)seconds description:(nullable NSString *)description completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Remove ban for a user.
+ *
+ *  @param userId            The user id to be removed ban.
+ *  @param completionHandler The handler block to be executed after remove ban. This block has no return value and takes an argument that is an error made when there is something wrong to remove ban.
+ *  @since 3.0.89
+ */
+- (void)unbanUserWithUserId:(nonnull NSString *)userId completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Remove ban for a user.
+ *
+ *  @param user              The user to be removed ban.
+ *  @param completionHandler The handler block to be executed after remove ban. This block has no return value and takes an argument that is an error made when there is something wrong to remove ban.
+ *  @since 3.0.89
+ */
+- (void)unbanUser:(nonnull SBDUser *)user completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Mute the user. Muted user cannot send any messages to the group channel.
+ *
+ *  @param userId            The user id to be muted.
+ *  @param completionHandler The handler block to be executed after mute. This block has no return value and takes an argument that is an error made when there is something wrong to mute the user.
+ *  @since 3.0.89
+ */
+- (void)muteUserWithUserId:(nonnull NSString *)userId completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Mute the user. Muted user cannot send any messages to the group channel.
+ *
+ *  @param user              The user to be muted.
+ *  @param completionHandler The handler block to be executed after mute. This block has no return value and takes an argument that is an error made when there is something wrong to mute the user.
+ *  @since 3.0.89
+ */
+- (void)muteUser:(nonnull SBDUser *)user completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Turn off mute the user.
+ *
+ *  @param userId            The user Id to be turned off mute.
+ *  @param completionHandler The handler block to be executed after turn off mute. This block has no return value and takes an argument that is an error made when there is something wrong to turn off mute.
+ *  @since 3.0.89
+ */
+- (void)unmuteUserWithUserId:(nonnull NSString *)userId completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Turn off mute the user.
+ *
+ *  @param user              The user to be turned off mute.
+ *  @param completionHandler The handler block to be executed after turn off mute. This block has no return value and takes an argument that is an error made when there is something wrong to turn off mute.
+ *  @since 3.0.89
+ */
+- (void)unmuteUser:(nonnull SBDUser *)user completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Freeze the channel. If channel is frozen, only operators can send messages to the channel.
+ *
+ *  @param completionHandler The handler block to be executed after freeze. This block has no return value and takes an argument that is an error made when there is something wrong to freeze.
+ *  @since 3.0.89
+ */
+- (void)freezeWithCompletionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Stop to freeze the channel. If It is not frozen channel, this will be ignored.
+ *
+ *  @param completionHandler The handler block to be executed after stop to freeze. This block has no return value and takes an argument that is an error made when there is something wrong to stop to freeze.
+ *  @since 3.0.89
+ */
+- (void)unfreezeWithCompletionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 @end

@@ -46,11 +46,19 @@
 
 /**
  *  Internal use only.
+ *
+ *  @param queryType queryType
+ *  @param channel channel
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (nullable instancetype)initWithQueryType:(SBDUserListQueryType)queryType channel:(SBDBaseChannel * _Nullable)channel;
 
 /**
  *  Internal use only.
+ *
+ *  @param userIds userIds
+ *  @see [+createUserListQueryWithUserIds:](../Classes/SBDMain.html#//api/name/createUserListQueryWithUserIds:) of `SBDMain` class.
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (nullable instancetype)initWithUserIds:(NSArray<NSString *> * _Nonnull)userIds;
 

@@ -46,6 +46,7 @@
     application.applicationIconBadgeNumber = 0;
     
     [SBDMain initWithApplicationId:@"9DA1B1F4-0BE6-4DA8-82C5-2E81DAB56F23"];
+    [SBDMain setLogLevel:1112016];
     [SBDOptions setUseMemberAsMessageSender:YES];
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
@@ -74,16 +75,29 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+//    [SBDMain disconnectWithCompletionHandler:^{
+//        NSLog(@"<<<<< Disconected by app delegate. >>>>>");
+//    }];
 }
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+//    [SBDMain connectWithUserId:nil completionHandler:^(SBDUser * _Nullable user, SBDError * _Nullable error) {
+//        if (error != nil) {
+//            NSLog(@"##### Error when connecting in app delegate. #####");
+//
+//            return;
+//        }
+//
+//        NSLog(@">>>>> Connected in app delegat(%@). <<<<<", user.userId);
+//    }];
 }
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
 }
 
 

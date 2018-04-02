@@ -10,6 +10,9 @@
 #import "SBDBaseMessage.h"
 #import "SBDBaseChannel.h"
 
+/**
+ The `SBDThumbnailSize` class represents the thumbnail size of thumbnail.
+ */
 @interface SBDThumbnailSize : NSObject
 
 /**
@@ -61,7 +64,9 @@
 @property (nonatomic, readonly) CGSize realSize;
 
 /**
- Internal use only.
+ *  Internal use only.
+ *
+ *  @warning *Important*: DON'T use this property. This property will be unavailable.
  */
 @property (atomic, readonly) BOOL requireAuth;
 
@@ -75,7 +80,10 @@
 
 /**
  *  Internal use only.
+ *
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
+
 - (nullable NSDictionary *)_toDictionary;
 
 
@@ -135,8 +143,11 @@
 @property (strong, nonatomic, readonly, nullable) NSArray<SBDThumbnail *> *thumbnails;
 
 /**
- Internal use only.
+ *  Internal use only.
+ *
+ *  @warning *Important*: DON'T use this property. This property will be unavailable.
  */
+
 @property (atomic, readonly) BOOL requireAuth;
 
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
@@ -199,6 +210,9 @@
 
 /**
  *  Internal use only.
+ *
+ *  @see -serialize
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (nullable NSDictionary *)_toDictionary;
 

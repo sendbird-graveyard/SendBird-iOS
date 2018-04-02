@@ -52,6 +52,7 @@ typedef NS_ENUM(NSInteger, SBDChannelEventCategory) {
 typedef NS_ENUM(NSInteger, SBDUserEventCategory) {
     SBDUserEventCategoryUserUnblock = 20000,
     SBDUserEventCategoryUserBlock = 20001,
+    SBDUserEventCategoryUserFriendDiscoveryReady = 20900,
 };
 
 typedef NS_ENUM(NSUInteger, SBDUserListQueryType) {
@@ -68,7 +69,6 @@ typedef NS_ENUM(NSInteger, SBDLogLevel) {
     SBDLogLevelError = 1,
     SBDLogLevelWarning = 2,
     SBDLogLevelInfo = 3,
-    SBDLogLevelDebug = 4
 };
 
 #endif /* SBDInternalTypes_h */

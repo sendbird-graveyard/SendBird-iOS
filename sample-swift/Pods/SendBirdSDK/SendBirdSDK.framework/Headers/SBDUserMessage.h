@@ -66,6 +66,9 @@
 
 /**
  *  Internal use only.
+ *
+ *  @see -serialize
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (nullable NSDictionary *)_toDictionary;
 

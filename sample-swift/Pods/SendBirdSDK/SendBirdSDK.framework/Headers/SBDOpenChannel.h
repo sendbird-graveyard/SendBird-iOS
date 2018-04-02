@@ -29,22 +29,24 @@
 @property (strong, nonatomic, readonly, nullable) NSMutableArray<SBDUser *> *operators;
 
 /**
- The frozen state of this channel.
- */
-@property (atomic) BOOL isFrozen;
-
-/**
  *  Internal use only.
+ *
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 + (void)clearCache;
 
 /**
  *  Internal use only.
+ *
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 + (void)clearEnteredChannels;
 
 /**
  *  Internal use only.
+ *
+ *  @param channelUrl channelUrl
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 + (void)removeChannelFromCacheWithChannelUrl:(NSString * _Nonnull)channelUrl;
 
@@ -56,6 +58,16 @@
  *  @return The instance of open channel.
  */
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
+
+/**
+ *  Internal use only.
+ *
+ *  @param dict dict
+ *  @param isDirty isDirty
+ *  @see -initWithDictionary:
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
+ */
+- (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict isDirty:(BOOL)isDirty;
 
 /**
  *  Creates a query instance for open channel list.
@@ -339,6 +351,8 @@
 
 /**
  *  Internal use only.
+ *
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 + (nullable NSMutableDictionary<NSString *, SBDOpenChannel *> *)enteredChannels;
 
@@ -443,6 +457,9 @@
 
 /**
  *  Internal use only.
+ *
+ *  @see -serialize
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (nullable NSDictionary *)_toDictionary;
 

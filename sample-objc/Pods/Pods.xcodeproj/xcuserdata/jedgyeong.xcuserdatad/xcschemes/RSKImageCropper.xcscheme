@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'CECC4C02B91B38368D6706BC3141324A'
-               BlueprintName = 'RSKImageCropper'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'RSKImageCropper.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CECC4C02B91B38368D6706BC3141324A"
+               BlueprintName = "RSKImageCropper"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "RSKImageCropper.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

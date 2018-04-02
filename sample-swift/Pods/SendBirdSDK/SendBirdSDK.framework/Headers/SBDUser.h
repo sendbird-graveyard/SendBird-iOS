@@ -7,8 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "SBDError.h"
 #import "SBDTypes.h"
+
+@class SBDUser;
+
+@protocol SBDUserEventDelegate <NSObject>
+
+@optional
+
+- (void)didDiscoverFriends:(NSArray<SBDUser *> * _Nullable)friends;
+
+@end
 
 /**
  *  The `SBDUser` class represents a user. The user is identified by the `userId`, so the `userId` has to be unique. The `userId`, `nickname` and `profileUrl` are valid in every `SBDUser` instance, however the `connectionStatus` and `lastSeenAt` is valid in `SBDUser` instance from `SBDUserListQuery`.
@@ -31,6 +42,11 @@
 @property (strong, nonatomic, nullable) NSString *profileUrl;
 
 /**
+ *  Original profile image url.
+ */
+@property (strong, nonatomic, nullable) NSString *originalProfileUrl;
+
+/**
  *  User connection status. This is defined in `SBDUserConnectionStatus`.
  */
 @property (atomic, readonly) SBDUserConnectionStatus connectionStatus;
@@ -41,7 +57,19 @@
 @property (atomic, readonly) long long lastSeenAt;
 
 /**
+ Represents the user is activated. This property is changed by the [Platform API](https://docs.sendbird.com/platform#user_3_update_a_user)
+ */
+@property (atomic, readonly) BOOL isActive;
+
+@property (strong, nullable) NSString *friendDiscoveryKey;
+
+@property (strong, nullable) NSString *friendName;
+
+/**
  *  Internal use only.
+ *
+ *  @param dict dict
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
 
@@ -62,6 +90,9 @@
 
 /**
  *  Internal use only.
+ *
+ *  @see -serialize
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (nullable NSDictionary *)_toDictionary;
 
@@ -103,6 +134,5 @@
  *  @param completionHandler The handler block to execute.
  */
 - (void)deleteAllMetaDataWithCompletionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
-
 
 @end

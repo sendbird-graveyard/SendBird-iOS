@@ -32,10 +32,16 @@
 @property (strong, nonatomic, nullable) NSString *channelType;
 
 /**
+ *  The list of users who was mentioned together with the message.
+ *
+ *  @since 3.0.90
+ */
+@property (strong, nonatomic, readonly, nullable) NSArray <SBDUser *> *mentionedUsers;
+
+/**
  *  Message created time in millisecond(UTC).
  */
 @property (atomic) long long createdAt;
-
 
 /**
  Message updated time in millisecond(UTC).
@@ -53,16 +59,27 @@
 
 /**
  *  Internal use only.
+ *
+ *  @param dict dict
+ *  @see -initWithDictionary:
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 + (nullable SBDBaseMessage *)buildWithDictionary:(NSDictionary * _Nonnull)dict;
 
 /**
  *  Internal use only.
+ *
+ *  @param dict dict
+ *  @param channel channel
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 + (nullable SBDBaseMessage *)buildWithDictionary:(NSDictionary * _Nonnull)dict channel:(SBDBaseChannel * _Nonnull)channel;
 
 /**
  *  Internal use only.
+ *
+ *  @param data data
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 + (nullable SBDBaseMessage *)buildWithData:(NSString * _Nonnull)data;
 
@@ -97,6 +114,9 @@
 
 /**
  *  Internal use only.
+ *
+ *  @see -serialize
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (nullable NSDictionary *)_toDictionary;
 

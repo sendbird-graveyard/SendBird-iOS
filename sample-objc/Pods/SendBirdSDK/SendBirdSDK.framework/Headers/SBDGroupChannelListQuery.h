@@ -77,16 +77,35 @@
 @property (strong, nonatomic, nullable) NSString *channelNameFilter DEPRECATED_ATTRIBUTE;
 
 /**
+ *  Sets to filter super channel.
+ *  SBDGroupChannelSuperChannelFilterAll by default.
+ */
+@property (nonatomic) SBDGroupChannelSuperChannelFilter superChannelFilter;
+
+/**
+ *  Sets to filter public channel.
+ *  SBDGroupChannelSuperChannelFilterAll by default.
+ */
+@property (nonatomic) SBDGroupChannelPublicChannelFilter publicChannelFilter;
+
+/**
+ *  Sets to filter channels by custom type that starts with.
+ */
+@property (nonatomic, copy, nullable) NSString *customTypeStartsWithFilter;
+
+/**
  *  Shows if the query is loading.
  *
  *  @return Returns YES if the query is loading, otherwise returns NO.
  */
 - (BOOL)isLoading;
 
-- (nullable instancetype)init;
-
 /**
  *  Internal use only.
+ *
+ *  @param user user
+ *  @see [SBDGroupChannel createMyGroupChannelListQuery]
+ *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
 - (nullable instancetype)initWithUser:(SBDUser * _Nonnull)user;
 
@@ -126,9 +145,17 @@
  Sets the custom type filter.
 
  @param customType The custom type to search.
+ 
+ @deprecated in v3.0.79.
  */
-- (void)setCustomTypeFilter:(NSString * _Nullable)customType;
+- (void)setCustomTypeFilter:(NSString * _Nullable)customType DEPRECATED_ATTRIBUTE;
 
+/**
+ Sets the custom types filter.
+ 
+ @param customTypes The custom types to search.
+ */
+- (void)setCustomTypesFilter:(NSArray<NSString *> * _Nullable)customTypes;
 
 /**
  Sets the member state filter.
