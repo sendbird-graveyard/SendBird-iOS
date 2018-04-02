@@ -114,27 +114,27 @@ class MemberListViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-    func channel(_ sender: SBDOpenChannel, userWasMuted user: SBDUser) {
+    func channel(_ sender: SBDBaseChannel, userWasMuted user: SBDUser) {
         
     }
     
-    func channel(_ sender: SBDOpenChannel, userWasUnmuted user: SBDUser) {
+    func channel(_ sender: SBDBaseChannel, userWasUnmuted user: SBDUser) {
         
     }
     
-    func channel(_ sender: SBDOpenChannel, userWasBanned user: SBDUser) {
+    func channel(_ sender: SBDBaseChannel, userWasBanned user: SBDUser) {
         
     }
     
-    func channel(_ sender: SBDOpenChannel, userWasUnbanned user: SBDUser) {
+    func channel(_ sender: SBDBaseChannel, userWasUnbanned user: SBDUser) {
         
     }
     
-    func channelWasFrozen(_ sender: SBDOpenChannel) {
+    func channelWasFrozen(_ sender: SBDBaseChannel) {
         
     }
     
-    func channelWasUnfrozen(_ sender: SBDOpenChannel) {
+    func channelWasUnfrozen(_ sender: SBDBaseChannel) {
         
     }
     

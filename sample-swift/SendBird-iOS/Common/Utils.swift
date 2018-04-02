@@ -22,37 +22,24 @@ class Utils: NSObject {
     }
     
     static func generateNavigationTitle(mainTitle: String, subTitle: String?) -> NSAttributedString? {
-        var mainTitleAttribute: [String:AnyObject]?
-        var subTitleAttribute: [String:AnyObject]?
+        var mainTitleAttribute: [NSAttributedStringKey:AnyObject]
+        var subTitleAttribute: [NSAttributedStringKey:AnyObject]?
+        var fullTitle: NSMutableAttributedString
         
-        if subTitle == nil || subTitle?.characters.count == 0 {
-            mainTitleAttribute = [
-                NSFontAttributeName: Constants.navigationBarTitleFont(),
-                NSForegroundColorAttributeName: UIColor.black
-            ]
-        }
-        else {
-            mainTitleAttribute = [
-                NSFontAttributeName: Constants.navigationBarTitleFont(),
-                NSForegroundColorAttributeName: UIColor.black
-            ]
-            
+        mainTitleAttribute = [
+            NSAttributedStringKey.font: Constants.navigationBarTitleFont(),
+            NSAttributedStringKey.foregroundColor: UIColor.black
+        ]
+        fullTitle = NSMutableAttributedString(string: mainTitle)
+        fullTitle.addAttributes(mainTitleAttribute, range: NSMakeRange(0, mainTitle.utf8CString.count))
+        
+        if let theSubTitle: String = subTitle {
             subTitleAttribute = [
-                NSFontAttributeName: Constants.navigationBarSubTitleFont(),
-                NSForegroundColorAttributeName: Constants.navigationBarSubTitleColor()
+                NSAttributedStringKey.font: Constants.navigationBarSubTitleFont(),
+                NSAttributedStringKey.foregroundColor: Constants.navigationBarSubTitleColor()
             ]
-        }
-        
-        var fullTitle: NSMutableAttributedString?
-        if subTitle == nil || subTitle?.characters.count == 0 {
-            fullTitle = NSMutableAttributedString(string: mainTitle)
-            fullTitle?.addAttributes(mainTitleAttribute!, range: NSMakeRange(0, mainTitle.characters.count))
-        }
-        else {
-            fullTitle = NSMutableAttributedString(string: NSString(format: "%@\n%@", mainTitle, subTitle!) as String)
-            
-            fullTitle?.addAttributes(mainTitleAttribute!, range: NSMakeRange(0, mainTitle.characters.count))
-            fullTitle?.addAttributes(subTitleAttribute!, range: NSMakeRange(mainTitle.characters.count + 1, (subTitle?.characters.count)!))
+            fullTitle.append(NSAttributedString(string: "\n\(theSubTitle)"))
+            fullTitle.addAttributes(subTitleAttribute!, range: NSMakeRange(mainTitle.utf8CString.count + 1, (subTitle?.utf8CString.count)!))
         }
         
         return fullTitle
@@ -79,16 +66,16 @@ class Utils: NSObject {
                 requestId = (messages[startIndex] as! SBDFileMessage).requestId
             }
             
-            if requestId != nil && (requestId?.characters.count)! > 0 {
-                if resendableMessages[requestId!] != nil {
+            if let theRequestId: String = requestId {
+                if resendableMessages[theRequestId] != nil {
                     continue
                 }
                 
-                if preSendMessages[requestId!] != nil {
+                if preSendMessages[theRequestId] != nil {
                     continue
                 }
                 
-                if resendableFileData[requestId!] != nil {
+                if resendableFileData[theRequestId] != nil {
                     continue
                 }
             }
@@ -199,7 +186,7 @@ class Utils: NSObject {
         do {
             let messageDump = try String(contentsOfFile: dumpFilePath, encoding: String.Encoding.utf8)
             
-            if messageDump.characters.count > 0 {
+            if messageDump.utf8CString.count > 0 {
                 let loadMessages = messageDump.components(separatedBy: "\n")
                 
                 if loadMessages.count > 0 {
@@ -335,7 +322,7 @@ class Utils: NSObject {
         do {
             let channelDump = try String(contentsOfFile: dumpFilePath, encoding: String.Encoding.utf8)
             
-            if channelDump.characters.count > 0 {
+            if channelDump.utf8CString.count > 0 {
                 let loadChannels = channelDump.components(separatedBy: "\n")
                 
                 if loadChannels.count > 0 {

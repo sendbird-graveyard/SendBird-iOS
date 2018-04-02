@@ -83,7 +83,7 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
     
     @objc private func clickPreview() {
         let url: String = self.previewData["url"] as! String
-        if url.characters.count > 0 {
+        if url.utf8CString.count > 0 {
             UIApplication.shared.openURL(URL(string: url)!)
         }
     }
@@ -146,8 +146,8 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         
         // Message Date
         let messageDateAttribute = [
-            NSFontAttributeName: Constants.messageDateFont(),
-            NSForegroundColorAttributeName: Constants.messageDateColor()
+            NSAttributedStringKey.font: Constants.messageDateFont(),
+            NSAttributedStringKey.foregroundColor: Constants.messageDateColor()
         ]
         let messageTimestamp: TimeInterval = Double(self.message.createdAt) / 1000.0
         let dateFormatter: DateFormatter = DateFormatter()
@@ -236,13 +236,13 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         self.messageLabel.attributedText = fullMessage
         self.messageLabel.isUserInteractionEnabled = true
         self.messageLabel.linkAttributes = [
-            NSFontAttributeName: Constants.messageFont(),
-            NSForegroundColorAttributeName: Constants.outgoingMessageColor(),
-            NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue
+            NSAttributedStringKey.font: Constants.messageFont(),
+            NSAttributedStringKey.foregroundColor: Constants.outgoingMessageColor(),
+            NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue
         ]
         
         let detector: NSDataDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        let matches = detector.matches(in: self.message.message!, options: [], range: NSMakeRange(0, (self.message.message?.characters.count)!))
+        let matches = detector.matches(in: self.message.message!, options: [], range: NSMakeRange(0, (self.message.message?.utf8CString.count)!))
         if matches.count > 0 {
             self.messageLabel.delegate = self
             self.messageLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
@@ -262,15 +262,15 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
     
     private func buildMessage() -> NSMutableAttributedString {
         let messageAttribute = [
-            NSFontAttributeName: Constants.messageFont(),
-            NSForegroundColorAttributeName: Constants.outgoingMessageColor()
+            NSAttributedStringKey.font: Constants.messageFont(),
+            NSAttributedStringKey.foregroundColor: Constants.outgoingMessageColor()
         ]
         let message = self.message.message
         
         var fullMessage: NSMutableAttributedString?
 
         fullMessage = NSMutableAttributedString(string: message!)
-        fullMessage?.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.characters.count)!))
+        fullMessage?.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.utf8CString.count)!))
         
         return fullMessage!
     }
@@ -278,7 +278,7 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
     func getHeightOfViewCell() -> CGFloat {
         let message = self.buildMessage()
         let descriptionAttributes = [
-            NSFontAttributeName: Constants.urlPreviewDescriptionFont()
+            NSAttributedStringKey.font: Constants.urlPreviewDescriptionFont()
         ]
         let description: NSString = self.previewData["description"] as! NSString
         let descriptionRect = description.boundingRect(with: CGSize(width: self.previewDescriptionLabelWidth.constant, height: CGFloat.greatestFiniteMagnitude), options: [NSStringDrawingOptions.usesLineFragmentOrigin], attributes: descriptionAttributes, context: nil)

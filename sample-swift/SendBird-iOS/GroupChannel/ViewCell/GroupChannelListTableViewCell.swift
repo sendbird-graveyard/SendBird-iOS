@@ -220,7 +220,7 @@ class GroupChannelListTableViewCell: UITableViewCell {
         let lastMessageDateFormatter = DateFormatter()
         
         var lastMessageDate: Date?
-        if String(format: "%lld", lastMessageTimestamp).characters.count == 10 {
+        if String(format: "%lld", lastMessageTimestamp).utf8CString.count == 10 {
             lastMessageDate = Date.init(timeIntervalSince1970: Double(lastMessageTimestamp))
         }
         else {

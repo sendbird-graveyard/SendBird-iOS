@@ -30,12 +30,12 @@ class MenuViewController: UIViewController, SBDConnectionDelegate {
         let negativeRightSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeRightSpacer.width = -2
         let rightDisconnectItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "DisconnectButton"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(disconnect))
-        rightDisconnectItem.setTitleTextAttributes([NSFontAttributeName: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
+        rightDisconnectItem.setTitleTextAttributes([NSAttributedStringKey.font: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
         
         let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeLeftSpacer.width = -2
         let leftProfileItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "Profile"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(profile))
-        leftProfileItem.setTitleTextAttributes([NSFontAttributeName: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
+        leftProfileItem.setTitleTextAttributes([NSAttributedStringKey.font: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
         
         self.navItem.rightBarButtonItems = [negativeRightSpacer, rightDisconnectItem]
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftProfileItem]
@@ -111,7 +111,7 @@ class MenuViewController: UIViewController, SBDConnectionDelegate {
         self.showGroupChannelList()
     }
 
-    func disconnect() {
+    @objc func disconnect() {
         SBDMain.unregisterAllPushToken { (response, error) in
             if error != nil {
                 print("Unregister all push tokens. Error: %@", error!)

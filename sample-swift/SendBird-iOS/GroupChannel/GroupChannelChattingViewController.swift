@@ -534,14 +534,14 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     }
     
     @objc private func sendMessage() {
-        if self.chattingView.messageTextView.text.characters.count > 0 {
+        if self.chattingView.messageTextView.text.utf8CString.count > 0 {
             self.groupChannel.endTyping()
             let message = self.chattingView.messageTextView.text
             self.chattingView.messageTextView.text = ""
             
             do {
                 let detector: NSDataDetector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-                let matches = detector.matches(in: message!, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, (message?.characters.count)!))
+                let matches = detector.matches(in: message!, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, (message?.utf8CString.count)!))
                 var url: URL? = nil
                 for item in matches {
                     let match = item as NSTextCheckingResult
@@ -636,7 +636,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         self.present(mediaUI, animated: true, completion: nil)
     }
     
-    func clickReconnect() {
+    @objc func clickReconnect() {
         if SBDMain.getConnectState() != SBDWebSocketConnectionState.open && SBDMain.getConnectState() != SBDWebSocketConnectionState.connecting {
             SBDMain.reconnect()
         }
@@ -744,27 +744,27 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         
     }
     
-    func channel(_ sender: SBDOpenChannel, userWasMuted user: SBDUser) {
+    func channel(_ sender: SBDBaseChannel, userWasMuted user: SBDUser) {
         
     }
     
-    func channel(_ sender: SBDOpenChannel, userWasUnmuted user: SBDUser) {
+    func channel(_ sender: SBDBaseChannel, userWasUnmuted user: SBDUser) {
         
     }
     
-    func channel(_ sender: SBDOpenChannel, userWasBanned user: SBDUser) {
+    func channel(_ sender: SBDBaseChannel, userWasBanned user: SBDUser) {
         
     }
     
-    func channel(_ sender: SBDOpenChannel, userWasUnbanned user: SBDUser) {
+    func channel(_ sender: SBDBaseChannel, userWasUnbanned user: SBDUser) {
         
     }
     
-    func channelWasFrozen(_ sender: SBDOpenChannel) {
+    func channelWasFrozen(_ sender: SBDBaseChannel) {
         
     }
     
-    func channelWasUnfrozen(_ sender: SBDOpenChannel) {
+    func channelWasUnfrozen(_ sender: SBDBaseChannel) {
         
     }
     
@@ -907,7 +907,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                 
                 do {
                     let detector: NSDataDetector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-                    let matches = detector.matches(in: (message as! SBDUserMessage).message!, options: [], range: NSMakeRange(0, ((message as! SBDUserMessage).message?.characters.count)!))
+                    let matches = detector.matches(in: (message as! SBDUserMessage).message!, options: [], range: NSMakeRange(0, ((message as! SBDUserMessage).message?.utf8CString.count)!))
                     for match in matches as [NSTextCheckingResult] {
                         let url: URL = match.url!
                         let openURLAction = UIAlertAction(title: url.relativeString, style: UIAlertActionStyle.default, handler: { (action) in
@@ -1075,7 +1075,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                 
                 do {
                     let detector: NSDataDetector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-                    let matches = detector.matches(in: resendableUserMessage.message!, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, (resendableUserMessage.message!.characters.count)))
+                    let matches = detector.matches(in: resendableUserMessage.message!, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, (resendableUserMessage.message!.utf8CString.count)))
                     var url: URL? = nil
                     for item in matches {
                         let match = item as NSTextCheckingResult
@@ -1460,7 +1460,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         }
     }
     
-    func closeImageViewer() {
+    @objc func closeImageViewer() {
         if self.photosViewController != nil {
             self.photosViewController.dismiss(animated: true, completion: nil)
         }

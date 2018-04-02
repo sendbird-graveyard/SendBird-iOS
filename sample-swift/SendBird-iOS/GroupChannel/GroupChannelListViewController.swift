@@ -103,7 +103,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         negativeLeftSpacer.width = -2
         
         let leftBackItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "DoneButton"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(done))
-        leftBackItem.setTitleTextAttributes([NSFontAttributeName: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
+        leftBackItem.setTitleTextAttributes([NSAttributedStringKey.font: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
         
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftBackItem]
         self.navItem.rightBarButtonItems = []
@@ -203,7 +203,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         self.tableView.reloadData()
     }
     
-    func done() {
+    @objc func done() {
         self.editableChannel = false
         self.setDefaultNavigationItems()
         self.tableView.reloadData()
@@ -436,28 +436,22 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         
     }
     
-    func channel(_ sender: SBDOpenChannel, userWasMuted user: SBDUser) {
-        
+    func channel(_ sender: SBDBaseChannel, userWasMuted user: SBDUser) {
     }
     
-    func channel(_ sender: SBDOpenChannel, userWasUnmuted user: SBDUser) {
-        
+    func channel(_ sender: SBDBaseChannel, userWasUnmuted user: SBDUser) {
     }
     
-    func channel(_ sender: SBDOpenChannel, userWasBanned user: SBDUser) {
-        
+    func channel(_ sender: SBDBaseChannel, userWasBanned user: SBDUser) {
     }
     
-    func channel(_ sender: SBDOpenChannel, userWasUnbanned user: SBDUser) {
-        
+    func channel(_ sender: SBDBaseChannel, userWasUnbanned user: SBDUser) {
     }
     
-    func channelWasFrozen(_ sender: SBDOpenChannel) {
-        
+    func channelWasFrozen(_ sender: SBDBaseChannel) {
     }
     
-    func channelWasUnfrozen(_ sender: SBDOpenChannel) {
-        
+    func channelWasUnfrozen(_ sender: SBDBaseChannel) {
     }
     
     func channelWasChanged(_ sender: SBDBaseChannel) {

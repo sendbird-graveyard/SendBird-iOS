@@ -81,42 +81,42 @@ class IncomingFileMessageTableViewCell: UITableViewCell {
             self.fileActionImageView.image = UIImage(named: "btn_download_chat")
         }
         
-        var nicknameAttribute: [String:AnyObject]?
-        switch (self.message.sender?.nickname?.characters.count)! % 5 {
+        var nicknameAttribute: [NSAttributedStringKey:AnyObject]?
+        switch (self.message.sender?.nickname?.utf8CString.count)! % 5 {
         case 0:
             nicknameAttribute = [
-                NSFontAttributeName: Constants.nicknameFontInMessage(),
-                NSForegroundColorAttributeName: Constants.nicknameColorInMessageNo0()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo0()
             ]
             break;
         case 1:
             nicknameAttribute = [
-                NSFontAttributeName: Constants.nicknameFontInMessage(),
-                NSForegroundColorAttributeName: Constants.nicknameColorInMessageNo1()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo1()
             ]
             break;
         case 2:
             nicknameAttribute = [
-                NSFontAttributeName: Constants.nicknameFontInMessage(),
-                NSForegroundColorAttributeName: Constants.nicknameColorInMessageNo2()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo2()
             ]
             break;
         case 3:
             nicknameAttribute = [
-                NSFontAttributeName: Constants.nicknameFontInMessage(),
-                NSForegroundColorAttributeName: Constants.nicknameColorInMessageNo3()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo3()
             ]
             break;
         case 4:
             nicknameAttribute = [
-                NSFontAttributeName: Constants.nicknameFontInMessage(),
-                NSForegroundColorAttributeName: Constants.nicknameColorInMessageNo4()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo4()
             ]
             break;
         default:
             nicknameAttribute = [
-                NSFontAttributeName: Constants.nicknameFontInMessage(),
-                NSForegroundColorAttributeName: Constants.nicknameColorInMessageNo0()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo0()
             ]
             break;
         }
@@ -126,8 +126,8 @@ class IncomingFileMessageTableViewCell: UITableViewCell {
         
         // Message Date
         let messageDateAttribute = [
-            NSFontAttributeName: Constants.messageDateFont(),
-            NSForegroundColorAttributeName: Constants.messageDateColor()
+            NSAttributedStringKey.font: Constants.messageDateFont(),
+            NSAttributedStringKey.foregroundColor: Constants.messageDateColor()
         ]
         
         let messageTimestamp = Double(self.message.createdAt) / 1000.0

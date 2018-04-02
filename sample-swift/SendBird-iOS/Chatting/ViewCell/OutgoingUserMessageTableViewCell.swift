@@ -103,8 +103,8 @@ class OutgoingUserMessageTableViewCell: UITableViewCell {
         
         // Message Date
         let messageDateAttribute = [
-            NSFontAttributeName: Constants.messageDateFont(),
-            NSForegroundColorAttributeName: Constants.messageDateColor()
+            NSAttributedStringKey.font: Constants.messageDateFont(),
+            NSAttributedStringKey.foregroundColor: Constants.messageDateColor()
         ]
         
         let messageTimestamp = Double(self.message.createdAt) / 1000.0
@@ -196,8 +196,8 @@ class OutgoingUserMessageTableViewCell: UITableViewCell {
     
     func buildMessage() -> NSAttributedString {
         let messageAttribute = [
-            NSFontAttributeName: Constants.messageFont(),
-            NSForegroundColorAttributeName: Constants.outgoingMessageColor(),
+            NSAttributedStringKey.font: Constants.messageFont(),
+            NSAttributedStringKey.foregroundColor: Constants.outgoingMessageColor(),
         ]
         
         let message = self.message.message
