@@ -88,7 +88,7 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         }
     }
     
-    func setModel(aMessage: SBDUserMessage) {
+    func setModel(aMessage: SBDUserMessage, channel: SBDBaseChannel?) {
         self.message = aMessage
         
         let data = self.message.data?.data(using: String.Encoding.utf8)
@@ -177,9 +177,8 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         
         // Unread message count
         if self.message.channelType == CHANNEL_TYPE_GROUP {
-            let channelOfMessage = SBDGroupChannel.getChannelFromCache(withChannelUrl: self.message.channelUrl!)
-            if channelOfMessage != nil {
-                let unreadMessageCount = channelOfMessage?.getReadReceipt(of: self.message)
+            if let groupChannel = channel as? SBDGroupChannel? {
+                let unreadMessageCount = groupChannel?.getReadReceipt(of: self.message)
                 if unreadMessageCount == 0 {
                     self.hideUnreadCount()
                     self.unreadCountLabel.text = ""

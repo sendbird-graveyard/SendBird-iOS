@@ -104,7 +104,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         super.viewWillAppear(animated)
         if self.refreshInViewDidAppear {
             self.minMessageTimestamp = Int64.max
-            self.chattingView.initChattingView()
+            self.chattingView.configureChattingView(channel: self.groupChannel)
             self.chattingView.delegate = self
         }
     }

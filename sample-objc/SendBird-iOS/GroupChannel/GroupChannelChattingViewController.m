@@ -123,7 +123,7 @@
     [super viewWillAppear:animated];
     if (self.refreshInViewDidAppear) {
         self.minMessageTimestamp = LLONG_MAX;
-        [self.chattingView initChattingView];
+        [self.chattingView configureChattingViewWithChannel:self.channel];
         self.chattingView.delegate = self;
     }
 }

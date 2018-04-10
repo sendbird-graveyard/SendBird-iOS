@@ -104,7 +104,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
         super.viewWillAppear(animated)
         if self.refreshInViewDidAppear {
             self.minMessageTimestamp = Int64.max
-            self.chattingView.initChattingView()
+            self.chattingView.configureChattingView(channel: self.openChannel)
             self.chattingView.delegate = self
         }
     }
