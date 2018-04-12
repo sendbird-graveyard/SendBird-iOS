@@ -51,6 +51,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         }
         
+        self.window = UIWindow.init(frame: UIScreen.main.bounds)
+        let storyboard: UIStoryboard = UIStoryboard.init(name: "LaunchScreen", bundle: nil)
+        let launchViewController: UIViewController? = storyboard.instantiateInitialViewController()
+        self.window?.rootViewController = launchViewController
+        self.window?.makeKeyAndVisible()
+        
+        ConnectionManager.login { (user, error) in
+            guard error == nil else {
+                let storyboard: UIStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let viewController: UIViewController? = storyboard.instantiateInitialViewController()
+                self.window?.rootViewController = viewController
+                self.window?.makeKeyAndVisible()
+                return;
+            }
+            
+            self.window?.rootViewController = MenuViewController()
+            self.window?.makeKeyAndVisible()
+        }
+        
         return true
     }
 

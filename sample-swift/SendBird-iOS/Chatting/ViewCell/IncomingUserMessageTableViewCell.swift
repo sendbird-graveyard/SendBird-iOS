@@ -171,7 +171,7 @@ class IncomingUserMessageTableViewCell: UITableViewCell, TTTAttributedLabelDeleg
         ]
         
         let detector: NSDataDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        let matches = detector.matches(in: self.message.message!, options: [], range: NSMakeRange(0, (self.message.message?.utf8CString.count)!))
+        let matches = detector.matches(in: self.message.message!, options: [], range: NSMakeRange(0, (self.message.message?.count)!))
         if matches.count > 0 {
             self.messageLabel.delegate = self
             self.messageLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
@@ -180,7 +180,7 @@ class IncomingUserMessageTableViewCell: UITableViewCell, TTTAttributedLabelDeleg
                 let rangeOfOriginalMessage = match.range
                 var range: NSRange
                 if self.displayNickname {
-                    range = NSMakeRange((self.message.sender?.nickname?.utf8CString.count)! + 1 + rangeOfOriginalMessage.location, rangeOfOriginalMessage.length)
+                    range = NSMakeRange((self.message.sender?.nickname?.count)! + 1 + rangeOfOriginalMessage.location, rangeOfOriginalMessage.length)
                 }
                 else {
                     range = rangeOfOriginalMessage

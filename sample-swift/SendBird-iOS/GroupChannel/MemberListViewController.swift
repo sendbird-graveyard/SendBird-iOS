@@ -30,7 +30,6 @@ class MemberListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftCloseItem]
         
         SBDMain.add(self as SBDChannelDelegate, identifier: self.description)
-        SBDMain.add(self as SBDConnectionDelegate, identifier: self.description)
     }
 
     override func viewDidAppear(_ animated: Bool) {

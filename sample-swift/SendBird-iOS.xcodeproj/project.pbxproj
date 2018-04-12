@@ -73,6 +73,7 @@
 		5ADEF82A1DAA663C000AABF9 /* CreateGroupChannelUserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADEF8291DAA663C000AABF9 /* CreateGroupChannelUserListTableViewCell.swift */; };
 		5ADEF82C1DAA67C5000AABF9 /* GroupChannelListEditableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADEF82B1DAA67C5000AABF9 /* GroupChannelListEditableTableViewCell.swift */; };
 		8F4B9B4CF66474515B5345D2 /* Pods_SendBird_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3A2CB679067572774BDE5D /* Pods_SendBird_iOS.framework */; };
+		C178D173207DE3A8005C7DB7 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C178D172207DE3A8005C7DB7 /* ConnectionManager.swift */; };
 		CE806EF61E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE806EF41E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift */; };
 		CE806EF71E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806EF51E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib */; };
 		CE806EFA1E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE806EF81E79049800A8CB57 /* OutgoingVideoFileMessageTableViewCell.swift */; };
@@ -252,6 +253,7 @@
 		5ADEF82B1DAA67C5000AABF9 /* GroupChannelListEditableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChannelListEditableTableViewCell.swift; sourceTree = "<group>"; };
 		8F3A2CB679067572774BDE5D /* Pods_SendBird_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SendBird_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96683C54D2DA7CFBF0C23471 /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		C178D172207DE3A8005C7DB7 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		C879E57358A8287C34B477A5 /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		CE806EF41E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingVideoFileMessageTableViewCell.swift; sourceTree = "<group>"; };
 		CE806EF51E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
@@ -328,6 +330,7 @@
 		5ABA0B7F1DA6010A000C82DC /* SendBird-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				C178D16A207DE383005C7DB7 /* Connection */,
 				E212EC7E1EFC8B6800FDED1D /* SendBird-iOS.entitlements */,
 				5ABA0B921DA6020A000C82DC /* Chatting */,
 				5ABA0B941DA6021D000C82DC /* Common */,
@@ -502,6 +505,14 @@
 				96683C54D2DA7CFBF0C23471 /* Pods-SendBird-iOS.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C178D16A207DE383005C7DB7 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				C178D172207DE3A8005C7DB7 /* ConnectionManager.swift */,
+			);
+			path = Connection;
 			sourceTree = "<group>";
 		};
 		E2217E391EF893A000AEE668 /* CommonCrypto */ = {
@@ -871,6 +882,7 @@
 				5ABA0BD21DA74F5C000C82DC /* OutgoingImageFileMessageTableViewCell.swift in Sources */,
 				CE806EF61E79048200A8CB57 /* IncomingVideoFileMessageTableViewCell.swift in Sources */,
 				5ABA0BCE1DA7277A000C82DC /* NeutralMessageTableViewCell.swift in Sources */,
+				C178D173207DE3A8005C7DB7 /* ConnectionManager.swift in Sources */,
 				E221A2E31F29192500767328 /* String+SendBird.swift in Sources */,
 				E24383801EF094860066559A /* OutgoingGeneralUrlPreviewMessageTableViewCell.swift in Sources */,
 				5AD94B951DAB1E1D00A6CD66 /* GroupChannelListTableViewCell.swift in Sources */,

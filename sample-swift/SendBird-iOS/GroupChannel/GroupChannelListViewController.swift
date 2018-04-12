@@ -10,7 +10,7 @@ import UIKit
 import MGSwipeTableCell
 import SendBirdSDK
 
-class GroupChannelListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSwipeTableCellDelegate, CreateGroupChannelUserListViewControllerDelegate, SBDChannelDelegate, SBDConnectionDelegate {
+class GroupChannelListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSwipeTableCellDelegate, CreateGroupChannelUserListViewControllerDelegate, ConnectionManagerDelegate, SBDChannelDelegate, SBDConnectionDelegate {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noChannelLabel: UILabel!
@@ -43,13 +43,28 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         
         self.noChannelLabel.isHidden = true
         
+        ConnectionManager.add(connectionObserver: self as ConnectionManagerDelegate)
+        if SBDMain.getConnectState() == .closed {
+            ConnectionManager.login { (user, error) in
+                guard error == nil else {
+                    return;
+                }
+            }
+        }
+        else {
+            self.firstLoading = false;
+            self.showList()
+        }
+    }
+    
+    private func showList() {
         let dumpLoadQueue: DispatchQueue = DispatchQueue(label: "com.sendbird.dumploadqueue", attributes: .concurrent)
         dumpLoadQueue.async {
             self.channels = Utils.loadGroupChannels()
             if self.channels.count > 0 {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: { 
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
                         self.refreshChannelList()
                     })
                 }
@@ -58,29 +73,21 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
                 self.cachedChannels = false
                 self.refreshChannelList()
             }
+            self.firstLoading = true;
         }
-        
-        self.firstLoading = true
+    }
+    
+    deinit {
+        ConnectionManager.remove(connectionObserver: self as ConnectionManagerDelegate)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         Utils.dumpChannels(channels: self.channels)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if self.firstLoading == false {
-            self.refreshChannelList()
-        }
-        
-        self.firstLoading = false
-    }
 
     func addDelegates() {
         SBDMain.add(self as SBDChannelDelegate, identifier: self.description)
-        SBDMain.add(self as SBDConnectionDelegate, identifier: self.description)
     }
 
     private func setDefaultNavigationItems() {
@@ -344,36 +351,18 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         }
     }
     
-    // MARK: GroupChannelChattingViewController
-    func didStartReconnection() {
-        
-    }
-    
-    func didSucceedReconnection() {
+    // MARK: GroupChannelChattingViewController\
+    func didConnect(isReconnection: Bool) {
         let vc = UIApplication.shared.keyWindow?.rootViewController
         let bestVC = Utils.findBestViewController(vc: vc!)
         
         if bestVC == self {
-            let query = SBDGroupChannel.createMyGroupChannelListQuery()
-            query?.limit = 20
-            query?.order = SBDGroupChannelListOrder.latestLastMessage
-            query?.loadNextPage(completionHandler: { (channels, error) in
-                if error != nil {
-                    return
-                }
-                
-                self.channels.removeAll()
-                self.channels.append(contentsOf: channels!)
-                DispatchQueue.main.async {
-                    self.groupChannelListQuery = query
-                    self.tableView.reloadData()
-                }
-            })
+            self.refreshChannelList()
         }
     }
     
-    func didFailReconnection() {
-        
+    func didDisconnect() {
+        //
     }
     
     // MARK: SBDChannelDelegate

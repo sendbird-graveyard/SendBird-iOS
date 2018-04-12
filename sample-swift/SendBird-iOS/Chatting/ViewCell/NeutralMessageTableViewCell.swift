@@ -104,7 +104,7 @@ class NeutralMessageTableViewCell: UITableViewCell {
         
         let fullMessage = NSMutableAttributedString.init(string: message! as String)
         
-        fullMessage.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.utf8CString.count)!))
+        fullMessage.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.count)!))
         
         return fullMessage
     }

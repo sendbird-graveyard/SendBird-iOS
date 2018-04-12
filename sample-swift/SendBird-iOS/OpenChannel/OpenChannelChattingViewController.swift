@@ -16,7 +16,7 @@ import NYTPhotoViewer
 import HTMLKit
 import FLAnimatedImage
 
-class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate, SBDChannelDelegate, ChattingViewDelegate, MessageDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate, SBDChannelDelegate, ChattingViewDelegate, MessageDelegate, ConnectionManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var openChannel: SBDOpenChannel!
     
     @IBOutlet weak var chattingView: ChattingView!
@@ -29,7 +29,6 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
     private var messageQuery: SBDPreviousMessageListQuery!
     private var delegateIdentifier: String!
     private var hasNext: Bool = true
-    private var refreshInViewDidAppear: Bool = true
     private var isLoading: Bool = false
     private var keyboardShown: Bool = false
     
@@ -80,66 +79,57 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
 
         self.delegateIdentifier = self.description
         SBDMain.add(self as SBDChannelDelegate, identifier: self.delegateIdentifier)
-        SBDMain.add(self as SBDConnectionDelegate, identifier: self.delegateIdentifier)
+        ConnectionManager.add(connectionObserver: self as ConnectionManagerDelegate)
         
         self.chattingView.fileAttachButton.addTarget(self, action: #selector(sendFileMessage), for: UIControlEvents.touchUpInside)
         self.chattingView.sendButton.addTarget(self, action: #selector(sendMessage), for: UIControlEvents.touchUpInside)
         
         self.hasNext = true
-        self.refreshInViewDidAppear = true
         self.isLoading = false
         
-        self.chattingView.fileAttachButton.addTarget(self, action: #selector(sendFileMessage), for: UIControlEvents.touchUpInside)
-        self.chattingView.sendButton.addTarget(self, action: #selector(sendMessage), for: UIControlEvents.touchUpInside)
-        
         self.dumpedMessages = Utils.loadMessagesInChannel(channelUrl: self.openChannel.channelUrl)
+        
+        self.chattingView.initChattingView()
+        self.chattingView.delegate = self
+        self.minMessageTimestamp = LLONG_MAX
+        self.cachedMessage = false
+        
+        if self.dumpedMessages.count > 0 {
+            self.chattingView.messages.append(contentsOf: self.dumpedMessages)
+            
+            self.chattingView.chattingTableView.reloadData()
+            self.chattingView.chattingTableView.layoutIfNeeded()
+            
+            let viewHeight = UIScreen.main.bounds.size.height - self.navigationBarHeight.constant - self.chattingView.inputContainerViewHeight.constant - 10
+            let contentSize = self.chattingView.chattingTableView.contentSize
+            
+            if contentSize.height > viewHeight {
+                let newContentOffset = CGPoint(x: 0, y: contentSize.height - viewHeight)
+                self.chattingView.chattingTableView.setContentOffset(newContentOffset, animated: false)
+            }
+            
+            self.cachedMessage = true
+        }
+        
+        if SBDMain.getConnectState() == .closed {
+            ConnectionManager.login { (user, error) in
+                guard error == nil else{
+                    return;
+                }
+            }
+        }
+        else {
+            self.loadPreviousMessage(initial: true)
+        }
+    }
+    
+    deinit {
+        ConnectionManager.remove(connectionObserver: self as ConnectionManagerDelegate)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if self.refreshInViewDidAppear {
-            self.minMessageTimestamp = Int64.max
-            self.chattingView.initChattingView()
-            self.chattingView.delegate = self
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if self.refreshInViewDidAppear {
-            if self.dumpedMessages.count > 0 {
-                self.chattingView.messages.append(contentsOf: self.dumpedMessages)
-                
-                self.chattingView.chattingTableView.reloadData()
-                self.chattingView.chattingTableView.layoutIfNeeded()
-                
-                let viewHeight = UIScreen.main.bounds.size.height - self.navigationBarHeight.constant - self.chattingView.inputContainerViewHeight.constant - 10
-                let contentSize = self.chattingView.chattingTableView.contentSize
-                
-                if contentSize.height > viewHeight {
-                    let newContentOffset = CGPoint(x: 0, y: contentSize.height - viewHeight)
-                    self.chattingView.chattingTableView.setContentOffset(newContentOffset, animated: false)
-                }
-                
-                self.cachedMessage = true
-                self.loadPreviousMessage(initial: true)
-                
-                return
-            }
-            else {
-                self.cachedMessage = false
-                self.minMessageTimestamp = Int64.max
-                self.loadPreviousMessage(initial: true)
-            }
-        }
-        
-        self.refreshInViewDidAppear = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -187,7 +177,6 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
             DispatchQueue.main.async {
                 let plvc = ParticipantListViewController()
                 plvc.openChannel = self.openChannel
-                self.refreshInViewDidAppear = false
                 self.present(plvc, animated: false, completion: nil)
             }
         }
@@ -195,7 +184,6 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
             DispatchQueue.main.async {
                 let plvc = BlockedUserListViewController()
                 plvc.baseChannel = self.openChannel
-                self.refreshInViewDidAppear = false
                 self.present(plvc, animated: false, completion: nil)
             }
         }
@@ -531,13 +519,13 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
     }
     
     @objc private func sendMessage() {
-        if self.chattingView.messageTextView.text.utf8CString.count > 0 {
+        if self.chattingView.messageTextView.text.count > 0 {
             let message = self.chattingView.messageTextView.text
             self.chattingView.messageTextView.text = ""
             
             do {
                 let detector: NSDataDetector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-                let matches = detector.matches(in: message!, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, (message?.utf8CString.count)!))
+                let matches = detector.matches(in: message!, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, (message?.count)!))
                 var url: URL? = nil
                 for item in matches {
                     let match = item as NSTextCheckingResult
@@ -627,7 +615,6 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
         let mediaTypes = [String(kUTTypeImage), String(kUTTypeMovie)]
         mediaUI.mediaTypes = mediaTypes
         mediaUI.delegate = self
-        self.refreshInViewDidAppear = false
         self.present(mediaUI, animated: true, completion: nil)
     }
     
@@ -637,28 +624,21 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
         }
     }
     
-    // MARK: SBDConnectionDelegate
-    func didStartReconnection() {
-        if self.navItem.titleView != nil && self.navItem.titleView is UILabel {
-            DispatchQueue.main.async {
-                (self.navItem.titleView as! UILabel).attributedText = Utils.generateNavigationTitle(mainTitle: String(format:"%@(%ld)", self.openChannel.name, self.openChannel.participantCount), subTitle: Bundle.sbLocalizedStringForKey(key: "ReconnectingSubTitle"))
-            }
-        }
-    }
-    
-    func didSucceedReconnection() {
+    // MARK: Connection manager delegate
+    func didConnect(isReconnection: Bool) {
         self.loadPreviousMessage(initial: true)
         
         self.openChannel.refresh { (error) in
             if error == nil {
-                DispatchQueue.main.async {
-                    if self.navItem.titleView != nil && self.navItem.titleView is UILabel {
-                        (self.navItem.titleView as! UILabel).attributedText = Utils.generateNavigationTitle(mainTitle: String(format:"%@(%ld)", self.openChannel.name, self.openChannel.participantCount), subTitle: Bundle.sbLocalizedStringForKey(key: "ReconnectedSubTitle"))
-                    }
+                if self.navItem.titleView is UILabel, let label: UILabel = self.navItem.titleView as? UILabel {
+                    let title: String = NSString.init(format: "%@(%zd)", self.openChannel.name, self.openChannel.participantCount) as String
+                    let subtitle: String? = Bundle.sbLocalizedStringForKey(key: "ReconnetedSubTitle") as String?
                     
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-                        if self.navItem.titleView != nil && self.navItem.titleView is UILabel {
-                            (self.navItem.titleView as! UILabel).attributedText = Utils.generateNavigationTitle(mainTitle: String(format:"%@(%ld)", self.openChannel.name, self.openChannel.participantCount), subTitle: "")
+                    DispatchQueue.main.async {
+                        label.attributedText = Utils.generateNavigationTitle(mainTitle: title, subTitle: subtitle)
+                        
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+                            label.attributedText = Utils.generateNavigationTitle(mainTitle: title, subTitle: nil)
                         }
                     }
                 }
@@ -666,10 +646,18 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
         }
     }
     
-    func didFailReconnection() {
-        if self.navItem.titleView != nil && self.navItem.titleView is UILabel {
+    func didDisconnect() {
+        if self.navItem.titleView is UILabel, let label: UILabel = self.navItem.titleView as? UILabel {
+            let title: String = NSString.init(format: "%@(%zd)", self.openChannel.name, self.openChannel.participantCount) as String
+            var subtitle: String? = Bundle.sbLocalizedStringForKey(key: "ReconnectionFailedSubTitle") as String?
+            
             DispatchQueue.main.async {
-                (self.navItem.titleView as! UILabel).attributedText = Utils.generateNavigationTitle(mainTitle: String(format:"%@(%ld)", self.openChannel.name, self.openChannel.participantCount), subTitle: Bundle.sbLocalizedStringForKey(key: "ReconnectionFailedSubTitle"))
+                label.attributedText = Utils.generateNavigationTitle(mainTitle: title, subTitle: subtitle)
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+                subtitle = Bundle.sbLocalizedStringForKey(key: "ReconnectingSubTitle")
+                label.attributedText = Utils.generateNavigationTitle(mainTitle: title, subTitle: subtitle)
             }
         }
     }
@@ -923,11 +911,10 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                 
                 do {
                     let detector: NSDataDetector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-                    let matches = detector.matches(in: (message as! SBDUserMessage).message!, options: [], range: NSMakeRange(0, ((message as! SBDUserMessage).message?.utf8CString.count)!))
+                    let matches = detector.matches(in: (message as! SBDUserMessage).message!, options: [], range: NSMakeRange(0, ((message as! SBDUserMessage).message?.count)!))
                     for match in matches as [NSTextCheckingResult] {
                         let url: URL = match.url!
                         let openURLAction = UIAlertAction(title: url.relativeString, style: UIAlertActionStyle.default, handler: { (action) in
-                            self.refreshInViewDidAppear = false
                             UIApplication.shared.openURL(url)
                         })
                         openURLsAction.append(openURLAction)
@@ -965,7 +952,6 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                 let player = AVPlayer(url: videoUrl! as URL)
                 let vc = AVPlayerViewController()
                 vc.player = player
-                self.refreshInViewDidAppear = false
                 self.present(vc, animated: true, completion: {
                     player.play()
                 })
@@ -977,7 +963,6 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                 let player = AVPlayer(url: audioUrl! as URL)
                 let vc = AVPlayerViewController()
                 vc.player = player
-                self.refreshInViewDidAppear = false
                 self.present(vc, animated: true, completion: {
                     player.play()
                 })
@@ -1070,7 +1055,6 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
         
         if openURLsAction.count > 0 || deleteMessageAction != nil {
             DispatchQueue.main.async {
-                self.refreshInViewDidAppear = false
                 self.present(alert, animated: true, completion: nil)
             }
         }
@@ -1089,7 +1073,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                 
                 do {
                     let detector: NSDataDetector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-                    let matches = detector.matches(in: resendableUserMessage.message!, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, (resendableUserMessage.message!.utf8CString.count)))
+                    let matches = detector.matches(in: resendableUserMessage.message!, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, (resendableUserMessage.message!.count)))
                     var url: URL? = nil
                     for item in matches {
                         let match = item as NSTextCheckingResult

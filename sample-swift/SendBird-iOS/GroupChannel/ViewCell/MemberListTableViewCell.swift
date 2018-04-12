@@ -55,7 +55,7 @@ class MemberListTableViewCell: UITableViewCell {
             // Last seen at
             let lastMessageDateFormatter = DateFormatter()
             var lastMessageDate: Date?
-            if String(format: "%lld", self.user.lastSeenAt).utf8CString.count == 10 {
+            if String(format: "%lld", self.user.lastSeenAt).count == 10 {
                 lastMessageDate = Date(timeIntervalSince1970: Double(self.user.lastSeenAt))
             }
             else {
