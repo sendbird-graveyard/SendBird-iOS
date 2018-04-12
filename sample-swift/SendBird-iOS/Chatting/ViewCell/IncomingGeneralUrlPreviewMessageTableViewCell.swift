@@ -117,8 +117,8 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         
         // Message Date
         let messageDateAttribute = [
-            NSFontAttributeName: Constants.messageDateFont(),
-            NSForegroundColorAttributeName: Constants.messageDateColor()
+            NSAttributedStringKey.font: Constants.messageDateFont(),
+            NSAttributedStringKey.foregroundColor: Constants.messageDateColor()
         ]
         let messageTimestamp: TimeInterval = Double(self.message.createdAt) / 1000.0
         let dateFormatter: DateFormatter = DateFormatter()
@@ -212,13 +212,13 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         self.messageLabel.attributedText = fullMessage
         self.messageLabel.isUserInteractionEnabled = true
         self.messageLabel.linkAttributes = [
-            NSFontAttributeName: Constants.messageFont(),
-            NSForegroundColorAttributeName: Constants.incomingMessageColor(),
-            NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue
+            NSAttributedStringKey.font: Constants.messageFont(),
+            NSAttributedStringKey.foregroundColor: Constants.incomingMessageColor(),
+            NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue
         ]
         
         let detector: NSDataDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        let matches = detector.matches(in: self.message.message!, options: [], range: NSMakeRange(0, (self.message.message?.characters.count)!))
+        let matches = detector.matches(in: self.message.message!, options: [], range: NSMakeRange(0, (self.message.message?.utf8CString.count)!))
         if matches.count > 0 {
             self.messageLabel.delegate = self
             self.messageLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
@@ -227,7 +227,7 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
                 let rangeOfOriginalMessage = match.range
                 var range: NSRange
                 if self.displayNickname {
-                    range = NSMakeRange((self.message.sender?.nickname?.characters.count)! + 1 + rangeOfOriginalMessage.location, rangeOfOriginalMessage.length)
+                    range = NSMakeRange((self.message.sender?.nickname?.utf8CString.count)! + 1 + rangeOfOriginalMessage.location, rangeOfOriginalMessage.length)
                 }
                 else {
                     range = rangeOfOriginalMessage
@@ -245,42 +245,42 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
     }
     
     private func buildMessage() -> NSMutableAttributedString {
-        var nicknameAttribute: [String:Any]?
-        switch (self.message.sender?.nickname?.characters.count)! % 5 {
+        var nicknameAttribute: [NSAttributedStringKey:NSObject]
+        switch (self.message.sender?.nickname?.utf8CString.count)! % 5 {
         case 0:
             nicknameAttribute = [
-                NSFontAttributeName: Constants.nicknameFontInMessage(),
-                NSForegroundColorAttributeName: Constants.nicknameColorInMessageNo0()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo0()
             ]
         case 1:
             nicknameAttribute = [
-                NSFontAttributeName: Constants.nicknameFontInMessage(),
-                NSForegroundColorAttributeName: Constants.nicknameColorInMessageNo1()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo1()
             ]
         case 2:
             nicknameAttribute = [
-                NSFontAttributeName: Constants.nicknameFontInMessage(),
-                NSForegroundColorAttributeName: Constants.nicknameColorInMessageNo2()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo2()
             ]
         case 3:
             nicknameAttribute = [
-                NSFontAttributeName: Constants.nicknameFontInMessage(),
-                NSForegroundColorAttributeName: Constants.nicknameColorInMessageNo3()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo3()
             ]
         case 4:
             nicknameAttribute = [
-                NSFontAttributeName: Constants.nicknameFontInMessage(),
-                NSForegroundColorAttributeName: Constants.nicknameColorInMessageNo4()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo4()
             ]
         default:
             nicknameAttribute = [
-                NSFontAttributeName: Constants.nicknameFontInMessage(),
-                NSForegroundColorAttributeName: Constants.nicknameColorInMessageNo0()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo0()
             ]
         }
         
         let messageAttribute = [
-            NSFontAttributeName: Constants.messageFont()
+            NSAttributedStringKey.font: Constants.messageFont()
         ]
         let nickname = self.message.sender?.nickname
         let message = self.message.message
@@ -288,12 +288,12 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         var fullMessage: NSMutableAttributedString?
         if self.displayNickname {
             fullMessage = NSMutableAttributedString(string: String(format: "%@\n%@", nickname!, message!))
-            fullMessage?.addAttributes(nicknameAttribute!, range: NSMakeRange(0, (nickname?.characters.count)!))
-            fullMessage?.addAttributes(messageAttribute, range: NSMakeRange((nickname?.characters.count)! + 1, (message?.characters.count)!))
+            fullMessage?.addAttributes(nicknameAttribute, range: NSMakeRange(0, (nickname?.utf8CString.count)!))
+            fullMessage?.addAttributes(messageAttribute, range: NSMakeRange((nickname?.utf8CString.count)! + 1, (message?.utf8CString.count)!))
         }
         else {
             fullMessage = NSMutableAttributedString(string: String(format: "%@", message!))
-            fullMessage?.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.characters.count)!))
+            fullMessage?.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.utf8CString.count)!))
         }
         
         return fullMessage!
@@ -303,7 +303,7 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         let fullMessage = self.buildMessage()
         let fullMessageRect: CGRect = fullMessage.boundingRect(with: CGSize(width: self.messageWidth.constant, height: CGFloat.greatestFiniteMagnitude), options: [NSStringDrawingOptions.usesLineFragmentOrigin], context: nil)
         let attributes = [
-            NSFontAttributeName: Constants.urlPreviewDescriptionFont()
+            NSAttributedStringKey.font: Constants.urlPreviewDescriptionFont()
         ]
 
         let description: NSString = self.previewData["description"] as! NSString

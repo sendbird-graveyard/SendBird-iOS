@@ -33,7 +33,7 @@ class CreateOpenChannelViewController: UIViewController, UITextFieldDelegate {
         
         let leftItem = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItemStyle.done, target: self, action: #selector(closeViewController))
         let rightItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "CreateButton"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(createOpenChannel))
-        rightItem.setTitleTextAttributes([NSFontAttributeName: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
+        rightItem.setTitleTextAttributes([NSAttributedStringKey.font: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
         
         self.navItem.leftBarButtonItems = [legativeLeftSpacer, leftItem]
         self.navItem.rightBarButtonItems = [legativeRightSpacer, rightItem]
@@ -53,7 +53,7 @@ class CreateOpenChannelViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc private func createOpenChannel() {
-        if self.openChannelNameTextField.text?.characters.count == 0 {
+        if self.openChannelNameTextField.text?.utf8CString.count == 0 {
             return
         }
         
@@ -81,8 +81,8 @@ class CreateOpenChannelViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func channelNameTextFieldDidChange(sender: UITextField) {
-        if sender.text?.characters.count == 0 {
+    @objc func channelNameTextFieldDidChange(sender: UITextField) {
+        if sender.text?.utf8CString.count == 0 {
             self.channelNameLabelBottomMargin.constant = -12
             self.view.setNeedsUpdateConstraints()
             UIView.animate(withDuration: 0.1, animations: {

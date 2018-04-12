@@ -64,12 +64,12 @@ class OutgoingVideoFileMessageTableViewCell: UITableViewCell {
         /* Thumbnail is a premium feature. */
         /***********************************/
         if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
-            if (self.message.thumbnails?[0].url.characters.count)! > 0 {
+            if (self.message.thumbnails?[0].url.utf8CString.count)! > 0 {
                 self.fileImageView.af_setImage(withURL: URL(string: (self.message.thumbnails?[0].url)!)!)
             }
         }
         else {
-            if self.message.url.characters.count > 0 {
+            if self.message.url.utf8CString.count > 0 {
                 self.fileImageView.af_setImage(withURL:URL(string: self.message.url)!)
             }
         }
@@ -102,8 +102,8 @@ class OutgoingVideoFileMessageTableViewCell: UITableViewCell {
         
         // Message Date
         let messageDateAttribute = [
-            NSFontAttributeName: Constants.messageDateFont(),
-            NSForegroundColorAttributeName: Constants.messageDateColor()
+            NSAttributedStringKey.font: Constants.messageDateFont(),
+            NSAttributedStringKey.foregroundColor: Constants.messageDateColor()
         ]
         
         let messageTimestamp = Double(self.message.createdAt) / 1000.0

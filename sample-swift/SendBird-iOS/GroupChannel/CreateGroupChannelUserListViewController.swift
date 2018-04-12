@@ -42,11 +42,11 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
         var rightNextItem: UIBarButtonItem?
         if self.userSelectionMode == 0 {
             rightNextItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "NextButton"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(nextStage))
-            rightNextItem?.setTitleTextAttributes([NSFontAttributeName : Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
+            rightNextItem?.setTitleTextAttributes([NSAttributedStringKey.font : Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
         }
         else {
             rightNextItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "InviteButton"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(invite))
-            rightNextItem?.setTitleTextAttributes([NSFontAttributeName : Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
+            rightNextItem?.setTitleTextAttributes([NSAttributedStringKey.font : Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
         }
         
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftCloseItem]

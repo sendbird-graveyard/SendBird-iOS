@@ -12,7 +12,7 @@ extension String {
     func urlencoding() -> String {
         var output: String = ""
 
-        for thisChar in self.characters {
+        for thisChar in self {
             if thisChar == " " {
                 output += "+"
             }

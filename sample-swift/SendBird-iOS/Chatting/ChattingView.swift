@@ -224,7 +224,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     // MARK: UITextViewDelegate
     func textViewDidChange(_ textView: UITextView) {
         if textView == self.messageTextView {
-            if textView.text.characters.count > 0 {
+            if textView.text.utf8CString.count > 0 {
                 self.placeholderLabel.isHidden = true
                 if self.delegate != nil {
                     self.delegate?.startTyping(view: self)

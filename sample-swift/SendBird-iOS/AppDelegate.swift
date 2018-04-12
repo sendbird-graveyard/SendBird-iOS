@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.registerForRemoteNotifications()
 #endif
         
-        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: Constants.navigationBarTitleFont()]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: Constants.navigationBarTitleFont()]
         UINavigationBar.appearance().tintColor = Constants.navigationBarTitleColor()
         
         application.applicationIconBadgeNumber = 0

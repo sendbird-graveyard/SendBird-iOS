@@ -32,12 +32,12 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         let negativeRightSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeRightSpacer.width = -2
         let rightDisconnectItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain, target: self, action: #selector(save))
-        rightDisconnectItem.setTitleTextAttributes([NSFontAttributeName: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
+        rightDisconnectItem.setTitleTextAttributes([NSAttributedStringKey.font: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
         
         let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeLeftSpacer.width = -2
         let leftProfileItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.plain, target: self, action: #selector(save))
-        leftProfileItem.setTitleTextAttributes([NSFontAttributeName: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
+        leftProfileItem.setTitleTextAttributes([NSAttributedStringKey.font: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
 
         self.navItem.rightBarButtonItems = [negativeRightSpacer, rightDisconnectItem]
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftProfileItem]
@@ -67,8 +67,8 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         self.dismiss(animated: false, completion: nil)
     }
     
-    func save() {
-        if self.nicknameTextField.text?.trimmingCharacters(in: CharacterSet.whitespaces).characters.count == 0 {
+    @objc func save() {
+        if self.nicknameTextField.text?.trimmingCharacters(in: CharacterSet.whitespaces).utf8CString.count == 0 {
             return
         }
         
@@ -214,7 +214,7 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
     
-    func clickProfileImage() {
+    @objc func clickProfileImage() {
         let mediaUI = UIImagePickerController()
         mediaUI.sourceType = UIImagePickerControllerSourceType.photoLibrary
         let mediaTypes = [String(kUTTypeImage)]

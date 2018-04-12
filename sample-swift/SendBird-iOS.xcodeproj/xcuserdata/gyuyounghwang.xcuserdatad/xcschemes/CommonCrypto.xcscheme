@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5AB0CC241D8F840400F05EC1"
-               BuildableName = "SendBird.app"
-               BlueprintName = "SendBird-iOS"
+               BlueprintIdentifier = "E2217E371EF893A000AEE668"
+               BuildableName = "CommonCrypto.framework"
+               BlueprintName = "CommonCrypto"
                ReferencedContainer = "container:SendBird-iOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5AB0CC241D8F840400F05EC1"
-            BuildableName = "SendBird.app"
-            BlueprintName = "SendBird-iOS"
-            ReferencedContainer = "container:SendBird-iOS.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -51,23 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5AB0CC241D8F840400F05EC1"
-            BuildableName = "SendBird.app"
-            BlueprintName = "SendBird-iOS"
+            BlueprintIdentifier = "E2217E371EF893A000AEE668"
+            BuildableName = "CommonCrypto.framework"
+            BlueprintName = "CommonCrypto"
             ReferencedContainer = "container:SendBird-iOS.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OS_ACTIVITY_MODE"
-            value = "disable"
-            isEnabled = "NO">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -77,16 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5AB0CC241D8F840400F05EC1"
-            BuildableName = "SendBird.app"
-            BlueprintName = "SendBird-iOS"
+            BlueprintIdentifier = "E2217E371EF893A000AEE668"
+            BuildableName = "CommonCrypto.framework"
+            BlueprintName = "CommonCrypto"
             ReferencedContainer = "container:SendBird-iOS.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

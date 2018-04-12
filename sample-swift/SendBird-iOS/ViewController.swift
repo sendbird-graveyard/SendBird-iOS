@@ -47,14 +47,14 @@ class ViewController: UITableViewController, UITextFieldDelegate {
         self.userIdLineView.backgroundColor = Constants.textFieldLineColorNormal()
         self.nicknameLineView.backgroundColor = Constants.textFieldLineColorNormal()
         
-        if userId != nil && (userId?.characters.count)! > 0 {
+        if userId != nil && (userId?.utf8CString.count)! > 0 {
             self.userIdLabelBottomMargin.constant = 0
             self.view.setNeedsUpdateConstraints()
             self.userIdLabel.alpha = 1
             self.view.layoutIfNeeded()
         }
         
-        if userNickname != nil && (userNickname?.characters.count)! > 0 {
+        if userNickname != nil && (userNickname?.utf8CString.count)! > 0 {
             self.nicknameLabelBottomMargin.constant = 0
             self.view.setNeedsUpdateConstraints()
             self.nicknameLabel.alpha = 1
@@ -71,7 +71,7 @@ class ViewController: UITableViewController, UITextFieldDelegate {
         self.userIdTextField.addTarget(self, action: #selector(userIdTextFieldDidChange(sender:)), for: UIControlEvents.editingChanged)
         self.nicknameTextField.addTarget(self, action: #selector(nicknameTextFieldDidChange(sender:)), for: UIControlEvents.editingChanged)
         
-        if userId != nil && (userId?.characters.count)! > 0 && userNickname != nil && (userNickname?.characters.count)! > 0 {
+        if userId != nil && (userId?.utf8CString.count)! > 0 && userNickname != nil && (userNickname?.utf8CString.count)! > 0 {
             self.connect()
         }
     }
@@ -83,7 +83,7 @@ class ViewController: UITableViewController, UITextFieldDelegate {
     func connect() {
         let trimmedUserId: String = (self.userIdTextField.text?.trimmingCharacters(in: NSCharacterSet.whitespaces))!
         let trimmedNickname: String = (self.nicknameTextField.text?.trimmingCharacters(in: NSCharacterSet.whitespaces))!
-        if trimmedUserId.characters.count > 0 && trimmedNickname.characters.count > 0 {
+        if trimmedUserId.utf8CString.count > 0 && trimmedNickname.utf8CString.count > 0 {
             self.userIdTextField.isEnabled = false
             self.nicknameTextField.isEnabled = false
             
@@ -159,8 +159,8 @@ class ViewController: UITableViewController, UITextFieldDelegate {
         }
     }
 
-    func userIdTextFieldDidChange(sender: UITextField) {
-        if sender.text?.characters.count == 0 {
+    @objc func userIdTextFieldDidChange(sender: UITextField) {
+        if sender.text?.utf8CString.count == 0 {
             self.userIdLabelBottomMargin.constant = -12
             self.view.setNeedsUpdateConstraints()
             UIView.animate(withDuration: 0.1, animations: { 
@@ -178,8 +178,8 @@ class ViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    func nicknameTextFieldDidChange(sender: UITextField) {
-        if sender.text?.characters.count == 0 {
+    @objc func nicknameTextFieldDidChange(sender: UITextField) {
+        if sender.text?.utf8CString.count == 0 {
             self.nicknameLabelBottomMargin.constant = -12
             self.view.setNeedsUpdateConstraints()
             UIView.animate(withDuration: 0.1, animations: {
