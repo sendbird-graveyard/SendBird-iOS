@@ -15,8 +15,9 @@
 #import "NSBundle+SendBird.h"
 #import "Constants.h"
 #import "Utils.h"
+#import "ConnectionManager.h"
 
-@interface GroupChannelListViewController ()
+@interface GroupChannelListViewController () <ConnectionManagerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *noChannelLabel;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -59,8 +60,25 @@
     
     self.cachedChannels = YES;
     
-    self.firstLoading = NO;
-    
+    [ConnectionManager addConnectionObserver:self];
+    if ([SBDMain getConnectState] == SBDWebSocketClosed) {
+        [ConnectionManager loginWithCompletionHandler:^(SBDUser * _Nullable user, NSError * _Nullable error) {
+            if (error != nil) {
+                return;
+            }
+        }];
+    }
+    else {
+        self.firstLoading = NO;
+        [self showList];
+    }
+}
+
+- (void)dealloc {
+    [ConnectionManager removeConnectionObserver:self];
+}
+
+- (void)showList {
     dispatch_queue_t dumpLoadQueue = dispatch_queue_create("com.sendbird.dumploadqueue", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(dumpLoadQueue, ^{
         self.channels = [[NSMutableArray alloc] initWithArray:[Utils loadGroupChannels]];
@@ -77,24 +95,14 @@
             self.cachedChannels = NO;
             [self refreshChannelList];
         }
+        self.firstLoading = YES;
     });
     
-    self.firstLoading = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [Utils dumpChannels:self.channels];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-    if (self.firstLoading == NO) {
-        [self refreshChannelList];
-    }
-    
-    self.firstLoading = NO;
 }
 
 - (void)addDelegates {
@@ -295,19 +303,13 @@
     }
     else {
         cell = [tableView dequeueReusableCellWithIdentifier:[GroupChannelListTableViewCell cellReuseIdentifier]];
-        BOOL startAnimating = NO;
         if (self.channels[indexPath.row].isTyping == YES) {
             if ([self.typingAnimationChannelList indexOfObject:self.channels[indexPath.row].channelUrl] == NSNotFound) {
-                startAnimating = YES;
                 [self.typingAnimationChannelList addObject:self.channels[indexPath.row].channelUrl];
-            }
-            else {
-                startAnimating = NO;
             }
         }
         else {
             [self.typingAnimationChannelList removeObject:self.channels[indexPath.row].channelUrl];
-            startAnimating = NO;
         }
 
         [(GroupChannelListTableViewCell *)cell setModel:self.channels[indexPath.row]];
@@ -327,7 +329,7 @@
     SBDGroupChannel *selectedChannel = self.channels[row];
     if (index == 0) {
         // Hide
-        [selectedChannel hideChannelWithCompletionHandler:^(SBDError * _Nullable error) {
+        [selectedChannel hideChannelWithHidePreviousMessages:NO completionHandler:^(SBDError * _Nullable error) {
             if (error != nil) {
                 UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
@@ -378,37 +380,14 @@
     });
 }
 
-#pragma mark - SBDConnectionDelegate
-
-- (void)didStartReconnection {
-    
-}
-
-- (void)didSucceedReconnection {
+#pragma mark - Connection Manager Delegate
+- (void)didConnect:(BOOL)isReconnection {
     UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
     UIViewController *bestVC = [Utils findBestViewController:vc];
     
     if (bestVC == self) {
-        SBDGroupChannelListQuery *query = [SBDGroupChannel createMyGroupChannelListQuery];
-        query.limit = 20;
-        query.order = SBDGroupChannelListOrderLatestLastMessage;
-        [query loadNextPageWithCompletionHandler:^(NSArray<SBDGroupChannel *> * _Nullable channels, SBDError * _Nullable error) {
-            if (error != nil) {
-                return;
-            }
-            
-            [self.channels removeAllObjects];
-            [self.channels addObjectsFromArray:channels];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.groupChannelListQuery = query;
-                [self.tableView reloadData];
-            });
-        }];
+        [self refreshChannelList];
     }
-}
-
-- (void)didFailReconnection {
-    
 }
 
 #pragma mark - SBDChannelDelegate

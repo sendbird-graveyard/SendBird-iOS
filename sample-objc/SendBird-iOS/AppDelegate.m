@@ -11,6 +11,9 @@
 #import <AVFoundation/AVFoundation.h>
 
 #import "Constants.h"
+#import "ConnectionManager.h"
+#import "ViewController.h"
+#import "MenuViewController.h"
 
 @interface AppDelegate ()
 
@@ -58,11 +61,26 @@
             NSLog(@"Set Audio Session error: %@", error);
         }
     }
-
-//    if (launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]) {
-//        [self application:application didReceiveRemoteNotification:launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]];
-//    }
-
+    
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LaunchScreen" bundle:nil];
+    UIViewController *launchViewController = [storyboard instantiateViewControllerWithIdentifier:@"com.sendbird.sample.viewcontroller.launch"];
+    self.window.rootViewController = launchViewController;
+    [self.window makeKeyAndVisible];
+    
+    [ConnectionManager loginWithCompletionHandler:^(SBDUser * _Nullable user, NSError * _Nullable error) {
+        if (error != nil) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"com.sendbird.sample.viewcontroller.initial"];
+            self.window.rootViewController = viewController;
+            [self.window makeKeyAndVisible];
+            return;
+        }
+        
+        self.window.rootViewController = [[MenuViewController alloc] init];;
+        [self.window makeKeyAndVisible];
+    }];
+    
     return YES;
 }
 
@@ -138,7 +156,7 @@
 
 }
 
-- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)(void))completionHandler {
+- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(nonnull void (^)())completionHandler {
     NSLog(@"method for handling events for background url session is waiting to be process. background session id: %@", identifier);
     if (completionHandler != nil) {
         completionHandler();

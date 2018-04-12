@@ -59,7 +59,6 @@ class Utils: NSObject {
     }
     
     static func dumpMessages(messages: [SBDBaseMessage], resendableMessages: [String: SBDBaseMessage], resendableFileData: [String: [String: Any]], preSendMessages: [String: SBDBaseMessage], channelUrl: String) {
-        var startIndex = 0
         var from = 0
         
         if messages.count == 0 {
@@ -224,7 +223,6 @@ class Utils: NSObject {
     
     static func dumpChannels(channels: [SBDBaseChannel]) {
         // Serialize channels
-        var startIndex = 0
         var from = 0
         
         if channels.count == 0 {
@@ -360,7 +358,7 @@ class Utils: NSObject {
     }
     
     static func sha256(string: String) -> String? {
-        var sha256hash: NSMutableString = NSMutableString()
+        let sha256hash: NSMutableString = NSMutableString()
         guard let messageData = string.data(using:String.Encoding.utf8) else { return nil }
         var hash = [UInt8](repeating: 0,  count: Int(CC_SHA256_DIGEST_LENGTH))
         messageData.withUnsafeBytes {

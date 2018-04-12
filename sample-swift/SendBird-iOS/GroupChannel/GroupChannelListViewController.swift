@@ -289,7 +289,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         let selectedChannel: SBDGroupChannel = self.channels[row!] as SBDGroupChannel
         if index == 0 {
             // Hide
-            selectedChannel.hide(completionHandler: { (error) in
+            selectedChannel.hide(withHidePreviousMessages: false, completionHandler: { (error) in
                 if error != nil {
                     let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
                     let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)

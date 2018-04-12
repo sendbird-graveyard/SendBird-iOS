@@ -16,8 +16,8 @@
 
 @interface OutgoingImageFileMessageTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet FLAnimatedImageView *fileImageView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingIndicator;
+@property (weak, nonatomic, nullable) IBOutlet FLAnimatedImageView *fileImageView;
+@property (weak, nonatomic, nullable) IBOutlet UIActivityIndicatorView *imageLoadingIndicator;
 
 @property (weak, nonatomic, nullable) id<MessageDelegate> delegate;
 @property (atomic) BOOL hasImageCacheData;

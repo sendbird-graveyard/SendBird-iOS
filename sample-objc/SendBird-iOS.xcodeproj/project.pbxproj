@@ -72,6 +72,7 @@
 		5AF8AC7C1D913D91000F0578 /* GroupChannelListEditableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF8AC7A1D913D91000F0578 /* GroupChannelListEditableTableViewCell.xib */; };
 		5AF8AC891D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC871D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m */; };
 		B4BD35B7B36280BBAF9B8122 /* Pods_SendBird_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 382D6CF042D942EB06CD9F0C /* Pods_SendBird_iOS.framework */; };
+		C1A2ACD1202AC35A0066ED0E /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A2ACD0202AC35A0066ED0E /* ConnectionManager.m */; };
 		CE806EFF1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE806EFD1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.m */; };
 		CE806F001E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806EFE1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib */; };
 		CE806F041E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE806F021E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.m */; };
@@ -227,6 +228,8 @@
 		5AF8AC861D91FF9E000F0578 /* CreateGroupChannelUserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupChannelUserListViewController.h; sourceTree = "<group>"; };
 		5AF8AC871D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupChannelUserListViewController.m; sourceTree = "<group>"; };
 		79490ADA791306CED6D99F2F /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		C1A2ACCF202AC35A0066ED0E /* ConnectionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
+		C1A2ACD0202AC35A0066ED0E /* ConnectionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
 		CE806EFC1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomingGeneralUrlPreviewMessageTableViewCell.h; sourceTree = "<group>"; };
 		CE806EFD1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomingGeneralUrlPreviewMessageTableViewCell.m; sourceTree = "<group>"; };
 		CE806EFE1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingGeneralUrlPreviewMessageTableViewCell.xib; sourceTree = "<group>"; };
@@ -305,6 +308,7 @@
 		5AB0CC271D8F840400F05EC1 /* SendBird-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				C1A2ACCE202AC33F0066ED0E /* Connection */,
 				5ADA68D71D9256FB00EFDF2B /* Chatting */,
 				5ADA68EC1D928DFD00EFDF2B /* Common */,
 				5AF8AC6C1D911ACC000F0578 /* GroupChannel */,
@@ -534,6 +538,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C1A2ACCE202AC33F0066ED0E /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				C1A2ACCF202AC35A0066ED0E /* ConnectionManager.h */,
+				C1A2ACD0202AC35A0066ED0E /* ConnectionManager.m */,
+			);
+			path = Connection;
+			sourceTree = "<group>";
+		};
 		E218A6901E7CB469008ED223 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -751,6 +764,7 @@
 				5AF199261DA3CCE000BF2DE0 /* BlockedUserListTableViewCell.m in Sources */,
 				5AB0CC301D8F840400F05EC1 /* ViewController.m in Sources */,
 				5AF8AC7B1D913D91000F0578 /* GroupChannelListEditableTableViewCell.m in Sources */,
+				C1A2ACD1202AC35A0066ED0E /* ConnectionManager.m in Sources */,
 				E218A6931E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.m in Sources */,
 				5AF8AC651D90D95E000F0578 /* OpenChannelListTableViewCell.m in Sources */,
 				5AF8AC761D9131BD000F0578 /* GroupChannelListViewController.m in Sources */,

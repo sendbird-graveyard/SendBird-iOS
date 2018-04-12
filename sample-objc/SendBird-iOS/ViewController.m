@@ -14,6 +14,7 @@
 #import "NSBundle+SendBird.h"
 #import "Utils.h"
 #import "AppDelegate.h"
+#import "ConnectionManager.h"
 
 @interface ViewController ()
 
@@ -51,28 +52,8 @@
     self.userIdLabel.alpha = 0;
     self.nicknameLabel.alpha = 0;
     
-    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"sendbird_user_id"];
-    NSString *userNickname = [[NSUserDefaults standardUserDefaults] objectForKey:@"sendbird_user_nickname"];
-
     self.userIdLineView.backgroundColor = [Constants textFieldLineColorNormal];
     self.nicknameLineView.backgroundColor = [Constants textFieldLineColorNormal];
-    
-    if (userId != nil && userId.length > 0) {
-        self.userIdLabelBottomMargin.constant = 0;
-        [self.view setNeedsUpdateConstraints];
-        self.userIdLabel.alpha = 1;
-        [self.view layoutIfNeeded];
-    }
-    
-    if (userNickname != nil && userNickname.length > 0) {
-        self.nicknameLabelBottomMargin.constant = 0;
-        [self.view setNeedsUpdateConstraints];
-        self.nicknameLabel.alpha = 1;
-        [self.view layoutIfNeeded];
-    }
-    
-    self.userIdTextField.text = userId;
-    self.nicknameTextField.text = userNickname;
     
     [self.connectButton setBackgroundImage:[Utils imageFromColor:[Constants connectButtonColor]] forState:UIControlStateNormal];
     
@@ -80,10 +61,6 @@
 
     [self.userIdTextField addTarget:self action:@selector(userIdTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.nicknameTextField addTarget:self action:@selector(nicknameTextFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    
-    if (userId != nil && userId.length > 0 && userNickname != nil && userNickname.length > 0) {
-        [self connect];
-    }
 }
 
 //- (void)applicationEnteredForeground:(id)sender {
@@ -108,65 +85,23 @@
         
         [self.indicatorView startAnimating];
 
-        [SBDMain connectWithUserId:trimmedUserId completionHandler:^(SBDUser * _Nullable user, SBDError * _Nullable error) {
-            if (error != nil) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.userIdTextField setEnabled:YES];
-                    [self.nicknameTextField setEnabled:YES];
-                    
-                    [self.indicatorView stopAnimating];
-                });
+        [ConnectionManager loginWithUserId:trimmedUserId nickname:trimmedNickname completionHandler:^(SBDUser * _Nullable user, NSError * _Nullable error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.userIdTextField setEnabled:YES];
+                [self.nicknameTextField setEnabled:YES];
                 
-                UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+                [self.indicatorView stopAnimating];
+            });
+            
+            if (error != nil) {
+                UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
                 [vc addAction:closeAction];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self presentViewController:vc animated:YES completion:nil];
                 });
-                
                 return;
             }
-            
-            [SBDMain registerDevicePushToken:[SBDMain getPendingPushToken] unique:YES completionHandler:^(SBDPushTokenRegistrationStatus status, SBDError * _Nullable error) {
-                if (error == nil) {
-                    if (status == SBDPushTokenRegistrationStatusPending) {
-                        NSLog(@"Push registration is pending.");
-                    }
-                    else {
-                        NSLog(@"APNS Token is registered.");
-                    }
-                }
-                else {
-                    NSLog(@"APNS registration failed.");
-                }
-            }];
-            
-            [SBDMain updateCurrentUserInfoWithNickname:trimmedNickname profileUrl:nil completionHandler:^(SBDError * _Nullable error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.userIdTextField setEnabled:YES];
-                    [self.nicknameTextField setEnabled:YES];
-                    
-                    [self.indicatorView stopAnimating];
-                });
-                
-                if (error != nil) {
-                    UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
-                    [vc addAction:closeAction];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self presentViewController:vc animated:YES completion:nil];
-                    });
-                    
-                    [SBDMain disconnectWithCompletionHandler:^{
-                        
-                    }];
-                    
-                    return;
-                }
-                
-                [[NSUserDefaults standardUserDefaults] setObject:[SBDMain getCurrentUser].userId forKey:@"sendbird_user_id"];
-                [[NSUserDefaults standardUserDefaults] setObject:[SBDMain getCurrentUser].nickname forKey:@"sendbird_user_nickname"];
-            }];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 MenuViewController *vc = [[MenuViewController alloc] init];

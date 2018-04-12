@@ -12,8 +12,9 @@
 #import "OpenChannelListTableViewCell.h"
 #import "OpenChannelChattingViewController.h"
 #import "NSBundle+SendBird.h"
+#import "ConnectionManager.h"
 
-@interface OpenChannelListViewController ()
+@interface OpenChannelListViewController () <ConnectionManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -49,7 +50,17 @@
     self.navItem.leftBarButtonItems = @[negativeLeftSpacer, leftBackItem];
     self.navItem.rightBarButtonItems = @[negativeRightSpacer, rightCreateOpenChannelItem];
     
-    [self refreshChannelList];
+    [ConnectionManager addConnectionObserver:self];
+    if ([SBDMain getConnectState] == SBDWebSocketClosed) {
+        [ConnectionManager loginWithCompletionHandler:^(SBDUser * _Nullable user, NSError * _Nullable error) {
+            if (error != nil) {
+                return;
+            }
+        }];
+    }
+    else {
+        [self refreshChannelList];
+    }
 }
 
 - (void)refreshChannelList {
@@ -200,6 +211,11 @@
     }
     
     return cell;
+}
+
+#pragma mark - Connection Manager Delegate
+- (void)didConnect:(BOOL)isReconnection {
+    [self refreshChannelList];
 }
 
 @end

@@ -170,30 +170,25 @@ class IncomingUserMessageTableViewCell: UITableViewCell, TTTAttributedLabelDeleg
             NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue
         ]
         
-        do {
-            let detector: NSDataDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-            let matches = detector.matches(in: self.message.message!, options: [], range: NSMakeRange(0, (self.message.message?.characters.count)!))
-            if matches.count > 0 {
-                self.messageLabel.delegate = self
-                self.messageLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
-                for item in matches {
-                    let match = item
-                    let rangeOfOriginalMessage = match.range
-                    var range: NSRange
-                    if self.displayNickname {
-                        range = NSMakeRange((self.message.sender?.nickname?.characters.count)! + 1 + rangeOfOriginalMessage.location, rangeOfOriginalMessage.length)
-                    }
-                    else {
-                        range = rangeOfOriginalMessage
-                    }
-                    
-                    self.messageLabel.addLink(to: match.url, with: range)
-                    
+        let detector: NSDataDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        let matches = detector.matches(in: self.message.message!, options: [], range: NSMakeRange(0, (self.message.message?.characters.count)!))
+        if matches.count > 0 {
+            self.messageLabel.delegate = self
+            self.messageLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
+            for item in matches {
+                let match = item
+                let rangeOfOriginalMessage = match.range
+                var range: NSRange
+                if self.displayNickname {
+                    range = NSMakeRange((self.message.sender?.nickname?.characters.count)! + 1 + rangeOfOriginalMessage.location, rangeOfOriginalMessage.length)
                 }
+                else {
+                    range = rangeOfOriginalMessage
+                }
+                
+                self.messageLabel.addLink(to: match.url, with: range)
+                
             }
-        }
-        catch {
-            
         }
         
         self.layoutIfNeeded()
