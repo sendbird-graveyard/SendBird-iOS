@@ -65,12 +65,12 @@ class IncomingVideoFileMessageTableViewCell: UITableViewCell {
         /* Thumbnail is a premium feature. */
         /***********************************/
         if self.message.thumbnails != nil && (self.message.thumbnails?.count)! > 0 {
-            if (self.message.thumbnails?[0].url.utf8CString.count)! > 0 {
+            if (self.message.thumbnails?[0].url.count)! > 0 {
                 self.fileImageView.af_setImage(withURL: URL(string: (self.message.thumbnails?[0].url)!)!)
             }
         }
         else {
-            if self.message.url.utf8CString.count > 0 {
+            if self.message.url.count > 0 {
                 self.fileImageView.af_setImage(withURL:URL(string: self.message.url)!)
             }
         }

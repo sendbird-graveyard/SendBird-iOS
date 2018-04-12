@@ -131,6 +131,10 @@ NSString *const ConnectionManagerErrorDomainUser = @"com.sendbird.sample.user";
         [userDefault removeObjectForKey:@"sendbird_user_id"];
         [userDefault removeObjectForKey:@"sendbird_user_nickname"];
         [userDefault synchronize];
+        
+        if (completionHandler != nil) {
+            completionHandler();
+        }
     }];
 }
 

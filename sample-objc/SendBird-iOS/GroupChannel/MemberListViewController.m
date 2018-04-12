@@ -33,7 +33,6 @@
     self.navItem.leftBarButtonItems = @[negativeLeftSpacer, leftCloseItem];
     
     [SBDMain addChannelDelegate:self identifier:self.description];
-    [SBDMain addConnectionDelegate:self identifier:self.description];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

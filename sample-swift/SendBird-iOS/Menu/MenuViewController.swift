@@ -9,7 +9,7 @@
 import UIKit
 import SendBirdSDK
 
-class MenuViewController: UIViewController, SBDConnectionDelegate {
+class MenuViewController: UIViewController, ConnectionManagerDelegate, SBDConnectionDelegate {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var openChannelView: UIView!
     @IBOutlet weak var groupChannelView: UIView!
@@ -40,7 +40,7 @@ class MenuViewController: UIViewController, SBDConnectionDelegate {
         self.navItem.rightBarButtonItems = [negativeRightSpacer, rightDisconnectItem]
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftProfileItem]
         
-        SBDMain.add(self as SBDConnectionDelegate, identifier: self.description)
+        ConnectionManager.add(connectionObserver: self as ConnectionManagerDelegate)
         
         if (UIApplication.shared.delegate as! AppDelegate).receivedPushChannelUrl != nil {
             let channelUrl = (UIApplication.shared.delegate as! AppDelegate).receivedPushChannelUrl
@@ -54,6 +54,18 @@ class MenuViewController: UIViewController, SBDConnectionDelegate {
                 })
             }
         }
+        
+        if SBDMain.getConnectState() == .closed {
+            ConnectionManager.login { (user, error) in
+                guard error == nil else {
+                    return;
+                }
+            }
+        }
+    }
+    
+    deinit {
+        ConnectionManager.remove(connectionObserver: self as ConnectionManagerDelegate)
     }
     
     override func didReceiveMemoryWarning() {
@@ -118,10 +130,7 @@ class MenuViewController: UIViewController, SBDConnectionDelegate {
             }
             
             SBDMain.disconnect(completionHandler: {
-                DispatchQueue.main.async {
-                    UIApplication.shared.applicationIconBadgeNumber = 0
-                    self.dismiss(animated: false, completion: nil)
-                }
+                self.presentLoginViewController()
             })
         }
     }
@@ -133,14 +142,25 @@ class MenuViewController: UIViewController, SBDConnectionDelegate {
         }
     }
     
-    // MARK: GroupChannelChattingViewController
-    func didStartReconnection() {
-        
+    private func presentLoginViewController() {
+        DispatchQueue.main.async {
+            UIApplication.shared.applicationIconBadgeNumber = 0
+            if UIApplication.shared.delegate?.window??.rootViewController is MenuViewController {
+                let storyboard: UIStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let loginViewController: UIViewController = storyboard.instantiateViewController(withIdentifier: "com.sendbird.sample.viewcontroller.initial")
+                self.present(loginViewController, animated: false, completion: nil)
+            }
+            else {
+                self.dismiss(animated: false, completion: nil)
+            }
+        }
     }
     
-    func didSucceedReconnection() {
+    // MARK: GroupChannelChattingViewController
+    func didConnect(isReconnection: Bool) {
         if (UIApplication.shared.delegate as! AppDelegate).receivedPushChannelUrl != nil {
             let channelUrl = (UIApplication.shared.delegate as! AppDelegate).receivedPushChannelUrl
+            ((UIApplication.shared).delegate as! AppDelegate).receivedPushChannelUrl = nil
             
             var topViewController = UIApplication.shared.keyWindow?.rootViewController
             while ((topViewController?.presentedViewController) != nil) {
@@ -153,7 +173,6 @@ class MenuViewController: UIViewController, SBDConnectionDelegate {
                 }
             }
             
-            ((UIApplication.shared).delegate as! AppDelegate).receivedPushChannelUrl = nil
             SBDGroupChannel.getWithUrl(channelUrl!, completionHandler: { (channel, error) in
                 let vc = GroupChannelChattingViewController()
                 vc.groupChannel = channel
@@ -164,7 +183,7 @@ class MenuViewController: UIViewController, SBDConnectionDelegate {
         }
     }
     
-    func didFailReconnection() {
-        
+    func didDisconnect() {
+        //
     }
 }

@@ -132,7 +132,7 @@ class OutgoingGeneralUrlPreviewTempMessageTableViewCell: UITableViewCell {
         let message = self.message?.message
         
         let fullMessage = NSMutableAttributedString.init(string: message!)
-        fullMessage.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.utf8CString.count)!))
+        fullMessage.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.count)!))
         
         return fullMessage
     }

@@ -82,7 +82,7 @@ class IncomingFileMessageTableViewCell: UITableViewCell {
         }
         
         var nicknameAttribute: [NSAttributedStringKey:AnyObject]?
-        switch (self.message.sender?.nickname?.utf8CString.count)! % 5 {
+        switch (self.message.sender?.nickname?.count)! % 5 {
         case 0:
             nicknameAttribute = [
                 NSAttributedStringKey.font: Constants.nicknameFontInMessage(),

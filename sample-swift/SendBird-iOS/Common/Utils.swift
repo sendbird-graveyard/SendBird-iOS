@@ -31,7 +31,7 @@ class Utils: NSObject {
             NSAttributedStringKey.foregroundColor: UIColor.black
         ]
         fullTitle = NSMutableAttributedString(string: mainTitle)
-        fullTitle.addAttributes(mainTitleAttribute, range: NSMakeRange(0, mainTitle.utf8CString.count))
+        fullTitle.addAttributes(mainTitleAttribute, range: NSMakeRange(0, mainTitle.count))
         
         if let theSubTitle: String = subTitle {
             subTitleAttribute = [
@@ -39,7 +39,7 @@ class Utils: NSObject {
                 NSAttributedStringKey.foregroundColor: Constants.navigationBarSubTitleColor()
             ]
             fullTitle.append(NSAttributedString(string: "\n\(theSubTitle)"))
-            fullTitle.addAttributes(subTitleAttribute!, range: NSMakeRange(mainTitle.utf8CString.count + 1, (subTitle?.utf8CString.count)!))
+            fullTitle.addAttributes(subTitleAttribute!, range: NSMakeRange(mainTitle.count + 1, (subTitle?.count)!))
         }
         
         return fullTitle
@@ -186,7 +186,7 @@ class Utils: NSObject {
         do {
             let messageDump = try String(contentsOfFile: dumpFilePath, encoding: String.Encoding.utf8)
             
-            if messageDump.utf8CString.count > 0 {
+            if messageDump.count > 0 {
                 let loadMessages = messageDump.components(separatedBy: "\n")
                 
                 if loadMessages.count > 0 {
@@ -322,7 +322,7 @@ class Utils: NSObject {
         do {
             let channelDump = try String(contentsOfFile: dumpFilePath, encoding: String.Encoding.utf8)
             
-            if channelDump.utf8CString.count > 0 {
+            if channelDump.count > 0 {
                 let loadChannels = channelDump.components(separatedBy: "\n")
                 
                 if loadChannels.count > 0 {

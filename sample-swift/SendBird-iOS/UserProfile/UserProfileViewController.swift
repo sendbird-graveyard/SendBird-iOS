@@ -68,7 +68,7 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @objc func save() {
-        if self.nicknameTextField.text?.trimmingCharacters(in: CharacterSet.whitespaces).utf8CString.count == 0 {
+        if self.nicknameTextField.text?.trimmingCharacters(in: CharacterSet.whitespaces).count == 0 {
             return
         }
         

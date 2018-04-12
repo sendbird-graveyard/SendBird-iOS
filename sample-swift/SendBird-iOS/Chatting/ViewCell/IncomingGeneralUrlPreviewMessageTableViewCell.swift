@@ -218,7 +218,7 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         ]
         
         let detector: NSDataDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        let matches = detector.matches(in: self.message.message!, options: [], range: NSMakeRange(0, (self.message.message?.utf8CString.count)!))
+        let matches = detector.matches(in: self.message.message!, options: [], range: NSMakeRange(0, (self.message.message?.count)!))
         if matches.count > 0 {
             self.messageLabel.delegate = self
             self.messageLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
@@ -227,7 +227,7 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
                 let rangeOfOriginalMessage = match.range
                 var range: NSRange
                 if self.displayNickname {
-                    range = NSMakeRange((self.message.sender?.nickname?.utf8CString.count)! + 1 + rangeOfOriginalMessage.location, rangeOfOriginalMessage.length)
+                    range = NSMakeRange((self.message.sender?.nickname?.count)! + 1 + rangeOfOriginalMessage.location, rangeOfOriginalMessage.length)
                 }
                 else {
                     range = rangeOfOriginalMessage
@@ -246,7 +246,7 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
     
     private func buildMessage() -> NSMutableAttributedString {
         var nicknameAttribute: [NSAttributedStringKey:NSObject]
-        switch (self.message.sender?.nickname?.utf8CString.count)! % 5 {
+        switch (self.message.sender?.nickname?.count)! % 5 {
         case 0:
             nicknameAttribute = [
                 NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
@@ -288,12 +288,12 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         var fullMessage: NSMutableAttributedString?
         if self.displayNickname {
             fullMessage = NSMutableAttributedString(string: String(format: "%@\n%@", nickname!, message!))
-            fullMessage?.addAttributes(nicknameAttribute, range: NSMakeRange(0, (nickname?.utf8CString.count)!))
-            fullMessage?.addAttributes(messageAttribute, range: NSMakeRange((nickname?.utf8CString.count)! + 1, (message?.utf8CString.count)!))
+            fullMessage?.addAttributes(nicknameAttribute, range: NSMakeRange(0, (nickname?.count)!))
+            fullMessage?.addAttributes(messageAttribute, range: NSMakeRange((nickname?.count)! + 1, (message?.count)!))
         }
         else {
             fullMessage = NSMutableAttributedString(string: String(format: "%@", message!))
-            fullMessage?.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.utf8CString.count)!))
+            fullMessage?.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.count)!))
         }
         
         return fullMessage!

@@ -53,7 +53,7 @@ class CreateOpenChannelViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc private func createOpenChannel() {
-        if self.openChannelNameTextField.text?.utf8CString.count == 0 {
+        if self.openChannelNameTextField.text?.count == 0 {
             return
         }
         
@@ -82,7 +82,7 @@ class CreateOpenChannelViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func channelNameTextFieldDidChange(sender: UITextField) {
-        if sender.text?.utf8CString.count == 0 {
+        if sender.text?.count == 0 {
             self.channelNameLabelBottomMargin.constant = -12
             self.view.setNeedsUpdateConstraints()
             UIView.animate(withDuration: 0.1, animations: {

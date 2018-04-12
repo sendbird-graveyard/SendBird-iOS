@@ -9,7 +9,7 @@
 import UIKit
 import SendBirdSDK
 
-class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CreateOpenChannelViewControllerDelegate {
+class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CreateOpenChannelViewControllerDelegate, ConnectionManagerDelegate {
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     
@@ -40,7 +40,17 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftBackItem]
         self.navItem.rightBarButtonItems = [negativeRightSpacer, rightCreateOpenChannelItem]
         
-        self.refreshChannelList()
+        ConnectionManager.add(connectionObserver: self as ConnectionManagerDelegate)
+        if SBDMain.getConnectState() == .closed {
+            ConnectionManager.login { (user, error) in
+                guard error == nil else {
+                    return;
+                }
+            }
+        }
+        else {
+            self.refreshChannelList()
+        }
     }
 
     @objc private func refreshChannelList() {
@@ -179,5 +189,14 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
         }
         
         return cell!
+    }
+    
+    // MARK: Connection manager delegate
+    func didConnect(isReconnection: Bool) {
+        self.refreshChannelList()
+    }
+    
+    func didDisconnect() {
+        //
     }
 }

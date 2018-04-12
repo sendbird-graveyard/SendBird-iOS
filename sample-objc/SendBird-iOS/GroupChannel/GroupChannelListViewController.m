@@ -107,7 +107,6 @@
 
 - (void)addDelegates {
     [SBDMain addChannelDelegate:self identifier:self.description];
-    [SBDMain addConnectionDelegate:self identifier:self.description];
 }
 
 - (void)setDefaultNavigationItems {

@@ -643,7 +643,6 @@
                 NSMutableArray *mediaTypes = [[NSMutableArray alloc] initWithObjects:(NSString *)kUTTypeImage, (NSString *)kUTTypeMovie, nil];
                 mediaUI.mediaTypes = mediaTypes;
                 [mediaUI setDelegate:self];
-                self.refreshInViewDidAppear = NO;
                 [self presentViewController:mediaUI animated:YES completion:nil];
             }
         }];
