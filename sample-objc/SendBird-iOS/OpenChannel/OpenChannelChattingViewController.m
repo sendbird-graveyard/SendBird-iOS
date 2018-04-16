@@ -25,6 +25,7 @@
 #import "FLAnimatedImageView+ImageCache.h"
 #import "CreateGroupChannelUserListViewController.h"
 #import "ConnectionManager.h"
+#import "Application.h"
 
 @interface OpenChannelChattingViewController () <ConnectionManagerDelegate>
 
@@ -671,13 +672,13 @@
         if (error == nil) {
             if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSString *title = [NSString stringWithFormat:@"%@(%zd)", self.channel.name, self.channel.participantCount];
+                    NSString *title = [NSString stringWithFormat:@"%@(%ld)", self.channel.name, (long)self.channel.participantCount];
                     NSString *subtitle = [NSBundle sbLocalizedStringForKey:@"ReconnectedSubTitle"];
                     UILabel *label = (UILabel *)self.navItem.titleView;
                     label.attributedText = [Utils generateNavigationTitle:title subTitle:subtitle];
                     
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1000 * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
-                        NSString *title = [NSString stringWithFormat:@"%@(%zd)", self.channel.name, self.channel.participantCount];
+                        NSString *title = [NSString stringWithFormat:@"%@(%ld)", self.channel.name, (long)self.channel.participantCount];
                         UILabel *label = (UILabel *)self.navItem.titleView;
                         label.attributedText = [Utils generateNavigationTitle:title subTitle:nil];
                     });
@@ -690,14 +691,14 @@
 - (void)didDisconnect {
     if (self.navItem.titleView != nil && [self.navItem.titleView isKindOfClass:[UILabel class]]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *title = [NSString stringWithFormat:@"%@(%zd)", self.channel.name, self.channel.participantCount];
+            NSString *title = [NSString stringWithFormat:@"%@(%ld)", self.channel.name, (long)self.channel.participantCount];
             NSString *subtitle = [NSBundle sbLocalizedStringForKey:@"ReconnectionFailedSubTitle"];
             UILabel *label = (UILabel *)self.navItem.titleView;
             label.attributedText = [Utils generateNavigationTitle:title subTitle:subtitle];
         });
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            NSString *title = [NSString stringWithFormat:@"%@(%zd)", self.channel.name, self.channel.participantCount];
+            NSString *title = [NSString stringWithFormat:@"%@(%ld)", self.channel.name, (long)self.channel.participantCount];
             NSString *subtitle = [NSBundle sbLocalizedStringForKey:@"ReconnectingSubTitle"];
             UILabel *label = (UILabel *)self.navItem.titleView;
             label.attributedText = [Utils generateNavigationTitle:title subTitle:subtitle];
@@ -932,7 +933,7 @@
                 NSData *data = [userMessage.data dataUsingEncoding:NSUTF8StringEncoding];
                 NSDictionary *previewData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                 NSURL *url = [NSURL URLWithString:previewData[@"url"]];
-                [[UIApplication sharedApplication] openURL:url];
+                [Application openURL:url];
             }
             else {
                 SBDUser *sender = ((SBDUserMessage *)baseMessage).sender;
@@ -958,7 +959,7 @@
                     for (NSTextCheckingResult *match in matches) {
                         __block NSURL *url = [match URL];
                         UIAlertAction *openURLAction = [UIAlertAction actionWithTitle:[url relativeString] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                            [[UIApplication sharedApplication] openURL:url];
+                            [Application openURL:url];
                         }];
                         [openURLsAction addObject:openURLAction];
                     }

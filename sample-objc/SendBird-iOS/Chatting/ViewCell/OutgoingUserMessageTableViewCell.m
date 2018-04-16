@@ -8,6 +8,7 @@
 
 #import "OutgoingUserMessageTableViewCell.h"
 #import "Constants.h"
+#import "Application.h"
 
 @interface OutgoingUserMessageTableViewCell()
 
@@ -305,7 +306,7 @@
 
 #pragma mark - TTTAttributedLabelDelegate
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
-    [[UIApplication sharedApplication] openURL:url];
+    [Application openURL:url];
 }
 
 @end

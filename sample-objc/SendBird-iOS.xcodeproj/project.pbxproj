@@ -72,6 +72,7 @@
 		5AF8AC7C1D913D91000F0578 /* GroupChannelListEditableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF8AC7A1D913D91000F0578 /* GroupChannelListEditableTableViewCell.xib */; };
 		5AF8AC891D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC871D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m */; };
 		B4BD35B7B36280BBAF9B8122 /* Pods_SendBird_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 382D6CF042D942EB06CD9F0C /* Pods_SendBird_iOS.framework */; };
+		C14D390C20809666002A5AA0 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = C14D390B20809666002A5AA0 /* Application.m */; };
 		C1A2ACD1202AC35A0066ED0E /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A2ACD0202AC35A0066ED0E /* ConnectionManager.m */; };
 		CE806EFF1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE806EFD1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.m */; };
 		CE806F001E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE806EFE1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib */; };
@@ -90,7 +91,7 @@
 		E25E5A981E79E552003E1E9B /* ChatImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E25E5A971E79E552003E1E9B /* ChatImage.m */; };
 		E26802711E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E26802701E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.m */; };
 		E2A8E63E1E5CEB6B0016BA63 /* GroupChannelChattingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3A0831D99DA3800244336 /* GroupChannelChattingViewController.m */; };
-		E2B401342022789600531A7A /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B401332022789600531A7A /* UserNotifications.framework */; };
+		E2B401342022789600531A7A /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B401332022789600531A7A /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E2CEFCC51E956FDC0060C569 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2CEFCC31E956FDC0060C569 /* UserProfileViewController.m */; };
 		E2CEFCC61E956FDC0060C569 /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2CEFCC41E956FDC0060C569 /* UserProfileViewController.xib */; };
 /* End PBXBuildFile section */
@@ -228,6 +229,8 @@
 		5AF8AC861D91FF9E000F0578 /* CreateGroupChannelUserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupChannelUserListViewController.h; sourceTree = "<group>"; };
 		5AF8AC871D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupChannelUserListViewController.m; sourceTree = "<group>"; };
 		79490ADA791306CED6D99F2F /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		C14D390A20809666002A5AA0 /* Application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
+		C14D390B20809666002A5AA0 /* Application.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
 		C1A2ACCF202AC35A0066ED0E /* ConnectionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
 		C1A2ACD0202AC35A0066ED0E /* ConnectionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
 		CE806EFC1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomingGeneralUrlPreviewMessageTableViewCell.h; sourceTree = "<group>"; };
@@ -420,6 +423,8 @@
 				E221A2DF1F290CEB00767328 /* NSString+URLEncode.m */,
 				E209E9221F7A105300E7713F /* CustomNavigationBar.h */,
 				E209E9231F7A105300E7713F /* CustomNavigationBar.m */,
+				C14D390A20809666002A5AA0 /* Application.h */,
+				C14D390B20809666002A5AA0 /* Application.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -800,6 +805,7 @@
 				5AC3A0711D97975B00244336 /* OutgoingImageFileMessageTableViewCell.m in Sources */,
 				5AC3A0761D97A85000244336 /* OutgoingFileMessageTableViewCell.m in Sources */,
 				E209E9241F7A105300E7713F /* CustomNavigationBar.m in Sources */,
+				C14D390C20809666002A5AA0 /* Application.m in Sources */,
 				5AF1992B1DA3CE4500BF2DE0 /* BlockedUserListViewController.m in Sources */,
 				5ADA69111D93B37200EFDF2B /* OutgoingUserMessageTableViewCell.m in Sources */,
 				5AF8AC5F1D90D4E2000F0578 /* OpenChannelListViewController.m in Sources */,

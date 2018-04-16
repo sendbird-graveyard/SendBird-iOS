@@ -9,13 +9,14 @@
 #import "AppDelegate.h"
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <UserNotifications/UserNotifications.h>
 
 #import "Constants.h"
 #import "ConnectionManager.h"
 #import "ViewController.h"
 #import "MenuViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <UNUserNotificationCenterDelegate>
 
 @end
 
@@ -33,13 +34,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-#if !(TARGET_OS_SIMULATOR)
-    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    }
-#endif
+    [self registerForRemoteNotification];
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{
                                                            NSFontAttributeName: [Constants navigationBarTitleFont]
@@ -49,7 +44,7 @@
     application.applicationIconBadgeNumber = 0;
     
     [SBDMain initWithApplicationId:@"9DA1B1F4-0BE6-4DA8-82C5-2E81DAB56F23"];
-    [SBDMain setLogLevel:1112016];
+    [SBDMain setLogLevel:SBDLogLevelNone];
     [SBDOptions setUseMemberAsMessageSender:YES];
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
@@ -82,6 +77,37 @@
     }];
     
     return YES;
+}
+
+- (void)registerForRemoteNotification {
+    float osVersion = [UIDevice currentDevice].systemVersion.floatValue;
+    if (osVersion >= 10.0) {
+#if !(TARGET_OS_SIMULATOR) && (defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0)
+        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:(UNAuthorizationOptionAlert|UNAuthorizationOptionBadge|UNAuthorizationOptionSound) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            NSLog(@"Tries to register push token, granted: %d, error: %@", granted, error);
+            if (granted) {
+                [[UNUserNotificationCenter currentNotificationCenter] getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+                    if (settings.authorizationStatus != UNAuthorizationStatusAuthorized) {
+                        return;
+                    }
+                    [[UIApplication sharedApplication] registerForRemoteNotifications];
+                }];
+            }
+        }];
+        return;
+#endif
+    } else {
+#if !(TARGET_OS_SIMULATOR)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated"
+        if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+            UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
+        }
+#pragma clang diagnostic pop
+#endif
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -135,7 +161,7 @@
             }
         }
         else {
-            NSLog(@"APNS registration failed.");
+            NSLog(@"APNS registration failed with error: %@", error);
         }
     }];
 }
@@ -144,7 +170,7 @@
     NSLog(@"Failed to get token, error: %@", error);
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {  
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     if (userInfo[@"sendbird"] != nil) {
         NSDictionary *sendBirdPayload = userInfo[@"sendbird"];
         NSString *channel = sendBirdPayload[@"channel"][@"channel_url"];
@@ -154,9 +180,10 @@
         }
     }
 
+    NSLog(@"[Sendbird] application: %@ didReceiveRemoteNotification: %@", application, userInfo);
 }
 
-- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(nonnull void (^)())completionHandler {
+- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(nonnull void (^)(void))completionHandler {
     NSLog(@"method for handling events for background url session is waiting to be process. background session id: %@", identifier);
     if (completionHandler != nil) {
         completionHandler();

@@ -24,6 +24,7 @@
 #import "FLAnimatedImageView+ImageCache.h"
 #import "CreateGroupChannelUserListViewController.h"
 #import "ConnectionManager.h"
+#import "Application.h"
 
 @interface GroupChannelChattingViewController () <ConnectionManagerDelegate>
 
@@ -924,7 +925,7 @@
                 NSData *data = [userMessage.data dataUsingEncoding:NSUTF8StringEncoding];
                 NSDictionary *previewData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                 NSURL *url = [NSURL URLWithString:previewData[@"url"]];
-                [[UIApplication sharedApplication] openURL:url];
+                [Application openURL:url];
             }
             else {
                 SBDUser *sender = ((SBDUserMessage *)baseMessage).sender;
@@ -950,7 +951,7 @@
                     for (NSTextCheckingResult *match in matches) {
                         __block NSURL *url = [match URL];
                         UIAlertAction *openURLAction = [UIAlertAction actionWithTitle:[url relativeString] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                            [[UIApplication sharedApplication] openURL:url];
+                            [Application openURL:url];
                         }];
                         [openURLsAction addObject:openURLAction];
                     }

@@ -10,6 +10,7 @@
 #import "Utils.h"
 #import "Constants.h"
 #import "AppDelegate.h"
+#import "Application.h"
 
 @interface OutgoingGeneralUrlPreviewMessageTableViewCell()
 
@@ -85,7 +86,7 @@
 - (void)clickPreview {
     NSString *url = self.previewData[@"url"];
     if (url != nil && url.length > 0) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        [Application openURL:[NSURL URLWithString:url]];
     }
 }
 
@@ -346,7 +347,7 @@
 
 #pragma mark - TTTAttributedLabelDelegate
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
-    [[UIApplication sharedApplication] openURL:url];
+    [Application openURL:url];
 }
 
 @end
