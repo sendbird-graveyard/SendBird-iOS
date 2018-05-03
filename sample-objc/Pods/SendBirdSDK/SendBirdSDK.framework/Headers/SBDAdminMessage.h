@@ -29,21 +29,11 @@
  */
 @property (strong, nonatomic, readonly, nullable) NSString *customType;
 
-- (nullable instancetype)initWithDictionary:(NSDictionary * _Nonnull)dict;
-
 /**
  Serializes message object.
  
  @return Serialized <span>data</span>.
  */
 - (nullable NSData *)serialize;
-
-/**
- *  Internal use only.
- *
- *  @see -serialize
- *  @warning *Important*: DON'T use this method. This method will be unavailable.
- */
-- (nullable NSDictionary *)_toDictionary;
 
 @end

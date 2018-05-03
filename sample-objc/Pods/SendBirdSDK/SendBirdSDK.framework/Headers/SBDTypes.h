@@ -340,13 +340,16 @@ typedef NS_ENUM(NSUInteger, SBDGroupChannelMutedMemberFilter) {
 
 
 /**
- The push option that determines how to deliver the push notification when sending a user or a file message.
-
- - SBDPushNotificationDeliveryOptionDefault: The push notification will be delivered by the opposite user's setting.
- - SBDPushNotificationDeliveryOptionSuppress: The push notification will never be delivered.
+ *  The push option that determines how to deliver the push notification when sending a user or a file message.
  */
 typedef NS_ENUM(NSUInteger, SBDPushNotificationDeliveryOption) {
+    /**
+     *  The push notification will be delivered by the opposite user's setting.
+     */
     SBDPushNotificationDeliveryOptionDefault = 0,
+    /**
+     *  The push notification will never be delivered.
+     */
     SBDPushNotificationDeliveryOptionSuppress = 1,
 };
 

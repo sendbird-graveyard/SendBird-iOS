@@ -35,7 +35,10 @@
  *  @return nil as this method is unavailable.
  *  @since 3.0.90
  */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnullability"
 - (nullable instancetype)init NS_UNAVAILABLE;
+#pragma clang diagnostic pop
     
 /**
  *  Initializes an instance of a user message params with message.
@@ -44,6 +47,7 @@
  *  @return An initialized user message params, used to send user message.
  *  @since 3.0.90
  */
-- (nullable instancetype)initWithMessage:(nonnull NSString *)message NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithMessage:(nonnull NSString *)message
+NS_DESIGNATED_INITIALIZER;
 
 @end

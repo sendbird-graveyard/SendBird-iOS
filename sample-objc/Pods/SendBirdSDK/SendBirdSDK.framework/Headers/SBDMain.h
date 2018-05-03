@@ -27,14 +27,14 @@ typedef void(^SBDBackgroundSessionBlock)(void);
 
 /**
  Gets the value whether the sender information of `sender` of `SBDUserMessage` or `SBDFileMessage` such as nickname and profile url will be returned as the latest user's or not.
-
+ 
  @return If YES, the sender is the latest information.
  */
 + (BOOL)useMemberAsMessageSender;
 
 /**
  If set <code>YES</code>, the sender information of `sender` of `SBDUserMessage` or `SBDFileMessage` such as nickname and profile url will be returned as the latest user's. Otherwise, the information will be the value of the message creation time.
-
+ 
  @param tf <code>YES</code> or <code>NO</code>.
  */
 + (void)setUseMemberAsMessageSender:(BOOL)tf;
@@ -42,7 +42,7 @@ typedef void(^SBDBackgroundSessionBlock)(void);
 
 /**
  Sets the timeout for connection. If there is a timeout error frequently, set the longer timeout than default value. The default is 10 seconds.
-
+ 
  @param timeout The timeout for connection.
  */
 + (void)setConnectionTimeout:(NSInteger)timeout;
@@ -180,7 +180,7 @@ typedef void(^SBDBackgroundSessionBlock)(void);
 + (BOOL)initWithApplicationId:(NSString * _Nonnull)applicationId;
 
 /**
- *  Initialize `sharedContainerIdentifier` of NSURLSessionConfiguration to use background session. 
+ *  Initialize `sharedContainerIdentifier` of NSURLSessionConfiguration to use background session.
  *  Important! If you use `App Extension` and use upload file message in extension, you MUST set thie field.
  *
  *  @param identifier   The identifier to set background session configuraion.
@@ -188,23 +188,13 @@ typedef void(^SBDBackgroundSessionBlock)(void);
 + (void)setSharedContainerIdentifier:(nonnull NSString *)identifier;
 
 /**
- *  Internal use only.
- *
- *  @param logLevel logLevel
- *  @param format format
- *  @param ... arguments
- *  @see +setLogLevel:
- *  @warning *Important*: DON'T use this method. This method will be unavailable.
- */
-+ (void)logWithLevel:(SBDLogLevel)logLevel format:(NSString * _Nonnull)format, ...;
-
-/**
  *  Performs a connection to SendBird with the user ID.
  *
  *  @param userId            The user ID.
  *  @param completionHandler The handler block to execute. `user` is the object to represent the current user.
  */
-+ (void)connectWithUserId:(NSString * _Nonnull)userId completionHandler:(nullable void (^)(SBDUser * _Nullable user, SBDError * _Nullable error))completionHandler;
++ (void)connectWithUserId:(NSString * _Nonnull)userId
+        completionHandler:(nullable void (^)(SBDUser * _Nullable user, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Performs a connection to SendBird with the user ID and the access token.
@@ -213,10 +203,12 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @param accessToken       The access token. If the user doesn't have access token, set nil.
  *  @param completionHandler The handler block to execute. `user` is the object to represent the current user.
  */
-+ (void)connectWithUserId:(NSString * _Nonnull)userId accessToken:(NSString * _Nullable)accessToken completionHandler:(nullable void (^)(SBDUser * _Nullable user, SBDError * _Nullable error))completionHandler;
++ (void)connectWithUserId:(NSString * _Nonnull)userId
+              accessToken:(NSString * _Nullable)accessToken
+        completionHandler:(nullable void (^)(SBDUser * _Nullable user, SBDError * _Nullable error))completionHandler;
 
 /**
- *  Internal use only.
+ *  Performs a connection to SendBird with the user ID and the access token.
  *
  *  @param userId userId
  *  @param accessToken accessToken
@@ -226,7 +218,11 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @see -connectWithUserId:accessToken:completionHandler:
  *  @warning *Important*: DON'T use this method. This method will be unavailable.
  */
-+ (void)connectWithUserId:(NSString * _Nonnull)userId accessToken:(NSString * _Nullable)accessToken apiHost:(NSString * _Nullable)apiHost wsHost:(NSString * _Nullable)wsHost completionHandler:(nullable void (^)(SBDUser * _Nullable user, SBDError * _Nullable error))completionHandler;
++ (void)connectWithUserId:(NSString * _Nonnull)userId
+              accessToken:(NSString * _Nullable)accessToken
+                  apiHost:(NSString * _Nullable)apiHost
+                   wsHost:(NSString * _Nullable)wsHost
+        completionHandler:(nullable void (^)(SBDUser * _Nullable user, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Gets the current user object. The object is valid when the connection succeeded.
@@ -234,13 +230,6 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @return The current user object.
  */
 + (nullable SBDUser *)getCurrentUser;
-
-/**
- *  Internal use only.
- *
- *  @warning *Important*: DON'T use this method. This method will be unavailable.
- */
-+ (void)clearCurrentUser;
 
 /**
  *  Disconnects from SendBird. If this method is invoked, the current user will be invalidated.
@@ -255,7 +244,8 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @param delegate   `SBDConnectionDelegate` delegate.
  *  @param identifier The identifier for the delegate.
  */
-+ (void)addConnectionDelegate:(id<SBDConnectionDelegate> _Nonnull)delegate identifier:(NSString * _Nonnull)identifier;
++ (void)addConnectionDelegate:(id<SBDConnectionDelegate> _Nonnull)delegate
+                   identifier:(NSString * _Nonnull)identifier;
 
 /**
  *  Removes the `SBDConnectionDelegate` by identifier.
@@ -284,7 +274,8 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @param delegate   `SBDChannelDelegate` delegate.
  *  @param identifier The identifier for delegate.
  */
-+ (void)addChannelDelegate:(id<SBDChannelDelegate> _Nonnull)delegate identifier:(NSString * _Nonnull)identifier;
++ (void)addChannelDelegate:(id<SBDChannelDelegate> _Nonnull)delegate
+                identifier:(NSString * _Nonnull)identifier;
 
 /**
  *  Removes the `SBDChannelDelegate` by identifier.
@@ -321,26 +312,17 @@ typedef void(^SBDBackgroundSessionBlock)(void);
 
 /**
  Sets dispatch queue for every completion handler and delegate. Default queue is the main queue.
-
+ 
  @param queue Dispatch queue for every completion handler and delegate.
  */
 + (void)setCompletionHandlerDelegateQueue:(dispatch_queue_t _Nullable)queue;
 
 /**
  Runs block in the dispatch queue that was set by `setCompletionHandlerDelegateQueue:`.
-
+ 
  @param block Block to run.
  */
 + (void)performComletionHandlerDelegateQueueBlock:(dispatch_block_t _Nullable)block;
-
-/**
- *  Internal use only.
- *
- *  @param command command
- *  @param completionHandler completionHandler
- *  @warning *Important*: DON'T use this method. This method will be unavailable.
- */
-- (void)_sendCommand:(SBDCommand * _Nonnull)command completionHandler:(nullable void (^)(SBDCommand * _Nullable command, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Creates `SBDUserListQuery` instance for getting a list of all users of this application.
@@ -373,7 +355,9 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @param profileUrl        New profile image url.
  *  @param completionHandler The handler block to execute.
  */
-+ (void)updateCurrentUserInfoWithNickname:(NSString * _Nullable)nickname profileUrl:(NSString * _Nullable)profileUrl completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
++ (void)updateCurrentUserInfoWithNickname:(NSString * _Nullable)nickname
+                               profileUrl:(NSString * _Nullable)profileUrl
+                        completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
  *  Updates the current user's information.
@@ -382,7 +366,9 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @param profileImage      New profile image data.
  *  @param completionHandler The handler block to execute.
  */
-+ (void)updateCurrentUserInfoWithNickname:(NSString * _Nullable)nickname profileImage:(NSData * _Nullable)profileImage completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
++ (void)updateCurrentUserInfoWithNickname:(NSString * _Nullable)nickname
+                             profileImage:(NSData * _Nullable)profileImage
+                        completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
  *  Updates the current user's information.
@@ -392,7 +378,10 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @param progressHandler   The handler block to monitor progression. `bytesSent` is the number of bytes sent since the last time this method was called. `totalBytesSent` is the total number of bytes sent so far. `totalBytesExpectedToSend` is the expected length of the body data. These parameters are the same to the declaration of [`URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:`](https://developer.apple.com/reference/foundation/nsurlsessiontaskdelegate/1408299-urlsession?language=objc).
  *  @param completionHandler The handler block to execute.
  */
-+ (void)updateCurrentUserInfoWithNickname:(NSString * _Nullable)nickname profileImage:(NSData * _Nullable)profileImage progressHandler:(nullable void (^)(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend))progressHandler completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
++ (void)updateCurrentUserInfoWithNickname:(NSString * _Nullable)nickname
+                             profileImage:(NSData * _Nullable)profileImage
+                          progressHandler:(nullable void (^)(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend))progressHandler
+                        completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
  *  Updates the current user's information.
@@ -402,12 +391,15 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @param progressHandler   The handler block to monitor progression. `bytesSent` is the number of bytes sent since the last time this method was called. `totalBytesSent` is the total number of bytes sent so far. `totalBytesExpectedToSend` is the expected length of the body data. These parameters are the same to the declaration of [`URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:`](https://developer.apple.com/reference/foundation/nsurlsessiontaskdelegate/1408299-urlsession?language=objc).
  *  @param completionHandler The handler block to execute.
  */
-+ (void)updateCurrentUserInfoWithNickname:(NSString * _Nullable)nickname profileImageFilePath:(NSString * _Nullable)profileImageFilePath progressHandler:(nullable void (^)(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend))progressHandler completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
++ (void)updateCurrentUserInfoWithNickname:(NSString * _Nullable)nickname
+                     profileImageFilePath:(NSString * _Nullable)profileImageFilePath
+                          progressHandler:(nullable void (^)(int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend))progressHandler
+                        completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
  *  Gets the pending push token.
  *
- *  @return Returns the pending push token. 
+ *  @return Returns the pending push token.
  */
 + (nullable NSData *)getPendingPushToken;
 
@@ -418,17 +410,20 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @param unique            If YES, register device token after removing exsiting all device tokens of the current user. If NO, just add the device token.
  *  @param completionHandler The handler block to execute. `status` is the status for push token registration. It is defined in `SBDPushTokenRegistrationStatus`. `SBDPushTokenRegistrationStatusSuccess` represents the `devToken` is registered. `SBDPushTokenRegistrationStatusPending` represents the `devToken` is not registered because the connection is not established, so this method has to be invoked with `getPendingPushToken` method after the connection. The `devToken` is retrived by `getPendingPushToken`. `SBDPushTokenRegistrationStatusError` represents the push token registration is failed.
  */
-+ (void)registerDevicePushToken:(NSData * _Nonnull)devToken unique:(BOOL)unique completionHandler:(nullable void (^)(SBDPushTokenRegistrationStatus status, SBDError * _Nullable error))completionHandler;
++ (void)registerDevicePushToken:(NSData * _Nonnull)devToken
+                         unique:(BOOL)unique
+              completionHandler:(nullable void (^)(SBDPushTokenRegistrationStatus status, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Registers the current device token to SendBird.
  *
  *  @param devToken          Device token for APNS.
- *  @param completionHandler The handler block to execute. `status` is the status for push token registration. It is defined in `SBDPushTokenRegistrationStatus`. `SBDPushTokenRegistrationStatusSuccess` represents the `devToken` is registered. `SBDPushTokenRegistrationStatusPending` represents the `devToken` is not registered because the connection is not established, so this method has to be invoked with `getPendingPushToken` method after the connection. The `devToken` is retrived by `getPendingPushToken`. `SBDPushTokenRegistrationStatusError` represents the push token registration is failed. 
+ *  @param completionHandler The handler block to execute. `status` is the status for push token registration. It is defined in `SBDPushTokenRegistrationStatus`. `SBDPushTokenRegistrationStatusSuccess` represents the `devToken` is registered. `SBDPushTokenRegistrationStatusPending` represents the `devToken` is not registered because the connection is not established, so this method has to be invoked with `getPendingPushToken` method after the connection. The `devToken` is retrived by `getPendingPushToken`. `SBDPushTokenRegistrationStatusError` represents the push token registration is failed.
  *
  *  @deprecated in 3.0.22
  */
-+ (void)registerDevicePushToken:(NSData * _Nonnull)devToken completionHandler:(nullable void (^)(SBDPushTokenRegistrationStatus status, SBDError * _Nullable error))completionHandler DEPRECATED_ATTRIBUTE;
++ (void)registerDevicePushToken:(NSData * _Nonnull)devToken
+              completionHandler:(nullable void (^)(SBDPushTokenRegistrationStatus status, SBDError * _Nullable error))completionHandler DEPRECATED_ATTRIBUTE;
 
 /**
  *  Registers the current device token to SendBird.
@@ -438,7 +433,8 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *
  *  @deprecated in 3.0.9
  */
-+ (void)registerPushToken:(NSData * _Nonnull)devToken completionHandler:(nullable void (^)(NSDictionary * _Nullable response, SBDError * _Nullable error))completionHandler DEPRECATED_ATTRIBUTE;
++ (void)registerPushToken:(NSData * _Nonnull)devToken
+        completionHandler:(nullable void (^)(NSDictionary * _Nullable response, SBDError * _Nullable error))completionHandler DEPRECATED_ATTRIBUTE;
 
 /**
  *  Unregisters the current device token from SendBird.
@@ -446,7 +442,8 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @param devToken          Device token for APNS.
  *  @param completionHandler The handler block to execute.
  */
-+ (void)unregisterPushToken:(NSData * _Nonnull)devToken completionHandler:(nullable void (^)(NSDictionary * _Nullable response, SBDError * _Nullable error))completionHandler;
++ (void)unregisterPushToken:(NSData * _Nonnull)devToken
+          completionHandler:(nullable void (^)(NSDictionary * _Nullable response, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Unregisters all device tokens for the current user from SendBird.
@@ -461,7 +458,8 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @param userId            The user ID to be blocked.
  *  @param completionHandler The handler block to execute. `blockedUser` is the blocked user by the current user.
  */
-+ (void)blockUserId:(NSString * _Nonnull)userId completionHandler:(nullable void (^)(SBDUser * _Nullable blockedUser, SBDError * _Nullable error))completionHandler;
++ (void)blockUserId:(NSString * _Nonnull)userId
+  completionHandler:(nullable void (^)(SBDUser * _Nullable blockedUser, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Blocks the specified user.
@@ -477,7 +475,8 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @param userId            The user ID which was blocked.
  *  @param completionHandler The handler block to execute.
  */
-+ (void)unblockUserId:(NSString * _Nonnull)userId completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
++ (void)unblockUserId:(NSString * _Nonnull)userId
+    completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
  *  Unblocks the specified user.
@@ -485,7 +484,8 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @param user              The user who was blocked.
  *  @param completionHandler The handler block to execute.
  */
-+ (void)unblockUser:(SBDUser * _Nonnull)user completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
++ (void)unblockUser:(SBDUser * _Nonnull)user
+  completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
  *  Sets Do-not-disturb.
@@ -498,7 +498,13 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @param timezone          Sets timezone.
  *  @param completionHandler The handler block to execute.
  */
-+ (void)setDoNotDisturbWithEnable:(BOOL)enable startHour:(int)startHour startMin:(int)startMin endHour:(int)endHour endMin:(int)endMin timezone:(NSString * _Nonnull)timezone completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
++ (void)setDoNotDisturbWithEnable:(BOOL)enable
+                        startHour:(int)startHour
+                         startMin:(int)startMin
+                          endHour:(int)endHour
+                           endMin:(int)endMin
+                         timezone:(NSString * _Nonnull)timezone
+                completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 /**
  *  Gets Do-not-disturb.
@@ -513,12 +519,13 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  @param sound Push sound
  @param completionHandler The handler block to be executed after set push sound. This block has no return value and takes an argument that is an error made when there is something wrong to set it.
  */
-+ (void)setPushSound:(NSString * _Nonnull)sound completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
++ (void)setPushSound:(NSString * _Nonnull)sound
+   completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 
 /**
  Gets push shound
-
+ 
  @param completionHandler The handler block to execute.
  */
 + (void)getPushSoundWithCompletionHandler:(nullable void (^)(NSString * _Nullable sound, SBDError * _Nullable error))completionHandler;
@@ -526,16 +533,17 @@ typedef void(^SBDBackgroundSessionBlock)(void);
 
 /**
  Sets a push template of the current user.
-
+ 
  @param name The name of push template. It can be `SBD_PUSH_TEMPLATE_DEFAULT` or `SBD_PUSH_TEMPLATE_ALTERNATIVE`.
  @param completionHandler The handler block to execute.
  */
-+ (void)setPushTemplateWithName:(NSString * _Nonnull)name completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
++ (void)setPushTemplateWithName:(NSString * _Nonnull)name
+              completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 
 /**
  Gets a push template of the current user.
-
+ 
  @param completionHandler The handler block to execute. The `name` is the current user's push template.
  */
 + (void)getPushTemplateWithCompletionHandler:(nullable void (^)(NSString * _Nullable name, SBDError * _Nullable error))completionHandler;
@@ -543,14 +551,14 @@ typedef void(^SBDBackgroundSessionBlock)(void);
 
 /**
  Starts reconnection explictly. The `SBDConnectionDelegate` delegates will be invoked by the reconnection process.
-
+ 
  @return Returns YES if there is the data to be used for reconnection.
  */
 + (BOOL)reconnect;
 
 /**
  Gets mime type of file.
-
+ 
  @param file File to get mime type.
  @return Returns mime type of the file.
  */
@@ -559,46 +567,31 @@ typedef void(^SBDBackgroundSessionBlock)(void);
 
 /**
  Turns on or off the reconnection by network awareness.
-
+ 
  @param onOff If YES, the reconnection by network Awareness is turned.
  */
 + (void)setNetworkAwarenessReconnection:(BOOL)onOff;
 
-
-/**
- *  Internal use only.
- *
- *  @warning *Important*: DON'T use this method. This method will be unavailable.
- */
-+ (nullable NSString *)getCustomApiHost;
-
-
-/**
- *  Internal use only.
- *
- *  @warning *Important*: DON'T use this method. This method will be unavailable.
- */
-+ (nullable NSString *)getCustomWsHost;
-
-
 /**
  Sets group channel invitation preference for auto acceptance.
-
+ 
  @param autoAccept If YES, the current user will accept the group channel invitation automatically.
  @param completionHandler The handler block to execute.
  */
-+ (void)setChannelInvitationPreferenceAutoAccept:(BOOL)autoAccept completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
++ (void)setChannelInvitationPreferenceAutoAccept:(BOOL)autoAccept
+                               completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
 
 /**
  Gets group channel inviation preference for auto acceptance.
-
+ 
  @param completionHandler The handler block to execute.
  */
 + (void)getChannelInvitationPreferenceAutoAcceptWithCompletionHandler:(nullable void (^)(BOOL autoAccept, SBDError * _Nullable error))completionHandler;
 
 #pragma mark - User Event
-+ (void)addUserEventDelegate:(id<SBDUserEventDelegate> _Nonnull)delegate identifier:(NSString * _Nonnull)identifier;
++ (void)addUserEventDelegate:(id<SBDUserEventDelegate> _Nonnull)delegate
+                  identifier:(NSString * _Nonnull)identifier;
 
 + (void)removeUserEventDelegateForIdentifier:(NSString * _Nonnull)identifier;
 
@@ -607,19 +600,26 @@ typedef void(^SBDBackgroundSessionBlock)(void);
 #pragma mark - Friend List
 + (nullable SBDFriendListQuery *)createFriendListQuery;
 
-+ (void)addFriendsWithUserIds:(NSArray<NSString *> * _Nonnull)userIds completionHandler:(nullable void (^)(NSArray<SBDUser *> * _Nullable users, SBDError * _Nullable error))completionHandler;
++ (void)addFriendsWithUserIds:(NSArray<NSString *> * _Nonnull)userIds
+            completionHandler:(nullable void (^)(NSArray<SBDUser *> * _Nullable users, SBDError * _Nullable error))completionHandler;
 
-+ (void)deleteFriendWithUserId:(NSString * _Nonnull)userId completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
++ (void)deleteFriendWithUserId:(NSString * _Nonnull)userId
+             completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
-+ (void)deleteFriendsWithUserIds:(NSArray<NSString *> * _Nonnull)userIds completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
++ (void)deleteFriendsWithUserIds:(NSArray<NSString *> * _Nonnull)userIds
+               completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
-+ (void)deleteFriendWithDiscovery:(NSString * _Nonnull)discoveryKey completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
++ (void)deleteFriendWithDiscovery:(NSString * _Nonnull)discoveryKey
+                completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
-+ (void)deleteFriendsWithDiscoveries:(NSArray<NSString *> * _Nonnull)discoveryKeys completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
++ (void)deleteFriendsWithDiscoveries:(NSArray<NSString *> * _Nonnull)discoveryKeys
+                   completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
-+ (void)uploadFriendDiscoveries:(NSDictionary<NSString *, NSString *> * _Nonnull)discoveryKeyAndNames completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
++ (void)uploadFriendDiscoveries:(NSDictionary<NSString *, NSString *> * _Nonnull)discoveryKeyAndNames
+              completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
 
-+ (void)getFriendChangeLogsByToken:(NSString * _Nullable)token completionHandler:(nullable void (^)(NSArray<SBDUser *> * _Nullable updatedUsers, NSArray<NSString *> * _Nullable deletedUserIds, BOOL hasMore, NSString * _Nullable token, SBDError * _Nullable error))completionHandler;
++ (void)getFriendChangeLogsByToken:(NSString * _Nullable)token
+                 completionHandler:(nullable void (^)(NSArray<SBDUser *> * _Nullable updatedUsers, NSArray<NSString *> * _Nullable deletedUserIds, BOOL hasMore, NSString * _Nullable token, SBDError * _Nullable error))completionHandler;
 
 #pragma mark - Channel List
 /**
@@ -635,6 +635,8 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  *  @param channelUrls The array list with channel urls to be marked as read.
  *  @param completionHandler The handler block to execute.
  */
-+ (void)markAsReadWithChannelUrls:(NSArray <NSString *> * _Nonnull)channelUrls completionHandler:(nullable void (^)(SBDError *_Nullable error))completionHandler;
++ (void)markAsReadWithChannelUrls:(NSArray <NSString *> * _Nonnull)channelUrls
+                completionHandler:(nullable void (^)(SBDError *_Nullable error))completionHandler;
 
 @end
+

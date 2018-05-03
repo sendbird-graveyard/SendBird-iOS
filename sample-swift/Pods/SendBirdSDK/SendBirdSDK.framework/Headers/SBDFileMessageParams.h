@@ -67,7 +67,10 @@
  *  @return nil as this method is unavailable.
  *  @since 3.0.90
  */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnullability"
 - (nullable instancetype)init NS_UNAVAILABLE;
+#pragma clang diagnostic pop
 
 /**
  *  Initializes an instance of a file message params with binary file.

@@ -45,23 +45,12 @@
 @property (atomic, readonly) BOOL hasNext;
 
 /**
- *  Internal use only.
- *
- *  @param queryType queryType
- *  @param channel channel
- *  @warning *Important*: DON'T use this method. This method will be unavailable.
+ *  DO NOT USE this initializer. Use `[SBDMain createBlockedUserListQuery]` instead.
  */
-- (nullable instancetype)initWithQueryType:(SBDUserListQueryType)queryType channel:(SBDBaseChannel * _Nullable)channel;
-
-/**
- *  Internal use only.
- *
- *  @param userIds userIds
- *  @see [+createUserListQueryWithUserIds:](../Classes/SBDMain.html#//api/name/createUserListQueryWithUserIds:) of `SBDMain` class.
- *  @warning *Important*: DON'T use this method. This method will be unavailable.
- */
-- (nullable instancetype)initWithUserIds:(NSArray<NSString *> * _Nonnull)userIds;
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnullability"
+- (nullable instancetype)init NS_UNAVAILABLE;
+#pragma clang diagnostic pop
 
 /**
  Sets meta data filter.
@@ -69,7 +58,8 @@
  @param key The key of the meta data to use for filter.
  @param values The values of the meta data to use for filter.
  */
-- (void)setMetaDataFilterWithKey:(NSString * _Nonnull)key values:(NSArray<NSString *> * _Nonnull)values;
+- (void)setMetaDataFilterWithKey:(NSString * _Nonnull)key
+                          values:(NSArray<NSString *> * _Nonnull)values;
 
 /**
  *  Shows if the query is loading.

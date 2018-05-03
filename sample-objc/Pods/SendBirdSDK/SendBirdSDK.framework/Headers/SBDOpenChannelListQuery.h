@@ -30,21 +30,24 @@
  *
  *  @deprecated in 3.0.64. Use `setChannelUrlFilter:` instead.
  */
-@property (strong, nonatomic, nullable) NSString *urlKeyword DEPRECATED_ATTRIBUTE;
+@property (strong, nonatomic, nullable) NSString *urlKeyword
+DEPRECATED_ATTRIBUTE;
 
 /**
  *  Sets the keyword to search channel name.
  *
  *  @deprecated in 3.0.64. Use `setChannelNameFilter:` instead.
  */
-@property (strong, nonatomic, nullable) NSString *nameKeyword DEPRECATED_ATTRIBUTE;
+@property (strong, nonatomic, nullable) NSString *nameKeyword
+DEPRECATED_ATTRIBUTE;
 
 /**
  *  Sets the custom type filter.
  *
  *  @deprecated in 3.0.64. Use `setCustomTypeFilter:` instead.
  */
-@property (strong, nonatomic, nullable) NSString *customTypeFilter DEPRECATED_ATTRIBUTE;
+@property (strong, nonatomic, nullable) NSString *customTypeFilter
+DEPRECATED_ATTRIBUTE;
 
 /**
  *  Shows if the query is loading.

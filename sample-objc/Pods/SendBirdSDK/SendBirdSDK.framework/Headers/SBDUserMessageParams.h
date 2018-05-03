@@ -47,6 +47,7 @@
  *  @return An initialized user message params, used to send user message.
  *  @since 3.0.90
  */
-- (nullable instancetype)initWithMessage:(nonnull NSString *)message NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithMessage:(nonnull NSString *)message
+NS_DESIGNATED_INITIALIZER;
 
 @end

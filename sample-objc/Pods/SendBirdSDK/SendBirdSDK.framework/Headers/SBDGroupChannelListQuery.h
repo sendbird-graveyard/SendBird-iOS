@@ -53,28 +53,32 @@
  *
  *  @deprecated in 3.0.64. Use `setCustomTypeFilter:` instead.
  */
-@property (strong, nonatomic, nullable) NSString *customTypeFilter DEPRECATED_ATTRIBUTE;
+@property (strong, nonatomic, nullable) NSString *customTypeFilter
+DEPRECATED_ATTRIBUTE;
 
 /**
  *  Sets the member state filter.
  *
  *  @deprecated in 3.0.64. Use `setMemberStateFilter:` instead.
  */
-@property (nonatomic) SBDMemberStateFilter memberStateFilter DEPRECATED_ATTRIBUTE;
+@property (nonatomic) SBDMemberStateFilter memberStateFilter
+DEPRECATED_ATTRIBUTE;
 
 /**
  *  Sets <code>SBDGroupChannel</code> URLs filter. <code>SBDGroupChannel</code> list containing only and exactly the passed <code>SBDGroupChannel</code> URLs will be returned. This does not cooperate with other filters.
  *
  *  @deprecated in 3.0.64. Use `setChannelUrlsFilter:` instead.
  */
-@property (strong, nonatomic, nullable) NSArray<NSString *> *channelUrlsFilter DEPRECATED_ATTRIBUTE;
+@property (strong, nonatomic, nullable) NSArray<NSString *> *channelUrlsFilter
+DEPRECATED_ATTRIBUTE;
 
 /**
  *  Sets a filter to return only channels that contains the specified group channel name.
  *
  *  @deprecated in 3.0.64. Use `setChannelNameContainsFilter:` instead.
  */
-@property (strong, nonatomic, nullable) NSString *channelNameFilter DEPRECATED_ATTRIBUTE;
+@property (strong, nonatomic, nullable) NSString *channelNameFilter
+DEPRECATED_ATTRIBUTE;
 
 /**
  *  Sets to filter super channel.
@@ -94,20 +98,19 @@
 @property (nonatomic, copy, nullable) NSString *customTypeStartsWithFilter;
 
 /**
+ *  DO NOT USE this initializer. Use `[SBDGroupChannel createMyGroupChannelListQuery]` instead.
+ */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnullability"
+- (nullable instancetype)init NS_UNAVAILABLE;
+#pragma clang diagnostic pop
+
+/**
  *  Shows if the query is loading.
  *
  *  @return Returns YES if the query is loading, otherwise returns NO.
  */
 - (BOOL)isLoading;
-
-/**
- *  Internal use only.
- *
- *  @param user user
- *  @see [SBDGroupChannel createMyGroupChannelListQuery]
- *  @warning *Important*: DON'T use this method. This method will be unavailable.
- */
-- (nullable instancetype)initWithUser:(SBDUser * _Nonnull)user;
 
 /**
  *  Sets the filter with nickname. The group channels which have the member that has nickname are returned by `loadNextPageWithCompletionHandler:`(LIKE search).
@@ -124,7 +127,9 @@
  *
  *  @deprecated in 3.0.19
  */
-- (void)setUserIdsFilter:(NSArray<NSString *> * _Nonnull)userIds exactMatch:(BOOL)exactMatch DEPRECATED_ATTRIBUTE;
+- (void)setUserIdsFilter:(NSArray<NSString *> * _Nonnull)userIds
+              exactMatch:(BOOL)exactMatch
+DEPRECATED_ATTRIBUTE;
 
 /**
  *  Sets the filter with user IDs. The group channels which have the members that contain user IDs are returned by `loadNextPageWithCompletionHandler:`.
@@ -132,7 +137,8 @@
  *  @param userIds    User IDs to search.
  *  @param queryType Logical condition applied to filter. If you pass `SBDGroupChannelListQueryTypeAnd` to `queryType` and A, B to `userIds`, the channels whose members containing A and B will be returned. If `SBDGroupChannelListQueryTypeOr` is set, the members of the queried channels will be A or B.
  */
-- (void)setUserIdsIncludeFilter:(NSArray<NSString *>* _Nonnull)userIds queryType:(SBDGroupChannelListQueryType)queryType;
+- (void)setUserIdsIncludeFilter:(NSArray<NSString *>* _Nonnull)userIds
+                      queryType:(SBDGroupChannelListQueryType)queryType;
 
 /**
  *  Sets the filter with user IDs. The group channels which have the members that have user IDs are returned by `loadNextPageWithCompletionHandler:`. The channels have the `userIds` members only.
@@ -148,7 +154,8 @@
  
  @deprecated in v3.0.79.
  */
-- (void)setCustomTypeFilter:(NSString * _Nullable)customType DEPRECATED_ATTRIBUTE;
+- (void)setCustomTypeFilter:(NSString * _Nullable)customType
+DEPRECATED_ATTRIBUTE;
 
 /**
  Sets the custom types filter.

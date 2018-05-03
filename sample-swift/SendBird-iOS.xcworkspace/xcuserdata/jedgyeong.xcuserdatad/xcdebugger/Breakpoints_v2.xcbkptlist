@@ -49,38 +49,22 @@
             endingLineNumber = "1279"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__ObjC.SBDFileMessage&gt;, Swift.Optional&lt;__ObjC.SBDError&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;Swift.String&gt;, __C.UIImageOrientation, Swift.Optional&lt;Swift.Dictionary&lt;Swift.AnyHashable, Any&gt;&gt;) -&gt; () in closure #1 () -&gt; () in SendBird_iOS.GroupChannelChattingViewController.imagePickerController(__ObjC.UIImagePickerController, didFinishPickingMediaWithInfo: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
-                  moduleName = "SendBird-iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-swift/SendBird-iOS/GroupChannel/GroupChannelChattingViewController.swift"
-                  timestampString = "533512022.382394"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1279"
-                  endingLineNumber = "1279"
-                  offsetFromSymbolStart = "607">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Optional&lt;__ObjC.SBDFileMessage&gt;, Swift.Optional&lt;__ObjC.SBDError&gt;) -&gt; () in closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;Swift.String&gt;, __C.UIImageOrientation, Swift.Optional&lt;Swift.Dictionary&lt;Swift.AnyHashable, Any&gt;&gt;) -&gt; () in closure #1 () -&gt; () in SendBird_iOS.GroupChannelChattingViewController.imagePickerController(__ObjC.UIImagePickerController, didFinishPickingMediaWithInfo: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
-                  moduleName = "SendBird-iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/jedgyeong/git/SendBird-iOS/sample-swift/SendBird-iOS/GroupChannel/GroupChannelChattingViewController.swift"
-                  timestampString = "533512022.384539"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1280"
-                  endingLineNumber = "1280"
-                  offsetFromSymbolStart = "84">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SendBird-iOS/Connection/ConnectionManager.swift"
+            timestampString = "547078517.8860199"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "login(userId:nickname:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

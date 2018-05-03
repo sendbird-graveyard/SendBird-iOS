@@ -36,13 +36,24 @@
 @property (atomic, readonly) BOOL hasNext;
 
 /**
+ *  Shows if the query is loading.
+ *
+ *  @return Returns YES if the query is loading, otherwise returns NO.
+ *
+ *  @since 3.0.94
+ */
+@property (atomic, readonly, getter=isLoading) BOOL loading;
+
+/**
  *  Sets a filter to query operators.
  *
  *  @param filter  The filter about members as operator.
  *
  *  @since 3.0.89
+ *  @deprecated 3.0.94
  */
-- (void)setOperatorFilter:(SBDGroupChannelOperatorFilter)filter;
+- (void)setOperatorFilter:(SBDGroupChannelOperatorFilter)filter
+DEPRECATED_ATTRIBUTE;
 
 /**
  *  Sets a filter to query muted member list.

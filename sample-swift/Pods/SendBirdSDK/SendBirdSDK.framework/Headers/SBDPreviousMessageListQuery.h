@@ -6,7 +6,6 @@
 //  Copyright © 2016 SENDBIRD.COM. All rights reserved.
 //
 
-#import "SBDMain.h"
 #import "SBDBaseChannel.h"
 
 /**
@@ -15,13 +14,12 @@
 @interface SBDPreviousMessageListQuery : NSObject
 
 /**
- *  Initializes object.
- *
- *  @param channel SBDBaseChannel object.
- *
- *  @return SBDPreviousMessageListQuery object.
+ *  DO NOT USE this initializer. Use `[SBDBaseChannel createPreviousMessageListQuery]` instead.
  */
-- (instancetype _Nullable)initWithChannel:(SBDBaseChannel * _Nonnull)channel;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wnullability"
+- (nullable instancetype)init NS_UNAVAILABLE;
+#pragma clang diagnostic pop
 
 /**
  *  Shows if the query is loading.
@@ -37,6 +35,7 @@
  *  @param reverse           If yes, the latest message is the index 0.
  *  @param completionHandler The handler block to execute. The `messages` is the array of `SBDBaseMessage` instances.
  */
-- (void)loadPreviousMessagesWithLimit:(NSInteger)limit reverse:(BOOL)reverse completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
+- (void)loadPreviousMessagesWithLimit:(NSInteger)limit reverse:(BOOL)reverse
+                    completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
 
 @end
