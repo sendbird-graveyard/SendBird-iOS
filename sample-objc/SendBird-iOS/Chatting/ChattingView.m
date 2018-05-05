@@ -26,6 +26,9 @@
 #import "FLAnimatedImageView+ImageCache.h"
 
 @interface ChattingView()
+
+@property (strong, nonatomic) SBDBaseChannel *channel;
+    
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *typingIndicatorContainerViewHeight;
 @property (weak, nonatomic) IBOutlet UIImageView *typingIndicatorImageView;
 @property (weak, nonatomic) IBOutlet UILabel *typingIndicatorLabel;
@@ -80,7 +83,9 @@
     [self.messageTextView setTextContainerInset:UIEdgeInsetsMake(15.5, 0, 14, 0)];
 }
 
-- (void)initChattingView {
+- (void)configureChattingViewWithChannel:(SBDBaseChannel *)channel {
+    self.channel = channel;
+    
     self.initialLoading = YES;
     self.lastMessageHeight = 0;
     self.messages = [[NSMutableArray alloc] init];
@@ -327,7 +332,7 @@
                 else {
                     [self.outgoingGeneralUrlPreviewMessageTableViewCell setPreviousMessage:nil];
                 }
-                [self.outgoingGeneralUrlPreviewMessageTableViewCell setModel:userMessage];
+                [self.outgoingGeneralUrlPreviewMessageTableViewCell setModel:userMessage channel:self.channel];
                 height = [self.outgoingGeneralUrlPreviewMessageTableViewCell getHeightOfViewCell];
             }
             else {
@@ -337,7 +342,7 @@
                 else {
                     [self.outgoingUserMessageSizingTableViewCell setPreviousMessage:nil];
                 }
-                [self.outgoingUserMessageSizingTableViewCell setModel:userMessage];
+                [self.outgoingUserMessageSizingTableViewCell setModel:userMessage channel:self.channel];
                 height = [self.outgoingUserMessageSizingTableViewCell getHeightOfViewCell];
             }
         }
@@ -378,7 +383,7 @@
                 else {
                     [self.outgoingVideoFileMessageSizingTableViewCell setPreviousMessage:nil];
                 }
-                [self.outgoingVideoFileMessageSizingTableViewCell setModel:fileMessage];
+                [self.outgoingVideoFileMessageSizingTableViewCell setModel:fileMessage channel:self.channel];
                 height = [self.outgoingVideoFileMessageSizingTableViewCell getHeightOfViewCell];
             }
             else if ([fileMessage.type hasPrefix:@"audio"]) {
@@ -388,7 +393,7 @@
                 else {
                     [self.outgoingFileMessageSizingTableViewCell setPreviousMessage:nil];
                 }
-                [self.outgoingFileMessageSizingTableViewCell setModel:fileMessage];
+                [self.outgoingFileMessageSizingTableViewCell setModel:fileMessage channel:self.channel];
                 height = [self.outgoingFileMessageSizingTableViewCell getHeightOfViewCell];
             }
             else if ([fileMessage.type hasPrefix:@"image"]) {
@@ -398,7 +403,7 @@
                 else {
                     [self.outgoingImageFileMessageSizingTableViewCell setPreviousMessage:nil];
                 }
-                [self.outgoingImageFileMessageSizingTableViewCell setModel:fileMessage];
+                [self.outgoingImageFileMessageSizingTableViewCell setModel:fileMessage channel:self.channel];
                 height = [self.outgoingImageFileMessageSizingTableViewCell getHeightOfViewCell];
             }
             else {
@@ -408,7 +413,7 @@
                 else {
                     [self.outgoingFileMessageSizingTableViewCell setPreviousMessage:nil];
                 }
-                [self.outgoingFileMessageSizingTableViewCell setModel:fileMessage];
+                [self.outgoingFileMessageSizingTableViewCell setModel:fileMessage channel:self.channel];
                 height = [self.outgoingFileMessageSizingTableViewCell getHeightOfViewCell];
             }
         }
@@ -665,7 +670,7 @@
                 else {
                     [(OutgoingGeneralUrlPreviewMessageTableViewCell *)cell setPreviousMessage:nil];
                 }
-                [(OutgoingGeneralUrlPreviewMessageTableViewCell *)cell setModel:userMessage];
+                [(OutgoingGeneralUrlPreviewMessageTableViewCell *)cell setModel:userMessage channel:self.channel];
                 ((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).delegate = self.delegate;
                 
                 NSString *imageUrl = ((OutgoingGeneralUrlPreviewMessageTableViewCell *)cell).previewData[@"image"];
@@ -735,7 +740,7 @@
                 else {
                     [(OutgoingUserMessageTableViewCell *)cell setPreviousMessage:nil];
                 }
-                [(OutgoingUserMessageTableViewCell *)cell setModel:userMessage];
+                [(OutgoingUserMessageTableViewCell *)cell setModel:userMessage channel:self.channel];
                 ((OutgoingUserMessageTableViewCell *)cell).delegate = self.delegate;
 
                 if (self.preSendMessages[userMessage.requestId] != nil && ![self.preSendMessages[userMessage.requestId] isKindOfClass:[NSNull class]]) {
@@ -843,7 +848,7 @@
                 else {
                     [(OutgoingVideoFileMessageTableViewCell *)cell setPreviousMessage:nil];
                 }
-                [(OutgoingVideoFileMessageTableViewCell *)cell setModel:fileMessage];
+                [(OutgoingVideoFileMessageTableViewCell *)cell setModel:fileMessage channel:self.channel];
                 ((OutgoingVideoFileMessageTableViewCell *)cell).delegate = self.delegate;
                 
                 if (self.preSendMessages[fileMessage.requestId] != nil && ![self.preSendMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
@@ -870,7 +875,7 @@
                 else {
                     [(OutgoingFileMessageTableViewCell *)cell setPreviousMessage:nil];
                 }
-                [(OutgoingFileMessageTableViewCell *)cell setModel:fileMessage];
+                [(OutgoingFileMessageTableViewCell *)cell setModel:fileMessage channel:self.channel];
                 ((OutgoingFileMessageTableViewCell *)cell).delegate = self.delegate;
 
                 if (self.preSendMessages[fileMessage.requestId] != nil && ![self.preSendMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
@@ -896,7 +901,7 @@
                 else {
                     [(OutgoingImageFileMessageTableViewCell *)cell setPreviousMessage:nil];
                 }
-                [(OutgoingImageFileMessageTableViewCell *)cell setModel:fileMessage];
+                [(OutgoingImageFileMessageTableViewCell *)cell setModel:fileMessage channel:self.channel];
                 ((OutgoingImageFileMessageTableViewCell *)cell).delegate = self.delegate;
 
                 if (self.preSendMessages[fileMessage.requestId] != nil && ![self.preSendMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {
@@ -989,7 +994,7 @@
                 else {
                     [(OutgoingFileMessageTableViewCell *)cell setPreviousMessage:nil];
                 }
-                [(OutgoingFileMessageTableViewCell *)cell setModel:fileMessage];
+                [(OutgoingFileMessageTableViewCell *)cell setModel:fileMessage channel:self.channel];
                 ((OutgoingFileMessageTableViewCell *)cell).delegate = self.delegate;
 
                 if (self.preSendMessages[fileMessage.requestId] != nil && ![self.preSendMessages[fileMessage.requestId] isKindOfClass:[NSNull class]]) {

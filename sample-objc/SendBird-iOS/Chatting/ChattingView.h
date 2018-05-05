@@ -24,6 +24,8 @@
 
 @interface ChattingView : ReusableViewFromXib<UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 
+@property (strong, nonatomic, readonly) SBDBaseChannel *channel;
+    
 @property (weak, nonatomic) IBOutlet UITextView *messageTextView;
 @property (weak, nonatomic) IBOutlet UITableView *chattingTableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputContainerViewHeight;
@@ -42,7 +44,7 @@
 
 @property (weak, nonatomic) id<ChattingViewDelegate, MessageDelegate> delegate;
 
-- (void)initChattingView;
+- (void)configureChattingViewWithChannel:(SBDBaseChannel *)channel;
 - (void)scrollToBottomWithForce:(BOOL)force;
 - (void)scrollToPosition:(NSInteger)position;
 - (void)startTypingIndicator:(NSString *)text;

@@ -94,7 +94,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
         
         self.dumpedMessages = Utils.loadMessagesInChannel(channelUrl: self.groupChannel.channelUrl)
         
-        self.chattingView.initChattingView()
+        self.chattingView.configureChattingView(channel: self.groupChannel)
         self.chattingView.delegate = self
         self.minMessageTimestamp = LLONG_MAX
         self.cachedMessage = false
@@ -492,36 +492,39 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     }
     
     private func sendMessageWithReplacement(replacement: OutgoingGeneralUrlPreviewTempModel) {
-        let preSendMessage = self.groupChannel.sendUserMessage(replacement.message, data: "", customType:"", targetLanguages: ["ar", "de", "fr", "nl", "ja", "ko", "pt", "es", "zh-CHS"]) { (userMessage, error) in
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: { 
-                let preSendMessage = self.chattingView.preSendMessages[(userMessage?.requestId)!] as! SBDUserMessage
-                self.chattingView.preSendMessages.removeValue(forKey: (userMessage?.requestId)!)
-                
-                if error != nil {
-                    self.chattingView.resendableMessages[(userMessage?.requestId)!] = userMessage
+        let preSendMessage: SBDUserMessage = self.groupChannel.sendUserMessage(replacement.message, data: "", customType:"", targetLanguages: ["ar", "de", "fr", "nl", "ja", "ko", "pt", "es", "zh-CHS"]) { (userMessage, error) in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
+                if let preSendMessage : SBDUserMessage = self.chattingView.preSendMessages[(userMessage?.requestId)!] as? SBDUserMessage {
+                    guard error == nil else {
+                        self.chattingView.resendableMessages[(userMessage?.requestId)!] = userMessage
+                        self.chattingView.chattingTableView.reloadData()
+                        DispatchQueue.main.async {
+                            self.chattingView.scrollToBottom(force: true)
+                        }
+                        
+                        return
+                    }
+                    
+                    self.chattingView.preSendMessages.removeValue(forKey: (userMessage?.requestId)!)
+                    
+                    self.chattingView.messages[self.chattingView.messages.index(of: preSendMessage)!] = userMessage!
+                    
                     self.chattingView.chattingTableView.reloadData()
                     DispatchQueue.main.async {
                         self.chattingView.scrollToBottom(force: true)
                     }
-                    
-                    return
-                }
-                
-                self.chattingView.messages[self.chattingView.messages.index(of: preSendMessage)!] = userMessage!
-                
-                self.chattingView.chattingTableView.reloadData()
-                DispatchQueue.main.async {
-                    self.chattingView.scrollToBottom(force: true)
                 }
             })
         }
         
-        self.chattingView.messages[self.chattingView.messages.index(of: replacement)!] = preSendMessage
-        self.chattingView.preSendMessages[preSendMessage.requestId!] = preSendMessage
-        DispatchQueue.main.async {
-            self.chattingView.chattingTableView.reloadData()
+        if let index = self.chattingView.messages.index(of: replacement) {
+            self.chattingView.messages[index] = preSendMessage
+            self.chattingView.preSendMessages[preSendMessage.requestId!] = preSendMessage
             DispatchQueue.main.async {
-                self.chattingView.scrollToBottom(force: true)
+                self.chattingView.chattingTableView.reloadData()
+                DispatchQueue.main.async {
+                    self.chattingView.scrollToBottom(force: true)
+                }
             }
         }
     }
@@ -534,8 +537,8 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
             
             do {
                 let detector: NSDataDetector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-                let matches = detector.matches(in: message!, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, (message?.count)!))
-                var url: URL? = nil
+                let matches: [NSTextCheckingResult] = detector.matches(in: message!, options: NSRegularExpression.MatchingOptions.init(rawValue: 0), range: NSMakeRange(0, (message?.count)!))
+                var url: URL?
                 for item in matches {
                     let match = item as NSTextCheckingResult
                     url = match.url
@@ -543,7 +546,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                 }
                 
                 if url != nil {
-                    let tempModel = OutgoingGeneralUrlPreviewTempModel()
+                    let tempModel: OutgoingGeneralUrlPreviewTempModel = OutgoingGeneralUrlPreviewTempModel()
                     tempModel.createdAt = Int64(NSDate().timeIntervalSince1970 * 1000)
                     tempModel.message = message
                     

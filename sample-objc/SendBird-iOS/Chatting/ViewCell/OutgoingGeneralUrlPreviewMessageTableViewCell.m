@@ -90,7 +90,7 @@
     }
 }
 
-- (void)setModel:(SBDUserMessage *)aMessage {
+- (void)setModel:(SBDUserMessage *)aMessage channel:(SBDBaseChannel *)channel {
     self.message = aMessage;
 
     NSData *data = [self.message.data dataUsingEncoding:NSUTF8StringEncoding];
@@ -126,17 +126,14 @@
     
     // Unread message count
     if ([self.message.channelType isEqualToString:CHANNEL_TYPE_GROUP]) {
-        SBDGroupChannel *channelOfMessage = [SBDGroupChannel getChannelFromCacheWithChannelUrl:self.message.channelUrl];
-        if (channelOfMessage != nil) {
-            int unreadMessageCount = [channelOfMessage getReadReceiptOfMessage:self.message];
-            if (unreadMessageCount == 0) {
-                [self hideUnreadCount];
-                self.unreadCountLabel.text = @"";
-            }
-            else {
-                [self showUnreadCount];
-                self.unreadCountLabel.text = [NSString stringWithFormat:@"%d", unreadMessageCount];
-            }
+        int unreadMessageCount = [(SBDGroupChannel *)channel getReadReceiptOfMessage:self.message];
+        if (unreadMessageCount == 0) {
+            [self hideUnreadCount];
+            self.unreadCountLabel.text = @"";
+        }
+        else {
+            [self showUnreadCount];
+            self.unreadCountLabel.text = [NSString stringWithFormat:@"%d", unreadMessageCount];
         }
     }
     else {
