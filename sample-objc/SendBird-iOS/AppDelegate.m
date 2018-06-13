@@ -90,7 +90,9 @@
                     if (settings.authorizationStatus != UNAuthorizationStatusAuthorized) {
                         return;
                     }
-                    [[UIApplication sharedApplication] registerForRemoteNotifications];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [[UIApplication sharedApplication] registerForRemoteNotifications];
+                    });
                 }];
             }
         }];
@@ -103,7 +105,9 @@
         if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
             UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
             [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
-            [[UIApplication sharedApplication] registerForRemoteNotifications];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[UIApplication sharedApplication] registerForRemoteNotifications];
+            });
         }
 #pragma clang diagnostic pop
 #endif

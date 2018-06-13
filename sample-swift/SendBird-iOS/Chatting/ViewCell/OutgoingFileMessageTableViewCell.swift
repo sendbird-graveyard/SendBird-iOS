@@ -60,7 +60,7 @@ class OutgoingFileMessageTableViewCell: UITableViewCell {
         }
     }
     
-    func setModel(aMessage: SBDFileMessage) {
+    func setModel(aMessage: SBDFileMessage, channel: SBDBaseChannel?) {
         self.message = aMessage
 
         let messageContainerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(clickFileMessage))
@@ -87,8 +87,7 @@ class OutgoingFileMessageTableViewCell: UITableViewCell {
         
         // Unread message count
         if self.message.channelType == CHANNEL_TYPE_GROUP {
-            let channelOfMessage = SBDGroupChannel.getChannelFromCache(withChannelUrl: self.message.channelUrl!)
-            if channelOfMessage != nil {
+            if let channelOfMessage = channel as? SBDGroupChannel? {
                 let unreadMessageCount = channelOfMessage?.getReadReceipt(of: self.message)
                 if unreadMessageCount == 0 {
                     self.hideUnreadCount()

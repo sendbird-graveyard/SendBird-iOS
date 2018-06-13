@@ -16,7 +16,7 @@
 
 + (UINib *)nib;
 + (NSString *)cellReuseIdentifier;
-- (void)setModel:(SBDFileMessage *)aMessage;
+- (void)setModel:(SBDFileMessage *)aMessage channel:(SBDBaseChannel *)channel;
 - (void)setPreviousMessage:(SBDBaseMessage *)aPrevMessage;
 - (CGFloat)getHeightOfViewCell;
 - (void)hideUnreadCount;

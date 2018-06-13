@@ -114,7 +114,7 @@
     
     self.dumpedMessages = [Utils loadMessagesInChannel:self.channel.channelUrl];
     
-    [self.chattingView initChattingView];
+    [self.chattingView configureChattingViewWithChannel:self.channel];
     self.chattingView.delegate = self;
     self.minMessageTimestamp = LLONG_MAX;
     self.cachedMessage = NO;

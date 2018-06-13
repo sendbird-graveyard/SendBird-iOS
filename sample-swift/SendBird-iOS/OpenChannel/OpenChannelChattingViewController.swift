@@ -89,7 +89,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
         
         self.dumpedMessages = Utils.loadMessagesInChannel(channelUrl: self.openChannel.channelUrl)
         
-        self.chattingView.initChattingView()
+        self.chattingView.configureChattingView(channel: self.openChannel)
         self.chattingView.delegate = self
         self.minMessageTimestamp = LLONG_MAX
         self.cachedMessage = false
@@ -1377,16 +1377,17 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                 
                 let videoName: NSString = (videoUrl.lastPathComponent as NSString?)!
                 let ext = videoName.pathExtension
-                let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as NSString, nil)
-                let mimeType = UTTypeCopyPreferredTagWithClass(UTI as! CFString, kUTTagClassMIMEType)?.takeRetainedValue()
                 
+                let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as NSString, nil)?.takeRetainedValue();
+                let mimeType = (UTTypeCopyPreferredTagWithClass(UTI!, kUTTagClassMIMEType)?.takeRetainedValue())! as String
+
                 // success, data is in imageData
                 /***********************************/
                 /* Thumbnail is a premium feature. */
                 /***********************************/
                 let thumbnailSize = SBDThumbnailSize.make(withMaxWidth: 320.0, maxHeight: 320.0)
                 
-                let preSendMessage = self.openChannel.sendFileMessage(withBinaryData: (videoFileData! as Data), filename: (videoName as String), type: (mimeType! as String), size: UInt((videoFileData?.length)!), thumbnailSizes: [thumbnailSize!], data: "", customType: "", progressHandler: nil, completionHandler: { (fileMessage, error) in
+                let preSendMessage = self.openChannel.sendFileMessage(withBinaryData: (videoFileData! as Data), filename: (videoName as String), type: mimeType, size: UInt((videoFileData?.length)!), thumbnailSizes: [thumbnailSize!], data: "", customType: "", progressHandler: nil, completionHandler: { (fileMessage, error) in
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
                         DispatchQueue.main.async {
                             let preSendMessage = self.chattingView.preSendMessages[(fileMessage?.requestId!)!] as! SBDFileMessage
@@ -1395,7 +1396,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                             if error != nil {
                                 self.chattingView.resendableMessages[(fileMessage?.requestId)!] = preSendMessage
                                 self.chattingView.resendableFileData[preSendMessage.requestId!]?["data"] = videoFileData
-                                self.chattingView.resendableFileData[preSendMessage.requestId!]?["type"] = mimeType
+                                self.chattingView.resendableFileData[preSendMessage.requestId!]?["type"] = mimeType as AnyObject
                                 self.chattingView.chattingTableView.reloadData()
                                 DispatchQueue.main.async {
                                     self.chattingView.scrollToBottom(force: true)

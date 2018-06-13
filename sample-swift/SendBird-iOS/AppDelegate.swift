@@ -10,6 +10,7 @@ import UIKit
 import SendBirdSDK
 import AVKit
 import AVFoundation
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,11 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-#if !(arch(i386) || arch(x86_64))
-        let notificationSettings = UIUserNotificationSettings(types: [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound], categories: nil)
-        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
-        UIApplication.shared.registerForRemoteNotifications()
-#endif
+        self.registerForRemoteNotification()
         
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: Constants.navigationBarTitleFont()]
         UINavigationBar.appearance().tintColor = Constants.navigationBarTitleColor()
@@ -71,6 +68,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
+    }
+    
+    func registerForRemoteNotification() {
+        if #available(iOS 10.0, *) {
+            #if !(arch(i386) || arch(x86_64))
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+                if granted {
+                    UNUserNotificationCenter.current().getNotificationSettings(completionHandler: { (settings: UNNotificationSettings) -> Void  in
+                        guard settings.authorizationStatus == UNAuthorizationStatus.authorized else {
+                            return;
+                        }
+                        DispatchQueue.main.async {
+                            UIApplication.shared.registerForRemoteNotifications()
+                        }
+                    })
+                }
+            }
+            #endif
+        } else {
+            #if !(arch(i386) || arch(x86_64))
+            let notificationSettings = UIUserNotificationSettings(types: [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(notificationSettings)
+            UIApplication.shared.registerForRemoteNotifications()
+            #endif
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

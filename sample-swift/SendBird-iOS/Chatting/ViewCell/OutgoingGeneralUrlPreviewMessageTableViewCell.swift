@@ -83,12 +83,12 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
     
     @objc private func clickPreview() {
         let url: String = self.previewData["url"] as! String
-        if url.utf8CString.count > 0 {
+        if url.count > 0 {
             UIApplication.shared.openURL(URL(string: url)!)
         }
     }
     
-    func setModel(aMessage: SBDUserMessage) {
+    func setModel(aMessage: SBDUserMessage, channel: SBDBaseChannel?) {
         self.message = aMessage
         
         let data = self.message.data?.data(using: String.Encoding.utf8)
@@ -127,9 +127,8 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         
         // Unread message count
         if self.message.channelType == CHANNEL_TYPE_GROUP {
-            let channelOfMessage = SBDGroupChannel.getChannelFromCache(withChannelUrl: self.message.channelUrl!)
-            if channelOfMessage != nil {
-                let unreadMessageCount = channelOfMessage?.getReadReceipt(of: self.message)
+            if let groupChannel = channel as? SBDGroupChannel? {
+                let unreadMessageCount = groupChannel?.getReadReceipt(of: self.message)
                 if unreadMessageCount == 0 {
                     self.hideUnreadCount()
                     self.unreadCountLabel.text = ""
@@ -242,7 +241,7 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         ]
         
         let detector: NSDataDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        let matches = detector.matches(in: self.message.message!, options: [], range: NSMakeRange(0, (self.message.message?.utf8CString.count)!))
+        let matches = detector.matches(in: self.message.message!, options: [], range: NSMakeRange(0, (self.message.message?.count)!))
         if matches.count > 0 {
             self.messageLabel.delegate = self
             self.messageLabel.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
@@ -270,7 +269,7 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         var fullMessage: NSMutableAttributedString?
 
         fullMessage = NSMutableAttributedString(string: message!)
-        fullMessage?.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.utf8CString.count)!))
+        fullMessage?.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.count)!))
         
         return fullMessage!
     }

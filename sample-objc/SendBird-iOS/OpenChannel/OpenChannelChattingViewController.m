@@ -112,7 +112,7 @@
     
     self.dumpedMessages = [Utils loadMessagesInChannel:self.channel.channelUrl];
     
-    [self.chattingView initChattingView];
+    [self.chattingView configureChattingViewWithChannel:self.channel];
     self.chattingView.delegate = self;
     self.minMessageTimestamp = LLONG_MAX;
     self.cachedMessage = NO;
@@ -1251,8 +1251,12 @@
         else if ([message isKindOfClass:[SBDFileMessage class]]) {
             requestId = ((SBDFileMessage *)message).requestId;
         }
-        [self.chattingView.resendableFileData removeObjectForKey:requestId];
-        [self.chattingView.resendableMessages removeObjectForKey:requestId];
+        
+        if (requestId != nil) {
+            [self.chattingView.resendableFileData removeObjectForKey:requestId];
+            [self.chattingView.resendableMessages removeObjectForKey:requestId];
+        }
+        
         [self.chattingView.messages removeObject:message];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.chattingView.chattingTableView reloadData];

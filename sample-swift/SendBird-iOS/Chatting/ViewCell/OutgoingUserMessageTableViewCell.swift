@@ -65,7 +65,7 @@ class OutgoingUserMessageTableViewCell: UITableViewCell {
         }
     }
     
-    func setModel(aMessage: SBDUserMessage) {
+    func setModel(aMessage: SBDUserMessage, channel: SBDBaseChannel?) {
         self.message = aMessage
         
         let fullMessage = self.buildMessage()
@@ -84,8 +84,7 @@ class OutgoingUserMessageTableViewCell: UITableViewCell {
         
         // Unread message count
         if self.message.channelType == CHANNEL_TYPE_GROUP {
-            let channelOfMessage = SBDGroupChannel.getChannelFromCache(withChannelUrl: self.message.channelUrl!)
-            if channelOfMessage != nil {
+            if let channelOfMessage = channel as? SBDGroupChannel? {
                 let unreadMessageCount = channelOfMessage?.getReadReceipt(of: self.message)
                 if unreadMessageCount == 0 {
                     self.hideUnreadCount()

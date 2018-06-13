@@ -24,6 +24,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var chattingTableView: UITableView!
     @IBOutlet weak var inputContainerViewHeight: NSLayoutConstraint!
     var messages: [SBDBaseMessage] = []
+    var channel: SBDBaseChannel?
     
     var resendableMessages: [String:SBDBaseMessage] = [:]
     var preSendMessages: [String:SBDBaseMessage] = [:]
@@ -81,7 +82,9 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
         self.messageTextView.textContainerInset = UIEdgeInsetsMake(15.5, 0, 14, 0)
     }
     
-    func initChattingView() {
+    func configureChattingView(channel: SBDBaseChannel?) {
+        self.channel = channel;
+        
         self.initialLoading = true
         self.lastMessageHeight = 0
         self.scrollLock = false
@@ -312,7 +315,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     else {
                         self.outgoingGeneralUrlPreviewMessageTableViewCell?.setPreviousMessage(aPrevMessage: nil)
                     }
-                    self.outgoingGeneralUrlPreviewMessageTableViewCell?.setModel(aMessage: userMessage)
+                    self.outgoingGeneralUrlPreviewMessageTableViewCell?.setModel(aMessage: userMessage, channel: self.channel)
                     height = (self.outgoingGeneralUrlPreviewMessageTableViewCell?.getHeightOfViewCell())!
                 }
                 else {
@@ -322,7 +325,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     else {
                         self.outgoingUserMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: nil)
                     }
-                    self.outgoingUserMessageSizingTableViewCell?.setModel(aMessage: userMessage)
+                    self.outgoingUserMessageSizingTableViewCell?.setModel(aMessage: userMessage, channel: self.channel)
                     height = (self.outgoingUserMessageSizingTableViewCell?.getHeightOfViewCell())!
                 }
             }
@@ -364,7 +367,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     else {
                         self.outgoingVideoFileMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: nil)
                     }
-                    self.outgoingVideoFileMessageSizingTableViewCell?.setModel(aMessage: fileMessage)
+                    self.outgoingVideoFileMessageSizingTableViewCell?.setModel(aMessage: fileMessage, channel: self.channel)
                     height = (self.outgoingVideoFileMessageSizingTableViewCell?.getHeightOfViewCell())!
                 }
                 else if fileMessage.type.hasPrefix("audio") {
@@ -374,7 +377,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     else {
                         self.outgoingFileMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: nil)
                     }
-                    self.outgoingFileMessageSizingTableViewCell?.setModel(aMessage: fileMessage)
+                    self.outgoingFileMessageSizingTableViewCell?.setModel(aMessage: fileMessage, channel: self.channel)
                     height = (self.outgoingFileMessageSizingTableViewCell?.getHeightOfViewCell())!
                 }
                 else if fileMessage.type.hasPrefix("image") {
@@ -384,7 +387,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     else {
                         self.outgoingImageFileMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: nil)
                     }
-                    self.outgoingImageFileMessageSizingTableViewCell?.setModel(aMessage: fileMessage)
+                    self.outgoingImageFileMessageSizingTableViewCell?.setModel(aMessage: fileMessage, channel: self.channel)
                     height = (self.outgoingImageFileMessageSizingTableViewCell?.getHeightOfViewCell())!
                 }
                 else {
@@ -394,7 +397,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     else {
                         self.outgoingFileMessageSizingTableViewCell?.setPreviousMessage(aPrevMessage: nil)
                     }
-                    self.outgoingFileMessageSizingTableViewCell?.setModel(aMessage: fileMessage)
+                    self.outgoingFileMessageSizingTableViewCell?.setModel(aMessage: fileMessage, channel: self.channel)
                     height = (self.outgoingFileMessageSizingTableViewCell?.getHeightOfViewCell())!
                 }
             }
@@ -655,7 +658,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     else {
                         (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
                     }
-                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).setModel(aMessage: userMessage)
+                    (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).setModel(aMessage: userMessage, channel: self.channel)
                     (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).delegate = self.delegate
                     
                     if let imageUrl = (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).previewData["image"] as? String {
@@ -730,7 +733,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     else {
                         (cell as! OutgoingUserMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
                     }
-                    (cell as! OutgoingUserMessageTableViewCell).setModel(aMessage: userMessage)
+                    (cell as! OutgoingUserMessageTableViewCell).setModel(aMessage: userMessage, channel: self.channel)
                     (cell as! OutgoingUserMessageTableViewCell).delegate = self.delegate
                     
                     if self.preSendMessages[userMessage.requestId!] != nil {
@@ -844,7 +847,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     else {
                         (cell as! OutgoingVideoFileMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
                     }
-                    (cell as! OutgoingVideoFileMessageTableViewCell).setModel(aMessage: fileMessage)
+                    (cell as! OutgoingVideoFileMessageTableViewCell).setModel(aMessage: fileMessage, channel: self.channel)
                     (cell as! OutgoingVideoFileMessageTableViewCell).delegate = self.delegate
                     
                     if self.preSendMessages[fileMessage.requestId!] != nil {
@@ -870,7 +873,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     else {
                         (cell as! OutgoingFileMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
                     }
-                    (cell as! OutgoingFileMessageTableViewCell).setModel(aMessage: fileMessage)
+                    (cell as! OutgoingFileMessageTableViewCell).setModel(aMessage: fileMessage, channel: self.channel)
                     (cell as! OutgoingFileMessageTableViewCell).delegate = self.delegate
                     
                     if self.preSendMessages[fileMessage.requestId!] != nil {
@@ -896,7 +899,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     else {
                         (cell as! OutgoingImageFileMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
                     }
-                    (cell as! OutgoingImageFileMessageTableViewCell).setModel(aMessage: fileMessage)
+                    (cell as! OutgoingImageFileMessageTableViewCell).setModel(aMessage: fileMessage, channel: self.channel)
                     (cell as! OutgoingImageFileMessageTableViewCell).delegate = self.delegate
                     
                     if self.preSendMessages[fileMessage.requestId!] != nil {
@@ -995,7 +998,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     else {
                         (cell as! OutgoingFileMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
                     }
-                    (cell as! OutgoingFileMessageTableViewCell).setModel(aMessage: fileMessage)
+                    (cell as! OutgoingFileMessageTableViewCell).setModel(aMessage: fileMessage, channel: self.channel)
                     (cell as! OutgoingFileMessageTableViewCell).delegate = self.delegate
                     
                     if self.preSendMessages[fileMessage.requestId!] != nil {
