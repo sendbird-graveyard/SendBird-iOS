@@ -47,6 +47,16 @@ typedef void(^SBDBackgroundSessionBlock)(void);
  */
 + (void)setConnectionTimeout:(NSInteger)timeout;
 
+/**
+ *  Sets a term of typing indicator throttling in group channel.
+ *  After this throttling interval from typing indicator started (or ended), You can re-start (or re-end) typing indicator.
+ *  If you call start (or end) again in this interval, the call will be ignored.
+ *
+ *  @param interval  A time interval that can renew typing indicator. can be RANGE from 1.0 to 9.0.
+ *  @since 3.0.100
+ */
++ (void)setTypingIndicatorThrottle:(NSTimeInterval)interval;
+
 @end
 
 /**

@@ -353,4 +353,53 @@ typedef NS_ENUM(NSUInteger, SBDPushNotificationDeliveryOption) {
     SBDPushNotificationDeliveryOptionSuppress = 1,
 };
 
+/**
+ *  The users's role which gives different behaviors, permisions to user.
+ */
+typedef NS_ENUM(NSUInteger, SBDRole) {
+    /**
+     *  The default role that means nothing.
+     */
+    SBDRoleNone = 0,
+    /**
+     *  The role of operator.
+     */
+    SBDRoleOperator = 1,
+};
+
+/**
+ The current user's muted state type.
+
+ - SBDMutedStateUnmuted: The current user is unmuted in the group channel.
+ - SBDMutedStateMuted: The current user is muted in the group channel.
+ */
+typedef NS_ENUM(NSInteger, SBDMutedState) {
+    
+    SBDMutedStateUnmuted = 0,
+    SBDMutedStateMuted = 1,
+};
+
+/**
+ *  The bitmask keys of count about unread messages or invitation.
+ */
+typedef NS_OPTIONS(NSUInteger, SBDUnreadItemKey) {
+    /**
+     *  The bitmask key for unread message count of non super channel.
+     */
+    SBDUnreadItemKeyNonSuperUnreadMessageCount  = (1 << 0),
+    /**
+     *  The bitmask key for unread message count of super channel.
+     */
+    SBDUnreadItemKeySuperUnreadMessageCount     = (1 << 1),
+    /**
+     *  The bitmask key for invitation count of non super channel.
+     */
+    SBDUnreadItemKeyNonSuperInvitationCount     = (1 << 2),
+    /**
+     *  The bitmask key for invitation count of super channel.
+     */
+    SBDUnreadItemKeySuperInvitationCount        = (1 << 3),
+};
+
+
 #endif /* SBDTypes_h */

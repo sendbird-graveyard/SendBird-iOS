@@ -65,6 +65,13 @@ DEPRECATED_ATTRIBUTE;
 - (void)setMutedMemberFilter:(SBDGroupChannelMutedMemberFilter)filter;
 
 /**
+ Sets a filter to query member list with member state.
+
+ @param filter The filter about member state.
+ */
+- (void)setMemberStateFilter:(SBDMemberStateFilter)filter;
+
+/**
  *  Gets the list of member in group channel. If this method is repeatedly called, it will retrieve the following pages of the member list.
  *
  *  @param completionHandler The handler block to execute. The `users` is the array of `SBDUser` instances.
