@@ -15,6 +15,7 @@
 #import "Utils.h"
 #import "AppDelegate.h"
 #import "ConnectionManager.h"
+#import <Photos/Photos.h>
 
 @interface ViewController ()
 

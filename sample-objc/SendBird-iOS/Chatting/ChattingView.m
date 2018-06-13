@@ -1056,10 +1056,11 @@
                 
                 [((IncomingImageFileMessageTableViewCell *)cell).fileImageView setImage:nil];
                 [((IncomingImageFileMessageTableViewCell *)cell).fileImageView setAnimatedImage:nil];
-                 
+                
+                ((IncomingImageFileMessageTableViewCell *)cell).imageLoadingIndicator.hidden = NO;
+                [((IncomingImageFileMessageTableViewCell *)cell).imageLoadingIndicator startAnimating];
+                
                 if ([fileMessage.type isEqualToString:@"image/gif"]) {
-                    ((IncomingImageFileMessageTableViewCell *)cell).imageLoadingIndicator.hidden = NO;
-                    [((IncomingImageFileMessageTableViewCell *)cell).imageLoadingIndicator startAnimating];
                     [((IncomingImageFileMessageTableViewCell *)cell).fileImageView setAnimatedImageWithURL:[NSURL URLWithString:fileImageUrl] success:^(FLAnimatedImage * _Nullable image) {
                         dispatch_async(dispatch_get_main_queue(), ^{
                             IncomingImageFileMessageTableViewCell *updateCell = (IncomingImageFileMessageTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
@@ -1071,6 +1072,29 @@
                             }
                         });
                     } failure:^(NSError * _Nullable error) {
+                        [((IncomingImageFileMessageTableViewCell *)cell).fileImageView setImageWithURL:[NSURL URLWithString:fileImageUrl]];
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            IncomingImageFileMessageTableViewCell *updateCell = (IncomingImageFileMessageTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+                            if (updateCell) {
+                                [((IncomingImageFileMessageTableViewCell *)cell).imageLoadingIndicator stopAnimating];
+                                ((IncomingImageFileMessageTableViewCell *)cell).imageLoadingIndicator.hidden = YES;
+                            }
+                        });
+                    }];
+                }
+                else {
+                    [((IncomingImageFileMessageTableViewCell *)cell).fileImageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:fileImageUrl]] placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            IncomingImageFileMessageTableViewCell *updateCell = (IncomingImageFileMessageTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+                            if (updateCell) {
+                                [((IncomingImageFileMessageTableViewCell *)cell).fileImageView setImage:image];
+                                
+                                [((IncomingImageFileMessageTableViewCell *)cell).imageLoadingIndicator stopAnimating];
+                                ((IncomingImageFileMessageTableViewCell *)cell).imageLoadingIndicator.hidden = YES;
+                            }
+                        });
+                    } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
                         [((IncomingImageFileMessageTableViewCell *)cell).fileImageView setImageWithURL:[NSURL URLWithString:fileImageUrl]];
                         
                         dispatch_async(dispatch_get_main_queue(), ^{

@@ -1065,9 +1065,10 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     (cell as! IncomingImageFileMessageTableViewCell).fileImageView.image = nil
                     (cell as! IncomingImageFileMessageTableViewCell).fileImageView.animatedImage = nil
                     
+                    (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = false
+                    (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.startAnimating()
+                    
                     if fileMessage.type == "image/gif" {
-                        (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = false
-                        (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.startAnimating()
                         (cell as! IncomingImageFileMessageTableViewCell).fileImageView.setAnimatedImageWithURL(url: URL(string: fileImageUrl)!, success: { (image) in
                             DispatchQueue.main.async {
                                 let updateCell = tableView.cellForRow(at: indexPath) as? IncomingImageFileMessageTableViewCell
@@ -1084,6 +1085,31 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                                     (cell as! IncomingImageFileMessageTableViewCell).fileImageView.af_setImage(withURL: URL(string: fileImageUrl)!)
                                     (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
                                     (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
+                                }
+                            }
+                        })
+                    }
+                    else {
+                        let request = URLRequest(url: URL(string: fileImageUrl)!)
+                        (cell as! IncomingImageFileMessageTableViewCell).fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+                            if response.result.error != nil {
+                                DispatchQueue.main.async {
+                                    let updateCell = tableView.cellForRow(at: indexPath) as? IncomingImageFileMessageTableViewCell
+                                    if updateCell != nil {
+                                        (cell as! IncomingImageFileMessageTableViewCell).fileImageView.image = nil
+                                        (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
+                                        (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                    }
+                                }
+                            }
+                            else {
+                                DispatchQueue.main.async {
+                                    let updateCell = tableView.cellForRow(at: indexPath) as? IncomingImageFileMessageTableViewCell
+                                    if updateCell != nil {
+                                        (cell as! IncomingImageFileMessageTableViewCell).fileImageView.image = response.result.value
+                                        (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
+                                        (cell as! IncomingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                    }
                                 }
                             }
                         })
