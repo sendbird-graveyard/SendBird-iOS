@@ -24,7 +24,9 @@
 #import "MessagingMyStructuredMessageTableViewCell.h"
 #import "MessagingStructuredMessageTableViewCell.h"
 
-@interface MessagingTableViewController : UIViewController
+#import "MessageAckTimer.h"
+
+@interface MessagingTableViewController : UIViewController<MessageAckTimerDelegate>
 
 @property (retain) UIView *container;
 @property (retain) UITableView *tableView;

@@ -28,6 +28,9 @@
 #define kTypingViewHeight 36.0
 
 @interface MessagingTableViewController ()<UITableViewDataSource, UITableViewDelegate, MessageInputViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
+
+@property (strong) MessageAckTimer *ackTimer;
+
 @end
 
 @implementation MessagingTableViewController {
@@ -349,6 +352,8 @@
     messagingChannels = [[NSMutableArray alloc] init];
     [self initViews];
     
+    self.ackTimer = [[MessageAckTimer alloc] initWithTimeout:60];
+    self.ackTimer.delegate = self;
     
     if (mTimer == nil) {
         mTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerCallback:) userInfo:nil repeats:YES];
@@ -458,6 +463,7 @@
     } channelLeftBlock:^(SendBirdChannel *channel) {
         
     } messageReceivedBlock:^(SendBirdMessage *message) {
+        [self.ackTimer unregisterAckTimer:message.data];
         [messageArray addSendBirdMessage:message updateMessageTsBlock:updateMessageTs];
         [self scrollToBottomWithReloading:YES force:NO animated:NO];
         [SendBird markAsRead];
@@ -1758,7 +1764,9 @@
     [self scrollToBottomWithReloading:NO force:YES animated:NO];
     if ([message length] > 0) {
         NSString *messageId = [[NSUUID UUID] UUIDString];
-        [SendBird sendMessage:message withTempId:messageId];
+        [self.ackTimer registerAckTimer:messageId];
+        [SendBird sendMessage:message withData:messageId andTempId:messageId];
+//        [SendBird sendMessage:message withTempId:messageId];
     }
 }
 
@@ -1897,6 +1905,19 @@
     NSMutableArray *array = [[NSMutableArray alloc] init];
     [array addObject:indexPath];
     [self.tableView reloadRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationNone];
+}
+
+#pragma mark - MessageAckTimerDelegate
+- (NSString *)extractAckKeyFromData:(NSString *)data {
+    return data.copy;
+}
+
+- (void)messageDelivered:(NSString *)key {
+    NSLog(@"messageDelivered: %@", key);
+}
+
+- (void)messageDeliveryFailed:(NSString *)key {
+    NSLog(@"messageDeliveryFailed: %@", key);
 }
 
 @end

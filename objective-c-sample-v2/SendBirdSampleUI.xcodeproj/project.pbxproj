@@ -43,6 +43,7 @@
 		5A893B811C33C17B00BA290C /* MessagingMyStructuredMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A893B751C33C17B00BA290C /* MessagingMyStructuredMessageTableViewCell.m */; };
 		5A893B821C33C17B00BA290C /* MessagingStructuredMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A893B771C33C17B00BA290C /* MessagingStructuredMessageTableViewCell.m */; };
 		5A893B831C33C17B00BA290C /* MessagingSystemMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A893B791C33C17B00BA290C /* MessagingSystemMessageTableViewCell.m */; };
+		E289F37020D97AB700322A65 /* MessageAckTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = E289F36F20D97AB700322A65 /* MessageAckTimer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +137,8 @@
 		5A893B791C33C17B00BA290C /* MessagingSystemMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagingSystemMessageTableViewCell.m; sourceTree = "<group>"; };
 		6915E7A00AC28781360ECC10 /* Pods-SendBird Sample UI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird Sample UI.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird Sample UI/Pods-SendBird Sample UI.release.xcconfig"; sourceTree = "<group>"; };
 		CE6304947FA246C07FDBD69F /* Pods-SendBird Sample UI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird Sample UI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird Sample UI/Pods-SendBird Sample UI.debug.xcconfig"; sourceTree = "<group>"; };
+		E289F36E20D97AB700322A65 /* MessageAckTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageAckTimer.h; sourceTree = "<group>"; };
+		E289F36F20D97AB700322A65 /* MessageAckTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageAckTimer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +248,8 @@
 				5A893B2E1C33B90400BA290C /* SendBirdMessaging */,
 				5A893B361C33BB9200BA290C /* SendBirdCommon.h */,
 				5A893B371C33BB9200BA290C /* SendBirdCommon.m */,
+				E289F36E20D97AB700322A65 /* MessageAckTimer.h */,
+				E289F36F20D97AB700322A65 /* MessageAckTimer.m */,
 			);
 			path = SendBird;
 			sourceTree = "<group>";
@@ -556,6 +561,7 @@
 				5A893B831C33C17B00BA290C /* MessagingSystemMessageTableViewCell.m in Sources */,
 				5A893B4E1C33BC5700BA290C /* ChannelListTableView.m in Sources */,
 				5A893B381C33BB9200BA290C /* SendBirdCommon.m in Sources */,
+				E289F37020D97AB700322A65 /* MessageAckTimer.m in Sources */,
 				5A893B521C33BC5700BA290C /* FileMessageTableViewCell.m in Sources */,
 				5A893B351C33BB5600BA290C /* ChattingTableViewController.m in Sources */,
 				5A893B4F1C33BC5700BA290C /* ChannelTableViewCell.m in Sources */,
