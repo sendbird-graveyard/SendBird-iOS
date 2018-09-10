@@ -28,7 +28,7 @@ class CreateGroupChannelUserListTableViewCell: UITableViewCell {
     func setModel(aUser: SBDUser) {
         self.user = aUser
         
-        if self.user.profileUrl != nil {
+        if let url = self.user.profileUrl, !url.isEmpty {
             self.profileImageView.af_setImage(withURL: URL(string: self.user.profileUrl!)!, placeholderImage:UIImage(named: "img_profile"))
         }
         else {

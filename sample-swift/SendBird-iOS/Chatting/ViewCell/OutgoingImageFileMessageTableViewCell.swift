@@ -224,10 +224,10 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
         self.dateSeperatorLabel.text = seperatorDateFormatter.string(from: messageCreatedDate as Date)
         
         // Relationship between the current message and the previous message
-        self.dateSeperatorView.isHidden = false;
-        self.dateSeperatorViewHeight.constant = 24.0;
-        self.dateSeperatorViewTopMargin.constant = 10.0;
-        self.dateSeperatorViewBottomMargin.constant = 10.0;
+        self.dateSeperatorView.isHidden = false
+        self.dateSeperatorViewHeight.constant = 24.0
+        self.dateSeperatorViewTopMargin.constant = 10.0
+        self.dateSeperatorViewBottomMargin.constant = 10.0
         if self.prevMessage != nil {
             // Day Changed
             let prevMessageDate = NSDate(timeIntervalSince1970: Double(self.prevMessage.createdAt) / 1000.0)
@@ -363,11 +363,11 @@ class OutgoingImageFileMessageTableViewCell: UITableViewCell {
         }
         
         if type == "image/gif" {
-            let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue");
+            let imageLoadQueue = DispatchQueue(label: "com.sendbird.imageloadqueue")
             imageLoadQueue.async {
                 let animatedImage = FLAnimatedImage(animatedGIFData: data)
                 DispatchQueue.main.async {
-                    self.fileImageView.animatedImage = animatedImage;
+                    self.fileImageView.animatedImage = animatedImage
                 }
             }
         }

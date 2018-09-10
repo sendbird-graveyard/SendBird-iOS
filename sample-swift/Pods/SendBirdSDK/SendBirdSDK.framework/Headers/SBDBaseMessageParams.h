@@ -36,6 +36,12 @@
 @property (atomic) SBDPushNotificationDeliveryOption pushNotificationDeliveryOption;
 
 /**
+ *
+ *  @since 3.0.103
+ */
+@property (atomic) SBDMentionType mentionType;
+
+/**
  *  Can mention to specific users.
  *  If sends a message with this field, the message will be arrived to mentioned users.
  *  The default value is nil.

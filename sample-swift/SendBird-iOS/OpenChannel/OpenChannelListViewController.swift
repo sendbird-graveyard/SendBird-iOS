@@ -44,7 +44,7 @@ class OpenChannelListViewController: UIViewController, UITableViewDelegate, UITa
         if SBDMain.getConnectState() == .closed {
             ConnectionManager.login { (user, error) in
                 guard error == nil else {
-                    return;
+                    return
                 }
             }
         }

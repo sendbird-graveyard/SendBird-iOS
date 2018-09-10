@@ -317,7 +317,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     
     func sendUrlPreview(url: URL, message: String, aTempModel: OutgoingGeneralUrlPreviewTempModel) {
         let tempModel = aTempModel
-        let previewUrl = url;
+        let previewUrl = url
         let request = URLRequest(url: url)
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
@@ -676,6 +676,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     }
     
     // MARK: SBDChannelDelegate
+    //
     func channel(_ sender: SBDBaseChannel, didReceive message: SBDBaseMessage) {
         if sender == self.groupChannel {
             self.groupChannel.markAsRead()
@@ -798,6 +799,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     }
     
     // MARK: ChattingViewDelegate
+    //
     func loadMoreMessage(view: UIView) {
         if self.cachedMessage {
             return
@@ -828,6 +830,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     }
     
     // MARK: MessageDelegate
+    //
     func clickProfileImage(viewCell: UITableViewCell, user: SBDUser) {
         let vc = UIAlertController(title: user.nickname, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         let seeBlockUserAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "BlockUserButton"), style: UIAlertActionStyle.default) { (action) in
@@ -883,8 +886,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                     
                 }
                 
-            }
-            else {
+            } else {
                 let sender = (message as! SBDUserMessage).sender
                 if sender?.userId == SBDMain.getCurrentUser()?.userId {
                     deleteMessageAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "DeleteMessageButton"), style: UIAlertActionStyle.destructive, handler: { (action) in
@@ -993,7 +995,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                         if error != nil {
                             self.hideImageViewerLoading()
                             
-                            return;
+                            return
                         }
                         
                         let resp = response as! HTTPURLResponse
@@ -1231,25 +1233,29 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     
     // MARK: UIImagePickerControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
         let mediaType = info[UIImagePickerControllerMediaType] as! String
         
         picker.dismiss(animated: true) { 
             if CFStringCompare(mediaType as CFString, kUTTypeImage, []) == CFComparisonResult.compareEqualTo {
-                let imagePath: URL = info[UIImagePickerControllerReferenceURL] as! URL
                 
-                let imageName: NSString = (imagePath.lastPathComponent as NSString?)!
+                guard let imagePath = info[UIImagePickerControllerReferenceURL] as? URL,
+                let imageName = imagePath.lastPathComponent as NSString?,
+                let asset = PHAsset.fetchAssets(withALAssetURLs: [imagePath], options: nil).lastObject
+                    else { return }
+                
+                
                 let ext = imageName.pathExtension
                 let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as CFString, nil)?.takeRetainedValue()
-                let mimeType = UTTypeCopyPreferredTagWithClass(UTI!, kUTTagClassMIMEType)?.takeRetainedValue();
+                let mimeType = UTTypeCopyPreferredTagWithClass(UTI!, kUTTagClassMIMEType)?.takeRetainedValue()
                 
-                let asset = PHAsset.fetchAssets(withALAssetURLs: [imagePath], options: nil).lastObject
                 let options = PHImageRequestOptions()
                 options.isSynchronous = true
                 options.isNetworkAccessAllowed = false
                 options.deliveryMode = PHImageRequestOptionsDeliveryMode.highQualityFormat
 
                 if ((mimeType! as String) == "image/gif") {
-                    PHImageManager.default().requestImageData(for: asset!, options: options, resultHandler: { (imageData, dataUTI, orientation, info) in
+                    PHImageManager.default().requestImageData(for: asset, options: options, resultHandler: { (imageData, dataUTI, orientation, info) in
                         let isError = info?[PHImageErrorKey]
                         let isCloud = info?[PHImageResultIsInCloudKey]
                         if ((isError != nil && (isError as! Bool) == true)) || (isCloud != nil && (isCloud as! Bool) == true) || imageData == nil {
@@ -1263,7 +1269,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                             let thumbnailSize = SBDThumbnailSize.make(withMaxWidth: 320.0, maxHeight: 320.0)
                             
                             let preSendMessage = self.groupChannel.sendFileMessage(withBinaryData: imageData!, filename: imageName as String, type: mimeType! as String, size: UInt((imageData?.count)!), thumbnailSizes: [thumbnailSize!], data: "", customType: "TEST_CUSTOM_TYPE", progressHandler: nil, completionHandler: { (fileMessage, error) in
-                                print("Custom Type: %@", fileMessage?.customType ?? "");
+                                print("Custom Type: %@", fileMessage?.customType ?? "")
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
                                     let preSendMessage = self.chattingView.preSendMessages[(fileMessage?.requestId)!] as! SBDFileMessage
                                     self.chattingView.preSendMessages.removeValue(forKey: (fileMessage?.requestId)!)
@@ -1310,7 +1316,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                     })
                 }
                 else {
-                    PHImageManager.default().requestImage(for: asset!, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: nil, resultHandler: { (result, info) in
+                    PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: nil, resultHandler: { (result, info) in
                         if (result != nil) {
                             // sucess, data is in imagedata
                             /***********************************/
@@ -1374,7 +1380,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                 let videoName: NSString = (videoUrl.lastPathComponent as NSString?)!
                 let ext = videoName.pathExtension
 
-                let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as NSString, nil)?.takeRetainedValue();
+                let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as NSString, nil)?.takeRetainedValue()
                 let mimeType = (UTTypeCopyPreferredTagWithClass(UTI!, kUTTagClassMIMEType)?.takeRetainedValue())! as String
                 
                 // success, data is in imageData

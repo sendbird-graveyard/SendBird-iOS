@@ -840,6 +840,22 @@ DEPRECATED_ATTRIBUTE;
         completionHandler:(nullable void (^)(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error))completionHandler;
 
 /**
+ *  Updates a user message. The text message, data, custom type from user message params can be updated.
+ *
+ *  @param messageId            The message ID of the message to be updated.
+ *  @param params               The user message params that has updating fields.
+ *  @param completionHandler    The handler block to be executed after update.
+ *                              This block has no return value and takes two argument.
+ *                              the one is updated message type of SBDUserMessage. the other is an error made when there is something wrong to process.
+ *
+ *
+ *  @since 3.0.110
+ */
+- (void)updateUserMessageWithMessageId:(long long)messageId
+                     userMessageParams:(nonnull SBDUserMessageParams *)params
+                     completionHandler:(nullable void (^)(SBDUserMessage * _Nullable message, SBDError * _Nullable error))completionHandler;
+
+/**
  *  Updates a file message. The data and custom type can be updated.
  *
  *  @param fileMessage       The file message to be updated.
@@ -851,6 +867,22 @@ DEPRECATED_ATTRIBUTE;
                      data:(NSString * _Nullable)data
                customType:(NSString * _Nullable)customType
         completionHandler:(nullable void (^)(SBDFileMessage * _Nullable fileMessage, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Updates a file message. The data, custom type from file message params can be updated.
+ *
+ *  @param messageId            The message ID of the message to be updated.
+ *  @param params               The file message params that has updating fields.
+ *  @param completionHandler    The handler block to be executed after update.
+ *                              This block has no return value and takes two argument.
+ *                              the one is updated message type of SBDFileMessage. the other is an error made when there is something wrong to process.
+ *
+ *
+ *  @since 3.0.110
+ */
+- (void)updateFileMessageWithMessageId:(long long)messageId
+                     fileMessageParams:(nonnull SBDFileMessageParams *)params
+                     completionHandler:(nullable void (^)(SBDFileMessage * _Nullable message, SBDError * _Nullable error))completionHandler;
 
 /**
  *  Checks the channel type.
@@ -901,6 +933,26 @@ DEPRECATED_ATTRIBUTE;
                  completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
 
 /**
+ *  Gets the next messages by the timestamp with a limit and ordering.
+ *
+ *  @param timestamp         The standard timestamp to load messages.
+ *  @param limit             The limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param reverse           If yes, the latest message is the index 0.
+ *  @param messageType       Message type to filter messages.
+ *  @param customType        Custom type to filter messages. If filtering isn't required, set nil.
+ *  @param senderUserIds     Returns messages whose sender user id matches sender user ids.
+ *  @param completionHandler The handler block to execute. The `messages` is the array of `SBDBaseMessage` instances.
+ *  @since 3.0.106
+ */
+- (void)getNextMessagesByTimestamp:(long long)timestamp
+                             limit:(NSInteger)limit
+                           reverse:(BOOL)reverse
+                       messageType:(SBDMessageTypeFilter)messageType
+                        customType:(NSString * _Nullable)customType
+                     senderUserIds:(NSArray<NSString *> * _Nullable)senderUserIds
+                 completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
+
+/**
  *  Gets the previous messages by the timestamp with a limit and ordering.
  *
  *  @param timestamp         The standard timestamp to load messages.
@@ -931,6 +983,26 @@ DEPRECATED_ATTRIBUTE;
                                reverse:(BOOL)reverse
                            messageType:(SBDMessageTypeFilter)messageType
                             customType:(NSString * _Nullable)customType
+                     completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Gets the previous messages by the timestamp with a limit and ordering.
+ *
+ *  @param timestamp         The standard timestamp to load messages.
+ *  @param limit             The limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param reverse           If yes, the latest message is the index 0.
+ *  @param messageType       Message type to filter messages.
+ *  @param customType        Custom type to filter messages. If filtering isn't required, set nil.
+ *  @param senderUserIds     Returns messages whose sender user id matches sender user ids.
+ *  @param completionHandler The handler block to execute. The `messages` is the array of `SBDBaseMessage` instances.
+ *  @since 3.0.106
+ */
+- (void)getPreviousMessagesByTimestamp:(long long)timestamp
+                                 limit:(NSInteger)limit
+                               reverse:(BOOL)reverse
+                           messageType:(SBDMessageTypeFilter)messageType
+                            customType:(NSString * _Nullable)customType
+                         senderUserIds:(NSArray<NSString *> * _Nullable)senderUserIds
                      completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
 
 /**
@@ -970,6 +1042,28 @@ DEPRECATED_ATTRIBUTE;
                                    customType:(NSString * _Nullable)customType
                             completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
 
+/**
+ *  Gets the previous and next message by the timestamp with a limit and ordering.
+ *
+ *  @param timestamp         The standard timestamp to load messages.
+ *  @param prevLimit         The previous limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param nextLimit         The next limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param reverse           If yes, the latest message is the index 0.
+ *  @param messageType       Message type to filter messages.
+ *  @param customType        Custom type to filter messages. If filtering isn't required, set nil.
+ *  @param senderUserIds     Returns messages whose sender user id matches sender user ids.
+ *  @param completionHandler The handler block to execute. The `messages` is the array of `SBDBaseMessage` instances.
+ *  @since 3.0.106
+ */
+- (void)getPreviousAndNextMessagesByTimestamp:(long long)timestamp
+                                    prevLimit:(NSInteger)prevLimit
+                                    nextLimit:(NSInteger)nextLimit
+                                      reverse:(BOOL)reverse
+                                  messageType:(SBDMessageTypeFilter)messageType
+                                   customType:(NSString * _Nullable)customType
+                                senderUserIds:(NSArray<NSString *> * _Nullable)senderUserIds
+                            completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
+
 #pragma mark - Get messages by message ID.
 /**
  *  Gets the next messages by the message ID with a limit and ordering.
@@ -1005,6 +1099,26 @@ DEPRECATED_ATTRIBUTE;
                  completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
 
 /**
+ *  Gets the next messages by the message ID with a limit and ordering.
+ *
+ *  @param messageId         The standard message ID to load messages.
+ *  @param limit             The limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param reverse           If yes, the latest message is the index 0.
+ *  @param messageType       Message type to filter messages.
+ *  @param customType        Custom type to filter messages. If filtering isn't required, set nil.
+ *  @param senderUserIds     Returns messages whose sender user id matches sender user ids.
+ *  @param completionHandler The handler block to execute. The `messages` is the array of `SBDBaseMessage` instances.
+ *  @since 3.0.106
+ */
+- (void)getNextMessagesByMessageId:(long long)messageId
+                             limit:(NSInteger)limit
+                           reverse:(BOOL)reverse
+                       messageType:(SBDMessageTypeFilter)messageType
+                        customType:(NSString * _Nullable)customType
+                     senderUserIds:(NSArray<NSString *> * _Nullable)senderUserIds
+                 completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
+
+/**
  *  Gets the previous messages by the message ID with a limit and ordering.
  *
  *  @param messageId         The standard message ID to load messages.
@@ -1035,6 +1149,26 @@ DEPRECATED_ATTRIBUTE;
                                reverse:(BOOL)reverse
                            messageType:(SBDMessageTypeFilter)messageType
                             customType:(NSString * _Nullable)customType
+                     completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Gets the previous messages by the message ID with a limit and ordering.
+ *
+ *  @param messageId         The standard message ID to load messages.
+ *  @param limit             The limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param reverse           If yes, the latest message is the index 0.
+ *  @param messageType       Message type to filter messages.
+ *  @param customType        Custom type to filter messages. If filtering isn't required, set nil.
+ *  @param senderUserIds     Returns messages whose sender user id matches sender user ids.
+ *  @param completionHandler The handler block to execute. The `messages` is the array of `SBDBaseMessage` instances.
+ *  @since 3.0.106
+ */
+- (void)getPreviousMessagesByMessageId:(long long)messageId
+                                 limit:(NSInteger)limit
+                               reverse:(BOOL)reverse
+                           messageType:(SBDMessageTypeFilter)messageType
+                            customType:(NSString * _Nullable)customType
+                         senderUserIds:(NSArray<NSString *> * _Nullable)senderUserIds
                      completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
 
 /**
@@ -1072,6 +1206,28 @@ DEPRECATED_ATTRIBUTE;
                                       reverse:(BOOL)reverse
                                   messageType:(SBDMessageTypeFilter)messageType
                                    customType:(NSString * _Nullable)customType
+                            completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
+
+/**
+ *  Gets the previous and next message by the message ID with a limit and ordering.
+ *
+ *  @param messageId         The standard message ID to load messages.
+ *  @param prevLimit         The previous limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param nextLimit         The next limit for the number of messages. The returned messages could be more than this number if there are messages which have the same timestamp.
+ *  @param reverse           If yes, the latest message is the index 0.
+ *  @param messageType       Message type to filter messages.
+ *  @param customType        Custom type to filter messages. If filtering isn't required, set nil.
+ *  @param senderUserIds     Returns messages whose sender user id matches sender user ids.
+ *  @param completionHandler The handler block to execute. The `messages` is the array of `SBDBaseMessage` instances.
+ *  @since 3.0.106
+ */
+- (void)getPreviousAndNextMessagesByMessageId:(long long)messageId
+                                    prevLimit:(NSInteger)prevLimit
+                                    nextLimit:(NSInteger)nextLimit
+                                      reverse:(BOOL)reverse
+                                  messageType:(SBDMessageTypeFilter)messageType
+                                   customType:(NSString * _Nullable)customType
+                                senderUserIds:(NSArray<NSString *> * _Nullable)senderUserIds
                             completionHandler:(nullable void (^)(NSArray<SBDBaseMessage *> * _Nullable messages, SBDError * _Nullable error))completionHandler;
 
 /**

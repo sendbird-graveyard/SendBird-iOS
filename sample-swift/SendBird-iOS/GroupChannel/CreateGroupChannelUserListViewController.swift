@@ -121,7 +121,7 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
                 self.selectedUserListCollectionView.reloadData()
             }
             
-            self.userListQuery = nil;
+            self.userListQuery = nil
         }
         
         if self.userListQuery == nil {

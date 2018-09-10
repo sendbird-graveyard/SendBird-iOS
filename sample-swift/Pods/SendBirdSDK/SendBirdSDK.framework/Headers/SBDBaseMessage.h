@@ -39,6 +39,12 @@
 @property (strong, nonatomic, readonly, nullable) NSArray <SBDUser *> *mentionedUsers;
 
 /**
+ *
+ *  @since 3.0.103
+ */
+@property (atomic, readonly) SBDMentionType mentionType;
+
+/**
  *  Message created time in millisecond(UTC).
  */
 @property (atomic) long long createdAt;

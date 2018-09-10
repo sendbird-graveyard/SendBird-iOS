@@ -308,13 +308,13 @@ class Utils: NSObject {
     }
     
     static func loadGroupChannels() -> [SBDGroupChannel] {
-        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
-        let documentsDirectory = paths[0] as NSString
-        let messageFileNamePrefix = Utils.sha256(string: String(format: "%@_channellist", (SBDMain.getCurrentUser()?.userId.urlencoding())!))! as NSString
-        let dumpFileName = String(format: "%@.data", messageFileNamePrefix) as NSString
-        let appIdDirectory = documentsDirectory.appendingPathComponent(SBDMain.getApplicationId()!) as NSString
-        let dumpFilePath = appIdDirectory.appendingPathComponent(dumpFileName as String)
+        let messageFileNamePrefix = Utils.sha256(string: String(format: "%@_channellist", (SBDMain.getCurrentUser()?.userId.urlencoding())!))!
+        let dumpFileName = String(format: "%@.data", messageFileNamePrefix)
         
+        if let documentsDirectory = NSSearchPathForDirectoriesInDomains( .documentDirectory, .userDomainMask, true).first as NSString?,
+            let appIdDirectory = documentsDirectory.appendingPathComponent(SBDMain.getApplicationId() ?? "") as NSString?
+        {
+            let dumpFilePath = appIdDirectory.appendingPathComponent(dumpFileName)
         if FileManager.default.fileExists(atPath: dumpFilePath) == false {
             return []
         }
@@ -340,7 +340,7 @@ class Utils: NSObject {
         catch {
             return []
         }
-        
+        }
         return []
     }
     
@@ -359,39 +359,41 @@ class Utils: NSObject {
         return (sha256hash as String)
     }
     
-    static func findBestViewController(vc: UIViewController) -> UIViewController? {
-        if vc.presentedViewController != nil {
-            return Utils.findBestViewController(vc: vc.presentedViewController!)
+    
+    static func findBestViewController(vc: UIViewController?) -> UIViewController? {
+        guard let viewController = vc else { return nil }
+        
+        if let presented = viewController.presentedViewController {
+            return Utils.findBestViewController(vc: presented)
         }
-        else if vc.isKind(of: UISplitViewController.self) {
-            let svc = vc as! UISplitViewController
-            if svc.viewControllers.count > 0 {
-                return Utils.findBestViewController(vc: svc.viewControllers.last!)
+        else if viewController.isKind(of: UISplitViewController.self) {
+            if let svc = vc as? UISplitViewController, svc.viewControllers.count > 0 {
+                return Utils.findBestViewController(vc: svc.viewControllers.last)
             }
             else {
                 return vc
             }
         }
-        else if vc.isKind(of: UINavigationController.self) {
+        else if viewController.isKind(of: UINavigationController.self) {
             let svc = vc as! UINavigationController
             if svc.viewControllers.count > 0 {
-                return Utils.findBestViewController(vc: svc.topViewController!)
+                return Utils.findBestViewController(vc: svc.topViewController)
             }
             else {
                 return vc
             }
         }
-        else if vc.isKind(of: UITabBarController.self) {
+        else if viewController.isKind(of: UITabBarController.self) {
             let svc = vc as! UITabBarController
             if (svc.viewControllers?.count)! > 0 {
-                return Utils.findBestViewController(vc: svc.selectedViewController!)
+                return Utils.findBestViewController(vc: svc.selectedViewController)
             }
             else {
-                return vc
+                return viewController
             }
         }
         else {
-            return vc
+            return viewController
         }
     }
 }

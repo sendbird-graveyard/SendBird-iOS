@@ -83,7 +83,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     }
     
     func configureChattingView(channel: SBDBaseChannel?) {
-        self.channel = channel;
+        self.channel = channel
         
         self.initialLoading = true
         self.lastMessageHeight = 0
@@ -918,7 +918,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                             if !fileMessage.url.isEmpty && self.preSendFileData[fileMessage.requestId!] != nil {
                                 (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.preSendFileData[fileMessage.requestId!]?["data"] as! Data, type: self.preSendFileData[fileMessage.requestId!]?["type"] as! String)
                                 (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = true
-                                self.preSendFileData.removeValue(forKey: fileMessage.requestId!);
+                                self.preSendFileData.removeValue(forKey: fileMessage.requestId!)
                             }
                             else {
                                 (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = false

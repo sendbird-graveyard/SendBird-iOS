@@ -32,6 +32,6 @@ extension String {
             }
         }
         
-        return output;
+        return output
     }
 }

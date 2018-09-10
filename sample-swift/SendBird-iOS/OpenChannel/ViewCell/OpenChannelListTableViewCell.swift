@@ -28,27 +28,21 @@ class OpenChannelListTableViewCell: UITableViewCell {
         switch (row % 5) {
         case 0:
             self.leftLineView.backgroundColor = Constants.openChannelLineColorNo0()
-            break;
             
         case 1:
             self.leftLineView.backgroundColor = Constants.openChannelLineColorNo1()
-            break;
             
         case 2:
             self.leftLineView.backgroundColor = Constants.openChannelLineColorNo2()
-            break;
             
         case 3:
             self.leftLineView.backgroundColor = Constants.openChannelLineColorNo3()
-            break;
             
         case 4:
             self.leftLineView.backgroundColor = Constants.openChannelLineColorNo4()
-            break;
         
         default:
             self.leftLineView.backgroundColor = Constants.openChannelLineColorNo0()
-            break;
         }
     }
 

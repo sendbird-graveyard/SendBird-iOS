@@ -47,12 +47,12 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         if SBDMain.getConnectState() == .closed {
             ConnectionManager.login { (user, error) in
                 guard error == nil else {
-                    return;
+                    return
                 }
             }
         }
         else {
-            self.firstLoading = false;
+            self.firstLoading = false
             self.showList()
         }
     }
@@ -73,7 +73,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
                 self.cachedChannels = false
                 self.refreshChannelList()
             }
-            self.firstLoading = true;
+            self.firstLoading = true
         }
     }
     
@@ -118,7 +118,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     
     @objc private func refreshChannelList() {
         self.groupChannelListQuery = SBDGroupChannel.createMyGroupChannelListQuery()
-        self.groupChannelListQuery?.limit = 20
+        self.groupChannelListQuery?.limit = 25
         self.groupChannelListQuery?.order = SBDGroupChannelListOrder.latestLastMessage
         
         self.groupChannelListQuery?.loadNextPage(completionHandler: { (channels, error) in
@@ -165,11 +165,10 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             
             self.groupChannelListQuery?.loadNextPage(completionHandler: { (channels, error) in
                 if error != nil {
-                    if error?.code != 800170 {
                         DispatchQueue.main.async {
                             self.refreshControl?.endRefreshing()
                         }
-                        
+                    if error?.code != 800170 {
                         let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
                         let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
                         vc.addAction(closeAction)
@@ -177,7 +176,6 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
                             self.present(vc, animated: true, completion: nil)
                         }
                     }
-                    
                     return
                 }
                 
@@ -253,40 +251,46 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell?
+        var retValue = UITableViewCell()
         if self.editableChannel == true {
-            cell = tableView.dequeueReusableCell(withIdentifier: GroupChannelListEditableTableViewCell.cellReuseIdentifier()) as! GroupChannelListEditableTableViewCell?
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupChannelListEditableTableViewCell.cellReuseIdentifier()) as? GroupChannelListEditableTableViewCell else {
+                return UITableViewCell()
+            }
             let leaveButton = MGSwipeButton(title: Bundle.sbLocalizedStringForKey(key: "LeaveButton"), backgroundColor: Constants.leaveButtonColor())
             let hideButton = MGSwipeButton(title: Bundle.sbLocalizedStringForKey(key: "HideButton"), backgroundColor: Constants.hideButtonColor())
             
             hideButton.titleLabel?.font = Constants.hideButtonFont()
             leaveButton.titleLabel?.font = Constants.leaveButtonFont()
             
-            (cell as! GroupChannelListEditableTableViewCell).rightButtons = [hideButton, leaveButton]
-            (cell as! GroupChannelListEditableTableViewCell).setModel(aChannel: self.channels[indexPath.row])
-            (cell as! GroupChannelListEditableTableViewCell).delegate = self
+            cell.rightButtons = [hideButton, leaveButton]
+            cell.setModel(aChannel: self.channels[indexPath.row])
+            cell.delegate = self
+            retValue = cell
         }
         else {
-            cell = tableView.dequeueReusableCell(withIdentifier: GroupChannelListTableViewCell.cellReuseIdentifier()) as! GroupChannelListTableViewCell?
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: GroupChannelListTableViewCell.cellReuseIdentifier()) as? GroupChannelListTableViewCell else {
+                return UITableViewCell()
+            }
             if self.channels[indexPath.row].isTyping() == true {
                 if self.typingAnimationChannelList.index(of: self.channels[indexPath.row].channelUrl) == nil {
                     self.typingAnimationChannelList.append(self.channels[indexPath.row].channelUrl)
                 }
             }
             else {
-                if self.typingAnimationChannelList.index(of: self.channels[indexPath.row].channelUrl) != nil {
-                    self.typingAnimationChannelList.remove(at: self.typingAnimationChannelList.index(of: self.channels[indexPath.row].channelUrl)!)
+                if let typingChannel = self.typingAnimationChannelList.index(of: self.channels[indexPath.row].channelUrl) {
+                    self.typingAnimationChannelList.remove(at: typingChannel)
                 }
             }
             
-            (cell as! GroupChannelListTableViewCell).setModel(aChannel: self.channels[indexPath.row])
+            cell.setModel(aChannel: self.channels[indexPath.row])
+            retValue = cell
         }
         
         if self.channels.count > 0 && indexPath.row + 1 == self.channels.count {
             self.loadChannels()
         }
         
-        return cell!
+        return retValue
     }
     
     // MARK: MGSwipeTableCellDelegate
@@ -367,17 +371,21 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     
     // MARK: SBDChannelDelegate
     func channel(_ sender: SBDBaseChannel, didReceive message: SBDBaseMessage) {
-        if sender is SBDGroupChannel {
-            let messageReceivedChannel = sender as! SBDGroupChannel
-            if self.channels.index(of: messageReceivedChannel) != nil {
-                self.channels.remove(at: self.channels.index(of: messageReceivedChannel)!)
+        print("GroupChannelListViewController channel:sender:didReceive message: ")
+
+        guard sender is SBDGroupChannel, let messageReceivedChannel = sender as? SBDGroupChannel else {
+            print("ERROR: channel(sender:didReceive message:) failed")
+            return
+        }
+        if let channel = self.channels.index(of: messageReceivedChannel) {
+            self.channels.remove(at: channel)
             }
             self.channels.insert(messageReceivedChannel, at: 0)
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-        }
+        
     }
     
     func channelDidUpdateReadReceipt(_ sender: SBDGroupChannel) {
@@ -389,12 +397,11 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             return
         }
         
-        let row = self.channels.index(of: sender)
-        if row != nil {
-            let cell = self.tableView.cellForRow(at: IndexPath(row: row!, section: 0)) as! GroupChannelListTableViewCell
-            
+        if let row = self.channels.index(of: sender) {
+            if let cell = self.tableView.cellForRow(at: IndexPath(row: row, section: 0)) as? GroupChannelListTableViewCell {
             cell.startTypingAnimation()
         }
+    }
     }
     
     func channel(_ sender: SBDGroupChannel, userDidJoin user: SBDUser) {
@@ -444,10 +451,9 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func channelWasChanged(_ sender: SBDBaseChannel) {
-        if sender is SBDGroupChannel {
-            let messageReceivedChannel = sender as! SBDGroupChannel
-            if self.channels.index(of: messageReceivedChannel) != nil {
-                self.channels.remove(at: self.channels.index(of: messageReceivedChannel)!)
+        if sender is SBDGroupChannel, let messageReceivedChannel = sender as? SBDGroupChannel {
+            if let index = self.channels.index(of: messageReceivedChannel) {
+                self.channels.remove(at: index)
             }
             self.channels.insert(messageReceivedChannel, at: 0)
             
