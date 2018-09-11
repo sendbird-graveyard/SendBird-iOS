@@ -42,23 +42,20 @@ class MenuViewController: UIViewController, ConnectionManagerDelegate, SBDConnec
         
         ConnectionManager.add(connectionObserver: self as ConnectionManagerDelegate)
         
-        if (UIApplication.shared.delegate as! AppDelegate).receivedPushChannelUrl != nil {
-            let channelUrl = (UIApplication.shared.delegate as! AppDelegate).receivedPushChannelUrl
-            if channelUrl != nil {
-                SBDGroupChannel.getWithUrl(channelUrl!, completionHandler: { (channel, error) in
-                    let vc = GroupChannelChattingViewController()
-                    vc.groupChannel = channel
-                    DispatchQueue.main.async {
-                        self.present(vc, animated: false, completion: nil)
-                    }
-                })
-            }
+        if let channelUrl = AppDelegate.sharedInstance().receivedPushChannelUrl  {
+            SBDGroupChannel.getWithUrl(channelUrl, completionHandler: { channel, error in
+                let vc = GroupChannelChattingViewController()
+                vc.groupChannel = channel
+                DispatchQueue.main.async {
+                    self.present(vc, animated: false, completion: nil)
+                }
+            })
         }
         
         if SBDMain.getConnectState() == .closed {
             ConnectionManager.login { (user, error) in
                 guard error == nil else {
-                    return;
+                    return
                 }
             }
         }
@@ -158,9 +155,9 @@ class MenuViewController: UIViewController, ConnectionManagerDelegate, SBDConnec
     
     // MARK: GroupChannelChattingViewController
     func didConnect(isReconnection: Bool) {
-        if (UIApplication.shared.delegate as! AppDelegate).receivedPushChannelUrl != nil {
-            let channelUrl = (UIApplication.shared.delegate as! AppDelegate).receivedPushChannelUrl
-            ((UIApplication.shared).delegate as! AppDelegate).receivedPushChannelUrl = nil
+        if let channelUrl = AppDelegate.sharedInstance().receivedPushChannelUrl  {
+            // reset url to nil
+            AppDelegate.sharedInstance().receivedPushChannelUrl = nil
             
             var topViewController = UIApplication.shared.keyWindow?.rootViewController
             while ((topViewController?.presentedViewController) != nil) {
@@ -173,7 +170,7 @@ class MenuViewController: UIViewController, ConnectionManagerDelegate, SBDConnec
                 }
             }
             
-            SBDGroupChannel.getWithUrl(channelUrl!, completionHandler: { (channel, error) in
+            SBDGroupChannel.getWithUrl(channelUrl, completionHandler: { channel, error in
                 let vc = GroupChannelChattingViewController()
                 vc.groupChannel = channel
                 DispatchQueue.main.async {

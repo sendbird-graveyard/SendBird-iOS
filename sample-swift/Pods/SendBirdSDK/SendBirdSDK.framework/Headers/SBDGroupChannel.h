@@ -11,6 +11,7 @@
 #import "SBDBaseMessage.h"
 #import "SBDUser.h"
 #import "SBDMember.h"
+#import "SBDTypes.h"
 
 @class SBDUser, SBDMember;
 @class SBDGroupChannel, SBDGroupChannelParams, SBDGroupChannelTotalUnreadMessageCountParams;
@@ -57,7 +58,14 @@
 /**
  *  Unread message count of the channel.
  */
-@property (atomic) NSUInteger unreadMessageCount;
+@property (nonatomic) NSUInteger unreadMessageCount;
+
+/**
+ *  The number of mentions that user does not read yet in the channel.
+ *
+ *  @since 3.0.103
+ */
+@property (nonatomic, readonly) NSUInteger unreadMentionCount;
 
 /**
  *  Channel <span>members</span>.
@@ -105,6 +113,20 @@
  The muted state of the current user in the channel.
  */
 @property (atomic, readonly) SBDMutedState myMutedState;
+
+/**
+ *  The preference lets to know counts in the channel. The default value is `SBDCountPreferenceAll`.
+ *
+ *  @since 3.0.102
+ */
+@property (atomic, readonly) SBDCountPreference myCountPreference;
+
+/**
+ *  The time stamp when the current user got a invitation from other user in the channel.
+ *
+ *  @since 3.0.107
+ */
+@property (atomic, readonly) long long invitedAt;
 
 /**
  *  DO NOT USE this initializer. You can only get an instance type of `SBDGroupChannel` from SDK.
@@ -978,8 +1000,32 @@ DEPRECATED_ATTRIBUTE;
  *  @param completionHandler  The handler block to be executed after getting unread item count. This block has no return value and takes two argument. the one is type of SBDUnreadItemCount that contains unsinged interger for count you requested. the other is an error made when there is something wrong to response.
  *
  *  @since 3.0.101
+ *  @deprecated in v3.0.103
+ *  @warning DO NOT USE! use `[SBDGroupChannel getUnreadItemCountWithKey:completionHandler:]`.
+ *  @see `[SBDGroupChannel getUnreadItemCountWithKey:completionHandler:]`
  */
 - (void)getUnreadItemCountWithKey:(SBDUnreadItemKey)key
+                completionHandler:(nonnull void(^)(SBDUnreadItemCount * _Nullable count, SBDError * _Nullable error))completionHandler DEPRECATED_ATTRIBUTE;
+
+/**
+ *  Get unread counts of message and invitation counts in super and non_super channels.
+ *
+ *  @param key  bitmask key composed of super/non_super unread message count, super/non_super invitation count.
+ *  @param completionHandler  The handler block to be executed after getting unread item count. This block has no return value and takes two argument. the one is type of SBDUnreadItemCount that contains unsinged interger for count you requested. the other is an error made when there is something wrong to response.
+ *
+ *  @since 3.0.103
+ */
++ (void)getUnreadItemCountWithKey:(SBDUnreadItemKey)key
                 completionHandler:(nonnull void(^)(SBDUnreadItemCount * _Nullable count, SBDError * _Nullable error))completionHandler;
-                                        
+
+/**
+ *  Sets count preference of current user.
+ *
+ *  @param myCountPreference  Preference is type of `SBDCountPreference`. The default value is `SBDCountPreferenceAll`.
+ *
+ *  @since 3.0.102
+ */
+- (void)setMyCountPreference:(SBDCountPreference)myCountPreference
+           completionHandler:(nullable void (^)(SBDError * _Nullable error))completionHandler;
+
 @end

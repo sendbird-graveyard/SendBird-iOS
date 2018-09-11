@@ -81,8 +81,10 @@ class GroupChannelListEditableTableViewCell: MGSwipeTableCell {
                 memberNames.append(member.nickname!)
             }
             
-            for i in 0...memberExceptCurrentUser.count - 1{
-                coverImages[i].af_setImage(withURL: URL(string: memberExceptCurrentUser[i].profileUrl!)!, placeholderImage: UIImage(named: "img_profile"))
+            for (index, member) in memberExceptCurrentUser.enumerated(){
+                if let profileURL = member.profileUrl, let url =  URL(string: profileURL) {
+                    coverImages[index].af_setImage(withURL: url, placeholderImage: UIImage(named: "img_profile"))
+                }
             }
         }
         else if self.channel.memberCount == 4 {
@@ -99,8 +101,10 @@ class GroupChannelListEditableTableViewCell: MGSwipeTableCell {
                 memberNames.append(member.nickname!)
             }
             
-            for i in 0...memberExceptCurrentUser.count - 1 {
-                coverImages[i].af_setImage(withURL: URL(string: memberExceptCurrentUser[i].profileUrl!)!, placeholderImage: UIImage(named: "img_profile"))
+            for (index, member) in memberExceptCurrentUser.enumerated(){
+                if let profileURL = member.profileUrl, let url =  URL(string: profileURL) {
+                    coverImages[index].af_setImage(withURL: url, placeholderImage: UIImage(named: "img_profile"))
+                }
             }
         }
         else if self.channel.memberCount > 4 {
@@ -122,8 +126,10 @@ class GroupChannelListEditableTableViewCell: MGSwipeTableCell {
                 }
             }
             
-            for i in 0...memberExceptCurrentUser.count - 1 {
-                coverImages[i].af_setImage(withURL: URL(string: memberExceptCurrentUser[i].profileUrl!)!, placeholderImage: UIImage(named: "img_profile"))
+            for (index, member) in memberExceptCurrentUser.enumerated(){
+                if let profileURL = member.profileUrl, let url =  URL(string: profileURL) {
+                    coverImages[index].af_setImage(withURL: url, placeholderImage: UIImage(named: "img_profile"))
+                }
             }
         }
         

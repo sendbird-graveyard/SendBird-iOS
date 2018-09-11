@@ -45,6 +45,13 @@
 @property (atomic, readonly, getter=isLoading) BOOL loading;
 
 /**
+ *  Filters members of nickname that starts with.
+ *
+ *  @since 3.0.102
+ */
+@property (copy, atomic, nullable) NSString *nicknameStartsWithFilter;
+
+/**
  *  Sets a filter to query operators.
  *
  *  @param filter  The filter about members as operator.

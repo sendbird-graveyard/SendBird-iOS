@@ -18,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var receivedPushChannelUrl: String?
     
+    @objc static func sharedInstance() -> AppDelegate {
+        return  UIApplication.shared.delegate as! AppDelegate
+    }
+
     static let instance: NSCache<AnyObject, AnyObject> = NSCache()
 
     static func imageCache() -> NSCache<AnyObject, AnyObject>! {
@@ -60,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let viewController: UIViewController? = storyboard.instantiateInitialViewController()
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
-                return;
+                return
             }
             
             self.window?.rootViewController = MenuViewController()
@@ -71,15 +75,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func registerForRemoteNotification() {
+        print("registerForRemoteNotification")
         if #available(iOS 10.0, *) {
             #if !(arch(i386) || arch(x86_64))
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
                 if granted {
                     UNUserNotificationCenter.current().getNotificationSettings(completionHandler: { (settings: UNNotificationSettings) -> Void  in
                         guard settings.authorizationStatus == UNAuthorizationStatus.authorized else {
-                            return;
+                            return
                         }
                         DispatchQueue.main.async {
+                            let notificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+                            UIApplication.shared.registerUserNotificationSettings(notificationSettings)
                             UIApplication.shared.registerForRemoteNotifications()
                         }
                     })
@@ -118,32 +125,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("application:didRegisterForRemoteNotificationsWithDeviceToken: \(deviceToken) ")
         SBDMain.registerDevicePushToken(deviceToken, unique: true) { (status, error) in
             if error == nil {
                 if status == SBDPushTokenRegistrationStatus.pending {
-                    
+                    print("SBDPushTokenRegistrationStatus.pending")
                 }
                 else {
-                    
+                    print("registerDevicePushToken status: \(status)")
                 }
             }
             else {
-                
+                print("ERROR: registerDevicePushToken error: \(String(describing: error))")
             }
         }
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        
+        print("application:didFailToRegisterForRemoteNotificationsWithError error: \(error) ")
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        if userInfo["sendbird"] != nil {
-            let sendBirdPayload = userInfo["sendbird"] as! Dictionary<String, Any>
-            let channel = (sendBirdPayload["channel"]  as! Dictionary<String, Any>)["channel_url"] as! String
-            let channelType = sendBirdPayload["channel_type"] as! String
-            if channelType == "group_messaging" {
-                self.receivedPushChannelUrl = channel
+        print("application:didReceiveRemoteNotification userInfo: \(userInfo)")
+        if let sendBirdPayload = userInfo["sendbird"] as? Dictionary<String, Any> {
+            if let channel = sendBirdPayload["channel"] as? Dictionary<String, Any>, let channel_url = channel["channel_url"] as? String {
+                if let channelType = sendBirdPayload["channel_type"] as? String, channelType == "group_messaging" {
+                    self.receivedPushChannelUrl = channel_url
+                }
             }
         }
     }

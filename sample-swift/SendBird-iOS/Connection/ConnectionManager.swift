@@ -14,13 +14,13 @@ let ErrorDomainUser = "com.sendbird.sample.user"
 
 protocol ConnectionManagerDelegate: NSObjectProtocol {
     func didConnect(isReconnection: Bool)
-    func didDisconnect();
+    func didDisconnect()
 }
 
 class ConnectionManager: NSObject, SBDConnectionDelegate {
     var observers: NSMapTable<NSString, AnyObject> = NSMapTable(keyOptions: .copyIn, valueOptions: .weakMemory)
     
-    static let sharedInstance = ConnectionManager();
+    static let sharedInstance = ConnectionManager()
     
     override init() {
         super.init()
@@ -41,9 +41,9 @@ class ConnectionManager: NSObject, SBDConnectionDelegate {
         else {
             if let handler: ((_ :SBDUser?, _ :NSError?) -> ()) = completionHandler {
                 let error: NSError = NSError(domain: ErrorDomainConnection, code: -1, userInfo: [NSLocalizedDescriptionKey:"User id or user nickname is nil.",NSLocalizedFailureReasonErrorKey:"Saved user data does not exist."])
-                handler(nil, error);
+                handler(nil, error)
             }
-            return;
+            return
         }
     }
     
@@ -52,8 +52,10 @@ class ConnectionManager: NSObject, SBDConnectionDelegate {
     }
     
     private func login(userId: String, nickname: String, completionHandler: ((_ user: SBDUser?, _ error: NSError?) -> Void)?) {
-        SBDMain.connect(withUserId: userId) { (user, error) in
+        print("ConnectionManager login userId:\(userId), nickname:\(nickname)")
+        SBDMain.connect(withUserId: userId) { user, error in
             guard error == nil else {
+                print("ConnectionManager SBDMain.connect error:\(String(describing: error))")
                 self.removeUserInfo()
                 if let handler = completionHandler {
                     var userInfo: [String: Any]?
@@ -61,11 +63,11 @@ class ConnectionManager: NSObject, SBDConnectionDelegate {
                         userInfo?[NSLocalizedFailureReasonErrorKey] = reason
                     }
                     userInfo?[NSLocalizedDescriptionKey] = error?.localizedDescription
-                    userInfo?[NSUnderlyingErrorKey] = error;
+                    userInfo?[NSUnderlyingErrorKey] = error
                     let connectionError: NSError = NSError.init(domain: ErrorDomainConnection, code: error!.code, userInfo: userInfo)
                     handler(nil, connectionError)
                 }
-                return;
+                return
             }
             
             if let pushToken: Data = SBDMain.getPendingPushToken() {
@@ -95,12 +97,12 @@ class ConnectionManager: NSObject, SBDConnectionDelegate {
                                 userInfo?[NSLocalizedFailureReasonErrorKey] = reason
                             }
                             userInfo?[NSLocalizedDescriptionKey] = error?.localizedDescription
-                            userInfo?[NSUnderlyingErrorKey] = error;
+                            userInfo?[NSUnderlyingErrorKey] = error
                             let connectionError: NSError = NSError.init(domain: ErrorDomainUser, code: error!.code, userInfo: userInfo)
                             handler(nil, connectionError)
                         }
                     })
-                    return;
+                    return
                 }
                 
                 let userDefault: UserDefaults = UserDefaults.standard

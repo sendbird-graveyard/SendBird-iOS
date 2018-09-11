@@ -43,6 +43,8 @@
 #import "SBDOperatorListQuery.h"
 #import "SBDUnreadItemCount.h"
 
+#import "SBDConnectionManager.h"
+
 //! Project version number for SendBirdSDK.
 FOUNDATION_EXPORT double SendBirdSDKVersionNumber;
 

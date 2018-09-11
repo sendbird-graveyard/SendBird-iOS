@@ -88,37 +88,31 @@ class IncomingFileMessageTableViewCell: UITableViewCell {
                 NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
                 NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo0()
             ]
-            break;
         case 1:
             nicknameAttribute = [
                 NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
                 NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo1()
             ]
-            break;
         case 2:
             nicknameAttribute = [
                 NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
                 NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo2()
             ]
-            break;
         case 3:
             nicknameAttribute = [
                 NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
                 NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo3()
             ]
-            break;
         case 4:
             nicknameAttribute = [
                 NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
                 NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo4()
             ]
-            break;
         default:
             nicknameAttribute = [
                 NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
                 NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo0()
             ]
-            break;
         }
         
         self.nicknameLabel.attributedText = NSMutableAttributedString(string: (self.message.sender?.nickname)!, attributes: nicknameAttribute)

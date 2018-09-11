@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.7.2)
+  - Alamofire (4.7.3)
   - AlamofireImage (3.3.1):
     - Alamofire (~> 4.5)
   - FLAnimatedImage (1.0.12)
@@ -12,7 +12,7 @@ PODS:
     - NYTPhotoViewer/Core
   - NYTPhotoViewer/Core (1.1.0)
   - RSKImageCropper (2.1.0)
-  - SendBirdSDK (3.0.101)
+  - SendBirdSDK (3.0.112)
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
@@ -24,16 +24,27 @@ DEPENDENCIES:
   - SendBirdSDK (~> 3.0)
   - TTTAttributedLabel
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireImage
+    - FLAnimatedImage
+    - MGSwipeTableCell
+    - NYTPhotoViewer
+    - RSKImageCropper
+    - SendBirdSDK
+    - TTTAttributedLabel
+
 SPEC CHECKSUMS:
-  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
   NYTPhotoViewer: e80e8767f3780d2df37c6f72cbab15d6c7232911
   RSKImageCropper: 0d0c6d8525a2381f03fde32a47c6703817a2feed
-  SendBirdSDK: 51f37e53ca7e9a1cae5ede0d83c6224518ba676d
+  SendBirdSDK: b91004d6eb7eb955de58330ae8c549663dc38dbb
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
 PODFILE CHECKSUM: 9cbb42b5354bc4dc8b079e49148c24287caf665f
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

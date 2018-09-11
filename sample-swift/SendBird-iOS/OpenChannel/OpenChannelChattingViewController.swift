@@ -114,7 +114,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
         if SBDMain.getConnectState() == .closed {
             ConnectionManager.login { (user, error) in
                 guard error == nil else{
-                    return;
+                    return
                 }
             }
         }
@@ -309,7 +309,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
     
     func sendUrlPreview(url: URL, message: String, aTempModel: OutgoingGeneralUrlPreviewTempModel) {
         let tempModel = aTempModel
-        let previewUrl = url;
+        let previewUrl = url
         let request = URLRequest(url: url)
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
@@ -664,6 +664,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
     
     // MARK: SBDChannelDelegate
     func channel(_ sender: SBDBaseChannel, didReceive message: SBDBaseMessage) {
+        print("OpenChannelChattingViewController channel:sender:didReceive message: \(message)")
         if sender == self.openChannel {
             
             DispatchQueue.main.async {
@@ -1001,7 +1002,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                         if error != nil {
                             self.hideImageViewerLoading()
                             
-                            return;
+                            return
                         }
                         
                         let resp = response as! HTTPURLResponse
@@ -1245,7 +1246,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                 let imageName: NSString = (imagePath.lastPathComponent as NSString?)!
                 let ext = imageName.pathExtension
                 let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as CFString, nil)?.takeRetainedValue()
-                let mimeType = UTTypeCopyPreferredTagWithClass(UTI!, kUTTagClassMIMEType)?.takeRetainedValue();
+                let mimeType = UTTypeCopyPreferredTagWithClass(UTI!, kUTTagClassMIMEType)?.takeRetainedValue()
                 
                 let asset = PHAsset.fetchAssets(withALAssetURLs: [imagePath], options: nil).lastObject
                 let options = PHImageRequestOptions()
@@ -1378,7 +1379,7 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                 let videoName: NSString = (videoUrl.lastPathComponent as NSString?)!
                 let ext = videoName.pathExtension
                 
-                let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as NSString, nil)?.takeRetainedValue();
+                let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as NSString, nil)?.takeRetainedValue()
                 let mimeType = (UTTypeCopyPreferredTagWithClass(UTI!, kUTTagClassMIMEType)?.takeRetainedValue())! as String
 
                 // success, data is in imageData

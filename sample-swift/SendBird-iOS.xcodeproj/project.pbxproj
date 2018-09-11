@@ -587,7 +587,6 @@
 				5ABA0B7A1DA6010A000C82DC /* Frameworks */,
 				5ABA0B7B1DA6010A000C82DC /* Resources */,
 				8C1E0916356E7246F394074F /* [CP] Embed Pods Frameworks */,
-				88618BF479B07A50BF60BDBE /* [CP] Copy Pods Resources */,
 				E2217E441EF893A000AEE668 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -779,21 +778,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		88618BF479B07A50BF60BDBE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8C1E0916356E7246F394074F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

@@ -386,20 +386,71 @@ typedef NS_OPTIONS(NSUInteger, SBDUnreadItemKey) {
     /**
      *  The bitmask key for unread message count of non super channel.
      */
-    SBDUnreadItemKeyNonSuperUnreadMessageCount  = (1 << 0),
+    SBDUnreadItemKeyNonSuperUnreadMessageCount      = (1 << 0),
     /**
      *  The bitmask key for unread message count of super channel.
      */
-    SBDUnreadItemKeySuperUnreadMessageCount     = (1 << 1),
+    SBDUnreadItemKeySuperUnreadMessageCount         = (1 << 1),
     /**
      *  The bitmask key for invitation count of non super channel.
      */
-    SBDUnreadItemKeyNonSuperInvitationCount     = (1 << 2),
+    SBDUnreadItemKeyNonSuperInvitationCount         = (1 << 2),
     /**
      *  The bitmask key for invitation count of super channel.
      */
-    SBDUnreadItemKeySuperInvitationCount        = (1 << 3),
+    SBDUnreadItemKeySuperInvitationCount            = (1 << 3),
+    /**
+     *  The bitmask key for unread mention count of non super channel.
+     */
+    SBDUnreadItemKeyNonSuperUnreadMentionCount      = (1 << 4),
+    /**
+     *  The bitmask key for unread mention count of non super channel.
+     */
+    SBDUnreadItemKeySuperUnreadMentionCount         = (1 << 5),
+    
+    
+    /**
+     *  The bitmask key for unread message count of group channel(super and non-super).
+     */
+    SBDUnreadItemKeyGroupChannelUnreadMessageCount  = (1 << 10),
+    /**
+     *  The bitmask key for unread mention count of group channel(super and non-super).
+     */
+    SBDUnreadItemKeyGroupChannelUnreadMentionCount  = (1 << 11),
+    /**
+     *  The bitmask key for invitation count of group channel(super and non-super).
+     */
+    SBDUnreadItemKeyGroupChannelInvitationCount     = (1 << 12),
 };
 
+/**
+ *  The enum type to represent various kinds of counts.
+ */
+typedef NS_ENUM(NSUInteger, SBDCountPreference) {
+    /**
+     *  The channel of this preference has all of count.
+     */
+    SBDCountPreferenceAll = 0,
+    /**
+     *  The channel of this preference has only unread message count.
+     */
+    SBDCountPreferenceUnreadMessageCountOnly = 1,
+    /**
+     *  The channel of this preference has only unread mention count.
+     */
+    SBDCountPreferenceUnreadMentionCountOnly = 2,
+    /**
+     *  The channel of this preference does not get any count.
+     */
+    SBDCountPreferenceOff = 3,
+};
+
+/**
+ *  The enum type to represent target type of mention.
+ */
+typedef NS_ENUM(NSUInteger, SBDMentionType) {
+    SBDMentionTypeUsers = 0,
+    SBDMentionTypeChannel = 1,
+};
 
 #endif /* SBDTypes_h */

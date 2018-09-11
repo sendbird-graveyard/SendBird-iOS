@@ -120,10 +120,10 @@ class OutgoingVideoFileMessageTableViewCell: UITableViewCell {
         self.dateSeperatorLabel.text = seperatorDateFormatter.string(from: messageCreatedDate as Date)
         
         // Relationship between the current message and the previous message
-        self.dateSeperatorView.isHidden = false;
-        self.dateSeperatorViewHeight.constant = 24.0;
-        self.dateSeperatorViewTopMargin.constant = 10.0;
-        self.dateSeperatorViewBottomMargin.constant = 10.0;
+        self.dateSeperatorView.isHidden = false
+        self.dateSeperatorViewHeight.constant = 24.0
+        self.dateSeperatorViewTopMargin.constant = 10.0
+        self.dateSeperatorViewBottomMargin.constant = 10.0
         if self.prevMessage != nil {
             // Day Changed
             let prevMessageDate = NSDate(timeIntervalSince1970: Double(self.prevMessage.createdAt) / 1000.0)

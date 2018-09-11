@@ -15,7 +15,7 @@ class ReusableViewFromXib: UIView {
         super.init(frame: frame)
         let className = String(describing: type(of: self))
 
-        self.customView = Bundle.main.loadNibNamed(className, owner: self, options: nil)!.first as? UIView
+        self.customView = Bundle.main.loadNibNamed(className, owner: self, options: nil)?.first as? UIView
         self.customView?.frame = self.bounds
         
         if frame.isEmpty == true {
