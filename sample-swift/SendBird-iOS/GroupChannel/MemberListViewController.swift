@@ -24,9 +24,9 @@ class MemberListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.tableView.register(MemberListTableViewCell.nib(), forCellReuseIdentifier: MemberListTableViewCell.cellReuseIdentifier())
         
-        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
         negativeLeftSpacer.width = -2
-        let leftCloseItem = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItemStyle.done, target: self, action: #selector(close))
+        let leftCloseItem = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItem.Style.done, target: self, action: #selector(close))
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftCloseItem]
         
         SBDMain.add(self as SBDChannelDelegate, identifier: self.description)
@@ -37,8 +37,8 @@ class MemberListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.channel.refresh { (error) in
             if error != nil {
-                let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
-                let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
+                let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
+                let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
                 vc.addAction(closeAction)
                 DispatchQueue.main.async {
                     self.present(vc, animated: true, completion: nil)
