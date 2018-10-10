@@ -82,7 +82,6 @@
 		E2217E401EF893A000AEE668 /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2217E381EF893A000AEE668 /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2217E4D1EF89A1700AEE668 /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2217E381EF893A000AEE668 /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E221A2E31F29192500767328 /* String+SendBird.swift in Sources */ = {isa = PBXBuildFile; fileRef = E221A2E21F29192500767328 /* String+SendBird.swift */; };
-		E2332F831EF9D46F00E0738B /* HTMLKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2332F761EF9D46000E0738B /* HTMLKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2332F871EFB186700E0738B /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2332F851EFB186700E0738B /* UserProfileViewController.swift */; };
 		E2332F881EFB186700E0738B /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2332F861EFB186700E0738B /* UserProfileViewController.xib */; };
 		E23EC4D61EF35F86008487BB /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23EC4D41EF35F86008487BB /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.swift */; };
@@ -105,55 +104,6 @@
 			remoteGlobalIDString = E2217E371EF893A000AEE668;
 			remoteInfo = CommonCrypto;
 		};
-		E2332F751EF9D46000E0738B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 625A14AC19C7829400AD0C32;
-			remoteInfo = "HTMLKit-macOS";
-		};
-		E2332F771EF9D46000E0738B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 625A14C319C7829400AD0C32;
-			remoteInfo = "HTMLKitTests-macOS";
-		};
-		E2332F791EF9D46000E0738B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 62ECBF4D1C0B6C7600AF847B;
-			remoteInfo = "HTMLKit-iOS";
-		};
-		E2332F7B1EF9D46000E0738B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 62ECBF561C0B6C7600AF847B;
-			remoteInfo = "HTMLKitTests-iOS";
-		};
-		E2332F7D1EF9D46000E0738B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 62857CEA1D39A262008DC254;
-			remoteInfo = "HTMLKit-tvOS";
-		};
-		E2332F7F1EF9D46000E0738B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 62857CF31D39A262008DC254;
-			remoteInfo = "HTMLKit-tvOSTests";
-		};
-		E2332F811EF9D46000E0738B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 62857C4E1D398642008DC254;
-			remoteInfo = "HTMLKit-watchOS";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -163,7 +113,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E2332F831EF9D46F00E0738B /* HTMLKit.framework in Embed Frameworks */,
 				E2217E401EF893A000AEE668 /* CommonCrypto.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -268,7 +217,6 @@
 		E2217E4B1EF897BA00AEE668 /* iphonesimulator.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = iphonesimulator.modulemap; sourceTree = "<group>"; };
 		E2217E4C1EF897C900AEE668 /* macosx.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = macosx.modulemap; sourceTree = "<group>"; };
 		E221A2E21F29192500767328 /* String+SendBird.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SendBird.swift"; sourceTree = "<group>"; };
-		E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HTMLKit.xcodeproj; path = HTMLKit/HTMLKit.xcodeproj; sourceTree = "<group>"; };
 		E2332F851EFB186700E0738B /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		E2332F861EFB186700E0738B /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
 		E23EC4D41EF35F86008487BB /* OutgoingGeneralUrlPreviewTempMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutgoingGeneralUrlPreviewTempMessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -313,7 +261,6 @@
 				5ABA0B7E1DA6010A000C82DC /* Products */,
 				5ABA0B7F1DA6010A000C82DC /* SendBird-iOS */,
 				E2217E491EF8974F00AEE668 /* CommonCrypto.xcconfig */,
-				E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */,
 				5AD94C271DB5F6B500A6CD66 /* SendBird-iOS.bundle */,
 			);
 			sourceTree = "<group>";
@@ -526,20 +473,6 @@
 			path = CommonCrypto;
 			sourceTree = "<group>";
 		};
-		E2332F6C1EF9D45F00E0738B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E2332F761EF9D46000E0738B /* HTMLKit.framework */,
-				E2332F781EF9D46000E0738B /* HTMLKitTests-macOS.xctest */,
-				E2332F7A1EF9D46000E0738B /* HTMLKit.framework */,
-				E2332F7C1EF9D46000E0738B /* HTMLKitTests-iOS.xctest */,
-				E2332F7E1EF9D46000E0738B /* HTMLKit.framework */,
-				E2332F801EF9D46000E0738B /* HTMLKit-tvOSTests.xctest */,
-				E2332F821EF9D46000E0738B /* HTMLKit.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		E2332F841EFB183300E0738B /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -658,12 +591,6 @@
 			mainGroup = 5ABA0B741DA6010A000C82DC;
 			productRefGroup = 5ABA0B7E1DA6010A000C82DC /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = E2332F6C1EF9D45F00E0738B /* Products */;
-					ProjectRef = E2332F6B1EF9D45F00E0738B /* HTMLKit.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				5ABA0B7C1DA6010A000C82DC /* SendBird-iOS */,
@@ -671,58 +598,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		E2332F761EF9D46000E0738B /* HTMLKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = HTMLKit.framework;
-			remoteRef = E2332F751EF9D46000E0738B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E2332F781EF9D46000E0738B /* HTMLKitTests-macOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "HTMLKitTests-macOS.xctest";
-			remoteRef = E2332F771EF9D46000E0738B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E2332F7A1EF9D46000E0738B /* HTMLKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = HTMLKit.framework;
-			remoteRef = E2332F791EF9D46000E0738B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E2332F7C1EF9D46000E0738B /* HTMLKitTests-iOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "HTMLKitTests-iOS.xctest";
-			remoteRef = E2332F7B1EF9D46000E0738B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E2332F7E1EF9D46000E0738B /* HTMLKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = HTMLKit.framework;
-			remoteRef = E2332F7D1EF9D46000E0738B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E2332F801EF9D46000E0738B /* HTMLKit-tvOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "HTMLKit-tvOSTests.xctest";
-			remoteRef = E2332F7F1EF9D46000E0738B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E2332F821EF9D46000E0738B /* HTMLKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = HTMLKit.framework;
-			remoteRef = E2332F811EF9D46000E0738B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5ABA0B7B1DA6010A000C82DC /* Resources */ = {
@@ -804,6 +679,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
+				"${BUILT_PRODUCTS_DIR}/HTMLKit/HTMLKit.framework",
 				"${BUILT_PRODUCTS_DIR}/MGSwipeTableCell/MGSwipeTableCell.framework",
 				"${BUILT_PRODUCTS_DIR}/NYTPhotoViewer/NYTPhotoViewer.framework",
 				"${BUILT_PRODUCTS_DIR}/RSKImageCropper/RSKImageCropper.framework",
@@ -816,6 +692,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTMLKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGSwipeTableCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NYTPhotoViewer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSKImageCropper.framework",
@@ -1094,7 +971,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "SendBird-iOS";
@@ -1151,7 +1028,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "SendBird-iOS";
 				SDKROOT = iphoneos;

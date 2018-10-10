@@ -309,7 +309,21 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         let description: NSString = self.previewData["description"] as! NSString
         let descriptionRect = description.boundingRect(with: CGSize(width: self.previewDescriptionWidth.constant, height: CGFloat.greatestFiniteMagnitude), options: [NSStringDrawingOptions.usesLineFragmentOrigin], attributes: attributes, context: nil)
         
-        let cellHeight = self.dateSeperatorTopMargin.constant + self.dateSeperatorHeight.constant + self.dateSeperatorBottomMargin.constant + self.messageTopMargin.constant + fullMessageRect.size.height + self.messageBottomMargin.constant + self.dividerHeight.constant + self.dividerBottomMargin.constant + self.previewSiteNameHeight.constant + self.previewSiteNameBottomMargin.constant + self.previewTitleHeight.constant + self.previewTitleBottomMargin.constant + descriptionRect.size.height + self.previewDescriptionBottomMargin.constant + self.previewThumbnailImageHeight.constant
+        var cellHeight: CGFloat = self.dateSeperatorTopMargin.constant
+        cellHeight += self.dateSeperatorHeight.constant
+        cellHeight += self.dateSeperatorBottomMargin.constant
+        cellHeight += self.messageTopMargin.constant
+        cellHeight += fullMessageRect.size.height
+        cellHeight += self.messageBottomMargin.constant
+        cellHeight += self.dividerHeight.constant
+        cellHeight += self.dividerBottomMargin.constant
+        cellHeight += self.previewSiteNameHeight.constant
+        cellHeight += self.previewSiteNameBottomMargin.constant
+        cellHeight += self.previewTitleHeight.constant
+        cellHeight += self.previewTitleBottomMargin.constant
+        cellHeight += descriptionRect.size.height
+        cellHeight += self.previewDescriptionBottomMargin.constant
+        cellHeight += self.previewThumbnailImageHeight.constant
         
         return Float(cellHeight)
     }
