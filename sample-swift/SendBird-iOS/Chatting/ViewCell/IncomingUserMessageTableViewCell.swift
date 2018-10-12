@@ -73,8 +73,8 @@ class IncomingUserMessageTableViewCell: UITableViewCell, TTTAttributedLabelDeleg
 
         // Message Date
         let messageDateAttribute = [
-            NSAttributedStringKey.font: Constants.messageDateFont(),
-            NSAttributedStringKey.foregroundColor: Constants.messageDateColor()
+            NSAttributedString.Key.font: Constants.messageDateFont(),
+            NSAttributedString.Key.foregroundColor: Constants.messageDateColor()
         ]
         
         let messageTimestamp = Double(self.message.createdAt) / 1000.0
@@ -165,9 +165,9 @@ class IncomingUserMessageTableViewCell: UITableViewCell, TTTAttributedLabelDeleg
         self.messageLabel.attributedText = fullMessage
         self.messageLabel.isUserInteractionEnabled = true
         self.messageLabel.linkAttributes = [
-            NSAttributedStringKey.font: Constants.messageFont(),
-            NSAttributedStringKey.foregroundColor: Constants.incomingMessageColor(),
-            NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue
+            NSAttributedString.Key.font: Constants.messageFont(),
+            NSAttributedString.Key.foregroundColor: Constants.incomingMessageColor(),
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         
         let detector: NSDataDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
@@ -198,48 +198,48 @@ class IncomingUserMessageTableViewCell: UITableViewCell, TTTAttributedLabelDeleg
     }
     
     func buildMessage() -> NSAttributedString {
-        var nicknameAttribute: [NSAttributedStringKey:AnyObject]?
+        var nicknameAttribute: [NSAttributedString.Key:AnyObject]?
         switch (self.message.sender?.nickname?.utf8.count)! % 5 {
         case 0:
             nicknameAttribute = [
-                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
-                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo0()
+                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
+                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo0()
             ]
             break;
         case 1:
             nicknameAttribute = [
-                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
-                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo1()
+                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
+                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo1()
             ]
             break;
         case 2:
             nicknameAttribute = [
-                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
-                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo2()
+                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
+                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo2()
             ]
             break;
         case 3:
             nicknameAttribute = [
-                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
-                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo3()
+                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
+                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo3()
             ]
             break;
         case 4:
             nicknameAttribute = [
-                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
-                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo4()
+                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
+                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo4()
             ]
             break;
         default:
             nicknameAttribute = [
-                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
-                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo0()
+                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
+                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo0()
             ]
             break;
         }
         
         let messageAttribute = [
-            NSAttributedStringKey.font: Constants.messageFont()
+            NSAttributedString.Key.font: Constants.messageFont()
         ]
         
         let nickname = self.message.sender?.nickname
@@ -265,7 +265,16 @@ class IncomingUserMessageTableViewCell: UITableViewCell, TTTAttributedLabelDeleg
         
         var fullMessageSize: CGSize
 
-        let messageLabelMaxWidth = UIScreen.main.bounds.size.width - (self.profileImageLeftMargin.constant + self.profileImageWidth.constant + self.messageContainerLeftMargin.constant + self.messageContainerLeftPadding.constant + self.messageContainerRightPadding.constant + self.messageDateLabelLeftMargin.constant + self.messageDateLabelWidth.constant + self.messageDateLabelRightMargin.constant)
+        var messageLabelMaxWidth: CGFloat = UIScreen.main.bounds.size.width
+        messageLabelMaxWidth -= self.profileImageLeftMargin.constant
+        messageLabelMaxWidth -= self.profileImageWidth.constant
+        messageLabelMaxWidth -= self.messageContainerLeftMargin.constant
+        messageLabelMaxWidth -= self.messageContainerLeftPadding.constant
+        messageLabelMaxWidth -= self.messageContainerRightPadding.constant
+        messageLabelMaxWidth -= self.messageDateLabelLeftMargin.constant
+        messageLabelMaxWidth -= self.messageDateLabelWidth.constant
+        messageLabelMaxWidth -= self.messageDateLabelRightMargin.constant
+        
         let framesetter = CTFramesetterCreateWithAttributedString(fullMessage)
         fullMessageSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRange(location: 0,length: 0), nil, CGSize(width: messageLabelMaxWidth, height: CGFloat(LONG_LONG_MAX)), nil)
 

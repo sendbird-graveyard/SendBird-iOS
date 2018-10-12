@@ -117,8 +117,8 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         
         // Message Date
         let messageDateAttribute = [
-            NSAttributedStringKey.font: Constants.messageDateFont(),
-            NSAttributedStringKey.foregroundColor: Constants.messageDateColor()
+            NSAttributedString.Key.font: Constants.messageDateFont(),
+            NSAttributedString.Key.foregroundColor: Constants.messageDateColor()
         ]
         let messageTimestamp: TimeInterval = Double(self.message.createdAt) / 1000.0
         let dateFormatter: DateFormatter = DateFormatter()
@@ -212,9 +212,9 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         self.messageLabel.attributedText = fullMessage
         self.messageLabel.isUserInteractionEnabled = true
         self.messageLabel.linkAttributes = [
-            NSAttributedStringKey.font: Constants.messageFont(),
-            NSAttributedStringKey.foregroundColor: Constants.incomingMessageColor(),
-            NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue
+            NSAttributedString.Key.font: Constants.messageFont(),
+            NSAttributedString.Key.foregroundColor: Constants.incomingMessageColor(),
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         
         let detector: NSDataDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
@@ -245,42 +245,42 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
     }
     
     private func buildMessage() -> NSMutableAttributedString {
-        var nicknameAttribute: [NSAttributedStringKey:NSObject]
+        var nicknameAttribute: [NSAttributedString.Key:NSObject]
         switch (self.message.sender?.nickname?.count)! % 5 {
         case 0:
             nicknameAttribute = [
-                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
-                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo0()
+                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
+                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo0()
             ]
         case 1:
             nicknameAttribute = [
-                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
-                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo1()
+                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
+                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo1()
             ]
         case 2:
             nicknameAttribute = [
-                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
-                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo2()
+                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
+                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo2()
             ]
         case 3:
             nicknameAttribute = [
-                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
-                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo3()
+                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
+                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo3()
             ]
         case 4:
             nicknameAttribute = [
-                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
-                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo4()
+                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
+                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo4()
             ]
         default:
             nicknameAttribute = [
-                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
-                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo0()
+                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
+                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo0()
             ]
         }
         
         let messageAttribute = [
-            NSAttributedStringKey.font: Constants.messageFont()
+            NSAttributedString.Key.font: Constants.messageFont()
         ]
         let nickname = self.message.sender?.nickname
         let message = self.message.message
@@ -303,13 +303,27 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         let fullMessage = self.buildMessage()
         let fullMessageRect: CGRect = fullMessage.boundingRect(with: CGSize(width: self.messageWidth.constant, height: CGFloat.greatestFiniteMagnitude), options: [NSStringDrawingOptions.usesLineFragmentOrigin], context: nil)
         let attributes = [
-            NSAttributedStringKey.font: Constants.urlPreviewDescriptionFont()
+            NSAttributedString.Key.font: Constants.urlPreviewDescriptionFont()
         ]
 
         let description: NSString = self.previewData["description"] as! NSString
         let descriptionRect = description.boundingRect(with: CGSize(width: self.previewDescriptionWidth.constant, height: CGFloat.greatestFiniteMagnitude), options: [NSStringDrawingOptions.usesLineFragmentOrigin], attributes: attributes, context: nil)
         
-        let cellHeight = self.dateSeperatorTopMargin.constant + self.dateSeperatorHeight.constant + self.dateSeperatorBottomMargin.constant + self.messageTopMargin.constant + fullMessageRect.size.height + self.messageBottomMargin.constant + self.dividerHeight.constant + self.dividerBottomMargin.constant + self.previewSiteNameHeight.constant + self.previewSiteNameBottomMargin.constant + self.previewTitleHeight.constant + self.previewTitleBottomMargin.constant + descriptionRect.size.height + self.previewDescriptionBottomMargin.constant + self.previewThumbnailImageHeight.constant
+        var cellHeight: CGFloat = self.dateSeperatorTopMargin.constant
+        cellHeight += self.dateSeperatorHeight.constant
+        cellHeight += self.dateSeperatorBottomMargin.constant
+        cellHeight += self.messageTopMargin.constant
+        cellHeight += fullMessageRect.size.height
+        cellHeight += self.messageBottomMargin.constant
+        cellHeight += self.dividerHeight.constant
+        cellHeight += self.dividerBottomMargin.constant
+        cellHeight += self.previewSiteNameHeight.constant
+        cellHeight += self.previewSiteNameBottomMargin.constant
+        cellHeight += self.previewTitleHeight.constant
+        cellHeight += self.previewTitleBottomMargin.constant
+        cellHeight += descriptionRect.size.height
+        cellHeight += self.previewDescriptionBottomMargin.constant
+        cellHeight += self.previewThumbnailImageHeight.constant
         
         return Float(cellHeight)
     }

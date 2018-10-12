@@ -78,8 +78,8 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     }
     
     func setup() {
-        self.chattingTableView.contentInset = UIEdgeInsetsMake(0, 0, 10, 0)
-        self.messageTextView.textContainerInset = UIEdgeInsetsMake(15.5, 0, 14, 0)
+        self.chattingTableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 10, right: 0)
+        self.messageTextView.textContainerInset = UIEdgeInsets.init(top: 15.5, left: 0, bottom: 14, right: 0)
     }
     
     func configureChattingView(channel: SBDBaseChannel?) {
@@ -177,7 +177,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             return
         }
         
-        self.chattingTableView.scrollToRow(at: IndexPath.init(row: self.messages.count - 1, section: 0), at: UITableViewScrollPosition.bottom, animated: false)
+        self.chattingTableView.scrollToRow(at: IndexPath.init(row: self.messages.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: false)
     }
     
     func scrollToPosition(position: Int) {
@@ -185,7 +185,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             return
         }
         
-        self.chattingTableView.scrollToRow(at: IndexPath.init(row: position, section: 0), at: UITableViewScrollPosition.top, animated: false)
+        self.chattingTableView.scrollToRow(at: IndexPath.init(row: position, section: 0), at: UITableView.ScrollPosition.top, animated: false)
     }
     
     func startTypingIndicator(text: String) {
@@ -261,7 +261,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                 if timeDiff > 0.1 {
                     let distance = currentOffset.y - self.lastOffset.y
                     let scrollSpeedNotAbs = distance * 10 / 1000
-                    let scrollSpeed = fabs(scrollSpeedNotAbs)
+                    let scrollSpeed = abs(scrollSpeedNotAbs)
                     if scrollSpeed > 0.5 {
                         self.isScrollingFast = true
                     }

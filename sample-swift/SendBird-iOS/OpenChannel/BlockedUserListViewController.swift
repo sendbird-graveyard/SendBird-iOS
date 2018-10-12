@@ -29,12 +29,12 @@ class BlockedUserListViewController: UIViewController, UITableViewDelegate, UITa
         self.tableView.register(BlockedUserListTableViewCell.nib(), forCellReuseIdentifier: BlockedUserListTableViewCell.cellReuseIdentifier())
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl?.addTarget(self, action: #selector(refreshList), for: UIControlEvents.valueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(refreshList), for: UIControl.Event.valueChanged)
         self.tableView.addSubview(self.refreshControl!)
         
-        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
         negativeLeftSpacer.width = -2
-        let leftCloseItem = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItemStyle.done, target: self, action: #selector(close))
+        let leftCloseItem = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItem.Style.done, target: self, action: #selector(close))
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftCloseItem]
         
         self.loadList(initial: true)
@@ -85,12 +85,12 @@ class BlockedUserListViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     private func unblockUser(user: SBDUser) {
-        let vc = UIAlertController(title: user.nickname, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        let unblockUserAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "UnblockUserButton"), style: UIAlertActionStyle.default) { (action) in
+        let vc = UIAlertController(title: user.nickname, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        let unblockUserAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "UnblockUserButton"), style: UIAlertAction.Style.default) { (action) in
             SBDMain.unblockUser(user, completionHandler: { (error) in
                 if error != nil {
-                    let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
-                    let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
+                    let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
+                    let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
                     vc.addAction(closeAction)
                     DispatchQueue.main.async {
                         self.present(vc, animated: true, completion: nil)
@@ -104,7 +104,7 @@ class BlockedUserListViewController: UIViewController, UITableViewDelegate, UITa
                 }
             })
         }
-        let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
+        let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
         vc.addAction(unblockUserAction)
         vc.addAction(closeAction)
         self.present(vc, animated: true, completion: nil)

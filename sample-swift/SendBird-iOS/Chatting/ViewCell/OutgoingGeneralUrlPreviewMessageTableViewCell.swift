@@ -122,8 +122,8 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         self.resendMessageButton.isHidden = true
         self.deleteMessageButton.isHidden = true
         
-        self.resendMessageButton.addTarget(self, action: #selector(clickResendUserMessage), for: UIControlEvents.touchUpInside)
-        self.deleteMessageButton.addTarget(self, action: #selector(clickDeleteUserMessage), for: UIControlEvents.touchUpInside)
+        self.resendMessageButton.addTarget(self, action: #selector(clickResendUserMessage), for: UIControl.Event.touchUpInside)
+        self.deleteMessageButton.addTarget(self, action: #selector(clickDeleteUserMessage), for: UIControl.Event.touchUpInside)
         
         // Unread message count
         if self.message.channelType == CHANNEL_TYPE_GROUP {
@@ -145,8 +145,8 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         
         // Message Date
         let messageDateAttribute = [
-            NSAttributedStringKey.font: Constants.messageDateFont(),
-            NSAttributedStringKey.foregroundColor: Constants.messageDateColor()
+            NSAttributedString.Key.font: Constants.messageDateFont(),
+            NSAttributedString.Key.foregroundColor: Constants.messageDateColor()
         ]
         let messageTimestamp: TimeInterval = Double(self.message.createdAt) / 1000.0
         let dateFormatter: DateFormatter = DateFormatter()
@@ -235,9 +235,9 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         self.messageLabel.attributedText = fullMessage
         self.messageLabel.isUserInteractionEnabled = true
         self.messageLabel.linkAttributes = [
-            NSAttributedStringKey.font: Constants.messageFont(),
-            NSAttributedStringKey.foregroundColor: Constants.outgoingMessageColor(),
-            NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue
+            NSAttributedString.Key.font: Constants.messageFont(),
+            NSAttributedString.Key.foregroundColor: Constants.outgoingMessageColor(),
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         
         let detector: NSDataDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
@@ -261,8 +261,8 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
     
     private func buildMessage() -> NSMutableAttributedString {
         let messageAttribute = [
-            NSAttributedStringKey.font: Constants.messageFont(),
-            NSAttributedStringKey.foregroundColor: Constants.outgoingMessageColor()
+            NSAttributedString.Key.font: Constants.messageFont(),
+            NSAttributedString.Key.foregroundColor: Constants.outgoingMessageColor()
         ]
         let message = self.message.message
         
@@ -277,7 +277,7 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
     func getHeightOfViewCell() -> CGFloat {
         let message = self.buildMessage()
         let descriptionAttributes = [
-            NSAttributedStringKey.font: Constants.urlPreviewDescriptionFont()
+            NSAttributedString.Key.font: Constants.urlPreviewDescriptionFont()
         ]
         let description: NSString = self.previewData["description"] as! NSString
         let descriptionRect = description.boundingRect(with: CGSize(width: self.previewDescriptionLabelWidth.constant, height: CGFloat.greatestFiniteMagnitude), options: [NSStringDrawingOptions.usesLineFragmentOrigin], attributes: descriptionAttributes, context: nil)
@@ -285,7 +285,21 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         let messageRect: CGRect = message.boundingRect(with: CGSize(width: self.messageLabelWidth.constant, height: CGFloat.greatestFiniteMagnitude), options: [NSStringDrawingOptions.usesLineFragmentOrigin], context: nil)
         let messageHeight = messageRect.size.height
 
-        let cellHeight = self.dateSeperatorViewTopMargin.constant + self.dateSeperatorViewHeight.constant + self.dateSeperatorViewBottomMargin.constant + self.messageLabelTopMargin.constant + messageHeight + self.messageLabelBottomMargin.constant + self.dividerViewHeight.constant + self.dividerViewBottomMargin.constant + self.previewSiteNameLabelHeight.constant + self.previewSiteNameLabelBottomMargin.constant + self.previewTitleLabelHeight.constant + self.previewTitleLabelBottomMargin.constant + descriptionLabelHeight + self.previewDescriptionLabelBottomMargin.constant + self.previewThumbnailImageViewHeight.constant
+        var cellHeight: CGFloat = self.dateSeperatorViewTopMargin.constant
+        cellHeight += self.dateSeperatorViewHeight.constant
+        cellHeight += self.dateSeperatorViewBottomMargin.constant
+        cellHeight += self.messageLabelTopMargin.constant
+        cellHeight += messageHeight
+        cellHeight += self.messageLabelBottomMargin.constant
+        cellHeight += self.dividerViewHeight.constant
+        cellHeight += self.dividerViewBottomMargin.constant
+        cellHeight += self.previewSiteNameLabelHeight.constant
+        cellHeight += self.previewSiteNameLabelBottomMargin.constant
+        cellHeight += self.previewTitleLabelHeight.constant
+        cellHeight += self.previewTitleLabelBottomMargin.constant
+        cellHeight += descriptionLabelHeight
+        cellHeight += self.previewDescriptionLabelBottomMargin.constant
+        cellHeight += self.previewThumbnailImageViewHeight.constant
         
         return cellHeight
     }

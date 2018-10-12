@@ -168,8 +168,8 @@ class IncomingImageFileMessageTableViewCell: UITableViewCell {
 //        }
         // Message Date
         let messageDateAttribute = [
-            NSAttributedStringKey.font: Constants.messageDateFont(),
-            NSAttributedStringKey.foregroundColor: Constants.messageDateColor()
+            NSAttributedString.Key.font: Constants.messageDateFont(),
+            NSAttributedString.Key.foregroundColor: Constants.messageDateColor()
         ]
         
         let messageTimestamp = Double(self.message.createdAt) / 1000.0

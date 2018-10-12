@@ -97,7 +97,7 @@ class NeutralMessageTableViewCell: UITableViewCell {
     
     func buildMessage() -> NSAttributedString {
         let messageAttribute = [
-            NSAttributedStringKey.font: Constants.messageFont()
+            NSAttributedString.Key.font: Constants.messageFont()
         ]
         
         let message = self.message.message

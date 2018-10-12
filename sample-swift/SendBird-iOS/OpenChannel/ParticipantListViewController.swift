@@ -29,12 +29,12 @@ class ParticipantListViewController: UIViewController, UITableViewDelegate, UITa
         self.tableView.register(ParticipantListTableViewCell.nib(), forCellReuseIdentifier: ParticipantListTableViewCell.cellReuseIdentifier())
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl?.addTarget(self, action: #selector(refreshList), for: UIControlEvents.valueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(refreshList), for: UIControl.Event.valueChanged)
         self.tableView.addSubview(self.refreshControl!)
         
-        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
         negativeLeftSpacer.width = -2
-        let leftCloseItem = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItemStyle.done, target: self, action: #selector(close))
+        let leftCloseItem = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItem.Style.done, target: self, action: #selector(close))
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftCloseItem]
         
         self.loadList(initial: true)
