@@ -37,7 +37,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     var stopMeasuringVelocity: Bool = true
     var initialLoading: Bool = true
     
-    var delegate: (ChattingViewDelegate & MessageDelegate)?
+    weak var delegate: (ChattingViewDelegate & MessageDelegate)?
 
     @IBOutlet weak var typingIndicatorContainerViewHeight: NSLayoutConstraint!
     @IBOutlet weak var typingIndicatorImageView: UIImageView!
