@@ -57,7 +57,7 @@ class CreateOpenChannelViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        SBDOpenChannel.createChannel(withName: self.openChannelNameTextField.text, coverUrl: nil, data: nil, operatorUsers: nil) { (channel, error) in
+        SBDOpenChannel.createChannel(withName: self.openChannelNameTextField.text, channelUrl: nil, coverUrl: nil, data: nil, operatorUserIds: nil, customType: nil) { (channel, error) in
             if error != nil {
                 let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
                 let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)

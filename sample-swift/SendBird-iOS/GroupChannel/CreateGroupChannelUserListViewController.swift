@@ -125,7 +125,7 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
         }
         
         if self.userListQuery == nil {
-            self.userListQuery = SBDMain.createAllUserListQuery()
+            self.userListQuery = SBDMain.createApplicationUserListQuery()
             self.userListQuery?.limit = 25
         }
         

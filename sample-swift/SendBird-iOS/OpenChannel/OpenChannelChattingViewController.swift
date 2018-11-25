@@ -452,7 +452,13 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                         let jsonData = try JSONSerialization.data(withJSONObject: data, options: JSONSerialization.WritingOptions.init(rawValue: 0))
                         let dataString = String(data: jsonData, encoding: String.Encoding.utf8)
                         
-                        self.openChannel.sendUserMessage(message, data: dataString, customType: "url_preview", completionHandler: { (userMessage, error) in
+                        let theParams: SBDUserMessageParams? = SBDUserMessageParams.init(message: message)
+                        theParams?.data = dataString
+                        theParams?.customType = "url_preview"
+                        guard let params: SBDUserMessageParams = theParams else {
+                            return
+                        }
+                        self.openChannel.sendUserMessage(with: params, completionHandler: { (userMessage, error) in
                             if error != nil {
                                 self.sendMessageWithReplacement(replacement: aTempModel)
                                 
@@ -484,7 +490,17 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
     }
     
     private func sendMessageWithReplacement(replacement: OutgoingGeneralUrlPreviewTempModel) {
-        let preSendMessage = self.openChannel.sendUserMessage(replacement.message, data: "", customType:"", targetLanguages: ["ar", "de", "fr", "nl", "ja", "ko", "pt", "es", "zh-CHS"]) { (userMessage, error) in
+        guard let theMessage: String = replacement.message else {
+            return
+        }
+        let theParams: SBDUserMessageParams? = SBDUserMessageParams.init(message: theMessage)
+        theParams?.data = ""
+        theParams?.customType = ""
+        theParams?.targetLanguages = ["ar", "de", "fr", "nl", "ja", "ko", "pt", "es", "zh-CHS"]
+        guard let params: SBDUserMessageParams = theParams else {
+            return
+        }
+        let preSendMessage: SBDUserMessage = self.openChannel.sendUserMessage(with: params) { (userMessage, error) in
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
                 let preSendMessage = self.chattingView.preSendMessages[(userMessage?.requestId)!] as! SBDUserMessage
                 self.chattingView.preSendMessages.removeValue(forKey: (userMessage?.requestId)!)
@@ -557,7 +573,8 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
             }
             
             self.chattingView.sendButton.isEnabled = false
-            let preSendMessage = self.openChannel.sendUserMessage(message, data: "", customType: "", targetLanguages: [], completionHandler: { (userMessage, error) in
+            
+            let preSendMessage = self.openChannel.sendUserMessage(message, completionHandler: { (userMessage, error) in
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
                     let preSendMessage = self.chattingView.preSendMessages[(userMessage?.requestId)!] as! SBDUserMessage
                     self.chattingView.preSendMessages.removeValue(forKey: (userMessage?.requestId)!)
@@ -1104,7 +1121,17 @@ class OpenChannelChattingViewController: UIViewController, SBDConnectionDelegate
                     
                 }
                 
-                let preSendMessage = self.openChannel.sendUserMessage(resendableUserMessage.message, data: resendableUserMessage.data, customType: resendableUserMessage.customType, targetLanguages: targetLanguages, completionHandler: { (userMessage, error) in
+                guard let message: String = resendableUserMessage.message else {
+                    return
+                }
+                let theParams: SBDUserMessageParams? = SBDUserMessageParams.init(message: message)
+                theParams?.data = resendableUserMessage.data
+                theParams?.customType = resendableUserMessage.customType
+                theParams?.targetLanguages = targetLanguages
+                guard let params: SBDUserMessageParams = theParams else {
+                    return
+                }
+                let preSendMessage: SBDUserMessage = self.openChannel.sendUserMessage(with: params, completionHandler: { (userMessage, error) in
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
                         DispatchQueue.main.async {
                             let preSendMessage = self.chattingView.preSendMessages[(userMessage?.requestId)!]

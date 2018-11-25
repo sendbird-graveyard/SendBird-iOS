@@ -460,7 +460,13 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                         let jsonData = try JSONSerialization.data(withJSONObject: data, options: JSONSerialization.WritingOptions.init(rawValue: 0))
                         let dataString = String(data: jsonData, encoding: String.Encoding.utf8)
                         
-                        self.groupChannel.sendUserMessage(message, data: dataString, customType: "url_preview", completionHandler: { (userMessage, error) in
+                        let theParams: SBDUserMessageParams? = SBDUserMessageParams.init(message: message)
+                        theParams?.data = dataString
+                        theParams?.customType = "url_preview"
+                        guard let params: SBDUserMessageParams = theParams else {
+                            return
+                        }
+                        self.groupChannel.sendUserMessage(with: params, completionHandler: { (userMessage, error) in
                             if error != nil {
                                 self.sendMessageWithReplacement(replacement: aTempModel)
                                 
@@ -492,7 +498,18 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
     }
     
     private func sendMessageWithReplacement(replacement: OutgoingGeneralUrlPreviewTempModel) {
-        let preSendMessage: SBDUserMessage = self.groupChannel.sendUserMessage(replacement.message, data: "", customType:"", targetLanguages: ["ar", "de", "fr", "nl", "ja", "ko", "pt", "es", "zh-CHS"]) { (userMessage, error) in
+        guard let theMessage: String = replacement.message else {
+            return
+        }
+        let theParams: SBDUserMessageParams? = SBDUserMessageParams.init(message: theMessage)
+        theParams?.data = ""
+        theParams?.customType = ""
+        theParams?.targetLanguages = ["ar", "de", "fr", "nl", "ja", "ko", "pt", "es", "zh-CHS"]
+        guard let params: SBDUserMessageParams = theParams else {
+            return
+        }
+        
+        let preSendMessage: SBDUserMessage = self.groupChannel.sendUserMessage(with: params) { (userMessage, error) in
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
                 if let preSendMessage : SBDUserMessage = self.chattingView.preSendMessages[(userMessage?.requestId)!] as? SBDUserMessage {
                     guard error == nil else {
@@ -569,7 +586,17 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
             }
             
             self.chattingView.sendButton.isEnabled = false
-            let preSendMessage = self.groupChannel.sendUserMessage(message, data: "", customType: "", targetLanguages: ["ar", "de", "fr", "nl", "ja", "ko", "pt", "es", "zh-CHS"], completionHandler: { (userMessage, error) in
+            guard let theMessage: String = message else {
+                return
+            }
+            let theParams: SBDUserMessageParams? = SBDUserMessageParams.init(message: theMessage)
+            theParams?.data = ""
+            theParams?.customType = ""
+            theParams?.targetLanguages = ["ar", "de", "fr", "nl", "ja", "ko", "pt", "es", "zh-CHS"]
+            guard let params: SBDUserMessageParams = theParams else {
+                return
+            }
+            let preSendMessage: SBDUserMessage = self.groupChannel.sendUserMessage(with: params) { (userMessage, error) in
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
                     let preSendMessage = self.chattingView.preSendMessages[(userMessage?.requestId)!] as! SBDUserMessage
                     self.chattingView.preSendMessages.removeValue(forKey: (userMessage?.requestId)!)
@@ -597,7 +624,7 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                         self.chattingView.scrollToBottom(force: true)
                     }
                 })
-            })
+            }
             
             self.chattingView.preSendMessages[preSendMessage.requestId!] = preSendMessage
             DispatchQueue.main.async {
@@ -1098,7 +1125,17 @@ class GroupChannelChattingViewController: UIViewController, SBDConnectionDelegat
                     
                 }
                 
-                let preSendMessage = self.groupChannel.sendUserMessage(resendableUserMessage.message, data: resendableUserMessage.data, customType: resendableUserMessage.customType, targetLanguages: targetLanguages, completionHandler: { (userMessage, error) in
+                guard let message: String = resendableUserMessage.message else {
+                    return
+                }
+                let theParams: SBDUserMessageParams? = SBDUserMessageParams.init(message: message)
+                theParams?.data = resendableUserMessage.data
+                theParams?.customType = resendableUserMessage.customType
+                theParams?.targetLanguages = targetLanguages
+                guard let params: SBDUserMessageParams = theParams else {
+                    return
+                }
+                let preSendMessage = self.groupChannel.sendUserMessage(with: params, completionHandler: { (userMessage, error) in
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(150), execute: {
                         DispatchQueue.main.async {
                             let preSendMessage = self.chattingView.preSendMessages[(userMessage?.requestId)!]
