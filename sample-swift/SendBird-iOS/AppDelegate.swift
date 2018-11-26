@@ -28,10 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return AppDelegate.instance
     }
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.registerForRemoteNotification()
         
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: Constants.navigationBarTitleFont()]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: Constants.navigationBarTitleFont()]
         UINavigationBar.appearance().tintColor = Constants.navigationBarTitleColor()
         
         application.applicationIconBadgeNumber = 0
@@ -40,16 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SBDMain.setLogLevel(SBDLogLevel.none)
         SBDOptions.setUseMemberAsMessageSender(true)
         
-        let audioSession: AVAudioSession = AVAudioSession.sharedInstance()
+        let audioSession = AVAudioSession.sharedInstance()
         do {
-            if #available(iOS 10.0, *) {
-                try audioSession.setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.moviePlayback, options: [])
-            } else {
-                // Fallback on earlier versions
-            }
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
         }
         catch {
-            
+        
         }
         
         self.window = UIWindow.init(frame: UIScreen.main.bounds)

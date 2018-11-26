@@ -27,15 +27,15 @@ class MenuViewController: UIViewController, ConnectionManagerDelegate, SBDConnec
         self.openChannelCheckImageView.isHidden = true
         self.groupChannelCheckImageView.isHidden = true
 
-        let negativeRightSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
+        let negativeRightSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeRightSpacer.width = -2
-        let rightDisconnectItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "DisconnectButton"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(disconnect))
-        rightDisconnectItem.setTitleTextAttributes([NSAttributedString.Key.font: Constants.navigationBarButtonItemFont()], for: UIControl.State.normal)
+        let rightDisconnectItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "DisconnectButton"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(disconnect))
+        rightDisconnectItem.setTitleTextAttributes([NSAttributedStringKey.font: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
         
-        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
+        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeLeftSpacer.width = -2
-        let leftProfileItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "Profile"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(profile))
-        leftProfileItem.setTitleTextAttributes([NSAttributedString.Key.font: Constants.navigationBarButtonItemFont()], for: UIControl.State.normal)
+        let leftProfileItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "Profile"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(profile))
+        leftProfileItem.setTitleTextAttributes([NSAttributedStringKey.font: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
         
         self.navItem.rightBarButtonItems = [negativeRightSpacer, rightDisconnectItem]
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftProfileItem]

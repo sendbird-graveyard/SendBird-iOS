@@ -122,8 +122,8 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         self.resendMessageButton.isHidden = true
         self.deleteMessageButton.isHidden = true
         
-        self.resendMessageButton.addTarget(self, action: #selector(clickResendUserMessage), for: UIControl.Event.touchUpInside)
-        self.deleteMessageButton.addTarget(self, action: #selector(clickDeleteUserMessage), for: UIControl.Event.touchUpInside)
+        self.resendMessageButton.addTarget(self, action: #selector(clickResendUserMessage), for: UIControlEvents.touchUpInside)
+        self.deleteMessageButton.addTarget(self, action: #selector(clickDeleteUserMessage), for: UIControlEvents.touchUpInside)
         
         // Unread message count
         if self.message.channelType == CHANNEL_TYPE_GROUP {
@@ -145,8 +145,8 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         
         // Message Date
         let messageDateAttribute = [
-            NSAttributedString.Key.font: Constants.messageDateFont(),
-            NSAttributedString.Key.foregroundColor: Constants.messageDateColor()
+            NSAttributedStringKey.font: Constants.messageDateFont(),
+            NSAttributedStringKey.foregroundColor: Constants.messageDateColor()
         ]
         let messageTimestamp: TimeInterval = Double(self.message.createdAt) / 1000.0
         let dateFormatter: DateFormatter = DateFormatter()
@@ -235,9 +235,9 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         self.messageLabel.attributedText = fullMessage
         self.messageLabel.isUserInteractionEnabled = true
         self.messageLabel.linkAttributes = [
-            NSAttributedString.Key.font: Constants.messageFont(),
-            NSAttributedString.Key.foregroundColor: Constants.outgoingMessageColor(),
-            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+            NSAttributedStringKey.font: Constants.messageFont(),
+            NSAttributedStringKey.foregroundColor: Constants.outgoingMessageColor(),
+            NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue
         ]
         
         let detector: NSDataDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
@@ -261,8 +261,8 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
     
     private func buildMessage() -> NSMutableAttributedString {
         let messageAttribute = [
-            NSAttributedString.Key.font: Constants.messageFont(),
-            NSAttributedString.Key.foregroundColor: Constants.outgoingMessageColor()
+            NSAttributedStringKey.font: Constants.messageFont(),
+            NSAttributedStringKey.foregroundColor: Constants.outgoingMessageColor()
         ]
         let message = self.message.message
         
@@ -277,7 +277,7 @@ class OutgoingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
     func getHeightOfViewCell() -> CGFloat {
         let message = self.buildMessage()
         let descriptionAttributes = [
-            NSAttributedString.Key.font: Constants.urlPreviewDescriptionFont()
+            NSAttributedStringKey.font: Constants.urlPreviewDescriptionFont()
         ]
         let description: NSString = self.previewData["description"] as! NSString
         let descriptionRect = description.boundingRect(with: CGSize(width: self.previewDescriptionLabelWidth.constant, height: CGFloat.greatestFiniteMagnitude), options: [NSStringDrawingOptions.usesLineFragmentOrigin], attributes: descriptionAttributes, context: nil)

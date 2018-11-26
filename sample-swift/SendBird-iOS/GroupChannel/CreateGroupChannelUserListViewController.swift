@@ -33,26 +33,26 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
 
         // Do any additional setup after loading the view.
         
-        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
+        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeLeftSpacer.width = -2
-        let negativeRightSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
+        let negativeRightSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeRightSpacer.width = -2
         
-        let leftCloseItem = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItem.Style.done, target: self, action: #selector(close))
+        let leftCloseItem = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItemStyle.done, target: self, action: #selector(close))
         var rightNextItem: UIBarButtonItem?
         if self.userSelectionMode == 0 {
-            rightNextItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "NextButton"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(nextStage))
-            rightNextItem?.setTitleTextAttributes([NSAttributedString.Key.font : Constants.navigationBarButtonItemFont()], for: UIControl.State.normal)
+            rightNextItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "NextButton"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(nextStage))
+            rightNextItem?.setTitleTextAttributes([NSAttributedStringKey.font : Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
         }
         else {
-            rightNextItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "InviteButton"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(invite))
-            rightNextItem?.setTitleTextAttributes([NSAttributedString.Key.font : Constants.navigationBarButtonItemFont()], for: UIControl.State.normal)
+            rightNextItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "InviteButton"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(invite))
+            rightNextItem?.setTitleTextAttributes([NSAttributedStringKey.font : Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
         }
         
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftCloseItem]
         self.navItem.rightBarButtonItems = [negativeRightSpacer, rightNextItem!]
         
-        self.selectedUserListCollectionView.contentInset = UIEdgeInsets.init(top: 0, left: 14, bottom: 0, right: 14)
+        self.selectedUserListCollectionView.contentInset = UIEdgeInsetsMake(0, 14, 0, 14)
         self.selectedUserListCollectionView.delegate = self
         self.selectedUserListCollectionView.dataSource = self
         self.selectedUserListCollectionView.register(SelectedUserListCollectionViewCell.nib(), forCellWithReuseIdentifier: SelectedUserListCollectionViewCell.cellReuseIdentifier())
@@ -64,7 +64,7 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
         self.userListTableView.register(CreateGroupChannelUserListTableViewCell.nib(), forCellReuseIdentifier: CreateGroupChannelUserListTableViewCell.cellReuseIdentifier())
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl.addTarget(self, action: #selector(refreshUserList), for: UIControl.Event.valueChanged)
+        self.refreshControl.addTarget(self, action: #selector(refreshUserList), for: UIControlEvents.valueChanged)
         self.userListTableView.addSubview(self.refreshControl)
         
         self.view.layoutIfNeeded()
@@ -136,8 +136,8 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
         
         self.userListQuery?.loadNextPage(completionHandler: { (users, error) in
             if error != nil {
-                let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-                let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler:nil)
+                let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
+                let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler:nil)
                 vc.addAction(closeAction)
                 DispatchQueue.main.async {
                     self.present(vc, animated: true, completion: nil)
@@ -246,7 +246,7 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
                 self.selectedUserListCollectionView.isHidden = true
             }
             
-            self.userListTableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
+            self.userListTableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
             self.selectedUserListCollectionView.reloadData()
         }
     }

@@ -22,21 +22,21 @@ class Utils: NSObject {
     }
     
     static func generateNavigationTitle(mainTitle: String, subTitle: String?) -> NSAttributedString? {
-        var mainTitleAttribute: [NSAttributedString.Key:AnyObject]
-        var subTitleAttribute: [NSAttributedString.Key:AnyObject]?
+        var mainTitleAttribute: [NSAttributedStringKey:AnyObject]
+        var subTitleAttribute: [NSAttributedStringKey:AnyObject]?
         var fullTitle: NSMutableAttributedString
         
         mainTitleAttribute = [
-            NSAttributedString.Key.font: Constants.navigationBarTitleFont(),
-            NSAttributedString.Key.foregroundColor: UIColor.black
+            NSAttributedStringKey.font: Constants.navigationBarTitleFont(),
+            NSAttributedStringKey.foregroundColor: UIColor.black
         ]
         fullTitle = NSMutableAttributedString(string: mainTitle)
         fullTitle.addAttributes(mainTitleAttribute, range: NSMakeRange(0, mainTitle.count))
         
         if let theSubTitle: String = subTitle {
             subTitleAttribute = [
-                NSAttributedString.Key.font: Constants.navigationBarSubTitleFont(),
-                NSAttributedString.Key.foregroundColor: Constants.navigationBarSubTitleColor()
+                NSAttributedStringKey.font: Constants.navigationBarSubTitleFont(),
+                NSAttributedStringKey.foregroundColor: Constants.navigationBarSubTitleColor()
             ]
             fullTitle.append(NSAttributedString(string: "\n\(theSubTitle)"))
             fullTitle.addAttributes(subTitleAttribute!, range: NSMakeRange(mainTitle.count + 1, (subTitle?.count)!))

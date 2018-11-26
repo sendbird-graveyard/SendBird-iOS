@@ -67,8 +67,8 @@ class OutgoingFileMessageTableViewCell: UITableViewCell {
         self.messageContainerView.isUserInteractionEnabled = true
         self.messageContainerView.addGestureRecognizer(messageContainerTapRecognizer)
         
-        self.resendMessageButton.addTarget(self, action: #selector(clickResendUserMessage), for: UIControl.Event.touchUpInside)
-        self.deleteMessageButton.addTarget(self, action: #selector(clickDeleteUserMessage), for: UIControl.Event.touchUpInside)
+        self.resendMessageButton.addTarget(self, action: #selector(clickResendUserMessage), for: UIControlEvents.touchUpInside)
+        self.deleteMessageButton.addTarget(self, action: #selector(clickDeleteUserMessage), for: UIControlEvents.touchUpInside)
         
         if self.message.type.hasPrefix("video") {
             self.fileTypeImageView.image = UIImage(named: "icon_video_chat")
@@ -105,8 +105,8 @@ class OutgoingFileMessageTableViewCell: UITableViewCell {
         
         // Message Date
         let messageDateAttribute = [
-            NSAttributedString.Key.font: Constants.messageDateFont(),
-            NSAttributedString.Key.foregroundColor: Constants.messageDateColor()
+            NSAttributedStringKey.font: Constants.messageDateFont(),
+            NSAttributedStringKey.foregroundColor: Constants.messageDateColor()
         ]
         
         let messageTimestamp = Double(self.message.createdAt) / 1000.0

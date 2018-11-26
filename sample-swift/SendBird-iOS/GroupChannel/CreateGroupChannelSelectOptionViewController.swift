@@ -32,13 +32,13 @@ class CreateGroupChannelSelectOptionViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
+        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeLeftSpacer.width = -2
-        let negativeRightSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
+        let negativeRightSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeRightSpacer.width = -2
         
-        let leftBackItem = UIBarButtonItem(image: UIImage(named: "btn_back"), style: UIBarButtonItem.Style.done, target: self, action: #selector(back))
-        let rightCreateItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "CreateButton"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(createChannel))
+        let leftBackItem = UIBarButtonItem(image: UIImage(named: "btn_back"), style: UIBarButtonItemStyle.done, target: self, action: #selector(back))
+        let rightCreateItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "CreateButton"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(createChannel))
         
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftBackItem]
         self.navItem.rightBarButtonItems = [negativeRightSpacer, rightCreateItem]
@@ -47,8 +47,8 @@ class CreateGroupChannelSelectOptionViewController: UIViewController {
         self.activityIndicator.hidesWhenStopped = true
         self.activityIndicator.stopAnimating()
         
-        self.distinctTextButton.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
-        self.nonDistinctTextButton.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
+        self.distinctTextButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
+        self.nonDistinctTextButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
         
         self.selectDictinctOption()
         
@@ -69,8 +69,8 @@ class CreateGroupChannelSelectOptionViewController: UIViewController {
     @objc private func createChannel() {
         SBDGroupChannel.createChannel(with: self.selectedUser, isDistinct: self.isDistinct) { (channel, error) in
             if error != nil {
-                let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-                let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: { (action) in
+                let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
+                let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: { (action) in
                     
                 })
                 vc.addAction(closeAction)
@@ -97,10 +97,10 @@ class CreateGroupChannelSelectOptionViewController: UIViewController {
     private func selectDictinctOption() {
         self.isDistinct = true
         
-        self.distinctButton.setBackgroundImage(UIImage(named: "btn_selected"), for: UIControl.State.normal)
-        self.distinctButton.setBackgroundImage(UIImage(named: "btn_check_off"), for: UIControl.State.highlighted)
-        self.nonDistinctButton.setBackgroundImage(UIImage(named: "btn_check_off"), for: UIControl.State.normal)
-        self.nonDistinctButton.setBackgroundImage(UIImage(named: "btn_selected"), for: UIControl.State.highlighted)
+        self.distinctButton.setBackgroundImage(UIImage(named: "btn_selected"), for: UIControlState.normal)
+        self.distinctButton.setBackgroundImage(UIImage(named: "btn_check_off"), for: UIControlState.highlighted)
+        self.nonDistinctButton.setBackgroundImage(UIImage(named: "btn_check_off"), for: UIControlState.normal)
+        self.nonDistinctButton.setBackgroundImage(UIImage(named: "btn_selected"), for: UIControlState.highlighted)
         
         self.distinctTextButton.titleLabel?.font = Constants.distinctButtonSelected()
         self.nonDistinctTextButton.titleLabel?.font = Constants.distinctButtonNormal()
@@ -109,10 +109,10 @@ class CreateGroupChannelSelectOptionViewController: UIViewController {
     private func selectNonDistinctOption() {
         self.isDistinct = false
         
-        self.distinctButton.setBackgroundImage(UIImage(named: "btn_check_off"), for: UIControl.State.normal)
-        self.distinctButton.setBackgroundImage(UIImage(named: "btn_selected"), for: UIControl.State.highlighted)
-        self.nonDistinctButton.setBackgroundImage(UIImage(named: "btn_selected"), for: UIControl.State.normal)
-        self.nonDistinctButton.setBackgroundImage(UIImage(named: "btn_check_off"), for: UIControl.State.highlighted)
+        self.distinctButton.setBackgroundImage(UIImage(named: "btn_check_off"), for: UIControlState.normal)
+        self.distinctButton.setBackgroundImage(UIImage(named: "btn_selected"), for: UIControlState.highlighted)
+        self.nonDistinctButton.setBackgroundImage(UIImage(named: "btn_selected"), for: UIControlState.normal)
+        self.nonDistinctButton.setBackgroundImage(UIImage(named: "btn_check_off"), for: UIControlState.highlighted)
         
         self.distinctTextButton.titleLabel?.font = Constants.distinctButtonNormal()
         self.nonDistinctTextButton.titleLabel?.font = Constants.distinctButtonSelected()

@@ -73,8 +73,8 @@ class IncomingUserMessageTableViewCell: UITableViewCell, TTTAttributedLabelDeleg
 
         // Message Date
         let messageDateAttribute = [
-            NSAttributedString.Key.font: Constants.messageDateFont(),
-            NSAttributedString.Key.foregroundColor: Constants.messageDateColor()
+            NSAttributedStringKey.font: Constants.messageDateFont(),
+            NSAttributedStringKey.foregroundColor: Constants.messageDateColor()
         ]
         
         let messageTimestamp = Double(self.message.createdAt) / 1000.0
@@ -165,9 +165,9 @@ class IncomingUserMessageTableViewCell: UITableViewCell, TTTAttributedLabelDeleg
         self.messageLabel.attributedText = fullMessage
         self.messageLabel.isUserInteractionEnabled = true
         self.messageLabel.linkAttributes = [
-            NSAttributedString.Key.font: Constants.messageFont(),
-            NSAttributedString.Key.foregroundColor: Constants.incomingMessageColor(),
-            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+            NSAttributedStringKey.font: Constants.messageFont(),
+            NSAttributedStringKey.foregroundColor: Constants.incomingMessageColor(),
+            NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue
         ]
         
         let detector: NSDataDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
@@ -198,48 +198,48 @@ class IncomingUserMessageTableViewCell: UITableViewCell, TTTAttributedLabelDeleg
     }
     
     func buildMessage() -> NSAttributedString {
-        var nicknameAttribute: [NSAttributedString.Key:AnyObject]?
+        var nicknameAttribute: [NSAttributedStringKey:AnyObject]?
         switch (self.message.sender?.nickname?.utf8.count)! % 5 {
         case 0:
             nicknameAttribute = [
-                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
-                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo0()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo0()
             ]
             break;
         case 1:
             nicknameAttribute = [
-                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
-                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo1()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo1()
             ]
             break;
         case 2:
             nicknameAttribute = [
-                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
-                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo2()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo2()
             ]
             break;
         case 3:
             nicknameAttribute = [
-                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
-                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo3()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo3()
             ]
             break;
         case 4:
             nicknameAttribute = [
-                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
-                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo4()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo4()
             ]
             break;
         default:
             nicknameAttribute = [
-                NSAttributedString.Key.font: Constants.nicknameFontInMessage(),
-                NSAttributedString.Key.foregroundColor: Constants.nicknameColorInMessageNo0()
+                NSAttributedStringKey.font: Constants.nicknameFontInMessage(),
+                NSAttributedStringKey.foregroundColor: Constants.nicknameColorInMessageNo0()
             ]
             break;
         }
         
         let messageAttribute = [
-            NSAttributedString.Key.font: Constants.messageFont()
+            NSAttributedStringKey.font: Constants.messageFont()
         ]
         
         let nickname = self.message.sender?.nickname

@@ -36,7 +36,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         self.tableView.register(GroupChannelListEditableTableViewCell.nib(), forCellReuseIdentifier: GroupChannelListEditableTableViewCell.cellReuseIdentifier())
         
         self.refreshControl = UIRefreshControl()
-        self.refreshControl?.addTarget(self, action: #selector(refreshChannelList), for: UIControl.Event.valueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(refreshChannelList), for: UIControlEvents.valueChanged)
         self.tableView.addSubview(self.refreshControl!)
         
         self.setDefaultNavigationItems()
@@ -91,26 +91,26 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     }
 
     private func setDefaultNavigationItems() {
-        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
+        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeLeftSpacer.width = -2
-        let negativeRightSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
+        let negativeRightSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeRightSpacer.width = -2
         
-        let leftBackItem = UIBarButtonItem(image: UIImage(named: "btn_back"), style: UIBarButtonItem.Style.done, target: self, action: #selector(back))
-        let rightCreateGroupChannelItem = UIBarButtonItem(image: UIImage(named: "btn_plus"), style: UIBarButtonItem.Style.done, target: self, action: #selector(createGroupChannel))
-        let rightEditItem = UIBarButtonItem(image: UIImage(named: "btn_edit"), style: UIBarButtonItem.Style.done, target: self, action: #selector(editGroupChannel))
-        rightEditItem.imageInsets = UIEdgeInsets.init(top: 0, left: 14, bottom: 0, right: -14)
+        let leftBackItem = UIBarButtonItem(image: UIImage(named: "btn_back"), style: UIBarButtonItemStyle.done, target: self, action: #selector(back))
+        let rightCreateGroupChannelItem = UIBarButtonItem(image: UIImage(named: "btn_plus"), style: UIBarButtonItemStyle.done, target: self, action: #selector(createGroupChannel))
+        let rightEditItem = UIBarButtonItem(image: UIImage(named: "btn_edit"), style: UIBarButtonItemStyle.done, target: self, action: #selector(editGroupChannel))
+        rightEditItem.imageInsets = UIEdgeInsetsMake(0, 14, 0, -14)
         
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftBackItem]
         self.navItem.rightBarButtonItems = [negativeRightSpacer, rightCreateGroupChannelItem, rightEditItem]
     }
     
     private func setEditableNavigationItems() {
-        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
+        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeLeftSpacer.width = -2
         
-        let leftBackItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "DoneButton"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(done))
-        leftBackItem.setTitleTextAttributes([NSAttributedString.Key.font: Constants.navigationBarButtonItemFont()], for: UIControl.State.normal)
+        let leftBackItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "DoneButton"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(done))
+        leftBackItem.setTitleTextAttributes([NSAttributedStringKey.font: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
         
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftBackItem]
         self.navItem.rightBarButtonItems = []
@@ -139,11 +139,11 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             
             DispatchQueue.main.async {
                 if self.channels.count == 0 {
-                    self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+                    self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
                     self.noChannelLabel.isHidden = false
                 }
                 else {
-                    self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+                    self.tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
                     self.noChannelLabel.isHidden = true
                 }
                 
@@ -170,8 +170,8 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
                             self.refreshControl?.endRefreshing()
                         }
                         
-                        let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-                        let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+                        let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
+                        let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
                         vc.addAction(closeAction)
                         DispatchQueue.main.async {
                             self.present(vc, animated: true, completion: nil)
@@ -298,8 +298,8 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             // Hide
             selectedChannel.hide(withHidePreviousMessages: false, completionHandler: { (error) in
                 if error != nil {
-                    let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-                    let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+                    let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
+                    let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
                     vc.addAction(closeAction)
                     DispatchQueue.main.async {
                         self.present(vc, animated: true, completion: nil)
@@ -320,8 +320,8 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             // Leave
             selectedChannel.leave(completionHandler: { (error) in
                 if error != nil {
-                    let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-                    let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+                    let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
+                    let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
                     vc.addAction(closeAction)
                     DispatchQueue.main.async {
                         self.present(vc, animated: true, completion: nil)

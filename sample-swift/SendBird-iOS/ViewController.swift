@@ -44,12 +44,12 @@ class ViewController: UITableViewController, UITextFieldDelegate {
         self.userIdLineView.backgroundColor = Constants.textFieldLineColorNormal()
         self.nicknameLineView.backgroundColor = Constants.textFieldLineColorNormal()
         
-        self.connectButton.setBackgroundImage(Utils.imageFromColor(color: Constants.connectButtonColor()), for: UIControl.State.normal)
+        self.connectButton.setBackgroundImage(Utils.imageFromColor(color: Constants.connectButtonColor()), for: UIControlState.normal)
         
         self.indicatorView.hidesWhenStopped = true
         
-        self.userIdTextField.addTarget(self, action: #selector(userIdTextFieldDidChange(sender:)), for: UIControl.Event.editingChanged)
-        self.nicknameTextField.addTarget(self, action: #selector(nicknameTextFieldDidChange(sender:)), for: UIControl.Event.editingChanged)
+        self.userIdTextField.addTarget(self, action: #selector(userIdTextFieldDidChange(sender:)), for: UIControlEvents.editingChanged)
+        self.nicknameTextField.addTarget(self, action: #selector(nicknameTextFieldDidChange(sender:)), for: UIControlEvents.editingChanged)
         
         
     }
@@ -80,8 +80,8 @@ class ViewController: UITableViewController, UITextFieldDelegate {
             }
             
             guard error == nil else {
-                let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-                let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+                let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
+                let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
                 vc.addAction(closeAction)
                 DispatchQueue.main.async {
                     self.present(vc, animated: true, completion: nil)

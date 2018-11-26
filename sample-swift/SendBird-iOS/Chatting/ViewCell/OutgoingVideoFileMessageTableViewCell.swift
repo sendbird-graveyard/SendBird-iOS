@@ -78,8 +78,8 @@ class OutgoingVideoFileMessageTableViewCell: UITableViewCell {
         self.fileImageView.isUserInteractionEnabled = true
         self.fileImageView.addGestureRecognizer(messageContainerTapRecognizer)
         
-        self.resendMessageButton.addTarget(self, action: #selector(clickResendUserMessage), for: UIControl.Event.touchUpInside)
-        self.deleteMessageButton.addTarget(self, action: #selector(clickDeleteUserMessage), for: UIControl.Event.touchUpInside)
+        self.resendMessageButton.addTarget(self, action: #selector(clickResendUserMessage), for: UIControlEvents.touchUpInside)
+        self.deleteMessageButton.addTarget(self, action: #selector(clickDeleteUserMessage), for: UIControlEvents.touchUpInside)
         
         // Unread message count
         if self.message.channelType == CHANNEL_TYPE_GROUP {
@@ -101,8 +101,8 @@ class OutgoingVideoFileMessageTableViewCell: UITableViewCell {
         
         // Message Date
         let messageDateAttribute = [
-            NSAttributedString.Key.font: Constants.messageDateFont(),
-            NSAttributedString.Key.foregroundColor: Constants.messageDateColor()
+            NSAttributedStringKey.font: Constants.messageDateFont(),
+            NSAttributedStringKey.foregroundColor: Constants.messageDateColor()
         ]
         
         let messageTimestamp = Double(self.message.createdAt) / 1000.0

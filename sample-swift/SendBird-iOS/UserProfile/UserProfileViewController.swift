@@ -29,15 +29,15 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let negativeRightSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
+        let negativeRightSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeRightSpacer.width = -2
-        let rightDisconnectItem = UIBarButtonItem(title: "Save", style: UIBarButtonItem.Style.plain, target: self, action: #selector(save))
-        rightDisconnectItem.setTitleTextAttributes([NSAttributedString.Key.font: Constants.navigationBarButtonItemFont()], for: UIControl.State.normal)
+        let rightDisconnectItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain, target: self, action: #selector(save))
+        rightDisconnectItem.setTitleTextAttributes([NSAttributedStringKey.font: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
         
-        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
+        let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
         negativeLeftSpacer.width = -2
-        let leftProfileItem = UIBarButtonItem(title: "Close", style: UIBarButtonItem.Style.plain, target: self, action: #selector(save))
-        leftProfileItem.setTitleTextAttributes([NSAttributedString.Key.font: Constants.navigationBarButtonItemFont()], for: UIControl.State.normal)
+        let leftProfileItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.plain, target: self, action: #selector(save))
+        leftProfileItem.setTitleTextAttributes([NSAttributedStringKey.font: Constants.navigationBarButtonItemFont()], for: UIControlState.normal)
 
         self.navItem.rightBarButtonItems = [negativeRightSpacer, rightDisconnectItem]
         self.navItem.leftBarButtonItems = [negativeLeftSpacer, leftProfileItem]
@@ -124,8 +124,8 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
                 })
 #else
                 if hasUpdatedUserInfo == false {
-                    let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-                    let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+                    let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
+                    let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
                     vc.addAction(closeAction)
                     DispatchQueue.main.async {
                         self.present(vc, animated: true, completion: nil)
@@ -192,8 +192,8 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
                 })
 #else
                 if hasUpdatedUserInfo == false {
-                    let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-                    let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+                    let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
+                    let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertActionStyle.cancel, handler: nil)
                     vc.addAction(closeAction)
                     DispatchQueue.main.async {
                         self.present(vc, animated: true, completion: nil)
@@ -216,7 +216,7 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     @objc func clickProfileImage() {
         let mediaUI = UIImagePickerController()
-        mediaUI.sourceType = UIImagePickerController.SourceType.photoLibrary
+        mediaUI.sourceType = UIImagePickerControllerSourceType.photoLibrary
         let mediaTypes = [String(kUTTypeImage)]
         mediaUI.mediaTypes = mediaTypes
         mediaUI.delegate = self
@@ -224,14 +224,11 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     //MARK: UIImagePickerControllerDelegate
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
-        let mediaType = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaType)] as! String
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let mediaType = info[UIImagePickerControllerMediaType] as! String
         picker.dismiss(animated: true) { 
             if CFStringCompare(mediaType as CFString, kUTTypeImage, []) == CFComparisonResult.compareEqualTo {
-                let imagePath: URL = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)] as! URL
+                let imagePath: URL = info[UIImagePickerControllerReferenceURL] as! URL
                 let asset: PHAsset = PHAsset.fetchAssets(withALAssetURLs: [imagePath], options: nil).lastObject!
                 let options: PHImageRequestOptions = PHImageRequestOptions()
                 options.isSynchronous = true
@@ -278,7 +275,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     // The original image has been cropped. Additionally provides a rotation angle used to produce image.
     func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect, rotationAngle: CGFloat) {
         self.profileImageView.image = croppedImage
-        self.profileImageData = croppedImage.jpegData(compressionQuality: 1)
+        self.profileImageData = UIImageJPEGRepresentation(croppedImage, 1)
         controller.dismiss(animated: false, completion: nil)
     }
     
@@ -286,14 +283,4 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     func imageCropViewController(_ controller: RSKImageCropViewController, willCropImage originalImage: UIImage) {
         // Use when `applyMaskToCroppedImage` set to YES.
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
 }

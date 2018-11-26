@@ -126,7 +126,7 @@ class OutgoingGeneralUrlPreviewTempMessageTableViewCell: UITableViewCell {
     
     func buildMessage() -> NSAttributedString {
         let messageAttribute = [
-            NSAttributedString.Key.font: Constants.messageFont()
+            NSAttributedStringKey.font: Constants.messageFont()
         ]
         
         let message = self.message?.message
