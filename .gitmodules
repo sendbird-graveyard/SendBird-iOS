@@ -1,3 +1,6 @@
-[submodule "Sample-Swift"]
-	path = Sample-Swift
+[submodule "Objective-C"]
+	path = Objective-C
+	url = git@github.com:smilefam/SendBird-iOS-ObjectiveC.git
+[submodule "Swift"]
+	path = Swift
 	url = git@github.com:smilefam/SendBird-iOS-Swift.git
