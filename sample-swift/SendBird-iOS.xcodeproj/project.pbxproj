@@ -1,0 +1,1415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		875BF66943D4A22B9064F1B1 /* Pods_SendBird_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2F8289F5E5EFDE1D2C9038 /* Pods_SendBird_iOS.framework */; };
+		E21C53E52195DB7900782B60 /* GroupChannelSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21C53E32195DB7900782B60 /* GroupChannelSettingsViewController.swift */; };
+		E21C53E62195DB7900782B60 /* GroupChannelSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E21C53E42195DB7900782B60 /* GroupChannelSettingsViewController.xib */; };
+		E21CDFC52165619000839683 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CDFC42165619000839683 /* AppDelegate.swift */; };
+		E21CDFC72165619000839683 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CDFC62165619000839683 /* ViewController.swift */; };
+		E21CDFCA2165619000839683 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21CDFC82165619000839683 /* Main.storyboard */; };
+		E21CDFCC2165619100839683 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E21CDFCB2165619100839683 /* Assets.xcassets */; };
+		E21CDFCF2165619100839683 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21CDFCD2165619100839683 /* LaunchScreen.storyboard */; };
+		E21CDFDB2165761300839683 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CDFDA2165761300839683 /* LoginViewController.swift */; };
+		E21CDFDF216576C000839683 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CDFDE216576C000839683 /* CustomButton.swift */; };
+		E21CDFE12165780900839683 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21CDFE02165780900839683 /* CustomTextField.swift */; };
+		E23CF9FD217FD69600A946E8 /* OpenChannelSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23CF9FB217FD69600A946E8 /* OpenChannelSettingsViewController.swift */; };
+		E23CF9FE217FD69600A946E8 /* OpenChannelSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E23CF9FC217FD69600A946E8 /* OpenChannelSettingsViewController.xib */; };
+		E23CFA002180D6E000A946E8 /* Array+SendBird.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23CF9FF2180D6E000A946E8 /* Array+SendBird.swift */; };
+		E27E3ECE21711AD10082C91C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3ECD21711AD10082C91C /* Utils.swift */; };
+		E27E3ED0217120320082C91C /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3ECF217120310082C91C /* UIViewController+Utils.swift */; };
+		E27E3ED7217123160082C91C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3ED5217123160082C91C /* MainTabBarController.swift */; };
+		E27E3ED8217123160082C91C /* MainTabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3ED6217123160082C91C /* MainTabBarController.xib */; };
+		E27E3EE321712D2D0082C91C /* GroupChannelsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3EE221712D2D0082C91C /* GroupChannelsNavigationController.swift */; };
+		E27E3EE521713DF00082C91C /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3EE421713DF00082C91C /* NotificationDelegate.swift */; };
+		E27E3EE9217156A60082C91C /* GroupChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3EE7217156A60082C91C /* GroupChannelsViewController.swift */; };
+		E27E3EEA217156A60082C91C /* GroupChannelsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3EE8217156A60082C91C /* GroupChannelsViewController.xib */; };
+		E27E3EEC217159E30082C91C /* CustomActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3EEB217159E30082C91C /* CustomActivityIndicatorView.swift */; };
+		E27E3EEF21716FB40082C91C /* GroupChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3EED21716FB40082C91C /* GroupChannelTableViewCell.swift */; };
+		E27E3EF021716FB40082C91C /* GroupChannelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3EEE21716FB40082C91C /* GroupChannelTableViewCell.xib */; };
+		E27E3EF32174D8920082C91C /* loading_typing.gif in Resources */ = {isa = PBXBuildFile; fileRef = E27E3EF22174D8920082C91C /* loading_typing.gif */; };
+		E27E3EF52174F28F0082C91C /* CreateGroupChannelViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3EF42174F28F0082C91C /* CreateGroupChannelViewControllerDelegate.swift */; };
+		E27E3EF72174F3E30082C91C /* GroupChannelsUpdateListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3EF62174F3E30082C91C /* GroupChannelsUpdateListDelegate.swift */; };
+		E27E3EFD217513C30082C91C /* CreateGroupChannelNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3EFC217513C30082C91C /* CreateGroupChannelNavigationController.swift */; };
+		E27E3F00217514760082C91C /* CreateGroupChannelViewControllerA.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3EFE217514760082C91C /* CreateGroupChannelViewControllerA.swift */; };
+		E27E3F01217514760082C91C /* CreateGroupChannelViewControllerA.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3EFF217514760082C91C /* CreateGroupChannelViewControllerA.xib */; };
+		E27E3F0421751A970082C91C /* SelectGroupChannelMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F0221751A970082C91C /* SelectGroupChannelMemberTableViewCell.swift */; };
+		E27E3F0521751A970082C91C /* SelectGroupChannelMemberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F0321751A970082C91C /* SelectGroupChannelMemberTableViewCell.xib */; };
+		E27E3F08217532F50082C91C /* CreateGroupChannelViewControllerB.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F06217532F50082C91C /* CreateGroupChannelViewControllerB.swift */; };
+		E27E3F09217532F50082C91C /* CreateGroupChannelViewControllerB.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F07217532F50082C91C /* CreateGroupChannelViewControllerB.xib */; };
+		E27E3F0B21753E970082C91C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F0A21753E970082C91C /* Constants.swift */; };
+		E27E3F1021765F600082C91C /* OpenChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F0E21765F600082C91C /* OpenChannelTableViewCell.swift */; };
+		E27E3F1121765F600082C91C /* OpenChannelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F0F21765F600082C91C /* OpenChannelTableViewCell.xib */; };
+		E27E3F132176618F0082C91C /* OpenChannelsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F122176618F0082C91C /* OpenChannelsNavigationController.swift */; };
+		E27E3F16217661EE0082C91C /* OpenChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F14217661EE0082C91C /* OpenChannelsViewController.swift */; };
+		E27E3F17217661EE0082C91C /* OpenChannelsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F15217661EE0082C91C /* OpenChannelsViewController.xib */; };
+		E27E3F19217662EC0082C91C /* CreateOpenChannelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F18217662EC0082C91C /* CreateOpenChannelDelegate.swift */; };
+		E27E3F1B217663350082C91C /* OpenChanannelChatDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F1A217663350082C91C /* OpenChanannelChatDelegate.swift */; };
+		E27E3F21217670B00082C91C /* CreateOpenChannelNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F20217670B00082C91C /* CreateOpenChannelNavigationController.swift */; };
+		E27E3F24217671000082C91C /* CreateOpenChannelViewControllerA.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F22217671000082C91C /* CreateOpenChannelViewControllerA.swift */; };
+		E27E3F25217671000082C91C /* CreateOpenChannelViewControllerA.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F23217671000082C91C /* CreateOpenChannelViewControllerA.xib */; };
+		E27E3F28217690FF0082C91C /* CreateOpenChannelViewControllerB.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F26217690FF0082C91C /* CreateOpenChannelViewControllerB.swift */; };
+		E27E3F29217690FF0082C91C /* CreateOpenChannelViewControllerB.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F27217690FF0082C91C /* CreateOpenChannelViewControllerB.xib */; };
+		E27E3F2B217691870082C91C /* SelectOperatorsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F2A217691870082C91C /* SelectOperatorsDelegate.swift */; };
+		E27E3F2E2176927F0082C91C /* CreateOpenChannelChannelUrlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F2C2176927F0082C91C /* CreateOpenChannelChannelUrlTableViewCell.swift */; };
+		E27E3F2F2176927F0082C91C /* CreateOpenChannelChannelUrlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F2D2176927F0082C91C /* CreateOpenChannelChannelUrlTableViewCell.xib */; };
+		E27E3F32217692950082C91C /* CreateOpenChannelOperatorSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F30217692950082C91C /* CreateOpenChannelOperatorSectionTableViewCell.swift */; };
+		E27E3F33217692950082C91C /* CreateOpenChannelOperatorSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F31217692950082C91C /* CreateOpenChannelOperatorSectionTableViewCell.xib */; };
+		E27E3F36217692A60082C91C /* CreateOpenChannelAddOperatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F34217692A60082C91C /* CreateOpenChannelAddOperatorTableViewCell.swift */; };
+		E27E3F37217692A60082C91C /* CreateOpenChannelAddOperatorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F35217692A60082C91C /* CreateOpenChannelAddOperatorTableViewCell.xib */; };
+		E27E3F3A217692BA0082C91C /* CreateOpenChannelCurrentUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F38217692BA0082C91C /* CreateOpenChannelCurrentUserTableViewCell.swift */; };
+		E27E3F3B217692BA0082C91C /* CreateOpenChannelCurrentUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F39217692BA0082C91C /* CreateOpenChannelCurrentUserTableViewCell.xib */; };
+		E27E3F3E217692CD0082C91C /* CreateOpenChannelOperatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F3C217692CD0082C91C /* CreateOpenChannelOperatorTableViewCell.swift */; };
+		E27E3F3F217692CD0082C91C /* CreateOpenChannelOperatorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F3D217692CD0082C91C /* CreateOpenChannelOperatorTableViewCell.xib */; };
+		E27E3F422176987C0082C91C /* SelectOperatorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F402176987C0082C91C /* SelectOperatorsTableViewCell.swift */; };
+		E27E3F432176987C0082C91C /* SelectOperatorsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F412176987C0082C91C /* SelectOperatorsTableViewCell.xib */; };
+		E27E3F46217797BE0082C91C /* SelectOperatorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F44217797BE0082C91C /* SelectOperatorsViewController.swift */; };
+		E27E3F47217797BE0082C91C /* SelectOperatorsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F45217797BE0082C91C /* SelectOperatorsViewController.xib */; };
+		E27E3F4C2177A88C0082C91C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F4A2177A88C0082C91C /* SettingsViewController.swift */; };
+		E27E3F4D2177A88C0082C91C /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F4B2177A88C0082C91C /* SettingsViewController.xib */; };
+		E27E3F502177A8A10082C91C /* UpdateUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F4E2177A8A10082C91C /* UpdateUserProfileViewController.swift */; };
+		E27E3F512177A8A10082C91C /* UpdateUserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F4F2177A8A10082C91C /* UpdateUserProfileViewController.xib */; };
+		E27E3F542177A8B50082C91C /* SettingsBlockedUserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F522177A8B50082C91C /* SettingsBlockedUserListViewController.swift */; };
+		E27E3F552177A8B50082C91C /* SettingsBlockedUserListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F532177A8B50082C91C /* SettingsBlockedUserListViewController.xib */; };
+		E27E3F572177A8D90082C91C /* SettingsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F562177A8D90082C91C /* SettingsNavigationController.swift */; };
+		E27E3F592177A9E70082C91C /* SettingsTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F582177A9E70082C91C /* SettingsTableViewCellDelegate.swift */; };
+		E27E3F5B2177AA1E0082C91C /* SettingsTimePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F5A2177AA1E0082C91C /* SettingsTimePickerDelegate.swift */; };
+		E27E3F5D2177AA530082C91C /* UserProfileImageNameSettingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F5C2177AA530082C91C /* UserProfileImageNameSettingDelegate.swift */; };
+		E27E3F602177B3C50082C91C /* SettingsProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F5E2177B3C50082C91C /* SettingsProfileTableViewCell.swift */; };
+		E27E3F612177B3C50082C91C /* SettingsProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F5F2177B3C50082C91C /* SettingsProfileTableViewCell.xib */; };
+		E27E3F642177B4AC0082C91C /* SettingsSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F622177B4AC0082C91C /* SettingsSectionTableViewCell.swift */; };
+		E27E3F652177B4AC0082C91C /* SettingsSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F632177B4AC0082C91C /* SettingsSectionTableViewCell.xib */; };
+		E27E3F682177B5770082C91C /* SettingsSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F662177B5770082C91C /* SettingsSwitchTableViewCell.swift */; };
+		E27E3F692177B5770082C91C /* SettingsSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F672177B5770082C91C /* SettingsSwitchTableViewCell.xib */; };
+		E27E3F6E2177B7BD0082C91C /* SettingsTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F6C2177B7BD0082C91C /* SettingsTimeTableViewCell.swift */; };
+		E27E3F6F2177B7BD0082C91C /* SettingsTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F6D2177B7BD0082C91C /* SettingsTimeTableViewCell.xib */; };
+		E27E3F722177B8DA0082C91C /* SettingsGeneralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F702177B8DA0082C91C /* SettingsGeneralTableViewCell.swift */; };
+		E27E3F732177B8DA0082C91C /* SettingsGeneralTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F712177B8DA0082C91C /* SettingsGeneralTableViewCell.xib */; };
+		E27E3F762177B94F0082C91C /* SettingsSignOutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F742177B94F0082C91C /* SettingsSignOutTableViewCell.swift */; };
+		E27E3F772177B94F0082C91C /* SettingsSignOutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F752177B94F0082C91C /* SettingsSignOutTableViewCell.xib */; };
+		E27E3F7A2177B9860082C91C /* SettingsVersionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F782177B9860082C91C /* SettingsVersionTableViewCell.swift */; };
+		E27E3F7B2177B9860082C91C /* SettingsVersionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F792177B9860082C91C /* SettingsVersionTableViewCell.xib */; };
+		E27E3F7E2177BA280082C91C /* SettingsDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F7C2177BA280082C91C /* SettingsDescriptionTableViewCell.swift */; };
+		E27E3F7F2177BA280082C91C /* SettingsDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F7D2177BA280082C91C /* SettingsDescriptionTableViewCell.xib */; };
+		E27E3F822177BACB0082C91C /* BlockedUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F802177BACB0082C91C /* BlockedUserTableViewCell.swift */; };
+		E27E3F832177BACB0082C91C /* BlockedUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F812177BACB0082C91C /* BlockedUserTableViewCell.xib */; };
+		E27E3F862177BB7C0082C91C /* SettingsTimePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F842177BB7C0082C91C /* SettingsTimePickerTableViewCell.swift */; };
+		E27E3F872177BB7C0082C91C /* SettingsTimePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F852177BB7C0082C91C /* SettingsTimePickerTableViewCell.xib */; };
+		E27E3F8B2177BC8C0082C91C /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F892177BC8C0082C91C /* UserProfileViewController.swift */; };
+		E27E3F8C2177BC8C0082C91C /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F8A2177BC8C0082C91C /* UserProfileViewController.xib */; };
+		E27E3F91217910F50082C91C /* OpenChannelUserMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F8F217910F50082C91C /* OpenChannelUserMessageTableViewCell.swift */; };
+		E27E3F92217910F50082C91C /* OpenChannelUserMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F90217910F50082C91C /* OpenChannelUserMessageTableViewCell.xib */; };
+		E27E3F952179110E0082C91C /* OpenChannelImageVideoFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F932179110E0082C91C /* OpenChannelImageVideoFileMessageTableViewCell.swift */; };
+		E27E3F962179110E0082C91C /* OpenChannelImageVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F942179110E0082C91C /* OpenChannelImageVideoFileMessageTableViewCell.xib */; };
+		E27E3F99217911240082C91C /* OpenChannelGeneralFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F97217911240082C91C /* OpenChannelGeneralFileMessageTableViewCell.swift */; };
+		E27E3F9A217911240082C91C /* OpenChannelGeneralFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F98217911240082C91C /* OpenChannelGeneralFileMessageTableViewCell.xib */; };
+		E27E3F9D2179113B0082C91C /* OpenChannelAdminMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F9B2179113B0082C91C /* OpenChannelAdminMessageTableViewCell.swift */; };
+		E27E3F9E2179113B0082C91C /* OpenChannelAdminMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3F9C2179113B0082C91C /* OpenChannelAdminMessageTableViewCell.xib */; };
+		E27E3FA1217911520082C91C /* OpenChannelAudioFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3F9F217911520082C91C /* OpenChannelAudioFileMessageTableViewCell.swift */; };
+		E27E3FA2217911520082C91C /* OpenChannelAudioFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3FA0217911520082C91C /* OpenChannelAudioFileMessageTableViewCell.xib */; };
+		E27E3FA4217911690082C91C /* OpenChannelMessageTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3FA3217911690082C91C /* OpenChannelMessageTableViewCellDelegate.swift */; };
+		E27E3FA721793D480082C91C /* OpenChannelChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3FA521793D480082C91C /* OpenChannelChatViewController.swift */; };
+		E27E3FA821793D480082C91C /* OpenChannelChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E27E3FA621793D480082C91C /* OpenChannelChatViewController.xib */; };
+		E27E3FAA21793E7E0082C91C /* CustomProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3FA921793E7E0082C91C /* CustomProgressCircle.swift */; };
+		E27E3FAC217A7A190082C91C /* FLAnimatedImageView+ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3FAB217A7A190082C91C /* FLAnimatedImageView+ImageLoader.swift */; };
+		E27E3FAF217E23460082C91C /* OpenChannelSettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3FAE217E23460082C91C /* OpenChannelSettingsDelegate.swift */; };
+		E27E3FB1217E70C60082C91C /* String+SendBird.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3FB0217E70C60082C91C /* String+SendBird.swift */; };
+		E27E3FB4217E83D10082C91C /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27E3FB3217E83D10082C91C /* DownloadManager.swift */; };
+		E2980000219F3A8A009F83D0 /* GroupChannelInviteMemberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E298FFFE219F3A8A009F83D0 /* GroupChannelInviteMemberTableViewCell.xib */; };
+		E2980003219F43E6009F83D0 /* GroupChannelSettingsSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2980001219F43E6009F83D0 /* GroupChannelSettingsSectionTableViewCell.swift */; };
+		E2980004219F43E6009F83D0 /* GroupChannelSettingsSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2980002219F43E6009F83D0 /* GroupChannelSettingsSectionTableViewCell.xib */; };
+		E2980007219F4919009F83D0 /* GroupChannelInviteMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2980005219F4919009F83D0 /* GroupChannelInviteMemberViewController.swift */; };
+		E2980008219F4919009F83D0 /* GroupChannelInviteMemberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2980006219F4919009F83D0 /* GroupChannelInviteMemberViewController.xib */; };
+		E298000B219F4938009F83D0 /* GroupChannelCoverImageNameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2980009219F4938009F83D0 /* GroupChannelCoverImageNameSettingViewController.swift */; };
+		E298000C219F4938009F83D0 /* GroupChannelCoverImageNameSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E298000A219F4938009F83D0 /* GroupChannelCoverImageNameSettingViewController.xib */; };
+		E298000E219F5053009F83D0 /* GroupChannelInviteMemberDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298000D219F5053009F83D0 /* GroupChannelInviteMemberDelegate.swift */; };
+		E2980010219F509F009F83D0 /* GroupChannelCoverImageNameSettingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298000F219F509F009F83D0 /* GroupChannelCoverImageNameSettingDelegate.swift */; };
+		E298FFE5219F1FCC009F83D0 /* GroupChannelSettingsChannelCoverNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298FFE3219F1FCC009F83D0 /* GroupChannelSettingsChannelCoverNameTableViewCell.swift */; };
+		E298FFE6219F1FCC009F83D0 /* GroupChannelSettingsChannelCoverNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E298FFE4219F1FCC009F83D0 /* GroupChannelSettingsChannelCoverNameTableViewCell.xib */; };
+		E298FFE8219F20C6009F83D0 /* GroupChannelSettingsTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298FFE7219F20C6009F83D0 /* GroupChannelSettingsTableViewCellDelegate.swift */; };
+		E298FFEB219F23A2009F83D0 /* GroupChannelSettingsBlankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298FFE9219F23A2009F83D0 /* GroupChannelSettingsBlankTableViewCell.swift */; };
+		E298FFEC219F23A2009F83D0 /* GroupChannelSettingsBlankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E298FFEA219F23A2009F83D0 /* GroupChannelSettingsBlankTableViewCell.xib */; };
+		E298FFEF219F243D009F83D0 /* GroupChannelSettingsNotificationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298FFED219F243D009F83D0 /* GroupChannelSettingsNotificationsTableViewCell.swift */; };
+		E298FFF0219F243D009F83D0 /* GroupChannelSettingsNotificationsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E298FFEE219F243D009F83D0 /* GroupChannelSettingsNotificationsTableViewCell.xib */; };
+		E298FFF3219F2AF6009F83D0 /* GroupChannelSettingsInviteMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298FFF1219F2AF6009F83D0 /* GroupChannelSettingsInviteMemberTableViewCell.swift */; };
+		E298FFF4219F2AF6009F83D0 /* GroupChannelSettingsInviteMemberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E298FFF2219F2AF6009F83D0 /* GroupChannelSettingsInviteMemberTableViewCell.xib */; };
+		E298FFF7219F2D38009F83D0 /* GroupChannelSettingsMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298FFF5219F2D38009F83D0 /* GroupChannelSettingsMemberTableViewCell.swift */; };
+		E298FFF8219F2D38009F83D0 /* GroupChannelSettingsMemberTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E298FFF6219F2D38009F83D0 /* GroupChannelSettingsMemberTableViewCell.xib */; };
+		E298FFFB219F358A009F83D0 /* GroupChannelSettingsLeaveChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298FFF9219F358A009F83D0 /* GroupChannelSettingsLeaveChatTableViewCell.swift */; };
+		E298FFFC219F358A009F83D0 /* GroupChannelSettingsLeaveChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E298FFFA219F358A009F83D0 /* GroupChannelSettingsLeaveChatTableViewCell.xib */; };
+		E298FFFF219F3A8A009F83D0 /* GroupChannelInviteMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E298FFFD219F3A8A009F83D0 /* GroupChannelInviteMemberTableViewCell.swift */; };
+		E2D0C0CC218A41160080A5F3 /* CustomPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0CB218A41160080A5F3 /* CustomPhotosViewController.swift */; };
+		E2D0C0CF218A429E0080A5F3 /* PhotoViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0CE218A429E0080A5F3 /* PhotoViewer.swift */; };
+		E2D0C0D2218B82B80080A5F3 /* OpenChannelCoverImageNameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0D0218B82B80080A5F3 /* OpenChannelCoverImageNameSettingViewController.swift */; };
+		E2D0C0D3218B82B80080A5F3 /* OpenChannelCoverImageNameSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C0D1218B82B80080A5F3 /* OpenChannelCoverImageNameSettingViewController.xib */; };
+		E2D0C0D8218B83020080A5F3 /* OpenChannelSettingsChannelNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0D6218B83020080A5F3 /* OpenChannelSettingsChannelNameTableViewCell.swift */; };
+		E2D0C0D9218B83020080A5F3 /* OpenChannelSettingsChannelNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C0D7218B83020080A5F3 /* OpenChannelSettingsChannelNameTableViewCell.xib */; };
+		E2D0C0DC218B83140080A5F3 /* OpenChannelSettingsSeperatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0DA218B83140080A5F3 /* OpenChannelSettingsSeperatorTableViewCell.swift */; };
+		E2D0C0DD218B83140080A5F3 /* OpenChannelSettingsSeperatorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C0DB218B83140080A5F3 /* OpenChannelSettingsSeperatorTableViewCell.xib */; };
+		E2D0C0E0218B83260080A5F3 /* OpenChannelSettingsMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0DE218B83260080A5F3 /* OpenChannelSettingsMenuTableViewCell.swift */; };
+		E2D0C0E1218B83260080A5F3 /* OpenChannelSettingsMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C0DF218B83260080A5F3 /* OpenChannelSettingsMenuTableViewCell.xib */; };
+		E2D0C0E4218B83370080A5F3 /* OpenChannelSettingsMeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0E2218B83370080A5F3 /* OpenChannelSettingsMeTableViewCell.swift */; };
+		E2D0C0E5218B83370080A5F3 /* OpenChannelSettingsMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C0E3218B83370080A5F3 /* OpenChannelSettingsMeTableViewCell.xib */; };
+		E2D0C0E8218B834A0080A5F3 /* OpenChannelSettingsOperatorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0E6218B834A0080A5F3 /* OpenChannelSettingsOperatorTableViewCell.swift */; };
+		E2D0C0E9218B834A0080A5F3 /* OpenChannelSettingsOperatorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C0E7218B834A0080A5F3 /* OpenChannelSettingsOperatorTableViewCell.xib */; };
+		E2D0C0EC218B83610080A5F3 /* OpenChannelOperatorSectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0EA218B83610080A5F3 /* OpenChannelOperatorSectionTableViewCell.swift */; };
+		E2D0C0ED218B83610080A5F3 /* OpenChannelOperatorSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C0EB218B83610080A5F3 /* OpenChannelOperatorSectionTableViewCell.xib */; };
+		E2D0C0EF218B9FB50080A5F3 /* OpenChannelSettingsChannelNameTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0EE218B9FB50080A5F3 /* OpenChannelSettingsChannelNameTableViewCellDelegate.swift */; };
+		E2D0C0F1218BA88C0080A5F3 /* OpenChannelCoverImageNameSettingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0F0218BA88C0080A5F3 /* OpenChannelCoverImageNameSettingDelegate.swift */; };
+		E2D0C0F5218CC2530080A5F3 /* OpenChannelSettingsUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0F3218CC2530080A5F3 /* OpenChannelSettingsUserTableViewCell.swift */; };
+		E2D0C0F6218CC2530080A5F3 /* OpenChannelSettingsUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C0F4218CC2530080A5F3 /* OpenChannelSettingsUserTableViewCell.xib */; };
+		E2D0C0F9218CC40A0080A5F3 /* OpenChannelBannedUserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0F7218CC40A0080A5F3 /* OpenChannelBannedUserListViewController.swift */; };
+		E2D0C0FA218CC40A0080A5F3 /* OpenChannelBannedUserListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C0F8218CC40A0080A5F3 /* OpenChannelBannedUserListViewController.xib */; };
+		E2D0C0FD218CCDCD0080A5F3 /* OpenChannelMutedUserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0FB218CCDCD0080A5F3 /* OpenChannelMutedUserListViewController.swift */; };
+		E2D0C0FE218CCDCD0080A5F3 /* OpenChannelMutedUserListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C0FC218CCDCD0080A5F3 /* OpenChannelMutedUserListViewController.xib */; };
+		E2D0C101218CD3E40080A5F3 /* OpenChannelParticipantListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C0FF218CD3E40080A5F3 /* OpenChannelParticipantListViewController.swift */; };
+		E2D0C102218CD3E40080A5F3 /* OpenChannelParticipantListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C100218CD3E40080A5F3 /* OpenChannelParticipantListViewController.xib */; };
+		E2D0C105218D07120080A5F3 /* GroupChannelChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C103218D07120080A5F3 /* GroupChannelChatViewController.swift */; };
+		E2D0C106218D07120080A5F3 /* GroupChannelChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C104218D07120080A5F3 /* GroupChannelChatViewController.xib */; };
+		E2D0C108218D0AA10080A5F3 /* GroupChannelMessageTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C107218D0AA10080A5F3 /* GroupChannelMessageTableViewCellDelegate.swift */; };
+		E2D0C10A218D0B680080A5F3 /* GroupChannelSettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C109218D0B680080A5F3 /* GroupChannelSettingsDelegate.swift */; };
+		E2D0C12F219249E70080A5F3 /* GroupChannelIncomingUserMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C12D219249E70080A5F3 /* GroupChannelIncomingUserMessageTableViewCell.swift */; };
+		E2D0C130219249E70080A5F3 /* GroupChannelIncomingUserMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C12E219249E70080A5F3 /* GroupChannelIncomingUserMessageTableViewCell.xib */; };
+		E2D0C133219249FA0080A5F3 /* GroupChannelIncomingImageVideoFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C131219249FA0080A5F3 /* GroupChannelIncomingImageVideoFileMessageTableViewCell.swift */; };
+		E2D0C134219249FA0080A5F3 /* GroupChannelIncomingImageVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C132219249FA0080A5F3 /* GroupChannelIncomingImageVideoFileMessageTableViewCell.xib */; };
+		E2D0C13721924A0D0080A5F3 /* GroupChannelIncomingGeneralFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C13521924A0D0080A5F3 /* GroupChannelIncomingGeneralFileMessageTableViewCell.swift */; };
+		E2D0C13821924A0D0080A5F3 /* GroupChannelIncomingGeneralFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C13621924A0D0080A5F3 /* GroupChannelIncomingGeneralFileMessageTableViewCell.xib */; };
+		E2D0C13D21924A370080A5F3 /* GroupChannelOutgoingUserMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C13B21924A370080A5F3 /* GroupChannelOutgoingUserMessageTableViewCell.swift */; };
+		E2D0C13E21924A370080A5F3 /* GroupChannelOutgoingUserMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C13C21924A370080A5F3 /* GroupChannelOutgoingUserMessageTableViewCell.xib */; };
+		E2D0C14121924A4B0080A5F3 /* GroupChannelOutgoingImageVideoFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C13F21924A4B0080A5F3 /* GroupChannelOutgoingImageVideoFileMessageTableViewCell.swift */; };
+		E2D0C14221924A4B0080A5F3 /* GroupChannelOutgoingImageVideoFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C14021924A4B0080A5F3 /* GroupChannelOutgoingImageVideoFileMessageTableViewCell.xib */; };
+		E2D0C14521924A5D0080A5F3 /* GroupChannelOutgoingGeneralFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C14321924A5D0080A5F3 /* GroupChannelOutgoingGeneralFileMessageTableViewCell.swift */; };
+		E2D0C14621924A5D0080A5F3 /* GroupChannelOutgoingGeneralFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C14421924A5D0080A5F3 /* GroupChannelOutgoingGeneralFileMessageTableViewCell.xib */; };
+		E2D0C14921924A6F0080A5F3 /* GroupChannelOutgoingAudioFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C14721924A6F0080A5F3 /* GroupChannelOutgoingAudioFileMessageTableViewCell.swift */; };
+		E2D0C14A21924A6F0080A5F3 /* GroupChannelOutgoingAudioFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C14821924A6F0080A5F3 /* GroupChannelOutgoingAudioFileMessageTableViewCell.xib */; };
+		E2D0C14D21924A820080A5F3 /* GroupChannelNeutralAdminMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C14B21924A820080A5F3 /* GroupChannelNeutralAdminMessageTableViewCell.swift */; };
+		E2D0C14E21924A820080A5F3 /* GroupChannelNeutralAdminMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C14C21924A820080A5F3 /* GroupChannelNeutralAdminMessageTableViewCell.xib */; };
+		E2D0C15121935A580080A5F3 /* GroupChannelIncomingAudioFileMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0C14F21935A580080A5F3 /* GroupChannelIncomingAudioFileMessageTableViewCell.swift */; };
+		E2D0C15221935A580080A5F3 /* GroupChannelIncomingAudioFileMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D0C15021935A580080A5F3 /* GroupChannelIncomingAudioFileMessageTableViewCell.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D2F8289F5E5EFDE1D2C9038 /* Pods_SendBird_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SendBird_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E6C95EE3B9E1E3E5316ABBC /* Pods-SendBird-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		4AE17B58DD188A15F84A0409 /* Pods-SendBird-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		E21C53E32195DB7900782B60 /* GroupChannelSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelSettingsViewController.swift; sourceTree = "<group>"; };
+		E21C53E42195DB7900782B60 /* GroupChannelSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelSettingsViewController.xib; sourceTree = "<group>"; };
+		E21CDFC12165619000839683 /* SendBird-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SendBird-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E21CDFC42165619000839683 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E21CDFC62165619000839683 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E21CDFC92165619000839683 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E21CDFCB2165619100839683 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E21CDFCE2165619100839683 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E21CDFD02165619100839683 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E21CDFD72165751B00839683 /* loading_typing.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading_typing.gif; sourceTree = "<group>"; };
+		E21CDFDA2165761300839683 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E21CDFDE216576C000839683 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		E21CDFE02165780900839683 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		E23CF9FB217FD69600A946E8 /* OpenChannelSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelSettingsViewController.swift; sourceTree = "<group>"; };
+		E23CF9FC217FD69600A946E8 /* OpenChannelSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelSettingsViewController.xib; sourceTree = "<group>"; };
+		E23CF9FF2180D6E000A946E8 /* Array+SendBird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SendBird.swift"; sourceTree = "<group>"; };
+		E27E3ECD21711AD10082C91C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		E27E3ECF217120310082C91C /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
+		E27E3ED5217123160082C91C /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		E27E3ED6217123160082C91C /* MainTabBarController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTabBarController.xib; sourceTree = "<group>"; };
+		E27E3EE221712D2D0082C91C /* GroupChannelsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelsNavigationController.swift; sourceTree = "<group>"; };
+		E27E3EE421713DF00082C91C /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
+		E27E3EE621714EAB0082C91C /* SendBird-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "SendBird-iOS.entitlements"; sourceTree = "<group>"; };
+		E27E3EE7217156A60082C91C /* GroupChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelsViewController.swift; sourceTree = "<group>"; };
+		E27E3EE8217156A60082C91C /* GroupChannelsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelsViewController.xib; sourceTree = "<group>"; };
+		E27E3EEB217159E30082C91C /* CustomActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicatorView.swift; sourceTree = "<group>"; };
+		E27E3EED21716FB40082C91C /* GroupChannelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3EEE21716FB40082C91C /* GroupChannelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3EF22174D8920082C91C /* loading_typing.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading_typing.gif; sourceTree = "<group>"; };
+		E27E3EF42174F28F0082C91C /* CreateGroupChannelViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupChannelViewControllerDelegate.swift; sourceTree = "<group>"; };
+		E27E3EF62174F3E30082C91C /* GroupChannelsUpdateListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelsUpdateListDelegate.swift; sourceTree = "<group>"; };
+		E27E3EFC217513C30082C91C /* CreateGroupChannelNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupChannelNavigationController.swift; sourceTree = "<group>"; };
+		E27E3EFE217514760082C91C /* CreateGroupChannelViewControllerA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupChannelViewControllerA.swift; sourceTree = "<group>"; };
+		E27E3EFF217514760082C91C /* CreateGroupChannelViewControllerA.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateGroupChannelViewControllerA.xib; sourceTree = "<group>"; };
+		E27E3F0221751A970082C91C /* SelectGroupChannelMemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGroupChannelMemberTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F0321751A970082C91C /* SelectGroupChannelMemberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectGroupChannelMemberTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F06217532F50082C91C /* CreateGroupChannelViewControllerB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupChannelViewControllerB.swift; sourceTree = "<group>"; };
+		E27E3F07217532F50082C91C /* CreateGroupChannelViewControllerB.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateGroupChannelViewControllerB.xib; sourceTree = "<group>"; };
+		E27E3F0A21753E970082C91C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E27E3F0E21765F600082C91C /* OpenChannelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F0F21765F600082C91C /* OpenChannelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F122176618F0082C91C /* OpenChannelsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelsNavigationController.swift; sourceTree = "<group>"; };
+		E27E3F14217661EE0082C91C /* OpenChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelsViewController.swift; sourceTree = "<group>"; };
+		E27E3F15217661EE0082C91C /* OpenChannelsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelsViewController.xib; sourceTree = "<group>"; };
+		E27E3F18217662EC0082C91C /* CreateOpenChannelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOpenChannelDelegate.swift; sourceTree = "<group>"; };
+		E27E3F1A217663350082C91C /* OpenChanannelChatDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChanannelChatDelegate.swift; sourceTree = "<group>"; };
+		E27E3F20217670B00082C91C /* CreateOpenChannelNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOpenChannelNavigationController.swift; sourceTree = "<group>"; };
+		E27E3F22217671000082C91C /* CreateOpenChannelViewControllerA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOpenChannelViewControllerA.swift; sourceTree = "<group>"; };
+		E27E3F23217671000082C91C /* CreateOpenChannelViewControllerA.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateOpenChannelViewControllerA.xib; sourceTree = "<group>"; };
+		E27E3F26217690FF0082C91C /* CreateOpenChannelViewControllerB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOpenChannelViewControllerB.swift; sourceTree = "<group>"; };
+		E27E3F27217690FF0082C91C /* CreateOpenChannelViewControllerB.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateOpenChannelViewControllerB.xib; sourceTree = "<group>"; };
+		E27E3F2A217691870082C91C /* SelectOperatorsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectOperatorsDelegate.swift; sourceTree = "<group>"; };
+		E27E3F2C2176927F0082C91C /* CreateOpenChannelChannelUrlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOpenChannelChannelUrlTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F2D2176927F0082C91C /* CreateOpenChannelChannelUrlTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateOpenChannelChannelUrlTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F30217692950082C91C /* CreateOpenChannelOperatorSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOpenChannelOperatorSectionTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F31217692950082C91C /* CreateOpenChannelOperatorSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateOpenChannelOperatorSectionTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F34217692A60082C91C /* CreateOpenChannelAddOperatorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOpenChannelAddOperatorTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F35217692A60082C91C /* CreateOpenChannelAddOperatorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateOpenChannelAddOperatorTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F38217692BA0082C91C /* CreateOpenChannelCurrentUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOpenChannelCurrentUserTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F39217692BA0082C91C /* CreateOpenChannelCurrentUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateOpenChannelCurrentUserTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F3C217692CD0082C91C /* CreateOpenChannelOperatorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOpenChannelOperatorTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F3D217692CD0082C91C /* CreateOpenChannelOperatorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateOpenChannelOperatorTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F402176987C0082C91C /* SelectOperatorsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectOperatorsTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F412176987C0082C91C /* SelectOperatorsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectOperatorsTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F44217797BE0082C91C /* SelectOperatorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectOperatorsViewController.swift; sourceTree = "<group>"; };
+		E27E3F45217797BE0082C91C /* SelectOperatorsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectOperatorsViewController.xib; sourceTree = "<group>"; };
+		E27E3F4A2177A88C0082C91C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E27E3F4B2177A88C0082C91C /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		E27E3F4E2177A8A10082C91C /* UpdateUserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserProfileViewController.swift; sourceTree = "<group>"; };
+		E27E3F4F2177A8A10082C91C /* UpdateUserProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateUserProfileViewController.xib; sourceTree = "<group>"; };
+		E27E3F522177A8B50082C91C /* SettingsBlockedUserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBlockedUserListViewController.swift; sourceTree = "<group>"; };
+		E27E3F532177A8B50082C91C /* SettingsBlockedUserListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsBlockedUserListViewController.xib; sourceTree = "<group>"; };
+		E27E3F562177A8D90082C91C /* SettingsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavigationController.swift; sourceTree = "<group>"; };
+		E27E3F582177A9E70082C91C /* SettingsTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCellDelegate.swift; sourceTree = "<group>"; };
+		E27E3F5A2177AA1E0082C91C /* SettingsTimePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTimePickerDelegate.swift; sourceTree = "<group>"; };
+		E27E3F5C2177AA530082C91C /* UserProfileImageNameSettingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageNameSettingDelegate.swift; sourceTree = "<group>"; };
+		E27E3F5E2177B3C50082C91C /* SettingsProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F5F2177B3C50082C91C /* SettingsProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsProfileTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F622177B4AC0082C91C /* SettingsSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSectionTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F632177B4AC0082C91C /* SettingsSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsSectionTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F662177B5770082C91C /* SettingsSwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwitchTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F672177B5770082C91C /* SettingsSwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsSwitchTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F6C2177B7BD0082C91C /* SettingsTimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTimeTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F6D2177B7BD0082C91C /* SettingsTimeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTimeTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F702177B8DA0082C91C /* SettingsGeneralTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsGeneralTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F712177B8DA0082C91C /* SettingsGeneralTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsGeneralTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F742177B94F0082C91C /* SettingsSignOutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSignOutTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F752177B94F0082C91C /* SettingsSignOutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsSignOutTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F782177B9860082C91C /* SettingsVersionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVersionTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F792177B9860082C91C /* SettingsVersionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsVersionTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F7C2177BA280082C91C /* SettingsDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F7D2177BA280082C91C /* SettingsDescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsDescriptionTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F802177BACB0082C91C /* BlockedUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUserTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F812177BACB0082C91C /* BlockedUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockedUserTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F842177BB7C0082C91C /* SettingsTimePickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTimePickerTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F852177BB7C0082C91C /* SettingsTimePickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTimePickerTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F892177BC8C0082C91C /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		E27E3F8A2177BC8C0082C91C /* UserProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
+		E27E3F8F217910F50082C91C /* OpenChannelUserMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelUserMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F90217910F50082C91C /* OpenChannelUserMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelUserMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F932179110E0082C91C /* OpenChannelImageVideoFileMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelImageVideoFileMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F942179110E0082C91C /* OpenChannelImageVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelImageVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F97217911240082C91C /* OpenChannelGeneralFileMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelGeneralFileMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F98217911240082C91C /* OpenChannelGeneralFileMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelGeneralFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F9B2179113B0082C91C /* OpenChannelAdminMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelAdminMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3F9C2179113B0082C91C /* OpenChannelAdminMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelAdminMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3F9F217911520082C91C /* OpenChannelAudioFileMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelAudioFileMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E27E3FA0217911520082C91C /* OpenChannelAudioFileMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelAudioFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E27E3FA3217911690082C91C /* OpenChannelMessageTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelMessageTableViewCellDelegate.swift; sourceTree = "<group>"; };
+		E27E3FA521793D480082C91C /* OpenChannelChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelChatViewController.swift; sourceTree = "<group>"; };
+		E27E3FA621793D480082C91C /* OpenChannelChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelChatViewController.xib; sourceTree = "<group>"; };
+		E27E3FA921793E7E0082C91C /* CustomProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressCircle.swift; sourceTree = "<group>"; };
+		E27E3FAB217A7A190082C91C /* FLAnimatedImageView+ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FLAnimatedImageView+ImageLoader.swift"; sourceTree = "<group>"; };
+		E27E3FAE217E23460082C91C /* OpenChannelSettingsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelSettingsDelegate.swift; sourceTree = "<group>"; };
+		E27E3FB0217E70C60082C91C /* String+SendBird.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+SendBird.swift"; sourceTree = "<group>"; };
+		E27E3FB3217E83D10082C91C /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		E2980001219F43E6009F83D0 /* GroupChannelSettingsSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelSettingsSectionTableViewCell.swift; sourceTree = "<group>"; };
+		E2980002219F43E6009F83D0 /* GroupChannelSettingsSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelSettingsSectionTableViewCell.xib; sourceTree = "<group>"; };
+		E2980005219F4919009F83D0 /* GroupChannelInviteMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelInviteMemberViewController.swift; sourceTree = "<group>"; };
+		E2980006219F4919009F83D0 /* GroupChannelInviteMemberViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelInviteMemberViewController.xib; sourceTree = "<group>"; };
+		E2980009219F4938009F83D0 /* GroupChannelCoverImageNameSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelCoverImageNameSettingViewController.swift; sourceTree = "<group>"; };
+		E298000A219F4938009F83D0 /* GroupChannelCoverImageNameSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelCoverImageNameSettingViewController.xib; sourceTree = "<group>"; };
+		E298000D219F5053009F83D0 /* GroupChannelInviteMemberDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelInviteMemberDelegate.swift; sourceTree = "<group>"; };
+		E298000F219F509F009F83D0 /* GroupChannelCoverImageNameSettingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelCoverImageNameSettingDelegate.swift; sourceTree = "<group>"; };
+		E298FFE3219F1FCC009F83D0 /* GroupChannelSettingsChannelCoverNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelSettingsChannelCoverNameTableViewCell.swift; sourceTree = "<group>"; };
+		E298FFE4219F1FCC009F83D0 /* GroupChannelSettingsChannelCoverNameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelSettingsChannelCoverNameTableViewCell.xib; sourceTree = "<group>"; };
+		E298FFE7219F20C6009F83D0 /* GroupChannelSettingsTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelSettingsTableViewCellDelegate.swift; sourceTree = "<group>"; };
+		E298FFE9219F23A2009F83D0 /* GroupChannelSettingsBlankTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelSettingsBlankTableViewCell.swift; sourceTree = "<group>"; };
+		E298FFEA219F23A2009F83D0 /* GroupChannelSettingsBlankTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelSettingsBlankTableViewCell.xib; sourceTree = "<group>"; };
+		E298FFED219F243D009F83D0 /* GroupChannelSettingsNotificationsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelSettingsNotificationsTableViewCell.swift; sourceTree = "<group>"; };
+		E298FFEE219F243D009F83D0 /* GroupChannelSettingsNotificationsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelSettingsNotificationsTableViewCell.xib; sourceTree = "<group>"; };
+		E298FFF1219F2AF6009F83D0 /* GroupChannelSettingsInviteMemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelSettingsInviteMemberTableViewCell.swift; sourceTree = "<group>"; };
+		E298FFF2219F2AF6009F83D0 /* GroupChannelSettingsInviteMemberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelSettingsInviteMemberTableViewCell.xib; sourceTree = "<group>"; };
+		E298FFF5219F2D38009F83D0 /* GroupChannelSettingsMemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelSettingsMemberTableViewCell.swift; sourceTree = "<group>"; };
+		E298FFF6219F2D38009F83D0 /* GroupChannelSettingsMemberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelSettingsMemberTableViewCell.xib; sourceTree = "<group>"; };
+		E298FFF9219F358A009F83D0 /* GroupChannelSettingsLeaveChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelSettingsLeaveChatTableViewCell.swift; sourceTree = "<group>"; };
+		E298FFFA219F358A009F83D0 /* GroupChannelSettingsLeaveChatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelSettingsLeaveChatTableViewCell.xib; sourceTree = "<group>"; };
+		E298FFFD219F3A8A009F83D0 /* GroupChannelInviteMemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelInviteMemberTableViewCell.swift; sourceTree = "<group>"; };
+		E298FFFE219F3A8A009F83D0 /* GroupChannelInviteMemberTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelInviteMemberTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C0CB218A41160080A5F3 /* CustomPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotosViewController.swift; sourceTree = "<group>"; };
+		E2D0C0CE218A429E0080A5F3 /* PhotoViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewer.swift; sourceTree = "<group>"; };
+		E2D0C0D0218B82B80080A5F3 /* OpenChannelCoverImageNameSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelCoverImageNameSettingViewController.swift; sourceTree = "<group>"; };
+		E2D0C0D1218B82B80080A5F3 /* OpenChannelCoverImageNameSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelCoverImageNameSettingViewController.xib; sourceTree = "<group>"; };
+		E2D0C0D6218B83020080A5F3 /* OpenChannelSettingsChannelNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelSettingsChannelNameTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C0D7218B83020080A5F3 /* OpenChannelSettingsChannelNameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelSettingsChannelNameTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C0DA218B83140080A5F3 /* OpenChannelSettingsSeperatorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelSettingsSeperatorTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C0DB218B83140080A5F3 /* OpenChannelSettingsSeperatorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelSettingsSeperatorTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C0DE218B83260080A5F3 /* OpenChannelSettingsMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelSettingsMenuTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C0DF218B83260080A5F3 /* OpenChannelSettingsMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelSettingsMenuTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C0E2218B83370080A5F3 /* OpenChannelSettingsMeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelSettingsMeTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C0E3218B83370080A5F3 /* OpenChannelSettingsMeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelSettingsMeTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C0E6218B834A0080A5F3 /* OpenChannelSettingsOperatorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelSettingsOperatorTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C0E7218B834A0080A5F3 /* OpenChannelSettingsOperatorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelSettingsOperatorTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C0EA218B83610080A5F3 /* OpenChannelOperatorSectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelOperatorSectionTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C0EB218B83610080A5F3 /* OpenChannelOperatorSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelOperatorSectionTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C0EE218B9FB50080A5F3 /* OpenChannelSettingsChannelNameTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelSettingsChannelNameTableViewCellDelegate.swift; sourceTree = "<group>"; };
+		E2D0C0F0218BA88C0080A5F3 /* OpenChannelCoverImageNameSettingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelCoverImageNameSettingDelegate.swift; sourceTree = "<group>"; };
+		E2D0C0F3218CC2530080A5F3 /* OpenChannelSettingsUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelSettingsUserTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C0F4218CC2530080A5F3 /* OpenChannelSettingsUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelSettingsUserTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C0F7218CC40A0080A5F3 /* OpenChannelBannedUserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelBannedUserListViewController.swift; sourceTree = "<group>"; };
+		E2D0C0F8218CC40A0080A5F3 /* OpenChannelBannedUserListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelBannedUserListViewController.xib; sourceTree = "<group>"; };
+		E2D0C0FB218CCDCD0080A5F3 /* OpenChannelMutedUserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelMutedUserListViewController.swift; sourceTree = "<group>"; };
+		E2D0C0FC218CCDCD0080A5F3 /* OpenChannelMutedUserListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelMutedUserListViewController.xib; sourceTree = "<group>"; };
+		E2D0C0FF218CD3E40080A5F3 /* OpenChannelParticipantListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChannelParticipantListViewController.swift; sourceTree = "<group>"; };
+		E2D0C100218CD3E40080A5F3 /* OpenChannelParticipantListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenChannelParticipantListViewController.xib; sourceTree = "<group>"; };
+		E2D0C103218D07120080A5F3 /* GroupChannelChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelChatViewController.swift; sourceTree = "<group>"; };
+		E2D0C104218D07120080A5F3 /* GroupChannelChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelChatViewController.xib; sourceTree = "<group>"; };
+		E2D0C107218D0AA10080A5F3 /* GroupChannelMessageTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelMessageTableViewCellDelegate.swift; sourceTree = "<group>"; };
+		E2D0C109218D0B680080A5F3 /* GroupChannelSettingsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelSettingsDelegate.swift; sourceTree = "<group>"; };
+		E2D0C12D219249E70080A5F3 /* GroupChannelIncomingUserMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelIncomingUserMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C12E219249E70080A5F3 /* GroupChannelIncomingUserMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelIncomingUserMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C131219249FA0080A5F3 /* GroupChannelIncomingImageVideoFileMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelIncomingImageVideoFileMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C132219249FA0080A5F3 /* GroupChannelIncomingImageVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelIncomingImageVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C13521924A0D0080A5F3 /* GroupChannelIncomingGeneralFileMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelIncomingGeneralFileMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C13621924A0D0080A5F3 /* GroupChannelIncomingGeneralFileMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelIncomingGeneralFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C13B21924A370080A5F3 /* GroupChannelOutgoingUserMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelOutgoingUserMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C13C21924A370080A5F3 /* GroupChannelOutgoingUserMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelOutgoingUserMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C13F21924A4B0080A5F3 /* GroupChannelOutgoingImageVideoFileMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelOutgoingImageVideoFileMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C14021924A4B0080A5F3 /* GroupChannelOutgoingImageVideoFileMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelOutgoingImageVideoFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C14321924A5D0080A5F3 /* GroupChannelOutgoingGeneralFileMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelOutgoingGeneralFileMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C14421924A5D0080A5F3 /* GroupChannelOutgoingGeneralFileMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelOutgoingGeneralFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C14721924A6F0080A5F3 /* GroupChannelOutgoingAudioFileMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelOutgoingAudioFileMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C14821924A6F0080A5F3 /* GroupChannelOutgoingAudioFileMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelOutgoingAudioFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C14B21924A820080A5F3 /* GroupChannelNeutralAdminMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelNeutralAdminMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C14C21924A820080A5F3 /* GroupChannelNeutralAdminMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelNeutralAdminMessageTableViewCell.xib; sourceTree = "<group>"; };
+		E2D0C14F21935A580080A5F3 /* GroupChannelIncomingAudioFileMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChannelIncomingAudioFileMessageTableViewCell.swift; sourceTree = "<group>"; };
+		E2D0C15021935A580080A5F3 /* GroupChannelIncomingAudioFileMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupChannelIncomingAudioFileMessageTableViewCell.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E21CDFBE2165619000839683 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				875BF66943D4A22B9064F1B1 /* Pods_SendBird_iOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		62D50C290F9081E9FB190D9F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4AE17B58DD188A15F84A0409 /* Pods-SendBird-iOS.debug.xcconfig */,
+				2E6C95EE3B9E1E3E5316ABBC /* Pods-SendBird-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DDAA521D90BDFBA7AA74D1FA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1D2F8289F5E5EFDE1D2C9038 /* Pods_SendBird_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E21CDFB82165619000839683 = {
+			isa = PBXGroup;
+			children = (
+				E21CDFC32165619000839683 /* SendBird-iOS */,
+				E21CDFC22165619000839683 /* Products */,
+				62D50C290F9081E9FB190D9F /* Pods */,
+				DDAA521D90BDFBA7AA74D1FA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E21CDFC22165619000839683 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E21CDFC12165619000839683 /* SendBird-iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E21CDFC32165619000839683 /* SendBird-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3FB2217E83AE0082C91C /* DownloadManager */,
+				E27E3F882177BC130082C91C /* UserProfile */,
+				E27E3F482177A86D0082C91C /* Settings */,
+				E27E3F0C21765F230082C91C /* OpenChannel */,
+				E27E3EF12174D8770082C91C /* Images */,
+				E27E3EE621714EAB0082C91C /* SendBird-iOS.entitlements */,
+				E27E3ED921712C6D0082C91C /* GroupChannel */,
+				E21CDFDC2165767400839683 /* Misc */,
+				E21CDFD9216575EF00839683 /* Login */,
+				E21CDFD6216574F300839683 /* Images */,
+				E21CDFC42165619000839683 /* AppDelegate.swift */,
+				E21CDFC62165619000839683 /* ViewController.swift */,
+				E21CDFC82165619000839683 /* Main.storyboard */,
+				E21CDFCB2165619100839683 /* Assets.xcassets */,
+				E21CDFCD2165619100839683 /* LaunchScreen.storyboard */,
+				E21CDFD02165619100839683 /* Info.plist */,
+				E27E3ED5217123160082C91C /* MainTabBarController.swift */,
+				E27E3ED6217123160082C91C /* MainTabBarController.xib */,
+			);
+			path = "SendBird-iOS";
+			sourceTree = "<group>";
+		};
+		E21CDFD6216574F300839683 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E21CDFD72165751B00839683 /* loading_typing.gif */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		E21CDFD9216575EF00839683 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E21CDFDA2165761300839683 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		E21CDFDC2165767400839683 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				E2D0C0CD218A427A0080A5F3 /* PhotoViewer */,
+				E2D0C0CA218A40CF0080A5F3 /* PhotosViewerController */,
+				E27E3ECC21711AAC0082C91C /* Utils */,
+				E21CDFDD2165768300839683 /* CustomUI */,
+				E27E3EE421713DF00082C91C /* NotificationDelegate.swift */,
+				E27E3F0A21753E970082C91C /* Constants.swift */,
+				E27E3FB0217E70C60082C91C /* String+SendBird.swift */,
+				E23CF9FF2180D6E000A946E8 /* Array+SendBird.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		E21CDFDD2165768300839683 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				E21CDFDE216576C000839683 /* CustomButton.swift */,
+				E21CDFE02165780900839683 /* CustomTextField.swift */,
+				E27E3EEB217159E30082C91C /* CustomActivityIndicatorView.swift */,
+				E27E3FA921793E7E0082C91C /* CustomProgressCircle.swift */,
+				E27E3FAB217A7A190082C91C /* FLAnimatedImageView+ImageLoader.swift */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		E27E3ECC21711AAC0082C91C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3ECD21711AD10082C91C /* Utils.swift */,
+				E27E3ECF217120310082C91C /* UIViewController+Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		E27E3ED921712C6D0082C91C /* GroupChannel */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3EDA21712C7B0082C91C /* GroupChannelSettings */,
+				E27E3EDB21712C850082C91C /* GroupChannels */,
+				E27E3EDD21712C960082C91C /* GroupChannelChat */,
+				E27E3EDE21712C9F0082C91C /* CreateGroupChannel */,
+			);
+			path = GroupChannel;
+			sourceTree = "<group>";
+		};
+		E27E3EDA21712C7B0082C91C /* GroupChannelSettings */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3EDF21712CB50082C91C /* ViewCells */,
+				E2D0C109218D0B680080A5F3 /* GroupChannelSettingsDelegate.swift */,
+				E21C53E32195DB7900782B60 /* GroupChannelSettingsViewController.swift */,
+				E21C53E42195DB7900782B60 /* GroupChannelSettingsViewController.xib */,
+				E2980005219F4919009F83D0 /* GroupChannelInviteMemberViewController.swift */,
+				E2980006219F4919009F83D0 /* GroupChannelInviteMemberViewController.xib */,
+				E2980009219F4938009F83D0 /* GroupChannelCoverImageNameSettingViewController.swift */,
+				E298000A219F4938009F83D0 /* GroupChannelCoverImageNameSettingViewController.xib */,
+				E298000D219F5053009F83D0 /* GroupChannelInviteMemberDelegate.swift */,
+				E298000F219F509F009F83D0 /* GroupChannelCoverImageNameSettingDelegate.swift */,
+			);
+			path = GroupChannelSettings;
+			sourceTree = "<group>";
+		};
+		E27E3EDB21712C850082C91C /* GroupChannels */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3EDC21712C8E0082C91C /* ViewCells */,
+				E27E3EE221712D2D0082C91C /* GroupChannelsNavigationController.swift */,
+				E27E3EE7217156A60082C91C /* GroupChannelsViewController.swift */,
+				E27E3EE8217156A60082C91C /* GroupChannelsViewController.xib */,
+				E27E3EF62174F3E30082C91C /* GroupChannelsUpdateListDelegate.swift */,
+			);
+			path = GroupChannels;
+			sourceTree = "<group>";
+		};
+		E27E3EDC21712C8E0082C91C /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3EED21716FB40082C91C /* GroupChannelTableViewCell.swift */,
+				E27E3EEE21716FB40082C91C /* GroupChannelTableViewCell.xib */,
+			);
+			path = ViewCells;
+			sourceTree = "<group>";
+		};
+		E27E3EDD21712C960082C91C /* GroupChannelChat */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3EE021712CDC0082C91C /* ViewCells */,
+				E2D0C103218D07120080A5F3 /* GroupChannelChatViewController.swift */,
+				E2D0C104218D07120080A5F3 /* GroupChannelChatViewController.xib */,
+			);
+			path = GroupChannelChat;
+			sourceTree = "<group>";
+		};
+		E27E3EDE21712C9F0082C91C /* CreateGroupChannel */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3EE121712CE40082C91C /* ViewCells */,
+				E27E3EF42174F28F0082C91C /* CreateGroupChannelViewControllerDelegate.swift */,
+				E27E3EFC217513C30082C91C /* CreateGroupChannelNavigationController.swift */,
+				E27E3EFE217514760082C91C /* CreateGroupChannelViewControllerA.swift */,
+				E27E3EFF217514760082C91C /* CreateGroupChannelViewControllerA.xib */,
+				E27E3F06217532F50082C91C /* CreateGroupChannelViewControllerB.swift */,
+				E27E3F07217532F50082C91C /* CreateGroupChannelViewControllerB.xib */,
+			);
+			path = CreateGroupChannel;
+			sourceTree = "<group>";
+		};
+		E27E3EDF21712CB50082C91C /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E298FFE7219F20C6009F83D0 /* GroupChannelSettingsTableViewCellDelegate.swift */,
+				E298FFE3219F1FCC009F83D0 /* GroupChannelSettingsChannelCoverNameTableViewCell.swift */,
+				E298FFE4219F1FCC009F83D0 /* GroupChannelSettingsChannelCoverNameTableViewCell.xib */,
+				E298FFE9219F23A2009F83D0 /* GroupChannelSettingsBlankTableViewCell.swift */,
+				E298FFEA219F23A2009F83D0 /* GroupChannelSettingsBlankTableViewCell.xib */,
+				E298FFED219F243D009F83D0 /* GroupChannelSettingsNotificationsTableViewCell.swift */,
+				E298FFEE219F243D009F83D0 /* GroupChannelSettingsNotificationsTableViewCell.xib */,
+				E298FFF1219F2AF6009F83D0 /* GroupChannelSettingsInviteMemberTableViewCell.swift */,
+				E298FFF2219F2AF6009F83D0 /* GroupChannelSettingsInviteMemberTableViewCell.xib */,
+				E298FFF5219F2D38009F83D0 /* GroupChannelSettingsMemberTableViewCell.swift */,
+				E298FFF6219F2D38009F83D0 /* GroupChannelSettingsMemberTableViewCell.xib */,
+				E298FFF9219F358A009F83D0 /* GroupChannelSettingsLeaveChatTableViewCell.swift */,
+				E298FFFA219F358A009F83D0 /* GroupChannelSettingsLeaveChatTableViewCell.xib */,
+				E298FFFD219F3A8A009F83D0 /* GroupChannelInviteMemberTableViewCell.swift */,
+				E298FFFE219F3A8A009F83D0 /* GroupChannelInviteMemberTableViewCell.xib */,
+				E2980001219F43E6009F83D0 /* GroupChannelSettingsSectionTableViewCell.swift */,
+				E2980002219F43E6009F83D0 /* GroupChannelSettingsSectionTableViewCell.xib */,
+			);
+			path = ViewCells;
+			sourceTree = "<group>";
+		};
+		E27E3EE021712CDC0082C91C /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E2D0C107218D0AA10080A5F3 /* GroupChannelMessageTableViewCellDelegate.swift */,
+				E2D0C12D219249E70080A5F3 /* GroupChannelIncomingUserMessageTableViewCell.swift */,
+				E2D0C12E219249E70080A5F3 /* GroupChannelIncomingUserMessageTableViewCell.xib */,
+				E2D0C131219249FA0080A5F3 /* GroupChannelIncomingImageVideoFileMessageTableViewCell.swift */,
+				E2D0C132219249FA0080A5F3 /* GroupChannelIncomingImageVideoFileMessageTableViewCell.xib */,
+				E2D0C13521924A0D0080A5F3 /* GroupChannelIncomingGeneralFileMessageTableViewCell.swift */,
+				E2D0C13621924A0D0080A5F3 /* GroupChannelIncomingGeneralFileMessageTableViewCell.xib */,
+				E2D0C14F21935A580080A5F3 /* GroupChannelIncomingAudioFileMessageTableViewCell.swift */,
+				E2D0C15021935A580080A5F3 /* GroupChannelIncomingAudioFileMessageTableViewCell.xib */,
+				E2D0C13B21924A370080A5F3 /* GroupChannelOutgoingUserMessageTableViewCell.swift */,
+				E2D0C13C21924A370080A5F3 /* GroupChannelOutgoingUserMessageTableViewCell.xib */,
+				E2D0C13F21924A4B0080A5F3 /* GroupChannelOutgoingImageVideoFileMessageTableViewCell.swift */,
+				E2D0C14021924A4B0080A5F3 /* GroupChannelOutgoingImageVideoFileMessageTableViewCell.xib */,
+				E2D0C14321924A5D0080A5F3 /* GroupChannelOutgoingGeneralFileMessageTableViewCell.swift */,
+				E2D0C14421924A5D0080A5F3 /* GroupChannelOutgoingGeneralFileMessageTableViewCell.xib */,
+				E2D0C14721924A6F0080A5F3 /* GroupChannelOutgoingAudioFileMessageTableViewCell.swift */,
+				E2D0C14821924A6F0080A5F3 /* GroupChannelOutgoingAudioFileMessageTableViewCell.xib */,
+				E2D0C14B21924A820080A5F3 /* GroupChannelNeutralAdminMessageTableViewCell.swift */,
+				E2D0C14C21924A820080A5F3 /* GroupChannelNeutralAdminMessageTableViewCell.xib */,
+			);
+			path = ViewCells;
+			sourceTree = "<group>";
+		};
+		E27E3EE121712CE40082C91C /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3F0221751A970082C91C /* SelectGroupChannelMemberTableViewCell.swift */,
+				E27E3F0321751A970082C91C /* SelectGroupChannelMemberTableViewCell.xib */,
+			);
+			path = ViewCells;
+			sourceTree = "<group>";
+		};
+		E27E3EF12174D8770082C91C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3EF22174D8920082C91C /* loading_typing.gif */,
+			);
+			name = Images;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		E27E3F0C21765F230082C91C /* OpenChannel */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3FAD217E23240082C91C /* OpenChannelSettings */,
+				E27E3F8D217910C00082C91C /* OpenChannelChat */,
+				E27E3F1D2176705A0082C91C /* CreateOpenChannel */,
+				E27E3F1C217670440082C91C /* OpenChannels */,
+			);
+			path = OpenChannel;
+			sourceTree = "<group>";
+		};
+		E27E3F0D21765F3A0082C91C /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3F0E21765F600082C91C /* OpenChannelTableViewCell.swift */,
+				E27E3F0F21765F600082C91C /* OpenChannelTableViewCell.xib */,
+			);
+			path = ViewCells;
+			sourceTree = "<group>";
+		};
+		E27E3F1C217670440082C91C /* OpenChannels */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3F0D21765F3A0082C91C /* ViewCells */,
+				E27E3F122176618F0082C91C /* OpenChannelsNavigationController.swift */,
+				E27E3F14217661EE0082C91C /* OpenChannelsViewController.swift */,
+				E27E3F15217661EE0082C91C /* OpenChannelsViewController.xib */,
+				E27E3F18217662EC0082C91C /* CreateOpenChannelDelegate.swift */,
+				E27E3F1A217663350082C91C /* OpenChanannelChatDelegate.swift */,
+			);
+			path = OpenChannels;
+			sourceTree = "<group>";
+		};
+		E27E3F1D2176705A0082C91C /* CreateOpenChannel */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3F1F2176707F0082C91C /* SelectOperatorsViewCell */,
+				E27E3F1E217670730082C91C /* CreateOpenChannelViewCell */,
+				E27E3F20217670B00082C91C /* CreateOpenChannelNavigationController.swift */,
+				E27E3F22217671000082C91C /* CreateOpenChannelViewControllerA.swift */,
+				E27E3F23217671000082C91C /* CreateOpenChannelViewControllerA.xib */,
+				E27E3F26217690FF0082C91C /* CreateOpenChannelViewControllerB.swift */,
+				E27E3F27217690FF0082C91C /* CreateOpenChannelViewControllerB.xib */,
+				E27E3F2A217691870082C91C /* SelectOperatorsDelegate.swift */,
+				E27E3F44217797BE0082C91C /* SelectOperatorsViewController.swift */,
+				E27E3F45217797BE0082C91C /* SelectOperatorsViewController.xib */,
+			);
+			path = CreateOpenChannel;
+			sourceTree = "<group>";
+		};
+		E27E3F1E217670730082C91C /* CreateOpenChannelViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3F2C2176927F0082C91C /* CreateOpenChannelChannelUrlTableViewCell.swift */,
+				E27E3F2D2176927F0082C91C /* CreateOpenChannelChannelUrlTableViewCell.xib */,
+				E27E3F30217692950082C91C /* CreateOpenChannelOperatorSectionTableViewCell.swift */,
+				E27E3F31217692950082C91C /* CreateOpenChannelOperatorSectionTableViewCell.xib */,
+				E27E3F34217692A60082C91C /* CreateOpenChannelAddOperatorTableViewCell.swift */,
+				E27E3F35217692A60082C91C /* CreateOpenChannelAddOperatorTableViewCell.xib */,
+				E27E3F38217692BA0082C91C /* CreateOpenChannelCurrentUserTableViewCell.swift */,
+				E27E3F39217692BA0082C91C /* CreateOpenChannelCurrentUserTableViewCell.xib */,
+				E27E3F3C217692CD0082C91C /* CreateOpenChannelOperatorTableViewCell.swift */,
+				E27E3F3D217692CD0082C91C /* CreateOpenChannelOperatorTableViewCell.xib */,
+			);
+			path = CreateOpenChannelViewCell;
+			sourceTree = "<group>";
+		};
+		E27E3F1F2176707F0082C91C /* SelectOperatorsViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3F402176987C0082C91C /* SelectOperatorsTableViewCell.swift */,
+				E27E3F412176987C0082C91C /* SelectOperatorsTableViewCell.xib */,
+			);
+			path = SelectOperatorsViewCell;
+			sourceTree = "<group>";
+		};
+		E27E3F482177A86D0082C91C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3F492177A8760082C91C /* ViewCells */,
+				E27E3F4A2177A88C0082C91C /* SettingsViewController.swift */,
+				E27E3F4B2177A88C0082C91C /* SettingsViewController.xib */,
+				E27E3F4E2177A8A10082C91C /* UpdateUserProfileViewController.swift */,
+				E27E3F4F2177A8A10082C91C /* UpdateUserProfileViewController.xib */,
+				E27E3F522177A8B50082C91C /* SettingsBlockedUserListViewController.swift */,
+				E27E3F532177A8B50082C91C /* SettingsBlockedUserListViewController.xib */,
+				E27E3F562177A8D90082C91C /* SettingsNavigationController.swift */,
+				E27E3F582177A9E70082C91C /* SettingsTableViewCellDelegate.swift */,
+				E27E3F5A2177AA1E0082C91C /* SettingsTimePickerDelegate.swift */,
+				E27E3F5C2177AA530082C91C /* UserProfileImageNameSettingDelegate.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		E27E3F492177A8760082C91C /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3F5E2177B3C50082C91C /* SettingsProfileTableViewCell.swift */,
+				E27E3F5F2177B3C50082C91C /* SettingsProfileTableViewCell.xib */,
+				E27E3F622177B4AC0082C91C /* SettingsSectionTableViewCell.swift */,
+				E27E3F632177B4AC0082C91C /* SettingsSectionTableViewCell.xib */,
+				E27E3F662177B5770082C91C /* SettingsSwitchTableViewCell.swift */,
+				E27E3F672177B5770082C91C /* SettingsSwitchTableViewCell.xib */,
+				E27E3F6C2177B7BD0082C91C /* SettingsTimeTableViewCell.swift */,
+				E27E3F6D2177B7BD0082C91C /* SettingsTimeTableViewCell.xib */,
+				E27E3F702177B8DA0082C91C /* SettingsGeneralTableViewCell.swift */,
+				E27E3F712177B8DA0082C91C /* SettingsGeneralTableViewCell.xib */,
+				E27E3F742177B94F0082C91C /* SettingsSignOutTableViewCell.swift */,
+				E27E3F752177B94F0082C91C /* SettingsSignOutTableViewCell.xib */,
+				E27E3F782177B9860082C91C /* SettingsVersionTableViewCell.swift */,
+				E27E3F792177B9860082C91C /* SettingsVersionTableViewCell.xib */,
+				E27E3F7C2177BA280082C91C /* SettingsDescriptionTableViewCell.swift */,
+				E27E3F7D2177BA280082C91C /* SettingsDescriptionTableViewCell.xib */,
+				E27E3F802177BACB0082C91C /* BlockedUserTableViewCell.swift */,
+				E27E3F812177BACB0082C91C /* BlockedUserTableViewCell.xib */,
+				E27E3F842177BB7C0082C91C /* SettingsTimePickerTableViewCell.swift */,
+				E27E3F852177BB7C0082C91C /* SettingsTimePickerTableViewCell.xib */,
+			);
+			path = ViewCells;
+			sourceTree = "<group>";
+		};
+		E27E3F882177BC130082C91C /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3F892177BC8C0082C91C /* UserProfileViewController.swift */,
+				E27E3F8A2177BC8C0082C91C /* UserProfileViewController.xib */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		E27E3F8D217910C00082C91C /* OpenChannelChat */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3F8E217910D00082C91C /* ViewCells */,
+				E27E3FA521793D480082C91C /* OpenChannelChatViewController.swift */,
+				E27E3FA621793D480082C91C /* OpenChannelChatViewController.xib */,
+			);
+			path = OpenChannelChat;
+			sourceTree = "<group>";
+		};
+		E27E3F8E217910D00082C91C /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3F8F217910F50082C91C /* OpenChannelUserMessageTableViewCell.swift */,
+				E27E3F90217910F50082C91C /* OpenChannelUserMessageTableViewCell.xib */,
+				E27E3F932179110E0082C91C /* OpenChannelImageVideoFileMessageTableViewCell.swift */,
+				E27E3F942179110E0082C91C /* OpenChannelImageVideoFileMessageTableViewCell.xib */,
+				E27E3F97217911240082C91C /* OpenChannelGeneralFileMessageTableViewCell.swift */,
+				E27E3F98217911240082C91C /* OpenChannelGeneralFileMessageTableViewCell.xib */,
+				E27E3F9B2179113B0082C91C /* OpenChannelAdminMessageTableViewCell.swift */,
+				E27E3F9C2179113B0082C91C /* OpenChannelAdminMessageTableViewCell.xib */,
+				E27E3F9F217911520082C91C /* OpenChannelAudioFileMessageTableViewCell.swift */,
+				E27E3FA0217911520082C91C /* OpenChannelAudioFileMessageTableViewCell.xib */,
+				E27E3FA3217911690082C91C /* OpenChannelMessageTableViewCellDelegate.swift */,
+			);
+			path = ViewCells;
+			sourceTree = "<group>";
+		};
+		E27E3FAD217E23240082C91C /* OpenChannelSettings */ = {
+			isa = PBXGroup;
+			children = (
+				E2D0C0D4218B82CD0080A5F3 /* OpenChannelSettingsUserList */,
+				E2D0C0D5218B82D70080A5F3 /* ViewCells */,
+				E27E3FAE217E23460082C91C /* OpenChannelSettingsDelegate.swift */,
+				E23CF9FB217FD69600A946E8 /* OpenChannelSettingsViewController.swift */,
+				E23CF9FC217FD69600A946E8 /* OpenChannelSettingsViewController.xib */,
+				E2D0C0D0218B82B80080A5F3 /* OpenChannelCoverImageNameSettingViewController.swift */,
+				E2D0C0D1218B82B80080A5F3 /* OpenChannelCoverImageNameSettingViewController.xib */,
+				E2D0C0F0218BA88C0080A5F3 /* OpenChannelCoverImageNameSettingDelegate.swift */,
+			);
+			path = OpenChannelSettings;
+			sourceTree = "<group>";
+		};
+		E27E3FB2217E83AE0082C91C /* DownloadManager */ = {
+			isa = PBXGroup;
+			children = (
+				E27E3FB3217E83D10082C91C /* DownloadManager.swift */,
+			);
+			path = DownloadManager;
+			sourceTree = "<group>";
+		};
+		E2D0C0CA218A40CF0080A5F3 /* PhotosViewerController */ = {
+			isa = PBXGroup;
+			children = (
+				E2D0C0CB218A41160080A5F3 /* CustomPhotosViewController.swift */,
+			);
+			path = PhotosViewerController;
+			sourceTree = "<group>";
+		};
+		E2D0C0CD218A427A0080A5F3 /* PhotoViewer */ = {
+			isa = PBXGroup;
+			children = (
+				E2D0C0CE218A429E0080A5F3 /* PhotoViewer.swift */,
+			);
+			path = PhotoViewer;
+			sourceTree = "<group>";
+		};
+		E2D0C0D4218B82CD0080A5F3 /* OpenChannelSettingsUserList */ = {
+			isa = PBXGroup;
+			children = (
+				E2D0C0F2218CC2330080A5F3 /* ViewCells */,
+				E2D0C0F7218CC40A0080A5F3 /* OpenChannelBannedUserListViewController.swift */,
+				E2D0C0F8218CC40A0080A5F3 /* OpenChannelBannedUserListViewController.xib */,
+				E2D0C0FB218CCDCD0080A5F3 /* OpenChannelMutedUserListViewController.swift */,
+				E2D0C0FC218CCDCD0080A5F3 /* OpenChannelMutedUserListViewController.xib */,
+				E2D0C0FF218CD3E40080A5F3 /* OpenChannelParticipantListViewController.swift */,
+				E2D0C100218CD3E40080A5F3 /* OpenChannelParticipantListViewController.xib */,
+			);
+			path = OpenChannelSettingsUserList;
+			sourceTree = "<group>";
+		};
+		E2D0C0D5218B82D70080A5F3 /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E2D0C0D6218B83020080A5F3 /* OpenChannelSettingsChannelNameTableViewCell.swift */,
+				E2D0C0D7218B83020080A5F3 /* OpenChannelSettingsChannelNameTableViewCell.xib */,
+				E2D0C0DA218B83140080A5F3 /* OpenChannelSettingsSeperatorTableViewCell.swift */,
+				E2D0C0DB218B83140080A5F3 /* OpenChannelSettingsSeperatorTableViewCell.xib */,
+				E2D0C0DE218B83260080A5F3 /* OpenChannelSettingsMenuTableViewCell.swift */,
+				E2D0C0DF218B83260080A5F3 /* OpenChannelSettingsMenuTableViewCell.xib */,
+				E2D0C0E2218B83370080A5F3 /* OpenChannelSettingsMeTableViewCell.swift */,
+				E2D0C0E3218B83370080A5F3 /* OpenChannelSettingsMeTableViewCell.xib */,
+				E2D0C0E6218B834A0080A5F3 /* OpenChannelSettingsOperatorTableViewCell.swift */,
+				E2D0C0E7218B834A0080A5F3 /* OpenChannelSettingsOperatorTableViewCell.xib */,
+				E2D0C0EA218B83610080A5F3 /* OpenChannelOperatorSectionTableViewCell.swift */,
+				E2D0C0EB218B83610080A5F3 /* OpenChannelOperatorSectionTableViewCell.xib */,
+				E2D0C0EE218B9FB50080A5F3 /* OpenChannelSettingsChannelNameTableViewCellDelegate.swift */,
+			);
+			path = ViewCells;
+			sourceTree = "<group>";
+		};
+		E2D0C0F2218CC2330080A5F3 /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E2D0C0F3218CC2530080A5F3 /* OpenChannelSettingsUserTableViewCell.swift */,
+				E2D0C0F4218CC2530080A5F3 /* OpenChannelSettingsUserTableViewCell.xib */,
+			);
+			path = ViewCells;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E21CDFC02165619000839683 /* SendBird-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E21CDFD32165619100839683 /* Build configuration list for PBXNativeTarget "SendBird-iOS" */;
+			buildPhases = (
+				C1666900EFFF3239F9C5C037 /* [CP] Check Pods Manifest.lock */,
+				E21CDFBD2165619000839683 /* Sources */,
+				E21CDFBE2165619000839683 /* Frameworks */,
+				E21CDFBF2165619000839683 /* Resources */,
+				57774F9CC0D03BA2A16C5DCD /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SendBird-iOS";
+			productName = "SendBird-iOS";
+			productReference = E21CDFC12165619000839683 /* SendBird-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E21CDFB92165619000839683 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = SendBird;
+				TargetAttributes = {
+					E21CDFC02165619000839683 = {
+						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = E21CDFBC2165619000839683 /* Build configuration list for PBXProject "SendBird-iOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E21CDFB82165619000839683;
+			productRefGroup = E21CDFC22165619000839683 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E21CDFC02165619000839683 /* SendBird-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E21CDFBF2165619000839683 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E298FFFC219F358A009F83D0 /* GroupChannelSettingsLeaveChatTableViewCell.xib in Resources */,
+				E27E3F25217671000082C91C /* CreateOpenChannelViewControllerA.xib in Resources */,
+				E2980008219F4919009F83D0 /* GroupChannelInviteMemberViewController.xib in Resources */,
+				E27E3EEA217156A60082C91C /* GroupChannelsViewController.xib in Resources */,
+				E27E3F17217661EE0082C91C /* OpenChannelsViewController.xib in Resources */,
+				E27E3F0521751A970082C91C /* SelectGroupChannelMemberTableViewCell.xib in Resources */,
+				E27E3EF021716FB40082C91C /* GroupChannelTableViewCell.xib in Resources */,
+				E2D0C0D9218B83020080A5F3 /* OpenChannelSettingsChannelNameTableViewCell.xib in Resources */,
+				E27E3FA2217911520082C91C /* OpenChannelAudioFileMessageTableViewCell.xib in Resources */,
+				E27E3F9E2179113B0082C91C /* OpenChannelAdminMessageTableViewCell.xib in Resources */,
+				E27E3F7F2177BA280082C91C /* SettingsDescriptionTableViewCell.xib in Resources */,
+				E27E3F432176987C0082C91C /* SelectOperatorsTableViewCell.xib in Resources */,
+				E27E3F6F2177B7BD0082C91C /* SettingsTimeTableViewCell.xib in Resources */,
+				E298FFF4219F2AF6009F83D0 /* GroupChannelSettingsInviteMemberTableViewCell.xib in Resources */,
+				E27E3F512177A8A10082C91C /* UpdateUserProfileViewController.xib in Resources */,
+				E27E3F3F217692CD0082C91C /* CreateOpenChannelOperatorTableViewCell.xib in Resources */,
+				E2D0C0E5218B83370080A5F3 /* OpenChannelSettingsMeTableViewCell.xib in Resources */,
+				E27E3F29217690FF0082C91C /* CreateOpenChannelViewControllerB.xib in Resources */,
+				E27E3F01217514760082C91C /* CreateGroupChannelViewControllerA.xib in Resources */,
+				E2D0C13E21924A370080A5F3 /* GroupChannelOutgoingUserMessageTableViewCell.xib in Resources */,
+				E2D0C13821924A0D0080A5F3 /* GroupChannelIncomingGeneralFileMessageTableViewCell.xib in Resources */,
+				E298FFF0219F243D009F83D0 /* GroupChannelSettingsNotificationsTableViewCell.xib in Resources */,
+				E21CDFCF2165619100839683 /* LaunchScreen.storyboard in Resources */,
+				E21CDFCC2165619100839683 /* Assets.xcassets in Resources */,
+				E27E3F3B217692BA0082C91C /* CreateOpenChannelCurrentUserTableViewCell.xib in Resources */,
+				E27E3F772177B94F0082C91C /* SettingsSignOutTableViewCell.xib in Resources */,
+				E2D0C0D3218B82B80080A5F3 /* OpenChannelCoverImageNameSettingViewController.xib in Resources */,
+				E23CF9FE217FD69600A946E8 /* OpenChannelSettingsViewController.xib in Resources */,
+				E2D0C0E1218B83260080A5F3 /* OpenChannelSettingsMenuTableViewCell.xib in Resources */,
+				E2D0C134219249FA0080A5F3 /* GroupChannelIncomingImageVideoFileMessageTableViewCell.xib in Resources */,
+				E2D0C130219249E70080A5F3 /* GroupChannelIncomingUserMessageTableViewCell.xib in Resources */,
+				E2D0C0DD218B83140080A5F3 /* OpenChannelSettingsSeperatorTableViewCell.xib in Resources */,
+				E2D0C0E9218B834A0080A5F3 /* OpenChannelSettingsOperatorTableViewCell.xib in Resources */,
+				E27E3F692177B5770082C91C /* SettingsSwitchTableViewCell.xib in Resources */,
+				E298000C219F4938009F83D0 /* GroupChannelCoverImageNameSettingViewController.xib in Resources */,
+				E2D0C0FA218CC40A0080A5F3 /* OpenChannelBannedUserListViewController.xib in Resources */,
+				E27E3F4D2177A88C0082C91C /* SettingsViewController.xib in Resources */,
+				E298FFF8219F2D38009F83D0 /* GroupChannelSettingsMemberTableViewCell.xib in Resources */,
+				E2D0C14A21924A6F0080A5F3 /* GroupChannelOutgoingAudioFileMessageTableViewCell.xib in Resources */,
+				E2D0C106218D07120080A5F3 /* GroupChannelChatViewController.xib in Resources */,
+				E27E3F09217532F50082C91C /* CreateGroupChannelViewControllerB.xib in Resources */,
+				E27E3F92217910F50082C91C /* OpenChannelUserMessageTableViewCell.xib in Resources */,
+				E27E3F612177B3C50082C91C /* SettingsProfileTableViewCell.xib in Resources */,
+				E27E3F37217692A60082C91C /* CreateOpenChannelAddOperatorTableViewCell.xib in Resources */,
+				E27E3F9A217911240082C91C /* OpenChannelGeneralFileMessageTableViewCell.xib in Resources */,
+				E2D0C15221935A580080A5F3 /* GroupChannelIncomingAudioFileMessageTableViewCell.xib in Resources */,
+				E27E3F2F2176927F0082C91C /* CreateOpenChannelChannelUrlTableViewCell.xib in Resources */,
+				E27E3F832177BACB0082C91C /* BlockedUserTableViewCell.xib in Resources */,
+				E27E3F7B2177B9860082C91C /* SettingsVersionTableViewCell.xib in Resources */,
+				E298FFE6219F1FCC009F83D0 /* GroupChannelSettingsChannelCoverNameTableViewCell.xib in Resources */,
+				E2D0C0ED218B83610080A5F3 /* OpenChannelOperatorSectionTableViewCell.xib in Resources */,
+				E21CDFCA2165619000839683 /* Main.storyboard in Resources */,
+				E21C53E62195DB7900782B60 /* GroupChannelSettingsViewController.xib in Resources */,
+				E298FFEC219F23A2009F83D0 /* GroupChannelSettingsBlankTableViewCell.xib in Resources */,
+				E27E3F872177BB7C0082C91C /* SettingsTimePickerTableViewCell.xib in Resources */,
+				E2D0C14621924A5D0080A5F3 /* GroupChannelOutgoingGeneralFileMessageTableViewCell.xib in Resources */,
+				E27E3F652177B4AC0082C91C /* SettingsSectionTableViewCell.xib in Resources */,
+				E2D0C0F6218CC2530080A5F3 /* OpenChannelSettingsUserTableViewCell.xib in Resources */,
+				E27E3F552177A8B50082C91C /* SettingsBlockedUserListViewController.xib in Resources */,
+				E27E3F732177B8DA0082C91C /* SettingsGeneralTableViewCell.xib in Resources */,
+				E27E3F962179110E0082C91C /* OpenChannelImageVideoFileMessageTableViewCell.xib in Resources */,
+				E2D0C102218CD3E40080A5F3 /* OpenChannelParticipantListViewController.xib in Resources */,
+				E27E3EF32174D8920082C91C /* loading_typing.gif in Resources */,
+				E27E3F33217692950082C91C /* CreateOpenChannelOperatorSectionTableViewCell.xib in Resources */,
+				E27E3ED8217123160082C91C /* MainTabBarController.xib in Resources */,
+				E27E3FA821793D480082C91C /* OpenChannelChatViewController.xib in Resources */,
+				E2980000219F3A8A009F83D0 /* GroupChannelInviteMemberTableViewCell.xib in Resources */,
+				E27E3F8C2177BC8C0082C91C /* UserProfileViewController.xib in Resources */,
+				E2D0C14E21924A820080A5F3 /* GroupChannelNeutralAdminMessageTableViewCell.xib in Resources */,
+				E27E3F47217797BE0082C91C /* SelectOperatorsViewController.xib in Resources */,
+				E2980004219F43E6009F83D0 /* GroupChannelSettingsSectionTableViewCell.xib in Resources */,
+				E27E3F1121765F600082C91C /* OpenChannelTableViewCell.xib in Resources */,
+				E2D0C14221924A4B0080A5F3 /* GroupChannelOutgoingImageVideoFileMessageTableViewCell.xib in Resources */,
+				E2D0C0FE218CCDCD0080A5F3 /* OpenChannelMutedUserListViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		57774F9CC0D03BA2A16C5DCD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
+				"${BUILT_PRODUCTS_DIR}/NYTPhotoViewer/NYTPhotoViewer.framework",
+				"${BUILT_PRODUCTS_DIR}/RSKImageCropper/RSKImageCropper.framework",
+				"${PODS_ROOT}/SendBirdSDK/SendBirdSDK.framework",
+				"${PODS_ROOT}/SendBirdSDK/SendBirdSDK.framework.dSYM",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NYTPhotoViewer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSKImageCropper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SendBirdSDK.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/SendBirdSDK.framework.dSYM",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SendBird-iOS/Pods-SendBird-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C1666900EFFF3239F9C5C037 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SendBird-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E21CDFBD2165619000839683 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2D0C0D2218B82B80080A5F3 /* OpenChannelCoverImageNameSettingViewController.swift in Sources */,
+				E2D0C14521924A5D0080A5F3 /* GroupChannelOutgoingGeneralFileMessageTableViewCell.swift in Sources */,
+				E27E3EEC217159E30082C91C /* CustomActivityIndicatorView.swift in Sources */,
+				E27E3FB4217E83D10082C91C /* DownloadManager.swift in Sources */,
+				E27E3F36217692A60082C91C /* CreateOpenChannelAddOperatorTableViewCell.swift in Sources */,
+				E298FFE5219F1FCC009F83D0 /* GroupChannelSettingsChannelCoverNameTableViewCell.swift in Sources */,
+				E27E3FAC217A7A190082C91C /* FLAnimatedImageView+ImageLoader.swift in Sources */,
+				E2980003219F43E6009F83D0 /* GroupChannelSettingsSectionTableViewCell.swift in Sources */,
+				E27E3F0421751A970082C91C /* SelectGroupChannelMemberTableViewCell.swift in Sources */,
+				E27E3FAA21793E7E0082C91C /* CustomProgressCircle.swift in Sources */,
+				E27E3F952179110E0082C91C /* OpenChannelImageVideoFileMessageTableViewCell.swift in Sources */,
+				E2D0C0E4218B83370080A5F3 /* OpenChannelSettingsMeTableViewCell.swift in Sources */,
+				E27E3F3E217692CD0082C91C /* CreateOpenChannelOperatorTableViewCell.swift in Sources */,
+				E27E3F3A217692BA0082C91C /* CreateOpenChannelCurrentUserTableViewCell.swift in Sources */,
+				E27E3FA721793D480082C91C /* OpenChannelChatViewController.swift in Sources */,
+				E27E3EE321712D2D0082C91C /* GroupChannelsNavigationController.swift in Sources */,
+				E27E3FB1217E70C60082C91C /* String+SendBird.swift in Sources */,
+				E27E3F00217514760082C91C /* CreateGroupChannelViewControllerA.swift in Sources */,
+				E21CDFDF216576C000839683 /* CustomButton.swift in Sources */,
+				E2D0C13D21924A370080A5F3 /* GroupChannelOutgoingUserMessageTableViewCell.swift in Sources */,
+				E2D0C0F1218BA88C0080A5F3 /* OpenChannelCoverImageNameSettingDelegate.swift in Sources */,
+				E2980007219F4919009F83D0 /* GroupChannelInviteMemberViewController.swift in Sources */,
+				E298FFF3219F2AF6009F83D0 /* GroupChannelSettingsInviteMemberTableViewCell.swift in Sources */,
+				E2D0C10A218D0B680080A5F3 /* GroupChannelSettingsDelegate.swift in Sources */,
+				E298FFFF219F3A8A009F83D0 /* GroupChannelInviteMemberTableViewCell.swift in Sources */,
+				E2D0C14121924A4B0080A5F3 /* GroupChannelOutgoingImageVideoFileMessageTableViewCell.swift in Sources */,
+				E2980010219F509F009F83D0 /* GroupChannelCoverImageNameSettingDelegate.swift in Sources */,
+				E2D0C0E8218B834A0080A5F3 /* OpenChannelSettingsOperatorTableViewCell.swift in Sources */,
+				E27E3F2B217691870082C91C /* SelectOperatorsDelegate.swift in Sources */,
+				E27E3F28217690FF0082C91C /* CreateOpenChannelViewControllerB.swift in Sources */,
+				E27E3F08217532F50082C91C /* CreateGroupChannelViewControllerB.swift in Sources */,
+				E2D0C0EC218B83610080A5F3 /* OpenChannelOperatorSectionTableViewCell.swift in Sources */,
+				E23CF9FD217FD69600A946E8 /* OpenChannelSettingsViewController.swift in Sources */,
+				E21CDFDB2165761300839683 /* LoginViewController.swift in Sources */,
+				E27E3ED7217123160082C91C /* MainTabBarController.swift in Sources */,
+				E298FFFB219F358A009F83D0 /* GroupChannelSettingsLeaveChatTableViewCell.swift in Sources */,
+				E27E3F642177B4AC0082C91C /* SettingsSectionTableViewCell.swift in Sources */,
+				E2D0C0F9218CC40A0080A5F3 /* OpenChannelBannedUserListViewController.swift in Sources */,
+				E27E3EF72174F3E30082C91C /* GroupChannelsUpdateListDelegate.swift in Sources */,
+				E27E3ED0217120320082C91C /* UIViewController+Utils.swift in Sources */,
+				E27E3EE521713DF00082C91C /* NotificationDelegate.swift in Sources */,
+				E2D0C0CF218A429E0080A5F3 /* PhotoViewer.swift in Sources */,
+				E27E3EFD217513C30082C91C /* CreateGroupChannelNavigationController.swift in Sources */,
+				E27E3FA1217911520082C91C /* OpenChannelAudioFileMessageTableViewCell.swift in Sources */,
+				E21CDFC72165619000839683 /* ViewController.swift in Sources */,
+				E2D0C0EF218B9FB50080A5F3 /* OpenChannelSettingsChannelNameTableViewCellDelegate.swift in Sources */,
+				E298000B219F4938009F83D0 /* GroupChannelCoverImageNameSettingViewController.swift in Sources */,
+				E27E3F762177B94F0082C91C /* SettingsSignOutTableViewCell.swift in Sources */,
+				E2D0C0F5218CC2530080A5F3 /* OpenChannelSettingsUserTableViewCell.swift in Sources */,
+				E27E3FAF217E23460082C91C /* OpenChannelSettingsDelegate.swift in Sources */,
+				E27E3F592177A9E70082C91C /* SettingsTableViewCellDelegate.swift in Sources */,
+				E27E3F24217671000082C91C /* CreateOpenChannelViewControllerA.swift in Sources */,
+				E21CDFC52165619000839683 /* AppDelegate.swift in Sources */,
+				E27E3EF52174F28F0082C91C /* CreateGroupChannelViewControllerDelegate.swift in Sources */,
+				E2D0C133219249FA0080A5F3 /* GroupChannelIncomingImageVideoFileMessageTableViewCell.swift in Sources */,
+				E2D0C14D21924A820080A5F3 /* GroupChannelNeutralAdminMessageTableViewCell.swift in Sources */,
+				E27E3F1021765F600082C91C /* OpenChannelTableViewCell.swift in Sources */,
+				E27E3F7A2177B9860082C91C /* SettingsVersionTableViewCell.swift in Sources */,
+				E2D0C0D8218B83020080A5F3 /* OpenChannelSettingsChannelNameTableViewCell.swift in Sources */,
+				E27E3F502177A8A10082C91C /* UpdateUserProfileViewController.swift in Sources */,
+				E27E3F1B217663350082C91C /* OpenChanannelChatDelegate.swift in Sources */,
+				E27E3F16217661EE0082C91C /* OpenChannelsViewController.swift in Sources */,
+				E27E3F6E2177B7BD0082C91C /* SettingsTimeTableViewCell.swift in Sources */,
+				E27E3F5D2177AA530082C91C /* UserProfileImageNameSettingDelegate.swift in Sources */,
+				E27E3F0B21753E970082C91C /* Constants.swift in Sources */,
+				E27E3F91217910F50082C91C /* OpenChannelUserMessageTableViewCell.swift in Sources */,
+				E2D0C101218CD3E40080A5F3 /* OpenChannelParticipantListViewController.swift in Sources */,
+				E2D0C0E0218B83260080A5F3 /* OpenChannelSettingsMenuTableViewCell.swift in Sources */,
+				E27E3F572177A8D90082C91C /* SettingsNavigationController.swift in Sources */,
+				E27E3F4C2177A88C0082C91C /* SettingsViewController.swift in Sources */,
+				E23CFA002180D6E000A946E8 /* Array+SendBird.swift in Sources */,
+				E27E3F602177B3C50082C91C /* SettingsProfileTableViewCell.swift in Sources */,
+				E2D0C0DC218B83140080A5F3 /* OpenChannelSettingsSeperatorTableViewCell.swift in Sources */,
+				E27E3F7E2177BA280082C91C /* SettingsDescriptionTableViewCell.swift in Sources */,
+				E27E3F422176987C0082C91C /* SelectOperatorsTableViewCell.swift in Sources */,
+				E27E3F5B2177AA1E0082C91C /* SettingsTimePickerDelegate.swift in Sources */,
+				E27E3EEF21716FB40082C91C /* GroupChannelTableViewCell.swift in Sources */,
+				E2D0C14921924A6F0080A5F3 /* GroupChannelOutgoingAudioFileMessageTableViewCell.swift in Sources */,
+				E298FFEF219F243D009F83D0 /* GroupChannelSettingsNotificationsTableViewCell.swift in Sources */,
+				E27E3F542177A8B50082C91C /* SettingsBlockedUserListViewController.swift in Sources */,
+				E2D0C105218D07120080A5F3 /* GroupChannelChatViewController.swift in Sources */,
+				E2D0C0CC218A41160080A5F3 /* CustomPhotosViewController.swift in Sources */,
+				E21CDFE12165780900839683 /* CustomTextField.swift in Sources */,
+				E27E3F19217662EC0082C91C /* CreateOpenChannelDelegate.swift in Sources */,
+				E27E3F2E2176927F0082C91C /* CreateOpenChannelChannelUrlTableViewCell.swift in Sources */,
+				E298FFE8219F20C6009F83D0 /* GroupChannelSettingsTableViewCellDelegate.swift in Sources */,
+				E27E3F8B2177BC8C0082C91C /* UserProfileViewController.swift in Sources */,
+				E2D0C15121935A580080A5F3 /* GroupChannelIncomingAudioFileMessageTableViewCell.swift in Sources */,
+				E2D0C13721924A0D0080A5F3 /* GroupChannelIncomingGeneralFileMessageTableViewCell.swift in Sources */,
+				E27E3F822177BACB0082C91C /* BlockedUserTableViewCell.swift in Sources */,
+				E2D0C12F219249E70080A5F3 /* GroupChannelIncomingUserMessageTableViewCell.swift in Sources */,
+				E2D0C0FD218CCDCD0080A5F3 /* OpenChannelMutedUserListViewController.swift in Sources */,
+				E27E3ECE21711AD10082C91C /* Utils.swift in Sources */,
+				E298FFEB219F23A2009F83D0 /* GroupChannelSettingsBlankTableViewCell.swift in Sources */,
+				E27E3F682177B5770082C91C /* SettingsSwitchTableViewCell.swift in Sources */,
+				E27E3FA4217911690082C91C /* OpenChannelMessageTableViewCellDelegate.swift in Sources */,
+				E27E3F32217692950082C91C /* CreateOpenChannelOperatorSectionTableViewCell.swift in Sources */,
+				E2D0C108218D0AA10080A5F3 /* GroupChannelMessageTableViewCellDelegate.swift in Sources */,
+				E298000E219F5053009F83D0 /* GroupChannelInviteMemberDelegate.swift in Sources */,
+				E27E3F722177B8DA0082C91C /* SettingsGeneralTableViewCell.swift in Sources */,
+				E27E3F46217797BE0082C91C /* SelectOperatorsViewController.swift in Sources */,
+				E298FFF7219F2D38009F83D0 /* GroupChannelSettingsMemberTableViewCell.swift in Sources */,
+				E21C53E52195DB7900782B60 /* GroupChannelSettingsViewController.swift in Sources */,
+				E27E3F21217670B00082C91C /* CreateOpenChannelNavigationController.swift in Sources */,
+				E27E3EE9217156A60082C91C /* GroupChannelsViewController.swift in Sources */,
+				E27E3F99217911240082C91C /* OpenChannelGeneralFileMessageTableViewCell.swift in Sources */,
+				E27E3F9D2179113B0082C91C /* OpenChannelAdminMessageTableViewCell.swift in Sources */,
+				E27E3F862177BB7C0082C91C /* SettingsTimePickerTableViewCell.swift in Sources */,
+				E27E3F132176618F0082C91C /* OpenChannelsNavigationController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E21CDFC82165619000839683 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E21CDFC92165619000839683 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E21CDFCD2165619100839683 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E21CDFCE2165619100839683 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E21CDFD12165619100839683 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E21CDFD22165619100839683 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E21CDFD42165619100839683 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4AE17B58DD188A15F84A0409 /* Pods-SendBird-iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "SendBird-iOS/SendBird-iOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8K8M9F9X95;
+				INFOPLIST_FILE = "SendBird-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.sample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = SIMULATOR;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E21CDFD52165619100839683 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E6C95EE3B9E1E3E5316ABBC /* Pods-SendBird-iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "SendBird-iOS/SendBird-iOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8K8M9F9X95;
+				INFOPLIST_FILE = "SendBird-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sendbird.sample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E21CDFBC2165619000839683 /* Build configuration list for PBXProject "SendBird-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E21CDFD12165619100839683 /* Debug */,
+				E21CDFD22165619100839683 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E21CDFD32165619100839683 /* Build configuration list for PBXNativeTarget "SendBird-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E21CDFD42165619100839683 /* Debug */,
+				E21CDFD52165619100839683 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E21CDFB92165619000839683 /* Project object */;
+}

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="136" id="KGk-i7-Jjw" customClass="CreateOpenChannelChannelUrlTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="136"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="135.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OT3-PR-aVi" userLabel="Background View">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="136"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSS-uH-h9Q" userLabel="TextField Background View">
+                        <rect key="frame" x="0.0" y="34" width="320" height="42"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Channel URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mng-Wc-7sr" userLabel="Channel URL Text Field">
+                                <rect key="frame" x="11" y="10.5" width="298" height="21"/>
+                                <color key="textColor" red="0.20392156859999999" green="0.21960784310000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pog-hY-4R3" userLabel="Top Border View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="0.5"/>
+                                <color key="backgroundColor" name="color_settings_border"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="Lci-lH-ZK0"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ht-Mt-d3r" userLabel="Bottom Border View">
+                                <rect key="frame" x="0.0" y="41.5" width="320" height="0.5"/>
+                                <color key="backgroundColor" name="color_settings_border"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="0t1-vr-eZV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3ht-Mt-d3r" firstAttribute="leading" secondItem="aSS-uH-h9Q" secondAttribute="leading" id="5L2-wX-LhS"/>
+                            <constraint firstItem="Pog-hY-4R3" firstAttribute="leading" secondItem="aSS-uH-h9Q" secondAttribute="leading" id="Je9-uf-LfP"/>
+                            <constraint firstItem="Mng-Wc-7sr" firstAttribute="centerY" secondItem="aSS-uH-h9Q" secondAttribute="centerY" id="Mdu-Iz-mDF"/>
+                            <constraint firstAttribute="trailing" secondItem="3ht-Mt-d3r" secondAttribute="trailing" id="TbY-l2-LjB"/>
+                            <constraint firstAttribute="trailing" secondItem="Pog-hY-4R3" secondAttribute="trailing" id="jGj-Hq-iCh"/>
+                            <constraint firstItem="Pog-hY-4R3" firstAttribute="top" secondItem="aSS-uH-h9Q" secondAttribute="top" id="xJ2-rK-rMn"/>
+                            <constraint firstAttribute="height" constant="42" id="xpn-B0-3pW"/>
+                            <constraint firstAttribute="bottom" secondItem="3ht-Mt-d3r" secondAttribute="bottom" id="y5r-mb-KLb"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel URL is a unique value to identify a channel." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tG7-0U-2JJ" userLabel="Channel URL Description Label">
+                        <rect key="frame" x="11" y="82" width="298" height="53.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.52941176469999995" green="0.55294117649999996" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="tG7-0U-2JJ" firstAttribute="top" secondItem="aSS-uH-h9Q" secondAttribute="bottom" constant="6" id="IfK-SS-IaF"/>
+                    <constraint firstItem="aSS-uH-h9Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="34" id="Jq7-9J-zvX"/>
+                    <constraint firstAttribute="trailing" secondItem="tG7-0U-2JJ" secondAttribute="trailing" constant="11" id="Sxv-0K-xGi"/>
+                    <constraint firstItem="Mng-Wc-7sr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="YqD-9R-K7W"/>
+                    <constraint firstAttribute="trailing" secondItem="Mng-Wc-7sr" secondAttribute="trailing" constant="11" id="ejA-jX-9if"/>
+                    <constraint firstAttribute="bottom" secondItem="tG7-0U-2JJ" secondAttribute="bottom" id="rf3-c8-nSl"/>
+                    <constraint firstItem="tG7-0U-2JJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="z9B-Yu-gzK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="OT3-PR-aVi" secondAttribute="bottom" id="4dH-ki-5m3"/>
+                <constraint firstItem="OT3-PR-aVi" firstAttribute="top" secondItem="KGk-i7-Jjw" secondAttribute="top" id="9oK-XI-Sn9"/>
+                <constraint firstAttribute="trailing" secondItem="OT3-PR-aVi" secondAttribute="trailing" id="EQT-cE-sDO"/>
+                <constraint firstAttribute="trailing" secondItem="aSS-uH-h9Q" secondAttribute="trailing" id="aeO-9a-8e7"/>
+                <constraint firstItem="aSS-uH-h9Q" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" id="bXp-Sd-uC6"/>
+                <constraint firstItem="OT3-PR-aVi" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" id="f7a-YS-fId"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="channelUrlTextField" destination="Mng-Wc-7sr" id="gVx-xC-3Uo"/>
+            </connections>
+            <point key="canvasLocation" x="132.80000000000001" y="158.32083958020991"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="color_settings_border">
+            <color red="0.7839999794960022" green="0.77999997138977051" blue="0.80000001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

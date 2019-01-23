@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateOpenChannelViewControllerA" customModule="SendBird_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="channelNameTextField" destination="R37-qd-xpH" id="rHb-aV-P4F"/>
+                <outlet property="coverImageView" destination="ASv-Z7-jFZ" id="fJx-uH-xyu"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nlf-qU-ti9" userLabel="Divider View">
+                    <rect key="frame" x="0.0" y="164" width="375" height="0.66666666666665719"/>
+                    <color key="backgroundColor" name="color_settings_border"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="Aum-o6-wyg"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tw9-SL-Xoh" userLabel="Description Container View">
+                    <rect key="frame" x="0.0" y="164.66666666666669" width="375" height="647.33333333333326"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qG-Ij-vrK" userLabel="Description A Label">
+                            <rect key="frame" x="16" y="28" width="375" height="67"/>
+                            <attributedString key="attributedText">
+                                <fragment>
+                                    <string key="content">Open Channel is a public chat. In this channel type, anyone can enter and participate in the chat without permission. A single channel can handle thousands of simultaneous users like Twitch-style public chat.</string>
+                                    <attributes>
+                                        <color key="NSColor" red="0.52941176470588236" green="0.55294117647058827" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <font key="NSFont" metaFont="system" size="14"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="9qG-Ij-vrK" firstAttribute="top" secondItem="tw9-SL-Xoh" secondAttribute="top" constant="28" id="tNs-ZT-nWi"/>
+                    </constraints>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ASv-Z7-jFZ" userLabel="Channel Cover Image View">
+                    <rect key="frame" x="15" y="54" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="91M-C0-6wH"/>
+                        <constraint firstAttribute="width" constant="100" id="mq2-RA-L7t"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="50"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_icon_edit_camera" translatesAutoresizingMaskIntoConstraints="NO" id="cOa-4r-enR" userLabel="Camera Icon Image View">
+                    <rect key="frame" x="85" y="124" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Sdz-rT-Glv"/>
+                        <constraint firstAttribute="width" constant="30" id="ztj-zG-Ly0"/>
+                    </constraints>
+                </imageView>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Open Channel Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="R37-qd-xpH" userLabel="Channel Name Text Field">
+                    <rect key="frame" x="131" y="90" width="229" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="f3w-Wg-vUp"/>
+                    </constraints>
+                    <color key="textColor" red="0.20392156859999999" green="0.21960784310000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Nlf-qU-ti9" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="3j8-Zz-KSq"/>
+                <constraint firstItem="tw9-SL-Xoh" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="41I-H6-QsE"/>
+                <constraint firstItem="9qG-Ij-vrK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="49K-53-w6R"/>
+                <constraint firstItem="tw9-SL-Xoh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8qC-2T-B2S"/>
+                <constraint firstItem="R37-qd-xpH" firstAttribute="leading" secondItem="ASv-Z7-jFZ" secondAttribute="trailing" constant="16" id="AdU-aX-Pd7"/>
+                <constraint firstItem="R37-qd-xpH" firstAttribute="centerY" secondItem="ASv-Z7-jFZ" secondAttribute="centerY" id="Crq-dz-YtM"/>
+                <constraint firstItem="ASv-Z7-jFZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="HrP-T4-LSf"/>
+                <constraint firstItem="Nlf-qU-ti9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ch8-ON-ZAS"/>
+                <constraint firstItem="tw9-SL-Xoh" firstAttribute="top" secondItem="Nlf-qU-ti9" secondAttribute="bottom" id="gDQ-H1-qas"/>
+                <constraint firstItem="9qG-Ij-vrK" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="16" id="ih0-ZY-nyF"/>
+                <constraint firstItem="ASv-Z7-jFZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="iql-de-Aer"/>
+                <constraint firstItem="Nlf-qU-ti9" firstAttribute="top" secondItem="ASv-Z7-jFZ" secondAttribute="bottom" constant="10" id="rCo-7o-wjT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="R37-qd-xpH" secondAttribute="trailing" constant="15" id="rax-dH-JOv"/>
+                <constraint firstItem="cOa-4r-enR" firstAttribute="bottom" secondItem="ASv-Z7-jFZ" secondAttribute="bottom" id="ssd-wC-pc0"/>
+                <constraint firstAttribute="bottom" secondItem="tw9-SL-Xoh" secondAttribute="bottom" id="xeT-8i-0u7"/>
+                <constraint firstItem="cOa-4r-enR" firstAttribute="trailing" secondItem="ASv-Z7-jFZ" secondAttribute="trailing" id="xwh-2d-I6p"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="img_icon_edit_camera" width="30" height="30"/>
+        <namedColor name="color_settings_border">
+            <color red="0.7839999794960022" green="0.77999997138977051" blue="0.80000001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

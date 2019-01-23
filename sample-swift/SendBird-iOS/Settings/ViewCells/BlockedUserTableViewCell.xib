@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="66" id="KGk-i7-Jjw" customClass="BlockedUserTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="326" height="66"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="326" height="65.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EhV-qO-DEF" userLabel="Profile Image View">
+                        <rect key="frame" x="16" y="10.5" width="45" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="Bhb-9f-oOW"/>
+                            <constraint firstAttribute="height" constant="45" id="D0S-zm-aME"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <real key="value" value="22.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K3J-Mu-SY0">
+                        <rect key="frame" x="78" y="22.5" width="232" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AOj-Rl-QlU" userLabel="Divider View">
+                        <rect key="frame" x="78" y="65" width="248" height="0.5"/>
+                        <color key="backgroundColor" name="color_user_list_divider"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="IRi-Fr-jrv"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="K3J-Mu-SY0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3JX-dK-4Gb"/>
+                    <constraint firstAttribute="trailing" secondItem="K3J-Mu-SY0" secondAttribute="trailing" constant="16" id="BqP-EZ-TOf"/>
+                    <constraint firstItem="K3J-Mu-SY0" firstAttribute="leading" secondItem="EhV-qO-DEF" secondAttribute="trailing" constant="17" id="CE3-Yu-rsg"/>
+                    <constraint firstAttribute="bottom" secondItem="AOj-Rl-QlU" secondAttribute="bottom" id="O0Z-7T-yNF"/>
+                    <constraint firstItem="K3J-Mu-SY0" firstAttribute="leading" secondItem="AOj-Rl-QlU" secondAttribute="leading" id="azV-jE-nsN"/>
+                    <constraint firstItem="EhV-qO-DEF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ksS-c4-FOm"/>
+                    <constraint firstItem="EhV-qO-DEF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="sta-Fl-j2y"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="AOj-Rl-QlU" secondAttribute="trailing" id="Ku5-Kr-E67"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="nicknameLabel" destination="K3J-Mu-SY0" id="hlw-c8-7zj"/>
+                <outlet property="profileImageView" destination="EhV-qO-DEF" id="0cI-BX-STg"/>
+            </connections>
+            <point key="canvasLocation" x="137.59999999999999" y="164.6176911544228"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="color_user_list_divider">
+            <color red="0.79600000381469727" green="0.80800002813339233" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

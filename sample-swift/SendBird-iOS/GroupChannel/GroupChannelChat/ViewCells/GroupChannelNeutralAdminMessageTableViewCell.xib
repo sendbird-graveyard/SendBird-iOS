@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="167" id="KGk-i7-Jjw" customClass="GroupChannelNeutralAdminMessageTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="167"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="166.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbY-3O-tmy" userLabel="Date Seperator Conatiner View">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Seperator Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDG-fp-xZN">
+                                <rect key="frame" x="90" y="24" width="140" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <color key="textColor" name="color_admin_message_text"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" priority="750" constant="65" id="6jY-39-69r"/>
+                            <constraint firstItem="NDG-fp-xZN" firstAttribute="centerY" secondItem="fbY-3O-tmy" secondAttribute="centerY" id="Ps0-wD-w1R"/>
+                            <constraint firstItem="NDG-fp-xZN" firstAttribute="centerX" secondItem="fbY-3O-tmy" secondAttribute="centerX" id="YE0-Tq-MBu"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HIO-Z4-fBC" userLabel="Message Container View">
+                        <rect key="frame" x="0.0" y="65" width="320" height="101.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PZ-cM-WBO" userLabel="Text Message Label">
+                                <rect key="frame" x="38" y="9" width="244" height="84.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <color key="textColor" red="0.52941176469999995" green="0.55294117649999996" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3PZ-cM-WBO" firstAttribute="top" secondItem="HIO-Z4-fBC" secondAttribute="top" constant="9" id="8qt-UY-TTF"/>
+                            <constraint firstAttribute="bottom" secondItem="3PZ-cM-WBO" secondAttribute="bottom" constant="8" id="W0C-Gj-37E"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="HIO-Z4-fBC" firstAttribute="top" secondItem="fbY-3O-tmy" secondAttribute="bottom" id="2m3-sk-fQg"/>
+                    <constraint firstAttribute="bottom" secondItem="HIO-Z4-fBC" secondAttribute="bottom" id="KMW-5T-5Ul"/>
+                    <constraint firstItem="fbY-3O-tmy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="mNu-hB-lxW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="njF-e1-oar" firstAttribute="trailing" secondItem="3PZ-cM-WBO" secondAttribute="trailing" constant="38" id="1wT-JL-seu"/>
+                <constraint firstItem="fbY-3O-tmy" firstAttribute="leading" secondItem="njF-e1-oar" secondAttribute="leading" id="JRb-xe-sGI"/>
+                <constraint firstItem="HIO-Z4-fBC" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" id="K21-01-lRr"/>
+                <constraint firstItem="3PZ-cM-WBO" firstAttribute="leading" secondItem="njF-e1-oar" secondAttribute="leading" constant="38" id="ZQ8-Q7-Inq"/>
+                <constraint firstAttribute="trailing" secondItem="HIO-Z4-fBC" secondAttribute="trailing" id="kh3-av-bVw"/>
+                <constraint firstItem="fbY-3O-tmy" firstAttribute="trailing" secondItem="njF-e1-oar" secondAttribute="trailing" id="zRl-hN-poH"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dateSeperatorContainerView" destination="fbY-3O-tmy" id="YAe-Es-WER"/>
+                <outlet property="dateSeperatorContainerViewHeight" destination="6jY-39-69r" id="TGw-cX-trg"/>
+                <outlet property="dateSeperatorContainerViewTopMargin" destination="mNu-hB-lxW" id="XAA-bH-7lR"/>
+                <outlet property="dateSeperatorLabel" destination="NDG-fp-xZN" id="VaD-k2-j8k"/>
+                <outlet property="messageContainerView" destination="HIO-Z4-fBC" id="DGg-BX-lVg"/>
+                <outlet property="messageContainerViewTopMargin" destination="2m3-sk-fQg" id="8Os-0W-Sxd"/>
+                <outlet property="textMessageLabel" destination="3PZ-cM-WBO" id="Zbn-G8-pD7"/>
+            </connections>
+            <point key="canvasLocation" x="132.80000000000001" y="210.04497751124438"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="color_admin_message_text">
+            <color red="0.61599999666213989" green="0.63899999856948853" blue="0.68199998140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

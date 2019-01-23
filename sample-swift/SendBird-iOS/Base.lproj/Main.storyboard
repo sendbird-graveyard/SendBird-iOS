@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="SendBird_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFQ-oj-e7q">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4d-vu-85b" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="546.66666666666663"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_sendbird_logo" translatesAutoresizingMaskIntoConstraints="NO" id="jXa-A3-8g8" userLabel="SendBird Logo Image View">
+                                                <rect key="frame" x="156.66666666666666" y="90" width="62" height="72"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="62" id="45f-ba-Qcr"/>
+                                                    <constraint firstAttribute="height" constant="72" id="PQ0-Gr-GcO"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_sendbird_logo_text" translatesAutoresizingMaskIntoConstraints="NO" id="nvE-IE-97w" userLabel="SendBird Text Logo Image View">
+                                                <rect key="frame" x="124" y="172" width="127" height="23"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="23" id="ZpV-P7-9Gg"/>
+                                                    <constraint firstAttribute="width" constant="127" id="gMU-Uc-hhF"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USER ID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KR1-JU-euj" userLabel="User ID Label">
+                                                <rect key="frame" x="30" y="250.99999999999997" width="315" height="15.666666666666657"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="redraw" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xah-0t-4x2" userLabel="User ID Text Field" customClass="CustomTextField" customModule="SendBird_iOS" customModuleProvider="target">
+                                                <rect key="frame" x="30" y="276.66666666666669" width="315" height="40"/>
+                                                <color key="tintColor" red="0.47450980390000003" green="0.31372549020000001" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="PoR-BU-ehA"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.21176470589999999" green="0.1764705882" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomBorderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomBorderColor">
+                                                        <color key="value" red="0.65490196079999996" green="0.61176470589999998" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NICKNAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kiB-Rg-vZk" userLabel="Nickname Label">
+                                                <rect key="frame" x="30" y="351.66666666666669" width="315" height="15.666666666666686"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="redraw" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nickname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LBk-FS-IhI" userLabel="Nickname Text Field" customClass="CustomTextField" customModule="SendBird_iOS" customModuleProvider="target">
+                                                <rect key="frame" x="30" y="377.33333333333331" width="315" height="40"/>
+                                                <color key="tintColor" red="0.47450980390000003" green="0.31372549020000001" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="GrW-Z7-JY9"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.21176470589999999" green="0.1764705882" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomBorderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomBorderColor">
+                                                        <color key="value" red="0.65490196079999996" green="0.61176470589999998" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQC-Dn-Y3z">
+                                                <rect key="frame" x="150.66666666666666" y="519.33333333333337" width="73.666666666666657" height="15.333333333333371"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                                <color key="textColor" red="0.42352941179999998" green="0.42352941179999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kac-lZ-chL" userLabel="Connect Button" customClass="CustomButton" customModule="SendBird_iOS" customModuleProvider="target">
+                                                <rect key="frame" x="30" y="449.33333333333331" width="315" height="54"/>
+                                                <color key="backgroundColor" red="0.47450980390000003" green="0.31372549020000001" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="54" id="8Et-0z-Tix"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                <state key="normal" title="Connect">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="mQC-Dn-Y3z" firstAttribute="top" secondItem="kac-lZ-chL" secondAttribute="bottom" constant="16" id="01p-Co-5Fb"/>
+                                            <constraint firstItem="kiB-Rg-vZk" firstAttribute="top" secondItem="xah-0t-4x2" secondAttribute="bottom" constant="35" id="1U1-EU-Gsm"/>
+                                            <constraint firstItem="mQC-Dn-Y3z" firstAttribute="centerX" secondItem="D4d-vu-85b" secondAttribute="centerX" id="2PF-L8-FpS"/>
+                                            <constraint firstAttribute="trailing" secondItem="LBk-FS-IhI" secondAttribute="trailing" constant="30" id="BQH-fi-UJV"/>
+                                            <constraint firstItem="jXa-A3-8g8" firstAttribute="top" secondItem="D4d-vu-85b" secondAttribute="top" constant="90" id="KhK-9C-Xru"/>
+                                            <constraint firstAttribute="bottom" secondItem="mQC-Dn-Y3z" secondAttribute="bottom" constant="12" id="MkU-5T-vyw"/>
+                                            <constraint firstItem="kac-lZ-chL" firstAttribute="left" secondItem="D4d-vu-85b" secondAttribute="left" constant="30" id="NmX-hn-pHS"/>
+                                            <constraint firstAttribute="right" secondItem="KR1-JU-euj" secondAttribute="right" constant="30" id="Rm2-Rx-W2X"/>
+                                            <constraint firstItem="jXa-A3-8g8" firstAttribute="centerX" secondItem="D4d-vu-85b" secondAttribute="centerX" id="UUY-ji-iQO"/>
+                                            <constraint firstItem="kiB-Rg-vZk" firstAttribute="left" secondItem="D4d-vu-85b" secondAttribute="left" constant="30" id="bYj-tI-Ghy"/>
+                                            <constraint firstItem="LBk-FS-IhI" firstAttribute="top" secondItem="kiB-Rg-vZk" secondAttribute="bottom" constant="10" id="da8-ct-FvA"/>
+                                            <constraint firstItem="nvE-IE-97w" firstAttribute="centerX" secondItem="D4d-vu-85b" secondAttribute="centerX" id="gCP-hw-Lex"/>
+                                            <constraint firstItem="nvE-IE-97w" firstAttribute="top" secondItem="jXa-A3-8g8" secondAttribute="bottom" constant="10" id="nKU-nO-ol8"/>
+                                            <constraint firstItem="LBk-FS-IhI" firstAttribute="leading" secondItem="D4d-vu-85b" secondAttribute="leading" constant="30" id="qFS-2V-ZjT"/>
+                                            <constraint firstAttribute="right" secondItem="kiB-Rg-vZk" secondAttribute="right" constant="30" id="tbv-V0-rdi"/>
+                                            <constraint firstItem="xah-0t-4x2" firstAttribute="leading" secondItem="D4d-vu-85b" secondAttribute="leading" constant="30" id="umI-6I-599"/>
+                                            <constraint firstItem="xah-0t-4x2" firstAttribute="top" secondItem="KR1-JU-euj" secondAttribute="bottom" constant="10" id="wc9-JY-aWo"/>
+                                            <constraint firstAttribute="right" secondItem="kac-lZ-chL" secondAttribute="right" constant="30" id="wuM-9c-itX"/>
+                                            <constraint firstItem="KR1-JU-euj" firstAttribute="left" secondItem="D4d-vu-85b" secondAttribute="left" constant="30" id="xcd-O5-Gx1"/>
+                                            <constraint firstItem="kac-lZ-chL" firstAttribute="top" secondItem="LBk-FS-IhI" secondAttribute="bottom" constant="32" id="yba-tL-hC8"/>
+                                            <constraint firstItem="KR1-JU-euj" firstAttribute="top" secondItem="jXa-A3-8g8" secondAttribute="bottom" constant="89" id="yo9-vX-Ayk"/>
+                                            <constraint firstAttribute="trailing" secondItem="xah-0t-4x2" secondAttribute="trailing" constant="30" id="zyv-ly-0ID"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="D4d-vu-85b" secondAttribute="width" id="7UA-IS-tfB"/>
+                                    <constraint firstItem="D4d-vu-85b" firstAttribute="top" secondItem="hFQ-oj-e7q" secondAttribute="top" id="bJX-Ke-I7B"/>
+                                    <constraint firstAttribute="bottom" secondItem="D4d-vu-85b" secondAttribute="bottom" id="cNV-0t-L1R"/>
+                                    <constraint firstAttribute="height" secondItem="D4d-vu-85b" secondAttribute="height" priority="250" id="tkb-pZ-YfF"/>
+                                    <constraint firstAttribute="trailing" secondItem="D4d-vu-85b" secondAttribute="trailing" id="vsB-g2-e6d"/>
+                                    <constraint firstItem="D4d-vu-85b" firstAttribute="leading" secondItem="hFQ-oj-e7q" secondAttribute="leading" id="xjB-4K-upD"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="hFQ-oj-e7q" secondAttribute="bottom" id="K8w-eo-9s4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hFQ-oj-e7q" secondAttribute="trailing" id="Ws9-9I-MG4"/>
+                            <constraint firstItem="hFQ-oj-e7q" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="n2T-q7-7of"/>
+                            <constraint firstItem="hFQ-oj-e7q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="s3g-v2-m01"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="connectButton" destination="kac-lZ-chL" id="ijy-I5-AFr"/>
+                        <outlet property="contentView" destination="D4d-vu-85b" id="y1U-RT-eRk"/>
+                        <outlet property="nicknameTextField" destination="LBk-FS-IhI" id="01f-Da-xgD"/>
+                        <outlet property="scrollViewBottom" destination="K8w-eo-9s4" id="Q3c-1Q-8QM"/>
+                        <outlet property="sendbirdTextLogoImageView" destination="nvE-IE-97w" id="AYl-RO-cU1"/>
+                        <outlet property="userIdLabelTop" destination="yo9-vX-Ayk" id="eoa-jU-Pz1"/>
+                        <outlet property="userIdTextField" destination="xah-0t-4x2" id="s7L-4i-yto"/>
+                        <outlet property="versionInfoLabel" destination="mQC-Dn-Y3z" id="yh6-Vk-Bf0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="img_sendbird_logo" width="62" height="72"/>
+        <image name="img_sendbird_logo_text" width="127" height="23"/>
+    </resources>
+</document>

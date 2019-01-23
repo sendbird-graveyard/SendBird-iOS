@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GroupChannelChatViewController" customModule="SendBird_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="inputMessageInnerContainerViewBottomMargin" destination="hNx-3k-Oaa" id="yUf-eo-bw0"/>
+                <outlet property="inputMessageTextField" destination="MUS-qO-qGJ" id="k3A-cz-xWs"/>
+                <outlet property="loadingIndicatorView" destination="khe-tC-OtR" id="Dh8-uf-YUq"/>
+                <outlet property="messageTableView" destination="oAG-M7-VNE" id="fU3-YB-FYE"/>
+                <outlet property="messageTableViewBottomMargin" destination="eoZ-gS-1jP" id="WXi-wH-BXU"/>
+                <outlet property="sendUserMessageButton" destination="OAD-Ws-K7b" id="VkK-p2-puq"/>
+                <outlet property="toastMessageLabel" destination="Fuk-ag-iJE" id="x0j-Mj-O3w"/>
+                <outlet property="toastView" destination="j0C-oq-vkT" id="7ZF-at-ciU"/>
+                <outlet property="typingIndicatorContainerView" destination="S75-zI-pfI" id="OC7-Da-ql7"/>
+                <outlet property="typingIndicatorContainerViewHeight" destination="iBF-oK-rP1" id="pnC-RE-uwP"/>
+                <outlet property="typingIndicatorImageView" destination="Fwc-74-WXv" id="Wps-4q-j2P"/>
+                <outlet property="typingIndicatorLabel" destination="wWO-Wy-oiy" id="C3L-BU-q4N"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oAG-M7-VNE" userLabel="Message Table View">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="723"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S75-zI-pfI" userLabel="Typing Indicator Container View">
+                    <rect key="frame" x="0.0" y="693" width="375" height="30"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fwc-74-WXv" userLabel="Typing Indicator Image View" customClass="FLAnimatedImageView">
+                            <rect key="frame" x="14" y="12.666666666666629" width="18" height="5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="18" id="hA1-66-5Dm"/>
+                                <constraint firstAttribute="height" constant="5" id="yfl-Hc-si3"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Typing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWO-Wy-oiy" userLabel="Typing Indicator Label">
+                            <rect key="frame" x="42" y="8" width="333" height="14"/>
+                            <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
+                            <color key="textColor" red="0.61568627450000002" green="0.63921568630000003" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="wWO-Wy-oiy" firstAttribute="centerY" secondItem="S75-zI-pfI" secondAttribute="centerY" id="egC-Im-c7Z"/>
+                        <constraint firstAttribute="height" constant="30" id="iBF-oK-rP1"/>
+                        <constraint firstItem="Fwc-74-WXv" firstAttribute="centerY" secondItem="S75-zI-pfI" secondAttribute="centerY" id="jt4-0f-FSd"/>
+                        <constraint firstAttribute="trailing" secondItem="wWO-Wy-oiy" secondAttribute="trailing" id="nXD-9W-QRT"/>
+                        <constraint firstItem="wWO-Wy-oiy" firstAttribute="leading" secondItem="Fwc-74-WXv" secondAttribute="trailing" constant="10" id="oN0-wl-JGl"/>
+                        <constraint firstItem="Fwc-74-WXv" firstAttribute="centerY" secondItem="S75-zI-pfI" secondAttribute="centerY" id="tSZ-a2-DAr"/>
+                        <constraint firstItem="Fwc-74-WXv" firstAttribute="leading" secondItem="S75-zI-pfI" secondAttribute="leading" constant="14" id="uEd-x5-cbY"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvK-56-JdT" userLabel="Input Message Container View">
+                    <rect key="frame" x="0.0" y="723" width="375" height="89"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUb-Ix-5nj" userLabel="Input Message Inner Container View">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Our-lq-1UY" userLabel="Send File Message Button">
+                                    <rect key="frame" x="10" y="10.666666666666629" width="34" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="9Fu-Cr-STn"/>
+                                        <constraint firstAttribute="width" constant="34" id="br5-CF-qfe"/>
+                                    </constraints>
+                                    <state key="normal" image="img_btn_send_file_msg_normal"/>
+                                    <state key="disabled" image="img_btn_send_file_msg_normal"/>
+                                    <state key="selected" image="img_btn_send_file_msg_pressed"/>
+                                    <state key="highlighted" image="img_btn_send_file_msg_pressed"/>
+                                    <connections>
+                                        <action selector="clickSendFileMessageButton:" destination="-1" eventType="touchUpInside" id="nWV-9K-xzW"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAD-Ws-K7b" userLabel="Send User Message Button">
+                                    <rect key="frame" x="338" y="15" width="25" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="nx4-2p-35m"/>
+                                        <constraint firstAttribute="height" constant="25" id="v96-NR-nmF"/>
+                                    </constraints>
+                                    <state key="normal" image="img_btn_send_user_msg_pressed"/>
+                                    <state key="disabled" image="img_btn_send_user_msg_normal"/>
+                                    <state key="selected" image="img_btn_send_user_msg_pressed"/>
+                                    <state key="highlighted" image="img_btn_send_user_msg_pressed"/>
+                                    <connections>
+                                        <action selector="clickSendUserMessageButton:" destination="-1" eventType="touchUpInside" id="rjp-iy-HHJ"/>
+                                    </connections>
+                                </button>
+                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Awf-Mi-9gr" userLabel="Input Message Text Field Container View">
+                                    <rect key="frame" x="52" y="6.6666666666666288" width="275" height="42"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type a message.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MUS-qO-qGJ">
+                                            <rect key="frame" x="1" y="1" width="273" height="40"/>
+                                            <color key="backgroundColor" name="color_message_input_textfiled_bg"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="Via-Be-NIa"/>
+                                            </constraints>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="19"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" name="color_message_input_textfield_border"/>
+                                    <constraints>
+                                        <constraint firstItem="MUS-qO-qGJ" firstAttribute="leading" secondItem="Awf-Mi-9gr" secondAttribute="leading" constant="1" id="F9I-IS-3aP"/>
+                                        <constraint firstItem="MUS-qO-qGJ" firstAttribute="top" secondItem="Awf-Mi-9gr" secondAttribute="top" constant="1" id="R81-JY-teb"/>
+                                        <constraint firstAttribute="bottom" secondItem="MUS-qO-qGJ" secondAttribute="bottom" constant="1" id="UeE-Gf-PoM"/>
+                                        <constraint firstAttribute="trailing" secondItem="MUS-qO-qGJ" secondAttribute="trailing" constant="1" id="rYz-lv-KFx"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="10g-ak-8ln"/>
+                                <constraint firstItem="Awf-Mi-9gr" firstAttribute="centerY" secondItem="WUb-Ix-5nj" secondAttribute="centerY" id="9P7-54-cuY"/>
+                                <constraint firstAttribute="trailing" secondItem="OAD-Ws-K7b" secondAttribute="trailing" constant="12" id="LDO-3C-Hgp"/>
+                                <constraint firstItem="OAD-Ws-K7b" firstAttribute="centerY" secondItem="WUb-Ix-5nj" secondAttribute="centerY" id="Syz-zC-gBD"/>
+                                <constraint firstItem="OAD-Ws-K7b" firstAttribute="leading" secondItem="Awf-Mi-9gr" secondAttribute="trailing" constant="11" id="YZi-eK-BQN"/>
+                                <constraint firstItem="Awf-Mi-9gr" firstAttribute="leading" secondItem="Our-lq-1UY" secondAttribute="trailing" constant="8" id="Zce-Zy-aDe"/>
+                                <constraint firstItem="Our-lq-1UY" firstAttribute="leading" secondItem="WUb-Ix-5nj" secondAttribute="leading" constant="10" id="ax3-Ur-VNV"/>
+                                <constraint firstItem="Our-lq-1UY" firstAttribute="centerY" secondItem="WUb-Ix-5nj" secondAttribute="centerY" id="tK8-yB-TQR"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5C-9I-hdp" userLabel="Divider View">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="0.66666666666666663"/>
+                            <color key="backgroundColor" name="color_message_input_view_top_border"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="Esr-Xf-hR4"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="U5C-9I-hdp" firstAttribute="top" secondItem="cvK-56-JdT" secondAttribute="top" id="1Xz-k7-wSF"/>
+                        <constraint firstItem="WUb-Ix-5nj" firstAttribute="top" secondItem="cvK-56-JdT" secondAttribute="top" id="PCY-ue-yGo"/>
+                        <constraint firstAttribute="trailing" secondItem="U5C-9I-hdp" secondAttribute="trailing" id="cTv-IU-kek"/>
+                        <constraint firstItem="U5C-9I-hdp" firstAttribute="leading" secondItem="cvK-56-JdT" secondAttribute="leading" id="xz9-cK-t0Y"/>
+                    </constraints>
+                </view>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="khe-tC-OtR" customClass="CustomActivityIndicatorView" customModule="SendBird_iOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                </activityIndicatorView>
+                <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j0C-oq-vkT" userLabel="Toast View">
+                    <rect key="frame" x="127.66666666666669" y="350.66666666666669" width="120" height="111"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_toast_check" translatesAutoresizingMaskIntoConstraints="NO" id="2Gu-eA-mvK" userLabel="Toast Check Image View">
+                            <rect key="frame" x="39.999999999999986" y="33" width="40" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="7Zk-Eu-TYd"/>
+                                <constraint firstAttribute="height" constant="32" id="yFW-hD-oZ0"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fuk-ag-iJE" userLabel="Toast Message Label">
+                            <rect key="frame" x="36.999999999999986" y="73" width="46" height="21"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" name="color_toast_bg"/>
+                    <constraints>
+                        <constraint firstItem="2Gu-eA-mvK" firstAttribute="centerX" secondItem="j0C-oq-vkT" secondAttribute="centerX" id="1Jj-2V-4sc"/>
+                        <constraint firstItem="Fuk-ag-iJE" firstAttribute="top" secondItem="2Gu-eA-mvK" secondAttribute="bottom" constant="8" id="FoT-Gc-d2y"/>
+                        <constraint firstItem="Fuk-ag-iJE" firstAttribute="centerX" secondItem="j0C-oq-vkT" secondAttribute="centerX" id="ZOo-PW-rWF"/>
+                        <constraint firstAttribute="height" constant="111" id="adk-4Q-TqP"/>
+                        <constraint firstAttribute="width" constant="120" id="noW-G9-auA"/>
+                        <constraint firstItem="2Gu-eA-mvK" firstAttribute="top" secondItem="j0C-oq-vkT" secondAttribute="top" constant="33" id="tts-Vs-D57"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="oAG-M7-VNE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2sn-sG-ABt"/>
+                <constraint firstItem="j0C-oq-vkT" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="5Cb-qQ-55M"/>
+                <constraint firstAttribute="bottom" secondItem="cvK-56-JdT" secondAttribute="bottom" id="7kd-k0-sqx"/>
+                <constraint firstItem="j0C-oq-vkT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="F4C-1c-tUd"/>
+                <constraint firstItem="S75-zI-pfI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="P7y-ar-Xb7"/>
+                <constraint firstItem="khe-tC-OtR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Vhf-j1-JfF"/>
+                <constraint firstItem="oAG-M7-VNE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="WYf-4L-JpO"/>
+                <constraint firstItem="cvK-56-JdT" firstAttribute="top" secondItem="S75-zI-pfI" secondAttribute="bottom" id="Wbi-0h-pgL"/>
+                <constraint firstItem="S75-zI-pfI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ec7-w3-cTh"/>
+                <constraint firstItem="WUb-Ix-5nj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="eec-AI-7Jk"/>
+                <constraint firstItem="cvK-56-JdT" firstAttribute="top" secondItem="oAG-M7-VNE" secondAttribute="bottom" id="eoZ-gS-1jP"/>
+                <constraint firstAttribute="trailing" secondItem="oAG-M7-VNE" secondAttribute="trailing" id="eyu-P2-GlP"/>
+                <constraint firstItem="WUb-Ix-5nj" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="geU-xH-Xaa"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="WUb-Ix-5nj" secondAttribute="bottom" id="hNx-3k-Oaa"/>
+                <constraint firstAttribute="trailing" secondItem="cvK-56-JdT" secondAttribute="trailing" id="hsI-ZQ-ACN"/>
+                <constraint firstAttribute="trailing" secondItem="khe-tC-OtR" secondAttribute="trailing" id="ndy-eC-XZ9"/>
+                <constraint firstItem="khe-tC-OtR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qFE-Vj-SGZ"/>
+                <constraint firstAttribute="bottom" secondItem="khe-tC-OtR" secondAttribute="bottom" id="ruK-vP-YuR"/>
+                <constraint firstItem="cvK-56-JdT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vDE-NK-dQn"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="img_btn_send_file_msg_normal" width="34" height="34"/>
+        <image name="img_btn_send_file_msg_pressed" width="34" height="34"/>
+        <image name="img_btn_send_user_msg_normal" width="25" height="25"/>
+        <image name="img_btn_send_user_msg_pressed" width="25" height="25"/>
+        <image name="img_toast_check" width="40" height="32"/>
+        <namedColor name="color_message_input_textfield_border">
+            <color red="0.875" green="0.875" blue="0.875" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="color_message_input_textfiled_bg">
+            <color red="0.93699997663497925" green="0.93699997663497925" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="color_message_input_view_top_border">
+            <color red="0.79600000381469727" green="0.80800002813339233" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="color_toast_bg">
+            <color red="0.31000000238418579" green="0.31000000238418579" blue="0.31000000238418579" alpha="0.69999998807907104" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="84" id="KGk-i7-Jjw" customClass="OpenChannelTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="286" height="83.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_icon_operator" translatesAutoresizingMaskIntoConstraints="NO" id="WRs-89-fJ5" userLabel="Opearator Mark Image View">
+                        <rect key="frame" x="192.5" y="22" width="19" height="19"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="19" id="UYM-AN-9bZ"/>
+                            <constraint firstAttribute="height" constant="19" id="u9D-dC-wfA"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yan-yn-J8I" userLabel="Channel Name Label">
+                        <rect key="frame" x="72" y="21" width="116.5" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <color key="textColor" name="color_open_channel_name_label"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Participant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="raA-ff-Ulr" userLabel="Participant Count Label">
+                        <rect key="frame" x="72" y="42" width="193" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" name="color_open_channel_participants_count_label"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAp-cL-Hwl" userLabel="Divider View">
+                        <rect key="frame" x="73.5" y="83" width="246.5" height="0.5"/>
+                        <color key="backgroundColor" name="color_open_channel_list_divider"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="i4e-nk-hKN"/>
+                        </constraints>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NO3-Yd-x2n" userLabel="Cover Image View">
+                        <rect key="frame" x="8" y="14" width="56" height="56"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="56" id="Vwp-1V-a9h"/>
+                            <constraint firstAttribute="width" constant="56" id="ZSq-Y5-FJy"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="28"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="WRs-89-fJ5" firstAttribute="centerY" secondItem="yan-yn-J8I" secondAttribute="centerY" id="C0o-o9-PVt"/>
+                    <constraint firstItem="WRs-89-fJ5" firstAttribute="leading" secondItem="yan-yn-J8I" secondAttribute="trailing" constant="4" id="IIf-fd-k9I"/>
+                    <constraint firstItem="yan-yn-J8I" firstAttribute="leading" secondItem="NO3-Yd-x2n" secondAttribute="trailing" constant="8" id="P14-OE-HdG"/>
+                    <constraint firstAttribute="centerY" secondItem="yan-yn-J8I" secondAttribute="bottom" id="QoZ-PD-W0K"/>
+                    <constraint firstItem="raA-ff-Ulr" firstAttribute="leading" secondItem="NO3-Yd-x2n" secondAttribute="trailing" constant="8" id="RPU-ab-pD8"/>
+                    <constraint firstAttribute="bottom" secondItem="eAp-cL-Hwl" secondAttribute="bottom" id="YNg-5G-R9S"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WRs-89-fJ5" secondAttribute="trailing" id="atW-WV-9T2"/>
+                    <constraint firstAttribute="trailing" secondItem="raA-ff-Ulr" secondAttribute="trailing" constant="21" id="ca1-Vn-nOT"/>
+                    <constraint firstItem="NO3-Yd-x2n" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="jKe-0P-SWB"/>
+                    <constraint firstItem="eAp-cL-Hwl" firstAttribute="leading" secondItem="NO3-Yd-x2n" secondAttribute="trailing" constant="9.5" id="uPl-d7-q2o"/>
+                    <constraint firstItem="raA-ff-Ulr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vRj-Lv-yna"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="NO3-Yd-x2n" firstAttribute="leading" secondItem="njF-e1-oar" secondAttribute="leading" constant="8" id="0TP-JN-71b"/>
+                <constraint firstAttribute="trailing" secondItem="eAp-cL-Hwl" secondAttribute="trailing" id="QjK-t8-KCj"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="channelNameLabel" destination="yan-yn-J8I" id="k08-iq-fML"/>
+                <outlet property="coverImage" destination="NO3-Yd-x2n" id="z96-QF-tK9"/>
+                <outlet property="operatorMarkImageView" destination="WRs-89-fJ5" id="HAI-pP-M2h"/>
+                <outlet property="participantCountLabel" destination="raA-ff-Ulr" id="dqJ-5n-R6n"/>
+            </connections>
+            <point key="canvasLocation" x="132.80000000000001" y="172.71364317841082"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="img_icon_operator" width="19" height="19"/>
+        <namedColor name="color_open_channel_list_divider">
+            <color red="0.79600000381469727" green="0.80800002813339233" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="color_open_channel_name_label">
+            <color red="0.21199999749660492" green="0.17599999904632568" blue="0.36500000953674316" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="color_open_channel_participants_count_label">
+            <color red="0.55699998140335083" green="0.55699998140335083" blue="0.55699998140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="OpenChannelAdminMessageTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N2M-XS-Qyr" userLabel="Background View">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZpT-4w-Mcx" userLabel="Message Container View">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGO-hO-ZwD" userLabel="Message Label">
+                                <rect key="frame" x="16" y="13" width="288" height="17.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <color key="textColor" name="color_open_channel_admin_message_text"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ZGO-hO-ZwD" secondAttribute="bottom" constant="13" id="Mu1-qN-an6"/>
+                            <constraint firstItem="ZGO-hO-ZwD" firstAttribute="leading" secondItem="ZpT-4w-Mcx" secondAttribute="leading" constant="16" id="Phd-dk-4Zj"/>
+                            <constraint firstItem="ZGO-hO-ZwD" firstAttribute="top" secondItem="ZpT-4w-Mcx" secondAttribute="top" constant="13" id="byr-f5-Ybl"/>
+                            <constraint firstAttribute="trailing" secondItem="ZGO-hO-ZwD" secondAttribute="trailing" constant="16" id="sQm-Ku-8mZ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="ZpT-4w-Mcx" secondAttribute="bottom" id="2IU-x9-sAb"/>
+                    <constraint firstItem="ZpT-4w-Mcx" firstAttribute="bottom" secondItem="N2M-XS-Qyr" secondAttribute="bottom" id="GVk-IN-ui3"/>
+                    <constraint firstItem="ZpT-4w-Mcx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="SFe-av-yic"/>
+                    <constraint firstItem="ZpT-4w-Mcx" firstAttribute="top" secondItem="N2M-XS-Qyr" secondAttribute="top" id="UUv-MO-0lg"/>
+                    <constraint firstItem="ZpT-4w-Mcx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="W9D-as-3QP"/>
+                    <constraint firstAttribute="trailing" secondItem="ZpT-4w-Mcx" secondAttribute="trailing" id="vGt-z8-MdB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="N2M-XS-Qyr" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" id="Jel-pS-dxY"/>
+                <constraint firstAttribute="trailing" secondItem="N2M-XS-Qyr" secondAttribute="trailing" id="Oov-SP-ysJ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="messageContainerView" destination="ZpT-4w-Mcx" id="ilt-Fo-M09"/>
+                <outlet property="messageContainerViewTopMargin" destination="SFe-av-yic" id="gHr-h9-GEE"/>
+                <outlet property="messageLabel" destination="ZGO-hO-ZwD" id="oA7-HT-5ct"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="color_open_channel_admin_message_text">
+            <color red="0.61599999666213989" green="0.63899999856948853" blue="0.68199998140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

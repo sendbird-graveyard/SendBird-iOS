@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OpenChannelSettingsViewController" customModule="SendBird_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="loadingIndicatorView" destination="bhu-CH-hd1" id="6gz-zX-Di0"/>
+                <outlet property="settingsTableView" destination="Wjj-ht-nDB" id="pqq-lS-xkq"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wjj-ht-nDB">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                    <color key="backgroundColor" name="color_channel_settings_bg"/>
+                    <color key="sectionIndexBackgroundColor" name="color_channel_settings_bg"/>
+                </tableView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bhu-CH-hd1" userLabel="Loading Indicator View" customClass="CustomActivityIndicatorView" customModule="SendBird_iOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" name="color_channel_settings_bg"/>
+            <constraints>
+                <constraint firstItem="bhu-CH-hd1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="KRR-Tq-Qd7"/>
+                <constraint firstAttribute="trailing" secondItem="Wjj-ht-nDB" secondAttribute="trailing" id="TM7-ar-Tpe"/>
+                <constraint firstItem="Wjj-ht-nDB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="XDy-Qw-4fs"/>
+                <constraint firstItem="Wjj-ht-nDB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jry-go-OJI"/>
+                <constraint firstAttribute="trailing" secondItem="bhu-CH-hd1" secondAttribute="trailing" id="lLF-aJ-B1M"/>
+                <constraint firstItem="bhu-CH-hd1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mLg-rm-JBu"/>
+                <constraint firstAttribute="bottom" secondItem="bhu-CH-hd1" secondAttribute="bottom" id="ocW-Ge-DY0"/>
+                <constraint firstAttribute="bottom" secondItem="Wjj-ht-nDB" secondAttribute="bottom" id="ynx-th-YVn"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="color_channel_settings_bg">
+            <color red="0.93699997663497925" green="0.93699997663497925" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

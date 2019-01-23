@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="OpenChannelSettingsMeTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TtC-Rw-0ce">
+                        <rect key="frame" x="15" y="3" width="38" height="38"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="38" id="7a8-A3-csx"/>
+                            <constraint firstAttribute="width" constant="38" id="Tw4-EZ-KBK"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="19"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBr-bc-nN4">
+                        <rect key="frame" x="15" y="3" width="38" height="38"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hqd-nB-2gz" userLabel="Me Label">
+                                <rect key="frame" x="7" y="8.5" width="24" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.4039215686" green="0.25490196079999999" blue="0.85098039219999999" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Hqd-nB-2gz" firstAttribute="centerY" secondItem="cBr-bc-nN4" secondAttribute="centerY" id="1m6-8H-h41"/>
+                            <constraint firstItem="Hqd-nB-2gz" firstAttribute="centerX" secondItem="cBr-bc-nN4" secondAttribute="centerX" id="IQk-st-SIV"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="19"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-VW-ilp">
+                        <rect key="frame" x="68" y="11.5" width="236" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <color key="textColor" red="0.21176470589999999" green="0.1764705882" blue="0.36470588240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7dN-h0-R44" userLabel="Divider View">
+                        <rect key="frame" x="68" y="43" width="252" height="0.5"/>
+                        <color key="backgroundColor" name="color_user_list_divider"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="ijE-Tb-pZq"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cJG-ID-x7c" userLabel="Top Border View">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="0.5"/>
+                        <color key="backgroundColor" name="color_user_list_divider"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="4xl-XU-7lr"/>
+                        </constraints>
+                    </view>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oli-nF-5DU" userLabel="Bottom Border View">
+                        <rect key="frame" x="0.0" y="43" width="320" height="0.5"/>
+                        <color key="backgroundColor" name="color_settings_border"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="ukJ-wV-Cnc"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="TtC-Rw-0ce" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5CD-Mu-GyY"/>
+                    <constraint firstItem="cBr-bc-nN4" firstAttribute="trailing" secondItem="TtC-Rw-0ce" secondAttribute="trailing" id="8X4-EO-iVr"/>
+                    <constraint firstItem="cBr-bc-nN4" firstAttribute="bottom" secondItem="TtC-Rw-0ce" secondAttribute="bottom" id="8X4-rO-MKA"/>
+                    <constraint firstItem="cJG-ID-x7c" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="8uf-9A-TFp"/>
+                    <constraint firstItem="cBr-bc-nN4" firstAttribute="top" secondItem="TtC-Rw-0ce" secondAttribute="top" id="9EN-hD-aTz"/>
+                    <constraint firstItem="8bC-VW-ilp" firstAttribute="leading" secondItem="7dN-h0-R44" secondAttribute="leading" id="Okl-Lt-Odl"/>
+                    <constraint firstAttribute="bottom" secondItem="oli-nF-5DU" secondAttribute="bottom" id="Pk9-gD-DUC"/>
+                    <constraint firstItem="cBr-bc-nN4" firstAttribute="leading" secondItem="TtC-Rw-0ce" secondAttribute="leading" id="WQ9-ju-puv"/>
+                    <constraint firstAttribute="trailing" secondItem="8bC-VW-ilp" secondAttribute="trailing" constant="16" id="XGj-FK-oFz"/>
+                    <constraint firstAttribute="bottom" secondItem="7dN-h0-R44" secondAttribute="bottom" id="Yk5-lX-RCC"/>
+                    <constraint firstItem="8bC-VW-ilp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dxF-ld-YKh"/>
+                    <constraint firstItem="TtC-Rw-0ce" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="eDS-ma-P2Y"/>
+                    <constraint firstItem="8bC-VW-ilp" firstAttribute="leading" secondItem="TtC-Rw-0ce" secondAttribute="trailing" constant="15" id="mKe-GS-dkR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="oli-nF-5DU" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" id="7m2-5z-7CX"/>
+                <constraint firstAttribute="trailing" secondItem="7dN-h0-R44" secondAttribute="trailing" id="L0h-bs-ALY"/>
+                <constraint firstItem="cJG-ID-x7c" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" id="P08-Ac-LpH"/>
+                <constraint firstAttribute="trailing" secondItem="cJG-ID-x7c" secondAttribute="trailing" id="SbF-WZ-1UH"/>
+                <constraint firstAttribute="trailing" secondItem="oli-nF-5DU" secondAttribute="trailing" id="Ysc-QY-Dp0"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="bottomBorderView" destination="oli-nF-5DU" id="oLa-nG-TCm"/>
+                <outlet property="nicknameLabel" destination="8bC-VW-ilp" id="DuY-hv-OCu"/>
+                <outlet property="profileImageView" destination="TtC-Rw-0ce" id="bHI-LG-BLv"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="color_settings_border">
+            <color red="0.7839999794960022" green="0.77999997138977051" blue="0.80000001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="color_user_list_divider">
+            <color red="0.79600000381469727" green="0.80800002813339233" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

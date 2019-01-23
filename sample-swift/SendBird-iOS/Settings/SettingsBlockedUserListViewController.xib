@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsBlockedUserListViewController" customModule="SendBird_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="emptyLabel" destination="g5y-eo-dvT" id="YMs-K1-fDo"/>
+                <outlet property="tableView" destination="j61-9I-qdV" id="oeQ-4f-TkQ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="j61-9I-qdV">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no blocked users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5y-eo-dvT" userLabel="Empty Label">
+                    <rect key="frame" x="92.333333333333329" y="402" width="190.66666666666669" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                    <color key="textColor" name="color_empty_list_label"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="g5y-eo-dvT" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="BgN-Le-DHR"/>
+                <constraint firstItem="j61-9I-qdV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Md0-Gz-jwO"/>
+                <constraint firstItem="j61-9I-qdV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="R5J-03-fvA"/>
+                <constraint firstItem="g5y-eo-dvT" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="SVn-6h-dnj"/>
+                <constraint firstAttribute="bottom" secondItem="j61-9I-qdV" secondAttribute="bottom" id="T6p-nV-AQ0"/>
+                <constraint firstAttribute="trailing" secondItem="j61-9I-qdV" secondAttribute="trailing" id="qLg-S0-czb"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="color_empty_list_label">
+            <color red="0.61599999666213989" green="0.63899999856948853" blue="0.68199998140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

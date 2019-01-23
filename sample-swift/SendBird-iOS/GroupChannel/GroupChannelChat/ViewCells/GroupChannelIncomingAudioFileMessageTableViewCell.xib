@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="200" id="KGk-i7-Jjw" customClass="GroupChannelIncomingAudioFileMessageTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="356" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="356" height="199.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rQQ-fH-K8v" userLabel="Date Seperator Conatiner View">
+                        <rect key="frame" x="0.0" y="0.0" width="356" height="65"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Seperator Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hp-Gb-pZB">
+                                <rect key="frame" x="108" y="24" width="140" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <color key="textColor" name="color_admin_message_text"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4hp-Gb-pZB" firstAttribute="centerX" secondItem="rQQ-fH-K8v" secondAttribute="centerX" id="1Xn-Vb-eKI"/>
+                            <constraint firstAttribute="height" priority="750" constant="65" id="QR5-TR-YPa"/>
+                            <constraint firstItem="4hp-Gb-pZB" firstAttribute="centerY" secondItem="rQQ-fH-K8v" secondAttribute="centerY" id="UaK-ag-x41"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Oq-dB-x5w" userLabel="Nickname Container View">
+                        <rect key="frame" x="56" y="65" width="284" height="64.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nickname Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwl-fb-HHk" userLabel="Nickname Label">
+                                <rect key="frame" x="0.0" y="0.0" width="284" height="64.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                <color key="textColor" name="color_group_channel_message_nickname"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="rwl-fb-HHk" secondAttribute="bottom" id="9iF-gv-xUM"/>
+                            <constraint firstItem="rwl-fb-HHk" firstAttribute="top" secondItem="2Oq-dB-x5w" secondAttribute="top" id="OZ2-H0-VE9"/>
+                            <constraint firstAttribute="trailing" secondItem="rwl-fb-HHk" secondAttribute="trailing" id="T7M-nB-8E6"/>
+                            <constraint firstItem="rwl-fb-HHk" firstAttribute="leading" secondItem="2Oq-dB-x5w" secondAttribute="leading" id="t7G-SI-sIc"/>
+                        </constraints>
+                    </view>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3V-cI-bJA" userLabel="Message Container View">
+                        <rect key="frame" x="49" y="135.5" width="221" height="50"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_icon_play_audio" translatesAutoresizingMaskIntoConstraints="NO" id="shI-9w-CQk" userLabel="File Icon Image View">
+                                <rect key="frame" x="12" y="10" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="H3Z-WQ-f0h"/>
+                                    <constraint firstAttribute="width" constant="30" id="uT9-K4-xue"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Lorem ipsum file name.pdf" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxf-eE-3VT" userLabel="File Name Label">
+                                <rect key="frame" x="47" y="30" width="159" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" name="color_group_channel_incoming_audio_filename"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_audio_wave" translatesAutoresizingMaskIntoConstraints="NO" id="evS-d9-7il" userLabel="Audio Wave Image View">
+                                <rect key="frame" x="47" y="9" width="156" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="156" id="Nd3-Jd-2Qy"/>
+                                    <constraint firstAttribute="height" constant="18" id="niS-i3-VNO"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="2bM-FI-Fr9"/>
+                            <constraint firstItem="evS-d9-7il" firstAttribute="top" secondItem="L3V-cI-bJA" secondAttribute="top" constant="9" id="8uB-fH-C32"/>
+                            <constraint firstItem="shI-9w-CQk" firstAttribute="leading" secondItem="L3V-cI-bJA" secondAttribute="leading" constant="12" id="Bzs-A2-U5K"/>
+                            <constraint firstAttribute="trailing" secondItem="Uxf-eE-3VT" secondAttribute="trailing" constant="15" id="Lej-Ko-tSn"/>
+                            <constraint firstItem="Uxf-eE-3VT" firstAttribute="leading" secondItem="shI-9w-CQk" secondAttribute="trailing" constant="5" id="eMh-3S-R6V"/>
+                            <constraint firstItem="evS-d9-7il" firstAttribute="leading" secondItem="shI-9w-CQk" secondAttribute="trailing" constant="5" id="mAh-GR-wkM"/>
+                            <constraint firstItem="Uxf-eE-3VT" firstAttribute="top" secondItem="evS-d9-7il" secondAttribute="bottom" constant="3" id="maz-eM-jnV"/>
+                            <constraint firstItem="shI-9w-CQk" firstAttribute="centerY" secondItem="L3V-cI-bJA" secondAttribute="centerY" id="n1G-UG-shh"/>
+                            <constraint firstAttribute="width" constant="221" id="y6q-EQ-Wvz"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="14"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhR-T3-SWt" userLabel="Profile Container View">
+                        <rect key="frame" x="14" y="153.5" width="32" height="32"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jyG-s0-Vek" userLabel="Profile Image View">
+                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="byT-fU-qU0"/>
+                                    <constraint firstAttribute="width" constant="32" id="cHV-Xn-Act"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="jyG-s0-Vek" secondAttribute="bottom" id="TML-Eu-qo3"/>
+                            <constraint firstItem="jyG-s0-Vek" firstAttribute="top" secondItem="fhR-T3-SWt" secondAttribute="top" id="Ukc-hn-jT3"/>
+                            <constraint firstAttribute="trailing" secondItem="jyG-s0-Vek" secondAttribute="trailing" id="W3m-Do-T6s"/>
+                            <constraint firstItem="jyG-s0-Vek" firstAttribute="leading" secondItem="fhR-T3-SWt" secondAttribute="leading" id="ZUX-5W-Lnh"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mF4-cK-len" userLabel="Message Status Container View">
+                        <rect key="frame" x="56" y="185.5" width="284" height="14"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcA-df-foW" userLabel="Message Date Container View">
+                                <rect key="frame" x="0.0" y="0.5" width="284" height="13.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJ0-KM-gPH" userLabel="Message Date Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="284" height="13.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" red="0.66666666669999997" green="0.69019607839999997" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="KJ0-KM-gPH" secondAttribute="bottom" id="AyT-ba-twf"/>
+                                    <constraint firstItem="KJ0-KM-gPH" firstAttribute="top" secondItem="bcA-df-foW" secondAttribute="top" id="K5o-1C-6MM"/>
+                                    <constraint firstItem="KJ0-KM-gPH" firstAttribute="leading" secondItem="bcA-df-foW" secondAttribute="leading" id="iP4-cW-zzf"/>
+                                    <constraint firstAttribute="trailing" secondItem="KJ0-KM-gPH" secondAttribute="trailing" id="rC9-GY-owQ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bcA-df-foW" firstAttribute="leading" secondItem="mF4-cK-len" secondAttribute="leading" id="62R-W4-eK6"/>
+                            <constraint firstAttribute="trailing" secondItem="bcA-df-foW" secondAttribute="trailing" id="MCZ-Cy-qqf"/>
+                            <constraint firstAttribute="height" constant="14" id="hqH-fY-ADn"/>
+                            <constraint firstAttribute="bottom" secondItem="bcA-df-foW" secondAttribute="bottom" id="s8s-oq-MLf"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="rQQ-fH-K8v" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="A1F-Kq-j9O"/>
+                    <constraint firstItem="2Oq-dB-x5w" firstAttribute="top" secondItem="rQQ-fH-K8v" secondAttribute="bottom" id="Mb2-82-vJX"/>
+                    <constraint firstItem="fhR-T3-SWt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="PCC-Rh-ESl"/>
+                    <constraint firstAttribute="trailing" secondItem="2Oq-dB-x5w" secondAttribute="trailing" constant="16" id="Zik-Lj-Sne"/>
+                    <constraint firstItem="2Oq-dB-x5w" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="56" id="f1H-6c-tv8"/>
+                    <constraint firstAttribute="bottom" secondItem="L3V-cI-bJA" secondAttribute="bottom" constant="14" id="jp4-C1-3hV"/>
+                    <constraint firstItem="L3V-cI-bJA" firstAttribute="leading" secondItem="fhR-T3-SWt" secondAttribute="trailing" constant="3" id="vbo-4L-qhI"/>
+                    <constraint firstItem="L3V-cI-bJA" firstAttribute="top" secondItem="2Oq-dB-x5w" secondAttribute="bottom" constant="6" id="w78-ez-quA"/>
+                    <constraint firstAttribute="trailing" secondItem="mF4-cK-len" secondAttribute="trailing" constant="16" id="wQB-X6-ejv"/>
+                    <constraint firstItem="L3V-cI-bJA" firstAttribute="bottom" secondItem="fhR-T3-SWt" secondAttribute="bottom" id="xQ9-Gr-dAh"/>
+                    <constraint firstItem="mF4-cK-len" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="56" id="xtg-LE-dog"/>
+                    <constraint firstAttribute="bottom" secondItem="mF4-cK-len" secondAttribute="bottom" id="yUP-cH-Wn0"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="rQQ-fH-K8v" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" id="Tl6-hc-fDW"/>
+                <constraint firstAttribute="trailing" secondItem="rQQ-fH-K8v" secondAttribute="trailing" id="kwH-qd-6ps"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dateSeperatorContainerView" destination="rQQ-fH-K8v" id="nkA-yH-R3J"/>
+                <outlet property="dateSeperatorContainerViewHeight" destination="QR5-TR-YPa" id="oE1-9N-2Yj"/>
+                <outlet property="dateSeperatorContainerViewTopMargin" destination="A1F-Kq-j9O" id="Uz0-RJ-G3F"/>
+                <outlet property="dateSeperatorLabel" destination="4hp-Gb-pZB" id="8me-7V-d6c"/>
+                <outlet property="fileNameLabel" destination="Uxf-eE-3VT" id="ZfU-gb-bvs"/>
+                <outlet property="messageContainerView" destination="L3V-cI-bJA" id="tJe-35-T5U"/>
+                <outlet property="messageContainerViewBottomMargin" destination="jp4-C1-3hV" id="ntD-v8-4u5"/>
+                <outlet property="messageContainerViewTopMargin" destination="w78-ez-quA" id="yYJ-9D-MXM"/>
+                <outlet property="messageDateLabel" destination="KJ0-KM-gPH" id="Coi-eo-8Ws"/>
+                <outlet property="messageStatusContainerView" destination="mF4-cK-len" id="GO2-ms-LqL"/>
+                <outlet property="messageStatusContainerViewHeight" destination="hqH-fY-ADn" id="qo2-cp-8UE"/>
+                <outlet property="nicknameContainerViewTopMargin" destination="Mb2-82-vJX" id="9iu-MA-nru"/>
+                <outlet property="nicknameLabel" destination="rwl-fb-HHk" id="40J-bM-AcE"/>
+                <outlet property="profileContainerView" destination="fhR-T3-SWt" id="6F0-YO-rrI"/>
+                <outlet property="profileImageView" destination="jyG-s0-Vek" id="bZ2-zn-k26"/>
+            </connections>
+            <point key="canvasLocation" x="104" y="224.88755622188907"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="img_audio_wave" width="156" height="18"/>
+        <image name="img_icon_play_audio" width="30" height="30"/>
+        <namedColor name="color_admin_message_text">
+            <color red="0.61599999666213989" green="0.63899999856948853" blue="0.68199998140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="color_group_channel_incoming_audio_filename">
+            <color red="0.51800000667572021" green="0.54900002479553223" blue="0.60399997234344482" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="color_group_channel_message_nickname">
+            <color red="0.61599999666213989" green="0.63899999856948853" blue="0.68199998140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="GroupChannelSettingsBlankTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkz-e8-DFg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T9q-j1-xgF" userLabel="Top Border View">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="0.5"/>
+                        <color key="backgroundColor" name="color_settings_border"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="7Vg-jY-BFw"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m93-2F-Tbj" userLabel="Bottom Border View">
+                        <rect key="frame" x="0.0" y="43" width="320" height="0.5"/>
+                        <color key="backgroundColor" name="color_settings_border"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="q37-Ms-1Ev"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="hkz-e8-DFg" secondAttribute="bottom" id="dqO-xc-3IQ"/>
+                    <constraint firstItem="hkz-e8-DFg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="iUC-q3-OCY"/>
+                    <constraint firstItem="T9q-j1-xgF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="wQH-hW-grv"/>
+                    <constraint firstAttribute="bottom" secondItem="m93-2F-Tbj" secondAttribute="bottom" id="zn1-nU-1hK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="m93-2F-Tbj" secondAttribute="trailing" id="FBA-F4-35d"/>
+                <constraint firstItem="m93-2F-Tbj" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" id="LB6-c4-a1u"/>
+                <constraint firstItem="hkz-e8-DFg" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" id="Ymc-BW-GhA"/>
+                <constraint firstItem="T9q-j1-xgF" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" id="h9f-Ba-zkf"/>
+                <constraint firstAttribute="trailing" secondItem="T9q-j1-xgF" secondAttribute="trailing" id="naq-eI-uyW"/>
+                <constraint firstAttribute="trailing" secondItem="hkz-e8-DFg" secondAttribute="trailing" id="rAa-JV-oOT"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="color_settings_border">
+            <color red="0.7839999794960022" green="0.77999997138977051" blue="0.80000001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

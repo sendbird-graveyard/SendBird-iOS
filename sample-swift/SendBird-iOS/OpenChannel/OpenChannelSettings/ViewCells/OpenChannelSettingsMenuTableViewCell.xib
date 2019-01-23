@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="KGk-i7-Jjw" customClass="OpenChannelSettingsMenuTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="286" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9ik-RV-h1m" userLabel="Setting Menu Icon Image View">
+                        <rect key="frame" x="19" y="7" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="dM6-DF-eNW"/>
+                            <constraint firstAttribute="width" constant="30" id="imK-sT-g7o"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybx-PF-1yK" userLabel="Setting Menu Label">
+                        <rect key="frame" x="69" y="11.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9R-Se-C0D" userLabel="Count Label">
+                        <rect key="frame" x="267" y="13" width="19" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" name="open_channe_settings_count_label_color"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9e-iI-QI8" userLabel="Divider View">
+                        <rect key="frame" x="69" y="43" width="251" height="0.5"/>
+                        <color key="backgroundColor" name="color_user_list_divider"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="DIU-mH-B3J"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="G9R-Se-C0D" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0dl-Yf-9mn"/>
+                    <constraint firstAttribute="bottom" secondItem="w9e-iI-QI8" secondAttribute="bottom" id="CHg-Us-4P3"/>
+                    <constraint firstItem="Ybx-PF-1yK" firstAttribute="leading" secondItem="9ik-RV-h1m" secondAttribute="trailing" constant="20" id="Rwq-vt-x9L"/>
+                    <constraint firstItem="9ik-RV-h1m" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Tfn-bj-1CN"/>
+                    <constraint firstAttribute="trailing" secondItem="G9R-Se-C0D" secondAttribute="trailing" id="V4w-v9-Fbm"/>
+                    <constraint firstItem="9ik-RV-h1m" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="19" id="fWd-qn-B0j"/>
+                    <constraint firstItem="Ybx-PF-1yK" firstAttribute="leading" secondItem="w9e-iI-QI8" secondAttribute="leading" id="oEp-Lr-d9X"/>
+                    <constraint firstItem="Ybx-PF-1yK" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="t5d-YI-joS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="w9e-iI-QI8" secondAttribute="trailing" id="wje-ow-4pg"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="countLabel" destination="G9R-Se-C0D" id="GRP-hZ-mOL"/>
+                <outlet property="dividerView" destination="w9e-iI-QI8" id="Npz-WF-e6h"/>
+                <outlet property="settingMenuIconImageView" destination="9ik-RV-h1m" id="fjD-Xe-Zqa"/>
+                <outlet property="settingMenuLabel" destination="Ybx-PF-1yK" id="vsY-MZ-s1m"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="color_user_list_divider">
+            <color red="0.79600000381469727" green="0.80800002813339233" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="open_channe_settings_count_label_color">
+            <color name="ibMissingResourceColor" catalog="#$assets-com.apple.dt.DVTKit" colorSpace="catalog"/>
+        </namedColor>
+    </resources>
+</document>
