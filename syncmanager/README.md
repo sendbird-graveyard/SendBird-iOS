@@ -1,5 +1,5 @@
-# SendBird-iOS-LocalCache-Sample
-The repository for a sample project that use `SendBird SDK Manager` for **LocalCache**. Manager offers an event-based data management so that each view would see a single spot by subscribing data event. And it stores the data into database which implements local caching for faster loading.  
+# SendBird SyncManager Sample 
+The repository for a sample project that use `SendBird SyncManager` for **LocalCache**. Manager offers an event-based data management so that each view would see a single spot by subscribing data event. And it stores the data into database which implements local caching for faster loading.  
 
 ## SendBird SyncManager Framework
 Refers to [SendBird SyncManager Framework](https://github.com/smilefam/sendbird-syncmanager-ios)
@@ -40,157 +40,416 @@ Now you can see installed SendBird framework by inspecting YOUR_PROJECT.xcworksp
 ## Usage
 
 ### Initialization
+`SBSMSyncManager` is singlton class. And when `SBSMSyncManager` was initialized, a instance for `Database` is set up. So if you want to initialize `Database` as soon as possible, call `setup(_:)` first just after you get a user's ID. we recommend it is in `application(_:didFinishLaunchingWithOptions:)`.
+```swift
+// AppDelegate.swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+    ... // get user's ID    
+    SBSMSyncManager.setup(withUserId: userId)
+    ...
+}
+```
 ```objc
 // AppDelegate.m
-- (BOOL)application:(UIApplication *)application 
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     ...
 
-    [SBSMChannelManager sharedInstance];
+    [SBSMSyncManager setupWithUserId:userId];
 
     ...
 }
 ```
 
-### Channel Manager
+### Collection
 
+`Collection` is a container to manage objects(channels, messages) related to a view. `SBSMChannelCollection` is attached to channel list view contoller and `SBSMMessageCollection` is attached to message list view contoller accordingly. The main purpose of `Collection` is,
+
+- To listen data event and deliver it as view event.
+- To fetch data from cache or SendBird server and deliver the data as view event.
+
+To meet the purpose, each collection has event subscriber and data fetcher. Event subscriber listens data event so that it could apply data update into view, and data fetcher loads data from cache or server and sends the data to event handler.
+
+#### Channel Collection
+Channel is quite mutable data where chat is actively going - channel's last message and unread message count may update very often. Even the position of each channel is changing drastically since many apps sort channels by the most recent message. For that reason, `SBSMChannelCollection` depends mostly on server sync. Here's the process `SBSMChannelCollection` synchronizes data:
+
+1. It loads channels from cache and the view shows them.
+2. Then it fetches the most recent channels from SendBird server and merges with the channels in view.
+3. It fetches from SendBird server every time `fetch(_:)` is called in order to view previous channels.
+
+> Note: Channel data sync mechanism could change later.
+
+`SBSMChannelCollection` requires `SBDGroupChannelListQuery` instance of [SendBirdSDK](https://github.com/smilefam/sendbird-ios-framework) as it binds the query into the collection. Then the collection filters data with the query. Here's the code to create new `SBSMChannelCollection` instance.
+
+```swift
+// swift
+let query: SBDGroupChannelListQuery? = SBDGroupChannel.createMyGroupChannelListQuery()
+// ...setup your query here
+let channelCollection: SBSMChannelCollection? = SBSMChannelCollection.init(query: query)
+```
 ```objc
-// GroupChannelListViewController.h
-
-#import <SendBirdSDK/SendBirdSDK.h>
-#import "SyncManager.h"
-
-@interface GroupChannelListViewController : UIViewController <SBSMCollectionDelegate>
-@end
-
-// GroupChannelListViewController.m
-
-@implementation GroupChannelListViewController
-
-- (void)collection:(id<SBSMCollection> _Nonnull)collection
-      updatedItmes:(nonnull NSArray <id<SBSMObject>> *)updatedItems
-            action:(SBSMChangeLogAction)action
-             error:(nullable NSError *)error {
-    switch(action) {
-        case SBSMChangeLogActionPrepend:
-        // Update UI
-            break;
-        case SBSMChangeLogActionAppend:
-        // Update UI
-            break;
-        case SBSMChangeLogActionNew:
-        // Update UI
-            break;
-        case SBSMChangeLogActionChanged:
-        // Update UI
-            break;
-        case SBSMChangeLogActionDeleted:
-        // Update UI
-            break;
-        case SBSMChangeLogActionMoved:
-        // Update UI
-            break;
-        case SBSMChangeLogActionCleared:
-        // Update UI
-            break;
-    }
-}
-
-// ...
-// to load channels
+// objective-c
 SBDGroupChannelListQuery *query = [SBDGroupChannel createMyGroupChannelListQuery];
 // ...setup your query here
+SBSMChannelCollection *channelCollection = [SBSMChannelCollection collectionWithQuery:query];
+```
 
-SBSMChannelCollection *collection = [SBSMChannelManager createChannelCollectionWithQuery:query];
-[collection loadWithFinishHandler:^(BOOL finished) {
-  // This callback is useful only to check the end of loading.
-  // The fetched channels would be translated into change logs and delivered to subscription.
+If the view is closed, which means the collection is obsolete and no longer used, remove collection explicitly.
+
+```swift
+// swift
+channelCollection.remove()
+```
+```objc
+// objective-c
+[channelCollection remove];
+```
+
+As aforementioned, `SBSMChannelCollection` provides event handler with delegate. Event handler is named as `SBSMChannelCollectionDelegate` and it receives `SBSMChannelEventAction` and list of `channels` when an event has come. The `SBSMChannelEventAction` is a keyword to notify what happened to the channel list, and the `channel` is a kind of `SBDGroupChannel` instance. You can create an view controller instance and implement the event handler and add it to the collection.
+
+```swift
+// swift
+
+// add delegate
+channelCollection?.delegate = self
+
+// channel collection delegate
+func collection(_ collection: SBSMChannelCollection, didReceiveEvent action: SBSMChannelEventAction, channels: [SBDGroupChannel]) {
+    switch (action) {
+    case SBSMChannelEventAction.insert:
+        // Insert channels on list
+        break
+    case SBSMChannelEventAction.update:
+        // Update channels of list
+        break
+    case SBSMChannelEventAction.remove:
+        // Remove channels of list
+        break
+    case SBSMChannelEventAction.move:
+        // Move channel of list
+        break
+    case SBSMChannelEventAction.clear:
+        // Clear(Remove all) channels
+        break
+    case SBSMChannelEventAction.none:
+        break
+    default:
+        break
+    }
+}
+```
+```objc
+// objective-c
+
+// add delegate
+channelCollection.delegate = self;
+
+// channel collection delegate
+- (void)collection:(SBSMChannelCollection *)collection didReceiveEvent:(SBSMChannelEventAction)action channels:(NSArray<SBDGroupChannel *> *)channels {
+    switch (action) {
+        case SBSMChannelEventActionInsert: {
+            // Insert channels on list
+            break;
+        }
+        case SBSMChannelEventActionUpdate: {
+            // Update channels of list
+            break;
+        }
+        case SBSMChannelEventActionRemove: {
+            // Remove channels of list
+            break;
+        }
+        case SBSMChannelEventActionMove: {
+            // Move channel of list
+            break;
+        }
+        case SBSMChannelEventActionClear: {
+            // Clear(Remove all) channels
+            break;
+        }
+        case SBSMChannelEventActionNone:
+        default: {
+            break;
+        }
+    }
+}
+```
+
+And data fetcher. Fetched channels would be delivered to delegate method. fetcher determines the `SBSMChannelEventAction` automatically so you don't have to consider duplicated data in view.
+
+```swift
+// swift
+channelCollection.fetch(completionHandler: {(error) in
+    // This callback is optional and useful to catch the moment of loading ended.
+})
+```
+```objc
+// objective-c
+[channelCollection fetchWithCompletionHandler:^(SBDError * _Nullable error) {
+    // This callback is optional and useful to catch the moment of loading ended.
 }];
 ```
 
-### Message Manager
+#### Message Collection
+Message is relatively static data and SyncManager supports full-caching for messages. `SBSMMessageCollection` conducts background synchronization so that it synchronizes all the messages until it reaches to the first message. Background synchronization does NOT affect view directly but store for local cache. For view update, explicitly call `fetch(_:_:)` with direction which fetches data from cache and sends the data into collection handler.
 
+Background synchronization ceases if the synchronization is done or synchronization request is failed.
+
+> Note: Background synchronization run in background thread.
+
+For various viewpoint(`viewpointTimestamp`) support, `SBSMMessageCollection` sets a timestamp when to fetch messages. The `viewpointTimestamp` is a timestamp to start background synchronization in both previous and next direction (and also the point where a user sees at first). Here's the code to create `SBSMMessageCollection`.
+
+```swift
+// swift
+let filter: SBSMMessageFilter = SBSMMessageFilter.init(messageType: SBDMessageTypeFilter, customType: customTypeFilter, senderUserIds: senderUserIdsFilter)
+let viewpointTimestamp: Int64 = getLastReadTimestamp()
+// or LONG_LONG_MAX if you want to see the most recent messages
+
+let messageCollection: SBSMMessageCollection? = SBSMMessageCollection.init(channel: channel, filter: filter, viewpointTimestamp: viewpointTimestamp)
+```
 ```objc
-// GroupChannelChattingViewController.h
-#import <SendBirdSDK/SendBirdSDK.h>
-#import "SyncManager.h"
+// objective-c
+SBSMMessageFilter *filter = [SBSMMessageFilter filterWithMessageType:SBDMessageTypeFilter customType:customtypeFilter senderUserIds:senderUserIdsFilter];
+long long viewpointTimestamp = getLastReadTimestamp();
+// or LONG_LONG_MAX if you want to see the most recent messages
 
-@interface GroupChannelChattingViewController : UIViewController <SBSMCollectionDelegate>
-@end
- 
-// GroupChannelChattingViewController.m
-@implementation GroupChannelChattingViewController
+SBSMMessageCollection *messageCollection = [SBSMMessageCollection collectionWithChannel:self.channel filter:filter viewpointTimestamp:LONG_LONG_MAX];
+```
 
-- (void)collection:(id<SBSMCollection> _Nonnull)collection
-      updatedItmes:(nonnull NSArray <id<SBSMObject>> *)updatedItems
-            action:(SBSMChangeLogAction)action
-             error:(nullable NSError *)error {
-    switch(action) {
-        case SBSMChangeLogActionPrepend:
+You can dismiss collection when the collection is obsolete and no longer used.
+
+```swift
+// swift
+messageCollection.remove()
+```
+```objc
+[messageCollection remove];
+```
+
+`SBSMMessageCollection` has event handler for delegate that you can implement and add to the collection. Event handler is named as `SBSMMessageCollectionDelegate` and it receives `SBSMMessageEventAction` and list of `messages` when an event has come. The `SBSMMessageEventAction` is a keyword to notify what happened to the message, and the `message` is a kind of `SBDBaseMessage` instance of [SendBird SDK](https://github.com/smilefam/sendbird-ios-framework).
+
+```swift
+// swift
+
+// add delegate
+messageCollection.delegate = self
+
+// message collection delegate
+func collection(_ collection: SBSMMessageCollection, didReceiveEvent action: SBSMMessageEventAction, messages: [SBDBaseMessage]) {
+    switch action {
+    case SBSMMessageEventAction.insert:
+        self.chattingView?.insert(messages: messages, completionHandler: nil)
+        break
+    case SBSMMessageEventAction.update:
+        self.chattingView?.update(messages: messages, completionHandler: nil)
+        break
+    case SBSMMessageEventAction.remove:
+        self.chattingView?.remove(messages: messages, completionHandler: nil)
+        break
+    case SBSMMessageEventAction.clear:
+        self.chattingView?.clearAllMessages(completionHandler: nil)
+        break
+    case SBSMMessageEventAction.none:
+        break
+    default:
+        break
+    }
+}
+```
+```objc
+// objective-c
+
+// add delegate
+messageCollection.delegate = self;
+
+// message collection delegate
+- (void)collection:(SBSMMessageCollection *)collection didReceiveEvent:(SBSMMessageEventAction)action messages:(NSArray<SBDBaseMessage *> *)messages {
+    switch (action) {
+        case SBSMMessageEventActionInsert: {
+            //
             break;
-        case SBSMChangeLogActionAppend:
+        }
+        case SBSMMessageEventActionUpdate : {
+            //
             break;
-        case SBSMChangeLogActionNew:
+        }
+        case SBSMMessageEventActionRemove: {
+            //
             break;
-        case SBSMChangeLogActionChanged:
+        }
+        case SBSMMessageEventActionClear: {
+            //
             break;
-        case SBSMChangeLogActionDeleted:
-            break;
-        case SBSMChangeLogActionMoved:
-            break;
-        case SBSMChangeLogActionCleared:
+        }
+        case SBSMMessageEventActionNone:
+        default:
             break;
     }
 }
-
-// ...
-// to load messages
-SBDGroupChannel *channel; // channel of messages
-NSDictionary filter = @{}; // compose your own filter
-
-SBSMMessageCollection* collection = [SBSMMessageManager createMessageCollectionWithChannel:channel 
-                                                                                    filter:filter];
-[collection loadPreviousMessagesWithFinishHandler:^(BOOL finished) {
-    // This callback is useful only to check the end of loading.
-    // The fetched messages would be translated into change logs and delivered to subscription.
-}];
 ```
 
-SyncManager listens message event handlers such as `didReceiveMessage`, `didUpdateMessage`, `didDeleteMessage`, and applies the change automatically. But they would not be called if the message is sent by `currentUser`. You can keep track of the message in callback instead. SyncManager provides some methods to apply the message event to collections.
+`SBSMMessageCollection` has data fetcher by direction: `SBSMMessageDirection.previous` and `SBSMMessageDirection.next`. It fetches data from cache only and never request to server directly. If no more data is available in a certain direction, it wait for the background synchronization internally and fetches the synced messages right after the synchronization progresses.
 
+```swift
+// swift
+messageCollection.fetch(in: SBSMMessageDirection.previous, completionHandler: { (error) in
+  // Fetching from cache is done
+})
+messageCollection.fetch(in: SBSMMessageDirection.next, completionHandler: { (error) in
+  // Fetching from cache is done
+})
+```
 ```objc
-// call [SBSMMessageManager appendMessage] after sending message
-SBUserMessageParams *params = [[SBUserMessageParams alloc] init];
-params.message = @"your message";
-[channel sendUserMessage:param 
-       completionHandler:^(SBDBaseMessage * _Nullable message, SBDError * _Nullable error) {
-    if(error == nil) {
-        [SBSMMessageManager appendMessage:message];
-    }
+// objective-c
+[messageCollection fetchInDirection:SBSMMessageDirectionPrevious completionHandler:^(SBDError * _Nullable error) {
+  // Fetching from cache is done
 }];
-
-// call [SBSMMessageManager updateMessage] after updating message
-SBUserMessageParams *params = [[SBUserMessageParams alloc] init];
-params.message = @"your message";
-[channel updateUserMessage:message.messageId,
-                    params:params
-         completionHandler:^(SBDBaseMessage * _Nullable message, SBDError * _Nullable error) {
-    if(error == nil) {
-        [SBSMMessageManager updateMessage:message];
-    }
-}];
-
-// call [SBSMMessageManager deleteMessage] after deleting message
-[channel deleteMessage:message
-     completionHandler:^(SBDBaseMessage * _Nullable message, SBDError * _Nullable error) {
-    if(error == nil) {
-        [SBSMMessageManager deleteMessage:message];
-    }
+[messageCollection fetchInDirection:SBSMMessageDirectionNext completionHandler:^(SBDError * _Nullable error) {
+  // Fetching from cache is done
 }];
 ```
 
-Once it is delivered to the collection, it'd not only apply the change into the current collection but also propagate the event into other collections so that the change could apply to other views automatically. It works only for messages sent by `currentUser`(from `[SBDMain getCurrentUser]`) which means the message sender should be `currentUser`.
+Fetched messages would be delivered to delegate. fetcher determines the `SBSMMessageEventAction` automatically so you don't have to consider duplicated data in view.
+
+#### Handling uncaught messages
+
+SyncManager listens message event such as `channel(_:didReceive:)` and `channel(_:didUpdate:)`, and applies the change automatically. But they would not be called if the message is sent by `currentUser`. You can keep track of the message by calling related function when the `currentUser` sends or updates message. `SBSMMessageCollection` provides methods to apply the message event to collections.
+
+```swift
+// swift 
+
+// call collection.appendMessage() after sending message
+var previewMessage: SBDUserMessage?
+channel.sendUserMessage(with: params, completionHandler: { (theMessage, theError) in
+    guard let message: SBDUserMessage = theMessage, let _: SBDError = theError else {
+        // delete preview message if sending message fails
+        messageCollection.deleteMessage(previewMessage)
+        return
+    }
+    
+    messageCollection.appendMessage(message)
+})
+
+if let thePreviewMessage: SBDUserMessage = previewMessage {
+    messageCollection.appendMessage(thePreviewMessage)
+}
+
+
+// call collection.updateMessage() after updating message
+channel.sendUserMessage(with: params, completionHandler: { (theMessage, error) in
+    guard let message: SBDUserMessage = theMessage, let _: SBDError = error else {
+        return
+    }
+    
+    messageCollection.updateMessage(message)
+})
+```
+```objc
+// objective-c 
+
+// call [collection appendMessage:] after sending message
+__block SBDUserMessage *previewMessage = [channel sendUserMessageWithParams:params completionHandler:^(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error) {
+    if (error != nil) {
+        [messageCollection deleteMessage:previewMessage];
+        return;
+    }
+    
+    [self.messageCollection appendMessage:userMessage];
+}];
+
+if (previewMessage.requestId != nil) {
+    [messageCollection appendMessage:previewMessage];
+}
+
+
+// call [collection updateMessage:] after updating message
+[channel sendUserMessageWithParams:params completionHandler:^(SBDUserMessage * _Nullable userMessage, SBDError * _Nullable error) {    
+    [self.messageCollection updateMessage:userMessage];
+}];
+```
+
+It works only for messages sent by `currentUser` which means the message sender should be `currentUser`.
 
 ### Connection Lifecycle
 
-Connection may not be stable in some environment. If SendBird recognizes disconnection, it would take steps for reconnection and manager would catch it and sync data automatically when the connection is back. For those who call `[SBDMain disconnectWithCompletionHandler:]` and `[SBDMain connectWithUserId:accessToken:completionHandler:]` explicitly to manage the lifecycle by their own, Manager provides methods `[SBSMChannelManager start]`, `[SBSMMessageManager start]` and `[SBSMChannelManager stop]`, `[SBSMMessageManager stop]` to acknowledge the event and do proper action in order to sync content.
+You should let SyncManager start synchronization after connect to SendBird. Call `resumeSynchronization()` on connection, and `pauseSynchronization()` on disconnection. Here's the code:
+
+```swift
+// swift
+let manager: SBSMSyncManager = SBSMSyncManager()
+manager.resumeSynchronize()
+
+let manager: SBSMSyncManager = SBSMSyncManager()
+manager.pauseSynchronize()
+```
+```objc
+// objective-c
+SBSMSyncManager *manager = [SBSMSyncManager manager];
+[manager resumeSynchronize];
+
+SBSMSyncManager *manager = [SBSMSyncManager manager];
+[manager pauseSynchronize];
+```
+
+The example below shows relation of connection status and resume synchronization. 
+
+```swift
+// swift
+
+// Request Connect to SendBird
+SBDMain.connect(withUserId: userId) { (user, error) in
+    if let theError: NSError = error {
+        return
+    }
+    
+    let manager: SBSMSyncManager = SBSMSyncManager()
+    manager.resumeSynchronize()
+}
+
+// SendBird Connection Delegate
+func didSucceedReconnection() {
+    let manager: SBSMSyncManager = SBSMSyncManager()
+    manager.resumeSynchronize()
+}
+```
+```objc
+// objective-c
+
+// Request Connect to SendBird
+[SBDMain connectWithUserId:userId completionHandler:^(SBDUser * _Nullable user, SBDError * _Nullable error) {
+    if (error != nil) {
+        // 
+        return;
+    }
+    
+    SBSMSyncManager *manager = [SBSMSyncManager manager];
+    [manager resumeSynchronize];
+}];
+
+// SendBird Connection Delegate
+- (void)didSucceedReconnection {
+    SBSMSyncManager *manager = [SBSMSyncManager manager];
+    [manager resumeSynchronize];
+}
+```
+
+### Cache clear
+
+Clearing cache is necessary when a user signs out (called `disconnect()` explicitly).
+
+```swift
+// swift
+SBDMain.disconnect {
+    let manager: SBSMSyncManager = SBSMSyncManager()
+    manager.clearCache()
+}
+```
+```objc
+// objective-c
+[SBDMain disconnectWithCompletionHandler:^{
+    [[SBSMSyncManager manager] clearCache];
+}];
+```
+
+> WARNING! DO NOT call `SBDMain.removeAllChannelDelegates()`. It does not only remove handlers you added, but also remove handlers managed by SyncManager.
+

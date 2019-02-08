@@ -1,6 +1,6 @@
-[submodule "Objective-C"]
-	path = Objective-C
+[submodule "basic/Objective-C"]
+	path = basic/Objective-C
 	url = git@github.com:smilefam/SendBird-iOS-ObjectiveC.git
-[submodule "Swift"]
-	path = Swift
+[submodule "basic/Swift"]
+	path = basic/Swift
 	url = git@github.com:smilefam/SendBird-iOS-Swift.git
