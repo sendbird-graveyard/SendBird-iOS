@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="202" id="KGk-i7-Jjw" customClass="IncomingFileMessageTableViewCell" customModule="SendBird_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="392" height="202"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="392" height="202"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rIV-IT-ZFS" userLabel="Date Seperator View">
+                        <rect key="frame" x="0.0" y="0.0" width="392" height="24"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ghn-Um-o1h" userLabel="Left Line View">
+                                <rect key="frame" x="0.0" y="11.5" width="156" height="1"/>
+                                <color key="backgroundColor" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="edy-90-2fu"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 Sep, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5f-Ce-VLO" userLabel="Date Label">
+                                <rect key="frame" x="160" y="5" width="72" height="14.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TN3-eJ-4Tq" userLabel="Right Line View">
+                                <rect key="frame" x="236" y="11.5" width="156" height="1"/>
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="LpG-gx-BCe"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="l5f-Ce-VLO" firstAttribute="leading" secondItem="Ghn-Um-o1h" secondAttribute="trailing" constant="4" id="7SR-Qv-KSw"/>
+                            <constraint firstItem="TN3-eJ-4Tq" firstAttribute="centerY" secondItem="rIV-IT-ZFS" secondAttribute="centerY" id="7u5-Ng-JfV"/>
+                            <constraint firstItem="Ghn-Um-o1h" firstAttribute="centerY" secondItem="rIV-IT-ZFS" secondAttribute="centerY" id="8Oi-Z8-8KI"/>
+                            <constraint firstItem="l5f-Ce-VLO" firstAttribute="centerY" secondItem="rIV-IT-ZFS" secondAttribute="centerY" id="Hls-Qd-UcF"/>
+                            <constraint firstItem="Ghn-Um-o1h" firstAttribute="leading" secondItem="rIV-IT-ZFS" secondAttribute="leading" id="PDf-zd-aaE"/>
+                            <constraint firstAttribute="trailing" secondItem="TN3-eJ-4Tq" secondAttribute="trailing" id="eK4-if-SHy"/>
+                            <constraint firstItem="TN3-eJ-4Tq" firstAttribute="leading" secondItem="l5f-Ce-VLO" secondAttribute="trailing" constant="4" id="fkv-kP-dao"/>
+                            <constraint firstAttribute="height" constant="24" id="jzd-MZ-KuN" userLabel="Date Seperator View Height"/>
+                            <constraint firstItem="l5f-Ce-VLO" firstAttribute="centerX" secondItem="rIV-IT-ZFS" secondAttribute="centerX" id="qw7-9Q-6Zi"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_profile" translatesAutoresizingMaskIntoConstraints="NO" id="AOz-9B-uqY" userLabel="Profile Image View">
+                        <rect key="frame" x="14" y="34" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="Hed-B1-AQB"/>
+                            <constraint firstAttribute="height" constant="40" id="TZZ-7f-nQx"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gk1-eo-wkC" userLabel="Message Container View">
+                        <rect key="frame" x="62" y="34" width="224" height="103"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nickname Nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jds-Ks-Uby" userLabel="Nickname Label">
+                                <rect key="frame" x="10" y="10" width="204" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="ygJ-QI-yQf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ibd-YO-JpZ" userLabel="File Container View">
+                                <rect key="frame" x="10" y="39" width="204" height="54"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_video_chat" translatesAutoresizingMaskIntoConstraints="NO" id="zNv-Y3-8GP" userLabel="File Type Image View">
+                                        <rect key="frame" x="14" y="14" width="26" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="26" id="8ns-MT-6Pz"/>
+                                            <constraint firstAttribute="height" constant="26" id="HG7-KG-2TD"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="File_Name_File_Name.mov" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYU-CO-C6K" userLabel="File Name Label">
+                                        <rect key="frame" x="56" y="19" width="93" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ny2-wQ-7n1" userLabel="Vertical Line View">
+                                        <rect key="frame" x="163" y="14" width="1" height="26"/>
+                                        <color key="backgroundColor" red="0.83137254900000002" green="0.85882352939999995" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1" id="Qkp-R0-6TB"/>
+                                        </constraints>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_play_chat" translatesAutoresizingMaskIntoConstraints="NO" id="C8K-ON-xkJ" userLabel="File Action Image View">
+                                        <rect key="frame" x="175.5" y="18.5" width="17" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="17" id="DTa-Km-9jT"/>
+                                            <constraint firstAttribute="height" constant="17" id="dD2-8p-H8Q"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="vYU-CO-C6K" firstAttribute="leading" secondItem="zNv-Y3-8GP" secondAttribute="trailing" constant="16" id="11F-15-HjN"/>
+                                    <constraint firstItem="C8K-ON-xkJ" firstAttribute="leading" secondItem="ny2-wQ-7n1" secondAttribute="trailing" constant="11.5" id="20X-eL-KtI"/>
+                                    <constraint firstItem="C8K-ON-xkJ" firstAttribute="centerY" secondItem="ibd-YO-JpZ" secondAttribute="centerY" id="5B5-w5-OcB"/>
+                                    <constraint firstAttribute="height" constant="54" id="AP9-FF-hsJ" userLabel="File Container View Height"/>
+                                    <constraint firstAttribute="bottom" secondItem="zNv-Y3-8GP" secondAttribute="bottom" constant="14" id="BQU-Tt-kpN"/>
+                                    <constraint firstItem="ny2-wQ-7n1" firstAttribute="top" secondItem="ibd-YO-JpZ" secondAttribute="top" constant="14" id="HPv-9L-cOX"/>
+                                    <constraint firstItem="ny2-wQ-7n1" firstAttribute="leading" secondItem="vYU-CO-C6K" secondAttribute="trailing" constant="14" id="I5O-Ev-1Hc"/>
+                                    <constraint firstItem="zNv-Y3-8GP" firstAttribute="top" secondItem="ibd-YO-JpZ" secondAttribute="top" constant="14" id="IAW-4Z-zFm"/>
+                                    <constraint firstItem="vYU-CO-C6K" firstAttribute="centerY" secondItem="ibd-YO-JpZ" secondAttribute="centerY" id="Uhn-tP-guY"/>
+                                    <constraint firstItem="zNv-Y3-8GP" firstAttribute="leading" secondItem="ibd-YO-JpZ" secondAttribute="leading" constant="14" id="g0z-fz-Kwb"/>
+                                    <constraint firstAttribute="bottom" secondItem="ny2-wQ-7n1" secondAttribute="bottom" constant="14" id="y6K-9Q-3Wh"/>
+                                    <constraint firstAttribute="trailing" secondItem="C8K-ON-xkJ" secondAttribute="trailing" constant="11.5" id="zJe-Uv-H22"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.94509803920000002" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ibd-YO-JpZ" firstAttribute="leading" secondItem="gk1-eo-wkC" secondAttribute="leading" constant="10" id="6GP-5C-JqO"/>
+                            <constraint firstAttribute="trailing" secondItem="jds-Ks-Uby" secondAttribute="trailing" constant="10" id="I4E-sP-ahf"/>
+                            <constraint firstAttribute="bottom" secondItem="ibd-YO-JpZ" secondAttribute="bottom" constant="10" id="WZp-TJ-UtI" userLabel="Message Container View Bottom Padding"/>
+                            <constraint firstItem="jds-Ks-Uby" firstAttribute="leading" secondItem="gk1-eo-wkC" secondAttribute="leading" constant="10" id="XPo-OY-NiF"/>
+                            <constraint firstItem="ibd-YO-JpZ" firstAttribute="top" secondItem="jds-Ks-Uby" secondAttribute="bottom" constant="10" id="ZBU-Oz-z2N"/>
+                            <constraint firstAttribute="trailing" secondItem="ibd-YO-JpZ" secondAttribute="trailing" constant="10" id="qfx-9d-58P"/>
+                            <constraint firstItem="jds-Ks-Uby" firstAttribute="top" secondItem="gk1-eo-wkC" secondAttribute="top" constant="10" id="zMQ-yi-hwr" userLabel="Message Container View Top Padding"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99:99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cww-JN-iLM" userLabel="Message Date Label">
+                        <rect key="frame" x="294" y="123" width="74" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="74" id="all-ry-Ml3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="rIV-IT-ZFS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1TB-2f-BrC"/>
+                    <constraint firstAttribute="trailing" secondItem="rIV-IT-ZFS" secondAttribute="trailing" id="7LX-7S-Y3h"/>
+                    <constraint firstItem="Cww-JN-iLM" firstAttribute="bottom" secondItem="gk1-eo-wkC" secondAttribute="bottom" id="DB8-eA-N0f"/>
+                    <constraint firstItem="rIV-IT-ZFS" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="NlU-js-PGR"/>
+                    <constraint firstItem="gk1-eo-wkC" firstAttribute="top" secondItem="rIV-IT-ZFS" secondAttribute="bottom" constant="10" id="Qsl-v5-MzV"/>
+                    <constraint firstItem="Cww-JN-iLM" firstAttribute="leading" secondItem="gk1-eo-wkC" secondAttribute="trailing" constant="8" id="a8Q-tZ-VAQ"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Cww-JN-iLM" secondAttribute="trailing" constant="24" id="ff5-8R-w3Q"/>
+                    <constraint firstItem="gk1-eo-wkC" firstAttribute="leading" secondItem="AOz-9B-uqY" secondAttribute="trailing" constant="8" id="o4s-76-bnz"/>
+                    <constraint firstItem="gk1-eo-wkC" firstAttribute="top" secondItem="AOz-9B-uqY" secondAttribute="top" id="p05-0c-Tih"/>
+                    <constraint firstItem="AOz-9B-uqY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="uRb-GU-dLt"/>
+                    <constraint firstItem="rIV-IT-ZFS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="z7Y-qW-n1j"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateSeperatorLabel" destination="l5f-Ce-VLO" id="TMA-o7-C99"/>
+                <outlet property="dateSeperatorView" destination="rIV-IT-ZFS" id="co5-Mn-XFx"/>
+                <outlet property="dateSeperatorViewBottomMargin" destination="Qsl-v5-MzV" id="OxY-uD-4dL"/>
+                <outlet property="dateSeperatorViewHeight" destination="jzd-MZ-KuN" id="ENg-OH-Ixa"/>
+                <outlet property="dateSeperatorViewTopMargin" destination="z7Y-qW-n1j" id="dJf-4T-vmM"/>
+                <outlet property="fileActionImageView" destination="C8K-ON-xkJ" id="dde-5L-O4g"/>
+                <outlet property="fileContainerViewHeight" destination="AP9-FF-hsJ" id="Ko5-mE-uTP"/>
+                <outlet property="fileTypeImageView" destination="zNv-Y3-8GP" id="aiD-Kt-I67"/>
+                <outlet property="filenameLabel" destination="vYU-CO-C6K" id="8ra-yq-c5p"/>
+                <outlet property="messageContainerView" destination="gk1-eo-wkC" id="eTB-ZR-gqK"/>
+                <outlet property="messageContainerViewBottomPadding" destination="WZp-TJ-UtI" id="PeY-TJ-VTy"/>
+                <outlet property="messageContainerViewTopPadding" destination="zMQ-yi-hwr" id="Xtn-GC-5J3"/>
+                <outlet property="messageDateLabel" destination="Cww-JN-iLM" id="57o-af-Llk"/>
+                <outlet property="nicknameLabel" destination="jds-Ks-Uby" id="0fg-sF-XRX"/>
+                <outlet property="nicknameLabelBottomMargin" destination="ZBU-Oz-z2N" id="WYR-mr-VPf"/>
+                <outlet property="nicknameLabelHeight" destination="ygJ-QI-yQf" id="d8v-ox-Suj"/>
+                <outlet property="profileImageView" destination="AOz-9B-uqY" id="Hvp-wx-qQZ"/>
+            </connections>
+            <point key="canvasLocation" x="97" y="138"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="btn_play_chat" width="17" height="17"/>
+        <image name="icon_video_chat" width="26" height="26"/>
+        <image name="img_profile" width="58" height="58"/>
+    </resources>
+</document>

@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "User ID"; ObjectID = "3Ox-ZU-YIa"; */
+"3Ox-ZU-YIa.text" = "사용자 ID";
+
+/* Class = "UIButton"; normalTitle = "CONNECT"; ObjectID = "MIk-Vu-rJI"; */
+"MIk-Vu-rJI.normalTitle" = "연결하기";
+
+/* Class = "UILabel"; text = "Sample UI v1.0.2 / SDK v3.0.9"; ObjectID = "hJr-Sk-AIi"; */
+"hJr-Sk-AIi.text" = "Sample UI v1.0.2 / SDK v3.0.9";
+
+/* Class = "UITextField"; placeholder = "User ID"; ObjectID = "rWF-Go-2jN"; */
+"rWF-Go-2jN.placeholder" = "사용자 ID";
+
+/* Class = "UITextField"; placeholder = "Nickname"; ObjectID = "z8B-cw-1yn"; */
+"z8B-cw-1yn.placeholder" = "닉네임";
+
+/* Class = "UILabel"; text = "Nickname"; ObjectID = "zCK-2J-PAU"; */
+"zCK-2J-PAU.text" = "닉네임";

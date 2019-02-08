@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateGroupChannelUserListViewController" customModule="SendBird_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="navItem" destination="dA8-7n-uBw" id="U7l-rj-IOL"/>
+                <outlet property="selectedUserListCollectionView" destination="paV-Vs-BRz" id="P7K-IT-gIq"/>
+                <outlet property="selectedUserListHeight" destination="Syl-SL-y1x" id="LSU-7C-oQR"/>
+                <outlet property="userListTableView" destination="YDn-Jd-4ai" id="fju-Lc-zim"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1GG-MG-1Jj" customClass="CustomNavigationBar" customModule="SendBird_iOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="b8Y-xX-aOj"/>
+                    </constraints>
+                    <items>
+                        <navigationItem title="User List" id="dA8-7n-uBw"/>
+                    </items>
+                </navigationBar>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="paV-Vs-BRz" userLabel="Selected User List Collection View">
+                    <rect key="frame" x="0.0" y="64" width="375" height="70"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="Syl-SL-y1x"/>
+                    </constraints>
+                    <inset key="scrollIndicatorInsets" minX="14" minY="0.0" maxX="14" maxY="0.0"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="14" minimumInteritemSpacing="0.0" id="WLC-Ce-bsp">
+                        <size key="itemSize" width="40" height="90"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKE-aK-fSz" userLabel="Title Container View">
+                    <rect key="frame" x="0.0" y="134" width="375" height="26"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ms6-xK-eci" userLabel="Title Label">
+                            <rect key="frame" x="14" y="6" width="347" height="14"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.94117647058823528" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Ms6-xK-eci" secondAttribute="trailing" constant="14" id="36d-tT-hUl"/>
+                        <constraint firstItem="Ms6-xK-eci" firstAttribute="leading" secondItem="QKE-aK-fSz" secondAttribute="leading" constant="14" id="YMt-x6-bDf"/>
+                        <constraint firstAttribute="height" constant="26" id="bf0-un-f4A"/>
+                        <constraint firstItem="Ms6-xK-eci" firstAttribute="centerY" secondItem="QKE-aK-fSz" secondAttribute="centerY" id="ubI-Vz-Txl"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YDn-Jd-4ai" userLabel="User List Table View">
+                    <rect key="frame" x="0.0" y="160" width="375" height="507"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <inset key="separatorInset" minX="118" minY="0.0" maxX="0.0" maxY="0.0"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="YDn-Jd-4ai" secondAttribute="trailing" id="EXD-nJ-rOf"/>
+                <constraint firstItem="paV-Vs-BRz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LSV-ni-L5S"/>
+                <constraint firstItem="QKE-aK-fSz" firstAttribute="top" secondItem="paV-Vs-BRz" secondAttribute="bottom" id="MUB-Ye-vdl"/>
+                <constraint firstAttribute="bottom" secondItem="YDn-Jd-4ai" secondAttribute="bottom" id="Wlv-aV-Qph"/>
+                <constraint firstItem="YDn-Jd-4ai" firstAttribute="top" secondItem="QKE-aK-fSz" secondAttribute="bottom" id="XwP-v1-R60"/>
+                <constraint firstItem="1GG-MG-1Jj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YP5-lY-cr0"/>
+                <constraint firstItem="QKE-aK-fSz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cI9-aF-Su1"/>
+                <constraint firstAttribute="trailing" secondItem="QKE-aK-fSz" secondAttribute="trailing" id="g8r-Hv-Kno"/>
+                <constraint firstItem="1GG-MG-1Jj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="l1P-bu-CuR"/>
+                <constraint firstItem="paV-Vs-BRz" firstAttribute="top" secondItem="1GG-MG-1Jj" secondAttribute="bottom" id="lrC-Ll-YU4"/>
+                <constraint firstAttribute="trailing" secondItem="1GG-MG-1Jj" secondAttribute="trailing" id="qsE-q5-yY5"/>
+                <constraint firstAttribute="trailing" secondItem="paV-Vs-BRz" secondAttribute="trailing" id="sR4-KF-bCa"/>
+                <constraint firstItem="YDn-Jd-4ai" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="u2F-9S-Jwo"/>
+            </constraints>
+            <point key="canvasLocation" x="25.5" y="52.5"/>
+        </view>
+    </objects>
+</document>

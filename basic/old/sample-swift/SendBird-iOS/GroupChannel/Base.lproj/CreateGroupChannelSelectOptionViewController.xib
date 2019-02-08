@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateGroupChannelSelectOptionViewController">
+            <connections>
+                <outlet property="activityIndicator" destination="Yrl-Iy-5W0" id="yeR-do-ut5"/>
+                <outlet property="distinctButton" destination="WyZ-Fb-Zj7" id="tqR-Li-VQL"/>
+                <outlet property="distinctTextButton" destination="dN4-4h-87Q" id="vPK-H9-99M"/>
+                <outlet property="navItem" destination="tXa-dA-abb" id="rYJ-5H-ulT"/>
+                <outlet property="nonDistinctButton" destination="1DV-ds-yTZ" id="xoK-gy-Jsr"/>
+                <outlet property="nonDistinctTextButton" destination="sQ2-0L-IX8" id="pTt-tl-H6l"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUy-Bg-DXk" customClass="CustomNavigationBar" customModule="SendBird_iOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="zOE-Ef-vGs"/>
+                    </constraints>
+                    <items>
+                        <navigationItem title="Channel Option" id="tXa-dA-abb"/>
+                    </items>
+                </navigationBar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ieg-Fl-YTB" userLabel="Distinct Option View">
+                    <rect key="frame" x="0.0" y="64" width="375" height="62"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WyZ-Fb-Zj7" userLabel="Distinct Button">
+                            <rect key="frame" x="14" y="18" width="26" height="26"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="26" id="193-ip-GZQ"/>
+                                <constraint firstAttribute="height" constant="26" id="G1P-tY-nIc"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="btn_check_off"/>
+                            <connections>
+                                <action selector="clickDistinctButton:" destination="-1" eventType="touchUpInside" id="g8A-S3-Ei1"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dN4-4h-87Q" userLabel="Distinct Text Button">
+                            <rect key="frame" x="60" y="14.5" width="303" height="33"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                            <state key="normal" title="Distinct">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickDistinctTextButton:" destination="-1" eventType="touchUpInside" id="Zfi-he-iEW"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVJ-H2-SdU" userLabel="Bottom Line View">
+                            <rect key="frame" x="60" y="61" width="315" height="1"/>
+                            <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="6Pe-9E-3x4"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="dN4-4h-87Q" firstAttribute="centerY" secondItem="Ieg-Fl-YTB" secondAttribute="centerY" id="3zc-rt-zWU"/>
+                        <constraint firstItem="WyZ-Fb-Zj7" firstAttribute="centerY" secondItem="Ieg-Fl-YTB" secondAttribute="centerY" id="4wP-rC-me2"/>
+                        <constraint firstItem="WyZ-Fb-Zj7" firstAttribute="leading" secondItem="Ieg-Fl-YTB" secondAttribute="leading" constant="14" id="C7c-yp-voO"/>
+                        <constraint firstItem="WyZ-Fb-Zj7" firstAttribute="centerY" secondItem="Ieg-Fl-YTB" secondAttribute="centerY" id="Fj7-2O-5mt"/>
+                        <constraint firstItem="dN4-4h-87Q" firstAttribute="leading" secondItem="WyZ-Fb-Zj7" secondAttribute="trailing" constant="20" id="GqG-1r-479"/>
+                        <constraint firstItem="kVJ-H2-SdU" firstAttribute="leading" secondItem="dN4-4h-87Q" secondAttribute="leading" id="k9S-8m-1D7"/>
+                        <constraint firstAttribute="trailing" secondItem="kVJ-H2-SdU" secondAttribute="trailing" id="kxu-UY-bJa"/>
+                        <constraint firstAttribute="trailing" secondItem="dN4-4h-87Q" secondAttribute="trailing" constant="12" id="sky-bO-Ber"/>
+                        <constraint firstAttribute="bottom" secondItem="kVJ-H2-SdU" secondAttribute="bottom" id="tDX-el-Ni5"/>
+                        <constraint firstAttribute="height" constant="62" id="y6A-en-2AG"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FYb-Hj-MZu" userLabel="Non-Distinct Option View">
+                    <rect key="frame" x="0.0" y="126" width="375" height="62"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DV-ds-yTZ" userLabel="NonDistinct Button">
+                            <rect key="frame" x="14" y="18" width="26" height="26"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="26" id="4CW-e4-Ddh"/>
+                                <constraint firstAttribute="width" constant="26" id="oud-9m-Jsq"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="btn_check_off"/>
+                            <connections>
+                                <action selector="clickNondistinctButton:" destination="-1" eventType="touchUpInside" id="cWk-zx-YAi"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQ2-0L-IX8" userLabel="Non-Distinct Text Button">
+                            <rect key="frame" x="60" y="14.5" width="301" height="33"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                            <state key="normal" title="Non-Distinct">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="clickNonDistinctTextButton:" destination="-1" eventType="touchUpInside" id="FFf-JT-uF7"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Tr-Z9-qen" userLabel="Bottom Line View">
+                            <rect key="frame" x="60" y="61" width="315" height="1"/>
+                            <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="0ND-Pj-3nC"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="6Tr-Z9-qen" secondAttribute="bottom" id="3mo-Nd-efz"/>
+                        <constraint firstAttribute="height" constant="62" id="48D-xe-Sng"/>
+                        <constraint firstItem="1DV-ds-yTZ" firstAttribute="leading" secondItem="FYb-Hj-MZu" secondAttribute="leading" constant="14" id="9JQ-ld-J6N"/>
+                        <constraint firstAttribute="trailing" secondItem="sQ2-0L-IX8" secondAttribute="trailing" constant="14" id="BQT-5W-WaF"/>
+                        <constraint firstAttribute="trailing" secondItem="6Tr-Z9-qen" secondAttribute="trailing" id="DnV-f2-vki"/>
+                        <constraint firstItem="sQ2-0L-IX8" firstAttribute="leading" secondItem="1DV-ds-yTZ" secondAttribute="trailing" constant="20" id="OzV-Cl-aEU"/>
+                        <constraint firstItem="6Tr-Z9-qen" firstAttribute="leading" secondItem="sQ2-0L-IX8" secondAttribute="leading" id="P3m-J0-lsM"/>
+                        <constraint firstItem="1DV-ds-yTZ" firstAttribute="centerY" secondItem="FYb-Hj-MZu" secondAttribute="centerY" id="ZwI-b9-gcC"/>
+                        <constraint firstItem="sQ2-0L-IX8" firstAttribute="centerY" secondItem="FYb-Hj-MZu" secondAttribute="centerY" id="afX-nd-JoW"/>
+                    </constraints>
+                </view>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Yrl-Iy-5W0">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Yrl-Iy-5W0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7xx-RN-xOc"/>
+                <constraint firstItem="Ieg-Fl-YTB" firstAttribute="top" secondItem="XUy-Bg-DXk" secondAttribute="bottom" id="D32-qJ-vvz"/>
+                <constraint firstItem="XUy-Bg-DXk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="DCG-xh-dJF"/>
+                <constraint firstItem="FYb-Hj-MZu" firstAttribute="top" secondItem="Ieg-Fl-YTB" secondAttribute="bottom" id="JQg-CS-fcx"/>
+                <constraint firstAttribute="trailing" secondItem="XUy-Bg-DXk" secondAttribute="trailing" id="NYy-KJ-jhN"/>
+                <constraint firstAttribute="trailing" secondItem="FYb-Hj-MZu" secondAttribute="trailing" id="XGN-Yo-zi6"/>
+                <constraint firstItem="FYb-Hj-MZu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Xb2-Dz-DbT"/>
+                <constraint firstItem="XUy-Bg-DXk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y2m-FD-unj"/>
+                <constraint firstAttribute="bottom" secondItem="Yrl-Iy-5W0" secondAttribute="bottom" id="aJc-i6-DbC"/>
+                <constraint firstItem="Ieg-Fl-YTB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="b9I-Ad-4aw"/>
+                <constraint firstItem="Yrl-Iy-5W0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="iDy-Jk-XGJ"/>
+                <constraint firstAttribute="trailing" secondItem="Ieg-Fl-YTB" secondAttribute="trailing" id="oe4-iL-gcG"/>
+                <constraint firstAttribute="trailing" secondItem="Yrl-Iy-5W0" secondAttribute="trailing" id="tDe-gm-y4C"/>
+            </constraints>
+            <point key="canvasLocation" x="24.5" y="52.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="btn_check_off" width="26" height="26"/>
+    </resources>
+</document>

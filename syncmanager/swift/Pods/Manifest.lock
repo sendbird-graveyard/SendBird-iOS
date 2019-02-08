@@ -1,0 +1,42 @@
+PODS:
+  - Alamofire (4.7.3)
+  - AlamofireImage (3.4.1):
+    - Alamofire (~> 4.7)
+  - FLAnimatedImage (1.0.12)
+  - HTMLKit (2.1.5)
+  - MGSwipeTableCell (1.6.7)
+  - NYTPhotoViewer (1.1.0):
+    - NYTPhotoViewer/AnimatedGifSupport (= 1.1.0)
+    - NYTPhotoViewer/Core (= 1.1.0)
+  - NYTPhotoViewer/AnimatedGifSupport (1.1.0):
+    - FLAnimatedImage (~> 1.0.8)
+    - NYTPhotoViewer/Core
+  - NYTPhotoViewer/Core (1.1.0)
+  - RSKImageCropper (2.2.1)
+  - SendBirdSDK (3.0.130)
+  - TTTAttributedLabel (2.0.0)
+
+DEPENDENCIES:
+  - AlamofireImage
+  - FLAnimatedImage (~> 1.0)
+  - HTMLKit (~> 2.1)
+  - MGSwipeTableCell
+  - NYTPhotoViewer (~> 1.1.0)
+  - RSKImageCropper
+  - SendBirdSDK (~> 3.0.115)
+  - TTTAttributedLabel
+
+SPEC CHECKSUMS:
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  AlamofireImage: 78d67ccbb763d87ba44b21583d2153500a195630
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  HTMLKit: 91dbd983c94f264c6ddea27d317f5a66368dd20b
+  MGSwipeTableCell: fb20e983988bde2b8d0df29c2d9e1d8ffd10b74a
+  NYTPhotoViewer: e80e8767f3780d2df37c6f72cbab15d6c7232911
+  RSKImageCropper: 98296ad26b41753f796b6898d015509598f13d97
+  SendBirdSDK: 150b73dd76574dd050cf283d8e5db5554c62339c
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
+
+PODFILE CHECKSUM: 769aacbcb902e75048f91e40b67372078e531188
+
+COCOAPODS: 1.4.0

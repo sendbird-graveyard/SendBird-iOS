@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MemberListViewController">
+            <connections>
+                <outlet property="navItem" destination="auJ-ya-Vwi" id="j26-u6-Ixa"/>
+                <outlet property="tableView" destination="SrN-hR-mla" id="qhS-D4-Mtv"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKK-CN-rh8" customClass="CustomNavigationBar" customModule="SendBird_iOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="iNE-NJ-iaz"/>
+                    </constraints>
+                    <items>
+                        <navigationItem title="Member List" id="auJ-ya-Vwi"/>
+                    </items>
+                </navigationBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SrN-hR-mla" userLabel="Member List Table View">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <inset key="separatorInset" minX="64" minY="0.0" maxX="0.0" maxY="0.0"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="SrN-hR-mla" secondAttribute="bottom" id="9h0-p3-h29"/>
+                <constraint firstItem="HKK-CN-rh8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MHS-c3-gAT"/>
+                <constraint firstItem="SrN-hR-mla" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UbS-5f-HHK"/>
+                <constraint firstItem="SrN-hR-mla" firstAttribute="top" secondItem="HKK-CN-rh8" secondAttribute="bottom" id="adk-kq-bWm"/>
+                <constraint firstItem="HKK-CN-rh8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cIO-95-7O8"/>
+                <constraint firstAttribute="trailing" secondItem="SrN-hR-mla" secondAttribute="trailing" id="dlN-4I-j67"/>
+                <constraint firstAttribute="trailing" secondItem="HKK-CN-rh8" secondAttribute="trailing" id="woo-YF-rMo"/>
+            </constraints>
+            <point key="canvasLocation" x="24" y="52"/>
+        </view>
+    </objects>
+</document>

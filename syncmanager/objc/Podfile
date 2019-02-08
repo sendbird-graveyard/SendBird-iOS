@@ -1,0 +1,19 @@
+# Uncomment the next line to define a global platform for your project
+  platform :ios, '12.0'
+
+target 'SendBird-iOS-LocalCache-Sample' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  use_frameworks!
+  inhibit_all_warnings!
+
+  # Pods for SendBird-iOS-LocalCache-Sample
+  pod 'SendBirdSyncManager'
+  pod 'MGSwipeTableCell', :inhibit_warnings => true
+  pod 'AFNetworking', :inhibit_warnings => true
+  pod 'FLAnimatedImage', '~> 1.0', :inhibit_warnings => true
+  pod 'NYTPhotoViewer', '~> 1.1.0', :inhibit_warnings => true
+  pod 'HTMLKit', '~> 2.0', :inhibit_warnings => true
+  pod 'TTTAttributedLabel', :inhibit_warnings => true
+  pod 'RSKImageCropper', :inhibit_warnings => true
+
+end

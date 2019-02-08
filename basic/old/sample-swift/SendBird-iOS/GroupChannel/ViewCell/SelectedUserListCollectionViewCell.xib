@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SelectedUserListCollectionViewCell" customModule="SendBird_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="40" height="90"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="40" height="90"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ope-eO-6Yc" userLabel="Profile Image Container View">
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_profile" translatesAutoresizingMaskIntoConstraints="NO" id="4TZ-RC-TI3" userLabel="Profile Image View">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_delete_user" translatesAutoresizingMaskIntoConstraints="NO" id="pNu-27-eBM" userLabel="Delete Image View">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="14" id="9Qw-8J-Zk5"/>
+                                    <constraint firstAttribute="height" constant="14.5" id="We8-UW-sJ3"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4TZ-RC-TI3" firstAttribute="top" secondItem="Ope-eO-6Yc" secondAttribute="top" id="6dC-Te-jU2"/>
+                            <constraint firstAttribute="trailing" secondItem="pNu-27-eBM" secondAttribute="trailing" id="8Tc-tt-DP5"/>
+                            <constraint firstAttribute="trailing" secondItem="4TZ-RC-TI3" secondAttribute="trailing" id="ess-o9-4cB"/>
+                            <constraint firstItem="4TZ-RC-TI3" firstAttribute="leading" secondItem="Ope-eO-6Yc" secondAttribute="leading" id="qLc-yh-t25"/>
+                            <constraint firstAttribute="width" constant="40" id="qZA-IJ-ss9"/>
+                            <constraint firstAttribute="height" constant="40" id="tsL-0Y-tmg"/>
+                            <constraint firstAttribute="bottom" secondItem="4TZ-RC-TI3" secondAttribute="bottom" id="wSG-cN-ule"/>
+                            <constraint firstItem="pNu-27-eBM" firstAttribute="top" secondItem="Ope-eO-6Yc" secondAttribute="top" id="zgF-6g-YWN"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem Ipsum" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwK-vf-4Kd" userLabel="Nickname Label">
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="wwK-vf-4Kd" firstAttribute="top" secondItem="Ope-eO-6Yc" secondAttribute="bottom" constant="8" id="4V5-D3-LEe"/>
+                <constraint firstItem="Ope-eO-6Yc" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="GVe-pL-kUC"/>
+                <constraint firstItem="Ope-eO-6Yc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="14" id="OHR-cs-hbW"/>
+                <constraint firstItem="wwK-vf-4Kd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="PRx-ZS-rER"/>
+                <constraint firstAttribute="trailing" secondItem="wwK-vf-4Kd" secondAttribute="trailing" id="ZMT-q2-OPq"/>
+            </constraints>
+            <size key="customSize" width="40" height="90"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="20"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="nicknameLabel" destination="wwK-vf-4Kd" id="Zh1-br-mbq"/>
+                <outlet property="profileImageView" destination="4TZ-RC-TI3" id="xdu-di-T6j"/>
+            </connections>
+            <point key="canvasLocation" x="20" y="67"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="btn_delete_user" width="14" height="14"/>
+        <image name="img_profile" width="58" height="58"/>
+    </resources>
+</document>

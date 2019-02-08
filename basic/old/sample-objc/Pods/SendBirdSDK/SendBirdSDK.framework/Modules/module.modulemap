@@ -1,0 +1,6 @@
+framework module SendBirdSDK {
+  umbrella header "SendBirdSDK.h"
+
+  export *
+  module * { export * }
+}

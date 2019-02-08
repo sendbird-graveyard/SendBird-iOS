@@ -1,0 +1,62 @@
+/* A single strings file, whose title is specified in your preferences schema. The strings files provide the localized content to display to the user for each of your preferences. */
+
+"MessageSummaryVideo" = "(동영상)";
+"MessageSummaryImage" = "(사진)";
+"MessageSummaryAudio" = "(음악)";
+"MessageSummaryFile" = "(파일)";
+
+"TypingMessageSingular" = "%@(이)가 입력하고 있습니다.";
+"TypingMessagePlural" = "여러 명이 입력하고 있습니다.";
+"ErrorTitle" = "에러";
+
+"CloseButton" = "닫기";
+"CreateButton" = "생성";
+"NextButton" = "다음";
+"DoneButton" = "완료";
+"LeaveButton" = "나가기";
+"HideButton" = "숨기기";
+"BlockUserButton" = "사용자 차단하기";
+"UnblockUserButton" = "사용자 차단 해제하기";
+"DeleteMessageButton" = "메시지 삭제하기";
+"PlayVideoButton" = "동영상 재생하기";
+"PlayAudioButton" = "음악 재생하기";
+"OpenImageButton" = "Safari에서 이미지 열기";
+"DisconnectButton" = "연결종료";
+
+"GroupChannelCreatedTitle" = "그룹 채널 생성";
+"GroupChannelCreatedMessage" = "그룹 채널이 생성되었습니다.";
+"SeeMemberListButton" = "멤버 목록 보기";
+"SeeBlockedUserListButton" = "차단 유저 목록 보기";
+"GroupChannelTitle" = "그룹 채널(%ld명)";
+"ReconnectingSubTitle" = "재접속중...";
+"ReconnectedSubTitle" = "재접속됨";
+"ReconnectionFailedSubTitle" = "재접속 실패";
+"ChannelDeletedTitle" = "채널 삭제됨";
+"ChannelDeletedMessage" = "이 채널이 삭제되었습니다. 채널 화면이 닫힙니다.";
+"UserBlockedTitle" = "사용자 차단됨";
+"UserBlockedMessage" = "%@이(가) 차단되었습니다.";
+
+"OpenChannelCreatedTitle" = "오픈 채널 생성";
+"OpenChannelCreatedMessage" = "오픈 채널이 생성되었습니다.";
+"SeeParticipantListButton" = "참여자 목록 보기";
+
+"ParticipantSingular" = "%ld명 참여";
+"ParticipantPlural" = "%ld명 참여";
+
+"MemberListTitle" = "멤버 목록(%d)";
+
+"OpenDistinctGroupChannel" = "기존 그룹 채널 열기";
+"OpenNonDistinctGroupChannel" = "새로운 그룹 채널 열기";
+
+"InviteUserButton" = "사용자 초대";
+"InviteButton" = "초대";
+
+"ResendFailedMessageTitle" = "메시지 재전송";
+"ResendFailedMessageDescription" = "메시지를 재전송하시겠습니까?";
+"ResendFailedMessageButton" = "재전송";
+
+"DeleteFailedMessageTitle" = "메시지 삭제";
+"DeleteFailedMessageDescription" = "메시지를 삭제하시겠습니까?";
+"DeleteFailedMessageButton" = "삭제";
+
+"EmptyChannelName" = "대화 상대 없음";

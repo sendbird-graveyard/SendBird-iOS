@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="168" id="KGk-i7-Jjw" customClass="IncomingVideoFileMessageTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="168"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="167"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GEK-pm-dQz" userLabel="Date Seperator View">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="24"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0V-0j-Nvc" userLabel="Date Seperator Left Line View">
+                                <rect key="frame" x="0.0" y="12" width="148" height="1"/>
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="sCR-PY-Q51"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 Sep, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1av-14-rRb" userLabel="Date Seperator Label">
+                                <rect key="frame" x="152" y="5" width="72" height="15"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zXt-sG-t8x" userLabel="Date Seperator Right Line View">
+                                <rect key="frame" x="228" y="12" width="147" height="1"/>
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.74901960779999999" blue="0.74901960779999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="o2U-uk-l48"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="7es-TZ-7hh" userLabel="Date Seperator View Height"/>
+                            <constraint firstItem="1av-14-rRb" firstAttribute="leading" secondItem="H0V-0j-Nvc" secondAttribute="trailing" constant="4" id="DH8-FU-3Z1"/>
+                            <constraint firstItem="H0V-0j-Nvc" firstAttribute="leading" secondItem="GEK-pm-dQz" secondAttribute="leading" id="EuL-eb-R0P"/>
+                            <constraint firstItem="zXt-sG-t8x" firstAttribute="leading" secondItem="1av-14-rRb" secondAttribute="trailing" constant="4" id="FGB-F8-svH"/>
+                            <constraint firstItem="H0V-0j-Nvc" firstAttribute="centerY" secondItem="GEK-pm-dQz" secondAttribute="centerY" id="WuC-Fk-cWo"/>
+                            <constraint firstAttribute="trailing" secondItem="zXt-sG-t8x" secondAttribute="trailing" id="X1x-yg-95x"/>
+                            <constraint firstItem="zXt-sG-t8x" firstAttribute="centerY" secondItem="GEK-pm-dQz" secondAttribute="centerY" id="Y0x-vm-GPO"/>
+                            <constraint firstItem="1av-14-rRb" firstAttribute="centerY" secondItem="GEK-pm-dQz" secondAttribute="centerY" id="e1r-zG-yBJ"/>
+                            <constraint firstItem="1av-14-rRb" firstAttribute="centerX" secondItem="GEK-pm-dQz" secondAttribute="centerX" id="lBb-W6-Q4U"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_profile" translatesAutoresizingMaskIntoConstraints="NO" id="lYF-33-f5w" userLabel="Profile Image View">
+                        <rect key="frame" x="14" y="34" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="C4I-Pk-5Ev"/>
+                            <constraint firstAttribute="width" constant="40" id="vkm-xL-jPi"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rb8-6c-eiQ" userLabel="Message Container View">
+                        <rect key="frame" x="62" y="34" width="160" height="120"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0UD-lR-gcu" userLabel="File Image View" customClass="FLAnimatedImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="PsZ-GE-LTg"/>
+                                    <constraint firstAttribute="height" constant="120" id="r2h-wk-Fnh" userLabel="File Image View Height"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_video_chat" translatesAutoresizingMaskIntoConstraints="NO" id="wmM-86-Sdb" userLabel="Play Image View">
+                                <rect key="frame" x="64" y="44" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="GpP-Iu-1Mz"/>
+                                    <constraint firstAttribute="height" constant="32" id="WgO-Df-8wb"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.94509803920000002" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="0UD-lR-gcu" secondAttribute="trailing" id="4Mh-yi-0H3"/>
+                            <constraint firstItem="0UD-lR-gcu" firstAttribute="leading" secondItem="Rb8-6c-eiQ" secondAttribute="leading" id="5Rw-fT-Be6"/>
+                            <constraint firstAttribute="bottom" secondItem="0UD-lR-gcu" secondAttribute="bottom" id="DFP-hm-3Gy"/>
+                            <constraint firstItem="0UD-lR-gcu" firstAttribute="top" secondItem="Rb8-6c-eiQ" secondAttribute="top" id="Omi-om-D0G"/>
+                            <constraint firstItem="wmM-86-Sdb" firstAttribute="centerX" secondItem="Rb8-6c-eiQ" secondAttribute="centerX" id="YVv-rF-JmB"/>
+                            <constraint firstItem="wmM-86-Sdb" firstAttribute="centerY" secondItem="Rb8-6c-eiQ" secondAttribute="centerY" id="dqS-Qr-efO"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99:99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMQ-Ey-9ei" userLabel="Message Date Label">
+                        <rect key="frame" x="230" y="140" width="54" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="54" id="VfP-lf-ZZk"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Rb8-6c-eiQ" firstAttribute="top" secondItem="lYF-33-f5w" secondAttribute="top" id="1WN-3w-dZC"/>
+                    <constraint firstItem="iMQ-Ey-9ei" firstAttribute="leading" secondItem="Rb8-6c-eiQ" secondAttribute="trailing" constant="8" id="9P6-6Y-PSq"/>
+                    <constraint firstItem="lYF-33-f5w" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="Klb-HX-Vzc"/>
+                    <constraint firstItem="GEK-pm-dQz" firstAttribute="topMargin" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Qha-iA-KSq" userLabel="Date Seperator View Top Margin"/>
+                    <constraint firstItem="iMQ-Ey-9ei" firstAttribute="bottom" secondItem="Rb8-6c-eiQ" secondAttribute="bottom" id="UdF-En-xhi"/>
+                    <constraint firstItem="Rb8-6c-eiQ" firstAttribute="leading" secondItem="lYF-33-f5w" secondAttribute="trailing" constant="8" id="fQa-ft-dP3"/>
+                    <constraint firstAttribute="trailing" secondItem="GEK-pm-dQz" secondAttribute="trailing" id="if9-Pb-Xb3"/>
+                    <constraint firstItem="GEK-pm-dQz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="kbZ-NR-gEV"/>
+                    <constraint firstItem="Rb8-6c-eiQ" firstAttribute="top" secondItem="GEK-pm-dQz" secondAttribute="bottom" constant="10" id="uIH-bt-1L4"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateSeperatorLabel" destination="1av-14-rRb" id="HVL-Pp-RCj"/>
+                <outlet property="dateSeperatorView" destination="GEK-pm-dQz" id="yMd-x4-lnQ"/>
+                <outlet property="dateSeperatorViewBottomMargin" destination="uIH-bt-1L4" id="h2o-67-Ecg"/>
+                <outlet property="dateSeperatorViewHeight" destination="7es-TZ-7hh" id="wrb-cQ-Gp7"/>
+                <outlet property="dateSeperatorViewTopMargin" destination="Qha-iA-KSq" id="p2h-f3-TIl"/>
+                <outlet property="fileImageView" destination="0UD-lR-gcu" id="JfK-VO-Xmh"/>
+                <outlet property="fileImageViewHeight" destination="r2h-wk-Fnh" id="PZL-q0-bva"/>
+                <outlet property="messageDateLabel" destination="iMQ-Ey-9ei" id="Hgz-1J-rwD"/>
+                <outlet property="profileImageView" destination="lYF-33-f5w" id="X6K-uQ-ggM"/>
+            </connections>
+            <point key="canvasLocation" x="-2.5" y="114"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_video_chat" width="26" height="26"/>
+        <image name="img_profile" width="58" height="58"/>
+    </resources>
+</document>
