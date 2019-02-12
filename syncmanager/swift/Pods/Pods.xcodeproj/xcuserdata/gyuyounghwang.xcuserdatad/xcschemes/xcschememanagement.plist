@@ -53,7 +53,7 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
-		<key>Pods-SendBird-iOS-LocalCache-Sample-swift.xcscheme</key>
+		<key>Pods-Sample-SyncManager-iOS-swift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
