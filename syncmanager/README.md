@@ -39,7 +39,7 @@ Now you can see installed SendBird framework by inspecting YOUR_PROJECT.xcworksp
 2. Run `carthage update`.
 3. Go to your Xcode project's "General" settings. Open `<YOUR_XCODE_PROJECT_DIRECTORY>/Carthage/Build/iOS` in Finder and drag `SendBirdSyncManager.framework` to the "Embedded Binaries" section in Xcode. Make sure `Copy items if needed` is selected and click `Finish`.
 
-> Note: `SendBirdSyncManager` is dependent with `SendBird SDK`. So if you install from Carthage, you should instal [SendBird SDK][https://github.com/smilefam/sendbird-ios-framework]. Keep in mind the version of `SendBird SDK` should be higher than **3.0.130**.
+> Note: `SendBirdSyncManager` is dependent with `SendBird SDK`. So if you install from Carthage, you should instal [SendBird SDK](https://github.com/smilefam/sendbird-ios-framework). Keep in mind the version of `SendBird SDK` should be higher than **3.0.130**.
 
 ## Usage
 
