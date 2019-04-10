@@ -8,7 +8,7 @@
 among your users. These samples introduce various applications based on SendBird SDK. Refer to the following applications.
 - [Swift Basic Sample](#Swift-Basic-Sample): The project is a sample application composed of common chat features. You can make various channels(group channel, open channel) and send(or receive) messages in the sample. This sample is written with swift and is based on [SendBird SDK](https://github.com/smilefam/sendbird-ios-framework).
 - [Objective-C Basic Sample](#Objective-C-Basic-Sample): The project is a sample application composed of common chat features. You can make various channels(group channel, open channel) and send(or receive) messages in the sample. This sample is written with objective-C and is based on [SendBird SDK](https://github.com/smilefam/sendbird-ios-framework).
-- [SyncManager Sample](#SyncManager-Sample): The project is a sample application composed of common chat features, especially local cache. This sample saves SendBird data in the device database to allow caching and faster data loading. We provides the same project in two languages, swift and objective-C. And the sample is based on [SendBird SyncManager SDK](https://github.com/smilefam/sendbird-syncmanager-ios) as well as [SendBird SDK](https://github.com/smilefam/sendbird-ios-framework). You can learn more about syncmanager from [SyncManager sample's ReadMe](./blob/master/syncmanager/README.md)
+- [SyncManager Sample](#SyncManager-Sample): The project is a sample application composed of common chat features, especially local cache. This sample saves SendBird data in the device database to allow caching and faster data loading. We provides the same project in two languages, swift and objective-C. And the sample is based on [SendBird SyncManager SDK](https://github.com/smilefam/sendbird-syncmanager-ios) as well as [SendBird SDK](https://github.com/smilefam/sendbird-ios-framework). You can learn more about syncmanager from [SyncManager sample's ReadMe](https://github.com/smilefam/SendBird-iOS/blob/master/syncmanager/README.md)
 - [Legacy Basic Sample](#Legacy-Basic-Sample): The legacy project is a sample application composed of common chat features. We recommend you to use upper new projects. We don't support this sample anymore.
 
 ## Quick Start
@@ -39,15 +39,15 @@ git submodule update --init ./basic/Objective-C
 git submodule update --init --recursive    
 ```
 
-### [SyncManager Sample](./tree/master/syncmanager)
-You can use [swift](./tree/master/syncmanager/swift) and [objective-C](./tree/master/syncmanager/objc) projects in [the syncmanager sample directory](./tree/master/syncmanager) after clone the repository. 
+### [SyncManager Sample](https://github.com/smilefam/SendBird-iOS/tree/master/syncmanager)
+You can use [swift](https://github.com/smilefam/SendBird-iOS/tree/master/syncmanager/swift) and [objective-C](https://github.com/smilefam/SendBird-iOS/tree/master/syncmanager/objc) projects in [the syncmanager sample directory](https://github.com/smilefam/SendBird-iOS/tree/master/syncmanager) after clone the repository. 
 ```
 // clone this repository
 git clone git@github.com:smilefam/SendBird-iOS.git  
 ```
 
-### [Legacy Basic Sample](../tree/master/basic/old)
-You can use [swift](./tree/master/basic/old/sample-swift) and [objective-C](./tree/master/basic/old/sample-objc) projects in [the legacy basic sample directory](./tree/master/basic/old) after clone the repository. 
+### [Legacy Basic Sample](https://github.com/smilefam/SendBird-iOS/tree/master/basic/old)
+You can use [swift](https://github.com/smilefam/SendBird-iOS/tree/master/basic/old/sample-swift) and [objective-C](https://github.com/smilefam/SendBird-iOS/tree/master/basic/old/sample-objc) projects in [the legacy basic sample directory](https://github.com/smilefam/SendBird-iOS/tree/master/basic/old) after clone the repository. 
 ```
 // clone this repository
 git clone git@github.com:smilefam/SendBird-iOS.git  
