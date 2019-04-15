@@ -19,7 +19,7 @@
 + (NSBundle *)sbResourceBundle
 {
     NSString *bundleResourcePath = [NSBundle sbBundle].resourcePath;
-    NSString *assetPath = [bundleResourcePath stringByAppendingPathComponent:@"SendBird-iOS-LocalCache-Sample.bundle"];
+    NSString *assetPath = [bundleResourcePath stringByAppendingPathComponent:@"SendBird-SyncManager-iOS.bundle"];
     return [NSBundle bundleWithPath:assetPath];
 }
 

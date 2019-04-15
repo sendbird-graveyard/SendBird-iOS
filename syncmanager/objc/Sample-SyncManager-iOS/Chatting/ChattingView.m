@@ -239,38 +239,25 @@
 }
 
 #pragma mark - UI for Message
-- (void)insertMessages:(NSArray<SBDBaseMessage *> *)messages completionHandler:(SBSMVoidHandler)completionHandler {
+- (void)insertMessages:(NSArray<SBDBaseMessage *> *)messages comparator:(SBSMMessageComparator)comparator completionHandler:(SBSMVoidHandler)completionHandler {
     if (messages.count == 0) {
         return;
     }
     
-    NSLog(@"\n+++ [MESSAGE TABLEVIEW] will insert tableView's messages - tableView: %@ - changelogs: %@", self.messages, messages);
-    BOOL willScrollToBottomOfRows = NO;
-    NSArray<SBSMIndex *> *indexes = [Utils indexesOfMessages:messages inMessages:[self.messages copy]];
-    NSMutableArray <NSIndexPath *> *indexPaths = [NSMutableArray array];
-    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-    for (SBSMIndex *indexObject in indexes) {
-        NSUInteger index = indexObject.indexOfPreviousObject;
-        index++;
-        [indexSet addIndex:index];
-        [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-        if (!willScrollToBottomOfRows && index >= self.messages.count) {
-            willScrollToBottomOfRows = YES;
-        }
-    }
+    NSLog(@"\n+++ [MESSAGE TABLEVIEW] will insert tableView's messages - tableView: %@ - insertings: %@", self.messages, messages);
+    [self.messages addObjectsFromArray:messages];
+    [self.messages sortUsingComparator:comparator];
     
-    [Utils tableView:self.chattingTableView performBatchUpdates:^(UITableView * _Nonnull tableView) {
-        [self.messages insertObjects:messages atIndexes:indexSet];
-        [tableView insertRowsAtIndexPaths:[indexPaths copy] withRowAnimation:UITableViewRowAnimationAutomatic];
-    } completion:^(BOOL finished) {
-        if (willScrollToBottomOfRows) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chattingTableView reloadData];
+        if (self.messages.lastObject.messageId == messages.lastObject.messageId) {
             [self scrollToBottomWithForce:YES];
         }
         
         if (completionHandler != nil) {
             completionHandler();
         }
-    }];
+    });
 }
 
 - (void)updateMessages:(NSArray<SBDBaseMessage *> *)messages completionHandler:(SBSMVoidHandler)completionHandler {
@@ -278,24 +265,23 @@
         return;
     }
     
-    NSLog(@"\n+++ [MESSAGE TABLEVIEW] will change tableView's messages - tableView: %@ - changelogs: %@", self.messages, messages);
-    NSArray<SBSMIndex *> *indexes = [Utils indexesOfMessages:messages inMessages:[self.messages copy]];
-    NSMutableArray <NSIndexPath *> *indexPaths = [NSMutableArray array];
-    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-    for (SBSMIndex *indexObject in indexes) {
-        NSUInteger index = indexObject.indexOfObject;
-        [indexSet addIndex:index];
-        [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
+    NSLog(@"\n+++ [MESSAGE TABLEVIEW] will change tableView's messages - tableView: %@ - updating: %@", self.messages, messages);
+    for (SBDBaseMessage *updatedMessage in messages) {
+        for (SBDBaseMessage *message in self.messages) {
+            if (message.messageId == updatedMessage.messageId && message != updatedMessage) {
+                NSUInteger index = [self.messages indexOfObject:message];
+                [self.messages replaceObjectAtIndex:index withObject:updatedMessage];
+            }
+        }
     }
     
-    [Utils tableView:self.chattingTableView performBatchUpdates:^(UITableView * _Nonnull tableView) {
-        [self.messages replaceObjectsAtIndexes:indexSet withObjects:messages];
-        [tableView reloadRowsAtIndexPaths:[indexPaths copy] withRowAnimation:UITableViewRowAnimationNone];
-    } completion:^(BOOL finished) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chattingTableView reloadData];
+        
         if (completionHandler != nil) {
             completionHandler();
         }
-    }];
+    });
 }
 
 - (void)removeMessages:(NSArray<SBDBaseMessage *> *)messages completionHandler:(SBSMVoidHandler)completionHandler {
@@ -1046,6 +1032,12 @@
             [(OutgoingGeneralUrlPreviewTempMessageTableViewCell *)cell setPreviousMessage:nil];
         }
         [(OutgoingGeneralUrlPreviewTempMessageTableViewCell *)cell setModel:model];
+    }
+    
+    if (indexPath.row == (self.messages.count - 1)) {
+        if (self.delegate != nil && [self.delegate respondsToSelector:@selector(loadMoreMessage:)]) {
+            [self.delegate loadMoreMessage:self.chattingTableView];
+        }
     }
 
     return cell;

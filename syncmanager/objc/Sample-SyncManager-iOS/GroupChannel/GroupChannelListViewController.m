@@ -128,7 +128,7 @@
     self.channelCollection = nil;
 }
 
-- (id<SBSMChannelQuery>)query {
+- (SBDGroupChannelListQuery *)query {
     SBDGroupChannelListQuery *query = [SBDGroupChannel createMyGroupChannelListQuery];
     query.limit = 10;
     query.order = SBDGroupChannelListOrderLatestLastMessage;
@@ -381,27 +381,16 @@
     }
     
     NSLog(@"== [Channel List View] will insert tableView's channel - tableView: %@ - channels: %@", self.channels, channels);
-    NSMutableArray <NSIndexPath *> *indexPaths = [NSMutableArray array];
-    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-    NSArray<SBSMIndex *> *indexes = [Utils indexesOfChannels:channels inChannels:[self.channels copy] sortDescription:^NSComparisonResult(SBDGroupChannel * _Nonnull channel1, SBDGroupChannel * _Nonnull channel2) {
-        return [self.channelCollection orderAscendingBetweenObject:channel1 andObject:channel2];
-    }];
+    [self.channels addObjectsFromArray:channels];
+    [self.channels sortUsingComparator:self.channelCollection.comparator];
     
-    for (SBSMIndex *indexObject in indexes) {
-        NSUInteger index = indexObject.indexOfPreviousObject;
-        index++;
-        [indexSet addIndex:index];
-        [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-    }
-    
-    [Utils tableView:self.tableView performBatchUpdates:^(UITableView * _Nonnull tableView) {
-        [self.channels insertObjects:channels atIndexes:indexSet];
-        [tableView insertRowsAtIndexPaths:[indexPaths copy] withRowAnimation:UITableViewRowAnimationAutomatic];
-    } completion:^(BOOL finished) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        
         if (completionHandler != nil) {
             completionHandler();
         }
-    }];
+    });
 }
 
 - (void)updateChannels:(NSArray <SBDGroupChannel *> *)channels completionHandler:(SBSMVoidHandler)completionHandler {
@@ -409,26 +398,23 @@
         return;
     }
     
-    NSLog(@"== [Channel List View] will insert tableView's channel - tableView: %@ - channels: %@", self.channels, channels);
-    NSArray<SBSMIndex *> *indexes = [Utils indexesOfChannels:channels inChannels:[self.channels copy] sortDescription:^NSComparisonResult(SBDGroupChannel * _Nonnull channel1, SBDGroupChannel * _Nonnull channel2) {
-        return [self.channelCollection orderAscendingBetweenObject:channel1 andObject:channel2];
-    }];
-    NSMutableArray *indexPaths = [NSMutableArray array];
-    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-    for (SBSMIndex *indexObject in indexes) {
-        NSUInteger index = indexObject.indexOfObject;
-        [indexSet addIndex:index];
-        [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
+    NSLog(@"== [Channel List View] will update tableView's channel - tableView: %@ - channels: %@", self.channels, channels);
+    for (SBDGroupChannel *updatedChannel in channels) {
+        for (SBDGroupChannel *channel in self.channels) {
+            if ([channel.channelUrl isEqualToString:updatedChannel.channelUrl] && channel != updatedChannel) {
+                NSUInteger index = [self.channels indexOfObject:channel];
+                [self.channels replaceObjectAtIndex:index withObject:updatedChannel];
+            }
+        }
     }
     
-    [Utils tableView:self.tableView performBatchUpdates:^(UITableView * _Nonnull tableView) {
-        [self.channels replaceObjectsAtIndexes:indexSet withObjects:channels];
-        [tableView reloadRowsAtIndexPaths:[indexPaths copy] withRowAnimation:UITableViewRowAnimationNone];
-    } completion:^(BOOL finished) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        
         if (completionHandler != nil) {
             completionHandler();
         }
-    }];
+    });
 }
 
 - (void)removeChannels:(NSArray<SBDGroupChannel *> *)channels completionHandler:(SBSMVoidHandler)completionHandler {
@@ -436,7 +422,7 @@
         return;
     }
     
-    NSLog(@"== [Channel List View] will insert tableView's channel - tableView: %@ - channels: %@", self.channels, channels);
+    NSLog(@"== [Channel List View] will remove tableView's channel - tableView: %@ - channels: %@", self.channels, channels);
     NSArray<SBSMIndex *> *indexes = [Utils indexesOfChannels:channels inChannels:[self.channels copy] sortDescription:^NSComparisonResult(SBDGroupChannel * _Nonnull channel1, SBDGroupChannel * _Nonnull channel2) {
         return [self.channelCollection orderAscendingBetweenObject:channel1 andObject:channel2];
     }];
@@ -481,10 +467,10 @@
 - (void)clearAllChannelsWithCompletionHandler:(SBSMVoidHandler)completionHandler {
     NSLog(@"== [Channel List View] will clear tableView's channel - tableView: %@", self.channels);
     [Utils tableView:self.tableView performBatchUpdates:^(UITableView * _Nonnull tableView) {
-        NSLog(@"== [Channel List View] will reload tableView - tableView: %@", self.channels);
+        NSLog(@"== [Channel List View] will remove all tableView - tableView: %@", self.channels);
         [self.channels removeAllObjects];
         [tableView reloadData];
-        NSLog(@"== [Channel List View] did reload tableView - tableView: %@", self.channels);
+        NSLog(@"== [Channel List View] did remove all tableView - tableView: %@", self.channels);
     } completion:^(BOOL finished) {
         if (completionHandler != nil) {
             completionHandler();

@@ -421,7 +421,7 @@
         
         switch (action) {
             case SBSMMessageEventActionInsert: {
-                [self.chattingView insertMessages:messages completionHandler:^{
+                [self.chattingView insertMessages:messages comparator:collection.comparator completionHandler:^{
                     handler();
                     
                     if ([Utils isTopViewController:self]) {
@@ -531,7 +531,7 @@
                 tempModel.createdAt = (long long)([[NSDate date] timeIntervalSince1970] * 1000);
                 tempModel.message = message;
                 
-                [self.chattingView insertMessages:@[tempModel] completionHandler:^{
+                [self.chattingView insertMessages:@[tempModel] comparator:self.messageCollection.comparator completionHandler:^{
                     [self sendUrlPreview:url message:message tempModel:tempModel];
                 }];
                 
