@@ -519,7 +519,6 @@
 				5AB0CC231D8F840400F05EC1 /* Resources */,
 				5AF8AC851D915D27000F0578 /* Embed Frameworks */,
 				65F48B1CE201A6328586F962 /* [CP] Embed Pods Frameworks */,
-				33477679467C759F405C5CDA /* [CP] Copy Pods Resources */,
 				C135DA5D22116A9000CE5C19 /* Build number increment */,
 			);
 			buildRules = (
@@ -611,28 +610,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		33477679467C759F405C5CDA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sample-SyncManager-iOS/Pods-Sample-SyncManager-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		65F48B1CE201A6328586F962 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Sample-SyncManager-iOS/Pods-Sample-SyncManager-iOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Sample-SyncManager-iOS/Pods-Sample-SyncManager-iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/HTMLKit/HTMLKit.framework",
@@ -661,7 +645,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sample-SyncManager-iOS/Pods-Sample-SyncManager-iOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sample-SyncManager-iOS/Pods-Sample-SyncManager-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6FC275EF6EA21B5F2AA2D6E4 /* [CP] Check Pods Manifest.lock */ = {

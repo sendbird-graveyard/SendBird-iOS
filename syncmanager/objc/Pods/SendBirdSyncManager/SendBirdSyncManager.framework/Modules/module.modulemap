@@ -1,6 +1,0 @@
-framework module SendBirdSyncManager {
-  umbrella header "SendBirdSyncManager.h"
-
-  export *
-  module * { export * }
-}
