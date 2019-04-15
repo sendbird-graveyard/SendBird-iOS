@@ -9,12 +9,12 @@
 #import <SendBirdSDK/SendBirdSDK.h>
 
 #import "ViewController.h"
-#import "MenuViewController.h"
 #import "Constants.h"
 #import "NSBundle+SendBird.h"
 #import "Utils.h"
 #import "AppDelegate.h"
 #import "ConnectionManager.h"
+#import "GroupChannelListViewController.h"
 #import <Photos/Photos.h>
 
 @interface ViewController ()
@@ -105,8 +105,8 @@
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                MenuViewController *vc = [[MenuViewController alloc] init];
-                [self presentViewController:vc animated:NO completion:nil];
+                UIViewController *vc = [[GroupChannelListViewController alloc] init];
+                [self presentViewController:vc animated:NO completion:nil];                
             });
         }];
     }

@@ -423,16 +423,23 @@
     }
     
     NSLog(@"== [Channel List View] will remove tableView's channel - tableView: %@ - channels: %@", self.channels, channels);
-    NSArray<SBSMIndex *> *indexes = [Utils indexesOfChannels:channels inChannels:[self.channels copy] sortDescription:^NSComparisonResult(SBDGroupChannel * _Nonnull channel1, SBDGroupChannel * _Nonnull channel2) {
-        return [self.channelCollection orderAscendingBetweenObject:channel1 andObject:channel2];
+    NSMutableArray<NSString *> *removedChannelUrls = [[channels valueForKey:@"channelUrl"] mutableCopy];
+    NSIndexSet *indexSet = [self.channels indexesOfObjectsPassingTest:^BOOL(SBDGroupChannel * _Nonnull channel, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([removedChannelUrls containsObject:channel.channelUrl]) {
+            [removedChannelUrls removeObject:channel.channelUrl];
+            if (removedChannelUrls.count == 0) {
+                *stop = YES;
+            }
+            return YES;
+        }
+        
+        return NO;
     }];
+    
     NSMutableArray *indexPaths = [NSMutableArray array];
-    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-    for (SBSMIndex *indexObject in indexes) {
-        NSUInteger index = indexObject.indexOfObject;
-        [indexSet addIndex:index];
+    [indexSet enumerateIndexesUsingBlock:^(NSUInteger index, BOOL * _Nonnull stop) {
         [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-    }
+    }];
     
     [Utils tableView:self.tableView performBatchUpdates:^(UITableView * _Nonnull tableView) {
         [tableView deleteRowsAtIndexPaths:[indexPaths copy] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -445,23 +452,44 @@
 }
 
 - (void)moveChannel:(SBDGroupChannel *)channel completionHandler:(SBSMVoidHandler)completionHandler {
-    SBSMIndex *atIndex = [Utils indexOfChannelUrl:channel.channelUrl ofChannels:[self.channels copy]];
-    NSIndexPath *atIndexPath = [NSIndexPath indexPathForRow:atIndex.indexOfObject inSection:0];
-    [self.channels removeObjectAtIndex:atIndex.indexOfObject];
-    SBSMIndex *toIndex = [Utils indexOfChannel:channel inChannels:[self.channels copy] sortDescription:^NSComparisonResult(SBDGroupChannel * _Nonnull channel1, SBDGroupChannel * _Nonnull channel2) {
-        return [self.channelCollection orderAscendingBetweenObject:channel1 andObject:channel2];
+    __block NSUInteger oldIndex = NSNotFound;
+    [self.channels enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(SBDGroupChannel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([channel.channelUrl isEqualToString:obj.channelUrl]) {
+            oldIndex = idx;
+            *stop = YES;
+        }
     }];
-    NSIndexPath *toIndexPath = [NSIndexPath indexPathForRow:toIndex.indexOfObject inSection:0];
-    [self.channels insertObject:channel atIndex:toIndex.indexOfObject];
     
-    [Utils tableView:self.tableView performBatchUpdates:^(UITableView * _Nonnull tableView) {
-        [tableView reloadRowsAtIndexPaths:@[atIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-        [tableView moveRowAtIndexPath:atIndexPath toIndexPath:toIndexPath];
-    } completion:^(BOOL finished) {
+    if (oldIndex == NSNotFound) {
         if (completionHandler != nil) {
             completionHandler();
         }
+        return;
+    }
+    
+    [self.channels replaceObjectAtIndex:oldIndex withObject:channel];
+    
+    [self.channels sortUsingComparator:self.channelCollection.comparator];
+    
+    __block NSUInteger newIndex = NSNotFound;
+    [self.channels enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(SBDGroupChannel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([channel.channelUrl isEqualToString:obj.channelUrl]) {
+            newIndex = idx;
+            *stop = YES;
+        }
     }];
+    
+    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:0];
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newIndex inSection:0];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadRowsAtIndexPaths:@[oldIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView moveRowAtIndexPath:oldIndexPath toIndexPath:newIndexPath];
+        
+        if (completionHandler != nil) {
+            completionHandler();
+        }
+    });
 }
 
 - (void)clearAllChannelsWithCompletionHandler:(SBSMVoidHandler)completionHandler {

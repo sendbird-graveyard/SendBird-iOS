@@ -24,7 +24,6 @@
 #import <AFNetworking/AFNetworking.h>
 #import "FLAnimatedImage.h"
 #import "FLAnimatedImageView+ImageCache.h"
-#import "Utils+SBDObject.h"
 #import "Utils+View.h"
 
 @interface ChattingView()
@@ -290,22 +289,48 @@
     }
     
     NSLog(@"\n+++ [MESSAGE TABLEVIEW] will delete tableView's messages - tableView: %@ - changelogs: %@", self.messages, messages);
-    NSArray<SBSMIndex *> *indexes = [Utils indexesOfMessages:messages inMessages:[self.messages copy]];
-    NSMutableArray *indexPaths = [NSMutableArray array];
-    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-    BOOL containsLatestMessage = NO;
-    for (SBSMIndex *indexObject in indexes) {
-        NSUInteger index = indexObject.indexOfObject;
-        [indexSet addIndex:index];
-        [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-        if (!containsLatestMessage && index >= self.messages.count) {
-            containsLatestMessage = YES;
+    NSMutableArray<NSNumber *> *removedMessageIds = [NSMutableArray array];
+    NSMutableArray<NSString *> *removedRequestIds = [NSMutableArray array];
+    for (SBDBaseMessage *removedMessage in messages) {
+        if (removedMessage.messageId > 0) {
+            [removedMessageIds addObject:@(removedMessage.messageId)];
+        }
+        else if ([removedMessage valueForKey:@"requestId"] != nil) {
+            [removedRequestIds addObject:[removedMessage valueForKey:@"requestId"]];
         }
     }
     
+    NSMutableArray<NSIndexPath *> *indexPathes = [NSMutableArray array];
+    NSIndexSet *indexSet = [self.messages indexesOfObjectsPassingTest:^BOOL(SBDBaseMessage * _Nonnull message, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (message.messageId > 0) {
+            if ([removedMessageIds containsObject:@(message.messageId)]) {
+                [removedMessageIds removeObject:@(message.messageId)];
+                [indexPathes addObject:[NSIndexPath indexPathForRow:idx inSection:0]];
+                
+                if (removedMessageIds.count == 0 && removedRequestIds.count == 0) {
+                    *stop = YES;
+                }
+                return YES;
+            }
+        }
+        else if ([message valueForKey:@"requestId"] != nil) {
+            NSString *requestId = [message valueForKey:@"requestId"];
+            if ([removedRequestIds containsObject:requestId]) {
+                [removedRequestIds removeObject:requestId];
+                [indexPathes addObject:[NSIndexPath indexPathForRow:idx inSection:0]];
+                
+                if (removedMessageIds.count == 0 && removedRequestIds.count == 0) {
+                    *stop = YES;
+                }
+                return YES;
+            }
+        }
+        
+        return NO;
+    }];
+    
     [Utils tableView:self.chattingTableView performBatchUpdates:^(UITableView * _Nonnull tableView) {
-        UITableViewRowAnimation animation = containsLatestMessage ? UITableViewRowAnimationNone : UITableViewRowAnimationAutomatic;
-        [tableView deleteRowsAtIndexPaths:[indexPaths copy] withRowAnimation:animation];
+        [tableView deleteRowsAtIndexPaths:[indexPathes copy] withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.messages removeObjectsAtIndexes:indexSet];
     } completion:^(BOOL finished) {
         if (completionHandler != nil) {
