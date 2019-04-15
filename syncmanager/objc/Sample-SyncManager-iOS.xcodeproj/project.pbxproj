@@ -24,8 +24,6 @@
 		5AC3A0801D97BEF100244336 /* CreateGroupChannelSelectOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC3A07E1D97BEF100244336 /* CreateGroupChannelSelectOptionViewController.m */; };
 		5AC3A0861D99DA3800244336 /* GroupChannelChattingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AC3A0841D99DA3800244336 /* GroupChannelChattingViewController.xib */; };
 		5AD94BE21DB4A8C900A6CD66 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD94BE11DB4A8C900A6CD66 /* Constants.m */; };
-		5AD94BEB1DB5BCEE00A6CD66 /* NSBundle+SendBird.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD94BEA1DB5BCEE00A6CD66 /* NSBundle+SendBird.m */; };
-		5AD94BEC1DB5BDB300A6CD66 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD94BEE1DB5BDB300A6CD66 /* MenuViewController.xib */; };
 		5AD94BF91DB5C4ED00A6CD66 /* Sample-SyncManager-iOS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5AD94BF81DB5C4ED00A6CD66 /* Sample-SyncManager-iOS.bundle */; };
 		5AD94BFA1DB5D38600A6CD66 /* GroupChannelListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD94BFC1DB5D38600A6CD66 /* GroupChannelListViewController.xib */; };
 		5AD94BFF1DB5D51400A6CD66 /* MemberListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD94C011DB5D51400A6CD66 /* MemberListViewController.xib */; };
@@ -48,7 +46,6 @@
 		5AF199121DA3A1FB00BF2DE0 /* MemberListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF199101DA3A1FB00BF2DE0 /* MemberListTableViewCell.m */; };
 		5AF199131DA3A1FB00BF2DE0 /* MemberListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF199111DA3A1FB00BF2DE0 /* MemberListTableViewCell.xib */; };
 		5AF199171DA3A50000BF2DE0 /* MemberListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF199151DA3A50000BF2DE0 /* MemberListViewController.m */; };
-		5AF8AC591D8FE121000F0578 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC571D8FE121000F0578 /* MenuViewController.m */; };
 		5AF8AC711D911B85000F0578 /* GroupChannelListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC6F1D911B85000F0578 /* GroupChannelListTableViewCell.m */; };
 		5AF8AC721D911B85000F0578 /* GroupChannelListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AF8AC701D911B85000F0578 /* GroupChannelListTableViewCell.xib */; };
 		5AF8AC761D9131BD000F0578 /* GroupChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC741D9131BD000F0578 /* GroupChannelListViewController.m */; };
@@ -57,7 +54,6 @@
 		5AF8AC891D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF8AC871D91FF9E000F0578 /* CreateGroupChannelUserListViewController.m */; };
 		8C5E64444F9220CB5D0C1E40 /* Pods_Sample_SyncManager_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2FB453A89C707E0D894F155 /* Pods_Sample_SyncManager_iOS.framework */; };
 		C13B5DB32206B73300D23762 /* Utils+View.m in Sources */ = {isa = PBXBuildFile; fileRef = C13B5DB22206B73300D23762 /* Utils+View.m */; };
-		C13B5DB92206B96F00D23762 /* Utils+SBDObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C13B5DB82206B96F00D23762 /* Utils+SBDObject.m */; };
 		C14D390C20809666002A5AA0 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = C14D390B20809666002A5AA0 /* Application.m */; };
 		C1A2ACD1202AC35A0066ED0E /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A2ACD0202AC35A0066ED0E /* ConnectionManager.m */; };
 		CE806EFF1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE806EFD1E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.m */; };
@@ -127,12 +123,8 @@
 		5AC3A0841D99DA3800244336 /* GroupChannelChattingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupChannelChattingViewController.xib; sourceTree = "<group>"; };
 		5AD94BE01DB4A8C800A6CD66 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		5AD94BE11DB4A8C900A6CD66 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		5AD94BE91DB5BCEE00A6CD66 /* NSBundle+SendBird.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+SendBird.h"; sourceTree = "<group>"; };
-		5AD94BEA1DB5BCEE00A6CD66 /* NSBundle+SendBird.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+SendBird.m"; sourceTree = "<group>"; };
-		5AD94BED1DB5BDB300A6CD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MenuViewController.xib; sourceTree = "<group>"; };
 		5AD94BF31DB5C04A00A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ko; path = ko.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5AD94BF41DB5C08700A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5AD94BF51DB5C09C00A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MenuViewController.xib; sourceTree = "<group>"; };
 		5AD94BF81DB5C4ED00A6CD66 /* Sample-SyncManager-iOS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "Sample-SyncManager-iOS.bundle"; sourceTree = "<group>"; };
 		5AD94BFD1DB5D38F00A6CD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GroupChannelListViewController.xib; sourceTree = "<group>"; };
 		5AD94BFE1DB5D39600A6CD66 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/GroupChannelListViewController.xib; sourceTree = "<group>"; };
@@ -171,8 +163,6 @@
 		5AF199141DA3A50000BF2DE0 /* MemberListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberListViewController.h; sourceTree = "<group>"; };
 		5AF199151DA3A50000BF2DE0 /* MemberListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberListViewController.m; sourceTree = "<group>"; };
 		5AF1992D1DA3D7F000BF2DE0 /* MessageDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDelegate.h; sourceTree = "<group>"; };
-		5AF8AC561D8FE121000F0578 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		5AF8AC571D8FE121000F0578 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		5AF8AC6E1D911B85000F0578 /* GroupChannelListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupChannelListTableViewCell.h; sourceTree = "<group>"; };
 		5AF8AC6F1D911B85000F0578 /* GroupChannelListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupChannelListTableViewCell.m; sourceTree = "<group>"; };
 		5AF8AC701D911B85000F0578 /* GroupChannelListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupChannelListTableViewCell.xib; sourceTree = "<group>"; };
@@ -188,8 +178,6 @@
 		C118DC7F22117353004D44D3 /* Sample-SyncManager-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sample-SyncManager-iOS.entitlements"; sourceTree = "<group>"; };
 		C13B5DB12206B73300D23762 /* Utils+View.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Utils+View.h"; sourceTree = "<group>"; };
 		C13B5DB22206B73300D23762 /* Utils+View.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Utils+View.m"; sourceTree = "<group>"; };
-		C13B5DB72206B96F00D23762 /* Utils+SBDObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Utils+SBDObject.h"; sourceTree = "<group>"; };
-		C13B5DB82206B96F00D23762 /* Utils+SBDObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Utils+SBDObject.m"; sourceTree = "<group>"; };
 		C14D390A20809666002A5AA0 /* Application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		C14D390B20809666002A5AA0 /* Application.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
 		C1A2ACCF202AC35A0066ED0E /* ConnectionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
@@ -285,7 +273,6 @@
 				5AB0CC391D8F840400F05EC1 /* Info.plist */,
 				5AB0CC361D8F840400F05EC1 /* LaunchScreen.storyboard */,
 				5AB0CC311D8F840400F05EC1 /* Main.storyboard */,
-				5AF8AC551D8FE104000F0578 /* Menu */,
 				BD86F1E9FEE8C96BFBA0FF0C /* Pods */,
 				5ADA68E81D92849900EFDF2B /* ReusableViewFromXib */,
 				5AB0CC281D8F840400F05EC1 /* Supporting Files */,
@@ -380,28 +367,14 @@
 				E209E9231F7A105300E7713F /* CustomNavigationBar.m */,
 				E268026F1E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.h */,
 				E26802701E7B42EF000FB280 /* FLAnimatedImageView+ImageCache.m */,
-				5AD94BE91DB5BCEE00A6CD66 /* NSBundle+SendBird.h */,
-				5AD94BEA1DB5BCEE00A6CD66 /* NSBundle+SendBird.m */,
 				E221A2DE1F290CEB00767328 /* NSString+URLEncode.h */,
 				E221A2DF1F290CEB00767328 /* NSString+URLEncode.m */,
 				5ADA68ED1D928E0F00EFDF2B /* Utils.h */,
 				5ADA68EE1D928E0F00EFDF2B /* Utils.m */,
 				C13B5DB12206B73300D23762 /* Utils+View.h */,
 				C13B5DB22206B73300D23762 /* Utils+View.m */,
-				C13B5DB72206B96F00D23762 /* Utils+SBDObject.h */,
-				C13B5DB82206B96F00D23762 /* Utils+SBDObject.m */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		5AF8AC551D8FE104000F0578 /* Menu */ = {
-			isa = PBXGroup;
-			children = (
-				5AF8AC561D8FE121000F0578 /* MenuViewController.h */,
-				5AF8AC571D8FE121000F0578 /* MenuViewController.m */,
-				5AD94BEE1DB5BDB300A6CD66 /* MenuViewController.xib */,
-			);
-			path = Menu;
 			sourceTree = "<group>";
 		};
 		5AF8AC6C1D911ACC000F0578 /* GroupChannel */ = {
@@ -556,6 +529,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 				ko,
@@ -603,7 +577,6 @@
 				5AD94C221DB5F5A900A6CD66 /* ChattingView.xib in Resources */,
 				CE806F001E7BA08800A8CB57 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib in Resources */,
 				5AC3A0861D99DA3800244336 /* GroupChannelChattingViewController.xib in Resources */,
-				5AD94BEC1DB5BDB300A6CD66 /* MenuViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,7 +670,6 @@
 				E218A6931E7CB4A4008ED223 /* OutgoingGeneralUrlPreviewTempModel.m in Sources */,
 				5AF8AC761D9131BD000F0578 /* GroupChannelListViewController.m in Sources */,
 				5AF199121DA3A1FB00BF2DE0 /* MemberListTableViewCell.m in Sources */,
-				5AD94BEB1DB5BCEE00A6CD66 /* NSBundle+SendBird.m in Sources */,
 				5AB0CC2D1D8F840400F05EC1 /* AppDelegate.m in Sources */,
 				CE806F041E7BA0A100A8CB57 /* OutgoingGeneralUrlPreviewMessageTableViewCell.m in Sources */,
 				5ADA68D51D923B7400EFDF2B /* CreateGroupChannelUserListTableViewCell.m in Sources */,
@@ -712,7 +684,6 @@
 				5AF199171DA3A50000BF2DE0 /* MemberListViewController.m in Sources */,
 				5AC3A06C1D9781A300244336 /* IncomingFileMessageTableViewCell.m in Sources */,
 				5ADA68EF1D928E0F00EFDF2B /* Utils.m in Sources */,
-				C13B5DB92206B96F00D23762 /* Utils+SBDObject.m in Sources */,
 				5ADA68EB1D9284BD00EFDF2B /* ReusableViewFromXib.m in Sources */,
 				C13B5DB32206B73300D23762 /* Utils+View.m in Sources */,
 				E25E5A8C1E78A262003E1E9B /* IncomingVideoFileMessageTableViewCell.m in Sources */,
@@ -722,7 +693,6 @@
 				E2CEFCC51E956FDC0060C569 /* UserProfileViewController.m in Sources */,
 				5AB0CC2A1D8F840400F05EC1 /* main.m in Sources */,
 				5ADA68E01D92576A00EFDF2B /* ChattingView.m in Sources */,
-				5AF8AC591D8FE121000F0578 /* MenuViewController.m in Sources */,
 				5AC3A0711D97975B00244336 /* OutgoingImageFileMessageTableViewCell.m in Sources */,
 				5AC3A0761D97A85000244336 /* OutgoingFileMessageTableViewCell.m in Sources */,
 				E209E9241F7A105300E7713F /* CustomNavigationBar.m in Sources */,
@@ -755,16 +725,6 @@
 				5AD94BF31DB5C04A00A6CD66 /* ko */,
 			);
 			name = LaunchScreen.storyboard;
-			path = .;
-			sourceTree = "<group>";
-		};
-		5AD94BEE1DB5BDB300A6CD66 /* MenuViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5AD94BED1DB5BDB300A6CD66 /* Base */,
-				5AD94BF51DB5C09C00A6CD66 /* ko */,
-			);
-			name = MenuViewController.xib;
 			path = .;
 			sourceTree = "<group>";
 		};

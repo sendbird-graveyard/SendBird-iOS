@@ -8,7 +8,6 @@
 
 #import "MemberListViewController.h"
 #import "MemberListTableViewCell.h"
-#import "NSBundle+SendBird.h"
 #import "ConnectionManager.h"
 
 @interface MemberListViewController () <SBDChannelDelegate, ConnectionManagerDelegate>
@@ -45,8 +44,8 @@
 
     [self.channel refreshWithCompletionHandler:^(SBDError * _Nullable error) {
         if (error != nil) {
-            UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+            UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Error" message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
             [vc addAction:closeAction];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self presentViewController:vc animated:YES completion:nil];
@@ -56,7 +55,7 @@
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.navItem.title = [NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"MemberListTitle"], (int)self.channel.memberCount];
+            self.navItem.title = [NSString stringWithFormat:@"Members (%d)", (int)self.channel.memberCount];
             [self.tableView reloadData];
         });
     }];
@@ -81,7 +80,7 @@
     [self.channel refreshWithCompletionHandler:^(SBDError * _Nullable error) {
         if (error == nil) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.navItem.title = [NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"MemberListTitle"], (int)self.channel.memberCount];
+                self.navItem.title = [NSString stringWithFormat:@"Members (%d)", (int)self.channel.memberCount];
                 [self.tableView reloadData];
             });
         }
@@ -95,7 +94,7 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.navItem.title = [NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"MemberListTitle"], (int)self.channel.memberCount];
+        self.navItem.title = [NSString stringWithFormat:@"Members (%d)", (int)self.channel.memberCount];
         [self.tableView reloadData];
     });
 }

@@ -12,7 +12,6 @@
 #import "SelectedUserListCollectionViewCell.h"
 #import "CreateGroupChannelUserListTableViewCell.h"
 #import "CreateGroupChannelSelectOptionViewController.h"
-#import "NSBundle+SendBird.h"
 #import "Constants.h"
 
 @interface CreateGroupChannelUserListViewController ()
@@ -43,11 +42,11 @@
     UIBarButtonItem *leftCloseItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_close"] style:UIBarButtonItemStyleDone target:self action:@selector(close)];
     UIBarButtonItem *rightNextItem = nil;
     if (self.userSelectionMode == 0) {
-        rightNextItem = [[UIBarButtonItem alloc] initWithTitle:[NSBundle sbLocalizedStringForKey:@"NextButton"] style:UIBarButtonItemStylePlain target:self action:@selector(next)];
+        rightNextItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(next)];
         [rightNextItem setTitleTextAttributes:@{NSFontAttributeName: [Constants navigationBarButtonItemFont]} forState:UIControlStateNormal];
     }
     else {
-        rightNextItem = [[UIBarButtonItem alloc] initWithTitle:[NSBundle sbLocalizedStringForKey:@"InviteButton"] style:UIBarButtonItemStylePlain target:self action:@selector(invite)];
+        rightNextItem = [[UIBarButtonItem alloc] initWithTitle:@"Invite" style:UIBarButtonItemStylePlain target:self action:@selector(invite)];
         [rightNextItem setTitleTextAttributes:@{NSFontAttributeName: [Constants navigationBarButtonItemFont]} forState:UIControlStateNormal];
     }
     
@@ -142,8 +141,8 @@
 
     [self.userListQuery loadNextPageWithCompletionHandler:^(NSArray<SBDUser *> * _Nullable users, SBDError * _Nullable error) {
         if (error != nil) {
-            UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+            UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Error" message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
             [vc addAction:closeAction];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self presentViewController:vc animated:YES completion:nil];

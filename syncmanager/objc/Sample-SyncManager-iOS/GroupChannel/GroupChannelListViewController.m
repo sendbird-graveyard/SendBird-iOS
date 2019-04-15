@@ -12,11 +12,9 @@
 #import "GroupChannelListTableViewCell.h"
 #import "GroupChannelListEditableTableViewCell.h"
 #import "GroupChannelChattingViewController.h"
-#import "NSBundle+SendBird.h"
 #import "Constants.h"
 #import "ConnectionManager.h"
 #import <SendBirdSyncManager/SendBirdSyncManager.h>
-#import "Utils+SBDObject.h"
 #import "Utils+View.h"
 
 @interface GroupChannelListViewController () <SBDChannelDelegate, SBSMChannelCollectionDelegate>
@@ -132,6 +130,7 @@
     SBDGroupChannelListQuery *query = [SBDGroupChannel createMyGroupChannelListQuery];
     query.limit = 10;
     query.order = SBDGroupChannelListOrderLatestLastMessage;
+    query.includeEmptyChannel = YES;
     return query;
 }
 
@@ -171,7 +170,7 @@
     UIBarButtonItem *negativeLeftSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeLeftSpacer.width = -2;
     
-    UIBarButtonItem *leftDoneItem = [[UIBarButtonItem alloc] initWithTitle:[NSBundle sbLocalizedStringForKey:@"DoneButton"] style:UIBarButtonItemStylePlain target:self action:@selector(done)];
+    UIBarButtonItem *leftDoneItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
     [leftDoneItem setTitleTextAttributes:@{NSFontAttributeName: [Constants navigationBarButtonItemFont]} forState:UIControlStateNormal];
     
     self.navItem.leftBarButtonItems = @[negativeLeftSpacer, leftDoneItem];
@@ -246,8 +245,8 @@
         MGSwipeTableCell *cell = nil;
         if (self.editableChannel) {
             cell = [tableView dequeueReusableCellWithIdentifier:[GroupChannelListEditableTableViewCell cellReuseIdentifier]];
-            MGSwipeButton *leaveButton = [MGSwipeButton buttonWithTitle:[NSBundle sbLocalizedStringForKey:@"LeaveButton"] backgroundColor:[Constants leaveButtonColor]];
-            MGSwipeButton *hideButton = [MGSwipeButton buttonWithTitle:[NSBundle sbLocalizedStringForKey:@"HideButton"] backgroundColor:[Constants hideButtonColor]];
+            MGSwipeButton *leaveButton = [MGSwipeButton buttonWithTitle:@"Leave" backgroundColor:[Constants leaveButtonColor]];
+            MGSwipeButton *hideButton = [MGSwipeButton buttonWithTitle:@"Hide" backgroundColor:[Constants hideButtonColor]];
             
             hideButton.titleLabel.font = [Constants hideButtonFont];
             leaveButton.titleLabel.font = [Constants leaveButtonFont];
@@ -294,8 +293,8 @@
     
     void (^handler)(SBDError *) = ^void (SBDError * error) {
         if (error != nil) {
-            UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+            UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Error" message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
             [vc addAction:closeAction];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self presentViewController:vc animated:YES completion:nil];

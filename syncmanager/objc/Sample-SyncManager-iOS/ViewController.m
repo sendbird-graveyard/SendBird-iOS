@@ -10,7 +10,6 @@
 
 #import "ViewController.h"
 #import "Constants.h"
-#import "NSBundle+SendBird.h"
 #import "Utils.h"
 #import "AppDelegate.h"
 #import "ConnectionManager.h"
@@ -95,8 +94,8 @@
             });
             
             if (error != nil) {
-                UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+                UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
                 [vc addAction:closeAction];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self presentViewController:vc animated:YES completion:nil];
