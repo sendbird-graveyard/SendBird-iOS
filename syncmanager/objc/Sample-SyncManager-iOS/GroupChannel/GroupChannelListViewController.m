@@ -121,11 +121,6 @@
     return collection;
 }
 
-- (void)resetChannelCollection {
-    [self.channelCollection remove];
-    self.channelCollection = nil;
-}
-
 - (SBDGroupChannelListQuery *)query {
     SBDGroupChannelListQuery *query = [SBDGroupChannel createMyGroupChannelListQuery];
     query.limit = 10;
@@ -138,15 +133,29 @@
     // start loading progress
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.refreshControl beginRefreshing];
-    });
-
-    [self resetChannelCollection];
-    [self.channelCollection fetchWithCompletionHandler:^(SBDError * _Nullable error) {
-        // end loading progress
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.refreshControl endRefreshing];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSLog(@"\n == [Channel List View] old channel collection: %p", self.channelCollection);
+            [self.channels removeAllObjects];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+            
+            self.channelCollection.delegate = nil;
+            [self.channelCollection remove];
+            self.channelCollection = nil;
+            
+            self.channelCollection.delegate = self;
+            [self.channelCollection fetchWithCompletionHandler:^(SBDError * _Nullable error) {
+                NSLog(@"\n == [Channel List View] new channel collection: %p", self.channelCollection);
+                
+                // end loading progress
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.refreshControl endRefreshing];
+                });
+            }];
         });
-    }];
+    });
 }
 
 - (void)back {
@@ -270,7 +279,7 @@
             [(GroupChannelListTableViewCell *)cell setModel:channel];
         }
         
-        if (self.channels.count > 0 && indexPath.row + 1 == self.channels.count) {
+        if (self.channels.count > 0 && (indexPath.row == self.channels.count - 1)) {
             // start loading progress
             [self.channelCollection fetchWithCompletionHandler:^(SBDError * _Nullable error) {
                 // end loading progress
@@ -482,8 +491,8 @@
     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newIndex inSection:0];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadRowsAtIndexPaths:@[oldIndexPath] withRowAnimation:UITableViewRowAnimationNone];
         [self.tableView moveRowAtIndexPath:oldIndexPath toIndexPath:newIndexPath];
+        [self.tableView reloadRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
         
         if (completionHandler != nil) {
             completionHandler();
