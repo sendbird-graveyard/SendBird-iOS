@@ -1,6 +1,0 @@
-framework module HTMLKit {
-  umbrella header "HTMLKit-umbrella.h"
-
-  export *
-  module * { export * }
-}
