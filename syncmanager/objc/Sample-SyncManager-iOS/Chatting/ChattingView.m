@@ -1059,12 +1059,6 @@
         [(OutgoingGeneralUrlPreviewTempMessageTableViewCell *)cell setModel:model];
     }
     
-    if (indexPath.row == (self.messages.count - 1)) {
-        if (self.delegate != nil && [self.delegate respondsToSelector:@selector(loadMoreMessage:)]) {
-            [self.delegate loadMoreMessage:self.chattingTableView];
-        }
-    }
-
     return cell;
 }
 
