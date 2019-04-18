@@ -34,10 +34,6 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         }
         return self.collection
     }
-    private func resetChannelCollection() {
-        self.channelCollection?.remove()
-        self.collection = nil
-    }
     
     private var typingAnimationChannels: Array<String> = Array()
 
@@ -94,16 +90,26 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     @objc private func refreshChannels() {
         DispatchQueue.main.async {
             self.refreshControl.beginRefreshing()
-        }
-        
-        
-        self.resetChannelCollection()
-        self.channelCollection?.fetch(completionHandler: { (error) in
-            // end load progress
-            DispatchQueue.main.async {
-                self.refreshControl.endRefreshing()
+            
+            DispatchQueue.global().async {
+                self.channels.removeAll()
+                
+                DispatchQueue.main.async {
+                    self.tableView?.reloadData()
+                }
+                
+                self.channelCollection?.delegate = nil
+                self.channelCollection?.remove()
+                
+                self.collection = nil
+                self.channelCollection?.fetch(completionHandler: { (error) in
+                    // end load progress
+                    DispatchQueue.main.async {
+                        self.refreshControl.endRefreshing()
+                    }
+                })
             }
-        })
+        }
     }
     
     @objc private func back() {
@@ -192,13 +198,13 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         else {
             cell = tableView.dequeueReusableCell(withIdentifier: GroupChannelListTableViewCell.cellReuseIdentifier()) as! GroupChannelListTableViewCell?
             if self.channels[indexPath.row].isTyping() == true {
-                if self.typingAnimationChannels.index(of: self.channels[indexPath.row].channelUrl) == nil {
+                if self.typingAnimationChannels.firstIndex(of: self.channels[indexPath.row].channelUrl) == nil {
                     self.typingAnimationChannels.append(self.channels[indexPath.row].channelUrl)
                 }
             }
             else {
-                if self.typingAnimationChannels.index(of: self.channels[indexPath.row].channelUrl) != nil {
-                    self.typingAnimationChannels.remove(at: self.typingAnimationChannels.index(of: self.channels[indexPath.row].channelUrl)!)
+                if self.typingAnimationChannels.firstIndex(of: self.channels[indexPath.row].channelUrl) != nil {
+                    self.typingAnimationChannels.remove(at: self.typingAnimationChannels.firstIndex(of: self.channels[indexPath.row].channelUrl)!)
                 }
             }
             
@@ -290,119 +296,96 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     
     // MARK: UI update
     func insert(channels: [SBDGroupChannel], completionHandler: SBSMVoidHandler?) -> Void {
-        guard channels.count > 0, let tableView: UITableView = self.tableView else {
+        guard channels.count > 0 else {
+            completionHandler?()
             return
         }
-        
-        var indexPathes: [IndexPath] = [IndexPath]()
-        let indexes: [SBSMIndex] = Utils.indexes(channels: channels, inChannels: self.channels) { (channel1, channel2) -> Bool in
-            return (self.channelCollection!.orderAscendingBetweenObject(channel1, andObject: channel2) == ComparisonResult.orderedAscending)
+
+        self.channels.append(contentsOf: channels)
+        self.channels.sort { (channel1, channel2) -> Bool in
+            return self.channelCollection?.orderAscendingBetweenObject(channel1, andObject: channel2) == ComparisonResult.orderedAscending
         }
         
-        for indexObject in indexes {
-            var index: Int = indexObject.indexOfPreviousObject
-            index += 1
-            let channel: SBDGroupChannel = self.channels[index]
-            self.channels.insert(channel, at: index)
-            indexPathes.append(IndexPath.init(row: index, section: 0))
-        }
-        
-        Utils.performBatchUpdate(tableView: tableView, updateProcess: { (tableView) in
-            tableView.insertRows(at: indexPathes, with: UITableView.RowAnimation.automatic)
-        }) { (finished) in
-            if (completionHandler != nil) {
-                completionHandler?()
-            }
+        DispatchQueue.main.async {
+            self.tableView?.reloadData()
+            
+            completionHandler?()
         }
     }
     
     func update(channels: [SBDGroupChannel], completionHandler: SBSMVoidHandler?) -> Void {
-        guard channels.count > 0, let tableView: UITableView = self.tableView else {
+        guard channels.count > 0 else {
+            completionHandler?()
             return
         }
-        
-        var indexPathes: [IndexPath] = [IndexPath]()
-        let indexes: [SBSMIndex] = Utils.indexes(channels: channels, inChannels: self.channels) { (channel1, channel2) -> Bool in
-            return (self.channelCollection!.orderAscendingBetweenObject(channel1, andObject: channel2) == ComparisonResult.orderedAscending)
-        }
-        
-        for (index, indexObject) in indexes.enumerated() {
-            let indexOfChannel: Int = indexObject.indexOfObject
-            let channel: SBDGroupChannel = channels[index]
-            self.channels[indexOfChannel] = channel
-            indexPathes.append(IndexPath.init(row: indexOfChannel, section: 0))
-        }
-        
-        Utils.performBatchUpdate(tableView: tableView, updateProcess: { (tableView) in
-            tableView.reloadRows(at: indexPathes, with: UITableView.RowAnimation.none)
-        }) { (finished) in
-            if (completionHandler != nil) {
-                completionHandler?()
+
+        for updatedChannel in channels {
+            for channel in self.channels {
+                if channel.channelUrl == updatedChannel.channelUrl, let index: Int = self.channels.firstIndex(of: channel) {
+                    self.channels[index] = updatedChannel
+                }
             }
+        }
+        
+        DispatchQueue.main.async {
+            self.tableView?.reloadData()
+            
+            completionHandler?()
         }
     }
     
     func remove(channels: [SBDGroupChannel], completionHandler: SBSMVoidHandler?) -> Void {
-        guard channels.count > 0, let tableView: UITableView = self.tableView else {
+        guard channels.count > 0 else {
+            completionHandler?()
             return
         }
         
-        var indexPathes: [IndexPath] = [IndexPath]()
-        let indexes: [SBSMIndex] = Utils.indexes(channels: channels, inChannels: self.channels) { (channel1, channel2) -> Bool in
-            return (self.channelCollection!.orderAscendingBetweenObject(channel1, andObject: channel2) == ComparisonResult.orderedAscending)
+        let removedChannelUrls: [String] = channels.map({$0.channelUrl})
+        self.channels.removeAll { (channel) -> Bool in
+            return removedChannelUrls.contains(channel.channelUrl)
         }
         
-        for indexObject in indexes {
-            let index: Int = indexObject.indexOfObject
-            self.channels.remove(at: index)
-            indexPathes.append(IndexPath.init(row: index, section: 0))
-        }
-        
-        Utils.performBatchUpdate(tableView: tableView, updateProcess: { (tableView) in
-            tableView.deleteRows(at: indexPathes, with: UITableView.RowAnimation.automatic)
-        }) { (finished) in
-            if (completionHandler != nil) {
-                completionHandler?()
-            }
+        DispatchQueue.main.async {
+            self.tableView?.reloadData()
+            
+            completionHandler?()
         }
     }
     
     func move(channel: SBDGroupChannel, completionHandler: SBSMVoidHandler?) -> Void {
-        guard let tableView: UITableView = self.tableView else {
+        let theOldIndex: Int? = self.channels.map({$0.channelUrl}).firstIndex(of: channel.channelUrl)
+        guard let oldIndex: Int = theOldIndex else {
+            completionHandler?()
             return
         }
         
-        let atIndex: SBSMIndex = Utils.index(channelUrl: channel.channelUrl, ofChannels: self.channels)
-        let atIndexPath: IndexPath = IndexPath.init(item: atIndex.indexOfObject, section: 0)
-        self.channels.remove(at: atIndex.indexOfObject)
-        let toIndex: SBSMIndex = Utils.index(channel: channel, inChannels: self.channels) { (channel1, channel2) -> Bool in
-            return (self.channelCollection?.orderAscendingBetweenObject(channel1, andObject: channel2) == ComparisonResult.orderedAscending)
-        }
-        let toIndexPath: IndexPath = IndexPath.init(item: toIndex.indexOfObject, section: 0)
-        self.channels.insert(channel, at: toIndex.indexOfObject)
+        self.channels[oldIndex] = channel
         
-        Utils.performBatchUpdate(tableView: tableView, updateProcess: { (tableView) in
-            tableView.reloadRows(at: [atIndexPath], with: UITableView.RowAnimation.none)
-            tableView.moveRow(at: atIndexPath, to: toIndexPath)
-        }) { (finished) in
-            if (completionHandler != nil) {
-                completionHandler?()
-            }
+        self.channels.sort { (channel1, channel2) -> Bool in
+            return self.channelCollection?.orderAscendingBetweenObject(channel1, andObject: channel2) == ComparisonResult.orderedAscending
+        }
+
+        guard let newIndex: Int = self.channels.map({$0.channelUrl}).firstIndex(of: channel.channelUrl), newIndex == oldIndex else {
+            completionHandler?()
+            return
+        }
+
+        let oldIndexPath: IndexPath = IndexPath.init(row: oldIndex, section: 0)
+        let newIndexPath: IndexPath = IndexPath.init(row: newIndex, section: 0)
+        DispatchQueue.main.async {
+            self.tableView?.moveRow(at: oldIndexPath, to: newIndexPath)
+            self.tableView?.reloadRows(at: [newIndexPath], with: UITableView.RowAnimation.none)
+            
+            completionHandler?()
         }
     }
     
     func clearAllChannels(completionHandler: SBSMVoidHandler?) -> Void {
-        guard let tableView: UITableView = self.tableView else {
-            return
-        }
-        
-        Utils.performBatchUpdate(tableView: tableView, updateProcess: { (tableView) in
+        DispatchQueue.main.async {
             self.channels.removeAll()
-            tableView.reloadData()
-        }) { (finished) in
-            if (completionHandler != nil) {
-                completionHandler?()
-            }
+            self.tableView?.reloadData()
+            
+            completionHandler?()
         }
     }
     
@@ -412,7 +395,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             return
         }
         
-        let row = self.channels.index(of: sender)
+        let row = self.channels.firstIndex(of: sender)
         if row != nil {
             let cell = self.tableView?.cellForRow(at: IndexPath(row: row!, section: 0)) as! GroupChannelListTableViewCell
             

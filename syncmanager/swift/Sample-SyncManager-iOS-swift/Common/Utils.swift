@@ -17,37 +17,6 @@ typealias ChannelComparison = (SBDGroupChannel, SBDGroupChannel) -> Bool
 typealias BatchTableviewProcess = (UITableView) -> Void
 typealias BoolHandler = (Bool) -> Void
 
-class SBSMIndex: NSObject {
-    private let _indexOfObject: Int
-    private let _indexOfPreviousObject: Int
-    
-    override init() {
-        _indexOfObject = NSNotFound
-        _indexOfPreviousObject = NSNotFound
-    }
-    
-    init(index: Int, previousIndex: Int) {
-        _indexOfObject = index
-        _indexOfPreviousObject = previousIndex
-    }
-    
-    func containsObject() -> Bool {
-        return (self._indexOfObject != NSNotFound)
-    }
-
-    var indexOfObject: Int {
-        get {
-            return _indexOfObject
-        }
-    }
-    
-    var indexOfPreviousObject: Int {
-        get {
-            return _indexOfPreviousObject
-        }
-    }
-}
-
 class Utils: NSObject {
     static func imageFromColor(color: UIColor) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)

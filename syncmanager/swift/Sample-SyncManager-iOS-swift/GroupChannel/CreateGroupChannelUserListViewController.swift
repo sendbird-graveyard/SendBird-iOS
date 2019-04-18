@@ -227,12 +227,12 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
         tableView.deselectRow(at: indexPath, animated: false)
         let selectedUser = self.users[indexPath.row] as SBDUser
         
-        if self.selectedUsers.index(of: selectedUser) == nil {
+        if self.selectedUsers.firstIndex(of: selectedUser) == nil {
             self.selectedUsers.append(selectedUser)
         }
         else {
-            if self.selectedUsers.index(of: selectedUser) != nil {
-                self.selectedUsers.remove(at: self.selectedUsers.index(of: selectedUser)!)
+            if self.selectedUsers.firstIndex(of: selectedUser) != nil {
+                self.selectedUsers.remove(at: self.selectedUsers.firstIndex(of: selectedUser)!)
             }
         }
         
@@ -260,7 +260,7 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
         let cell = tableView.dequeueReusableCell(withIdentifier: CreateGroupChannelUserListTableViewCell.cellReuseIdentifier()) as! CreateGroupChannelUserListTableViewCell
         cell.setModel(aUser: self.users[indexPath.row])
         
-        if self.selectedUsers.index(of: self.users[indexPath.row]) == nil {
+        if self.selectedUsers.firstIndex(of: self.users[indexPath.row]) == nil {
             DispatchQueue.main.async {
                 cell.setSelectedUser(selected: false)
             }

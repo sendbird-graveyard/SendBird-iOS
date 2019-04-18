@@ -91,7 +91,7 @@ class ViewController: UITableViewController, UITextFieldDelegate {
             }
             
             DispatchQueue.main.async {
-                let vc: MenuViewController = MenuViewController()
+                let vc: GroupChannelListViewController = GroupChannelListViewController()
                 self.present(vc, animated: false, completion: nil)
             }
         }

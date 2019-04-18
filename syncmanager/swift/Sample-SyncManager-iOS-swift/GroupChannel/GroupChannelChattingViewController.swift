@@ -352,7 +352,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         
         switch action {
         case SBSMMessageEventAction.insert:
-            self.chattingView?.insert(messages: messages, completionHandler: nil)
+            self.chattingView?.insert(messages: messages, comparator: collection.comparator(), completionHandler: nil)
             break
         case SBSMMessageEventAction.update:
             self.chattingView?.update(messages: messages, completionHandler: nil)
