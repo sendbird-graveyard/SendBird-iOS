@@ -36,6 +36,8 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     private var photosViewController: NYTPhotosViewController?
     @IBOutlet weak var navigationBarHeight: NSLayoutConstraint!
     
+    let tableViewQueue: SBSMOperationQueue = SBSMOperationQueue.init()
+    
     /**
      *  new properties for local cache
      */
@@ -346,24 +348,37 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
             return
         }
         
-        switch action {
-        case SBSMMessageEventAction.insert:
-            self.chattingView?.insert(messages: messages, comparator: collection.comparator(), completionHandler: nil)
-            break
-        case SBSMMessageEventAction.update:
-            self.chattingView?.update(messages: messages, completionHandler: nil)
-            break
-        case SBSMMessageEventAction.remove:
-            self.chattingView?.remove(messages: messages, completionHandler: nil)
-            break
-        case SBSMMessageEventAction.clear:
-            self.chattingView?.clearAllMessages(completionHandler: nil)
-            break
-        case SBSMMessageEventAction.none:
-            break
-        default:
-            break
-        }
+        var operation: SBSMOperation?
+        operation = self.tableViewQueue.enqueue({
+            let handler = {() -> Void in
+                operation?.complete()
+            }
+            
+            switch action {
+            case SBSMMessageEventAction.insert:
+                self.chattingView?.insert(messages: messages, collection: collection, completionHandler: {
+                    handler()
+                    
+                    if Utils.isTopViewController(viewController: self) {
+                        self.channel.markAsRead()
+                    }
+                })
+                break
+            case SBSMMessageEventAction.update:
+                self.chattingView?.update(messages: messages, completionHandler: handler)
+                break
+            case SBSMMessageEventAction.remove:
+                self.chattingView?.remove(messages: messages, completionHandler: handler)
+                break
+            case SBSMMessageEventAction.clear:
+                self.chattingView?.clearAllMessages(completionHandler: handler)
+                break
+            case SBSMMessageEventAction.none:
+                break
+            default:
+                break
+            }
+        })
     }
     
     // MARK: SendBird SDK
@@ -518,10 +533,12 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     
     // MARK: Chatting View Delegate
     func loadMoreMessage(view: UIView) {
-        self.isLoading = true
-        self.messageCollection?.fetch(in: SBSMMessageDirection.previous, completionHandler: { (error) in
-            self.isLoading = false
-        })
+        if !self.isLoading {
+            self.isLoading = true
+            self.messageCollection?.fetch(in: SBSMMessageDirection.previous, completionHandler: { (error) in
+                self.isLoading = false
+            })
+        }
     }
     
     func startTyping(view: UIView) {

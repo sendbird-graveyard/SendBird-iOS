@@ -24,9 +24,10 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var messagesTableView: UITableView?
     @IBOutlet weak var inputContainerViewHeight: NSLayoutConstraint!
-    var messages: Array<SBDBaseMessage> = [SBDBaseMessage]()
+    
+    var messages: [SBDBaseMessage] = [SBDBaseMessage]()
+    
     var channel: SBDBaseChannel?
-    let tableViewQueue: SBSMOperationQueue = SBSMOperationQueue.init()
     
     var resendableMessages: [String:SBDBaseMessage] = [:]
     var preSendMessages: [String:SBDBaseMessage] = [:]
@@ -225,29 +226,25 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     }
     
     // MARK: UI Update
-    func insert(messages: Array<SBDBaseMessage>, comparator: @escaping SBSMObjectComparator , completionHandler: SBSMVoidHandler?) -> Void {
+    func insert(messages: Array<SBDBaseMessage>, collection: SBSMMessageCollection , completionHandler: SBSMVoidHandler?) -> Void {
         guard messages.count > 0 else {
             completionHandler?()
             return
         }
         
-        var operation: SBSMOperation?
-        operation = self.tableViewQueue.enqueue({
+        DispatchQueue.main.async {
             self.messages.append(contentsOf: messages)
             self.messages.sort(by: { (message1, message2) -> Bool in
-                return comparator(message1, message2) == ComparisonResult.orderedAscending
+                return (collection.orderAscendingBetweenObject(message1, andObject: message2) == ComparisonResult.orderedAscending)
             })
 
-            DispatchQueue.main.async {
-                self.messagesTableView?.reloadData()
-                if self.messages.last?.messageId == messages.last?.messageId {
-                    self.scrollToBottom(force: true)
-                }
-                
-                operation?.complete()
-                completionHandler?()
+            self.messagesTableView?.reloadData()
+            if self.messages.last?.messageId == messages.last?.messageId {
+                self.scrollToBottom(force: true)
             }
-        })
+            
+            completionHandler?()
+        }
     }
     
     func update(messages: Array<SBDBaseMessage>, completionHandler: SBSMVoidHandler?) -> Void {
@@ -256,8 +253,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             return
         }
         
-        var operation: SBSMOperation?
-        operation = self.tableViewQueue.enqueue({
+        DispatchQueue.main.async {
             for updatedMessage in messages {
                 for message in self.messages {
                     if message.messageId == updatedMessage.messageId, let index: Int = self.messages.firstIndex(of: message) {
@@ -265,14 +261,11 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     }
                 }
             }
+        
+            self.messagesTableView?.reloadData()
             
-            DispatchQueue.main.async {
-                self.messagesTableView?.reloadData()
-                
-                operation?.complete()
-                completionHandler?()
-            }
-        })
+            completionHandler?()
+        }
     }
     
     func remove(messages: Array<SBDBaseMessage>, completionHandler: SBSMVoidHandler?) -> Void {
@@ -281,33 +274,46 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             return
         }
         
-        var operation: SBSMOperation?
-        operation = self.tableViewQueue.enqueue({
-            let removeMessageIds: [Int64] = messages.map({$0.messageId})
+        var removedMessageIds: [Int64] = []
+        var removedRequestIds: [String] = []
+        for message in messages {
+            if message.messageId > 0 {
+                removedMessageIds.append(message.messageId)
+            }
+            else if let requestId: String = message.value(forKey: "requestId") as? String {
+                removedRequestIds.append(requestId)
+            }
+        }
+        
+        DispatchQueue.main.async {
             self.messages.removeAll(where: { (message) -> Bool in
-                return removeMessageIds.contains(message.messageId)
+                if message.messageId > 0 {
+                    if removedMessageIds.contains(message.messageId) {
+                        return true
+                    }
+                }
+                else if let requestId: String = message.value(forKey: "requestId") as? String {
+                    if removedRequestIds.contains(requestId) {
+                        return true
+                    }
+                }
+                
+                return false
             })
             
-            DispatchQueue.main.async {
-                self.messagesTableView?.reloadData()
-                
-                operation?.complete()
-                completionHandler?()
-            }
-        })
+            self.messagesTableView?.reloadData()
+            
+            completionHandler?()
+        }
     }
     
     func clearAllMessages(completionHandler: SBSMVoidHandler?) -> Void {
-        var operation: SBSMOperation?
-        operation = self.tableViewQueue.enqueue({
-            DispatchQueue.main.async {
-                self.messages.removeAll()
-                self.messagesTableView?.reloadData()
-                
-                operation?.complete()
-                completionHandler?()
-            }
-        })
+        DispatchQueue.main.async {
+            self.messages.removeAll()
+            self.messagesTableView?.reloadData()
+            
+            completionHandler?()
+        }
     }
     
     // MARK: UITextViewDelegate
