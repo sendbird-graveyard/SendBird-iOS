@@ -44,7 +44,7 @@ class GroupChannelListEditableTableViewCell: MGSwipeTableCell {
     func setModel(aChannel: SBDGroupChannel) {
         self.channel = aChannel
         
-        self.memberCountLabel.text = String(format: "%ld", self.channel.memberCount)
+        self.memberCountLabel.text = "\(self.channel.memberCount)"
         
         self.coverImageContainerForOne.isHidden = true
         self.coverImageContainerForTwo.isHidden = true
@@ -137,16 +137,16 @@ class GroupChannelListEditableTableViewCell: MGSwipeTableCell {
         else if self.channel.lastMessage is SBDFileMessage {
             let lastMessage = (self.channel.lastMessage as! SBDFileMessage)
             if lastMessage.type.hasPrefix("image") {
-                self.lastMessageLabel.text = Bundle.sbLocalizedStringForKey(key: "MessageSummaryImage")
+                self.lastMessageLabel.text = "(Image)"
             }
             else if lastMessage.type.hasPrefix("video") {
-                self.lastMessageLabel.text = Bundle.sbLocalizedStringForKey(key: "MessageSummaryVideo")
+                self.lastMessageLabel.text = "(Video)"
             }
             else if lastMessage.type.hasPrefix("audio") {
-                self.lastMessageLabel.text = Bundle.sbLocalizedStringForKey(key: "MessageSummaryAudio")
+                self.lastMessageLabel.text = "(Audio)"
             }
             else {
-                self.lastMessageLabel.text = Bundle.sbLocalizedStringForKey(key: "MessageSummaryFile")
+                self.lastMessageLabel.text = "(File)"
             }
             lastMessageTimestamp = Int64(lastMessage.createdAt)
         }

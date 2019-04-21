@@ -91,7 +91,7 @@ class OutgoingVideoFileMessageTableViewCell: UITableViewCell {
                 }
                 else {
                     self.showUnreadCount()
-                    self.unreadCountLabel.text = String(format: "%d", unreadMessageCount!)
+                    self.unreadCountLabel.text = "\(unreadMessageCount ?? 0)"
                 }
             }
         }

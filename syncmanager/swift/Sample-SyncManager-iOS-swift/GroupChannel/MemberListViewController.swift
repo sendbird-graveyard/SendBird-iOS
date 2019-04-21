@@ -37,8 +37,8 @@ class MemberListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.channel.refresh { (error) in
             if error != nil {
-                let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-                let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+                let vc = UIAlertController(title: "Error", message: error?.domain, preferredStyle: UIAlertController.Style.alert)
+                let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil)
                 vc.addAction(closeAction)
                 DispatchQueue.main.async {
                     self.present(vc, animated: true, completion: nil)
@@ -49,7 +49,7 @@ class MemberListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         DispatchQueue.main.async {
-            self.navItem.title = String(format: Bundle.sbLocalizedStringForKey(key: "MemberListTitle"), Int(self.channel.memberCount))
+            self.navItem.title = "Members \(self.channel.memberCount)"
             self.tableView.reloadData()
         }
     }
@@ -67,7 +67,7 @@ class MemberListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.channel .refresh { (error) in
             if error == nil {
                 DispatchQueue.main.async {
-                    self.navItem.title = String(format: Bundle.sbLocalizedStringForKey(key: "MemberListTitle"), Int(self.channel.memberCount))
+                    self.navItem.title = "Members \(self.channel.memberCount)"
                     self.tableView.reloadData()
                 }
             }

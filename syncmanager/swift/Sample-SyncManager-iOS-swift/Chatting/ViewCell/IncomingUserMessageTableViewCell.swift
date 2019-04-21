@@ -246,14 +246,14 @@ class IncomingUserMessageTableViewCell: UITableViewCell, TTTAttributedLabelDeleg
         let message = self.message.message
         
         var fullMessage: NSMutableAttributedString? = nil
-        if self.displayNickname == true {
-            fullMessage = NSMutableAttributedString.init(string: NSString(format: "%@\n%@", nickname!, message!) as String)
+        if self.displayNickname, let theNickName: String = nickname {
+            fullMessage = NSMutableAttributedString.init(string: "\(theNickName)\n\(message ?? "")")
             
             fullMessage?.addAttributes(nicknameAttribute!, range: NSMakeRange(0, (nickname?.utf16.count)!))
             fullMessage?.addAttributes(messageAttribute, range: NSMakeRange((nickname?.utf16.count)! + 1, (message?.utf16.count)!))
         }
         else {
-            fullMessage = NSMutableAttributedString.init(string: message!)
+            fullMessage = NSMutableAttributedString.init(string: "\(message ?? "")")
             fullMessage?.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.utf16.count)!))
         }
         

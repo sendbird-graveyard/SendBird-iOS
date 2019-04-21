@@ -129,7 +129,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         let negativeLeftSpacer: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
         negativeLeftSpacer.width = -2
         
-        let leftBackItem: UIBarButtonItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "DoneButton"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(done))
+        let leftBackItem: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(done))
         leftBackItem.setTitleTextAttributes([NSAttributedString.Key.font: Constants.navigationBarButtonItemFont()], for: UIControl.State.normal)
         
         self.navItem?.leftBarButtonItems = [negativeLeftSpacer, leftBackItem]
@@ -185,8 +185,8 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         var cell: UITableViewCell?
         if self.editableChannel == true {
             cell = tableView.dequeueReusableCell(withIdentifier: GroupChannelListEditableTableViewCell.cellReuseIdentifier()) as! GroupChannelListEditableTableViewCell?
-            let leaveButton = MGSwipeButton(title: Bundle.sbLocalizedStringForKey(key: "LeaveButton"), backgroundColor: Constants.leaveButtonColor())
-            let hideButton = MGSwipeButton(title: Bundle.sbLocalizedStringForKey(key: "HideButton"), backgroundColor: Constants.hideButtonColor())
+            let leaveButton = MGSwipeButton(title: "Leave", backgroundColor: Constants.leaveButtonColor())
+            let hideButton = MGSwipeButton(title: "Hide", backgroundColor: Constants.hideButtonColor())
             
             hideButton.titleLabel?.font = Constants.hideButtonFont()
             leaveButton.titleLabel?.font = Constants.leaveButtonFont()
@@ -225,8 +225,8 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         let selectedChannel: SBDGroupChannel = self.channels[row!] as SBDGroupChannel
         let handler = {(error: SBDError?) -> Void in
             guard let _: SBDError = error else {
-            let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-            let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+            let vc = UIAlertController(title: "Error", message: error?.domain, preferredStyle: UIAlertController.Style.alert)
+            let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil)
             vc.addAction(closeAction)
             DispatchQueue.main.async {
                 self.present(vc, animated: true, completion: nil)

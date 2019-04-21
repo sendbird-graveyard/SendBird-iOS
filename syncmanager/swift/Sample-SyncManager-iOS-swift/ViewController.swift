@@ -31,7 +31,7 @@ class ViewController: UITableViewController, UITextFieldDelegate {
         if path != nil {
             let infoDict = NSDictionary(contentsOfFile: path!)
             let sampleUIVersion = infoDict?["CFBundleShortVersionString"] as! String
-            let version = String(format: "Sample UI v%@ / SDK v%@", sampleUIVersion, SBDMain.getSDKVersion())
+            let version = "Sample UI v\(sampleUIVersion) / SDK v\(SBDMain.getSDKVersion())"
             self.versionLabel.text = version
         }
         
@@ -80,8 +80,8 @@ class ViewController: UITableViewController, UITextFieldDelegate {
             }
             
             if let _: NSError = error {
-                let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-                let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+                let vc = UIAlertController(title: "Error", message: error?.domain, preferredStyle: UIAlertController.Style.alert)
+                let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil)
                 vc.addAction(closeAction)
                 DispatchQueue.main.async {
                     self.present(vc, animated: true, completion: nil)

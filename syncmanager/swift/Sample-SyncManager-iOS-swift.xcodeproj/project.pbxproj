@@ -15,7 +15,6 @@
 		C11E31F6216CA20F0033D437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C11E31F4216CA20F0033D437 /* LaunchScreen.storyboard */; };
 		C11E326C216CAAB90033D437 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11E31FF216CAAB80033D437 /* Constants.swift */; };
 		C11E326D216CAAB90033D437 /* String+SendBird.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11E3200216CAAB80033D437 /* String+SendBird.swift */; };
-		C11E326E216CAAB90033D437 /* Bundle+SendBird.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11E3201216CAAB80033D437 /* Bundle+SendBird.swift */; };
 		C11E326F216CAAB90033D437 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11E3202216CAAB80033D437 /* CustomNavigationBar.swift */; };
 		C11E3270216CAAB90033D437 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11E3203216CAAB80033D437 /* Utils.swift */; };
 		C11E3271216CAAB90033D437 /* FLAnimatedImageView+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11E3204216CAAB80033D437 /* FLAnimatedImageView+ImageCache.swift */; };
@@ -67,7 +66,6 @@
 		C11E32B6216CAAB90033D437 /* ReusableViewFromXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11E3268216CAAB80033D437 /* ReusableViewFromXib.swift */; };
 		C11E32B7216CAAB90033D437 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11E326A216CAAB90033D437 /* UserProfileViewController.swift */; };
 		C11E32B8216CAAB90033D437 /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C11E326B216CAAB90033D437 /* UserProfileViewController.xib */; };
-		C11E32BA216CAAE50033D437 /* Sample-SyncManager-iOS-swift.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C11E32B9216CAAE50033D437 /* Sample-SyncManager-iOS-swift.bundle */; };
 		C11E32C7216CB1940033D437 /* ChattingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C11E32C6216CB1940033D437 /* ChattingView.xib */; };
 		C11E32D4216CB2890033D437 /* MemberListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C11E32D0216CB2890033D437 /* MemberListViewController.xib */; };
 		C11E32D5216CB2890033D437 /* CreateGroupChannelUserListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C11E32D1216CB2890033D437 /* CreateGroupChannelUserListViewController.xib */; };
@@ -101,7 +99,6 @@
 		C11E31F7216CA20F0033D437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C11E31FF216CAAB80033D437 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C11E3200216CAAB80033D437 /* String+SendBird.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SendBird.swift"; sourceTree = "<group>"; };
-		C11E3201216CAAB80033D437 /* Bundle+SendBird.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+SendBird.swift"; sourceTree = "<group>"; };
 		C11E3202216CAAB80033D437 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		C11E3203216CAAB80033D437 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C11E3204216CAAB80033D437 /* FLAnimatedImageView+ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FLAnimatedImageView+ImageCache.swift"; sourceTree = "<group>"; };
@@ -153,7 +150,6 @@
 		C11E3268216CAAB80033D437 /* ReusableViewFromXib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewFromXib.swift; sourceTree = "<group>"; };
 		C11E326A216CAAB90033D437 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		C11E326B216CAAB90033D437 /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
-		C11E32B9216CAAE50033D437 /* Sample-SyncManager-iOS-swift.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "Sample-SyncManager-iOS-swift.bundle"; sourceTree = SOURCE_ROOT; };
 		C11E32C6216CB1940033D437 /* ChattingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChattingView.xib; sourceTree = "<group>"; };
 		C11E32D0216CB2890033D437 /* MemberListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberListViewController.xib; sourceTree = "<group>"; };
 		C11E32D1216CB2890033D437 /* CreateGroupChannelUserListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGroupChannelUserListViewController.xib; sourceTree = "<group>"; };
@@ -218,7 +214,6 @@
 				C11E31F4216CA20F0033D437 /* LaunchScreen.storyboard */,
 				C11E31EF216CA20E0033D437 /* Main.storyboard */,
 				C11E3267216CAAB80033D437 /* ReusableViewFromXib */,
-				C11E32B9216CAAE50033D437 /* Sample-SyncManager-iOS-swift.bundle */,
 				C11E3269216CAAB90033D437 /* UserProfile */,
 				C11E31ED216CA20E0033D437 /* ViewController.swift */,
 			);
@@ -228,7 +223,6 @@
 		C11E31FE216CAAB80033D437 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				C11E3201216CAAB80033D437 /* Bundle+SendBird.swift */,
 				C11E31FF216CAAB80033D437 /* Constants.swift */,
 				C11E3202216CAAB80033D437 /* CustomNavigationBar.swift */,
 				C11E3204216CAAB80033D437 /* FLAnimatedImageView+ImageCache.swift */,
@@ -428,7 +422,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C11E32BA216CAAE50033D437 /* Sample-SyncManager-iOS-swift.bundle in Resources */,
 				C11E32AA216CAAB90033D437 /* IncomingGeneralUrlPreviewMessageTableViewCell.xib in Resources */,
 				C11E32D7216CB2890033D437 /* GroupChannelListViewController.xib in Resources */,
 				C11E32A8216CAAB90033D437 /* IncomingFileMessageTableViewCell.xib in Resources */,
@@ -561,7 +554,6 @@
 				C11E32A4216CAAB90033D437 /* IncomingUserMessageTableViewCell.swift in Sources */,
 				C11E32B4216CAAB90033D437 /* OutgoingGeneralUrlPreviewTempModel.swift in Sources */,
 				C11E32A6216CAAB90033D437 /* IncomingImageFileMessageTableViewCell.swift in Sources */,
-				C11E326E216CAAB90033D437 /* Bundle+SendBird.swift in Sources */,
 				C11E328E216CAAB90033D437 /* MemberListTableViewCell.swift in Sources */,
 				C11E326C216CAAB90033D437 /* Constants.swift in Sources */,
 			);
