@@ -68,8 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SBDChannelDelegate {
                 return
             }
             
-            let menuViewController: UIViewController? = MenuViewController(nibName: "MenuViewController", bundle: Bundle.main)
-            self.window?.rootViewController = menuViewController
+            let viewController: UIViewController? = GroupChannelListViewController()
+            self.window?.rootViewController = viewController
             self.window?.makeKeyAndVisible()
         }
         

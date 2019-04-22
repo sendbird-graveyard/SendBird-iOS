@@ -7,7 +7,6 @@
 //
 
 #import "CreateGroupChannelSelectOptionViewController.h"
-#import "NSBundle+SendBird.h"
 #import "Constants.h"
 
 @interface CreateGroupChannelSelectOptionViewController ()
@@ -33,7 +32,7 @@
     negativeRightSpacer.width = -2;
     
     UIBarButtonItem *leftBackItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStyleDone target:self action:@selector(back)];
-    UIBarButtonItem *righCreateItem = [[UIBarButtonItem alloc] initWithTitle:[NSBundle sbLocalizedStringForKey:@"CreateButton"] style:UIBarButtonItemStylePlain target:self action:@selector(createChannel)];
+    UIBarButtonItem *righCreateItem = [[UIBarButtonItem alloc] initWithTitle:@"Create Button" style:UIBarButtonItemStylePlain target:self action:@selector(createChannel)];
     [righCreateItem setTitleTextAttributes:@{NSFontAttributeName: [Constants navigationBarButtonItemFont]} forState:UIControlStateNormal];
     
     self.navItem.leftBarButtonItems = @[negativeLeftSpacer, leftBackItem];
@@ -65,8 +64,8 @@
 - (void)createChannel {
     [SBDGroupChannel createChannelWithUsers:self.selectedUser isDistinct:self.isDistinct completionHandler:^(SBDGroupChannel * _Nullable channel, SBDError * _Nullable error) {
         if (error != nil) {
-            UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Error" message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                 
             }];
             [vc addAction:closeAction];

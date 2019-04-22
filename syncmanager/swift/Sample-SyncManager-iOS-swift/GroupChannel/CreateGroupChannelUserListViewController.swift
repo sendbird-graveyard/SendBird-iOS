@@ -41,11 +41,11 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
         let leftCloseItem = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItem.Style.done, target: self, action: #selector(close))
         var rightNextItem: UIBarButtonItem?
         if self.userSelectionMode == 0 {
-            rightNextItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "NextButton"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(nextStage))
+            rightNextItem = UIBarButtonItem(title: "Next", style: UIBarButtonItem.Style.plain, target: self, action: #selector(nextStage))
             rightNextItem?.setTitleTextAttributes([NSAttributedString.Key.font : Constants.navigationBarButtonItemFont()], for: UIControl.State.normal)
         }
         else {
-            rightNextItem = UIBarButtonItem(title: Bundle.sbLocalizedStringForKey(key: "InviteButton"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(invite))
+            rightNextItem = UIBarButtonItem(title: "Invite", style: UIBarButtonItem.Style.plain, target: self, action: #selector(invite))
             rightNextItem?.setTitleTextAttributes([NSAttributedString.Key.font : Constants.navigationBarButtonItemFont()], for: UIControl.State.normal)
         }
         
@@ -136,8 +136,8 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
         
         self.userListQuery?.loadNextPage(completionHandler: { (users, error) in
             if error != nil {
-                let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-                let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler:nil)
+                let vc = UIAlertController(title: "Error", message: error?.domain, preferredStyle: UIAlertController.Style.alert)
+                let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler:nil)
                 vc.addAction(closeAction)
                 DispatchQueue.main.async {
                     self.present(vc, animated: true, completion: nil)
@@ -227,12 +227,12 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
         tableView.deselectRow(at: indexPath, animated: false)
         let selectedUser = self.users[indexPath.row] as SBDUser
         
-        if self.selectedUsers.index(of: selectedUser) == nil {
+        if self.selectedUsers.firstIndex(of: selectedUser) == nil {
             self.selectedUsers.append(selectedUser)
         }
         else {
-            if self.selectedUsers.index(of: selectedUser) != nil {
-                self.selectedUsers.remove(at: self.selectedUsers.index(of: selectedUser)!)
+            if self.selectedUsers.firstIndex(of: selectedUser) != nil {
+                self.selectedUsers.remove(at: self.selectedUsers.firstIndex(of: selectedUser)!)
             }
         }
         
@@ -260,7 +260,7 @@ class CreateGroupChannelUserListViewController: UIViewController, UICollectionVi
         let cell = tableView.dequeueReusableCell(withIdentifier: CreateGroupChannelUserListTableViewCell.cellReuseIdentifier()) as! CreateGroupChannelUserListTableViewCell
         cell.setModel(aUser: self.users[indexPath.row])
         
-        if self.selectedUsers.index(of: self.users[indexPath.row]) == nil {
+        if self.selectedUsers.firstIndex(of: self.users[indexPath.row]) == nil {
             DispatchQueue.main.async {
                 cell.setSelectedUser(selected: false)
             }

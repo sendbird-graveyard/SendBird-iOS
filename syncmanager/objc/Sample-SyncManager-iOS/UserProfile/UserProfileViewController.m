@@ -15,7 +15,6 @@
 
 #import "UserProfileViewController.h"
 #import "Constants.h"
-#import "NSBundle+SendBird.h"
 
 
 @interface UserProfileViewController ()
@@ -111,8 +110,8 @@
                 }
                 
                 if (hasUpdatedUserInfo == NO || hasUpdatedPushNoti == NO) {
-                    UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:@"Couldn't update the user information" preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+                    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Error" message:@"Couldn't update the user information" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
                     [vc addAction:closeAction];
                     
                     self.updatingIndicator.hidden = YES;
@@ -128,8 +127,8 @@
             }];
 #else
             if (hasUpdatedUserInfo == NO) {
-                UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:@"Couldn't update the user information" preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+                UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Error" message:@"Couldn't update the user information" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
                 [vc addAction:closeAction];
                 
                 self.updatingIndicator.hidden = YES;
@@ -173,8 +172,8 @@
                 }
 
                 if (hasUpdatedUserInfo == NO || hasUpdatedPushNoti == NO) {
-                    UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:@"Couldn't update the user information" preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+                    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Error" message:@"Couldn't update the user information" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
                     [vc addAction:closeAction];
                     
                     self.updatingIndicator.hidden = YES;
@@ -190,8 +189,8 @@
             }];
 #else
             if (hasUpdatedUserInfo == NO) {
-                UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:@"Couldn't update the user information" preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+                UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Error" message:@"Couldn't update the user information" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
                 [vc addAction:closeAction];
                 
                 self.updatingIndicator.hidden = YES;

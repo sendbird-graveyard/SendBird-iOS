@@ -36,6 +36,8 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     private var photosViewController: NYTPhotosViewController?
     @IBOutlet weak var navigationBarHeight: NSLayoutConstraint!
     
+    let tableViewQueue: SBSMOperationQueue = SBSMOperationQueue.init()
+    
     /**
      *  new properties for local cache
      */
@@ -74,8 +76,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     
     private func configure() -> Void {
         let titleView: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 100, height: 64))
-        let titleFormat: String = Bundle.sbLocalizedStringForKey(key: "GroupChannelTitle")
-        let mainTitle: String = String.init(format: titleFormat, self.channel.memberCount)
+        let mainTitle: String = "Group Channel (\(self.channel.memberCount))"
         titleView.attributedText = Utils.generateNavigationTitle(mainTitle: mainTitle, subTitle: "")
         titleView.numberOfLines = 2
         titleView.textAlignment = NSTextAlignment.center
@@ -84,22 +85,19 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         titleView.isUserInteractionEnabled = true
         titleView.addGestureRecognizer(titleTapRecognizer)
         
-        let navigationItem: UINavigationItem = UINavigationItem.init()
-        navigationItem.titleView = titleView
+        self.navItem?.titleView = titleView
         
         // left
         let negativeLeftSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
         negativeLeftSpacer.width = -2
         let leftCloseItem = UIBarButtonItem(image: UIImage(named: "btn_close"), style: UIBarButtonItem.Style.done, target: self, action: #selector(close))
-        navigationItem.leftBarButtonItems = [negativeLeftSpacer, leftCloseItem]
+        self.navItem?.leftBarButtonItems = [negativeLeftSpacer, leftCloseItem]
         
         // right
         let negativeRightSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
         negativeRightSpacer.width = -2
         let rightOpenMoreMenuItem = UIBarButtonItem(image: UIImage(named: "btn_more"), style: UIBarButtonItem.Style.done, target: self, action: #selector(showMoreMenu))
-        navigationItem.rightBarButtonItems = [negativeRightSpacer, rightOpenMoreMenuItem]
-        
-        self.navItem = navigationItem
+        self.navItem?.rightBarButtonItems = [negativeRightSpacer, rightOpenMoreMenuItem]
         
         self.chattingView?.configureChattingView(channel: self.channel)
         self.chattingView?.fileAttachButton.addTarget(self, action: #selector(selectFileAttachment), for: UIControl.Event.touchUpInside)
@@ -142,14 +140,14 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     
     @objc private func showMoreMenu() {
         let vc = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-        let seeMemberListAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "SeeMemberListButton"), style: UIAlertAction.Style.default) { (action) in
+        let seeMemberListAction = UIAlertAction(title: "Members", style: UIAlertAction.Style.default) { (action) in
             DispatchQueue.main.async {
                 let mlvc: MemberListViewController = MemberListViewController(nibName: "MemberListViewController", bundle: Bundle.main)
                 mlvc.channel = self.channel
                 self.present(mlvc, animated: false, completion: nil)
             }
         }
-        let inviteUserListAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "InviteUserButton"), style: UIAlertAction.Style.default) { (action) in
+        let inviteUserListAction = UIAlertAction(title: "Invite", style: UIAlertAction.Style.default) { (action) in
             DispatchQueue.main.async {
                 let vc = CreateGroupChannelUserListViewController(nibName: "CreateGroupChannelUserListViewController", bundle: Bundle.main)
                 vc.userSelectionMode = 1
@@ -163,7 +161,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         }
         vc.addAction(resetManager)
         
-        let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+        let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil)
         vc.addAction(seeMemberListAction)
         vc.addAction(inviteUserListAction)
         vc.addAction(closeAction)
@@ -350,24 +348,37 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
             return
         }
         
-        switch action {
-        case SBSMMessageEventAction.insert:
-            self.chattingView?.insert(messages: messages, completionHandler: nil)
-            break
-        case SBSMMessageEventAction.update:
-            self.chattingView?.update(messages: messages, completionHandler: nil)
-            break
-        case SBSMMessageEventAction.remove:
-            self.chattingView?.remove(messages: messages, completionHandler: nil)
-            break
-        case SBSMMessageEventAction.clear:
-            self.chattingView?.clearAllMessages(completionHandler: nil)
-            break
-        case SBSMMessageEventAction.none:
-            break
-        default:
-            break
-        }
+        var operation: SBSMOperation?
+        operation = self.tableViewQueue.enqueue({
+            let handler = {() -> Void in
+                operation?.complete()
+            }
+            
+            switch action {
+            case SBSMMessageEventAction.insert:
+                self.chattingView?.insert(messages: messages, collection: collection, completionHandler: {
+                    handler()
+                    
+                    if Utils.isTopViewController(viewController: self) {
+                        self.channel.markAsRead()
+                    }
+                })
+                break
+            case SBSMMessageEventAction.update:
+                self.chattingView?.update(messages: messages, completionHandler: handler)
+                break
+            case SBSMMessageEventAction.remove:
+                self.chattingView?.remove(messages: messages, completionHandler: handler)
+                break
+            case SBSMMessageEventAction.clear:
+                self.chattingView?.clearAllMessages(completionHandler: handler)
+                break
+            case SBSMMessageEventAction.none:
+                break
+            default:
+                break
+            }
+        })
     }
     
     // MARK: SendBird SDK
@@ -502,16 +513,16 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         }
         
         if typingMembers.count == 1 {
-            self.chattingView?.startTypingIndicator(text: String(format: Bundle.sbLocalizedStringForKey(key: "TypingMessageSingular"), (typingMembers.first?.nickname)!))
+            self.chattingView?.startTypingIndicator(text: "\(typingMembers.first?.nickname ?? "someone") is typing...")
         }
         else {
-            self.chattingView?.startTypingIndicator(text: Bundle.sbLocalizedStringForKey(key: "TypingMessagePlural"))
+            self.chattingView?.startTypingIndicator(text: "Several people are typing...")
         }
     }
     
     func channelWasDeleted(_ channelUrl: String, channelType: SBDChannelType) {
-        let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ChannelDeletedTitle"), message: Bundle.sbLocalizedStringForKey(key: "ChannelDeletedMessage"), preferredStyle: UIAlertController.Style.alert)
-        let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel) { (action) in
+        let vc = UIAlertController(title: "Channel has been deleted.", message: "This channel has been deleted. It will be closed.", preferredStyle: UIAlertController.Style.alert)
+        let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel) { (action) in
             self.close()
         }
         vc.addAction(closeAction)
@@ -522,10 +533,12 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     
     // MARK: Chatting View Delegate
     func loadMoreMessage(view: UIView) {
-        self.isLoading = true
-        self.messageCollection?.fetch(in: SBSMMessageDirection.previous, completionHandler: { (error) in
-            self.isLoading = false
-        })
+        if !self.isLoading {
+            self.isLoading = true
+            self.messageCollection?.fetch(in: SBSMMessageDirection.previous, completionHandler: { (error) in
+                self.isLoading = false
+            })
+        }
     }
     
     func startTyping(view: UIView) {
@@ -552,12 +565,12 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     // MARK: MessageDelegate
     func clickProfileImage(viewCell: UITableViewCell, user: SBDUser) {
         let vc = UIAlertController(title: user.nickname, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-        let seeBlockUserAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "BlockUserButton"), style: UIAlertAction.Style.default) { (action) in
+        let seeBlockUserAction = UIAlertAction(title: "Block the user", style: UIAlertAction.Style.default) { (action) in
             SBDMain.blockUser(user, completionHandler: { (blockedUser, error) in
                 if error != nil {
                     DispatchQueue.main.async {
-                        let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-                        let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+                        let vc = UIAlertController(title: "Error", message: error?.domain, preferredStyle: UIAlertController.Style.alert)
+                        let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil)
                         vc.addAction(closeAction)
                         DispatchQueue.main.async {
                             self.present(vc, animated: true, completion: nil)
@@ -568,8 +581,8 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
                 }
                 
                 DispatchQueue.main.async {
-                    let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "UserBlockedTitle"), message: String(format: Bundle.sbLocalizedStringForKey(key: "UserBlockedMessage"), user.nickname!), preferredStyle: UIAlertController.Style.alert)
-                    let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+                    let vc = UIAlertController(title: "User blocked", message: "\(user.nickname ?? "he") is blocked.", preferredStyle: UIAlertController.Style.alert)
+                    let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil)
                     vc.addAction(closeAction)
                     DispatchQueue.main.async {
                         self.present(vc, animated: true, completion: nil)
@@ -577,7 +590,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
                 }
             })
         }
-        let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+        let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil)
         vc.addAction(seeBlockUserAction)
         vc.addAction(closeAction)
         
@@ -588,7 +601,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     
     func clickMessage(view: UIView, message: SBDBaseMessage) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-        let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+        let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil)
         var deleteMessageAction: UIAlertAction?
         var openURLsAction: [UIAlertAction] = []
         
@@ -612,11 +625,11 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
             else {
                 let sender = (message as! SBDUserMessage).sender
                 if sender?.userId == SBDMain.getCurrentUser()?.userId {
-                    deleteMessageAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "DeleteMessageButton"), style: UIAlertAction.Style.destructive, handler: { (action) in
+                    deleteMessageAction = UIAlertAction(title: "Delete the message", style: UIAlertAction.Style.destructive, handler: { (action) in
                         self.channel.delete(message, completionHandler: { (error) in
                             if error != nil {
-                                let alert = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-                                let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+                                let alert = UIAlertController(title: "Error", message: error?.domain, preferredStyle: UIAlertController.Style.alert)
+                                let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil)
                                 alert.addAction(closeAction)
                                 DispatchQueue.main.async {
                                     self.present(alert, animated: true, completion: nil)
@@ -653,11 +666,11 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
             let url = fileMessage.url
             
             if sender?.userId == SBDMain.getCurrentUser()?.userId {
-                deleteMessageAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "DeleteMessageButton"), style: UIAlertAction.Style.destructive, handler: { (action) in
+                deleteMessageAction = UIAlertAction(title: "Delete the message", style: UIAlertAction.Style.destructive, handler: { (action) in
                     self.channel.delete(fileMessage, completionHandler: { (error) in
                         if error != nil {
-                            let alert = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ErrorTitle"), message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-                            let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
+                            let alert = UIAlertController(title: "Error", message: error?.domain, preferredStyle: UIAlertController.Style.alert)
+                            let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil)
                             alert.addAction(closeAction)
                             DispatchQueue.main.async {
                                 self.present(alert, animated: true, completion: nil)
@@ -821,10 +834,10 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     func requestDelete(message: SBDBaseMessage) -> Void {
         self.channel.delete(message) { (theError) in
             if let error: SBDError = theError {
-                let errorTitle: String = Bundle.sbLocalizedStringForKey(key: "ErrorTitle")
+                let errorTitle: String = "Error"
                 let alert: UIAlertController = UIAlertController.init(title: errorTitle, message: error.domain, preferredStyle: UIAlertController.Style.alert)
                 
-                let closeTitle: String = Bundle.sbLocalizedStringForKey(key: "CloseButton")
+                let closeTitle: String = "Close"
                 let closeAction: UIAlertAction = UIAlertAction.init(title: closeTitle, style: UIAlertAction.Style.cancel, handler: nil)
                 alert.addAction(closeAction)
                 
@@ -895,9 +908,9 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     }
     
     func clickResend(view: UIView, message: SBDBaseMessage) {
-        let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "ResendFailedMessageTitle"), message: Bundle.sbLocalizedStringForKey(key: "ResendFailedMessageDescription"), preferredStyle: UIAlertController.Style.alert)
-        let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
-        let resendAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "ResendFailedMessageButton"), style: UIAlertAction.Style.default) { (action) in
+        let vc = UIAlertController(title: "Resend Message", message: "Do you want to resend the message?", preferredStyle: UIAlertController.Style.alert)
+        let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil)
+        let resendAction = UIAlertAction(title: "Resend", style: UIAlertAction.Style.default) { (action) in
             switch (message) {
             case is SBDUserMessage:
                 guard let resendableMessage: SBDUserMessage = message as? SBDUserMessage, let text: String = resendableMessage.message, let requestId: String = resendableMessage.requestId else {
@@ -1019,9 +1032,9 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     }
     
     func clickDelete(view: UIView, message: SBDBaseMessage) {
-        let vc = UIAlertController(title: Bundle.sbLocalizedStringForKey(key: "DeleteFailedMessageTitle"), message: Bundle.sbLocalizedStringForKey(key: "DeleteFailedMessageDescription"), preferredStyle: UIAlertController.Style.alert)
-        let closeAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "CloseButton"), style: UIAlertAction.Style.cancel, handler: nil)
-        let deleteAction = UIAlertAction(title: Bundle.sbLocalizedStringForKey(key: "DeleteFailedMessageButton"), style: UIAlertAction.Style.destructive) { (action) in
+        let vc = UIAlertController(title: "Delete Message", message: "Do you want to delete the message?", preferredStyle: UIAlertController.Style.alert)
+        let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil)
+        let deleteAction = UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive) { (action) in
             guard let requestId: String = message.value(forKey: "requestId") as? String else {
                 return
             }

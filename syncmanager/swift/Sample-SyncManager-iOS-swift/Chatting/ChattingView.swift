@@ -24,9 +24,10 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var messagesTableView: UITableView?
     @IBOutlet weak var inputContainerViewHeight: NSLayoutConstraint!
-    var messages: Array<SBDBaseMessage> = [SBDBaseMessage]()
+    
+    var messages: [SBDBaseMessage] = [SBDBaseMessage]()
+    
     var channel: SBDBaseChannel?
-    let tableViewQueue: SBSMOperationQueue = SBSMOperationQueue.init()
     
     var resendableMessages: [String:SBDBaseMessage] = [:]
     var preSendMessages: [String:SBDBaseMessage] = [:]
@@ -225,107 +226,94 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     }
     
     // MARK: UI Update
-    func insert(messages: Array<SBDBaseMessage>, completionHandler: SBSMVoidHandler?) -> Void {
-        guard messages.count > 0, let tableView: UITableView = self.messagesTableView else {
+    func insert(messages: Array<SBDBaseMessage>, collection: SBSMMessageCollection , completionHandler: SBSMVoidHandler?) -> Void {
+        guard messages.count > 0 else {
+            completionHandler?()
             return
         }
         
-        var operation: SBSMOperation?
-        operation = self.tableViewQueue.enqueue({
-            var indexPathes: [IndexPath] = [IndexPath]()
-            let indexes: [SBSMIndex] = Utils.indexes(messages: messages, inMessages: self.messages)
-            
-            for indexObject in indexes {
-                var index: Int = indexObject.indexOfPreviousObject
-                index += 1
-                let message: SBDBaseMessage = self.messages[index]
-                self.messages.insert(message, at: index)
-                indexPathes.append(IndexPath.init(row: index, section: 0))
+        DispatchQueue.main.async {
+            self.messages.append(contentsOf: messages)
+            self.messages.sort(by: { (message1, message2) -> Bool in
+                return (collection.orderAscendingBetweenObject(message1, andObject: message2) == ComparisonResult.orderedAscending)
+            })
+
+            self.messagesTableView?.reloadData()
+            if self.messages.last?.messageId == messages.last?.messageId {
+                self.scrollToBottom(force: true)
             }
             
-            Utils.performBatchUpdate(tableView: tableView, updateProcess: { (tableView) in
-                tableView.insertRows(at: indexPathes, with: UITableView.RowAnimation.automatic)
-            }) { (finished) in
-                operation?.complete()
-                if (completionHandler != nil) {
-                    completionHandler?()
-                }
-            }
-        })
+            completionHandler?()
+        }
     }
     
     func update(messages: Array<SBDBaseMessage>, completionHandler: SBSMVoidHandler?) -> Void {
-        guard messages.count > 0, let tableView: UITableView = self.messagesTableView else {
+        guard messages.count > 0 else {
+            completionHandler?()
             return
         }
         
-        var operation: SBSMOperation?
-        operation = self.tableViewQueue.enqueue({
-            var indexPathes: [IndexPath] = [IndexPath]()
-            let indexes: [SBSMIndex] = Utils.indexes(messages: messages, inMessages: self.messages)
-            
-            for (index, indexObject) in indexes.enumerated() {
-                let indexOfMessage: Int = indexObject.indexOfObject
-                let message: SBDBaseMessage = messages[index]
-                self.messages[indexOfMessage] = message
-                indexPathes.append(IndexPath.init(row: indexOfMessage, section: 0))
-            }
-            
-            Utils.performBatchUpdate(tableView: tableView, updateProcess: { (tableView) in
-                tableView.reloadRows(at: indexPathes, with: UITableView.RowAnimation.none)
-            }) { (finished) in
-                operation?.complete()
-                if (completionHandler != nil) {
-                    completionHandler?()
+        DispatchQueue.main.async {
+            for updatedMessage in messages {
+                for message in self.messages {
+                    if message.messageId == updatedMessage.messageId, let index: Int = self.messages.firstIndex(of: message) {
+                        self.messages[index] = updatedMessage
+                    }
                 }
             }
-        })
+        
+            self.messagesTableView?.reloadData()
+            
+            completionHandler?()
+        }
     }
     
     func remove(messages: Array<SBDBaseMessage>, completionHandler: SBSMVoidHandler?) -> Void {
-        guard messages.count > 0, let tableView: UITableView = self.messagesTableView else {
+        guard messages.count > 0 else {
+            completionHandler?()
             return
         }
         
-        var operation: SBSMOperation?
-        operation = self.tableViewQueue.enqueue({
-            var indexPathes: [IndexPath] = [IndexPath]()
-            let indexes: [SBSMIndex] = Utils.indexes(messages: messages, inMessages: self.messages)
-            
-            for indexObject in indexes {
-                let index: Int = indexObject.indexOfObject
-                self.messages.remove(at: index)
-                indexPathes.append(IndexPath.init(row: index, section: 0))
+        var removedMessageIds: [Int64] = []
+        var removedRequestIds: [String] = []
+        for message in messages {
+            if message.messageId > 0 {
+                removedMessageIds.append(message.messageId)
             }
-            
-            Utils.performBatchUpdate(tableView: tableView, updateProcess: { (tableView) in
-                tableView.deleteRows(at: indexPathes, with: UITableView.RowAnimation.automatic)
-            }) { (finished) in
-                operation?.complete()
-                if (completionHandler != nil) {
-                    completionHandler?()
+            else if let requestId: String = message.value(forKey: "requestId") as? String {
+                removedRequestIds.append(requestId)
+            }
+        }
+        
+        DispatchQueue.main.async {
+            self.messages.removeAll(where: { (message) -> Bool in
+                if message.messageId > 0 {
+                    if removedMessageIds.contains(message.messageId) {
+                        return true
+                    }
                 }
-            }
-        })
+                else if let requestId: String = message.value(forKey: "requestId") as? String {
+                    if removedRequestIds.contains(requestId) {
+                        return true
+                    }
+                }
+                
+                return false
+            })
+            
+            self.messagesTableView?.reloadData()
+            
+            completionHandler?()
+        }
     }
     
     func clearAllMessages(completionHandler: SBSMVoidHandler?) -> Void {
-        guard let tableView: UITableView = self.messagesTableView else {
-            return
+        DispatchQueue.main.async {
+            self.messages.removeAll()
+            self.messagesTableView?.reloadData()
+            
+            completionHandler?()
         }
-        
-        var operation: SBSMOperation?
-        operation = self.tableViewQueue.enqueue({
-            Utils.performBatchUpdate(tableView: tableView, updateProcess: { (tableView) in
-                self.messages.removeAll()
-                tableView.reloadData()
-            }) { (finished) in
-                operation?.complete()
-                if (completionHandler != nil) {
-                    completionHandler?()
-                }
-            }
-        })
     }
     
     // MARK: UITextViewDelegate

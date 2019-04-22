@@ -57,10 +57,10 @@ class GroupChannelListTableViewCell: UITableViewCell {
         if self.channel.isTyping() == true {
             var typingLabelText = ""
             if self.channel.getTypingMembers()?.count == 1 {
-                typingLabelText = String(format: Bundle.sbLocalizedStringForKey(key: "TypingMessageSingular"), (self.channel.getTypingMembers()?[0].nickname)!)
+                typingLabelText = "\(self.channel.getTypingMembers()?.first?.nickname ?? "someone") is typing..."
             }
             else {
-                typingLabelText = Bundle.sbLocalizedStringForKey(key: "TypingMessagePlural")
+                typingLabelText = "Several people are typing..."
             }
             
             self.typingLabel.text = typingLabelText
@@ -96,7 +96,7 @@ class GroupChannelListTableViewCell: UITableViewCell {
     func setModel(aChannel: SBDGroupChannel) {
         self.channel = aChannel
         
-        self.memberCountLabel.text = String(format: "%ld", self.channel.memberCount)
+        self.memberCountLabel.text = "\(self.channel.memberCount)"
         
         self.typingImageView.isHidden = true
         self.typingLabel.isHidden = true
@@ -193,16 +193,16 @@ class GroupChannelListTableViewCell: UITableViewCell {
         else if self.channel.lastMessage is SBDFileMessage {
             let lastMessage = (self.channel.lastMessage as! SBDFileMessage)
             if lastMessage.type.hasPrefix("image") {
-                self.lastMessageLabel.text = Bundle.sbLocalizedStringForKey(key: "MessageSummaryImage")
+                self.lastMessageLabel.text = "(Image)"
             }
             else if lastMessage.type.hasPrefix("video") {
-                self.lastMessageLabel.text = Bundle.sbLocalizedStringForKey(key: "MessageSummaryVideo")
+                self.lastMessageLabel.text = "(Video)"
             }
             else if lastMessage.type.hasPrefix("audio") {
-                self.lastMessageLabel.text = Bundle.sbLocalizedStringForKey(key: "MessageSummaryAudio")
+                self.lastMessageLabel.text = "(Audio)"
             }
             else {
-                self.lastMessageLabel.text = Bundle.sbLocalizedStringForKey(key: "MessageSummaryFile")
+                self.lastMessageLabel.text = "(File)"
             }
             lastMessageTimestamp = Int64(lastMessage.createdAt)
         }
@@ -247,7 +247,7 @@ class GroupChannelListTableViewCell: UITableViewCell {
             self.unreadMessageCountContainerView.isHidden = true
         }
         else if self.channel.unreadMessageCount <= 9 {
-            self.unreadMessageCountLabel.text = String(format: "%ld", self.channel.unreadMessageCount)
+            self.unreadMessageCountLabel.text = "Members \(self.channel.unreadMessageCount)"
         }
         else {
             self.unreadMessageCountLabel.text = "9+"

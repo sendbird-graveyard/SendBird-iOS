@@ -12,11 +12,9 @@
 #import "GroupChannelListTableViewCell.h"
 #import "GroupChannelListEditableTableViewCell.h"
 #import "GroupChannelChattingViewController.h"
-#import "NSBundle+SendBird.h"
 #import "Constants.h"
 #import "ConnectionManager.h"
 #import <SendBirdSyncManager/SendBirdSyncManager.h>
-#import "Utils+SBDObject.h"
 #import "Utils+View.h"
 
 @interface GroupChannelListViewController () <SBDChannelDelegate, SBSMChannelCollectionDelegate>
@@ -123,15 +121,11 @@
     return collection;
 }
 
-- (void)resetChannelCollection {
-    [self.channelCollection remove];
-    self.channelCollection = nil;
-}
-
-- (id<SBSMChannelQuery>)query {
+- (SBDGroupChannelListQuery *)query {
     SBDGroupChannelListQuery *query = [SBDGroupChannel createMyGroupChannelListQuery];
     query.limit = 10;
     query.order = SBDGroupChannelListOrderLatestLastMessage;
+    query.includeEmptyChannel = YES;
     return query;
 }
 
@@ -139,15 +133,29 @@
     // start loading progress
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.refreshControl beginRefreshing];
-    });
-
-    [self resetChannelCollection];
-    [self.channelCollection fetchWithCompletionHandler:^(SBDError * _Nullable error) {
-        // end loading progress
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.refreshControl endRefreshing];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSLog(@"\n == [Channel List View] old channel collection: %p", self.channelCollection);
+            [self.channels removeAllObjects];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+            
+            self.channelCollection.delegate = nil;
+            [self.channelCollection remove];
+            self.channelCollection = nil;
+            
+            self.channelCollection.delegate = self;
+            [self.channelCollection fetchWithCompletionHandler:^(SBDError * _Nullable error) {
+                NSLog(@"\n == [Channel List View] new channel collection: %p", self.channelCollection);
+                
+                // end loading progress
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.refreshControl endRefreshing];
+                });
+            }];
         });
-    }];
+    });
 }
 
 - (void)back {
@@ -171,7 +179,7 @@
     UIBarButtonItem *negativeLeftSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeLeftSpacer.width = -2;
     
-    UIBarButtonItem *leftDoneItem = [[UIBarButtonItem alloc] initWithTitle:[NSBundle sbLocalizedStringForKey:@"DoneButton"] style:UIBarButtonItemStylePlain target:self action:@selector(done)];
+    UIBarButtonItem *leftDoneItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
     [leftDoneItem setTitleTextAttributes:@{NSFontAttributeName: [Constants navigationBarButtonItemFont]} forState:UIControlStateNormal];
     
     self.navItem.leftBarButtonItems = @[negativeLeftSpacer, leftDoneItem];
@@ -246,8 +254,8 @@
         MGSwipeTableCell *cell = nil;
         if (self.editableChannel) {
             cell = [tableView dequeueReusableCellWithIdentifier:[GroupChannelListEditableTableViewCell cellReuseIdentifier]];
-            MGSwipeButton *leaveButton = [MGSwipeButton buttonWithTitle:[NSBundle sbLocalizedStringForKey:@"LeaveButton"] backgroundColor:[Constants leaveButtonColor]];
-            MGSwipeButton *hideButton = [MGSwipeButton buttonWithTitle:[NSBundle sbLocalizedStringForKey:@"HideButton"] backgroundColor:[Constants hideButtonColor]];
+            MGSwipeButton *leaveButton = [MGSwipeButton buttonWithTitle:@"Leave" backgroundColor:[Constants leaveButtonColor]];
+            MGSwipeButton *hideButton = [MGSwipeButton buttonWithTitle:@"Hide" backgroundColor:[Constants hideButtonColor]];
             
             hideButton.titleLabel.font = [Constants hideButtonFont];
             leaveButton.titleLabel.font = [Constants leaveButtonFont];
@@ -271,7 +279,7 @@
             [(GroupChannelListTableViewCell *)cell setModel:channel];
         }
         
-        if (self.channels.count > 0 && indexPath.row + 1 == self.channels.count) {
+        if (self.channels.count > 0 && (indexPath.row == self.channels.count - 1)) {
             // start loading progress
             [self.channelCollection fetchWithCompletionHandler:^(SBDError * _Nullable error) {
                 // end loading progress
@@ -294,8 +302,8 @@
     
     void (^handler)(SBDError *) = ^void (SBDError * error) {
         if (error != nil) {
-            UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+            UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Error" message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
             [vc addAction:closeAction];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self presentViewController:vc animated:YES completion:nil];
@@ -381,27 +389,16 @@
     }
     
     NSLog(@"== [Channel List View] will insert tableView's channel - tableView: %@ - channels: %@", self.channels, channels);
-    NSMutableArray <NSIndexPath *> *indexPaths = [NSMutableArray array];
-    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-    NSArray<SBSMIndex *> *indexes = [Utils indexesOfChannels:channels inChannels:[self.channels copy] sortDescription:^NSComparisonResult(SBDGroupChannel * _Nonnull channel1, SBDGroupChannel * _Nonnull channel2) {
-        return [self.channelCollection orderAscendingBetweenObject:channel1 andObject:channel2];
-    }];
+    [self.channels addObjectsFromArray:channels];
+    [self.channels sortUsingComparator:self.channelCollection.comparator];
     
-    for (SBSMIndex *indexObject in indexes) {
-        NSUInteger index = indexObject.indexOfPreviousObject;
-        index++;
-        [indexSet addIndex:index];
-        [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-    }
-    
-    [Utils tableView:self.tableView performBatchUpdates:^(UITableView * _Nonnull tableView) {
-        [self.channels insertObjects:channels atIndexes:indexSet];
-        [tableView insertRowsAtIndexPaths:[indexPaths copy] withRowAnimation:UITableViewRowAnimationAutomatic];
-    } completion:^(BOOL finished) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        
         if (completionHandler != nil) {
             completionHandler();
         }
-    }];
+    });
 }
 
 - (void)updateChannels:(NSArray <SBDGroupChannel *> *)channels completionHandler:(SBSMVoidHandler)completionHandler {
@@ -409,26 +406,23 @@
         return;
     }
     
-    NSLog(@"== [Channel List View] will insert tableView's channel - tableView: %@ - channels: %@", self.channels, channels);
-    NSArray<SBSMIndex *> *indexes = [Utils indexesOfChannels:channels inChannels:[self.channels copy] sortDescription:^NSComparisonResult(SBDGroupChannel * _Nonnull channel1, SBDGroupChannel * _Nonnull channel2) {
-        return [self.channelCollection orderAscendingBetweenObject:channel1 andObject:channel2];
-    }];
-    NSMutableArray *indexPaths = [NSMutableArray array];
-    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-    for (SBSMIndex *indexObject in indexes) {
-        NSUInteger index = indexObject.indexOfObject;
-        [indexSet addIndex:index];
-        [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
+    NSLog(@"== [Channel List View] will update tableView's channel - tableView: %@ - channels: %@", self.channels, channels);
+    for (SBDGroupChannel *updatedChannel in channels) {
+        for (SBDGroupChannel *channel in self.channels) {
+            if ([channel.channelUrl isEqualToString:updatedChannel.channelUrl] && channel != updatedChannel) {
+                NSUInteger index = [self.channels indexOfObject:channel];
+                [self.channels replaceObjectAtIndex:index withObject:updatedChannel];
+            }
+        }
     }
     
-    [Utils tableView:self.tableView performBatchUpdates:^(UITableView * _Nonnull tableView) {
-        [self.channels replaceObjectsAtIndexes:indexSet withObjects:channels];
-        [tableView reloadRowsAtIndexPaths:[indexPaths copy] withRowAnimation:UITableViewRowAnimationNone];
-    } completion:^(BOOL finished) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+        
         if (completionHandler != nil) {
             completionHandler();
         }
-    }];
+    });
 }
 
 - (void)removeChannels:(NSArray<SBDGroupChannel *> *)channels completionHandler:(SBSMVoidHandler)completionHandler {
@@ -436,17 +430,24 @@
         return;
     }
     
-    NSLog(@"== [Channel List View] will insert tableView's channel - tableView: %@ - channels: %@", self.channels, channels);
-    NSArray<SBSMIndex *> *indexes = [Utils indexesOfChannels:channels inChannels:[self.channels copy] sortDescription:^NSComparisonResult(SBDGroupChannel * _Nonnull channel1, SBDGroupChannel * _Nonnull channel2) {
-        return [self.channelCollection orderAscendingBetweenObject:channel1 andObject:channel2];
+    NSLog(@"== [Channel List View] will remove tableView's channel - tableView: %@ - channels: %@", self.channels, channels);
+    NSMutableArray<NSString *> *removedChannelUrls = [[channels valueForKey:@"channelUrl"] mutableCopy];
+    NSIndexSet *indexSet = [self.channels indexesOfObjectsPassingTest:^BOOL(SBDGroupChannel * _Nonnull channel, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([removedChannelUrls containsObject:channel.channelUrl]) {
+            [removedChannelUrls removeObject:channel.channelUrl];
+            if (removedChannelUrls.count == 0) {
+                *stop = YES;
+            }
+            return YES;
+        }
+        
+        return NO;
     }];
+    
     NSMutableArray *indexPaths = [NSMutableArray array];
-    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
-    for (SBSMIndex *indexObject in indexes) {
-        NSUInteger index = indexObject.indexOfObject;
-        [indexSet addIndex:index];
+    [indexSet enumerateIndexesUsingBlock:^(NSUInteger index, BOOL * _Nonnull stop) {
         [indexPaths addObject:[NSIndexPath indexPathForRow:index inSection:0]];
-    }
+    }];
     
     [Utils tableView:self.tableView performBatchUpdates:^(UITableView * _Nonnull tableView) {
         [tableView deleteRowsAtIndexPaths:[indexPaths copy] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -459,32 +460,53 @@
 }
 
 - (void)moveChannel:(SBDGroupChannel *)channel completionHandler:(SBSMVoidHandler)completionHandler {
-    SBSMIndex *atIndex = [Utils indexOfChannelUrl:channel.channelUrl ofChannels:[self.channels copy]];
-    NSIndexPath *atIndexPath = [NSIndexPath indexPathForRow:atIndex.indexOfObject inSection:0];
-    [self.channels removeObjectAtIndex:atIndex.indexOfObject];
-    SBSMIndex *toIndex = [Utils indexOfChannel:channel inChannels:[self.channels copy] sortDescription:^NSComparisonResult(SBDGroupChannel * _Nonnull channel1, SBDGroupChannel * _Nonnull channel2) {
-        return [self.channelCollection orderAscendingBetweenObject:channel1 andObject:channel2];
+    __block NSUInteger oldIndex = NSNotFound;
+    [self.channels enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(SBDGroupChannel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([channel.channelUrl isEqualToString:obj.channelUrl]) {
+            oldIndex = idx;
+            *stop = YES;
+        }
     }];
-    NSIndexPath *toIndexPath = [NSIndexPath indexPathForRow:toIndex.indexOfObject inSection:0];
-    [self.channels insertObject:channel atIndex:toIndex.indexOfObject];
     
-    [Utils tableView:self.tableView performBatchUpdates:^(UITableView * _Nonnull tableView) {
-        [tableView reloadRowsAtIndexPaths:@[atIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-        [tableView moveRowAtIndexPath:atIndexPath toIndexPath:toIndexPath];
-    } completion:^(BOOL finished) {
+    if (oldIndex == NSNotFound) {
         if (completionHandler != nil) {
             completionHandler();
         }
+        return;
+    }
+    
+    [self.channels replaceObjectAtIndex:oldIndex withObject:channel];
+    
+    [self.channels sortUsingComparator:self.channelCollection.comparator];
+    
+    __block NSUInteger newIndex = NSNotFound;
+    [self.channels enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(SBDGroupChannel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([channel.channelUrl isEqualToString:obj.channelUrl]) {
+            newIndex = idx;
+            *stop = YES;
+        }
     }];
+    
+    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:oldIndex inSection:0];
+    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:newIndex inSection:0];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView moveRowAtIndexPath:oldIndexPath toIndexPath:newIndexPath];
+        [self.tableView reloadRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+        
+        if (completionHandler != nil) {
+            completionHandler();
+        }
+    });
 }
 
 - (void)clearAllChannelsWithCompletionHandler:(SBSMVoidHandler)completionHandler {
     NSLog(@"== [Channel List View] will clear tableView's channel - tableView: %@", self.channels);
     [Utils tableView:self.tableView performBatchUpdates:^(UITableView * _Nonnull tableView) {
-        NSLog(@"== [Channel List View] will reload tableView - tableView: %@", self.channels);
+        NSLog(@"== [Channel List View] will remove all tableView - tableView: %@", self.channels);
         [self.channels removeAllObjects];
         [tableView reloadData];
-        NSLog(@"== [Channel List View] did reload tableView - tableView: %@", self.channels);
+        NSLog(@"== [Channel List View] did remove all tableView - tableView: %@", self.channels);
     } completion:^(BOOL finished) {
         if (completionHandler != nil) {
             completionHandler();

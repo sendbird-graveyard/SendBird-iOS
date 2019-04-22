@@ -133,7 +133,7 @@ NSString *const ConnectionManagerErrorDomainUser = @"com.sendbird.sample.user";
     [SBDMain disconnectWithCompletionHandler:^{
         [self broadcastDisconnection];
         
-        [[SBSMSyncManager manager] clearCache];
+        [SBSMSyncManager clearCache];
         
         NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
         [userDefault removeObjectForKey:@"sendbird_user_id"];

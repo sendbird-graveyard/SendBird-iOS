@@ -1,6 +1,0 @@
-framework module Pods_SendBird_iOS {
-  umbrella header "Pods-SendBird-iOS-umbrella.h"
-
-  export *
-  module * { export * }
-}

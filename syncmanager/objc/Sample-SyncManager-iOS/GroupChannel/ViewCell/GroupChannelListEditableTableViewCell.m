@@ -8,7 +8,6 @@
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "GroupChannelListEditableTableViewCell.h"
-#import "NSBundle+SendBird.h"
 
 @interface GroupChannelListEditableTableViewCell()
 
@@ -147,16 +146,16 @@
     else if ([self.channel.lastMessage isKindOfClass:[SBDFileMessage class]]) {
         SBDFileMessage *lastMessage = (SBDFileMessage *)self.channel.lastMessage;
         if ([lastMessage.type hasPrefix:@"image"]) {
-            self.lastMessageLabel.text = [NSBundle sbLocalizedStringForKey:@"MessageSummaryImage"];
+            self.lastMessageLabel.text = @"(Image)";
         }
         else if ([lastMessage.type hasPrefix:@"video"]) {
-            self.lastMessageLabel.text = [NSBundle sbLocalizedStringForKey:@"MessageSummaryVideo"];
+            self.lastMessageLabel.text = @"(Video)";
         }
         else if ([lastMessage.type hasPrefix:@"audio"]) {
-            self.lastMessageLabel.text = [NSBundle sbLocalizedStringForKey:@"MessageSummaryAudio"];
+            self.lastMessageLabel.text = @"(Audio)";
         }
         else {
-            self.lastMessageLabel.text = [NSBundle sbLocalizedStringForKey:@"MessageSummaryFile"];
+            self.lastMessageLabel.text = @"(File)";
         }
         lastMessageTimestamp = lastMessage.createdAt;
     }

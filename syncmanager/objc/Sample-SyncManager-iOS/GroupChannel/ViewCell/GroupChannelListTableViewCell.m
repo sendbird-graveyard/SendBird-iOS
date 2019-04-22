@@ -8,7 +8,6 @@
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "GroupChannelListTableViewCell.h"
-#import "NSBundle+SendBird.h"
 
 @interface GroupChannelListTableViewCell()
 
@@ -61,10 +60,10 @@
     if (self.channel.isTyping) {
         NSString *typingLabelText = @"";
         if (self.channel.getTypingMembers.count == 1) {
-            typingLabelText = [NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"TypingMessageSingular"], self.channel.getTypingMembers[0].nickname];
+            typingLabelText = [NSString stringWithFormat:@"%@ is typing...", self.channel.getTypingMembers[0].nickname];
         }
         else {
-            typingLabelText = [NSBundle sbLocalizedStringForKey:@"TypingMessagePlural"];
+            typingLabelText = @"Several people are typing...";
         }
         
         self.typingLabel.text = typingLabelText;
@@ -163,7 +162,7 @@
         memberImageViews = @[self.coverImageView11];
         
         [memberNames removeAllObjects];
-        [memberNames addObject:[NSBundle sbLocalizedStringForKey:@"EmptyChannelName"]];
+        [memberNames addObject:@"No Members"];
     }
     
     coverImageContainer.hidden = NO;
@@ -178,16 +177,16 @@
     else if ([self.channel.lastMessage isKindOfClass:[SBDFileMessage class]]) {
         SBDFileMessage *lastMessage = (SBDFileMessage *)self.channel.lastMessage;
         if ([lastMessage.type hasPrefix:@"image"]) {
-            self.lastMessageLabel.text = [NSBundle sbLocalizedStringForKey:@"MessageSummaryImage"];
+            self.lastMessageLabel.text = @"(Image)";
         }
         else if ([lastMessage.type hasPrefix:@"video"]) {
-            self.lastMessageLabel.text = [NSBundle sbLocalizedStringForKey:@"MessageSummaryVideo"];
+            self.lastMessageLabel.text = @"(Video)";
         }
         else if ([lastMessage.type hasPrefix:@"audio"]) {
-            self.lastMessageLabel.text = [NSBundle sbLocalizedStringForKey:@"MessageSummaryAudio"];
+            self.lastMessageLabel.text = @"(Audio)";
         }
         else {
-            self.lastMessageLabel.text = [NSBundle sbLocalizedStringForKey:@"MessageSummaryFile"];
+            self.lastMessageLabel.text = @"(File)";
         }
         lastMessageTimestamp = lastMessage.createdAt;
     }

@@ -14,3 +14,15 @@ syncmanager/objc/Sample-SyncManager-iOS\.xcodeproj/xcuserdata/
 syncmanager/swift/Sample-SyncManager-iOS-swift\.xcodeproj/xcuserdata/
 
 syncmanager/swift/Sample-SyncManager-iOS-swift\.xcworkspace/xcuserdata/
+
+syncmanager/objc/Pods/
+
+*.lock
+
+syncmanager/swift/Pods/
+
+syncmanager/swift/SendBird-iOS-LocalCache-Sample-swift\.xcworkspace/xcuserdata/
+
+basic/old/sample-objc/Pods/
+
+basic/old/sample-swift/Pods/

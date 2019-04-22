@@ -17,7 +17,6 @@
 #import "AppDelegate.h"
 #import "GroupChannelChattingViewController.h"
 #import "MemberListViewController.h"
-#import "NSBundle+SendBird.h"
 #import "Utils+View.h"
 #import "ChatImage.h"
 #import "FLAnimatedImageView+ImageCache.h"
@@ -79,7 +78,7 @@
 - (void)configureView {
     // Do any additional setup after loading the view from its nib.
     UILabel *titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - 100, 64)];
-    NSString *title = [NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"GroupChannelTitle"], self.channel.memberCount];
+    NSString *title = [NSString stringWithFormat:@"Group Channel (%ld)", self.channel.memberCount];
     titleView.attributedText = [Utils generateNavigationTitle:title subTitle:nil];
     titleView.numberOfLines = 2;
     titleView.textAlignment = NSTextAlignmentCenter;
@@ -165,7 +164,7 @@
 
 - (void)openMoreMenu {
     UIAlertController *vc = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *seeMemberListAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"SeeMemberListButton"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *seeMemberListAction = [UIAlertAction actionWithTitle:@"Members" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         dispatch_async(dispatch_get_main_queue(), ^{
             MemberListViewController *mlvc = [[MemberListViewController alloc] init];
             [mlvc setChannel:self.channel];
@@ -173,7 +172,7 @@
         });
     }];
 
-    UIAlertAction *inviteUserListAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"InviteUserButton"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *inviteUserListAction = [UIAlertAction actionWithTitle:@"Invite" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         dispatch_async(dispatch_get_main_queue(), ^{
             CreateGroupChannelUserListViewController *vc = [[CreateGroupChannelUserListViewController alloc] init];
             vc.userSelectionMode = 1;
@@ -187,7 +186,7 @@
     }];
     [vc addAction:resetManager];
     
-    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
     [vc addAction:seeMemberListAction];
     [vc addAction:inviteUserListAction];
     [vc addAction:closeAction];
@@ -421,7 +420,7 @@
         
         switch (action) {
             case SBSMMessageEventActionInsert: {
-                [self.chattingView insertMessages:messages completionHandler:^{
+                [self.chattingView insertMessages:messages comparator:collection.comparator completionHandler:^{
                     handler();
                     
                     if ([Utils isTopViewController:self]) {
@@ -457,10 +456,10 @@
         }
         else {
             if (sender.getTypingMembers.count == 1) {
-                [self.chattingView startTypingIndicator:[NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"TypingMessageSingular"], sender.getTypingMembers[0].nickname]];
+                [self.chattingView startTypingIndicator:[NSString stringWithFormat:@"%@ is typing...", sender.getTypingMembers[0].nickname]];
             }
             else {
-                [self.chattingView startTypingIndicator:[NSBundle sbLocalizedStringForKey:@"TypingMessagePlural"]];
+                [self.chattingView startTypingIndicator:@"Several people are typing..."];
             }
         }
     }
@@ -472,8 +471,8 @@
         return;
     }
     
-    UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ChannelDeletedTitle"] message:[NSBundle sbLocalizedStringForKey:@"ChannelDeletedMessage"] preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Channel has been deleted." message:@"This channel has been deleted. It will be closed." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         [self close];
     }];
     [vc addAction:closeAction];
@@ -531,7 +530,7 @@
                 tempModel.createdAt = (long long)([[NSDate date] timeIntervalSince1970] * 1000);
                 tempModel.message = message;
                 
-                [self.chattingView insertMessages:@[tempModel] completionHandler:^{
+                [self.chattingView insertMessages:@[tempModel] comparator:self.messageCollection.comparator completionHandler:^{
                     [self sendUrlPreview:url message:message tempModel:tempModel];
                 }];
                 
@@ -621,12 +620,12 @@
 #pragma mark - Message Delegate
 - (void)clickProfileImage:(UITableViewCell *)viewCell user:(SBDUser *)user {
     UIAlertController *vc = [UIAlertController alertControllerWithTitle:user.nickname message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *seeBlockUserAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"BlockUserButton"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *seeBlockUserAction = [UIAlertAction actionWithTitle:@"Block the user" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [SBDMain blockUser:user completionHandler:^(SBDUser * _Nullable blockedUser, SBDError * _Nullable error) {
             if (error != nil) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+                    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Error" message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
                     [vc addAction:closeAction];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self presentViewController:vc animated:YES completion:nil];
@@ -637,8 +636,8 @@
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"UserBlockedTitle"] message:[NSString stringWithFormat:[NSBundle sbLocalizedStringForKey:@"UserBlockedMessage"], user.nickname] preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+                UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"User blocked" message:[NSString stringWithFormat:@"%@ is blocked.", user.nickname] preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
                 [vc addAction:closeAction];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self presentViewController:vc animated:YES completion:nil];
@@ -647,7 +646,7 @@
         }];
         
     }];
-    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
     [vc addAction:seeBlockUserAction];
     [vc addAction:closeAction];
     
@@ -657,7 +656,7 @@
 - (void)clickMessage:(UIView *)view message:(SBDBaseMessage *)message {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:closeAction];
     
     if ([self isUrlPreviewMessage:message]) {
@@ -668,7 +667,7 @@
         [Application openURL:url];
     }
     else if ([self isBeingDeliveredMessage:message]) {
-        NSString *title = [NSBundle sbLocalizedStringForKey:@"DeleteMessageButton"];
+        NSString *title = @"Delete the message";
         UIAlertAction *deletingAction = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             [self requestDeleteMessage:message];
         }];
@@ -779,8 +778,8 @@
 - (void)requestDeleteMessage:(SBDBaseMessage *)message {
     [self.channel deleteMessage:message completionHandler:^(SBDError * _Nullable error) {
         if (error != nil) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ErrorTitle"] message:error.domain preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error.domain preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
             [alert addAction:closeAction];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self presentViewController:alert animated:YES completion:nil];
@@ -850,9 +849,9 @@
 }
 
 - (void)clickResend:(UIView *)view message:(SBDBaseMessage *)message {
-    UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"ResendFailedMessageTitle"] message:[NSBundle sbLocalizedStringForKey:@"ResendFailedMessageDescription"] preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
-    UIAlertAction *resendAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"ResendFailedMessageButton"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Resend Message" message:@"Do you want to resend the message?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *resendAction = [UIAlertAction actionWithTitle:@"Resend" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if ([message isKindOfClass:[SBDUserMessage class]]) {
             SBDUserMessage *resendableUserMessage = (SBDUserMessage *)message;
             NSArray<NSString *> *targetLanguages = nil;
@@ -947,9 +946,9 @@
 }
 
 - (void)clickDelete:(UIView *)view message:(SBDBaseMessage *)message {
-    UIAlertController *vc = [UIAlertController alertControllerWithTitle:[NSBundle sbLocalizedStringForKey:@"DeleteFailedMessageTitle"] message:[NSBundle sbLocalizedStringForKey:@"DeleteFailedMessageDescription"] preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"CloseButton"] style:UIAlertActionStyleCancel handler:nil];
-    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:[NSBundle sbLocalizedStringForKey:@"DeleteFailedMessageButton"] style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertController *vc = [UIAlertController alertControllerWithTitle:@"Delete Message" message:@"Do you want to delete the message?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         NSString *requestId = nil;
         if ([message isKindOfClass:[SBDUserMessage class]]) {
             requestId = ((SBDUserMessage *)message).requestId;

@@ -286,13 +286,13 @@ class IncomingGeneralUrlPreviewMessageTableViewCell: UITableViewCell, TTTAttribu
         let message = self.message.message
         
         var fullMessage: NSMutableAttributedString?
-        if self.displayNickname {
-            fullMessage = NSMutableAttributedString(string: String(format: "%@\n%@", nickname!, message!))
+        if self.displayNickname, let theNickName: String = nickname {
+            fullMessage = NSMutableAttributedString(string: "\(theNickName)\n\(message ?? "")")
             fullMessage?.addAttributes(nicknameAttribute, range: NSMakeRange(0, (nickname?.count)!))
             fullMessage?.addAttributes(messageAttribute, range: NSMakeRange((nickname?.count)! + 1, (message?.count)!))
         }
         else {
-            fullMessage = NSMutableAttributedString(string: String(format: "%@", message!))
+            fullMessage = NSMutableAttributedString(string: "\(message ?? "")")
             fullMessage?.addAttributes(messageAttribute, range: NSMakeRange(0, (message?.count)!))
         }
         

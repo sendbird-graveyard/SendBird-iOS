@@ -118,7 +118,7 @@ class ConnectionManager: NSObject, SBDConnectionDelegate {
     private func logout(completionHandler: (() -> Void)?) {
         SBDMain.disconnect {
             self.broadcastDisconnection()
-            SBSMSyncManager.init().clearCache()
+            SBSMSyncManager.clearCache()
             self.removeUserInfo()
             
             if let handler: () -> Void = completionHandler {

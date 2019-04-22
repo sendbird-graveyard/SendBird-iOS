@@ -14,8 +14,8 @@
 #import "Constants.h"
 #import "ConnectionManager.h"
 #import "ViewController.h"
-#import "MenuViewController.h"
 #import "Utils+View.h"
+#import "GroupChannelListViewController.h"
 #import "GroupChannelChattingViewController.h"
 
 NSString *const AppDelegateIdentifier = @"com.sendbird.sample.appdelegate";
@@ -75,7 +75,7 @@ NSString *const AppDelegateIdentifier = @"com.sendbird.sample.appdelegate";
             return;
         }
         
-        self.window.rootViewController = [[MenuViewController alloc] init];;
+        self.window.rootViewController = [[GroupChannelListViewController alloc] init];
         [self.window makeKeyAndVisible];
     }];
     
