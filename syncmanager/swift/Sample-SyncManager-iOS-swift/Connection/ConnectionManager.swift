@@ -33,8 +33,8 @@ class ConnectionManager: NSObject, SBDConnectionDelegate {
     }
     
     static public func login(completionHandler: ((_ user: SBDUser?, _ error: NSError?) -> Void)?) {
-        let userId: String? = UserDefaults.standard.string(forKey: "sendbird_user_id")
-        let userNickname: String? = UserDefaults.standard.string(forKey: "sendbird_user_nickname")
+        let userId: String? = UserPreferences.userId
+        let userNickname: String? = UserPreferences.userNickname
         
         guard let theUserId: String = userId, let theNickname: String = userNickname else {
             if let handler: ((_ :SBDUser?, _ :NSError?) -> ()) = completionHandler {
@@ -56,7 +56,7 @@ class ConnectionManager: NSObject, SBDConnectionDelegate {
         
         SBDMain.connect(withUserId: userId) { (user, error) in
             if let theError: NSError = error {
-                self.removeUserInfo()
+                UserPreferences.removeUserInfo()
                 if let handler = completionHandler {
                     var userInfo: [String: Any] = Dictionary()
                     if let reason: String = theError.localizedFailureReason {
@@ -91,10 +91,8 @@ class ConnectionManager: NSObject, SBDConnectionDelegate {
             
             self.broadcastConnection(isReconnection: false)
             
-            let userDefault: UserDefaults = UserDefaults.standard
-            userDefault.set(SBDMain.getCurrentUser()?.userId, forKey: "sendbird_user_id")
-            userDefault.set(SBDMain.getCurrentUser()?.nickname, forKey: "sendbird_user_nickname")
-            userDefault.synchronize()
+            UserPreferences.userId = SBDMain.getCurrentUser()?.userId
+            UserPreferences.userNickname = SBDMain.getCurrentUser()?.nickname
             
             SBDMain.updateCurrentUserInfo(withNickname: nickname, profileUrl: nil, completionHandler: { (error) in
                 if let handler = completionHandler {
@@ -102,13 +100,6 @@ class ConnectionManager: NSObject, SBDConnectionDelegate {
                 }
             })
         }
-    }
-    
-    private func removeUserInfo() {
-        let userDefault: UserDefaults = UserDefaults.standard
-        userDefault.removeObject(forKey: "sendbird_user_id")
-        userDefault.removeObject(forKey: "sendbird_user_nickname")
-        userDefault.synchronize()
     }
     
     static public func logout(completionHandler: (() -> Void)?) {
@@ -119,7 +110,7 @@ class ConnectionManager: NSObject, SBDConnectionDelegate {
         SBDMain.disconnect {
             self.broadcastDisconnection()
             SBSMSyncManager.clearCache()
-            self.removeUserInfo()
+            UserPreferences.removeUserInfo()
             
             if let handler: () -> Void = completionHandler {
                 handler()

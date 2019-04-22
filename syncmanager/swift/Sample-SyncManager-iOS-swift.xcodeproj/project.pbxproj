@@ -71,6 +71,7 @@
 		C11E32D5216CB2890033D437 /* CreateGroupChannelUserListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C11E32D1216CB2890033D437 /* CreateGroupChannelUserListViewController.xib */; };
 		C11E32D6216CB2890033D437 /* CreateGroupChannelSelectOptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C11E32D2216CB2890033D437 /* CreateGroupChannelSelectOptionViewController.xib */; };
 		C11E32D7216CB2890033D437 /* GroupChannelListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C11E32D3216CB2890033D437 /* GroupChannelListViewController.xib */; };
+		C1ADFB6D226D4DAC00769C57 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ADFB6C226D4DAC00769C57 /* UserPreferences.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -155,6 +156,7 @@
 		C11E32D1216CB2890033D437 /* CreateGroupChannelUserListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGroupChannelUserListViewController.xib; sourceTree = "<group>"; };
 		C11E32D2216CB2890033D437 /* CreateGroupChannelSelectOptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateGroupChannelSelectOptionViewController.xib; sourceTree = "<group>"; };
 		C11E32D3216CB2890033D437 /* GroupChannelListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupChannelListViewController.xib; sourceTree = "<group>"; };
+		C1ADFB6C226D4DAC00769C57 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		DC91E33E7BF445D8254A777A /* Pods-SendBird-iOS-LocalCache-Sample-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SendBird-iOS-LocalCache-Sample-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SendBird-iOS-LocalCache-Sample-swift/Pods-SendBird-iOS-LocalCache-Sample-swift.debug.xcconfig"; sourceTree = "<group>"; };
 		DEAAF27E99629A8C19A3AFCE /* Pods-Sample-SyncManager-iOS-swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sample-SyncManager-iOS-swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sample-SyncManager-iOS-swift/Pods-Sample-SyncManager-iOS-swift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -228,6 +230,7 @@
 				C11E3204216CAAB80033D437 /* FLAnimatedImageView+ImageCache.swift */,
 				C11E3200216CAAB80033D437 /* String+SendBird.swift */,
 				C11E3203216CAAB80033D437 /* Utils.swift */,
+				C1ADFB6C226D4DAC00769C57 /* UserPreferences.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				C11E31EC216CA20E0033D437 /* AppDelegate.swift in Sources */,
 				C11E32A4216CAAB90033D437 /* IncomingUserMessageTableViewCell.swift in Sources */,
 				C11E32B4216CAAB90033D437 /* OutgoingGeneralUrlPreviewTempModel.swift in Sources */,
+				C1ADFB6D226D4DAC00769C57 /* UserPreferences.swift in Sources */,
 				C11E32A6216CAAB90033D437 /* IncomingImageFileMessageTableViewCell.swift in Sources */,
 				C11E328E216CAAB90033D437 /* MemberListTableViewCell.swift in Sources */,
 				C11E326C216CAAB90033D437 /* Constants.swift in Sources */,

@@ -45,7 +45,8 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     private var messageCollection: SBSMMessageCollection? {
         if self.collection == nil {
             let filter: SBSMMessageFilter = SBSMMessageFilter.init()
-            self.collection = SBSMMessageCollection.init(channel: self.channel, filter: filter, viewpointTimestamp: LONG_LONG_MAX)
+            let lastSeenAt: Int64? = UserPreferences.lastSeenAt(channelUrl: self.channel.channelUrl)
+            self.collection = SBSMMessageCollection.init(channel: self.channel, filter: filter, viewpointTimestamp: lastSeenAt ?? LONG_LONG_MAX)
         }
         return self.collection
     }
@@ -67,11 +68,11 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         
         self.isLoading = true
         self.messageCollection?.delegate = self
-        self.messageCollection?.fetch(in: SBSMMessageDirection.previous, completionHandler: { (error) in
-            self.chattingView?.scrollToBottom(force: true)
-            self.channel.markAsRead()
+        self.messageCollection?.fetch(in: .previous, completionHandler: { (error) in
             self.isLoading = false
         })
+        
+        self.messageCollection?.fetch(in: .next, completionHandler: nil)
     }
     
     private func configure() -> Void {
@@ -110,6 +111,8 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
             view.delegate = nil
         }
         self.messageCollection?.delegate = nil
+        self.messageCollection?.remove()
+        self.collection = nil
         SBDMain.removeChannelDelegate(forIdentifier: self.delegateIdentifier)
     }
 
@@ -157,7 +160,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         }
         
         let resetManager = UIAlertAction(title: "Reset Message List", style: UIAlertAction.Style.default) { (_) in
-            self.messageCollection?.resetViewpointTimestamp(LONG_LONG_MAX)
+            self.messageCollection?.resetViewpointTimestamp(UserPreferences.lastSeenAt(channelUrl: self.channel.channelUrl) ?? LONG_LONG_MAX)
         }
         vc.addAction(resetManager)
         
@@ -357,6 +360,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
             switch action {
             case SBSMMessageEventAction.insert:
                 self.chattingView?.insert(messages: messages, collection: collection, completionHandler: {
+                    UserPreferences.setLastSeenAt(channelUrl: self.channel.channelUrl, lastSeenAt: self.chattingView?.messages.last?.createdAt ?? 0)
                     handler()
                     
                     if Utils.isTopViewController(viewController: self) {
