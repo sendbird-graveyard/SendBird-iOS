@@ -526,10 +526,9 @@
 			};
 			buildConfigurationList = 5AB0CC201D8F840400F05EC1 /* Build configuration list for PBXProject "Sample-SyncManager-iOS" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				ko,

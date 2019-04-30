@@ -45,11 +45,11 @@
 }
 
 + (BOOL)isTopViewController:(UIViewController *)viewController {
-    return (viewController == [self topViewController]);
+    return (viewController == [Utils topViewController]);
 }
 
 + (UIViewController *)topViewController {
-    return [self topViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+    return [Utils topViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
 }
 
 + (UIViewController *)topViewController:(UIViewController *)rootViewController {
@@ -65,10 +65,10 @@
     if ([presentedViewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController *navigationController = (UINavigationController *)presentedViewController;
         UIViewController *lastViewController = navigationController.viewControllers.lastObject;
-        return [self topViewController:lastViewController];
+        return [Utils topViewController:lastViewController];
     }
     
-    return [self topViewController:presentedViewController];
+    return [Utils topViewController:presentedViewController];
 }
 
 
