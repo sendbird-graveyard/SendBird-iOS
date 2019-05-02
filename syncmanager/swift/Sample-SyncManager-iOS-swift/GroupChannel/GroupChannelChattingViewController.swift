@@ -322,8 +322,8 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
                         }
                         params.data = dataString
                         params.customType = "url_preview"
-                        self.channel.sendUserMessage(with: params, completionHandler: { (theMessage, theError) in
-                            guard let message: SBDUserMessage = theMessage, let _: SBDError = theError else {
+                        self.channel.sendUserMessage(with: params, completionHandler: { (theMessage, error) in
+                            guard let message: SBDUserMessage = theMessage, error == nil else {
                                 self.sendMessageWithReplacement(replacement: aTempModel)
                                 return
                             }
@@ -397,13 +397,13 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         }
         params.targetLanguages = self.targetLanguages
         var previewMessage: SBDUserMessage?
-        previewMessage = self.channel.sendUserMessage(with: params, completionHandler: { (theMessage, theError) in
+        previewMessage = self.channel.sendUserMessage(with: params, completionHandler: { (theMessage, error) in
             if let thePreviewMessage: SBDUserMessage = previewMessage {
                 self.messageCollection?.deleteMessage(thePreviewMessage)
             }
             self.chattingView?.scrollToBottom(force: true)
             
-            guard let message: SBDUserMessage = theMessage, let _: SBDError = theError else {
+            guard let message: SBDUserMessage = theMessage, error == nil else {
                 return
             }
             
@@ -454,13 +454,13 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         }
         params.targetLanguages = self.targetLanguages
         var previewMessage: SBDUserMessage?
-        previewMessage = self.channel.sendUserMessage(with: params, completionHandler: { (theMessage, theError) in
+        previewMessage = self.channel.sendUserMessage(with: params, completionHandler: { (theMessage, error) in
             if let thePreviewMessage: SBDUserMessage = previewMessage {
                 self.messageCollection?.deleteMessage(thePreviewMessage)
             }
             self.chattingView?.scrollToBottom(force: true)
             
-            guard let message: SBDUserMessage = theMessage, let _: SBDError = theError else {
+            guard let message: SBDUserMessage = theMessage, error == nil else {
                 if let requestId: String = theMessage?.requestId {
                     self.chattingView?.resendableMessages[requestId] = theMessage
                 }
@@ -880,8 +880,8 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         guard let cachedData: Data = theCachedData else {
             let session: URLSession = URLSession.shared
             let request: URLRequest = URLRequest.init(url: url)
-            let task: URLSessionDataTask = session.dataTask(with: request) { (theData, theResponse, theError) in
-                guard let _: Error = theError, let httpResponse: HTTPURLResponse = theResponse as? HTTPURLResponse, let data: Data = theData else {
+            let task: URLSessionDataTask = session.dataTask(with: request) { (theData, theResponse, error) in
+                guard error == nil, let httpResponse: HTTPURLResponse = theResponse as? HTTPURLResponse, let data: Data = theData else {
                     self.hideImageViewerLoading()
                     return
                 }
@@ -959,13 +959,13 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
                 }
                 
                 var thePreviewMessage: SBDUserMessage?
-                thePreviewMessage = self.channel.sendUserMessage(with: params, completionHandler: { (theMessage, theError) in
+                thePreviewMessage = self.channel.sendUserMessage(with: params, completionHandler: { (theMessage, error) in
                     if let previewMessage: SBDUserMessage = thePreviewMessage {
                         self.messageCollection?.deleteMessage(previewMessage)
                         thePreviewMessage = nil
                     }
                     self.chattingView?.scrollToBottom(force: true)
-                    guard let _: SBDError = theError, let message: SBDUserMessage = theMessage else {
+                    guard let message: SBDUserMessage = theMessage, error == nil else {
                         return
                     }
                     
@@ -1003,13 +1003,13 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
                 params.data = resendableMessage.data
                 params.customType = resendableMessage.customType
                 var thePreviewMessage: SBDFileMessage?
-                thePreviewMessage = self.channel.sendFileMessage(with: params, completionHandler: { (theMessage, theError) in
+                thePreviewMessage = self.channel.sendFileMessage(with: params, completionHandler: { (theMessage, error) in
                     if let previewMessage: SBDFileMessage = thePreviewMessage {
                         self.messageCollection?.deleteMessage(previewMessage)
                         thePreviewMessage = nil
                     }
                     self.chattingView?.scrollToBottom(force: true)
-                    guard let _: SBDError = theError, let message: SBDFileMessage = theMessage else {
+                    guard error == nil, let message: SBDFileMessage = theMessage else {
                         self.chattingView?.resendableFileData[requestId] = self.chattingView?.preSendFileData[requestId]
                         self.chattingView?.preSendFileData.removeValue(forKey: requestId)
                         return
@@ -1082,7 +1082,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
             
             self.messageCollection?.deleteMessage(previewMessage)
             
-            guard let _: SBDError = error else {
+            guard error == nil else {
                 self.chattingView?.resendableFileData[requestId] = fileDataDict
                 return
             }
