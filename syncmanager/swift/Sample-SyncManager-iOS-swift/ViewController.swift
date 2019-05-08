@@ -8,6 +8,7 @@
 
 import UIKit
 import SendBirdSDK
+import SendBirdSyncManager
 
 class ViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var connectButton: UIButton!
@@ -31,25 +32,25 @@ class ViewController: UITableViewController, UITextFieldDelegate {
         if path != nil {
             let infoDict = NSDictionary(contentsOfFile: path!)
             let sampleUIVersion = infoDict?["CFBundleShortVersionString"] as! String
-            let version = "Sample UI v\(sampleUIVersion) / SDK v\(SBDMain.getSDKVersion())"
-            self.versionLabel.text = version
+            let version: String? = "Sample UI v\(sampleUIVersion) / Core SDK v\(SBDMain.getSDKVersion()) / SyncManager SDK v\(SBSMSyncManagerVersionString())"
+            self.versionLabel?.text = version ?? ""
         }
         
-        self.userIdTextField.delegate = self
-        self.nicknameTextField.delegate = self
+        self.userIdTextField?.delegate = self
+        self.nicknameTextField?.delegate = self
         
-        self.userIdLabel.alpha = 0
-        self.nicknameLabel.alpha = 0
+        self.userIdLabel?.alpha = 0
+        self.nicknameLabel?.alpha = 0
         
-        self.userIdLineView.backgroundColor = Constants.textFieldLineColorNormal()
-        self.nicknameLineView.backgroundColor = Constants.textFieldLineColorNormal()
+        self.userIdLineView?.backgroundColor = Constants.textFieldLineColorNormal()
+        self.nicknameLineView?.backgroundColor = Constants.textFieldLineColorNormal()
         
-        self.connectButton.setBackgroundImage(Utils.imageFromColor(color: Constants.connectButtonColor()), for: UIControl.State.normal)
+        self.connectButton?.setBackgroundImage(Utils.imageFromColor(color: Constants.connectButtonColor()), for: UIControl.State.normal)
         
-        self.indicatorView.hidesWhenStopped = true
+        self.indicatorView?.hidesWhenStopped = true
         
-        self.userIdTextField.addTarget(self, action: #selector(userIdTextFieldDidChange(sender:)), for: UIControl.Event.editingChanged)
-        self.nicknameTextField.addTarget(self, action: #selector(nicknameTextFieldDidChange(sender:)), for: UIControl.Event.editingChanged)
+        self.userIdTextField?.addTarget(self, action: #selector(userIdTextFieldDidChange(sender:)), for: UIControl.Event.editingChanged)
+        self.nicknameTextField?.addTarget(self, action: #selector(nicknameTextFieldDidChange(sender:)), for: UIControl.Event.editingChanged)
         
         
     }

@@ -106,17 +106,11 @@ class GroupChannelListTableViewCell: UITableViewCell {
         self.coverImageContainerForThree.isHidden = true
         self.coverImageContainerForFour.isHidden = true
         
-        let defaultImage: UIImage? = UIImage(named: "img_profile")
         var memberNames: [String] = []
         if self.channel.memberCount == 1 {
             self.coverImageContainerForOne.isHidden = false
             let member = self.channel.members?[0] as! SBDUser
-            if let profileUrl: String = member.profileUrl, let url: URL = URL(string: profileUrl) {
-                self.coverImageView11.af_setImage(withURL: url, placeholderImage: defaultImage)
-            }
-            else {
-                self.coverImageView11.image = defaultImage
-            }
+            self.coverImageView11.sbsm_setProfileImage(profileUrl: member.profileUrl)
         }
         else if self.channel.memberCount == 2 {
             self.coverImageContainerForOne.isHidden = false
@@ -125,12 +119,7 @@ class GroupChannelListTableViewCell: UITableViewCell {
                     continue
                 }
                 
-                if let profileUrl: String = member.profileUrl, let url: URL = URL(string: profileUrl) {
-                    self.coverImageView11.af_setImage(withURL: url, placeholderImage: defaultImage)
-                }
-                else {
-                    self.coverImageView11.image = defaultImage
-                }
+                self.coverImageView11.sbsm_setProfileImage(profileUrl: member.profileUrl)
                 memberNames.append(member.nickname!)
             }
         }
@@ -149,12 +138,7 @@ class GroupChannelListTableViewCell: UITableViewCell {
             }
             
             for i in 0...memberExceptCurrentUser.count - 1 {
-                if let profileUrl: String = memberExceptCurrentUser[i].profileUrl, let url: URL = URL(string: profileUrl) {
-                    coverImages[i].af_setImage(withURL: url, placeholderImage: defaultImage)
-                }
-                else {
-                    coverImages[i].image = defaultImage
-                }
+                coverImages[i].sbsm_setProfileImage(profileUrl: memberExceptCurrentUser[i].profileUrl)
             }
         }
         else if self.channel.memberCount == 4 {
@@ -172,12 +156,7 @@ class GroupChannelListTableViewCell: UITableViewCell {
             }
             
             for i in 0...memberExceptCurrentUser.count - 1 {
-                if let profileUrl: String = memberExceptCurrentUser[i].profileUrl, let url: URL = URL(string: profileUrl) {
-                    coverImages[i].af_setImage(withURL: url, placeholderImage: defaultImage)
-                }
-                else {
-                    coverImages[i].image = defaultImage
-                }
+                coverImages[i].sbsm_setProfileImage(profileUrl: memberExceptCurrentUser[i].profileUrl)
             }
         }
         else if self.channel.memberCount > 4 {
@@ -201,12 +180,7 @@ class GroupChannelListTableViewCell: UITableViewCell {
             }
             
             for i in 0...memberExceptCurrentUser.count - 1 {
-                if let profileUrl: String = memberExceptCurrentUser[i].profileUrl, let url: URL = URL(string: profileUrl) {
-                    coverImages[i].af_setImage(withURL: url, placeholderImage: defaultImage)
-                }
-                else {
-                    coverImages[i].image = defaultImage
-                }    
+                coverImages[i].sbsm_setProfileImage(profileUrl: memberExceptCurrentUser[i].profileUrl)
             }
         }
         

@@ -55,7 +55,7 @@ class GroupChannelListEditableTableViewCell: MGSwipeTableCell {
         if self.channel.memberCount == 1 {
             self.coverImageContainerForOne.isHidden = false
             let member = self.channel.members?[0] as! SBDUser
-            self.coverImageView11.af_setImage(withURL: URL(string: member.profileUrl!)!, placeholderImage: UIImage(named: "img_profile"))
+            self.coverImageView11.sbsm_setProfileImage(profileUrl: member.profileUrl)
         }
         else if self.channel.memberCount == 2 {
             self.coverImageContainerForTwo.isHidden = false
@@ -63,7 +63,8 @@ class GroupChannelListEditableTableViewCell: MGSwipeTableCell {
                 if member.userId == SBDMain.getCurrentUser()?.userId {
                     continue
                 }
-                self.coverImageView11.af_setImage(withURL: URL(string: member.profileUrl!)!, placeholderImage: UIImage(named: "img_profile"))
+                self.coverImageView11.sbsm_setProfileImage(profileUrl: member.profileUrl)
+
                 memberNames.append(member.nickname!)
             }
         }
@@ -82,7 +83,7 @@ class GroupChannelListEditableTableViewCell: MGSwipeTableCell {
             }
             
             for i in 0...memberExceptCurrentUser.count - 1{
-                coverImages[i].af_setImage(withURL: URL(string: memberExceptCurrentUser[i].profileUrl!)!, placeholderImage: UIImage(named: "img_profile"))
+                coverImages[i].sbsm_setProfileImage(profileUrl: memberExceptCurrentUser[i].profileUrl)
             }
         }
         else if self.channel.memberCount == 4 {
@@ -100,7 +101,7 @@ class GroupChannelListEditableTableViewCell: MGSwipeTableCell {
             }
             
             for i in 0...memberExceptCurrentUser.count - 1 {
-                coverImages[i].af_setImage(withURL: URL(string: memberExceptCurrentUser[i].profileUrl!)!, placeholderImage: UIImage(named: "img_profile"))
+                coverImages[i].sbsm_setProfileImage(profileUrl: memberExceptCurrentUser[i].profileUrl)
             }
         }
         else if self.channel.memberCount > 4 {
@@ -123,7 +124,7 @@ class GroupChannelListEditableTableViewCell: MGSwipeTableCell {
             }
             
             for i in 0...memberExceptCurrentUser.count - 1 {
-                coverImages[i].af_setImage(withURL: URL(string: memberExceptCurrentUser[i].profileUrl!)!, placeholderImage: UIImage(named: "img_profile"))
+                coverImages[i].sbsm_setProfileImage(profileUrl: memberExceptCurrentUser[i].profileUrl)
             }
         }
         
