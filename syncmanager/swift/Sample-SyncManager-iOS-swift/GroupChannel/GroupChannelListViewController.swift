@@ -16,7 +16,16 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var tableView: UITableView?
     @IBOutlet weak var noChannelLabel: UILabel?
     
-    private var channels: Array<SBDGroupChannel> = Array()
+    private var channels: [SBDGroupChannel] {
+        get {
+            if let theChannels: [SBDGroupChannel] = self.channelCollection?.channels {
+                return theChannels
+            }
+            else {
+                return [SBDGroupChannel]()
+            }
+        }
+    }
     
     private var query: SBDGroupChannelListQuery? {
         get {
@@ -105,7 +114,13 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     @objc private func back() {
-        self.dismiss(animated: false, completion: nil)
+        ConnectionManager.logout {
+            let storyboard: UIStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let loginViewController: UIViewController? = storyboard.instantiateInitialViewController()
+            if let viewController: UIViewController = loginViewController {
+                self.present(viewController, animated: false, completion: nil)
+            }
+        }
     }
     
     @objc private func createGroupChannel() {
@@ -202,11 +217,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             
             (cell as! GroupChannelListTableViewCell).setModel(aChannel: self.channels[indexPath.row])
         }
-        
-        if self.channels.count > 0 && indexPath.row + 1 == self.channels.count {
-            self.channelCollection?.fetch(completionHandler: nil)
-        }
-        
+                
         return cell!
     }
     
@@ -216,15 +227,14 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         let row = self.tableView?.indexPath(for: cell)?.row
         let selectedChannel: SBDGroupChannel = self.channels[row!] as SBDGroupChannel
         let handler = {(error: SBDError?) -> Void in
-            guard let _: SBDError = error else {
-            let vc = UIAlertController(title: "Error", message: error?.domain, preferredStyle: UIAlertController.Style.alert)
-            let closeAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil)
-            vc.addAction(closeAction)
-            DispatchQueue.main.async {
-                self.present(vc, animated: true, completion: nil)
-            }
-            
-            return
+            if let theError: SBDError = error {
+                let vc = UIAlertController(title: "Error", message: theError.domain, preferredStyle: UIAlertController.Style.alert)
+                vc.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel, handler: nil))
+                DispatchQueue.main.async {
+                    self.present(vc, animated: true, completion: nil)
+                }
+                
+                return
             }
         }
         
@@ -293,11 +303,6 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             return
         }
 
-        self.channels.append(contentsOf: channels)
-        self.channels.sort { (channel1, channel2) -> Bool in
-            return self.channelCollection?.orderAscendingBetweenObject(channel1, andObject: channel2) == ComparisonResult.orderedAscending
-        }
-        
         DispatchQueue.main.async {
             self.tableView?.reloadData()
             
@@ -309,14 +314,6 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         guard channels.count > 0 else {
             completionHandler?()
             return
-        }
-
-        for updatedChannel in channels {
-            for channel in self.channels {
-                if channel.channelUrl == updatedChannel.channelUrl, let index: Int = self.channels.firstIndex(of: channel) {
-                    self.channels[index] = updatedChannel
-                }
-            }
         }
         
         DispatchQueue.main.async {
@@ -331,12 +328,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             completionHandler?()
             return
         }
-        
-        let removedChannelUrls: [String] = channels.map({$0.channelUrl})
-        self.channels.removeAll { (channel) -> Bool in
-            return removedChannelUrls.contains(channel.channelUrl)
-        }
-        
+
         DispatchQueue.main.async {
             self.tableView?.reloadData()
             
@@ -346,27 +338,13 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     
     func move(channel: SBDGroupChannel, completionHandler: SBSMVoidHandler?) -> Void {
         let theOldIndex: Int? = self.channels.map({$0.channelUrl}).firstIndex(of: channel.channelUrl)
-        guard let oldIndex: Int = theOldIndex else {
-            completionHandler?()
-            return
-        }
-        
-        self.channels[oldIndex] = channel
-        
-        self.channels.sort { (channel1, channel2) -> Bool in
-            return self.channelCollection?.orderAscendingBetweenObject(channel1, andObject: channel2) == ComparisonResult.orderedAscending
-        }
-
-        guard let newIndex: Int = self.channels.map({$0.channelUrl}).firstIndex(of: channel.channelUrl), newIndex == oldIndex else {
+        guard let _: Int = theOldIndex else {
             completionHandler?()
             return
         }
 
-        let oldIndexPath: IndexPath = IndexPath.init(row: oldIndex, section: 0)
-        let newIndexPath: IndexPath = IndexPath.init(row: newIndex, section: 0)
         DispatchQueue.main.async {
-            self.tableView?.moveRow(at: oldIndexPath, to: newIndexPath)
-            self.tableView?.reloadRows(at: [newIndexPath], with: UITableView.RowAnimation.none)
+            self.tableView?.reloadData()
             
             completionHandler?()
         }
@@ -374,7 +352,6 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     
     func clearAllChannels(completionHandler: SBSMVoidHandler?) -> Void {
         DispatchQueue.main.async {
-            self.channels.removeAll()
             self.tableView?.reloadData()
             
             completionHandler?()
