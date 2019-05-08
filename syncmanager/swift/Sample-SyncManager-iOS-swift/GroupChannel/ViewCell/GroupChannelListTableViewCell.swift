@@ -106,11 +106,17 @@ class GroupChannelListTableViewCell: UITableViewCell {
         self.coverImageContainerForThree.isHidden = true
         self.coverImageContainerForFour.isHidden = true
         
+        let defaultImage: UIImage? = UIImage(named: "img_profile")
         var memberNames: [String] = []
         if self.channel.memberCount == 1 {
             self.coverImageContainerForOne.isHidden = false
             let member = self.channel.members?[0] as! SBDUser
-            self.coverImageView11.af_setImage(withURL: URL(string: member.profileUrl!)!, placeholderImage: UIImage(named: "img_profile"))
+            if let profileUrl: String = member.profileUrl, let url: URL = URL(string: profileUrl) {
+                self.coverImageView11.af_setImage(withURL: url, placeholderImage: defaultImage)
+            }
+            else {
+                self.coverImageView11.image = defaultImage
+            }
         }
         else if self.channel.memberCount == 2 {
             self.coverImageContainerForOne.isHidden = false
@@ -118,7 +124,13 @@ class GroupChannelListTableViewCell: UITableViewCell {
                 if member.userId == SBDMain.getCurrentUser()?.userId {
                     continue
                 }
-                self.coverImageView11.af_setImage(withURL: URL(string: member.profileUrl!)!, placeholderImage: UIImage(named: "img_profile"))
+                
+                if let profileUrl: String = member.profileUrl, let url: URL = URL(string: profileUrl) {
+                    self.coverImageView11.af_setImage(withURL: url, placeholderImage: defaultImage)
+                }
+                else {
+                    self.coverImageView11.image = defaultImage
+                }
                 memberNames.append(member.nickname!)
             }
         }
@@ -137,7 +149,12 @@ class GroupChannelListTableViewCell: UITableViewCell {
             }
             
             for i in 0...memberExceptCurrentUser.count - 1 {
-                coverImages[i].af_setImage(withURL: URL(string: memberExceptCurrentUser[i].profileUrl!)!, placeholderImage: UIImage(named: "img_profile"))
+                if let profileUrl: String = memberExceptCurrentUser[i].profileUrl, let url: URL = URL(string: profileUrl) {
+                    coverImages[i].af_setImage(withURL: url, placeholderImage: defaultImage)
+                }
+                else {
+                    coverImages[i].image = defaultImage
+                }
             }
         }
         else if self.channel.memberCount == 4 {
@@ -155,7 +172,12 @@ class GroupChannelListTableViewCell: UITableViewCell {
             }
             
             for i in 0...memberExceptCurrentUser.count - 1 {
-                coverImages[i].af_setImage(withURL: URL(string: memberExceptCurrentUser[i].profileUrl!)!, placeholderImage: UIImage(named: "img_profile"))
+                if let profileUrl: String = memberExceptCurrentUser[i].profileUrl, let url: URL = URL(string: profileUrl) {
+                    coverImages[i].af_setImage(withURL: url, placeholderImage: defaultImage)
+                }
+                else {
+                    coverImages[i].image = defaultImage
+                }
             }
         }
         else if self.channel.memberCount > 4 {
@@ -179,7 +201,12 @@ class GroupChannelListTableViewCell: UITableViewCell {
             }
             
             for i in 0...memberExceptCurrentUser.count - 1 {
-                coverImages[i].af_setImage(withURL: URL(string: memberExceptCurrentUser[i].profileUrl!)!, placeholderImage: UIImage(named: "img_profile"))
+                if let profileUrl: String = memberExceptCurrentUser[i].profileUrl, let url: URL = URL(string: profileUrl) {
+                    coverImages[i].af_setImage(withURL: url, placeholderImage: defaultImage)
+                }
+                else {
+                    coverImages[i].image = defaultImage
+                }    
             }
         }
         

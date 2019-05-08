@@ -91,24 +91,16 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         DispatchQueue.main.async {
             self.refreshControl.beginRefreshing()
             
-            DispatchQueue.global().async {
-                self.channels.removeAll()
-                
+            self.channelCollection?.delegate = nil
+            self.channelCollection?.remove()
+            self.collection = nil
+            
+            self.channelCollection?.fetch(completionHandler: { (error) in
+                // end load progress
                 DispatchQueue.main.async {
-                    self.tableView?.reloadData()
+                    self.refreshControl.endRefreshing()
                 }
-                
-                self.channelCollection?.delegate = nil
-                self.channelCollection?.remove()
-                
-                self.collection = nil
-                self.channelCollection?.fetch(completionHandler: { (error) in
-                    // end load progress
-                    DispatchQueue.main.async {
-                        self.refreshControl.endRefreshing()
-                    }
-                })
-            }
+            })
         }
     }
     
