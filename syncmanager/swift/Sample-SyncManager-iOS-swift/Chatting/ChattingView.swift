@@ -26,7 +26,7 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var inputContainerViewHeight: NSLayoutConstraint!
     
     var messages: [SBDBaseMessage] = [SBDBaseMessage]()
-    
+
     var channel: SBDBaseChannel?
     
     var resendableMessages: [String:SBDBaseMessage] = [:]

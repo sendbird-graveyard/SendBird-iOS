@@ -70,8 +70,7 @@ class ConnectionManager: NSObject, SBDConnectionDelegate {
                 return
             }
             
-            let manager: SBSMSyncManager = SBSMSyncManager()
-            manager.resumeSynchronize()
+            SBSMSyncManager.resumeSynchronize()
             
             if let pushToken: Data = SBDMain.getPendingPushToken() {
                 SBDMain.registerDevicePushToken(pushToken, unique: true, completionHandler: { (status, error) in

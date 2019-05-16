@@ -82,8 +82,7 @@ NSString *const ConnectionManagerErrorDomainUser = @"com.sendbird.sample.user";
             return;
         }
         
-        SBSMSyncManager *manager = [SBSMSyncManager manager];
-        [manager resumeSynchronize];
+        [SBSMSyncManager resumeSynchronize];
         
         [SBDMain registerDevicePushToken:[SBDMain getPendingPushToken] unique:YES completionHandler:^(SBDPushTokenRegistrationStatus status, SBDError * _Nullable error) {
             if (error != nil) {
@@ -202,8 +201,7 @@ NSString *const ConnectionManagerErrorDomainUser = @"com.sendbird.sample.user";
 }
 
 - (void)didSucceedReconnection {
-    SBSMSyncManager *manager = [SBSMSyncManager manager];
-    [manager resumeSynchronize];
+    [SBSMSyncManager resumeSynchronize];
     
     [self broadcastConnection:YES];
 }
