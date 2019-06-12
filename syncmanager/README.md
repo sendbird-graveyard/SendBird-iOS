@@ -2,7 +2,7 @@
 The repository for a sample project that use `SendBird SyncManager` for **LocalCache**. Manager offers an event-based data management so that each view would see a single spot by subscribing data event. And it stores the data into database which implements local caching for faster loading.  
 
 ## SendBird SyncManager Framework
-Refers to [SendBird SyncManager Framework](https://github.com/smilefam/sendbird-syncmanager-ios)
+Refers to [SendBird SyncManager Framework](https://github.com/sendbird/sendbird-syncmanager-ios)
 
 ## Install SendBird SyncManager Framework from CocoaPods
 
@@ -35,11 +35,11 @@ Now you can see installed SendBird framework by inspecting YOUR_PROJECT.xcworksp
 
 ## Install SendBird Framework from Carthage
 
-1. Add `github "smilefam/sendbird-syncmanager-ios"` to your `Cartfile`.
+1. Add `github "sendbird/sendbird-syncmanager-ios"` to your `Cartfile`.
 2. Run `carthage update`.
 3. Go to your Xcode project's "General" settings. Open `<YOUR_XCODE_PROJECT_DIRECTORY>/Carthage/Build/iOS` in Finder and drag `SendBirdSyncManager.framework` to the "Embedded Binaries" section in Xcode. Make sure `Copy items if needed` is selected and click `Finish`.
 
-> Note: `SendBirdSyncManager` is dependent with `SendBird SDK`. So if you install from Carthage, you should instal [SendBird SDK](https://github.com/smilefam/sendbird-ios-framework). Keep in mind the version of `SendBird SDK` should be higher than **3.0.130**.
+> Note: `SendBirdSyncManager` is dependent with `SendBird SDK`. So if you install from Carthage, you should instal [SendBird SDK](https://github.com/sendbird/sendbird-ios-framework). Keep in mind the version of `SendBird SDK` should be higher than **3.0.130**.
 
 ## Usage
 
@@ -82,7 +82,7 @@ Channel is quite mutable data where chat is actively going - channel's last mess
 
 > Note: Channel data sync mechanism could change later.
 
-`SBSMChannelCollection` requires `SBDGroupChannelListQuery` instance of [SendBirdSDK](https://github.com/smilefam/sendbird-ios-framework) as it binds the query into the collection. Then the collection filters data with the query. Here's the code to create new `SBSMChannelCollection` instance. The creation of channel collection is usually in `viewDidLoad()` of group channel list view controller.
+`SBSMChannelCollection` requires `SBDGroupChannelListQuery` instance of [SendBirdSDK](https://github.com/sendbird/sendbird-ios-framework) as it binds the query into the collection. Then the collection filters data with the query. Here's the code to create new `SBSMChannelCollection` instance. The creation of channel collection is usually in `viewDidLoad()` of group channel list view controller.
 
 ```swift
 // swift
@@ -333,7 +333,7 @@ deinit {
 }
 ```
 
-`SBSMMessageCollection` has event handler for delegate that you can implement and add to the collection. Event handler is named as `SBSMMessageCollectionDelegate` and it receives `SBSMMessageEventAction` and list of `messages` when an event has come. The `SBSMMessageEventAction` is a keyword to notify what happened to the message, and the `message` is a kind of `SBDBaseMessage` instance of [SendBird SDK](https://github.com/smilefam/sendbird-ios-framework).
+`SBSMMessageCollection` has event handler for delegate that you can implement and add to the collection. Event handler is named as `SBSMMessageCollectionDelegate` and it receives `SBSMMessageEventAction` and list of `messages` when an event has come. The `SBSMMessageEventAction` is a keyword to notify what happened to the message, and the `message` is a kind of `SBDBaseMessage` instance of [SendBird SDK](https://github.com/sendbird/sendbird-ios-framework).
 
 ```swift
 // swift
