@@ -25,7 +25,7 @@
 #import "Application.h"
 #import <SendBirdSyncManager/SendBirdSyncManager.h>
 
-@interface GroupChannelChattingViewController () <ConnectionManagerDelegate, SBDChannelDelegate, SBSMMessageCollectionDelegate>
+@interface GroupChannelChattingViewController () <SBDChannelDelegate, SBSMMessageCollectionDelegate>
 
 @property (weak, nonatomic) IBOutlet ChattingView *chattingView;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
@@ -69,7 +69,6 @@
     self.collectionQueue = [SBSMOperationQueue queue];
     
     [SBDMain addChannelDelegate:self identifier:self.delegateIdentifier];
-    [ConnectionManager addConnectionObserver:self];
     
     self.messageCollection.delegate = self;
     [self fetchPreviousMessages];
@@ -479,13 +478,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self presentViewController:vc animated:YES completion:nil];
     });
-}
-
-#pragma mark - Connection Manager Delegate
-- (void)didConnect:(BOOL)isReconnection {
-    [self.messageCollection resetViewpointTimestamp:LONG_LONG_MAX];
-    self.loading = NO;
-    [self fetchPreviousMessages];
 }
 
 #pragma mark - SendBird SDK

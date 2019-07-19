@@ -238,16 +238,20 @@
 }
 
 #pragma mark - UI for Message
-- (void)insertMessages:(NSArray<SBDBaseMessage *> *)messages comparator:(SBSMMessageComparator)comparator completionHandler:(SBSMVoidHandler)completionHandler {
+- (void)insertMessages:(NSArray<SBDBaseMessage *> *)messages comparator:(SBSMObjectComparator)comparator completionHandler:(SBSMVoidHandler)completionHandler {
     if (messages.count == 0) {
+        if (completionHandler != nil) {
+            completionHandler();
+        }
         return;
     }
     
     NSLog(@"\n+++ [MESSAGE TABLEVIEW] will insert tableView's messages - tableView: %@ - insertings: %@", self.messages, messages);
-    [self.messages addObjectsFromArray:messages];
-    [self.messages sortUsingComparator:comparator];
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        [self.messages addObjectsFromArray:messages];
+        [self.messages sortUsingComparator:comparator];
+    
         [self.chattingTableView reloadData];
         if (self.messages.lastObject.messageId == messages.lastObject.messageId) {
             [self scrollToBottomWithForce:YES];
@@ -261,20 +265,24 @@
 
 - (void)updateMessages:(NSArray<SBDBaseMessage *> *)messages completionHandler:(SBSMVoidHandler)completionHandler {
     if (messages.count == 0) {
+        if (completionHandler != nil) {
+            completionHandler();
+        }
         return;
     }
     
     NSLog(@"\n+++ [MESSAGE TABLEVIEW] will change tableView's messages - tableView: %@ - updating: %@", self.messages, messages);
-    for (SBDBaseMessage *updatedMessage in messages) {
-        for (SBDBaseMessage *message in self.messages) {
-            if (message.messageId == updatedMessage.messageId && message != updatedMessage) {
-                NSUInteger index = [self.messages indexOfObject:message];
-                [self.messages replaceObjectAtIndex:index withObject:updatedMessage];
-            }
-        }
-    }
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        for (SBDBaseMessage *updatedMessage in messages) {
+            for (SBDBaseMessage *message in self.messages) {
+                if (message.messageId == updatedMessage.messageId && message != updatedMessage) {
+                    NSUInteger index = [self.messages indexOfObject:message];
+                    [self.messages replaceObjectAtIndex:index withObject:updatedMessage];
+                }
+            }
+        }
+    
         [self.chattingTableView reloadData];
         
         if (completionHandler != nil) {
@@ -285,10 +293,14 @@
 
 - (void)removeMessages:(NSArray<SBDBaseMessage *> *)messages completionHandler:(SBSMVoidHandler)completionHandler {
     if (messages.count == 0) {
+        if (completionHandler != nil) {
+            completionHandler();
+        }
         return;
     }
     
     NSLog(@"\n+++ [MESSAGE TABLEVIEW] will delete tableView's messages - tableView: %@ - changelogs: %@", self.messages, messages);
+    
     NSMutableArray<NSNumber *> *removedMessageIds = [NSMutableArray array];
     NSMutableArray<NSString *> *removedRequestIds = [NSMutableArray array];
     for (SBDBaseMessage *removedMessage in messages) {
@@ -300,55 +312,57 @@
         }
     }
     
-    NSMutableArray<NSIndexPath *> *indexPathes = [NSMutableArray array];
-    NSIndexSet *indexSet = [self.messages indexesOfObjectsPassingTest:^BOOL(SBDBaseMessage * _Nonnull message, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (message.messageId > 0) {
-            if ([removedMessageIds containsObject:@(message.messageId)]) {
-                [removedMessageIds removeObject:@(message.messageId)];
-                [indexPathes addObject:[NSIndexPath indexPathForRow:idx inSection:0]];
-                
-                if (removedMessageIds.count == 0 && removedRequestIds.count == 0) {
-                    *stop = YES;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSMutableArray<NSIndexPath *> *indexPathes = [NSMutableArray array];
+        NSIndexSet *indexSet = [self.messages indexesOfObjectsPassingTest:^BOOL(SBDBaseMessage * _Nonnull message, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (message.messageId > 0) {
+                if ([removedMessageIds containsObject:@(message.messageId)]) {
+                    [removedMessageIds removeObject:@(message.messageId)];
+                    [indexPathes addObject:[NSIndexPath indexPathForRow:idx inSection:0]];
+                    
+                    if (removedMessageIds.count == 0 && removedRequestIds.count == 0) {
+                        *stop = YES;
+                    }
+                    return YES;
                 }
-                return YES;
             }
-        }
-        else if ([message valueForKey:@"requestId"] != nil) {
-            NSString *requestId = [message valueForKey:@"requestId"];
-            if ([removedRequestIds containsObject:requestId]) {
-                [removedRequestIds removeObject:requestId];
-                [indexPathes addObject:[NSIndexPath indexPathForRow:idx inSection:0]];
-                
-                if (removedMessageIds.count == 0 && removedRequestIds.count == 0) {
-                    *stop = YES;
+            else if ([message valueForKey:@"requestId"] != nil) {
+                NSString *requestId = [message valueForKey:@"requestId"];
+                if ([removedRequestIds containsObject:requestId]) {
+                    [removedRequestIds removeObject:requestId];
+                    [indexPathes addObject:[NSIndexPath indexPathForRow:idx inSection:0]];
+                    
+                    if (removedMessageIds.count == 0 && removedRequestIds.count == 0) {
+                        *stop = YES;
+                    }
+                    return YES;
                 }
-                return YES;
             }
-        }
+            
+            return NO;
+        }];
         
-        return NO;
-    }];
-    
-    [Utils tableView:self.chattingTableView performBatchUpdates:^(UITableView * _Nonnull tableView) {
-        [tableView deleteRowsAtIndexPaths:[indexPathes copy] withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.messages removeObjectsAtIndexes:indexSet];
-    } completion:^(BOOL finished) {
+        [self.chattingTableView deleteRowsAtIndexPaths:[indexPathes copy] withRowAnimation:UITableViewRowAnimationAutomatic];
+
         if (completionHandler != nil) {
             completionHandler();
         }
-    }];
+    });
+    
 }
 
 - (void)clearAllMessagesWithCompletionHandler:(ChattingViewCompletionHandler)completionHandler {
     NSLog(@"\n+++ [MESSAGE TABLEVIEW] will clear tableView's messages - tableView: %@", self.messages);
-    [Utils tableView:self.chattingTableView performBatchUpdates:^(UITableView * _Nonnull tableView) {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self.messages removeAllObjects];
-        [tableView reloadData];
-    } completion:^(BOOL finished) {
+        [self.chattingTableView reloadData];
+        
         if (completionHandler != nil) {
             completionHandler();
         }
-    }];
+    });
 }
 
 #pragma mark - UITextViewDelegate

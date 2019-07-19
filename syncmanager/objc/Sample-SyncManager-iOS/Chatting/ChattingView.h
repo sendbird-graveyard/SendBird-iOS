@@ -53,7 +53,7 @@ typedef void(^ChattingViewCompletionHandler)(void);
 - (void)endTypingIndicator;
 
 #pragma mark - UI for Message
-- (void)insertMessages:(nonnull NSArray<SBDBaseMessage *> *)messages comparator:(nonnull SBSMMessageComparator)comparator completionHandler:(nullable SBSMVoidHandler)completionHandler;
+- (void)insertMessages:(nonnull NSArray<SBDBaseMessage *> *)messages comparator:(nonnull SBSMObjectComparator)comparator completionHandler:(nullable SBSMVoidHandler)completionHandler;
 - (void)updateMessages:(nonnull NSArray<SBDBaseMessage *> *)messages completionHandler:(nullable SBSMVoidHandler)completionHandler;
 - (void)removeMessages:(nonnull NSArray<SBDBaseMessage *> *)messages completionHandler:(nullable SBSMVoidHandler)completionHandler;
 - (void)clearAllMessagesWithCompletionHandler:(nullable SBSMVoidHandler)completionHandler;
