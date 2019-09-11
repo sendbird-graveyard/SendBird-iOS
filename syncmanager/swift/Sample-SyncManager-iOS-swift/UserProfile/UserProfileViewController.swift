@@ -104,8 +104,8 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
                     }
                     
                     if hasUpdatedUserInfo == false || hasUpdatedPushNoti == false {
-                        let vc = UIAlertController(title: "Error", message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
-                        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
+                        let vc = UIAlertController(title: "Error", message: error?.domain, preferredStyle: .alert)
+                        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
                         vc.addAction(closeAction)
                         DispatchQueue.main.async {
                             self.present(vc, animated: true, completion: nil)
@@ -172,8 +172,8 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
                     }
                     
                     if hasUpdatedUserInfo == false || hasUpdatedPushNoti == false {
-                        let vc = UIAlertController(title: "Error", message: error?.domain, preferredStyle: UIAlertControllerStyle.alert)
-                        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel, handler: nil)
+                        let vc = UIAlertController(title: "Error", message: error?.domain, preferredStyle: .alert)
+                        let closeAction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
                         vc.addAction(closeAction)
                         DispatchQueue.main.async {
                             self.present(vc, animated: true, completion: nil)

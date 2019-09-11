@@ -62,6 +62,11 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidShow(notification:)), name: UIWindow.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidHide(notification:)), name: UIWindow.keyboardWillHideNotification, object: nil)
+        let contentViewTapRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(self.tapContentView))
+        self.view.addGestureRecognizer(contentViewTapRecognizer)
 
         // Do any additional setup after loading the view.
         self.configure()
@@ -120,20 +125,33 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         self.keyboardShown = true
         let keyboardFrameBegin = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey]
         let keyboardFrameBeginRect = (keyboardFrameBegin as! NSValue).cgRectValue
+        
         DispatchQueue.main.async {
-            self.bottomMargin.constant = keyboardFrameBeginRect.size.height
-            self.view.layoutIfNeeded()
-            self.chattingView?.stopMeasuringVelocity = true
-            self.chattingView?.scrollToBottom(force: false)
+            let animator = UIViewPropertyAnimator(duration: 0.3, curve: .easeOut) {
+                self.bottomMargin.constant = keyboardFrameBeginRect.size.height
+                self.view.layoutIfNeeded()
+                self.chattingView?.stopMeasuringVelocity = true
+                self.chattingView?.scrollToBottom(force: false)
+            }
+            animator.startAnimation()
         }
     }
     
     @objc private func keyboardDidHide(notification: Notification) {
         self.keyboardShown = false
         DispatchQueue.main.async {
-            self.bottomMargin.constant = 0
-            self.view.layoutIfNeeded()
-            self.chattingView?.scrollToBottom(force: false)
+            let animator = UIViewPropertyAnimator(duration: 0.3, curve: .easeOut) {
+                self.bottomMargin.constant = 0
+                self.view.layoutIfNeeded()
+                self.chattingView?.scrollToBottom(force: false)
+            }
+            animator.startAnimation()
+        }
+    }
+    
+    @objc func tapContentView() {
+        if self.keyboardShown == true {
+            self.view.endEditing(true)
         }
     }
     

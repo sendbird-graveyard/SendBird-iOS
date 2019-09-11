@@ -344,10 +344,6 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard scrollView !== self.messagesTableView else {
-            return
-        }
-        
         if self.stopMeasuringVelocity == false {
             let currentOffset = scrollView.contentOffset
             let currentTime = NSDate.timeIntervalSinceReferenceDate
@@ -382,8 +378,8 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             self.scrollLock = false
         }
         
-        if scrollView.contentOffset.y == 0 {
-            if self.messages.count > 0 && self.initialLoading == false {
+        if scrollView.contentOffset.y == 0 || scrollView.contentOffset.y + scrollView.frame.size.height == scrollView.contentSize.height {
+            if self.messages.count > 0 /*&& self.initialLoading == false*/ {
                 if self.delegate != nil {
                     self.delegate?.loadMoreMessage(view: self)
                 }
