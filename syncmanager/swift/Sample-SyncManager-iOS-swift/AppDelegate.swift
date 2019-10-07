@@ -179,7 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SBDChannelDelegate {
         content.title = title
         content.body = body
         
-        let trigger: UNTimeIntervalNotificationTrigger = UNTimeIntervalNotificationTrigger.init(timeInterval: 0, repeats: false)
+        let trigger: UNTimeIntervalNotificationTrigger = UNTimeIntervalNotificationTrigger.init(timeInterval: 0.1, repeats: false)
         let request: UNNotificationRequest = UNNotificationRequest.init(identifier: String(message.messageId), content: content, trigger: trigger)
         let center: UNUserNotificationCenter = UNUserNotificationCenter.current()
         center.add(request, withCompletionHandler: nil)
