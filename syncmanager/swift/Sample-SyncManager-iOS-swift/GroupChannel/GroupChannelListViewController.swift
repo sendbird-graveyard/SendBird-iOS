@@ -49,7 +49,7 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     private var refreshControl: UIRefreshControl = UIRefreshControl()
     private var editableChannel: Bool = false
     
-    lazy private var tableViewQueue: SBSMOperationQueue = SBSMOperationQueue.init()
+    lazy private var tableViewQueue = DispatchQueue(label: "com.sendbird.sample.channel.tableview")
     
     deinit {
         self.channelCollection?.delegate = nil
@@ -268,36 +268,27 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             return
         }
         
-        var operation: SBSMOperation?
-        operation = self.tableViewQueue.enqueue({
-            let handler = {() -> Void in
-                operation?.complete()
-            }
-            
+        self.tableViewQueue.async {
             switch (action) {
             case SBSMChannelEventAction.insert:
-                self.insert(channels: channels, completionHandler: handler)
+                self.insert(channels: channels, completionHandler: nil)
                 break
             case SBSMChannelEventAction.update:
-                self.update(channels: channels, completionHandler: handler)
+                self.update(channels: channels, completionHandler: nil)
                 break
             case SBSMChannelEventAction.remove:
-                self.remove(channels: channels, completionHandler: handler)
+                self.remove(channels: channels, completionHandler: nil)
                 break
             case SBSMChannelEventAction.move:
-                self.move(channel: channels.first!, completionHandler: handler)
+                self.move(channel: channels.first!, completionHandler: nil)
                 break
             case SBSMChannelEventAction.clear:
-                self.clearAllChannels(completionHandler: handler)
+                self.clearAllChannels(completionHandler: nil)
                 break
             case SBSMChannelEventAction.none:
-                handler()
-                break
-            default:
-                handler()
                 break
             }
-        })
+        }
     }
     
     // MARK: UI update

@@ -36,7 +36,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     private var photosViewController: NYTPhotosViewController?
     @IBOutlet weak var navigationBarHeight: NSLayoutConstraint!
     
-    let tableViewQueue: SBSMOperationQueue = SBSMOperationQueue.init()
+    let tableViewQueue = DispatchQueue.init(label: "com.sendbird.sample.message.tableview")
     
     /**
      *  new properties for local cache
@@ -369,17 +369,11 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
             return
         }
         
-        var operation: SBSMOperation?
-        operation = self.tableViewQueue.enqueue({
-            let handler = {() -> Void in
-                operation?.complete()
-            }
-            
+        self.tableViewQueue.async {
             switch action {
             case SBSMMessageEventAction.insert:
                 self.chattingView?.insert(messages: messages, collection: collection, completionHandler: {
                     UserPreferences.setLastSeenAt(channelUrl: self.channel.channelUrl, lastSeenAt: self.chattingView?.messages.last?.createdAt ?? 0)
-                    handler()
                     
                     if Utils.isTopViewController(viewController: self) {
                         self.channel.markAsRead()
@@ -387,20 +381,20 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
                 })
                 break
             case SBSMMessageEventAction.update:
-                self.chattingView?.update(messages: messages, completionHandler: handler)
+                self.chattingView?.update(messages: messages, completionHandler: nil)
                 break
             case SBSMMessageEventAction.remove:
-                self.chattingView?.remove(messages: messages, completionHandler: handler)
+                self.chattingView?.remove(messages: messages, completionHandler: nil)
                 break
             case SBSMMessageEventAction.clear:
-                self.chattingView?.clearAllMessages(completionHandler: handler)
+                self.chattingView?.clearAllMessages(completionHandler: nil)
                 break
             case SBSMMessageEventAction.none:
                 break
             default:
                 break
             }
-        })
+        }
     }
     
     // MARK: SendBird SDK
