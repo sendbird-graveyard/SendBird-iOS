@@ -217,6 +217,10 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             
             (cell as! GroupChannelListTableViewCell).setModel(aChannel: self.channels[indexPath.row])
         }
+        
+        if self.channels.count > 0 && indexPath.row == self.channels.count - 1 {
+            self.collection?.fetch(completionHandler: nil)
+        }
                 
         return cell!
     }
