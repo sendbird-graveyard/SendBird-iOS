@@ -126,7 +126,7 @@ class GroupChannelListTableViewCell: UITableViewCell {
         else if self.channel.memberCount == 3 {
             self.coverImageContainerForTwo.isHidden = false
             
-            var coverImages: [UIImageView] = [self.coverImageView21, self.coverImageView22]
+            let coverImages: [UIImageView] = [self.coverImageView21, self.coverImageView22]
             var memberExceptCurrentUser:  [SBDUser] = []
             for member in self.channel.members! as NSArray as! [SBDUser] {
                 if member.userId == SBDMain.getCurrentUser()?.userId {
@@ -144,7 +144,7 @@ class GroupChannelListTableViewCell: UITableViewCell {
         else if self.channel.memberCount == 4 {
             self.coverImageContainerForThree.isHidden = false
             
-            var coverImages: [UIImageView] = [self.coverImageView31, self.coverImageView32, self.coverImageView33]
+            let coverImages: [UIImageView] = [self.coverImageView31, self.coverImageView32, self.coverImageView33]
             var memberExceptCurrentUser:  [SBDUser] = []
             for member in self.channel.members! as NSArray as! [SBDUser] {
                 if member.userId == SBDMain.getCurrentUser()?.userId {
@@ -162,7 +162,7 @@ class GroupChannelListTableViewCell: UITableViewCell {
         else if self.channel.memberCount > 4 {
             self.coverImageContainerForFour.isHidden = false
             
-            var coverImages: [UIImageView] = [self.coverImageView41, self.coverImageView42, self.coverImageView43, self.coverImageView44]
+            let coverImages: [UIImageView] = [self.coverImageView41, self.coverImageView42, self.coverImageView43, self.coverImageView44]
             var memberExceptCurrentUser:  [SBDUser] = []
             var memberCount = 0
             for member in self.channel.members! as NSArray as! [SBDUser] {

@@ -648,19 +648,17 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                             }
                         }
                         
-                        if self.preSendMessages[userMessage.requestId!] != nil {
+                        if let requestId = userMessage.requestId(), self.preSendMessages[requestId] != nil {
                             (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showSendingStatus()
                         }
-                        else {
-                            if self.resendableMessages[userMessage.requestId!] != nil {
-                                (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showMessageControlButton()
-                                //                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showFailedStatus()
-                            }
-                            else {
-                                (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showMessageDate()
-                                (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showUnreadCount()
-                            }
+                        else if let requestId = userMessage.requestId(), self.resendableMessages[requestId] != nil {
+                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showMessageControlButton()
                         }
+                        else {
+                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showMessageDate()
+                            (cell as! OutgoingGeneralUrlPreviewMessageTableViewCell).showUnreadCount()
+                        }
+                        
                     }
                     else {
                         DispatchQueue.main.async {
@@ -674,25 +672,20 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     cell?.frame = CGRect(x: (cell?.frame.origin.x)!, y: (cell?.frame.origin.y)!, width: (cell?.frame.size.width)!, height: (cell?.frame.size.height)!)
                     if indexPath.row > 0 {
                         (cell as! OutgoingUserMessageTableViewCell).setPreviousMessage(aPrevMessage: self.messages[indexPath.row - 1])
-                    }
-                    else {
+                    } else {
                         (cell as! OutgoingUserMessageTableViewCell).setPreviousMessage(aPrevMessage: nil)
                     }
+                    
                     (cell as! OutgoingUserMessageTableViewCell).setModel(aMessage: userMessage, channel: self.channel)
                     (cell as! OutgoingUserMessageTableViewCell).delegate = self.delegate
                     
-                    if self.preSendMessages[userMessage.requestId!] != nil {
+                    if let requestId = userMessage.requestId(), self.preSendMessages[requestId] != nil {
                         (cell as! OutgoingUserMessageTableViewCell).showSendingStatus()
-                    }
-                    else {
-                        if self.resendableMessages[userMessage.requestId!] != nil {
-                            (cell as! OutgoingUserMessageTableViewCell).showMessageControlButton()
-//                            (cell as! OutgoingUserMessageTableViewCell).showFailedStatus()
-                        }
-                        else {
-                            (cell as! OutgoingUserMessageTableViewCell).showMessageDate()
-                            (cell as! OutgoingUserMessageTableViewCell).showUnreadCount()
-                        }
+                    } else if let requestId = userMessage.requestId(), self.resendableMessages[requestId] != nil {
+                        (cell as! OutgoingUserMessageTableViewCell).showMessageControlButton()
+                    } else {
+                        (cell as! OutgoingUserMessageTableViewCell).showMessageDate()
+                        (cell as! OutgoingUserMessageTableViewCell).showUnreadCount()
                     }
                 }
             }
@@ -795,18 +788,15 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     (cell as! OutgoingVideoFileMessageTableViewCell).setModel(aMessage: fileMessage, channel: self.channel)
                     (cell as! OutgoingVideoFileMessageTableViewCell).delegate = self.delegate
                     
-                    if self.preSendMessages[fileMessage.requestId!] != nil {
+                    if let requestId = fileMessage.requestId(), self.preSendMessages[requestId] != nil {
                         (cell as! OutgoingVideoFileMessageTableViewCell).showSendingStatus()
                     }
+                    else if let requestId = fileMessage.requestId(), self.resendableMessages[requestId] != nil {
+                        (cell as! OutgoingVideoFileMessageTableViewCell).showMessageControlButton()
+                    }
                     else {
-                        if self.resendableMessages[fileMessage.requestId!] != nil {
-                            (cell as! OutgoingVideoFileMessageTableViewCell).showMessageControlButton()
-//                            (cell as! OutgoingVideoFileMessageTableViewCell).showFailedStatus()
-                        }
-                        else {
-                            (cell as! OutgoingVideoFileMessageTableViewCell).showMessageDate()
-                            (cell as! OutgoingVideoFileMessageTableViewCell).showUnreadCount()
-                        }
+                        (cell as! OutgoingVideoFileMessageTableViewCell).showMessageDate()
+                        (cell as! OutgoingVideoFileMessageTableViewCell).showUnreadCount()
                     }
                 }
                 else if fileMessage.type.hasPrefix("audio") {
@@ -821,18 +811,16 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     (cell as! OutgoingFileMessageTableViewCell).setModel(aMessage: fileMessage, channel: self.channel)
                     (cell as! OutgoingFileMessageTableViewCell).delegate = self.delegate
                     
-                    if self.preSendMessages[fileMessage.requestId!] != nil {
+                    if let requestId = fileMessage.requestId(), self.preSendMessages[requestId] != nil {
                         (cell as! OutgoingFileMessageTableViewCell).showSendingStatus()
                     }
+                    else if let requestId = fileMessage.requestId(), self.resendableMessages[requestId] != nil {
+                        (cell as! OutgoingFileMessageTableViewCell).showMessageControlButton()
+                        //                            (cell as! OutgoingFileMessageTableViewCell).showFailedStatus()
+                    }
                     else {
-                        if self.resendableMessages[fileMessage.requestId!] != nil {
-                            (cell as! OutgoingFileMessageTableViewCell).showMessageControlButton()
-//                            (cell as! OutgoingFileMessageTableViewCell).showFailedStatus()
-                        }
-                        else {
-                            (cell as! OutgoingFileMessageTableViewCell).showMessageDate()
-                            (cell as! OutgoingFileMessageTableViewCell).showUnreadCount()
-                        }
+                        (cell as! OutgoingFileMessageTableViewCell).showMessageDate()
+                        (cell as! OutgoingFileMessageTableViewCell).showUnreadCount()
                     }
                 }
                 else if fileMessage.type.hasPrefix("image") {
@@ -847,91 +835,86 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     (cell as! OutgoingImageFileMessageTableViewCell).setModel(aMessage: fileMessage, channel: self.channel)
                     (cell as! OutgoingImageFileMessageTableViewCell).delegate = self.delegate
                     
-                    if self.preSendMessages[fileMessage.requestId!] != nil {
+                    if let requestId = fileMessage.requestId(), self.preSendMessages[requestId] != nil {
                         (cell as! OutgoingImageFileMessageTableViewCell).showSendingStatus()
                         (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = true
-                        (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.preSendFileData[fileMessage.requestId!]!["data"] as! Data, type: self.preSendFileData[fileMessage.requestId!]!["type"] as! String)
-                    }
-                    else {
-                        if self.resendableMessages[fileMessage.requestId!] != nil {
-                            (cell as! OutgoingImageFileMessageTableViewCell).showMessageControlButton()
-//                            (cell as! OutgoingImageFileMessageTableViewCell).showFailedStatus()
-                            (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.resendableFileData[fileMessage.requestId!]?["data"] as! Data, type: self.resendableFileData[fileMessage.requestId!]?["type"] as! String)
+                        (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.preSendFileData[requestId]?["data"] as! Data, type: self.preSendFileData[requestId]?["type"] as! String)
+                    } else if let requestId = fileMessage.requestId(), self.resendableMessages[requestId] != nil {
+                        (cell as! OutgoingImageFileMessageTableViewCell).showMessageControlButton()
+                        (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.resendableFileData[requestId]?["data"] as! Data, type: self.resendableFileData[requestId]?["type"] as! String)
+                        (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = true
+                    } else {
+                        if let requestId = fileMessage.requestId(), !fileMessage.url.isEmpty && self.preSendFileData[requestId] != nil {
+                            (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.preSendFileData[requestId]?["data"] as! Data, type: self.preSendFileData[requestId]?["type"] as! String)
                             (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = true
+                            self.preSendFileData.removeValue(forKey: requestId)
                         }
                         else {
-                            if !fileMessage.url.isEmpty && self.preSendFileData[fileMessage.requestId!] != nil {
-                                (cell as! OutgoingImageFileMessageTableViewCell).setImageData(data: self.preSendFileData[fileMessage.requestId!]?["data"] as! Data, type: self.preSendFileData[fileMessage.requestId!]?["type"] as! String)
-                                (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = true
-                                self.preSendFileData.removeValue(forKey: fileMessage.requestId!)
-                            }
-                            else {
-                                (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = false
-                                
-                                var fileImageUrl = ""
-                                if let thumbnails = fileMessage.thumbnails {
-                                    let thumbnailsCount = thumbnails.count
-                                    if thumbnailsCount > 0 && fileMessage.type != "image/gif" {
-                                        fileImageUrl = thumbnails[0].url
-                                    }
-                                    else {
-                                        fileImageUrl = fileMessage.url
-                                    }
-                                }
-                                
-                                (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.image = nil
-                                (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.animatedImage = nil
-                                
-                                if fileMessage.type == "image/gif" {
-                                    (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.setAnimatedImageWithURL(url: URL(string: fileImageUrl)!, success: { (image) in
-                                        DispatchQueue.main.async {
-                                            let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
-                                            if updateCell != nil {
-                                                (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.animatedImage = image
-                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
-                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
-                                            }
-                                        }
-                                    }, failure: { (error) in
-                                        DispatchQueue.main.async {
-                                            let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
-                                            if updateCell != nil {
-                                                (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.af_setImage(withURL: URL(string: fileImageUrl)!)
-                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
-                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
-                                            }
-                                        }
-                                    })
+                            (cell as! OutgoingImageFileMessageTableViewCell).hasImageCacheData = false
+                            
+                            var fileImageUrl = ""
+                            if let thumbnails = fileMessage.thumbnails {
+                                let thumbnailsCount = thumbnails.count
+                                if thumbnailsCount > 0 && fileMessage.type != "image/gif" {
+                                    fileImageUrl = thumbnails[0].url
                                 }
                                 else {
-                                    let request = URLRequest(url: URL(string: fileImageUrl)!)
-                                    (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
-                                        if response.result.error != nil {
-                                            DispatchQueue.main.async {
-                                                let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
-                                                if updateCell != nil {
-                                                    (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.image = nil
-                                                    (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
-                                                    (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
-                                                }
-                                            }
-                                        }
-                                        else {
-                                            DispatchQueue.main.async {
-                                                let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
-                                                if updateCell != nil {
-                                                    (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.image = response.result.value
-                                                    (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
-                                                    (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
-                                                }
-                                            }
-                                        }
-                                    })
+                                    fileImageUrl = fileMessage.url
                                 }
                             }
-                            (cell as! OutgoingImageFileMessageTableViewCell).showMessageDate()
-                            (cell as! OutgoingImageFileMessageTableViewCell).showUnreadCount()
+                            
+                            (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.image = nil
+                            (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.animatedImage = nil
+                            
+                            if fileMessage.type == "image/gif" {
+                                (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.setAnimatedImageWithURL(url: URL(string: fileImageUrl)!, success: { (image) in
+                                    DispatchQueue.main.async {
+                                        let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
+                                        if updateCell != nil {
+                                            (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.animatedImage = image
+                                            (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                            (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
+                                        }
+                                    }
+                                }, failure: { (error) in
+                                    DispatchQueue.main.async {
+                                        let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
+                                        if updateCell != nil {
+                                            (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.af_setImage(withURL: URL(string: fileImageUrl)!)
+                                            (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                            (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
+                                        }
+                                    }
+                                })
+                            }
+                            else {
+                                let request = URLRequest(url: URL(string: fileImageUrl)!)
+                                (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+                                    if response.result.error != nil {
+                                        DispatchQueue.main.async {
+                                            let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
+                                            if updateCell != nil {
+                                                (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.image = nil
+                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
+                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        DispatchQueue.main.async {
+                                            let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
+                                            if updateCell != nil {
+                                                (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.image = response.result.value
+                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
+                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                            }
+                                        }
+                                    }
+                                })
+                            }
                         }
+                        (cell as! OutgoingImageFileMessageTableViewCell).showMessageDate()
+                        (cell as! OutgoingImageFileMessageTableViewCell).showUnreadCount()
                     }
                 }
                 else {
@@ -946,18 +929,13 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                     (cell as! OutgoingFileMessageTableViewCell).setModel(aMessage: fileMessage, channel: self.channel)
                     (cell as! OutgoingFileMessageTableViewCell).delegate = self.delegate
                     
-                    if self.preSendMessages[fileMessage.requestId!] != nil {
+                    if let requestId = fileMessage.requestId(), self.preSendMessages[requestId] != nil {
                         (cell as! OutgoingFileMessageTableViewCell).showSendingStatus()
-                    }
-                    else {
-                        if self.resendableMessages[fileMessage.requestId!] != nil {
-                            (cell as! OutgoingFileMessageTableViewCell).showMessageControlButton()
-//                            (cell as! OutgoingFileMessageTableViewCell).showFailedStatus()
-                        }
-                        else {
-                            (cell as! OutgoingFileMessageTableViewCell).showMessageDate()
-                            (cell as! OutgoingFileMessageTableViewCell).showUnreadCount()
-                        }
+                    } else if let requestId = fileMessage.requestId(), self.resendableMessages[requestId] != nil {
+                        (cell as! OutgoingFileMessageTableViewCell).showMessageControlButton()
+                    } else {
+                        (cell as! OutgoingFileMessageTableViewCell).showMessageDate()
+                        (cell as! OutgoingFileMessageTableViewCell).showUnreadCount()
                     }
                 }
             }

@@ -473,7 +473,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
             self.chattingView?.scrollToBottom(force: true)
             
             guard let message: SBDUserMessage = theMessage, error == nil else {
-                if let requestId: String = theMessage?.requestId {
+                if let requestId: String = theMessage?.requestId() {
                     self.chattingView?.resendableMessages[requestId] = theMessage
                 }
                 return
@@ -929,7 +929,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         let resendAction = UIAlertAction(title: "Resend", style: UIAlertAction.Style.default) { (action) in
             switch (message) {
             case is SBDUserMessage:
-                guard let resendableMessage: SBDUserMessage = message as? SBDUserMessage, let text: String = resendableMessage.message, let requestId: String = resendableMessage.requestId else {
+                guard let resendableMessage: SBDUserMessage = message as? SBDUserMessage, let text: String = resendableMessage.message, let requestId: String = resendableMessage.requestId() else {
                     return
                 }
                 
@@ -988,7 +988,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
                     self.messageCollection?.appendMessage(previewMessage)
                 }
             case is SBDFileMessage:
-                guard let resendableMessage: SBDFileMessage = message as? SBDFileMessage, let requestId: String = resendableMessage.requestId else {
+                guard let resendableMessage: SBDFileMessage = message as? SBDFileMessage, let requestId: String = resendableMessage.requestId() else {
                     return
                 }
                 
@@ -1088,7 +1088,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         thePreviewMessage = self.channel.sendFileMessage(with: params) { (message, error) in
             self.chattingView?.scrollToBottom(force: true)
             
-            guard let previewMessage: SBDFileMessage = thePreviewMessage, let requestId: String = previewMessage.requestId else {
+            guard let previewMessage: SBDFileMessage = thePreviewMessage, let requestId: String = previewMessage.requestId() else {
                 return
             }
             
@@ -1105,7 +1105,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
             }
         }
         
-        if let previewMessage: SBDFileMessage = thePreviewMessage, let requestId: String = previewMessage.requestId {
+        if let previewMessage: SBDFileMessage = thePreviewMessage, let requestId: String = previewMessage.requestId() {
             self.chattingView?.preSendFileData[requestId] = fileDataDict
             self.messageCollection?.appendMessage(previewMessage)
         }
