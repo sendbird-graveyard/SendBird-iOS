@@ -11,7 +11,7 @@ import MGSwipeTableCell
 import SendBirdSDK
 import SendBirdSyncManager
 
-class GroupChannelListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSwipeTableCellDelegate, CreateGroupChannelUserListViewControllerDelegate, SBSMChannelCollectionDelegate {
+class GroupChannelListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MGSwipeTableCellDelegate, CreateGroupChannelUserListViewControllerDelegate, SBSMChannelCollectionDelegate, SBDConnectionDelegate {
     @IBOutlet weak var navItem: UINavigationItem?
     @IBOutlet weak var tableView: UITableView?
     @IBOutlet weak var noChannelLabel: UILabel?
@@ -51,7 +51,11 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
     
     lazy private var tableViewQueue = DispatchQueue(label: "com.sendbird.sample.channel.tableview")
     
+    private let identifier = UUID().uuidString
+    
     deinit {
+        SBDMain.removeConnectionDelegate(forIdentifier: self.identifier)
+        
         self.channelCollection?.delegate = nil
         self.channelCollection?.remove()
     }
@@ -60,6 +64,8 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
         super.viewDidLoad()
         
         self.configureView()
+        
+        SBDMain.add(self, identifier: self.identifier)
         
         self.channelCollection?.delegate = self
         self.channelCollection?.fetch(completionHandler: { (error) in
@@ -365,5 +371,11 @@ class GroupChannelListViewController: UIViewController, UITableViewDelegate, UIT
             
             cell.startTypingAnimation()
         }
+    }
+    
+    // MARK: SendBird SDK Connection Delegate
+    func didSucceedReconnection() {
+        SBSMSyncManager.resumeSynchronize()
+        self.channelCollection?.fetch(completionHandler: nil)
     }
 }

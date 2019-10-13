@@ -17,7 +17,7 @@ import NYTPhotoViewer
 import HTMLKit
 import FLAnimatedImage
 
-class GroupChannelChattingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChattingViewDelegate, MessageDelegate, SBSMMessageCollectionDelegate {
+class GroupChannelChattingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ChattingViewDelegate, MessageDelegate, SBSMMessageCollectionDelegate, SBDConnectionDelegate {
     var channel: SBDGroupChannel
     let targetLanguages: [String] = ["ar", "de", "fr", "nl", "ja", "ko", "pt", "es", "zh-CHS"]
     
@@ -30,7 +30,9 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     
     private let delegateIdentifier: String = UUID.init().uuidString
     
-    private var isLoading: Bool = false
+    private var isPreviousLoading: Bool = false
+    private var isNextLoading: Bool = false
+    
     private var keyboardShown: Bool = false
     
     private var photosViewController: NYTPhotosViewController?
@@ -46,7 +48,9 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         if self.collection == nil {
             let filter: SBSMMessageFilter = SBSMMessageFilter.init()
             let lastSeenAt: Int64? = UserPreferences.lastSeenAt(channelUrl: self.channel.channelUrl)
-            self.collection = SBSMMessageCollection.init(channel: self.channel, filter: filter, viewpointTimestamp: lastSeenAt ?? LONG_LONG_MAX)
+            self.collection = SBSMMessageCollection.init(channel: self.channel,
+                                                         filter: filter,
+                                                         viewpointTimestamp: lastSeenAt ?? LONG_LONG_MAX)
         }
         return self.collection
     }
@@ -71,13 +75,18 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         // Do any additional setup after loading the view.
         self.configure()
         
-        self.isLoading = true
+        SBDMain.add(self, identifier: self.delegateIdentifier)
+        
+        self.isPreviousLoading = true
         self.messageCollection?.delegate = self
         self.messageCollection?.fetch(in: .previous, completionHandler: { (error) in
-            self.isLoading = false
+            self.isPreviousLoading = false
         })
         
-        self.messageCollection?.fetch(in: .next, completionHandler: nil)
+        self.isNextLoading = true
+        self.messageCollection?.fetch(in: .next, completionHandler: { (error) in
+            self.isNextLoading = false
+        })
     }
     
     private func configure() -> Void {
@@ -548,13 +557,28 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     }
     
     // MARK: Chatting View Delegate
-    func loadMoreMessage(view: UIView) {
-        if !self.isLoading {
-            self.isLoading = true
-            self.messageCollection?.fetch(in: SBSMMessageDirection.previous, completionHandler: { (error) in
-                self.isLoading = false
-            })
+    func loadMoreMessage(direction: SBSMMessageDirection) {
+        if direction == .previous {
+            guard !self.isPreviousLoading else {
+                return
+            }
+            
+            self.isPreviousLoading = false
+        } else {
+            guard !self.isNextLoading else {
+                return
+            }
+            
+            self.isNextLoading = false
         }
+        
+        self.messageCollection?.fetch(in: direction, completionHandler: { (error) in
+            if direction == .previous {
+                self.isPreviousLoading = false
+            } else {
+                self.isNextLoading = false
+            }
+        })
     }
     
     func startTyping(view: UIView) {
@@ -1067,6 +1091,18 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     }
     
     // MARK: SendBird SDK
+    func didSucceedReconnection() {
+        SBSMSyncManager.resumeSynchronize()
+        guard !self.isNextLoading else {
+            return
+        }
+        
+        self.isNextLoading = true
+        self.messageCollection?.fetch(in: .next, completionHandler: { (error) in
+            self.isNextLoading = false
+        })
+    }
+    
     func sendFileMessage(fileData: Data, fileName: String, mimeType: String) -> Void {
         /***********************************/
         /* Thumbnail is a premium feature. */

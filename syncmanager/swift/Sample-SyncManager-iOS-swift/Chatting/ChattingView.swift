@@ -14,7 +14,7 @@ import FLAnimatedImage
 import SendBirdSyncManager
 
 protocol ChattingViewDelegate: class {
-    func loadMoreMessage(view: UIView)
+    func loadMoreMessage(direction: SBSMMessageDirection)
     func startTyping(view: UIView)
     func endTyping(view: UIView)
     func hideKeyboardWhenFastScrolling(view: UIView)
@@ -378,10 +378,18 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
             self.scrollLock = false
         }
         
-        if scrollView.contentOffset.y == 0 || scrollView.contentOffset.y + scrollView.frame.size.height == scrollView.contentSize.height {
+        if scrollView.contentOffset.y + scrollView.frame.size.height == scrollView.contentSize.height {
             if self.messages.count > 0 /*&& self.initialLoading == false*/ {
                 if self.delegate != nil {
-                    self.delegate?.loadMoreMessage(view: self)
+                    self.delegate?.loadMoreMessage(direction: .next)
+                }
+            }
+        }
+        
+        if scrollView.contentOffset.y == 0 {
+            if self.messages.count > 0 /*&& self.initialLoading == false*/ {
+                if self.delegate != nil {
+                    self.delegate?.loadMoreMessage(direction: .previous)
                 }
             }
         }
