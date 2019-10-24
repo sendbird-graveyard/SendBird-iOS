@@ -58,8 +58,6 @@
 @property (atomic) NSTimeInterval lastOffsetCapture;
 @property (atomic) BOOL isScrollingFast;
 
-@property (strong, nonatomic, nonnull) SBSMOperationQueue *tableViewQueue;
-
 @end
 
 @implementation ChattingView
@@ -83,8 +81,6 @@
 - (void)setup {
     [self.chattingTableView setContentInset:UIEdgeInsetsMake(0, 0, 10, 0)];
     [self.messageTextView setTextContainerInset:UIEdgeInsetsMake(15.5, 0, 14, 0)];
-    
-    self.tableViewQueue = [SBSMOperationQueue queue];
 }
 
 - (void)configureChattingViewWithChannel:(SBDBaseChannel *)channel {

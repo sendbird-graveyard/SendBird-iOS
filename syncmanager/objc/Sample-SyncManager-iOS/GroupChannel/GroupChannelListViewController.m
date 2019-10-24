@@ -31,7 +31,7 @@
 
 @property (copy, atomic, nonnull) NSString *identifier;
 
-@property (strong, nonatomic, nonnull) SBSMOperationQueue *tableViewQueue;
+@property (strong, nonatomic, nonnull) dispatch_queue_t tableViewQueue;
 
 /**
  *  new properties with channel manager
@@ -46,7 +46,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self != nil) {
         _channels = [NSMutableArray array];
-        _tableViewQueue = [SBSMOperationQueue queue];
+        _tableViewQueue = dispatch_queue_create("com.sendbird.sample.channels.tableView", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
@@ -340,46 +340,39 @@
         return;
     }
     
-    __block SBSMOperation *operation = [self.tableViewQueue enqueue:^{
-        SBSMVoidHandler handler = ^void (void) {
-            [operation complete];
-        };
-        
+    dispatch_async(self.tableViewQueue, ^{
         switch (action) {
             case SBSMChannelEventActionClear: {
-                [self clearAllChannelsWithCompletionHandler:handler];
+                [self clearAllChannelsWithCompletionHandler:nil];
                 break;
             }
             case SBSMChannelEventActionInsert: {
                 [self insertChannels:channels completionHandler:^{
                     [self hideEmptyTableStyle];
-                    handler();
                 }];
                 break;
             }
             case SBSMChannelEventActionUpdate: {
-                [self updateChannels:channels completionHandler:handler];
+                [self updateChannels:channels completionHandler:nil];
                 break;
             }
             case SBSMChannelEventActionRemove: {
                 [self removeChannels:channels completionHandler:^{
                     [self showEmptyTableStyle];
-                    handler();
                 }];
                 break;
             }
             case SBSMChannelEventActionMove: {
-                [self moveChannel:channels.firstObject completionHandler:handler];
+                [self moveChannel:channels.firstObject completionHandler:nil];
                 break;
             }
             case SBSMChannelEventActionNone:
             default: {
                 // pass
-                handler();
                 break;
             }
         }
-    }];
+    });
 }
 
 #pragma mark - UI Update with Change Log

@@ -47,7 +47,7 @@
  *  new properties with message manager
  */
 @property (strong, nonatomic, nullable) SBSMMessageCollection *messageCollection;
-@property (strong, atomic, nonnull) SBSMOperationQueue *collectionQueue;
+@property (strong, atomic, nonnull) dispatch_queue_t collectionQueue;
 
 @end
 
@@ -66,7 +66,7 @@
     
     [self configureView];
 
-    self.collectionQueue = [SBSMOperationQueue queue];
+    self.collectionQueue = dispatch_queue_create("com.sendbird.sample.channel.messages.collection", DISPATCH_QUEUE_SERIAL);
     
     [SBDMain addChannelDelegate:self identifier:self.delegateIdentifier];
     
@@ -412,16 +412,10 @@
         return;
     }
     
-    __block SBSMOperation *operation = [self.collectionQueue enqueue:^{
-        SBSMVoidHandler handler = ^void() {
-            [operation complete];
-        };
-        
+    dispatch_async(self.collectionQueue, ^{
         switch (action) {
             case SBSMMessageEventActionInsert: {
                 [self.chattingView insertMessages:messages comparator:collection.comparator completionHandler:^{
-                    handler();
-                    
                     if ([Utils isTopViewController:self]) {
                         [self.channel markAsRead];
                     }
@@ -429,22 +423,22 @@
                 break;
             }
             case SBSMMessageEventActionUpdate : {
-                [self.chattingView updateMessages:messages completionHandler:handler];
+                [self.chattingView updateMessages:messages completionHandler:nil];
                 break;
             }
             case SBSMMessageEventActionRemove: {
-                [self.chattingView removeMessages:messages completionHandler:handler];
+                [self.chattingView removeMessages:messages completionHandler:nil];
                 break;
             }
             case SBSMMessageEventActionClear: {
-                [self.chattingView clearAllMessagesWithCompletionHandler:handler];
+                [self.chattingView clearAllMessagesWithCompletionHandler:nil];
                 break;
             }
             case SBSMMessageEventActionNone:
             default:
                 break;
         }
-    }];
+    });
 }
 
 #pragma mark - SBDChannelDelegate
