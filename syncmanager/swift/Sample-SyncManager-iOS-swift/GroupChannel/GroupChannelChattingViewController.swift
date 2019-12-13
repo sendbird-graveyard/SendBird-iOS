@@ -79,12 +79,12 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         
         self.isPreviousLoading = true
         self.messageCollection?.delegate = self
-        self.messageCollection?.fetch(in: .previous, completionHandler: { (error) in
+        self.messageCollection?.fetch(in: .previous, completionHandler: { (hasMore, error) in
             self.isPreviousLoading = false
         })
         
         self.isNextLoading = true
-        self.messageCollection?.fetch(in: .next, completionHandler: { (error) in
+        self.messageCollection?.fetch(in: .next, completionHandler: { (hasMore, error) in
             self.isNextLoading = false
         })
     }
@@ -572,7 +572,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
             self.isNextLoading = false
         }
         
-        self.messageCollection?.fetch(in: direction, completionHandler: { (error) in
+        self.messageCollection?.fetch(in: direction, completionHandler: { (hasMore, error) in
             if direction == .previous {
                 self.isPreviousLoading = false
             } else {
@@ -1098,7 +1098,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         }
         
         self.isNextLoading = true
-        self.messageCollection?.fetch(in: .next, completionHandler: { (error) in
+        self.messageCollection?.fetch(in: .next, completionHandler: { (hasMore, error) in
             self.isNextLoading = false
         })
     }
