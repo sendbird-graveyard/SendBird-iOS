@@ -120,7 +120,9 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         self.chattingView?.delegate = self
     }
     
-    deinit {
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
         if let view: ChattingView = self.chattingView {
             view.delegate = nil
         }
@@ -128,6 +130,9 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         self.messageCollection?.remove()
         self.collection = nil
         SBDMain.removeChannelDelegate(forIdentifier: self.delegateIdentifier)
+    }
+    
+    deinit {
     }
 
     @objc private func keyboardDidShow(notification: Notification) {
@@ -1115,8 +1120,12 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         }
         
         self.isNextLoading = true
-        self.messageCollection?.fetch(in: .next, completionHandler: { (hasMore, error) in
-            self.isNextLoading = false
+//        self.messageCollection?.fetch(in: .next, completionHandler: { (hasMore, error) in
+//            self.isNextLoading = false
+//        })
+  
+        self.messageCollection?.fetchAllNextMessages({ (hasMore, error) in
+            self.isNextLoading = hasMore
         })
     }
     
