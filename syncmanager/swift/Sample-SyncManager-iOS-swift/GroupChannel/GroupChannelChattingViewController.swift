@@ -125,7 +125,9 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         self.chattingView?.delegate = self
     }
     
-    deinit {
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
         if let view: ChattingView = self.chattingView {
             view.delegate = nil
         }
@@ -133,6 +135,9 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         self.messageCollection?.remove()
         self.collection = nil
         SBDMain.removeChannelDelegate(forIdentifier: self.delegateIdentifier)
+    }
+    
+    deinit {
     }
 
     @objc private func keyboardDidShow(notification: Notification) {
@@ -220,7 +225,24 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
             let httpResponse: HTTPURLResponse = response as! HTTPURLResponse
             let contentType: String = httpResponse.allHeaderFields["Content-Type"] as! String
             if contentType.contains("text/html") {
-                let htmlBody: NSString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!
+                guard let htmlBody: NSString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)  else {
+                    let theParams: SBDUserMessageParams? = SBDUserMessageParams.init(message: message)
+                    guard let params: SBDUserMessageParams = theParams else {
+                        return
+                    }
+                    self.channel.sendUserMessage(with: params, completionHandler: { (theMessage, error) in
+                        guard let message: SBDUserMessage = theMessage, error == nil else {
+                            self.sendMessageWithReplacement(replacement: aTempModel)
+                            return
+                        }
+                        
+                        self.messageCollection?.appendMessage(message)
+                        self.chattingView?.scrollToBottom(force: true)
+                    })
+                    
+                    session.invalidateAndCancel()
+                    return
+                }
                 
                 let parser: HTMLParser = HTMLParser(string: htmlBody as String)
                 let document = parser.parseDocument()
@@ -1176,13 +1198,14 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     // MARK: SendBird SDK
     func didSucceedReconnection() {
         SBSMSyncManager.resumeSynchronize()
+        
         guard !self.isNextLoading else {
             return
         }
-        
+
         self.isNextLoading = true
-        self.messageCollection?.fetch(in: .next, completionHandler: { (hasMore, error) in
-            self.isNextLoading = false
+        self.messageCollection?.fetchAllNextMessages({ (hasMore, error) in
+            self.isNextLoading = hasMore
         })
     }
     

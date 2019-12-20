@@ -399,7 +399,7 @@
 - (void)fetchPreviousMessages {
     if (![self isLoading]) {
         self.loading = YES;
-        [self.messageCollection fetchInDirection:SBSMMessageDirectionPrevious completionHandler:^(SBDError * _Nullable error) {
+        [self.messageCollection fetchInDirection:SBSMMessageDirectionPrevious completionHandler:^(BOOL hasMore, SBDError * _Nullable error) {
             self.loading = NO;
         }];
     }
