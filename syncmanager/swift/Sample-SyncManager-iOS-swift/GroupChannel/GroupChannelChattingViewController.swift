@@ -47,7 +47,11 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     private var messageCollection: SBSMMessageCollection? {
         if self.collection == nil {
             let filter: SBSMMessageFilter = SBSMMessageFilter.init()
-            let lastSeenAt: Int64? = UserPreferences.lastSeenAt(channelUrl: self.channel.channelUrl)
+            var lastSeenAt: Int64? = UserPreferences.lastSeenAt(channelUrl: self.channel.channelUrl)
+
+            if lastSeenAt != nil {
+                lastSeenAt! -= 1
+            }
             self.collection = SBSMMessageCollection.init(channel: self.channel,
                                                          filter: filter,
                                                          viewpointTimestamp: lastSeenAt ?? LONG_LONG_MAX)
@@ -79,13 +83,14 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         
         self.isPreviousLoading = true
         self.messageCollection?.delegate = self
-        self.messageCollection?.fetch(in: .previous, completionHandler: { (error) in
+        SBSMSyncManager.resumeSynchronize()
+        self.messageCollection?.fetch(in: .previous, completionHandler: { (hasMore, error) in
             self.isPreviousLoading = false
-        })
-        
-        self.isNextLoading = true
-        self.messageCollection?.fetch(in: .next, completionHandler: { (error) in
-            self.isNextLoading = false
+            
+            self.isNextLoading = true
+            self.messageCollection?.fetch(in: .next, completionHandler: { (hasMore, error) in
+                self.isNextLoading = false
+            })
         })
     }
     
@@ -373,15 +378,15 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     }
     
     // MARK: Message Collection Delegate
-    func collection(_ collection: SBSMMessageCollection, didReceiveEvent action: SBSMMessageEventAction, messages: [SBDBaseMessage]) {
-        guard collection == self.messageCollection, messages.count > 0 else {
+    func collection(_ collection: SBSMMessageCollection, didReceive action: SBSMMessageEventAction, pendingMessages: [SBDBaseMessage]) {
+        guard collection == self.messageCollection, pendingMessages.count > 0 else {
             return
         }
         
         self.tableViewQueue.async {
             switch action {
             case SBSMMessageEventAction.insert:
-                self.chattingView?.insert(messages: messages, collection: collection, completionHandler: {
+                self.chattingView?.insert(messages: pendingMessages, collection: collection, completionHandler: {
                     UserPreferences.setLastSeenAt(channelUrl: self.channel.channelUrl, lastSeenAt: self.chattingView?.messages.last?.createdAt ?? 0)
                     
                     if Utils.isTopViewController(viewController: self) {
@@ -390,10 +395,10 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
                 })
                 break
             case SBSMMessageEventAction.update:
-                self.chattingView?.update(messages: messages, completionHandler: nil)
+                self.chattingView?.update(messages: pendingMessages, completionHandler: nil)
                 break
             case SBSMMessageEventAction.remove:
-                self.chattingView?.remove(messages: messages, completionHandler: nil)
+                self.chattingView?.remove(messages: pendingMessages, completionHandler: nil)
                 break
             case SBSMMessageEventAction.clear:
                 self.chattingView?.clearAllMessages(completionHandler: nil)
@@ -404,6 +409,84 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
                 break
             }
         }
+    }
+    
+    func collection(_ collection: SBSMMessageCollection, didReceive action: SBSMMessageEventAction, succeededMessages: [SBDBaseMessage]) {
+        guard collection == self.messageCollection, succeededMessages.count > 0 else {
+            return
+        }
+
+        self.tableViewQueue.async {
+            switch action {
+            case SBSMMessageEventAction.insert:
+                self.chattingView?.insert(messages: succeededMessages, collection: collection, completionHandler: {
+                    UserPreferences.setLastSeenAt(channelUrl: self.channel.channelUrl, lastSeenAt: self.chattingView?.messages.last?.createdAt ?? 0)
+                    
+                    if Utils.isTopViewController(viewController: self) {
+                        self.channel.markAsRead()
+                    }
+                })
+                break
+            case SBSMMessageEventAction.update:
+                self.chattingView?.update(messages: succeededMessages, completionHandler: nil)
+                break
+            case SBSMMessageEventAction.remove:
+                self.chattingView?.remove(messages: succeededMessages, completionHandler: nil)
+                break
+            case SBSMMessageEventAction.clear:
+                self.chattingView?.clearAllMessages(completionHandler: nil)
+                break
+            case SBSMMessageEventAction.none:
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    func collection(_ collection: SBSMMessageCollection, didReceive action: SBSMMessageEventAction, failedMessages: [SBDBaseMessage], reason: SBSMFailedMessageEventActionReason) {
+        guard collection == self.messageCollection, failedMessages.count > 0 else {
+            return
+        }
+        
+        self.tableViewQueue.async {
+            switch action {
+            case SBSMMessageEventAction.insert:
+                self.chattingView?.insert(messages: failedMessages, collection: collection, completionHandler: {
+                    UserPreferences.setLastSeenAt(channelUrl: self.channel.channelUrl, lastSeenAt: self.chattingView?.messages.last?.createdAt ?? 0)
+                    
+                    if Utils.isTopViewController(viewController: self) {
+                        self.channel.markAsRead()
+                    }
+                })
+                break
+            case SBSMMessageEventAction.update:
+                self.chattingView?.update(messages: failedMessages, completionHandler: nil)
+                break
+            case SBSMMessageEventAction.remove:
+                self.chattingView?.remove(messages: failedMessages, completionHandler: nil)
+                break
+            case SBSMMessageEventAction.clear:
+                self.chattingView?.clearAllMessages(completionHandler: nil)
+                break
+            case SBSMMessageEventAction.none:
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    func collection(_ collection: SBSMMessageCollection, didReceiveNewMessage message: SBDBaseMessage) {
+        
+    }
+    
+    func collection(_ collection: SBSMMessageCollection, didRemove channel: SBDGroupChannel) {
+        
+    }
+    
+    func collection(_ collection: SBSMMessageCollection, didUpdate channel: SBDGroupChannel) {
+        
     }
     
     // MARK: SendBird SDK
@@ -572,7 +655,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
             self.isNextLoading = false
         }
         
-        self.messageCollection?.fetch(in: direction, completionHandler: { (error) in
+        self.messageCollection?.fetch(in: direction, completionHandler: { (hasMore, error) in
             if direction == .previous {
                 self.isPreviousLoading = false
             } else {
@@ -1098,7 +1181,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
         }
         
         self.isNextLoading = true
-        self.messageCollection?.fetch(in: .next, completionHandler: { (error) in
+        self.messageCollection?.fetch(in: .next, completionHandler: { (hasMore, error) in
             self.isNextLoading = false
         })
     }
