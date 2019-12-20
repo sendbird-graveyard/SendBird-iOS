@@ -111,8 +111,8 @@ class Utils: NSObject {
         return (CFStringCompare(mediaType as CFString, kUTTypeVideo, []) == CFComparisonResult.compareEqualTo)
     }
     
-    static func infersMimeType(url: URL) -> String? {
-        let ext: String = url.pathExtension
+    static func infersMimeType(url: NSURL) -> String? {
+        let ext: String = url.pathExtension!
         let UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, ext as CFString, nil)?.takeRetainedValue()
         let mimeType = UTTypeCopyPreferredTagWithClass(UTI!, kUTTagClassMIMEType)?.takeRetainedValue()
         

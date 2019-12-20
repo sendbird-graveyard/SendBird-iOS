@@ -896,29 +896,31 @@ class ChattingView: ReusableViewFromXib, UITableViewDelegate, UITableViewDataSou
                                 })
                             }
                             else {
-                                let request = URLRequest(url: URL(string: fileImageUrl)!)
-                                (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
-                                    if response.result.error != nil {
-                                        DispatchQueue.main.async {
-                                            let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
-                                            if updateCell != nil {
-                                                (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.image = nil
-                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
-                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                if fileImageUrl.count > 0 {
+                                    let request = URLRequest(url: URL(string: fileImageUrl)!)
+                                    (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.af_setImage(withURLRequest: request, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+                                        if response.result.error != nil {
+                                            DispatchQueue.main.async {
+                                                let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
+                                                if updateCell != nil {
+                                                    (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.image = nil
+                                                    (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
+                                                    (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                                }
                                             }
                                         }
-                                    }
-                                    else {
-                                        DispatchQueue.main.async {
-                                            let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
-                                            if updateCell != nil {
-                                                (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.image = response.result.value
-                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
-                                                (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                        else {
+                                            DispatchQueue.main.async {
+                                                let updateCell = tableView.cellForRow(at: indexPath) as? OutgoingImageFileMessageTableViewCell
+                                                if updateCell != nil {
+                                                    (cell as! OutgoingImageFileMessageTableViewCell).fileImageView.image = response.result.value
+                                                    (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.isHidden = true
+                                                    (cell as! OutgoingImageFileMessageTableViewCell).imageLoadingIndicator.stopAnimating()
+                                                }
                                             }
                                         }
-                                    }
-                                })
+                                    })
+                                }
                             }
                         }
                         (cell as! OutgoingImageFileMessageTableViewCell).showMessageDate()

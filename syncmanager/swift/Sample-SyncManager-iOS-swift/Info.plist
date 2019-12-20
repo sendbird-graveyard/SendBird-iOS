@@ -42,5 +42,13 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>For uploading media</string>
+	<key>NSCameraUsageDescription</key>
+	<string>For uploading media</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>For uploading media</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>For uploading media</string>
 </dict>
 </plist>

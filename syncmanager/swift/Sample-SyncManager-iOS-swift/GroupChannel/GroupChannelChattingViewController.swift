@@ -605,12 +605,14 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     
     @objc private func selectFileAttachment() {
         let presentPicker = {
-            let mediaUI = UIImagePickerController()
-            mediaUI.sourceType = UIImagePickerController.SourceType.photoLibrary
-            let mediaTypes = [String(kUTTypeImage), String(kUTTypeMovie)]
-            mediaUI.mediaTypes = mediaTypes
-            mediaUI.delegate = self
-            self.present(mediaUI, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                let mediaUI = UIImagePickerController()
+                mediaUI.sourceType = UIImagePickerController.SourceType.photoLibrary
+                let mediaTypes = [String(kUTTypeImage), String(kUTTypeMovie)]
+                mediaUI.mediaTypes = mediaTypes
+                mediaUI.delegate = self
+                self.present(mediaUI, animated: true, completion: nil)
+            }
         }
         
         guard PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized else {
@@ -1256,16 +1258,16 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
     // MARK: UIImagePickerControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true) {
-            let mediaType: String? = info[UIImagePickerController.InfoKey.mediaType] as? String
+            let mediaType: String? = info[.mediaType] as? String
             guard let theMediaType: String = mediaType else {
                 return
             }
             
             if Utils.isKindOfImage(mediaType: theMediaType) {
-                let imageUrl: URL? = info[UIImagePickerController.InfoKey.imageURL] as? URL
-                let asset: PHAsset? = info[UIImagePickerController.InfoKey.phAsset] as? PHAsset
-                
-                guard let theImageUrl: URL = imageUrl, let theAsset: PHAsset = asset else {
+                print(info.keys)
+                let imageUrl = info[.imageURL] as? NSURL
+                let asset = info[.phAsset] as? PHAsset
+                guard let theImageUrl = imageUrl, let theAsset = asset else {
                     return
                 }
                 
@@ -1295,29 +1297,31 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
                         }
                         
                         // sucess, data is in imagedata
-                        self.sendFileMessage(fileData: imageData, fileName: theImageUrl.lastPathComponent, mimeType: theMimeType)
+                        self.sendFileMessage(fileData: imageData, fileName: theImageUrl.lastPathComponent!, mimeType: theMimeType)
                     })
                 }
                 else {
-                    PHImageManager.default().requestImage(for: theAsset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: nil, resultHandler: { (theResult, info) in
+                    let options = PHImageRequestOptions()
+                    options.isSynchronous = true
+                    PHImageManager.default().requestImage(for: theAsset, targetSize: PHImageManagerMaximumSize, contentMode: PHImageContentMode.default, options: options, resultHandler: { (theResult, info) in
                         guard let result: UIImage = theResult, let imageData: Data = result.jpegData(compressionQuality: 1.0) else {
                             return
                         }
                         
                         // sucess, data is in imagedata
-                        self.sendFileMessage(fileData: imageData, fileName: theImageUrl.lastPathComponent, mimeType: theMimeType)
+                        self.sendFileMessage(fileData: imageData, fileName: theImageUrl.lastPathComponent!, mimeType: theMimeType)
                     })
                 }
             }
             else if Utils.isKindOfVideo(mediaType: theMediaType) {
-                let theVideoUrl: URL? = info[UIImagePickerController.InfoKey.mediaURL] as? URL
-                guard let videoUrl: URL = theVideoUrl else {
+                let theVideoUrl: NSURL? = info[UIImagePickerController.InfoKey.mediaURL] as? NSURL
+                guard let videoUrl = theVideoUrl else {
                     return
                 }
                 
                 do {
                     var theVideoFileData: Data?
-                    try theVideoFileData = Data(contentsOf: videoUrl)
+                    try theVideoFileData = Data(contentsOf: (videoUrl as? URL)!)
                     guard let fileData: Data = theVideoFileData else {
                         return
                     }
@@ -1327,7 +1331,7 @@ class GroupChannelChattingViewController: UIViewController, UIImagePickerControl
                         return
                     }
                     
-                    self.sendFileMessage(fileData: fileData, fileName: videoUrl.lastPathComponent, mimeType: mimeType)
+                    self.sendFileMessage(fileData: fileData, fileName: videoUrl.lastPathComponent!, mimeType: mimeType)
                 }
                 catch {
                     return

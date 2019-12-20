@@ -11,6 +11,7 @@ import SendBirdSDK
 import AVKit
 import AVFoundation
 import UserNotifications
+import Photos
 
 extension Constants {
     static let appDelegateIdentier = "com.sendbird.sample.appdelegate"
@@ -39,6 +40,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SBDChannelDelegate {
         UINavigationBar.appearance().tintColor = Constants.navigationBarTitleColor()
         
         application.applicationIconBadgeNumber = 0
+        
+        let authStatus = PHPhotoLibrary.authorizationStatus()
+        if authStatus != PHAuthorizationStatus.authorized {
+            PHPhotoLibrary.requestAuthorization { (status) in
+                
+            }
+        }
         
         SBDMain.initWithApplicationId("9880C4C1-E6C8-46E8-A8F1-D5890D598C08")
         SBDMain.setLogLevel(SBDLogLevel.none)
