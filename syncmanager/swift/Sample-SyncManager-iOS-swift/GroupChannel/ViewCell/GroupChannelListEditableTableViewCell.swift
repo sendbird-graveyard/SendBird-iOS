@@ -82,8 +82,10 @@ class GroupChannelListEditableTableViewCell: MGSwipeTableCell {
                 memberNames.append(member.nickname!)
             }
             
-            for i in 0...memberExceptCurrentUser.count - 1{
-                coverImages[i].sbsm_setProfileImage(profileUrl: memberExceptCurrentUser[i].profileUrl)
+            if (memberExceptCurrentUser.count > 0) {
+                for i in 0...memberExceptCurrentUser.count - 1{
+                    coverImages[i].sbsm_setProfileImage(profileUrl: memberExceptCurrentUser[i].profileUrl)
+                }
             }
         }
         else if self.channel.memberCount == 4 {
@@ -100,8 +102,10 @@ class GroupChannelListEditableTableViewCell: MGSwipeTableCell {
                 memberNames.append(member.nickname!)
             }
             
-            for i in 0...memberExceptCurrentUser.count - 1 {
-                coverImages[i].sbsm_setProfileImage(profileUrl: memberExceptCurrentUser[i].profileUrl)
+            if (memberExceptCurrentUser.count > 0) {
+                for i in 0...memberExceptCurrentUser.count - 1 {
+                    coverImages[i].sbsm_setProfileImage(profileUrl: memberExceptCurrentUser[i].profileUrl)
+                }
             }
         }
         else if self.channel.memberCount > 4 {
@@ -123,8 +127,10 @@ class GroupChannelListEditableTableViewCell: MGSwipeTableCell {
                 }
             }
             
-            for i in 0...memberExceptCurrentUser.count - 1 {
-                coverImages[i].sbsm_setProfileImage(profileUrl: memberExceptCurrentUser[i].profileUrl)
+            if (memberExceptCurrentUser.count > 0) {
+                for i in 0...memberExceptCurrentUser.count - 1 {
+                    coverImages[i].sbsm_setProfileImage(profileUrl: memberExceptCurrentUser[i].profileUrl)
+                }
             }
         }
         
