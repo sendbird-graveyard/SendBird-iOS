@@ -11,6 +11,7 @@ import SendBirdSDK
 import AVKit
 import AVFoundation
 import UserNotifications
+import Photos
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -69,6 +70,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.window?.rootViewController = MenuViewController()
             self.window?.makeKeyAndVisible()
+        }
+        
+        let authStatus = PHPhotoLibrary.authorizationStatus()
+        if authStatus != PHAuthorizationStatus.authorized {
+            PHPhotoLibrary.requestAuthorization { (status) in
+                
+            }
         }
         
         return true

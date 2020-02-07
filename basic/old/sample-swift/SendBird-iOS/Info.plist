@@ -29,10 +29,6 @@
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
 	<string></string>
-	<key>NSCameraUsageDescription</key>
-	<string></string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -56,5 +52,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSPhotoLibraryUsageDescription</key>
+        <string>${PRODUCT_NAME} PhotoLibrary Usage</string>
+    <key>NSCameraUsageDescription</key>
+        <string>${PRODUCT_NAME} Camera Usage</string>
 </dict>
 </plist>
