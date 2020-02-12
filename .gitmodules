@@ -4,3 +4,6 @@
 [submodule "basic/Swift"]
 	path = basic/Swift
 	url = git@github.com:sendbird/SendBird-iOS-Swift.git
+[submodule "syncmanager/Swift"]
+	path = syncmanager/Swift
+	url = git@github.com:sendbird/SyncManager-iOS-Swift.git
