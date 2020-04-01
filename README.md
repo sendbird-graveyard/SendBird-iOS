@@ -51,6 +51,19 @@ git submodule update --init ./syncmanager/SyncManager-Swift
 git submodule update --init --recursive    
 ```
 
+### [SendBird UIKit Sample(Swift only)](https://github.com/sendbird/SendBird-iOS/tree/master/uikit)
+This sample is linked with git submodule. You can clone the project directly in [the Swift SendBird UIKit sample submodule repository](https://github.com/sendbird/UIKit-iOS-Swift). Or you can pull it using submodule command after this git repository.
+```
+// clone this repository
+git clone git@github.com:sendbird/SendBird-iOS.git
+
+// clone only Swift SyncManager sample
+git submodule update --init ./uikit/Swift
+
+// Or you can clone all submodule's repositories
+git submodule update --init --recursive    
+```
+
 ### [Legacy Basic Sample](https://github.com/sendbird/SendBird-iOS/tree/master/basic/old)
 You can use [swift](https://github.com/sendbird/SendBird-iOS/tree/master/basic/old/sample-swift) and [objective-C](https://github.com/sendbird/SendBird-iOS/tree/master/basic/old/sample-objc) projects in [the legacy basic sample directory](https://github.com/sendbird/SendBird-iOS/tree/master/basic/old) after clone the repository. 
 ```
