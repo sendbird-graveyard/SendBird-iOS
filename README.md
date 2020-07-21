@@ -1,4 +1,4 @@
-# SendBird iOS Sample
+# SendBird iOS Samples
 ![Platform](https://img.shields.io/badge/platform-iOS-orange.svg)
 ![Languages](https://img.shields.io/badge/language-Objective--C%20%7C%20Swift-orange.svg)
 
@@ -20,58 +20,82 @@
 
 This sample is linked with the git submodule which you can download in two ways. 
 
-A. You can **clone** the project directly from the [the Chat Swift sample submodule repository](https://github.com/sendbird/SendBird-iOS-Swift). 
+A. You can **clone** the project directly from the [Chat Swift sample submodule repository](https://github.com/sendbird/SendBird-iOS-Swift). 
 
 ```
-// clone this repository
+// Clone this repository
 git clone git@github.com:sendbird/SendBird-iOS.git  
 
-// clone only Chat basic sample
+// Clone only Chat Swift sample
 git submodule update --init ./basic/Swift
 ```
 
-B. You can **pull** it by using the submodule command after **cloning** the git repository.
+B. You can **pull** it by using the **submodule** command after **cloning** the git repository.
 
 ```
-// clone all submodules' repositories
+// Clone all submodule's repositories
 git submodule update --init --recursive    
 ```
 
-### [Objective-C Basic Sample](https://github.com/sendbird/SendBird-iOS-ObjectiveC/tree/74aca144f3c215ce185e96173620ef5bbf850d99)
-This sample is linked with git submodule. You can clone the prject directly in [the Objective-C basic sample submodule repository](https://github.com/sendbird/SendBird-iOS-ObjectiveC). Or you can pull it using submodule command after clone this git repository.
+### [Chat Objective-C Sample](https://github.com/sendbird/SendBird-iOS-ObjectiveC/tree/74aca144f3c215ce185e96173620ef5bbf850d99)
+
+This sample is linked with the git submodule which you can download in two ways. 
+
+A. You can **clone** the prject directly from the [Chat Objective-C sample submodule repository](https://github.com/sendbird/SendBird-iOS-ObjectiveC).
+
 ```
-// clone this repository
+// Clone this repository
 git clone git@github.com:sendbird/SendBird-iOS.git  
 
-// clone only Objective-C basic sample
+// Clone only Chat Objective-C sample
 git submodule update --init ./basic/Objective-C
+```
 
-// Or you can clone all submodule's repositories
+B. You can **pull** it by using the **submodule** command after **cloning** the git repository.
+
+```
+// Clone all submodule's repositories
 git submodule update --init --recursive    
 ```
 
 ### [SyncManager Sample(Swift only)](https://github.com/sendbird/SendBird-iOS/tree/master/syncmanager)
-This sample is linked with git submodule. You can clone the project directly in [the Swift SyncManager sample submodule repository](https://github.com/sendbird/SyncManager-iOS-Swift). Or you can pull it using submodule command after this git repository.
+
+This sample is linked with the git submodule which you can download in two ways. 
+
+A. You can **clone** the project directly from the [SyncManager Swift Sample submodule repository](https://github.com/sendbird/SyncManager-iOS-Swift).
+
 ```
-// clone this repository
+// Clone this repository
 git clone git@github.com:sendbird/SendBird-iOS.git
 
-// clone only Swift SyncManager sample
+// Clone only SyncManager Swift sample
 git submodule update --init ./syncmanager/SyncManager-Swift
+```
 
-// Or you can clone all submodule's repositories
+B. You can **pull** it by using the **submodule** command after **cloning** the git repository.
+
+```
+// Clone all submodule's repositories
 git submodule update --init --recursive    
 ```
 
 ### [SendBird UIKit Sample(Swift only)](https://github.com/sendbird/SendBird-iOS/tree/master/uikit)
-This sample is linked with git submodule. You can clone the project directly in [the Swift SendBird UIKit sample submodule repository](https://github.com/sendbird/UIKit-iOS-Swift). Or you can pull it using submodule command after this git repository.
+
+This sample is linked with the git submodule which you can download in two ways. 
+
+A. You can **clone** the project directly from the [UIKit Swift Sample submodule repository](https://github.com/sendbird/UIKit-iOS-Swift). Or you can pull it using submodule command after this git repository.
+
 ```
-// clone this repository
+// Clone this repository
 git clone git@github.com:sendbird/SendBird-iOS.git
 
-// clone only Swift SyncManager sample
+// Clone only UIKit swift sample
 git submodule update --init ./uikit/Swift
+```
 
-// Or you can clone all submodule's repositories
+B. You can **pull** it by using the **submodule** command after **cloning** the git repository.
+
+```
+// Clone all submodule's repositories
 git submodule update --init --recursive    
 ```
