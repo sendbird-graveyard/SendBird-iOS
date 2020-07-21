@@ -4,28 +4,36 @@
 
 ## Introduction
 
-[SendBird](https://sendbird.com) provides the chat API and SDK for your app enabling real-time communication among your users. These samples introduce various applications based on SendBird SDK. Refer to the following applications.
+[SendBird](https://sendbird.com) provides the chat API and SDK for your app, enabling real-time communication among the users. Here are various samples built using Sendbird Chat SDK.
 
-- [Swift Basic Sample](#Swift-Basic-Sample): The project is a sample application composed of common chat features. You can make various channels(group channel and open channel) and send(or receive) messages in the sample. This sample is written in Swift with [SendBird SDK](https://github.com/sendbird/sendbird-ios-framework).
+- [Chat Swift Sample](#Chat-Swift-Sample) has core chat features. Group channel and open channel are the two main channel types in which you can create various subtypes where users can send and receive messages. This sample is written in Swift with [SendBird Chat SDK](https://github.com/sendbird/sendbird-ios-framework).
 
-- [Objective-C Basic Sample](#Objective-C-Basic-Sample): The project is a sample application composed of common chat features. You can make various channels(group channel and open channel) and send(or receive) messages in the sample. This sample is written in Objective-C with [SendBird SDK](https://github.com/sendbird/sendbird-ios-framework).
+- [Chat Objective-C Sample](#Chat-Objective-C-Sample) has core chat features. Group channel and open channel are the two main channel types in which you can create various subtypes where users can send and receive messages. This sample is written in Objective-C with [SendBird Chat SDK](https://github.com/sendbird/sendbird-ios-framework).
 
-- [SyncManager Sample](#SyncManager-Sample): The project is a sample application composed of common chat features, especially local cache. This sample saves group channels and messages of SendBird in the local database to allow caching and faster data loading. This sample is written in Swift with [SendBird SyncManager SDK](https://github.com/sendbird/sendbird-syncmanager-ios) and [SendBird SDK](https://github.com/sendbird/sendbird-ios-framework). You can learn more about SyncManager from [SyncManager document](https://docs.sendbird.com/ios/sync_manager_getting_started).
+- [SyncManager Swift Sample](#SyncManager-Sample) is equipped with a local cache along with core chat features. For faster data loading and caching, the sample synchronizes with the Sendbird server and saves a list of group channels and the messages within the local cache into your client app. This sample is written in Swift with [Sendbird SyncManager SDK](https://github.com/sendbird/sendbird-syncmanager-ios) and [SendBird Chat SDK](https://github.com/sendbird/sendbird-ios-framework). Find more about SyncManager on [Sendbird SyncManager document](https://docs.sendbird.com/ios/sync_manager_getting_started).
 
-- [SendBird UIKit Sample](#sendbird-uikit-sampleswift-only): The project is a sample application composed of common chat features. You can see SendBird's chat service based on SendBird UIKit just by running the sample without any special action. This sample is written in Swift with [SendBird UIKit](https://github.com/sendbird/sendbird-uikit-ios) and [SendBird SDK](https://github.com/sendbird/sendbird-ios-framework). You can learn more about SendBird UIKit from [SendBird UIKit document](https://docs.sendbird.com/ios/ui_kit_getting_started).
+- [SendBird UIKit Sample](#sendbird-uikit-sampleswift-only) is a user interface development kit that allows easy and fast integration of core chat features for new or pre-existing client apps. UI components can be fully customized with ease to expedite the roll-out of your client app’s in-app chat service. This sample is written in Swift with [Sendbird UIKit](https://github.com/sendbird/sendbird-uikit-ios) and [Sendbird Chat SDK](https://github.com/sendbird/sendbird-ios-framework). Find more about Sendbird UIKit on [Sendbird UIKit document](https://docs.sendbird.com/ios/ui_kit_getting_started).
 
-## Quick Start
+## Installation
 
-### [Swift Basic Sample](https://github.com/sendbird/SendBird-iOS-Swift/tree/2e03a93c08b4a119b4f5e18965a5dc087d050ca1)
-This sample is linked with git submodule. You can clone the prject directly in [the Swift basic sample submodule repository](https://github.com/sendbird/SendBird-iOS-Swift). Or you can pull it using submodule command after clone this git repository.
+### [Chat Swift Sample](https://github.com/sendbird/SendBird-iOS-Swift/tree/2e03a93c08b4a119b4f5e18965a5dc087d050ca1)
+
+This sample is linked with the git submodule which you can download in two ways. 
+
+A. You can **clone** the project directly from the [the Chat Swift sample submodule repository](https://github.com/sendbird/SendBird-iOS-Swift). 
+
 ```
 // clone this repository
 git clone git@github.com:sendbird/SendBird-iOS.git  
 
-// clone only Swift basic sample
+// clone only Chat basic sample
 git submodule update --init ./basic/Swift
+```
 
-// Or you can clone all submodule's repositories
+B. You can **pull** it by using the submodule command after **cloning** the git repository.
+
+```
+// clone all submodules' repositories
 git submodule update --init --recursive    
 ```
 
