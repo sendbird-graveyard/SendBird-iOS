@@ -37,7 +37,7 @@ B. You can **pull** it by using the **submodule** command after **cloning** the 
 git submodule update --init --recursive    
 ```
 
-### [Chat Objective-C Sample](https://github.com/sendbird/SendBird-iOS-ObjectiveC/tree/74aca144f3c215ce185e96173620ef5bbf850d99)
+### [Chat Objective-C sample](https://github.com/sendbird/SendBird-iOS-ObjectiveC/tree/74aca144f3c215ce185e96173620ef5bbf850d99)
 
 This sample is linked with the git submodule which you can download in two ways. 
 
