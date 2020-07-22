@@ -62,7 +62,7 @@ git submodule update --init --recursive
 
 This sample is linked with the git submodule which you can download in two ways. 
 
-A. You can **clone** the project directly from the [UIKit Swift Sample repository](https://github.com/sendbird/UIKit-iOS-Swift). Or you can pull it using submodule command after this git repository.
+A. You can **clone** the project directly from the [UIKit Swift sample repository](https://github.com/sendbird/UIKit-iOS-Swift). Or you can pull it using submodule command after this git repository.
 
 ```
 // Clone this repository
@@ -83,7 +83,7 @@ git submodule update --init --recursive
 
 This sample is linked with the git submodule which you can download in two ways. 
 
-A. You can **clone** the project directly from the [SyncManager Swift Sample repository](https://github.com/sendbird/SyncManager-iOS-Swift).
+A. You can **clone** the project directly from the [SyncManager Swift sample repository](https://github.com/sendbird/SyncManager-iOS-Swift).
 
 ```
 // Clone this repository
