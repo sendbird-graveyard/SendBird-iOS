@@ -58,7 +58,7 @@ B. You can **pull** it by using the **submodule** command after **cloning** the 
 git submodule update --init --recursive    
 ```
 
-### [UIKit sample(Swift only)](https://github.com/sendbird/SendBird-iOS/tree/master/uikit)
+### [UIKit sample (Swift only)](https://github.com/sendbird/SendBird-iOS/tree/master/uikit)
 
 This sample is linked with the git submodule which you can download in two ways. 
 
@@ -79,7 +79,7 @@ B. You can **pull** it by using the **submodule** command after **cloning** the 
 git submodule update --init --recursive    
 ```
 
-### [SyncManager sample(Swift only)](https://github.com/sendbird/SendBird-iOS/tree/master/syncmanager)
+### [SyncManager sample (Swift only)](https://github.com/sendbird/SendBird-iOS/tree/master/syncmanager)
 
 This sample is linked with the git submodule which you can download in two ways. 
 
