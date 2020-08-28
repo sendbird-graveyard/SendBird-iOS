@@ -14,6 +14,8 @@
 
 - [SyncManager Swift sample](#syncmanager-sample-swift-only) is equipped with a local cache along with core chat features. For faster data loading and caching, the sample synchronizes with the Sendbird server and saves a list of group channels and the messages within the local cache into your client app. This sample is written in Swift with [Sendbird SyncManager SDK](https://github.com/sendbird/sendbird-syncmanager-ios) and [Sendbird Chat SDK](https://github.com/sendbird/sendbird-ios-framework). Find more about SyncManager on [Sendbird SyncManager document](https://docs.sendbird.com/ios/sync_manager_getting_started).
 
+<br />
+
 ## Installation
 
 ### [Chat Swift sample](https://github.com/sendbird/SendBird-iOS-Swift/tree/2e03a93c08b4a119b4f5e18965a5dc087d050ca1)
@@ -22,7 +24,7 @@ This sample is linked with the git submodule which you can download in two ways.
 
 A. You can **clone** the project directly from the [Chat Swift sample submodule repository](https://github.com/sendbird/SendBird-iOS-Swift). 
 
-```
+```bash
 // Clone this repository
 git clone git@github.com:sendbird/SendBird-iOS.git  
 
@@ -32,7 +34,7 @@ git submodule update --init ./basic/Swift
 
 B. You can **pull** it by using the **submodule** command after **cloning** the git repository.
 
-```
+```bash
 // Clone all submodule's repositories
 git submodule update --init --recursive    
 ```
@@ -64,7 +66,7 @@ This sample is linked with the git submodule which you can download in two ways.
 
 A. You can **clone** the project directly from the [UIKit Swift sample repository](https://github.com/sendbird/UIKit-iOS-Swift). Or you can pull it using submodule command after this git repository.
 
-```
+```bash
 // Clone this repository
 git clone git@github.com:sendbird/SendBird-iOS.git
 
@@ -74,7 +76,7 @@ git submodule update --init ./uikit/Swift
 
 B. You can **pull** it by using the **submodule** command after **cloning** the git repository.
 
-```
+```bash
 // Clone all submodule's repositories
 git submodule update --init --recursive    
 ```
@@ -85,7 +87,7 @@ This sample is linked with the git submodule which you can download in two ways.
 
 A. You can **clone** the project directly from the [SyncManager Swift sample repository](https://github.com/sendbird/SyncManager-iOS-Swift).
 
-```
+```bash
 // Clone this repository
 git clone git@github.com:sendbird/SendBird-iOS.git
 
@@ -95,8 +97,7 @@ git submodule update --init ./syncmanager/SyncManager-Swift
 
 B. You can **pull** it by using the **submodule** command after **cloning** the git repository.
 
-```
+```bash
 // Clone all submodule's repositories
 git submodule update --init --recursive    
 ```
-
