@@ -1,3 +1,5 @@
+> ### **Sendbird UIKit samples for iOS have moved to a new repository starting in April 1, 2021. [Check it out here](https://github.com/sendbird/sendbird-uikit-ios-sources). The UIKit samples in this repository will be deprecated in July 1, 2021.**
+
 # Sendbird iOS samples
 ![Platform](https://img.shields.io/badge/platform-iOS-orange.svg)
 ![Languages](https://img.shields.io/badge/language-Objective--C%20%7C%20Swift-orange.svg)
