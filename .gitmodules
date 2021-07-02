@@ -7,6 +7,3 @@
 [submodule "syncmanager/SyncManager-Swift"]
 	path = syncmanager/SyncManager-Swift
 	url = git@github.com:sendbird/SyncManager-iOS-Swift.git
-[submodule "uikit/Swift"]
-	path = uikit/Swift
-	url = git@github.com:sendbird/UIKit-iOS-Swift.git
